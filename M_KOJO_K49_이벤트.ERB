@@ -4029,48 +4029,61 @@ IF LOCAL
 						CASE 0
 							PRINTFORMW 「하아....」
 							PRINTFORMW 사토리는 %마스터를% 빤히 바라보고 있다...
-							PRINTFORMW 「...」
+							PRINTFORMW 「...이상한짓만 안 하신다면야...」
+							PRINTFORMW 자기딴에도 돌아가긴 지쳤는지 그대로 돌아와 자리에 앉았다...
 						CASE 1
-						
+							PRINTFORMW 「...하아아...」
+							PRINTFORMW 「...뭐어...돌아갈 힘도 없고, 그냥 자고 갈까요...」
+							PRINTFORMW 사토리는 땅이 꺼져라 한숨을 쉬며 자리에 들어왔다...
 					ENDSELECT
 				ENDIF
 			ENDIF
 		ELSEIF TALENT:연인
 			SELECTCASE RAND:2
 				CASE 0
-
+					PRINTFORMW 「그럴까요...?」
+					PRINTFORMW 「에헤헤...그럼 사양 않고...♥」
+					PRINTFORMW %마스터의% 제안에 사토리는 기쁜듯이 달라붙어왔다...
 				CASE 1
-					
+					PRINTFORMW 「자고 가라니...후후...엉큼하시네요...♥」
+					PRINTFORMW 「감추려해도 어쩔수 없어요, 전부 보여요 그럴 생각인거...에헤헤...♥」
+					PRINTFORMW 사토리는 히죽히죽 웃으며 %마스터의% 몸에 달라붙어왔다...
 			ENDSELECT
 		ELSEIF TALENT:연모||TALENT:사모||TALENT:애욕
 			SELECTCASE RAND:2
 				CASE 0
-
+					PRINTFORMW 「...그럴까나...」
+					PRINTFORMW %마스터의% 제안에 잠시 고민하던 사토리는 이내 발길을 돌려 방으로 돌아왔다
+					PRINTFORMW 「재워주신다면야...딱히 돌아가야 할 필욘 없죠」
+					PRINTFORMW 묘하게 기뻐보이는건 기분탓일것이다...
 				CASE 1
-					
+					PRINTFORMW 「...흐으응...」
+					PRINTFORMW 「그러죠 뭐어...딱히 별 상관 없으시다면야」
+					PRINTFORMW 사토리는 담담하게 말하려 하곤 있지만 얼굴에 웃음기가 자꾸만 새어나오려 하고 있다...
 			ENDSELECT
 		ELSEIF TALENT:섹프
 			SELECTCASE RAND:2
 				CASE 0
-
+					PRINTFORMW 「자고 가라니...후후...엉큼하시네요...♥」
+					PRINTFORMW 「감추려해도 어쩔수 없어요, 전부 보여요 그럴 생각인거...」
+					PRINTFORMW 「저하고 하고 싶어서 못참겠는거죠? 마구마구 밤새 하고 싶어서 안달난거죠?」
+					PRINTFORMW 사토리는 태연하게 거짓말을 해가며 달라붙어왔다...
 				CASE 1
-					
+					PRINTFORMW 「어머나...그건 무슨뜻일까요...후후...」
+					PRINTFORMW 사토리는 음흉한 미소를 지으면서 %CALLNAME:MASTER%에게 다가왔다
+					PRINTFORMW 「뭐어어...원하시는 대로 해 드릴게요?」
+					PRINTFORMW 어쩐지 입맛을 다시고 있는건 기분 탓 일 것이다...
 			ENDSELECT
 		ELSE
 			IF CFLAG:3000 == 0
-				SELECTCASE RAND:2
-					CASE 0
-
-					CASE 1
-						
-				ENDSELECT
+				PRINTFORMW 「...흐으음...그럴까나...」
+				PRINTFORMW 「...괜찮으시다면야 뭐어...」
+				PRINTFORMW 사토리는 나가려던 발길을 돌렸다
 			ELSE
-				SELECTCASE RAND:2
-					CASE 0
-
-					CASE 1
-						
-				ENDSELECT
+				PRINTFORMW 「하아....」
+				PRINTFORMW 사토리는 %마스터를% 빤히 바라보고 있다...
+				PRINTFORMW 「...이상한짓만 안 하신다면야...」
+				PRINTFORMW 자기딴에도 돌아가긴 지쳤는지 그대로 돌아와 자리에 앉았다...
 			ENDIF
 		ENDIF
 		RETURN 1
@@ -4078,14 +4091,74 @@ IF LOCAL
 	;-------------------------------------------------
 	;前のターンから一緒の部屋にいる状態で相手が寝る（お招き部屋含む（
 	;記入チェック（=0, 非表示、1, 表示）
-	LOCAL:1 = 0
+	LOCAL:1 = 1
 	;-------------------------------------------------
 	IF LOCAL:1 && ARG == 9
-		PRINTFORMW 
+		;PRINTFORMW 「」
+		IF MARK:반발각인 == 3
+			IF TALENT:연인
+				SELECTCASE RAND:2
+					CASE 0
+						PRINTFORMW 「...하아암...죄송해요...먼저 잘게요...」
+						PRINTFORMW 사토리의 몸이 스르륵 넘어가더니, 이내 죽은듯이 잠들어버렸다...
+					CASE 1
+						PRINTFORMW 「...쿠우...」
+						PRINTFORMW 한동안 말이 없다 해서 봤더니 이미 잠들어버렸었다...
+				ENDSELECT
+			ELSE
+				IF CFLAG:3000 == 0
+					SELECTCASE RAND:2
+						CASE 0
+							PRINTFORMW 「......」
+							PRINTFORMW 한동안 말이 없다 해서 봤더니 이미 잠들어버렸었다...
+						CASE 1
+							PRINTFORMW 「...아으으...」
+							PRINTFORMW 비몽사몽한채 헤롱거리던 사토리는 결국 잠기운에 못 이긴채 잠들어버렸다...
+					ENDSELECT
+				ELSE
+					SELECTCASE RAND:2
+						CASE 0
+							PRINTFORMW 「...아으으..안대는데에...」
+							PRINTFORMW 사토리는 끔뻑끔뻑 눈을 깜빡이다 스르륵 잠들어버렸다...
+						CASE 1
+							PRINTFORMW 「...후아암...피곤..해에에......쿠우...」
+							PRINTFORMW 사토리는 늘어지게 하품을 하더니 그대로 넘어져 잠들어버렸다...
+					ENDSELECT
+				ENDIF
+			ENDIF
+		ELSEIF TALENT:연인
+			SELECTCASE RAND:2
+				CASE 0
+					PRINTFORMW 「..아으으...시른데에...%사마스터랑% 좀 더어...」
+					PRINTFORMW 「...쿠우...」
+					PRINTFORMW 사토리는 몰려오는 잠기운에 못이겨 잠들어버렸다...
+				CASE 1
+					PRINTFORMW 「...하아아암...」
+					PRINTFORMW 고개를 푹 숙인채 뭘 하고 있나 봤더니 이미 잠든 채였다...
+			ENDSELECT
+		ELSEIF TALENT:연모||TALENT:사모||TALENT:애욕
+			SELECTCASE RAND:2
+				CASE 0
+					PRINTFORMW 「...하아암...」
+					PRINTFORMW 늘어지게 하품을 하던 사토리는 그대로 쓰러지듯 잠들어버렸다...
+				CASE 1
+					PRINTFORMW 「...흐아암...먼저 잘게요오...」
+					PRINTFORMW 쏟아지는 잠기운에 헤롱거리던 사토리는 결국 %마스터의% 몸 쪽으로 쓰러지며 잠들어버렸다
+			ENDSELECT
+		ELSE
+			IF CFLAG:3000 == 0
+				PRINTFORMW 「...하아암...」
+				PRINTFORMW 사토리가 늘어지는 하품을 한다 싶더니 이내 그대로 잠들어버렸다...
+			ELSE
+				PRINTFORMW 「...안대는데에...후아암...」
+				PRINTFORMW 사토리는 비몽사몽한 채로 %마스터를% 빤히 바라보다 그대로 쓰러져 잠들어버렸다
+			ENDIF
+		ENDIF
 		RETURN 1
 	ENDIF
 	;その他
-	PRINTFORML  
+	PRINTFORMW 「...」
+	PRINTFORMW 사토리는 이미 잠들어버렸다...
 ENDIF
 RETURN 1
 
