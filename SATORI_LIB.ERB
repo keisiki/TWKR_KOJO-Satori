@@ -1,0 +1,155 @@
+﻿@아나타평가
+#DIM 점수
+#DIM 점수하락
+#DIM 추가된팬티
+#DIM 추가시간경험
+점수 = 0
+점수하락 = 0
+추가된팬티 = 0
+추가시간경험 = 0
+;--------------
+추가시간경험 = EXP:MASTER:시간경험 - CFLAG:3002
+추가된팬티 = FLAG:획득팬티총수 - CFLAG:3001
+CFLAG:3001 = FLAG:획득팬티총수
+CFLAG:3002 = EXP:MASTER:시간경험
+IF 추가된팬티 > 0
+    점수 += ((추가된팬티+1)/2)
+ELSE
+    점수하락++
+ENDIF
+점수 += ABL:MASTER:욕망
+점수 += MAX(EXP:MASTER:수면간경험/10,5)
+점수 += MAX(EXP:MASTER:가학쾌락경험/10,5)
+점수 += MAX(EXP:MASTER:시간경험/10,5)
+점수 += MAX(추가시간경험,5)
+점수 += MARK:반발각인/3
+점수 += MARK:시간각인
+점수 += MARK:고통각인
+점수 += CFLAG:3101
+;----
+점수하락 += 2 * TALENT:MASTER:무지
+점수하락 += 2 * TALENT:MASTER:유치
+IF TALENT:MASTER:연령 == -1
+    점수하락 += 1
+ENDIF
+점수하락 += CFLAG:3100
+점수하락 += TALENT:사모
+점수하락 += 2 * TALENT:섹프
+점수하락 += 3 * TALENT:연모
+점수하락 += 3 * TALENT:애욕
+점수하락 += MAX(CFLAG:호감도/100, 5)
+점수하락 += MAX(CFLAG:신뢰도/100, 5)
+점수하락 += MAX(EXP:애정경험/10, 3)
+점수하락 += MAX(EXP:데이트경험/10, 3)
+IF TALENT:연인 == 1
+    점수하락 += 3
+ELSEIF TALENT:연인 == 2
+    점수하락 += 4
+ENDIF
+
+IF 점수 > 점수하락
+    점수 -= 점수하락
+ELSE
+    점수 = 0
+ENDIF
+;------
+SELECTCASE 점수
+    CASE IS < 4
+        ;좋은사람
+        CFLAG:3000 = 0
+    CASE IS < 10
+        ;나쁜사람
+        CFLAG:3000 = 1
+    CASE IS >= 10
+        ;우와아...뭐야 이 인간...이상해...
+        CFLAG:3000 = 2
+ENDSELECT
+;------
+CFLAG:4100 = EXP:MASTER:삽입경험
+CFLAG:4101 = EXP:MASTER:사정경험
+;------
+RETURN 0
+
+@SATORI_DOWN(ARG,ARG:1)
+FOR LOCAL, 1, GET_TARGETNUM() + 1
+	SIF TARGET:LOCAL <= 0
+		CONTINUE
+    ;자는 애는 제외
+	SIF CFLAG:(TARGET:LOCAL):수면
+		CONTINUE
+    ;연인이나 연모면 제외
+    SIF TALENT:(TARGET:LOCAL):연인||TALENT:(TARGET:LOCAL):연모
+        CONTINUE
+    ;사토리 본인은 제외
+    SIF LOCAL == 49
+        CONTINUE
+    ;여기에 없으면 안돼
+    SIF CFLAG:(TARGET:LOCAL):현재위치 != CFLAG:현재위치
+        CONTINUE
+	TARGET = TARGET:LOCAL
+	CFLAG:(TARGET:LOCAL):호감도 -= ARG
+    CFLAG:(TARGET:LOCAL):신뢰도 -= ARG:1
+NEXT
+
+@SATORI_BULLINGYOU
+SELECTCASE RAND:5
+    CASE 0
+        PRINTFORMW 「흠...여자를 범하고 다니는 생각은 그만 둬 주셨음 합니다만...」
+    CASE 1
+        PRINTFORMW 「어라, '지금 당장 여기 사람들 모두 범해버릴까' 라고요?」
+    CASE 2
+        PRINTFORMW 「흐으음...흠흠...'가슴 만지고 싶다'...흐으으음....」
+    CASE 3
+        PRINTFORMW 「정말이지, 그렇게 야한 생각만 하고 다니시지 마시라고요」
+        PRINTDATA
+            DATA 「길 가다가 바람 불어서 모두의 치마가 뒤집어 진다거나...음음...」
+            DATA 「여기 사람들 전부다 집에 가두고 범한다니...흐으음...」
+            DATA 「'여기서 바로 자위해 버릴까'라고요?...헤에...」
+        ENDDATA
+    CASE 4
+        PRINTFORMW 「그런 생각은 옳지 않아요...」
+        PRINTFORMW 「정말, 여기서 곧바로 옷 벗고 야한짓 한다니...변태도 정도가 있지 않나요?」
+ENDSELECT
+PRINTFORMW 사토리는 히죽거리며 거짓말을 하기 시작했다!
+PRINTFORMW 「아아...정말이지, 답도 없는 사람이군요?」
+PRINTFORMW 「...푸흡...뭔가요, 불만이라도 있나요?」
+PRINTFORMW 사토리는 능글맞은 얼굴로 %마스터를% 바라보고 있다...
+CALL SATORI_DOWN(10,5)
+
+@불륜폭로이벤트
+#DIM 불륜아님계산
+;----------
+;불륜 폭로 이벤트
+;----------
+불륜아님계산 = 0
+불륜아님계산 += EXP:38:V성교경험 - 코이시V경험
+불륜아님계산 += EXP:38:A성교경험 - 코이시A경험
+불륜아님계산 += EXP:36:V성교경험 - 오린V경험
+불륜아님계산 += EXP:36:A성교경험 - 오린A경험
+불륜아님계산 += EXP:37:V성교경험 - 오쿠V경험
+불륜아님계산 += EXP:37:A성교경험 - 오쿠A경험
+IF CFLAG:4000 == 0&&TALENT:연인&&RAND:3 == 0&&불륜아님계산
+	IF EXP:MASTER:삽입경험 - 불륜아님계산 > CFLAG:4100
+		PRINTFORMW 「......」
+		PRINTFORMW 「저기, %MASTERNAME:49%, 그 애랑은 기분 좋았나요?」
+		PRINTFORMW 사토리는 담담한 목소리로 물어왔지만 어쩐지 어깨를 바들바들 떨고 있다
+		PRINTFORMW 성큼성큼 다가온 사토리는 촉촉한 눈으로 %마스터를% 바라보고 있다...
+		PRINTFORMW 「저로는 만족할수 없나요? 저는 안되나요?」
+		PRINTFORMW 「...앞으로는, 다른 사람이랑 야한짓 금지니까...쌓일때마다 저한테만, 네?」
+		CFLAG:4001++
+		RETURN 1
+	ENDIF
+ENDIF
+CFLAG:4100 = EXP:MASTER:삽입경험
+코이시V경험 = EXP:38:V성교경험
+코이시A경험 = EXP:38:A성교경험
+오쿠V경험 = EXP:37:V성교경험
+오쿠A경험 = EXP:37:A성교경험
+오린V경험 = EXP:36:V성교경험
+오린A경험 = EXP:36:A성교경험
+;-----------------------
+
+@ST_삽입경험증가(ARG)
+EXP:MASTER:삽입경험 += ARG
+EXP:V성교경험 += ARG
+CFLAG:4100++
