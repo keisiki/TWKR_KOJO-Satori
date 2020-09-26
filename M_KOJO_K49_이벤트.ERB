@@ -4533,35 +4533,193 @@ ENDIF
 RETURN 1
 
 ;==================================================
-;他者介入でムード変化
+;他者介入でムード変化 타인 개입으로 무드 변화
 ;==================================================
 @M_KOJO_EVENT_K49_5(ARG,ARG:1)
 ;口上主はTARGET
 ;ARGに入ってきたキャラ（人数が膨大なので、自己把握自己責任で
 ;--------------------------------------------------
 ;記入チェック（=0, 非表示、1, 表示）
-LOCAL = 0
+LOCAL = 1
 ;-------------
 
 IF LOCAL
 	;-------------------------------------------------
 	;小分岐
 	;-------------------------------------------------
-	;霊夢が入ってきた
+	;코이시 입갤
 	;記入チェック（=0, 非表示、1, 表示）
-	LOCAL:1 = 0
+	LOCAL:1 = 1
 	;-------------------------------------------------
-	IF LOCAL:1 && ARG == 1
-		PRINTFORML
-		RETURN 1
-	ENDIF
-	;-------------------------------------------------
-	;る～ことが入ってきた
-	;記入チェック（=0, 非表示、1, 表示）
-	LOCAL:1 = 0
-	;-------------------------------------------------
-	IF LOCAL:1 && ARG == 2
-		PRINTFORML
+	IF LOCAL:1 && ARG == 38
+		;PRINTFORMW 「」
+		;PRINTFORMW 『』
+		IF MARK:반발각인 == 3
+			IF TALENT:연인
+				IF TALENT:38:연인
+					PRINTFORMW 「...코이시, 방해야」
+					PRINTFORMW 『에에...그치만 나도 %마스터랑% 연인인걸, 언니만 독점하는건 안-돼』
+					PRINTFORMW 「...하아아...모처럼 좋았는데...」
+				ELSEIF MARK:38:반발각인 == 3
+					PRINTFORMW 「...코이시?」
+					PRINTFORMW 『언니...그 사람이 정말로 좋은거야? 그렇게 사이좋은듯이 달라붙고...』
+					PRINTFORMW 「...네가 생각하는거보다, %사마스터는% 좋은 사람이야, 약간 비뚤어지긴 했지만...」
+					PRINTFORMW 『콩깍지가 제대로 꼈구나...하아아...』
+				ELSEIF TALENT:38:사모||TALENT:38:연모||TALENT:38:섹프||TALENT:38:애욕
+					PRINTFORMW 「엣...코..코이시...왔니...? 그...이건...」
+					PRINTFORMW 『...야한짓이잖아? 그게 왜?』
+					PRINTFORMW 「아으으....」
+					PRINTFORMW 사토리의 얼굴이 발갛게 물들었다...
+				ELSE
+					PRINTFORMW 「...코이시왔니?」
+					PRINTFORMW 『응~...근데 그 사람은...?』
+					PRINTFORMW 「...아...그게...언니의...」
+					PRINTFORMW 『아하...그게 그 사람이야? 말과는 다르게 알콩달콩한데?』
+					PRINTFORMW 사토리는 얼굴을 발갛게 물들인채 아무 말도 못하고 있었다...
+				ENDIF
+			ELSE
+				IF TALENT:38:연인
+					PRINTFORMW 「...아아...코이시, 왔니」
+					PRINTFORMW 『어라...언니는 %마스터를% 싫어하지 않았었나? 왠일로 착 달라붙어 있데?』
+					PRINTFORMW 「...그냥 단순한 변덕이었어」
+				ELSEIF MARK:38:반발각인 == 3
+					PRINTFORMW 『...언니, 뭐해?』
+					PRINTFORMW 「...아무것도」
+					PRINTFORMW 코이시는 사토리와 가까이 있는 %마스터를% 지그시 바라보기 시작했다...
+				ELSE
+					PRINTFORMW 「...코이시?」
+					PRINTFORMW 『으응? 언니, %마스터는% 싫다고 말하고 다니지 않았었나?』
+					SIF TALENT:38:사모||TALENT:38:연모||TALENT:38:섹프||TALENT:38:애욕
+						PRINTFORMW 「...가끔씩은 변덕도 부릴수 있는거야, 너도 좋다고 붙어다니지 않았니?」
+					PRINTFORMW 코이시때문에 흥이 깨졌는지, 사토리는 다시 거리를 두기 시작했다...
+				ENDIF
+			ENDIF
+		ELSEIF TALENT:연인
+			IF TALENT:38:연인
+				PRINTFORMW 「아, 코이시...」
+				PRINTFORMW 『어라라...지금 껴안기 타임이야?』
+				PRINTFORMW 『나만 안 부르고 치사하게에...나도 같이~』
+				PRINTFORMW 사토리와 %마스터의% 사이에 코이시도 끼어들었다...
+				BASE:38:무드 += 500
+			ELSEIF MARK:38:반발각인 == 3
+				PRINTFORMW 「...아, 코이시 왔니...」
+				PRINTFORMW 『...왜 하필 %마스터가% 있는거야...』
+				PRINTFORMW 「좋아하는 사이니까, 이렇게 서로 안고 있어도 괜찮지 않니?」
+				PRINTFORMW 『...그래도...』
+				PRINTFORMW 「네가 생각하는거보다 %사마스터는% 좋은 사람이야...앞으로도 계속 만날 사인데, 그렇게 서먹하면 안되지」
+				PRINTFORMW 사토리의 말에 코이시의 얼굴은 딱딱하게 굳어갔다...
+			ELSEIF TALENT:38:사모||TALENT:38:연모||TALENT:38:섹프||TALENT:38:애욕
+				PRINTFORMW 「...어라라, 코이시...언제 왔니?」
+				PRINTFORMW 『조금 전에~...근데에, 지금 뭐 하고 있어?』
+				PRINTFORMW 「뭐긴 뭐니, 연인끼리 달라붙는게 그렇게 이상하니?」
+				PRINTFORMW 『그런가아...나도 껴도 되나?』
+				PRINTFORMW 사토리가 무어라 대답하기도 전에 코이시는 %마스터의% 옆에 달라붙어왔다...
+				BASE:38:무드 += 1000
+			ELSE
+				PRINTFORMW 「DK...코이시왔니?」
+				PRINTFORMW 『응~...근데 그 사람은...?』
+				PRINTFORMW 「언니의 남친...이라고 해야하나?」
+				PRINTFORMW 『아하...그 사람이었어? 흐음흐음...역시 언니 말대로네~ 맨날 좋다고 좋다고 말하고 다니더니...』
+				PRINTFORMW 사토리는 얼굴을 발갛게 물들인채 아무 말도 못하고 있었다...
+			ENDIF
+		ELSEIF TALENT:연모||TALENT:사모||TALENT:애욕
+			IF TALENT:38:연인
+				PRINTFORMW 「으응? 코이시 왔니?」
+				PRINTFORMW 『앗, 언니...%마스터랑% 그렇게 사이좋게에...치사해...』
+				PRINTFORMW 「뭐 어떠니, 동생의 남자랑 서먹서먹한거보단 훨씬 좋잖니」
+				PRINTFORMW 『그렇다고 그렇게 달라붙는 언니도 없어-!』
+				PRINTFORMW 코이시는 볼을 부풀리며 %마스터의% 옆으로 달라붙어왔다...
+				BASE:38:무드 += 1000
+			ELSEIF MARK:38:반발각인 == 3
+				PRINTFORMW 「어라라...코이시, 무슨일이니?」
+				PRINTFORMW 『...아니, 별일은 아닌데...지금 뭐 하고 있는거야?』
+				PRINTFORMW 「딱히 아무것도 안하고 있어」
+				PRINTFORMW 『그러면서 손은 왜 거기로 가 있는데?』
+				PRINTFORMW 코이시는 경계의 눈초리를 보내고 있다...
+			ELSE
+				PRINTFORMW 「...아, 코이시...언제 온거니?」
+				PRINTFORMW 『글쎄에~? 언니가 %마스터랑%...읍!』
+				PRINTFORMW 코이시가 말하기도 전에 사토리는 얼굴을 발갛게 물들이곤 입을 틀어막아버렸다
+			ENDIF
+		ELSEIF TALENT:섹프
+			IF TALENT:38:연인
+				PRINTFORMW 「...어라...코이시, 보고 있던거니?」
+				PRINTFORMW 『...우으으...언니는 내 %CALLNAME:MASTER% 뺏어가서 즐거워?』
+				PRINTFORMW 「뺏어가다니, 그런게 아니라 잠시 빌려갈뿐...확실히 돌려줄테니까 걱정마렴?」
+				PRINTFORMW 사토리는 농염한 미소를 띄며 %마스터를% 바라보았다...
+			ELSEIF MARK:38:반발각인 == 3
+				PRINTFORMW 「어라, 코이시...왜 그렇게 빤히 바라보고 있니?」
+				PRINTFORMW 『그야 언니가 %마스터랑% 그렇게 붙어 있으니까 그렇지』
+				PRINTFORMW 「그게 뭐 어때서?」
+				PRINTFORMW 『...%마스터가% 이상한 짓 하려하면 혼내줘야 하니까?』
+				PRINTFORMW 『언니는 너무 쉽게 몸을 허락해서 탈이니까...』
+				PRINTFORMW 「그렇지만도 않단다? %MASTERNAME:49%한테만 허락하는거야...다른 사람한테 허락할 리 없잖니?」
+				PRINTFORMW 코이시는 뚱한 표정으로 %마스터를% 바라보고 있다...
+			ELSEIF TALENT:38:사모||TALENT:38:연모||TALENT:38:섹프||TALENT:38:애욕
+				PRINTFORMW 「어라, 코이시...뭘 그리 뚫어져라 바라보니?」
+				PRINTFORMW 『왠지 둘 사이가 알콩~달콩해보여서, 재밌어보였거든』
+				PRINTFORMW 「너도 옆에 와서 해보렴? 분명히 즐거울거야...후후...」
+				BASE:38:무드 += 1000
+			ELSE
+				PRINTFORMW 「어라, 코이시...왜 그리 뚫어져라 보고 있는거니?」
+				PRINTFORMW 『그게, 언니가 그렇게 다른사람이랑 붙어있는걸 보니 신기해서 말이지?』
+				PRINTFORMW 코이시는 %마스터의% 옆에 앉아 사토리를 뚫어져라 바라보기 시작했다...
+				PRINTFORMW 그 시선에 부담을 느낀건지 사토리는 약간 거리를 두었다
+				BASE:38:무드 += 500
+			ENDIF
+		ELSE
+			IF CFLAG:3000 == 0
+				IF TALENT:38:연인
+					PRINTFORMW 「어라...코이시, 왜 그러니?」
+					PRINTFORMW 『...우으으...언니는 내 %CALLNAME:MASTER% 뺏어가서 즐거워?』
+					PRINTFORMW 「뺏어가다니...그냥 %사마스터가% 어떤 사람인가 알아보려는것 뿐이란다?」
+					PRINTFORMW 사토리는 싱긋 웃어보였다...
+				ELSEIF MARK:38:반발각인 == 3
+					PRINTFORMW 「어라, 코이시...왜 그렇게 빤히 바라보고 있니?」
+					PRINTFORMW 『그야 언니가 %마스터랑% 그렇게 붙어 있으니까 그렇지』
+					PRINTFORMW 「그게 뭐 어때서?」
+					PRINTFORMW 『...%마스터가% 이상한 짓 하려하면 혼내줘야 하니까?』
+					PRINTFORMW 『언니는 너무 쉽게 몸을 허락해서 탈이니까...』
+					PRINTFORMW 「에에...그래도 %사마스터는% 그렇게 까지 나쁜 분은 아니란다? 단지 조금 표현방식이 거친분일뿐...」
+					PRINTFORMW 사토리의 변명에 코이시는 뚱한 표정으로 %마스터를% 바라보고 있다...
+				ELSEIF TALENT:38:사모||TALENT:38:연모||TALENT:38:섹프||TALENT:38:애욕
+					PRINTFORMW 「어라, 코이시...뭘 그리 뚫어져라 바라보니?」
+					PRINTFORMW 『왠지 둘 사이가 알콩~달콩해보여서, 재밌어보였거든』
+					PRINTFORMW 「그..그런가?」
+					PRINTFORMW 사토리는 왠지 얼굴이 발그레해졌다
+				ELSE
+					PRINTFORMW 「아, 코이시」
+					PRINTFORMW 『언니이~』
+					PRINTFORMW 코이시가 달음박질 쳐서 사토리의 품에 뛰어들었다
+					PRINTFORMW 그탓에 자연히 사토리와의 거리는 멀어졌다..
+				ENDIF
+			ELSE
+				IF TALENT:38:연인
+					PRINTFORMW 「어라...코이시, 왜 그러니?」
+					PRINTFORMW 『...우으으...언니는 내 %CALLNAME:MASTER% 뺏어가서 즐거워?』
+					PRINTFORMW 「뺏어가다니...그냥, %사마스터가% 코이시한테 나쁜 마음 먹나...확인해 볼 뿐이란다?」
+					PRINTFORMW 사토리는 싱긋 웃어보였다...
+				ELSEIF MARK:38:반발각인 == 3
+					PRINTFORMW 「어라, 코이시...왜 그렇게 빤히 바라보고 있니?」
+					PRINTFORMW 『그야 언니가 %마스터랑% 그렇게 붙어 있으니까 그렇지』
+					PRINTFORMW 「그게 뭐 어때서?」
+					PRINTFORMW 『...%마스터가% 이상한 짓 하려하면 혼내줘야 하니까?』
+					PRINTFORMW 『언니는 너무 쉽게 몸을 허락해서 탈이니까...』
+					PRINTFORMW 「걱정마렴, 내 몸 정도는 지킬수 있고...다 알면서 여기 있는거니까?」
+					PRINTFORMW 사토리의 변명에 코이시는 뚱한 표정으로 %마스터를% 바라보고 있다...
+				ELSEIF TALENT:38:사모||TALENT:38:연모||TALENT:38:섹프||TALENT:38:애욕
+					PRINTFORMW 「어라, 코이시...뭘 그리 뚫어져라 바라보니?」
+					PRINTFORMW 『왠지 둘 사이가 알콩~달콩해보여서, 재밌어보였거든』
+					PRINTFORMW 「그런가?」
+					PRINTFORMW 사토리는 왠지 얼굴이 발그레해졌다
+				ELSE
+					PRINTFORMW 「아, 코이시」
+					PRINTFORMW 『언니이~』
+					PRINTFORMW 코이시가 달음박질 쳐서 사토리의 품에 뛰어들었다
+					PRINTFORMW 그탓에 자연히 사토리와의 거리는 멀어졌다..
+				ENDIF
+			ENDIF
+		ENDIF
 		RETURN 1
 	ENDIF
 	;その他（キャラ指定なし
