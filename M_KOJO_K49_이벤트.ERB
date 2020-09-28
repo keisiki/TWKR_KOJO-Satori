@@ -4728,30 +4728,133 @@ ENDIF
 RETURN 1
 
 ;==================================================
-;情事を目撃した
+;情事を目撃した 정사를 목격했다
 ;==================================================
 @M_KOJO_EVENT_K49_6(ARG,ARG:1)
 ;口上主はTARGET
 ;ARGに情事相手
 ;--------------------------------------------------
 ;記入チェック（=0, 非表示、1, 表示）
-LOCAL = 0
+LOCAL = 1
 ;-------------
 
 IF LOCAL
 	;-------------------------------------------------
 	;小分岐
 	;-------------------------------------------------
-	;情事を目撃した（馴れ合い度:低）
+	;情事を目撃した（馴れ合い度:低）들켜서 불륜 중단
 	;記入チェック（=0, 非表示、1, 表示）
-	LOCAL:1 = 0
+	LOCAL:1 = 1
 	;-------------------------------------------------
 	IF LOCAL:1 && ARG:1 == 1
-		PRINTFORML
+		;PRINTFORMW 「」
+		IF MARK:반발각인 == 3
+			IF TALENT:연인
+				IF CFLAG:4000
+					PRINTFORMW 「...하아아...팔팔하시네요...」
+					PRINTFORMW 「...아무리 허락해줬다곤 하지만...보고 있으면 샘나는걸요 역시...」
+					PRINTFORMW 사토리는 중얼중얼 거리고 있다...
+				ELSE
+					PRINTFORMW 「......」
+					PRINTFORMW 누군가의 시선이 느껴진다 해서 봤더니 사토리가 들어와 있었다...
+					PRINTFORMW 사토리는 아무런 말도 하고 있지 않지만 무척이나 슬퍼보였다
+					PRINTFORMW 어쩔수 없이 행위를 중단해야 했다...
+					CFLAG:4001++
+				ENDIF
+			ELSE
+				SELECTCASE RAND:2
+					CASE 0
+						PRINTFORMW 「...흐음흐음...」
+						PRINTFORMW 방에 들어온 사토리는 흥미롭다는듯 %마스터를% 바라보고 있었다...
+						PRINTFORMW 어쩐지 등골이 서늘해지는 기분이 들어 더이상 계속 할 수 없었다...
+					CASE 1
+						PRINTFORMW 「헤에에...그런 기분이구나아...」
+						PRINTFORMW 「..아? 방해였나요? 그것 참 미안하게 됐네요...계속하시죠?」
+						PRINTFORMW 비웃듯이 올라간 사토리의 입꼬리를 본 %마스터는% 흥분이 싹 가셔버렸다...
+				ENDSELECT
+			ENDIF
+		ELSEIF TALENT:연인
+			IF CFLAG:4000
+				SELECTCASE RAND:3
+					CASE 0
+						PRINTFORMW 「...읏...%MASTERNAME:49%...」
+						PRINTFORMW 「...아, 아뇨...괜찮...으니까 계속 하세요...」
+						PRINTFORMW 사토리는 잠시 어두운 표정을 지었으나 이내 애써 웃어보였다
+					CASE 1
+						PRINTFORMW 「...팔팔...하시네요」
+						PRINTFORMW 「화나지 않았는데요...나중에 저도 그만큼 사랑해 주실래요?」
+					CASE 2
+						PRINTFORMW 「...하아아...팔팔하시네요...」
+						PRINTFORMW 「...아무리 허락해줬다곤 하지만...보고 있으면 샘나는걸요 역시...」
+						PRINTFORMW 사토리는 중얼중얼 거리고 있다...
+				ENDSELECT
+			ELSE
+				SELECTCASE RAND:2
+					CASE 0
+						PRINTFORMW 「...읏...%MASTERNAME:49%...」
+						PRINTFORMW 사토리는 그렁그렁한 눈빛으로 %마스터를% 바라보고 있다
+					CASE 1
+						PRINTFORMW 「......」
+						PRINTFORMW 사토리가 말없이 %마스터를% 바라보고 있다...
+						PRINTFORMW 어쩐지 %CALLNAME:MASTER%도 기분이 다운되어 더이상 행위를 지속할수 없었다...
+				ENDSELECT
+				CFLAG:4001++
+			ENDIF
+		ELSEIF TALENT:연모||TALENT:사모||TALENT:애욕
+			SELECTCASE RAND:2
+				CASE 0
+					PRINTFORMW 「...호오오...그러는 편이 기분 좋은건가요...」
+					PRINTFORMW 「...에? 방해? 저, 방해되나요?」
+					PRINTFORMW 사토리는 분위기를 망쳐놓고도 히죽거리고 있다...
+					PRINTFORMW 일부러 저러는건지 정말 몰라서 저러는건지...
+				CASE 1
+					PRINTFORMW 「...으으으음...거기가 아니라 그 옆이...아, 그래요 거기...그래그래...」
+					PRINTFORMW 「......네? 방해되니까 저리 가라고요?」
+					PRINTFORMW 사토리는 갑자기 불쑥 끼어들고는 어디를 자극할지 참견하고 있다...
+					PRINTFORMW 그탓에 흥분이 싹 가셔버렸다...
+			ENDSELECT
+		ELSEIF TALENT:섹프
+			SELECTCASE RAND:2
+				CASE 0
+					PRINTFORMW 「...아아...그쪽...아니아니...거기말고, 좀 더더더...네 거기, 거기 문질문질하세요...」
+					PRINTFORMW 「...그렇게 조금더...어? "방해되니까 조용히"? 에에...그치만 너무 답답하게 하시고들 계시길래」
+					PRINTFORMW 사토리의 참견에 흥분이 싹 가셔버렸다...
+				CASE 1
+					PRINTFORMW 「헤에에...재밌어보이네요...」
+					PRINTFORMW 「다음에 저랑 할때도 그거 해주세요?」
+					PRINTFORMW %마스터를% 빤히 바라보던 사토리는 입맛을 다시며 말하고 있다...
+					PRINTFORMW ...%사토리의% 시선이 부담되어서 더이상 행위를 지속할수 없었다...
+			ENDSELECT
+		ELSE
+			IF CFLAG:3000 == 0
+				SELECTCASE RAND:2
+					CASE 0
+						PRINTFORMW 「...우와아...못볼걸 봤네요...」
+						PRINTFORMW 방에 들어온 사토리는 흠칫 놀라 얼굴을 가렸다...
+						PRINTFORMW 뻘줌해진 %마스터와% %ARG는% 조용히 옷을 고쳐입기 시작했다...
+					CASE 1
+						PRINTFORMW 「......읏...」
+						PRINTFORMW %ARG와% %마스터가% 사랑을 나누는걸 본 사토리는 얼굴을 발갛게 물들이고 있었다
+						PRINTFORMW 그대로 빼도박도 못한채 어정쩡하게 된 %마스터와% %ARG는% 주섬주섬 옷을 주워입기 시작했다...
+				ENDSELECT
+			ELSE
+				SELECTCASE RAND:2
+					CASE 0
+						PRINTFORMW 「흐으응...」
+						PRINTFORMW 사토리는 %마스터와% %ARG를% 빤히 바라보고 있다...
+						PRINTFORMW 무언의 압박에 %마스터는% 더이상 행위를 지속할수 없었다...
+					CASE 1
+						PRINTFORMW 「...으으음...타이밍이 참 안좋네요...」
+						PRINTFORMW 「어쩐지 이쪽이 시끌시끌 하더니만...」
+						PRINTFORMW 사토리는 못볼걸 봤다는듯이 얼굴을 가렸다...
+						PRINTFORMW 어색한 분위기속에 %마스터와% %ARG는% 조용히 옷을 주워입었다...
+				ENDSELECT
+			ENDIF
+		ENDIF
 		RETURN 1
 	ENDIF
 	;-------------------------------------------------
-	;負けじと参加（馴れ合い度:高）
+	;負けじと参加（馴れ合い度:高）난입
 	;記入チェック（=0, 非表示、1, 表示）
 	LOCAL:1 = 0
 	;-------------------------------------------------
@@ -4760,7 +4863,7 @@ IF LOCAL
 		RETURN 1
 	ENDIF
 	;-------------------------------------------------
-	;気まずそうに立ち去る
+	;気まずそうに立ち去る 어색하게 돌아감
 	;記入チェック（=0, 非表示、1, 表示）
 	LOCAL:1 = 0
 	;-------------------------------------------------
