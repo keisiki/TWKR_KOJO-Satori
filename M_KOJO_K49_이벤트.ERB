@@ -5068,14 +5068,14 @@ ENDIF
 RETURN 1
 
 ;==================================================
-;情事を見られた
+;情事を見られた 정사를 목격당함
 ;==================================================
 @M_KOJO_EVENT_K49_7(ARG,ARG:1)
 ;口上主はTARGET
 ;ARGに目撃者
 ;--------------------------------------------------
 ;記入チェック（=0, 非表示、1, 表示）
-LOCAL = 0
+LOCAL = 1
 ;-------------
 
 IF LOCAL
@@ -5084,10 +5084,52 @@ IF LOCAL
 	;-------------------------------------------------
 	;情事を見られた（目撃者の馴れ合い度:低）
 	;記入チェック（=0, 非表示、1, 表示）
-	LOCAL:1 = 0
+	LOCAL:1 = 1
 	;-------------------------------------------------
 	IF LOCAL:1 && ARG:1 == 1
-		PRINTFORML
+		IF MARK:반발각인 == 3
+			IF TALENT:연인
+				SELECTCASE RAND:2
+					CASE 0
+						PRINTFORMW 「...음...그...이건...」
+						PRINTFORMW 사토리의 얼굴이 발갛게 달아올랐다
+					CASE 1
+						PRINTFORMW 「....에...그러니까...이건...」
+						PRINTFORMW 사토리는 부끄러운지 말을 더듬고 있다...
+				ENDSELECT
+			ELSE
+				SELECTCASE RAND:2
+					CASE 0
+						PRINTFORMW 「...에으음...그러니까 이건...그냥...」
+						PRINTFORMW 「...아으으...」
+						PRINTFORMW 사토리는 얼굴이 새빨게져서 어버버 거리고 있다...
+					CASE 1
+						PRINTFORMW 「......」
+						PRINTFORMW 사토리는 아무말도 못한채 고개를 푹 숙이고 있다...
+				ENDSELECT
+			ENDIF
+		ELSEIF TALENT:연인
+			SELECTCASE RAND:2
+				CASE 0
+					PRINTFORMW 「...방해야...」
+					PRINTFORMW 사토리는 볼을 부풀렸다
+				CASE 1
+					PRINTFORMW 「...아아...하필이면...잠깐 뒤에 와줬으면 좋을텐데...으으...」
+					PRINTFORMW 사토리는 방해받아 기분이 안 좋은듯 하다...
+			ENDSELECT
+		ELSEIF TALENT:연모||TALENT:사모||TALENT:애욕||TALENT:섹프
+			SELECTCASE RAND:2
+				CASE 0
+					PRINTFORMW 「...막 좋을때에...」
+					PRINTFORMW 사토리는 토라진듯한 목소리로 볼을 부풀리고 있다...
+				CASE 1
+					PRINTFORMW 「......」
+					PRINTFORMW 방해받은게 불만인지 입술을 삐죽이고 있다...
+			ENDSELECT
+		ELSE
+			PRINTFORMW 「...하아아...」
+			PRINTFORMW 방해받아서 기분이 안좋은듯, 사토리는 거리를 벌렸다...
+		ENDIF
 		RETURN 1
 	ENDIF
 	;-------------------------------------------------
@@ -5114,7 +5156,7 @@ ENDIF
 RETURN 1
 
 ;==================================================
-;目撃した情事を問い詰める（現在無し
+;目撃した情事を問い詰める（現在無し 작성하지 않는다
 ;==================================================
 @M_KOJO_EVENT_K49_8(ARG,ARG:1)
 RETURN 1
