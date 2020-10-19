@@ -5862,7 +5862,7 @@ IF LOCAL
 						PRINTFORMW 야릇한 표정으로 %마스터를% 바라보는 사토리는 슬며시 %마스터의% 옷을 벗기기 시작했다...
 				ENDSELECT
 			ELSEIF TALENT:연모||TALENT:사모
-				SELECTCASE RAND:3
+				SELECTCASE RAND:2
 					CASE 0
 						PRINTFORMW 「...저기이...%MASTERNAME:49%...」
 						PRINTFORMW 야릇한 숨소리의 사토리는 무언가 기대하는 표정으로 달라붙어왔다
@@ -5879,28 +5879,40 @@ IF LOCAL
 						PRINTFORMW 「..아니 정확히는 야리꾸리한...아으으...뭐랄까...」
 						PRINTFORMW 「...네, 야한 기분...그래요」
 						PRINTFORMW 사토리의 손길이 %마스터의% 몸을 더듬기 시작했다...
-					CASE 2
-						
 				ENDSELECT
 			ELSE
 				;사실상 섹프||애욕임
 				IF CFLAG:3000 == 0
-					SELECTCASE RAND:3
+					SELECTCASE RAND:2
 						CASE 0
-
+							PRINTFORMW 「으으응...저기...」
+							PRINTFORMW 「몸이 근질근질한데...으으으응...」
+							PRINTFORMW 사토리는 다리를 베베꼬며 달라붙어왔다
+							PRINTFORMW 「...해도 괜찮을까요?」
+							PRINTFORMW 촉촉히 젖은 눈으로 %마스터를% 올려다 보는 그 눈빛
+							PRINTFORMW 거기에 정신이 팔린 사이에 이미 사토리의 손은 %마스터의% 몸을 더듬고 있었다..
 						CASE 1
-
-						CASE 2
-						
+							PRINTFORMW 「...으음~...갑자기 불끈불끈해지는걸요」
+							PRINTFORMW 「그런고로, 어울려주셔야겠습니다」
+							PRINTFORMW 사토리는 갑자기 몸을 밀착해왔다
+							PRINTFORMW 「후후후...조금만, 조금만이면 되니까요...으응..♥」
+							PRINTFORMW 촉수로 몸을 옭아맨채 입맛을 다시는 그녀는 요염한 포즈로 %CALLNAME:MASTER%에게 다가왔다...
 					ENDSELECT
 				ELSE
-					SELECTCASE RAND:3
+					SELECTCASE RAND:2
 						CASE 0
-
+							PRINTFORMW 「으으으음...」
+							PRINTFORMW 「몸이 근질근질한데...으으으응...」
+							PRINTFORMW 사토리는 다리를 베베꼬며 중얼거렸다
+							PRINTFORMW 「...해도 괜찮겠지, 이런 사람이 그런걸 신경쓸까」
+							PRINTFORMW 욕망에 찬 눈으로 %마스터를% 올려다 보는 그 눈
+							PRINTFORMW 거기에 정신이 팔린 사이에 이미 사토리의 손은 %마스터의% 몸을 더듬고 있었다..
 						CASE 1
-
-						CASE 2
-						
+							PRINTFORMW 「...으음~...갑자기 불끈불끈해지는걸」
+							PRINTFORMW 「...어쩔까나, 누구라도 범해버리면 좋을텐데」
+							PRINTFORMW 사토리는 갑자기 몸을 밀착해왔다
+							PRINTFORMW 「후후후...조금만, 조금만이면 되니까요...으응..♥」
+							PRINTFORMW 촉수로 몸을 옭아맨채 입맛을 다시는 그녀는 요염한 포즈로 %CALLNAME:MASTER%에게 다가왔다...
 					ENDSELECT
 				ENDIF
 			ENDIF
