@@ -24,6 +24,7 @@
 ;CFLAG:4000 불륜허가 플래그
 ;CFLAG:4001 불륜횟수
 ;CFLAG:4100 저번 검사에서의 마스터 삽입경험
+;CFLAG:5000 반발각인 감소 이벤트 카운터
 ;
 ;****이벤트목록*****************************************************************
 ; EVENT NO.1 (성교종료시 불륜 허락)
@@ -6159,10 +6160,171 @@ IF LOCAL
 		;-------------------------------------------------
 		;抱き着きモード満足終了 만족해서 놓아줌
 		;記入チェック（=0, 非表示、1, 表示）
-		LOCAL:1 = 0
+		LOCAL:1 = 1
 		;-------------------------------------------------
+		;PRINTFORMW 「」
 		IF LOCAL:1 && ARG:1 == 1
-			PRINTFORML
+			IF MARK:반발각인 == 3
+				IF TALENT:연인
+					SELECTCASE RAND:3
+						CASE 0
+							PRINTFORMW 「...하아아...좋았어요...」
+							PRINTFORMW 사토리는 만족한듯한 모습으로 몸을 떼어놓았다
+						CASE 1
+							PRINTFORMW 「...후우우...기분 좋아...」
+							PRINTFORMW 사토리는 %마스터의% 양 어깨에 팔을 두르고 진한 한숨을 내쉬었다
+							PRINTFORMW 「...다음번에도 이렇게 잔뜩 해주실래요? 아니면 이참에 계속...후후후...」
+						CASE 2
+							PRINTFORMW 「...응, 저는 이제 만족했어요...」
+							PRINTFORMW 「...다음에도 또...후후후...기대할게요?」
+							PRINTFORMW %마스터를% 등 뒤에서 부터 끌어안은 사토리의 나긋한 목소리가 %마스터의% 귀를 간지럽혀 왔다
+					ENDSELECT
+				ELSE
+					IF CFLAG:3000 == 0
+						SELECTCASE RAND:3
+							CASE 0
+								PRINTFORMW 「...하아...꽤나 좋았어요...」
+								PRINTFORMW 「...저기, %사마스터는% 어땠나요...?」
+								PRINTFORMW 옷을 주워입으며 물어오는 사토리였지만...그녀의 특성상 립서비스일게 분명하다
+							CASE 1
+								PRINTFORMW 「...후으으...개운해졌다...고마워요 %MASTERNAME:49%...」
+								PRINTFORMW 「...다음번에 또 부탁드려도 좋을까요?」
+							CASE 2
+								PRINTFORMW 「으으응~...역시 한 번 하고 나니 좀 기분이 좋네요...」
+								PRINTFORMW 「...다음번에도 쌓이면 부탁할까나...그래도 기분좋게 해줄땐 사랑스러운데」
+								PRINTFORMW 쿡쿡거리던 사토리는 %마스터의% 등 뒤에서 팔을 둘러왔다
+								PRINTFORMW 묘하게 부드러운 가슴의 감촉이 등을 따라 전해져 온다
+						ENDSELECT
+						CFLAG:5000 += 1
+					ELSE
+						SELECTCASE RAND:3
+							CASE 0
+								PRINTFORMW 「하아...좋네, 이거...혼자서 하는거보다 백배 천배 나아...」
+								PRINTFORMW 「...그치만 역시 상대가 누군지 생각해보면...」
+								PRINTFORMW 실컷 즐겨놓고 볼멘 소리를 하고 있다
+								PRINTFORMW 「정말이지, %MASTERNAME:49%도 기분 좋았으면 된거죠, 고맙게 여기라고요」
+								PRINTFORMW 「...%사마스터가% 한 걸 생각하시라고요...」
+								PRINTFORMW 역으로 툴툴대던 사토리는 잠시 %마스터의% 몸을 살펴보더니 약간 누그러진 표정으로 다가왔다
+								PRINTFORMW 「그래도 기분 좋게 해 주셨으니, 그건 고맙게 생각하고 있습니다...」
+								PRINTFORMW 「가끔은 이렇게 사이좋게 있는것도 나쁘진 않네요...」
+								PRINTFORMW 요근래 보기 힘든 온화한 표정으로 속삭여오는 사토리는 %마스터의% 몸을 부드럽게 끌어안으며 웃어보였다
+								CFLAG:3100++
+							CASE 1
+								PRINTFORMW 「그럭저럭...기분 좋았네...」
+								PRINTFORMW 「그렇지만 끝나고 나니 기분이 팍...식어버리는게 흠이란 말이지...」
+								PRINTFORMW %마스터를% 빤히 바라보면서 중얼거리고 있다...
+								PRINTFORMW 「평소에도 조금만 좋게 해 줬으면 좋겠는데」
+							CASE 2
+								PRINTFORMW 「...후우...개운하다......」
+								PRINTFORMW 「가끔씩은 이렇게 하는것도, 자위랑은 다른 맛이 있네...」
+								PRINTFORMW 「...다른 더 좋은 사람이랑 하면 더 기분 좋으려나아...」
+								PRINTFORMW %마스터를% 바라보며 히죽이기 시작했다...
+								PRINTFORMW 「그치만 딱히 할 사람도 없고, %MASTERNAME:49%정도로 만족하는 수밖에 없네」
+								PRINTFORMW 칭찬인지 욕인지 모를 말을 중얼거리던 사토리는 주섬주섬 옷을 고쳐입기 시작했다
+								CFLAG:3100++
+						ENDSELECT
+					ENDIF
+				ENDIF
+			ELSEIF TALENT:연인
+				SELECTCASE RAND:3
+					CASE 0
+						PRINTFORMW 「하아아...좋았어요...후후...♥」
+						PRINTFORMW 사토리는 %마스터의% 품에 안긴채 행복해하는 표정을 짓고 있다
+					CASE 1
+						PRINTFORMW 「...후우우...기분 좋아...♥」
+						PRINTFORMW 사토리는 %마스터의% 양 어깨에 팔을 두르고 진한 한숨을 내쉬었다
+						PRINTFORMW 「...다음번에도 이렇게 잔뜩 해주실래요? 아니면 이참에 계속해버릴까요?」
+						PRINTFORMW 「...전 어느쪽도 좋지만요...♥」
+					CASE 2
+						PRINTFORMW 「기분 좋았어요...♥」
+						PRINTFORMW 「...다음에도 또...후후후...기대할게요?」
+						PRINTFORMW %마스터를% 등 뒤에서 부터 끌어안은 사토리의 나긋한 목소리가 %마스터의% 귀를 간지럽혀 왔다
+				ENDSELECT
+			ELSEIF TALENT:연모||TALENT:사모||TALENT:애욕
+				IF CFLAG:3000 == 0
+					SELECTCASE RAND:3
+						CASE 0
+							PRINTFORMW 「아아...기분 좋았다...」
+							PRINTFORMW 「혼자서 하는거보다 훨씬 낫네요 이거, 아니면 %사마스터랑% 해서 인가?」
+							PRINTFORMW 행위가 끝났음에도 %마스터를% 끌어안은 손을 놓지 않은 사토리는 행복한 미소를 짓고 있다...
+						CASE 1
+							PRINTFORMW 「후아아...♥ 엄청 좋았어요...」
+							PRINTFORMW 「응응...억지로 해서 미안해요? 대신에 이거 해 드릴테니...♥」
+							PRINTFORMW 무척이나 개운한 표정의 사토리는 %마스터의% 뺨에 한번 입맞춤을 해주었다
+						CASE 2
+							PRINTFORMW 「아아...몸이 둥실둥실 떠오르는게 참 기분 좋네요...」
+							PRINTFORMW 사토리는 자신의 가슴에 %마스터의% 손을 잡아끌었다
+							PRINTFORMW 「이거봐, 아직도 가슴이 콩닥콩닥...%사마스터랑% 같이 있어서 그런가...♥」
+							PRINTFORMW 과연, 심장이 거칠게 뛰는게 느껴졌다
+							PRINTFORMW 사토리는 %마스터의% 손을 풀어주기 전에 손등에다 가볍게 키스를 해주었다
+					ENDSELECT
+				ELSE
+					SELECTCASE RAND:3
+						CASE 0
+							PRINTFORMW 「아아...기분 좋았다...」
+							PRINTFORMW 「혼자서 하는거보다 훨씬 낫네요 이거...역시 다른 사람의 온기가 느껴져서 그런가...」
+							PRINTFORMW 행위가 끝났음에도 %마스터를% 끌어안은채인 사토리는 미묘하게 웃어보이고 있다...
+						CASE 1
+							PRINTFORMW 「후아아... 꽤... 좋았어요...」
+							PRINTFORMW 「으응...억지로 해서 미안해요? 그치만 더는 참을수 없었는걸요」
+							PRINTFORMW 사토리는 %마스터의% 뺨에 한번 입맞춤을 해주었다
+							PRINTFORMW 「이걸로 봐주세요?」
+							PRINTFORMW 배시시 웃고 있는 그 얼굴이 살짝 붉어지는 느낌이었다
+						CASE 2
+							PRINTFORMW 「아아...몸이 둥실둥실... 떠오르는것만 같아...」
+							PRINTFORMW 사토리는 자신의 가슴에 %마스터의% 손을 잡아끌었다
+							PRINTFORMW 「이거봐, 아직도 가슴이 콩닥콩닥...계속 뛰고 있다고요?」
+							PRINTFORMW 과연, 심장이 거칠게 뛰는게 느껴졌다
+							PRINTFORMW 「이상하죠? 분명히 만족할만큼 했는데도, 어딘가 애달파」
+							PRINTFORMW 「...그치만 이렇게 붙어 있는동안은 조금 괜찮아 지네요, 왜일까나...」
+							PRINTFORMW 사토리는 %마스터의% 손을 풀어주기 전에 손등에다 가볍게 키스를 해주었다
+					ENDSELECT
+				ENDIF
+			ELSE
+				IF CFLAG:3000 == 0
+					SELECTCASE RAND:3
+						CASE 0
+							PRINTFORMW 「기분...좋았어요」
+							PRINTFORMW 「그치만 너무 좋아서, 이젠 혼자선 제대로 못 가버릴지도」
+							PRINTFORMW 「만약 그렇게 되면 책임지고 제 전용 기구로써 일해주실래요? 후후...」
+							PRINTFORMW 사토리는 키득거리며 옷을 주워입고는 %마스터의% 옷을 단정하게 고쳐주었다
+							PRINTFORMW 「다음에도 또 합시다?」
+						CASE 1
+							PRINTFORMW 「아아...좋았어요」
+							PRINTFORMW 「%사마스터랑% 하는거 은근히 중독되네요...계속하다가 변태가 되버리는게 아닐까 몰라」
+							PRINTFORMW 옷을 고쳐입으며 히죽거리던 사토리는 %마스터의% 몸에 기대왔다
+							PRINTFORMW 「뭐어...상관없을라나요, 기분좋았고...변태가 되어도 누구씨한테 해소해버리면 되니까..♥」
+						CASE 2
+							PRINTFORMW 「하아아...고마워요, 응석받아줘서」
+							PRINTFORMW 포근한 미소를 짓는 사토리는 %마스터의% 옆구리에 기대왔다
+							PRINTFORMW 「...혼자서 하는거보다 외롭지 않아서, 너무 좋아요」
+							PRINTFORMW 「그...다음번엔 또 언제 할 건가요?」
+					ENDSELECT
+				ELSE
+					;PRINTFORMW 「」
+					SELECTCASE RAND:3
+						CASE 0
+							PRINTFORMW 「기분...좋아라...」
+							PRINTFORMW 「그치만 너무 좋아서, 이젠 혼자선 제대로 못 가버릴지도」
+							PRINTFORMW 「만약 그렇게 되면 책임지고 제 전용 자위 기구가 되어주셔야겠어요...큭큭...」
+							PRINTFORMW 사토리는 키득거리며 옷을 주워입었다
+							PRINTFORMW 「다음에도 또 합시다?」
+						CASE 1
+							PRINTFORMW 「아아...좋았어요」
+							PRINTFORMW 「은근히 중독되네요 이거...계속하다가 변태가 되버리는게 아닐까 몰라」
+							PRINTFORMW 옷을 고쳐입으며 중얼거리던 사토리는 %마스터를% 슥 바라보곤 히죽히죽 웃기 시작했다
+							PRINTFORMW 「뭐어...상관없겠죠, 어디의 어떤 변태씨도 잘만 돌아다니는데...」
+							PRINTFORMW 「변태 한명쯤 는다 해도 별 차이는 없겠죠」
+						CASE 2
+							PRINTFORMW 「하아아...」
+							PRINTFORMW 포근한 미소를 짓는 사토리는 %마스터의% 옆구리에 기대왔다
+							PRINTFORMW 「...혼자서 하는거보다 외롭지 않은건, 좋네요」
+							PRINTFORMW 「게다가 계속 보고 있으면...나도 자꾸만...달아오르고...」
+							PRINTFORMW 사토리의 얼굴이 옅게 붉어졌다
+							PRINTFORMW 「...그, 다음은 언제 또 해 주실래요?」
+					ENDSELECTS
+				ENDIF
+			ENDIF
 			RETURN 1
 		ENDIF
 		;-------------------------------------------------
