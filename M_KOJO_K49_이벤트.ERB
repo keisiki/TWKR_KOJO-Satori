@@ -6330,10 +6330,32 @@ IF LOCAL
 		;-------------------------------------------------
 		;抱き着きモード強制終了 강제종료됨
 		;記入チェック（=0, 非表示、1, 表示）
-		LOCAL:1 = 0
+		LOCAL:1 = 1
 		;-------------------------------------------------
 		IF LOCAL:1 && ARG:1 == 2
-			PRINTFORML
+			IF MARK:반발각인 == 3
+				IF TALENT:연인
+					
+				ELSE
+					IF CFLAG:3000 == 0
+
+					ELSE
+
+					ENDIF
+				ENDIF
+			ELSEIF TALENT:연인
+				
+			ELSEIF TALENT:연모||TALENT:사모||TALENT:애욕
+				
+			ELSEIF TALENT:섹프
+				
+			ELSE
+				IF CFLAG:3000 == 0
+
+				ELSE
+
+				ENDIF
+			ENDIF
 			RETURN 1
 		ENDIF
 	ENDIF
