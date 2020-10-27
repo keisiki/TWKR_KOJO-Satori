@@ -6402,16 +6402,188 @@ IF LOCAL
 	;-------------------------------------------------
 	;抜け出す失敗 탈출실패
 	;記入チェック（=0, 非表示、1, 表示）
-	LOCAL:1 = 0
+	LOCAL:1 = 1
 	;-------------------------------------------------
 	IF LOCAL:1 && ARG == 3
 		;-------------------------------------------------
 		;好きにして状態から抜け出せなかった '마음대로'하라고 했었었다...
 		;記入チェック（=0, 非表示、1, 表示）
-		LOCAL:1 = 0
+		LOCAL:1 = 1
 		;-------------------------------------------------
 		IF LOCAL:1 && ARG:1 == 1
-			PRINTFORML
+			;PRINTFORMW 「」
+			IF MARK:반발각인 == 3
+				IF TALENT:연인
+					SELECTCASE RAND:2
+						CASE 0
+							PRINTFORMW 「이제 그만두라니, 아까는 더 해달라면서요?」
+							PRINTFORMW 「스스로 한 말 정도는 지켜주세요」
+							PRINTFORMW 사토리는 싸늘한 미소를 띄워보이며 다가왔다...
+						CASE 1
+							PRINTFORMW 「그만하라고요? 싫은걸요, 전 아직 더 하고 싶고」
+							PRINTFORMW 「게다가 아까...분명히 더 해 달라고 했었잖아요」
+							PRINTFORMW 「그러니까 계속 해버릴거예요, 후후...후회되나요?」
+							PRINTFORMW %마스터의% 몸을 꽉 붙잡은채 음흉한 미소를 짓고 있다...
+					ENDSELECT
+				ELSE
+					IF CFLAG:3000 == 0
+						SELECTCASE RAND:3
+							CASE 0
+								PRINTFORMW 「어라...아까는 더 해달라고 하지 않으셨나?」
+								PRINTFORMW 「그새 마음이 바뀐건가요? 유감이지만 이젠 그만둘 생각 없으니까」
+								PRINTFORMW 「후후후...각오해주세요?」
+								PRINTFORMW 정욕에 찬 눈빛으로 다가온 사토리는 %마스터의% 등 뒤에서 부터 목까지 손가락으로 스윽 그어보였다
+								PRINTFORMW 그에 맞춰 오싹한 느낌이 등골을 타고 올라오는걸 느끼자 사토리의 입꼬리가 점점 더 올라가고 있었다...
+							CASE 1
+								PRINTFORMW 「안돼요」
+								PRINTFORMW 무어라 말하기도 전에 거절당했다
+								PRINTFORMW 「이젠 안 그만둘거라고 했잖아요? 그러니까...둘 중 하나 쓰러질때까진 못 가요」
+								PRINTFORMW 「물론...쓰러지시면, 아시죠? 제대로 힘내주세요...♥」
+								PRINTFORMW 평소에 보이던 혐오와, 달아오른 정욕이 섞인 사토리의 표정은 그야말로 음란하게 보였다...
+							CASE 2
+								PRINTFORMW 「그만하라니...그만두지 말라던 사람이 누구더라?」
+								PRINTFORMW 「뭐라고 해도...%사마스터가% 말라서, 쪼글쪼글해질 때 까지 범해버릴거니까...후후후」
+								PRINTFORMW 사토리는 싸늘하게 웃으며 다가왔다
+								PRINTFORMW 「그때까진 열심히 버티세요? 만약이라도 중간에 쓰러지면...콱......후후후후....」
+								PRINTFORMW 사토리는 %마스터의% 귀를 가볍게 물어왔다...
+						ENDSELECT
+					ELSE
+						SELECTCASE RAND:3
+							CASE 0
+								PRINTFORMW 「어라...아까는 더 해달라면서?」
+								PRINTFORMW 「그새 마음이 바뀐건가요? 그래도 이젠 그만둘 생각 없으니까」
+								IF TALENT:MASTER:성별 == 1
+									PRINTFORMW 「허리, 다시는 못 들 때까지 잔뜩 쑤셔드릴테니, 각오하세요?」
+								ELSE
+									PRINTFORMW 「싹 다 짜내서...다시는 못 쓸때까지 범해버릴테니까...각오하세요?」
+								ENDIF
+								PRINTFORMW 정욕에 찬 눈빛으로 다가온 사토리는 %마스터의% 등 뒤에서 부터 목까지 손가락으로 스윽 그어보였다
+								PRINTFORMW 그에 맞춰 오싹한 느낌이 등골을 타고 올라오는걸 느끼자 사토리의 입꼬리가 점점 더 올라가고 있었다...
+							CASE 1
+								PRINTFORMW 「안돼요」
+								PRINTFORMW 무어라 말하기도 전에 거절당했다
+								PRINTFORMW 「이젠 안 그만둘거라고 했잖아요? %사마스터가% 쓰러져버릴때까지 계속 할 거니까」
+								PRINTFORMW 「물론...쓰러지시면...후후후후...어떻게될지 모르겠네요...♥」
+								PRINTFORMW 평소에 보이던 경멸와, 달아오른 정욕이 섞인 사토리의 표정은 그야말로 음란하게 보였다...
+							CASE 2
+								PRINTFORMW 「그만하라니...그만두지 말라던 사람이 누구더라?」
+								PRINTFORMW 「뭐라고 말해도...%사마스터가% 말라서, 쪼글쪼글해질 때 까지 범해버릴거니까...후후후」
+								PRINTFORMW 사토리는 싸늘하게 웃으며 다가왔다
+								PRINTFORMW 「그때까진 열심히 버티세요? 만약이라도 중간에 쓰러지면...콱......후후후후....」
+								PRINTFORMW 사토리는 %마스터의% 귀를 가볍게 물어왔다...
+						ENDSELECT
+					ENDIF
+				ENDIF
+			ELSEIF TALENT:연인
+				SELECTCASE RAND:5
+					CASE 0
+						PRINTFORMW 「싫은걸요, 계속 해 달라고 하셨잖아요」
+						PRINTFORMW 「그러니까...둘 중 하나가 쓰러질때까지, 계속계속 해야죠?」
+						PRINTFORMW 사토리는 도망가려는 %마스터를% 서드아이로 꽁꽁 묶어 끌고왔다...
+					CASE 1
+						PRINTFORMW 「도망가려고요? 허락해드릴리가 없잖아요」
+						PRINTFORMW 「아직 시간도 많아요, 그러니까 더...더 즐겨야죠?」
+						PRINTFORMW 사토리는 %마스터를% 온 몸으로 끌어안은채 속삭여왔다...
+					CASE 2
+						PRINTFORMW 「으으응...안돼요, 오늘은 안 놔줄거니까」
+						PRINTFORMW 「도망가시고 싶다면, 제가 헤롱헤롱해질 때 까지 잔뜩 해주고 가세요」
+						PRINTFORMW 「...그 전에 %사마스터를% 잔뜩 기분좋게 하면 오늘은 쭈~욱 같이 있을수 있으려나~」
+						PRINTFORMW 사토리는 기분좋은 상상이라도 하는지 배실배실 웃으며 %마스터의% 다리사이로 손을 뻗었다...
+					CASE 3
+						PRINTFORMW 「이제 그만두라니, 아까는 더 해달라면서요?」
+						PRINTFORMW 「응응...저는 말 잘들으니까, 시키신대로 쭈~욱 해드릴게요...♥」
+						PRINTFORMW 사토리는 음흉한 미소를 띄워보이며 다가왔다...
+					CASE 4
+						PRINTFORMW 「그만하라고요? 싫은걸요, 전 아직 더 하고 싶고」
+						PRINTFORMW 「게다가 아까...분명히 더 해 달라고 했었잖아요」
+						PRINTFORMW 「그러니까 계속 해버릴거예요, 오늘은 쭈~욱 저랑 같이 하면서 보냅시다?」
+						PRINTFORMW %마스터의% 몸을 꽉 붙잡은채 음흉한 미소를 짓고 있다...
+				ENDSELECT
+			ELSEIF TALENT:연모||TALENT:사모
+				IF CFLAG:3000 == 0
+					SELECTCASE RAND:2
+						CASE 0
+							PRINTFORMW 「에...그만 하라니요...계속 하시라면서요?」
+							PRINTFORMW 「아하아...설마 부끄러워서 그러나요?」
+							PRINTFORMW 「저는 보여요, 어짜피 더 하고 싶은거죠? 그렇다면 솔직해집시다...후후..♥」
+							PRINTFORMW 사토리는 정욕에 찬 표정으로 %마스터의% 몸을 서드아이로 묶어버렸다
+							PRINTFORMW 「후후후...♥ 잔~뜩 귀여워 해드릴테니까....」
+							PRINTFORMW 왜인지 엄청 즐거워보인다
+						CASE 1
+							PRINTFORMW 「흐으응...그만두지 말고 계속 해달라더니, 벌써 맘이 바뀐건가요」
+							PRINTFORMW 「그러게 왜 감당도 못할말을 자꾸 합니까? 말할땐 책임질 수 있는거만 하세요」
+							PRINTFORMW 사토리는 %마스터의% 몸을 온 몸으로 껴안아 도망가지 못하게 하고 있다...
+							PRINTFORMW 「이번 책임은, 몸으로 져주세요?」
+					ENDSELECT
+				ELSE
+					SELECTCASE RAND:3
+						CASE 0
+							PRINTFORMW 「에...그만 하라니요...계속 하시라면서요?」
+							PRINTFORMW 「아하아...설마 부끄러워서 그러나요?」
+							PRINTFORMW 「저는 보여요, 어짜피 더 하고 싶은거죠? 그렇다면 솔직해집시다...후후..♥」
+							PRINTFORMW 사토리는 정욕에 찬 표정으로 %마스터의% 몸을 서드아이로 묶어버렸다
+							PRINTFORMW 「후후후...♥ 잔~뜩 귀여워 해드릴테니까....」
+							PRINTFORMW 왜인지 엄청 즐거워보인다
+						CASE 1
+							PRINTFORMW 「흐으응...그만두지 말고 계속 해달라더니, 벌써 맘이 바뀐건가요」
+							PRINTFORMW 「그러게 왜 감당도 못할말을 자꾸 합니까? 말할땐 책임질 수 있는거만 하세요」
+							PRINTFORMW 사토리는 %마스터의% 몸을 온 몸으로 껴안아 도망가지 못하게 하고 있다...
+							PRINTFORMW 「이번 책임은, 몸으로 져주세요?」
+						CASE 2
+							PRINTFORMW 「평소의 기세는 어디가고...벌써 지쳤다고 그러시면 안돼죠」
+							PRINTFORMW 「응응...저는 맨날 %사마스터의% 머릿속을 보느라 달아오르는데, 정작 본인은 몇번 하기만 하면 나가떨어지구」
+							PRINTFORMW 「다른 사람한테도 이러는건가요? 아님 저한테는 별로 하고 싶지 않은건가요?」
+							PRINTFORMW 사토리는 %마스터를% 끌어안았다
+							PRINTFORMW 「평소에 제가 %사마스터를% 보면서 힘든거만큼, 갚아드릴테니까...기대하세요?」
+							PRINTFORMW %마스터의% 귀를 살살 간지럽히는 그 목소리에 온 몸이 바르르 떨리기 시작했다...
+					ENDSELECT
+				ENDIF
+			ELSEIF TALENT:섹프||TALENT:애욕
+				SELECTCASE RAND:3
+					CASE 0
+						PRINTFORMW 「그만두라니...절대로 싫은걸요」
+						PRINTFORMW 「모처럼 끝까지 해도 좋다고 허락 맡았는데, 그런거 절~대로 못 놓쳐요」
+						PRINTFORMW 「오늘은 둘 중 하나가 쓰러질때까지 즐기자구요?」
+						PRINTFORMW 사토리는 히죽히죽 웃으며 %마스터의% 몸을 더듬었다...
+					CASE 1
+						PRINTFORMW 「어머나...그만두지 말라던 사람이 누구더라...?」
+						PRINTFORMW 「으으응~...누굴까나아~」
+						PRINTFORMW 사토리는 %마스터의% 유두를 손가락으로 빙글빙글 돌리며 능청스런 얼굴로 웃고 있다
+						PRINTFORMW 「안심하세요, %사마스터가% 쓰러지면 제대로 놔줄거니까요」
+						PRINTFORMW 「...물론 그 사이에 몇번이고 더 할 순 있지만...♥」
+					CASE 2
+						PRINTFORMW 「네~ 안들려요 안들려」
+						PRINTFORMW 「그래서요? 계속 하라고요?」
+						PRINTFORMW 사토리는 귀를 틀어막곤 떼를 쓰고 있다...
+				ENDSELECT
+			ELSE
+				;미함락 야스 어케 한거야
+				IF CFLAG:3000 == 0
+					SELECTCASE RAND:2
+						CASE 0
+							PRINTFORMW 「그만하라니, 아깐 그만두지 마시라면서요?」
+							PRINTFORMW 「약속은 지켜야지 않겠어요? 후후...」
+							PRINTFORMW 사토리는 능청맞게 웃으며 %마스터의% 몸을 쓰다듬고 있다...
+						CASE 1
+							PRINTFORMW 「싫은걸요...모처럼 잔뜩 할 수 있는 기횐데」
+							PRINTFORMW 「%사마스터가% 가고 나면 또 혼자서 자위밖에 더 해요? 그럴바엔 이렇게...%사마스터랑% 하고 있는게 낫지」
+							PRINTFORMW 아무래도 자위도구로 취급받고 있는것 같다...
+					ENDSELECT
+				ELSE
+					SELECTCASE RAND:2
+						CASE 0
+							PRINTFORMW 「싫은걸요? %사마스터는%...제가 싫어도 계속 이상한 상상하면서 지나다니고 있었잖아요」
+							PRINTFORMW 「아예 야한짓이 트라우마가 될 때까지 잔뜩 해버리면 더이상 야한 생각도 못하려나아...어쩔까...」
+							PRINTFORMW 사토리는 음흉한 미소로 %마스터의% 몸을 더듬더듬 만져왔다
+							PRINTFORMW 「뭐...그러면 또 혼자서 자위나 해야하니까, 안되겠죠」
+							PRINTFORMW 「아무리 그래도 혼자 하는거보단 %사마스터랑% 하는게 훨씬 기분 좋으니까요」
+						CASE 1
+							PRINTFORMW 「그만하라뇨, 끝까지 할거라고 제가 말했잖아요?」
+							PRINTFORMW 「한 말은 스스로 책임져 주세요」
+							PRINTFORMW 사토리는 %마스터의% 가슴과 다리 사이를 매만지며 음흉하게 웃어보였다...
+					ENDSELECT
+				ENDIF
+			ENDIF
 			RETURN 1
 		ENDIF
 		;-------------------------------------------------
