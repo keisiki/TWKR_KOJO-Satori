@@ -28,7 +28,7 @@
 ;
 ;****이벤트목록*****************************************************************
 ; EVENT NO.1 (성교종료시 불륜 허락)
-;
+; EVENT NO.2 (불장난 키스)
 ;******************************************************************************
 ; 구상용 이어받아 테두리의 플래그
 ; 1.전회에 만난적 있다
@@ -6589,10 +6589,142 @@ IF LOCAL
 		;-------------------------------------------------
 		;欲求不満が高くて抜け出せなかった 아직 욕구불만
 		;記入チェック（=0, 非表示、1, 表示）
-		LOCAL:1 = 0
+		LOCAL:1 = 1
 		;-------------------------------------------------
 		IF LOCAL:1 && ARG:1 == 2
-			PRINTFORML
+			IF MARK:반발각인 == 3
+				IF TALENT:연인
+					SELECTCASE RAND:2
+						CASE 0
+							PRINTFORMW 「어딜가시려구」
+							PRINTFORMW 사토리는 발버둥치는 %마스터를% 강하게 붙들고 있다...
+							PRINTFORMW 「아직 더 하실 수 있는거 다 알아요, 도망가지 말고 좀 더 즐깁시다?」
+							PRINTFORMW 「아~주 조금만 더 하면 놔드릴테니...네?」
+							PRINTFORMW 사토리는 신이 났는지 서드아이로 수갑마냥 서로의 손을 묶어버렸다...
+						CASE 1
+							PRINTFORMW 「안돼요, 아직 놔 드릴 생각 없거든요」
+							PRINTFORMW 「이제 시작이라고요? 벌써부터 빼시면 서운해요?」
+							PRINTFORMW 사토리는 %마스터를% 깔아눕힌채 온 몸에 사랑스럽다는듯 키스를 해오고 있다...
+							PRINTFORMW 진한 키스마크가 %마스터의% 몸에 남았다...
+					ENDSELECT
+				ELSE
+					IF CFLAG:3000 == 0
+						SELECTCASE RAND:2
+							CASE 0
+								PRINTFORMW 「싫어요」
+								PRINTFORMW 도망가려고 하기도 전에 제지당해버렸다...
+								PRINTFORMW 「아직은 더 즐기고 싶은걸요, 벌써부터 도망가버리면 섭섭하단말이죠?」
+								PRINTFORMW 「안심하세요, 확실히 놔 드릴테니까.....제가 만족한다면 말이죠♥」
+								PRINTFORMW 정욕에 가득 찬 그 눈을 보면 설득은 먹히지 않을듯 하다...
+							CASE 1
+								PRINTFORMW 「어딜 가시려고요? 에잇!」
+								PRINTFORMW 도망가려던 %마스터는% 그대로 넘어져 사토리의 밑에 깔렸다...
+								PRINTFORMW 「아직 본격적으로 하지도 않았는데, 그러기에요? 설마 평소일때문에 삐진건가요?」
+								PRINTFORMW 「그런거 잊고...지금은 기분 좋은 일 합시다? 싫은가요?」
+								PRINTFORMW %마스터가% 대답하려 입을 벌리자 사토리는 서드아이의 촉수를 %마스터의% 입 안에 쑤셔넣었다...
+								PRINTFORMW 「네, 그만~ 대답하지 마세요, 말 안해도 안다고요?」
+								PRINTFORMW 뭘 안다는건진 모르겠지만 사토리의 촉수가 입 안에서 %마스터를% 잔뜩 희롱하는 탓에 반박할수가 없었다...
+						ENDSELECT
+					ELSE
+						SELECTCASE RAND:2
+							CASE 0
+								PRINTFORMW 「도망가게 둘 거 같아요?」
+								PRINTFORMW 도망가려고 하기도 전에 제지당해버렸다...
+								PRINTFORMW 「아직은 더 즐기고 싶은걸, 벌써부터 도망가버리지 마세요」
+								PRINTFORMW 「제가 만족할 때 까진 버텨달라고요?」
+								PRINTFORMW 정욕에 가득 찬 그 눈을 보면 설득은 먹히지 않을듯 하다...
+							CASE 1
+								;EVENT_NO.2 불장난 키스
+								PRINTFORMW 「어딜 가시려고요? 에잇!」
+								PRINTFORMW 도망가려던 %마스터는% 그대로 넘어져 사토리의 밑에 깔렸다...
+								PRINTFORMW 「후후후...이대로 얌전히 범해지도록 하세요...」
+								PRINTFORMW 「전부 %사마스터가% 나쁜거니까, 맨날 괴롭히고...야한생각하고 있고...」
+								PRINTFORMW %마스터가% 항의하려 입을 벌리자 사토리는 %마스터의% 입술을 덮쳤다
+								SIF TALENT:키스미경험
+									CALL SET_FIRSTKISS(49, MASTER, 8)
+								SIF TALENT:MASTER:키스미경험
+									CALL SET_FIRSTKISS(MASTER, 49, 0)
+								EXP:MASTER:키스경험++
+								EXP:키스경험++
+								PRINTFORMW 「대답하지 마세요...그냥 조용히 있어주세요」
+								PRINTFORMW 스스로도 혼란스런 표정이었지만 사토리는 멈추지 않고 혀를 얽어왔다...
+								CFLAG:3100++
+								CFLAG:5000++
+						ENDSELECT
+					ENDIF
+				ENDIF
+			ELSEIF TALENT:연인
+				SELECTCASE RAND:4
+					CASE 0
+						PRINTFORMW 「도망가지 마세요」
+						PRINTFORMW 도망가려던 %마스터는% 사토리의 팔에 부드럽게 안겨 제압당해버렸다...
+						PRINTFORMW 「좀 더 해요, 아직 불끈불끈하다고요?」
+						PRINTFORMW 「...안 해주면...나중에 찾아가서 밤 새도록 범해버릴지도...」
+						PRINTFORMW 팔에 안긴 %마스터의% 머리를 쓰다듬으며 말캉한 허벅지를 문질러오고 있다
+						PRINTFORMW 「...해도 괜찮죠? 후후후...그럼 이어서♥」
+					CASE 1
+						PRINTFORMW 「어딜가려구요, 아직 시작도 안했는데」
+						PRINTFORMW 서드아이가 %마스터의% 다리를 꽉 묶어버렸다!
+						PRINTFORMW 「너무하시네요...이렇게 해달라고 달라붙는 연인을 내팽겨치고 도망가다니」
+						PRINTFORMW 「지금 당장 안아 주시지 않으면, 삐질거예요」
+						PRINTFORMW 사토리는 양 팔을 벌리고 떼를 쓰기 시작했다...
+						PRINTFORMW 「네에~ 좋아요, 좋아...후후후...그러면 이어서 합시다?」
+						PRINTFORMW 어쩔수 없이 안아주자 사토리도 와락 껴안으며 %마스터의% 몸에 스스로를 문질러왔다...
+					CASE 2
+						PRINTFORMW 「어딜가시려구」
+						PRINTFORMW 사토리는 발버둥치는 %마스터를% 강하게 붙들고 있다...
+						PRINTFORMW 「아직 더 하실 수 있는거 다 알아요, 도망가지 말고 좀 더 즐깁시다?」
+						PRINTFORMW 「아~주 조금만 더 하면 놔드릴테니...네?」
+						PRINTFORMW 사토리는 신이 났는지 서드아이로 수갑마냥 서로의 손을 묶어버렸다...
+					CASE 3
+						PRINTFORMW 「안돼요, 아직 놔 드릴 생각 없거든요」
+						PRINTFORMW 「이제 시작이라고요? 벌써부터 빼시면 서운해요?」
+						PRINTFORMW 사토리는 %마스터를% 깔아눕힌채 온 몸에 사랑스럽다는듯 키스를 해오고 있다...
+						PRINTFORMW 진한 키스마크가 %마스터의% 몸에 남았다...
+				ENDSELECT
+			ELSEIF TALENT:연모||TALENT:사모
+				SELECTCASE RAND:2
+					CASE 0
+						PRINTFORMW 「안돼요, 가지 마세요」
+						PRINTFORMW 사토리는 드물게도 적극적으로 %마스터를% 끌어안고 안 놓치려 바둥거리고 있다...
+						PRINTFORMW 「제가 만족할 때 까지만 이라도 어울려주세요, 조금이면 된다고요? 그러니까 가지 마세요」
+						PRINTFORMW %마스터가% 도망가지 못하게 서드아이로 서로의 몸을 칭칭 묶어버렸다
+						PRINTFORMW 서로의 몸이 밀착해 배와 배가 맞닿자, 사토리의 얼굴이 조금 발갛게 물들었다...
+					CASE 1
+						PRINTFORMW 「아직 가라고 안 했어요」
+						PRINTFORMW 사토리는 %마스터를% 밀어 넘어뜨렸다!
+						PRINTFORMW 「전 아직 더 하고 싶단 말이에요? 이대로 끝내는건 애달파서 싫으니까」
+						PRINTFORMW 「조금만 더 즐기게 해주세요♥」
+				ENDSELECT
+			ELSEIF TALENT:섹프||TALENT:애욕
+				SELECTCASE RAND:2
+					CASE 0
+						PRINTFORMW 「어딜 가시려구」
+						PRINTFORMW 「제가 만족할 때 까지는 못가요」
+						PRINTFORMW %마스터가% 도망가지 못하게 서드아이로 서로의 몸을 칭칭 묶어버렸다
+						PRINTFORMW 「%사마스터가% 잘못한거잖아요? 제가 이렇게 야하게 된건」
+						PRINTFORMW 「그러니까 책임지고 기분좋게 해주지 않으면 안되잖아요?」
+						PRINTFORMW 서로의 몸이 밀착해 성기가 맞닿자 사토리는 히죽히죽 웃으며 몸을 비틀어 문질문질 문대오기 시작했다...
+					CASE 1
+						PRINTFORMW 「아직 가라고 안 했어요」
+						PRINTFORMW 사토리는 %마스터를% 밀어 넘어뜨렸다!
+						PRINTFORMW 「전 아직 더 하고 싶단 말이에요? 이대로 끝내는건 싫으니까」
+						PRINTFORMW 「조금만 더 즐기게 해주세요♥」
+				ENDSELECT
+			ELSE
+				;에이 설마 이게 돼?
+				IF CFLAG:3000 == 0
+					PRINTFORMW 「가지 마세요」
+					PRINTFORMW 사토리는 %마스터의% 팔을 잡아끌더니, 그대로 다시 밀어 넘어뜨려버렸다!
+					PRINTFORMW 「혼자만 만족하면 다예요? 제대로 저도 기분 좋게 해주세요」
+					PRINTFORMW 아무래도 부족하다는 모양이다...
+				ELSE
+					PRINTFORMW 「가지 마세요」
+					PRINTFORMW 사토리는 %마스터의% 팔을 잡아끌더니, 그대로 다시 밀어 넘어뜨려버렸다!
+					PRINTFORMW 「혼자만 만족하면 다가 아니잖아요? 제대로 저도 기분 좋게 해줘야죠」
+					PRINTFORMW 아무래도 부족하다는 모양이다...
+				ENDIF
+			ENDIF
 			RETURN 1
 		ENDIF
 	ENDIF
