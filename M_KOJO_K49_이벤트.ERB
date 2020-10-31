@@ -4396,7 +4396,7 @@ IF LOCAL
 					CASE 0
 						PRINTFORMW 「...아아, 안녕하세요 %MASTERNAME:49%...」
 					CASE 1
-						PRINTFORMW 「...아, %MASTERNAEM:49%, 어디가시나요?」
+						PRINTFORMW 「...아, %MASTERNAME:49%, 어디가시나요?」
 						PRINTFORMW 「...흐으음...그런가요, 조심히 다녀오시길」
 					CASE 2
 						PRINTFORMW 「...잘 다녀오세요?」
@@ -6735,12 +6735,13 @@ RETURN 1
 
 ;==================================================
 ;浴場で遭遇
+;먼저 욕실에 들어와 있었던 사토리와 마주쳤다
 ;==================================================
 @M_KOJO_EVENT_K49_11(ARG,ARG:1)
 ;口上主はTARGET
 ;--------------------------------------------------
 ;記入チェック（=0, 非表示、1, 表示）
-LOCAL = 0
+LOCAL = 1
 ;-------------
 
 IF LOCAL
@@ -6748,15 +6749,135 @@ IF LOCAL
 	;小分岐
 	;-------------------------------------------------
 	;追い出された
+	;쫓겨났다
 	;記入チェック（=0, 非表示、1, 表示）
-	LOCAL:1 = 0
+	LOCAL:1 = 1
 	;-------------------------------------------------
 	IF LOCAL:1 && ARG == 1
-		PRINTFORML
+		;PRINTFORMW 「」
+		IF MARK:반발각인 == 3
+			IF TALENT:연인
+				SELECTCASE RAND:2
+					CASE 0
+						PRINTFORMW 「아, %MASTERNAME:49%...」
+						PRINTFORMW 「...금방 나올테니 잠시만 밖에 계셔주시면 안될까요?」
+						PRINTFORMW 미안한듯이 말해오는 사토리를 뒤로 하고 밖으로 나갔다...
+					CASE 1
+						PRINTFORMW 「...으음...저기, 급하지 않다면...조금 기다려주실래요?」
+						PRINTFORMW 「금방 끝나니까요..역시 둘이서 들어가면 불편할테고」
+						PRINTFORMW 아무래도 %마스터랑% 같이 있는건 조금 싫은 모양이다...
+						PRINTFORMW 부드럽게 말하고는 있어도 아직 화가 남아 있는 모양이다
+				ENDSELECT
+			ELSE
+				IF CFLAG:3000 == 0
+					SELECTCASE RAND:2
+						CASE 0
+							PRINTFORMW 「......」
+							PRINTFORMW %마스터가% 문을 열자 사토리가 지그시 바라보고 있었다
+							PRINTFORMW 아슬아슬하게 수면 가까이 있는 사토리의 가슴팍이 예쁘
+							PRINTFORMW 「...안 나가요?」
+							PRINTFORMW 화난 사토리에게 대야로 얻어맞았다...
+						CASE 1
+							PRINTFORMW 「...하아...안에 있는거 눈치채고 가줬음 했는데」
+							PRINTFORMW 문을 열자마자 사토리의 한숨소리가 들렸다...
+							PRINTFORMW 「모처럼 느긋하게 쉬려고 하는데 누구씨를 보게되면 누구라도 그럴껄요」
+							PRINTFORMW 「...그보다 그럴 시간에 빨리 나가주시면 어떨까요?」
+							PRINTFORMW 심하게 틱틱거리는 사토리를 뒤로한채 욕실밖으로 나갔다...
+					ENDSELECT
+				ELSE
+					SELECTCASE RAND:2
+						CASE 0
+							PRINTFORMW 「...하아...들어올땐 노크라도 해 보지 그래요?」
+							PRINTFORMW 문을 열자마자 사토리의 짜증섞인 타박이 들려왔다...
+							PRINTFORMW 「모처럼 느긋하게 쉬고 있는데, %사마스터를% 봐야할 이유는 없잖아요」
+							PRINTFORMW 「...그보다, 이런 말 할 시간에 빨리 나가는게 정상 아닌가요? 그만 쳐다보시고」
+							PRINTFORMW 더 있다간 한 대 얻어 맞을것 같아서 얼른 빠져나왔다...
+						CASE 1
+							PRINTFORMW 「......변태」
+							IF TALENT:가슴사이즈 < 0
+								PRINTFORMW %마스터를% 발견한 사토리는 그 빈약한 가슴을 애써 가리기 시작했...
+								PRINTFORMW 「안 작거든요? 그보다 그만 보고 나가는게 맞지 않나요?」
+								PRINTFORMW 화난 사토리가 죽일듯이 바라보고 있었기에 도망치듯 빠져나왔다...
+							ELSEIF TALENT:가슴사이즈 > 1
+								PRINTFORMW 「...있는거 알고 들어온거죠?」
+								PRINTFORMW 사토리는 자기 가슴을 양 팔로 가린채 째려보고 있다...
+								PRINTFORMW 그러나 볼륨있는 사토리의 가슴은 가느다란 그 팔로 가리기엔 힘들었다
+								PRINTFORMW 「...잠깐, 뭘 보고 있는거예요?!」
+								PRINTFORMW 당황해 얼굴을 붉히던 사토리는 근처의 비누를 집어 던졌다
+								PRINTFORMW 물론 별로 아프진 않았지만 사토리가 씩씩대며 노려보고 있었기에 얼른 빠져나가야 했다...
+							ELSE
+								PRINTFORMW 「...나가요, 빨리」
+								PRINTFORMW 가느다란 팔로 몸을 애써 가린 사토리는 %마스터를% 노려보고 있다...
+								PRINTFORMW 더 있다간 화낼거 같으니 어쩔수 없이 밖으로 나가야만 했다
+							ENDIF
+					ENDSELECT
+				ENDIF
+			ENDIF
+		ELSEIF TALENT:연인
+			SELECTCASE RAND:2
+				CASE 0
+					PRINTFORMW 「...아, %MASTERNAME:49%도 목욕하시려구요?」
+					PRINTFORMW 「그치만 지금은 제가 먼저 왔는걸요, 이제사 같이 있기도 뭐하고」
+					PRINTFORMW 「뭐어어...죄송하지만 조금만 밖에서 기다려 주실래요? 금방 나올테니」
+					PRINTFORMW 사토리는 미안한듯한 얼굴로 부탁해왔기에 어쩔수 없이 밖에서 기다려 주기로 했다
+				CASE 1
+					PRINTFORMW 「음음...잠시만 기다려 주세요 %MASTERNAME:49%...금방 나갈테니」
+					PRINTFORMW 「%MASTERNAME:49%도 혼자서 널찍히 쉬시는게 좋을테니까」
+					PRINTFORMW 사토리는 %마스터를% 내보냈다...
+					PRINTFORMW 물에 거품이 한가득 있는걸 보면 혼자서 느긋히 놀고 싶었던거 같기도 하고...
+			ENDSELECT
+		ELSEIF TALENT:연모||TALENT:사모
+			SELECTCASE RAND:2
+				CASE 0
+					PRINTFORMW 「...으음...저기, 아직 다 못 씻어서 그런데...」
+					PRINTFORMW 「...좀 있다가 와주시겠어요?」
+					PRINTFORMW 사토리는 멋쩍게 웃으며 말해왔다...
+					PRINTFORMW ...화내진 않는 모양이다
+				CASE 1
+					PRINTFORMW 「...어라라, 씻으시게요?」
+					PRINTFORMW 「금방 끝내고 나갈테니 조금만 기다려 주세요...」
+					PRINTFORMW 화내진 않는거 같지만 같이 있는건 실례이니 얼른 빠져나오기로 했다
+			ENDSELECT
+		ELSE
+			IF CFLAG:3000 == 0
+				SELECTCASE RAND:2
+					CASE 0
+						PRINTFORMW 「...죄송하지만 제가 먼저 왔거든요」
+						PRINTFORMW 「좀 있다가 와주세요?」
+						PRINTFORMW 탕에 편히 누워있던 사토리는 %마스터를% 보자 급하게 자세를 고치곤 말해왔다...
+						PRINTFORMW ...물론 그래도 풀어진 사토리의 모습은 이미 %마스터의% 눈에 생생히 담겨있었다
+					CASE 1
+						PRINTFORMW 「...씻으시게요? 그럼 조금만 기다려 주실래요?」
+						PRINTFORMW 「하아아...금방 나갈테니까...」
+						PRINTFORMW 무척이나 노곤해 보이는 사토리의 얼굴을 보면, 아직 나올때까진 먼 것 같다...
+				ENDSELECT
+			ELSE
+				SELECTCASE RAND:3
+					CASE 0
+						PRINTFORMW 「...어머나, 이게 누구실까...어딘가의 변태씨인가?」
+						PRINTFORMW 사토리는 %마스터를% 빤히 바라보며 말했다
+						PRINTFORMW ...수면 가까이 빠끔히 보이는 사토리의 가슴이 눈에 들어온다
+						PRINTFORMW 「...응큼하셔라, 하기사 %MASTERNAME:49%답네요...」
+						PRINTFORMW 「그렇지만, 지금은 나가는게 맞는거 아닐지?」
+						PRINTFORMW 나지막하게 말하면서도 옆에 있던 대야를 집어들고 있다...
+						PRINTFORMW 더 있었다간 대야에 맞게 생겼으니 얼른 빠져나왔다
+					CASE 1
+						PRINTFORMW 「...씻게요? 그럼 조금만 더 기다려 주세요」
+						PRINTFORMW 「하아아...금방 나갈테니까...」
+						PRINTFORMW 무척이나 노곤해 보이는 사토리의 얼굴을 보면, 아직 나올때까진 한참 먼 것 같다...
+					CASE 2
+						PRINTFORMW 「...씻게요? 죄송하지만 제가 먼저 왔거든요?」
+						PRINTFORMW 「금방 나갈테니 그때까진 나가서 기다려주세요」
+						PRINTFORMW 탕에 편히 누워있던 사토리는 쳐다도 안 본 채 말하고 있다...
+						PRINTFORMW ...몸도 안 가리고 있는걸 보면 상대하기도 귀찮은 모양이다
+				ENDSELECT
+			ENDIF
+		ENDIF
 		RETURN 1
 	ENDIF
 	;-------------------------------------------------
 	;目が合った（追い出されない）
+	;냅둔다
 	;記入チェック（=0, 非表示、1, 表示）
 	LOCAL:1 = 0
 	;-------------------------------------------------
