@@ -6884,10 +6884,170 @@ IF LOCAL
 	;目が合った（追い出されない）
 	;냅둔다
 	;記入チェック（=0, 非表示、1, 表示）
-	LOCAL:1 = 0
+	LOCAL:1 = 1
 	;-------------------------------------------------
 	IF LOCAL:1 && ARG == 2
-		PRINTFORML
+		IF MARK:반발각인 == 3
+			IF TALENT:연인
+				SELECTCASE RAND:2
+					CASE 0
+						PRINTFORMW 「아, %MASTERNAME:49%...씻으시려구요?」
+						PRINTFORMW 「...그...그러면 같이 씻을까요? 모처럼이니만큼...」
+						PRINTFORMW 무척 기대하는듯한 표정으로 %CALLNAME:MASTER%에 달라붙고 있다...
+						PRINTFORMW 「...괜찮나요?」
+						PRINTFORMW %마스터가% 고개를 끄덕이자 사토리의 얼굴이 환하게 밝아졌다...
+					CASE 1
+						PRINTFORMW 「...아, %MASTERNAME:49%도 씻으려구요?」
+						PRINTFORMW 「...그러면 저는 이만 나가야......으으음...」
+						PRINTFORMW 「...저기, 등 밀어 드릴까요?」
+						PRINTFORMW 사토리는 잠시 골똘히 생각하더니 %마스터의% 등 뒤로 다가왔다
+						PRINTFORMW 아무래도 벌써 나가기엔 아쉬운지 조금이라도 더 있고 싶어하는 눈치다
+						PRINTFORMW 「모처럼 이렇게 있는건데 좀 더 즐기지 않으면 손해니깐요」
+						PRINTFORMW 「요즘들어 서운한일 많이 당해서, 싫었다구요?」
+						PRINTFORMW 툴툴대면서도 부드럽게 몸을 닦아주고 있다...
+				ENDSELECT
+			ELSE
+				IF CFLAG:3000 == 0
+					SELECTCASE RAND:2
+						CASE 0
+							PRINTFORMW 「...」
+							PRINTFORMW 탕에 앉은 사토리가 %마스터를% 빤히 바라보고 있다...
+							PRINTFORMW 아슬아슬하게 수면에 가려진 가슴에 무심코 시선이 간
+							PRINTFORMW 「들어올려면 들어오시던가, 아님 나가세요, 문 열고 춥게 그러지 말고」
+							PRINTFORMW 사토리는 퉁명스럽게 핀잔을 주었다...만 옆에 앉아도 별 말은 하지 않는다
+						CASE 1
+							PRINTFORMW 「...하아...왠만하면 혼자 있고 싶었는데」
+							PRINTFORMW 문을 열자마자 사토리의 한숨소리가 들려왔다...
+							PRINTFORMW 「어쩔수 없죠 뭐...둘 정도 앉기에 좁은것도 아니고」
+							PRINTFORMW 의외로 나가라는 말은 안한다...
+					ENDSELECT
+				ELSE
+					SELECTCASE RAND:2
+						CASE 0
+							PRINTFORMW 「....하아....들어올땐 노크라도 하고 들어오세요...」
+							PRINTFORMW 탕 안의 사토리는 기분이 나쁜듯, 짜증섞인 목소리로 말해왔다
+							PRINTFORMW %마스터가% 탕 안으로 들어오자 불쾌한듯 눈살을 찌푸리긴 했지만 이내 고개를 돌리고 무시하기로 한 듯 하다...
+						CASE 1
+							PRINTFORMW 「...어머나, 치한이네」
+							PRINTFORMW 사토리의 빈정거리는 목소리가 들려왔다...
+							PRINTFORMW 「씻으려고 하는건가요? 상관은 없지만 앉기엔 조금 좁을지도 몰라요」
+							PRINTFORMW 「저는 조금도 자리 양보할 생각 없으니까 남는 자리에 대충 앉으시길」
+							PRINTFORMW 사토리는 일부러 다리를 쭉 뻗으며 공간을 차지하기 시작했다...
+							PRINTFORMW ...만 사토리의 예쁜 맨다리를 볼 수 있어 나쁘지만은 않았다
+					ENDSELECT
+				ENDIF
+			ENDIF
+		ELSEIF TALENT:연인
+			SELECTCASE RAND:2
+				CASE 0
+					PRINTFORMW 「아, %MASTERNAME:49%」
+					PRINTFORMW %마스터를% 보자 사토리는 기쁜듯한 목소리로 맞이했다
+					PRINTFORMW 「등 밀어드릴까요? 모처럼 같이 씻는거니 잔뜩 서비스 해 드릴게요♥」
+					PRINTFORMW 무척 신난듯이 자신의 가슴에 비누로 거품을 내고 있다...
+					PRINTFORMW 「네에~ 신나죠, %사마스터랑% 알몸으로 함께 탕에 있는거, 좋아하거든요」
+					PRINTFORMW 「좋아하는 사람이랑 같이 들어가는거...두근두근 하잖아요?」
+					PRINTFORMW 거품 잔뜩 묻은 말캉한 가슴이 %마스터의% 등에 달라붙는다...
+				CASE 1
+					PRINTFORMW 「어서오세요♥」
+					PRINTFORMW 사토리는 기다렸다는듯 문 옆에서 %마스터를% 껴안았다
+					PRINTFORMW 「후후...계~속 기다리고 있었다구요?」
+					PRINTFORMW 「기다리면서 %사마스터가% 언제쯤에나 오나...하고있었단 말예요」
+					PRINTFORMW 만져보니 살이 약간 차다, 많이 기다린 모양이다...
+					PRINTFORMW 감기에 들기 전에 얼른 탕에 집어넣어 주었다
+			ENDSELECT
+		ELSEIF TALENT:연모||TALENT:사모||TALENT:애욕
+			SELECTCASE RAND:2
+				CASE 0
+					PRINTFORMW 「어라, 씻으시게요?」
+					PRINTFORMW 사토리는 한번 슥 바라보더니 이내 다시 고개를 돌렸다
+					PRINTFORMW 「...등 밀어 드릴까요?」
+					PRINTFORMW 「...싫으면 말구요」
+					PRINTFORMW 왜인지 %마스터의% 뒤로 와서 뻘쭘하게 서 있다...
+				CASE 1
+					PRINTFORMW 「...아, 안녕하세요...」
+					PRINTFORMW 사토리는 편히 누워 쉬고 있다가 %마스터를% 눈치채곤 얼른 자세를 바로잡았다
+					PRINTFORMW ...그래도 한껏 늘어진 귀여운 모습을 잠깐이나마 볼 수 있었다
+			ENDSELECT
+		ELSEIF TALENT:섹프
+			SELECTCASE RAND:2
+				CASE 0
+					;EVENT NO.3 (소프녀 사토리)
+					PRINTFORMW 「...어라라, 안녕하세요」
+					PRINTFORMW 사토리는 %마스터를% 눈치채고 인사를 해 왔다
+					PRINTFORMW 「씻게요? 그럼 등 밀어드릴까요?」
+					PRINTFORMW 손에 비눗거품을 잔뜩 낸 사토리는 %마스터의% 몸을 더듬더듬 매만져 왔다
+					PRINTFORMW 「등쪽도 중요하지만 앞쪽도 제대로 씻어야지요?」
+					IF TALENT:MASTER:성별 == 1
+						;여자
+						PRINTFORMW 「특히 이런곳은 꼼꼼히 씻어야 한다구요」
+						PRINTFORMW 사토리는 %마스터의% 클리토리스를 살살 문질러왔다...
+						PRINTFORMW 「여기여기, 특히 이 볼록한 부분을 집중적으로 닦지 않으면 더러워진다구요?」
+						PRINTFORMW 아무리 봐도 닦아주는게 아닌 애무의 영역이지만 사토리는 멈추지 않았다...
+						PALAM:MASTER:쾌C += 1000
+					ELSE
+						;쥬지있어
+						PRINTFORMW 「특히 이거는 남자아이의 소중한 부분이니까, 제대로 꼼꼼히 씻어야 매너라구요?」
+						SELECTCASE TALENT:MASTER:형상
+							CASE 1
+								PRINTFORMW 「귀여운 고추를 살살 달래서...귀여운 귀두씨 나오면 깔끔하게 씻어드려야지...♥」
+								PRINTFORMW 사토리는 %마스터의% 자지의 껍질을 벗기고 손끝으로 살살 문지르기 시작했다
+								PRINTFORMW 「후후...빳빳해졌어, 기분 좋았나요?」
+								PRINTFORMW 무척이나 즐거운듯한 표정으로 %마스터의% 자지를 마음껏 희롱해댔다...
+								BASE:MASTER:발기 += 3000
+								BASE:MASTER:사정 += 3000
+							CASE 2
+								PRINTFORMW 「에잇에잇~ 허접자지씨 숨지말고 나와라~」
+								PRINTFORMW 격하게 문질러오는 손길은 귀두 뒤쪽부터 뿌리까지 비눗거품을 묻혀왔다...
+								PRINTFORMW 미끄러워진 손은 마치 질 내와 같이 쑥쑥 들어가게 되었다
+								PRINTFORMW 「아핫...빳빳해졌네요, 좋았나요?」
+								PRINTFORMW 무척 즐거워 보인다...
+								BASE:MASTER:발기 += 3500
+								BASE:MASTER:사정 += 3500
+							CASEELSE
+								PRINTFORMW 「제대로 귀두 뒤쪽도...음음...뿌리쪽도...」
+								PRINTFORMW 사토리는 닦아준다는 명목으로 %마스터의% 자지를 한껏 매만져왔다...
+								PRINTFORMW 「네, 깔끔해졌네요~...그럼 제대로 씻겨졌나 확인해 볼까요?」
+								PRINTFORMW 한껏 희롱했으면서 이번엔 또 입에 물기까지 했다...
+								IF TALENT:키스미경험
+									CALL SET_FIRSTKISS(49,MASTER,16)
+								ENDIF
+								PRINTFORMW 「으음~...제대로 씻겼네요~ 이정도라면 계속 빨고 싶을 정도로」
+								PRINTFORMW 「후후...빳빳해지시네요, 기분 좋은건가요?」
+								PRINTFORMW 무척이나 음탕한 표정으로 자지를 핥는 사토리는 매우 신나보였다...
+								BASE:MASTER:발기 += 9000
+								BASE:MASTER:사정 += 9500
+						ENDSELECT
+					ENDIF
+				CASE 1
+					PRINTFORMW 「어머나, 변태씨네요~」
+					PRINTFORMW 「욕실에서 까지 야한짓 하러 온건가요? 응큼도 하셔라...그치만 전 상관없으니...후후...」
+					PRINTFORMW 들어오자마자 꺄아꺄아 거리며 히히덕대는 사토리는 %마스터를% 이끌고 탕에 들어갔다...
+					PRINTFORMW 은근히 손으로 자기 몸을 더듬게 하는건 넘어가자...
+			ENDSELECT
+		ELSE
+			;에이 설마 이걸 어케 봐
+			IF CFLAG:3000 == 0
+				SELECTCASE RAND:2
+					CASE 0
+						PRINTFORMW 「어라...씻으려고 하시나요?」
+						PRINTFORMW 「...아뇨, 딱히 상관 없어요, 추우니까 문이나 닫아주시길」
+					CASE 1
+						PRINTFORMW 「...아, 안녕하세요...」
+						PRINTFORMW 사토리는 잠시 인사를 건내고 다시 뜨근한 목욕물에 흐물흐물 흐트러졌다...
+				ENDSELECT
+			ELSE
+				SELECTCASE RAND:2
+					CASE 0
+						PRINTFORMW 「...아아..어서오세요..」
+						PRINTFORMW 「...딱히 들어오셔도 상관은 없는데, 등은 안 밀어드릴거니까 알아서 미세요...」
+						PRINTFORMW 사토리는 의욕없게 말해오고는 다시 벽에 기대 늘어져버렸다...
+					CASE 1
+						PRINTFORMW 「...아아..변태씨네, 적어도 노크는 해줬음 했는데」
+						PRINTFORMW 「...기왕 왔다면 어쩔수 없죠, 조금 비키면 될거 아녜요」
+						PRINTFORMW 사토리는 살짝 옆으로 비키곤 다시 벽에 기대 늘어져버렸다...
+				ENDSELECT
+			ENDIF
+		ENDIF
 		RETURN 1
 	ENDIF
 	;その他
@@ -6896,7 +7056,7 @@ ENDIF
 RETURN 1
 
 ;==================================================
-;寝床に忍び込み
+;寝床に忍び込み 잠자리 잠입
 ;==================================================
 @M_KOJO_EVENT_K49_12(ARG,ARG:1)
 ;口上主はTARGET
