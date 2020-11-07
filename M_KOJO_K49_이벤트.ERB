@@ -7157,12 +7157,66 @@ IF LOCAL
 		RETURN 1
 	ENDIF
 	;-------------------------------------------------
-	;寝床に侵入
+	;寝床に侵入 침실 잠입
 	;記入チェック（=0, 非表示、1, 表示）
-	LOCAL:1 = 0
+	LOCAL:1 = 1
 	;-------------------------------------------------
 	IF LOCAL:1 && ARG:1 == 1
-		PRINTFORML
+		;PRINTFORMW 「」
+		IF MARK:반발각인 == 3
+			IF TALENT:연인
+				SELECTCASE RAND:2
+					CASE 0
+						PRINTFORMW 「.......」
+						PRINTFORMW 얌전하게 누워 자고 있는 사토리에게 다가가니 얼굴이 딱딱하게 굳어버렸다...
+					CASE 1
+						PRINTFORMW 「......」
+						PRINTFORMW 왜인지 자면서도 표정이 안 좋다... 나쁜꿈이라도 꾸는것일까?
+				ENDSELECT
+			ELSE
+				SELECTCASE RAND:2
+					CASE 0
+						PRINTFORMW 「...으으음...」
+						PRINTFORMW %마스터가% 다가가자 뒤척이기 시작했다...
+						PRINTFORMW 왜인지 언짢은듯한 표정이다
+					CASE 1
+						PRINTFORMW 「......」
+						PRINTFORMW 갑자기 찡그린 표정으로 귀를 가렸다
+						PRINTFORMW %마스터가% 다가가면 다가갈수록 표정은 더욱 험악해져갔다...
+				ENDSELECT
+			ENDIF
+		ELSEIF TALENT:연인||TALENT:연모||TALENT:사모||TALENT:애욕
+			SELECTCASE RAND:2
+				CASE 0
+					PRINTFORMW 「...」
+					PRINTFORMW 얌전히 누워 자고 있다...
+					PRINTFORMW %마스터가% 다가가니 묘하게 몸을 뒤척이며 얼굴에 미소가 올라왔다
+				CASE 1
+					PRINTFORMW 「우으응...」
+					PRINTFORMW 곤히 자는 사토리의 입에서 침이 살짝 흘러내린다...
+			ENDSELECT
+		ELSE
+			IF CFLAG:3000 == 0
+				SELECTCASE RAND:2
+					CASE 0
+						PRINTFORMW 「....」
+						PRINTFORMW 사토리는 얌전히 누워 자고 있다...
+						PRINTFORMW ...만 다가가니 약간 몸을 움츠리는것만 같았다
+					CASE 1
+						PRINTFORMW 「...후으응...」
+						PRINTFORMW 왜인지 히죽거리며 웃고 있다...좋은 꿈이라도 꾸는 모양이다
+				ENDSELECT
+			ELSE
+				SELECTCASE RAND:2
+					CASE 0
+						PRINTFORMW 「.......」
+						PRINTFORMW 얌전하게 누워 자고 있는 사토리에게 다가가니 얼굴이 살짝 굳어졌다...
+					CASE 1
+						PRINTFORMW 「......」
+						PRINTFORMW 왜인지 자면서도 표정이 안 좋다... 나쁜꿈이라도 꾸는것일까?
+				ENDSELECT
+			ENDIF
+		ENDIF
 		RETURN 1
 	ENDIF
 	;-------------------------------------------------
