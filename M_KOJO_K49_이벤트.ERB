@@ -7222,10 +7222,97 @@ IF LOCAL
 	;-------------------------------------------------
 	;寝床に侵入（相手が恋慕）
 	;記入チェック（=0, 非表示、1, 表示）
-	LOCAL:1 = 0
+	LOCAL:1 = 1
 	;-------------------------------------------------
 	IF LOCAL:1 && ARG:1 == 2
-		PRINTFORML
+		IF MARK:반발각인 == 3
+			IF TALENT:연인
+				SELECTCASE RAND:3
+					CASE 0
+						PRINTFORMW 「...」
+						PRINTFORMW 사토리는 얌전히 누워 자고 있다
+						PRINTFORMW ...왜인지 많이 피곤해 보인다
+					CASE 1
+						PRINTFORMW 「...으으응...저도......해요....」
+						PRINTFORMW 우물우물 무언가 말해오고 있지만 제대로 들리진 않았다...
+					CASE 2
+						PRINTFORMW 「...흐헤에...」
+						PRINTFORMW 무언가 얼빠진 모습으로 웃고 있지만 마냥 웃는것 같지만은 않다...
+				ENDSELECT
+			ELSE
+				SELECTCASE RAND:3
+					CASE 0
+						PRINTFORMW 「...으으응...」
+						PRINTFORMW %마스터가% 다가오자 사토리는 뒤척이기 시작했다...
+					CASE 1
+						PRINTFORMW 「...음냐아...」
+						PRINTFORMW 무척 무방비한 모습으로 자고 있다...가 %마스터가% 다가오니 조금 움츠러들었다
+					CASE 2
+						PRINTFORMW 「...쿠우...」
+						PRINTFORMW 새근새근 자고 있지만 %마스터가% 다가오는 소리를 들었는지 약간 인상을 쓰기 시작했다
+				ENDSELECT
+			ENDIF
+		ELSEIF TALENT:연인
+			SELECTCASE RAND:3
+				CASE 0
+					PRINTFORMW 「...으으응...히히...」
+					PRINTFORMW 무언가 좋은 꿈이라도 꾸는지 자면서도 히죽히죽 웃고 있다..
+				CASE 1
+					PRINTFORMW 「...네에에...저도 조...아.....」
+					PRINTFORMW 「...음냐아...」
+					PRINTFORMW 자면서도 배실배실 웃으며 침대위를 구르고 있다...
+				CASE 2
+					IF CFLAG:4001 > 10&&!CFLAG:4000
+						SELECTCASE RAND:3
+							CASE 0
+								PRINTFORMW 「이제 그 애는 그만두구...저랑마안...」
+								PRINTFORMW 「...으으응...」
+							CASE 1
+								PRINTFORMW 「...역시 제가 더어...낫죠..후흐흐...」
+								PRINTFORMW 「아프로는 다른사람이랑으은...」
+								PRINTFORMW 「...음냐아...」
+							CASE 2
+								PRINTFORMW 「...으으응...조아요...저도 조아해요...」
+								PRINTFORMW 「그러니까 이젠 저마안...」
+						ENDSELECT
+						PRINTFORMW 무어라 중얼중얼 뇌까리고 있지만 혀가 꼬여 제대로 들리진 않는다...
+					ELSE
+						PRINTFORMW 「......」
+						PRINTFORMW 사토리는 새근새근 잘도 자고 있다...
+						PRINTFORMW ...입에서 침이 흐른다...
+					ENDIF
+			ENDSELECT
+		ELSE
+			IF CFLAG:3000 == 0
+				SELECTCASE RAND:3
+					CASE 0
+						PRINTFORMW 「....으응...」
+						PRINTFORMW 사토리는 뒤척이고 있다...
+						PRINTFORMW %마스터가% 옆으로 다가오자 왜인지 희미한 웃음을 띄워보였다...
+					CASE 1
+						PRINTFORMW 「......아으...코이시...그마안...」
+						PRINTFORMW 「...언니 힘드러어...」
+						PRINTFORMW 안좋은 꿈이라도 꾸는지 표정이 안좋다...
+					CASE 2
+						PRINTFORMW 「...」
+						PRINTFORMW 새근새근 잘도 자고 있다...
+				ENDSELECT
+			ELSE
+				SELECTCASE RAND:3
+					CASE 0
+						PRINTFORMW 「....으응...」
+						PRINTFORMW 사토리는 뒤척이고 있다...
+						PRINTFORMW %마스터가% 옆으로 다가오자 웃는것도 찡그린것도 아닌 복잡미묘한 표정을 지었다
+					CASE 1
+						PRINTFORMW 「......아으...그마안...」
+						PRINTFORMW 「...나 힘드러어...내버려둬...」
+						PRINTFORMW 안좋은 꿈이라도 꾸는지 표정이 안좋다...
+					CASE 2
+						PRINTFORMW 「...」
+						PRINTFORMW 새근새근 잘도 자고 있다......만 어쩐지 조금은 불편해 보인다
+				ENDSELECT
+			ENDIF
+		ENDIF
 		RETURN 1
 	ENDIF
 	;-------------------------------------------------
