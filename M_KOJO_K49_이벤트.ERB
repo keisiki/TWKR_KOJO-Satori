@@ -7392,7 +7392,7 @@ IF LOCAL
 		;PRINTFORMW 「」
 		IF MARK:반발각인 == 3
 			IF TALENT:연인
-				SELECTCASE RAND:3
+				SELECTCASE RAND:4
 					CASE 0
 						PRINTFORMW 「...돌아가 주세요」
 						PRINTFORMW 「오늘은 혼자 있고 싶은 기분이니까...」
@@ -7405,13 +7405,17 @@ IF LOCAL
 						PRINTFORMW 「......」
 						PRINTFORMW 사토리는 말없이 %마스터를% 바라보고 있다...
 						PRINTFORMW 어쩐지 무거운 공기에 나가지 않을 수 없었다
+					CASE 3
+						PRINTFORMW 「...아직 할 말이 남으셨나요?」
+						PRINTFORMW 「아니요... 떠올리지도 마세요」
+						PRINTFORMW 사토리는 %마스터를% 방 밖으로 내보냈다.				
 				ENDSELECT
 			ELSE
 				IF CFLAG:3000 == 0
 					SELECTCASE RAND:2
 						CASE 0
 							PRINTFORMW 「...여긴 제 방입니다만...」
-							PRINTFORMW 「...%사마스터의% 방이 없는것도 아니고, 돌아가서 주무시지 왜 굳이 오는겁니까...」
+							PRINTFORMW 「...%마스터의% 방이 없는것도 아니고, 돌아가서 주무시지 왜 굳이 오는겁니까...」
 							PRINTFORMW 사토리는 머리를 짚으며 %마스터를% 내보냈다...
 						CASE 1
 							PRINTFORMW 「...여기서 뭐 하시는거죠?」
@@ -7430,7 +7434,7 @@ IF LOCAL
 				ENDIF
 			ENDIF
 		ELSEIF TALENT:연인
-			SELECTCASE RAND:3
+			SELECTCASE RAND:4
 				CASE 0
 					PRINTFORMW 「...오늘은 혼자 자고 싶은 기분인걸요」
 					PRINTFORMW 「죄송하지만 다음에 찾아와 주세요...」
@@ -7442,9 +7446,12 @@ IF LOCAL
 				CASE 2
 					PRINTFORMW 「...저기, 그...오늘은 좀...」
 					PRINTFORMW 「...내일 다시 찾아와 주세요...」
+				CASE 3
+					PRINTFORMW 「...마음은 기쁘지만 내일 와주세요...」
+					PRINTFORMW 「만나지 못하는 시간이... 애달프더라도...」
 			ENDSELECT
 		ELSEIF TALENT:연모||TALENT:사모||TALENT:애욕
-			SELECTCASE RAND:2
+			SELECTCASE RAND:3
 				CASE 0
 					PRINTFORMW 「...하아암...저기, 오늘은 너무 피곤하니까...그냥 혼자 자게 해주시면 감사하겠습니다...」
 					PRINTFORMW 「...내일 다시 찾아와 주세요...그러면 전 이만...」
@@ -7452,6 +7459,10 @@ IF LOCAL
 				CASE 1
 					PRINTFORMW 「...그...오늘은 다른데 가 주시면 안 될까요」
 					PRINTFORMW 「...내일이라면 몰라도 오늘은 피곤해서 혼자 자고 싶어요, 안되나요?」
+					PRINTFORMW 미안한듯이 말하면서도 %마스터를% 방 밖으로 밀어내고 있다...
+				CASE 2
+					PRINTFORMW 「당신 마음은 알겠지만...」
+					PRINTFORMW 「제 마음을 모르겠나요? 혼자 자고 싶은거에요...」
 					PRINTFORMW 미안한듯이 말하면서도 %마스터를% 방 밖으로 밀어내고 있다...
 			ENDSELECT
 		ELSE
@@ -7478,7 +7489,6 @@ IF LOCAL
 			ENDIF
 		ENDIF
 		RETURN 1
-	ENDIF
 	;-------------------------------------------------
 	;追い出される（衰弱）내쫓김 쇠약
 	;記入チェック（=0, 非表示、1, 表示）
