@@ -8138,24 +8138,181 @@ IF LOCAL
 					ENDIF
 				ENDIF
 			ELSEIF TALENT:연인
-				
+				SELECTCASE RAND:3
+					CASE 0
+						IF EX:C절정 + EX:V절정 + EX:A절정 + EX:B절정 + EX:M절정 < 3
+							PRINTFORMW 「으에...? 벌써 끝...?」
+							PRINTFORMW 「...이제 막 시작했는데요...?」
+							PRINTFORMW 사토리는 %마스터의% 손을 잡아끌어왔지만 이내 소용없다는걸 깨닫곤 토라져버렸다...
+						ELSE
+							PRINTFORMW 「...하아아...좋았다...♥」
+							PRINTFORMW 사토리는 만족한듯한 얼굴을 보여왔다...
+							IF ((FLAG:생리주기가시화&&(CFLAG:생리주기 == 7||CFLAG:생리주기 == 8))||TCVAR:강제배란)&&!TCVAR:피임약
+								IF EX:질내정액 >= 5000
+									PRINTFORMW 「이거, 분명히 생기겠죠...그렇다고 생각하면 기분이 묘하네요」
+									PRINTFORMW 「...분명히 귀엽겠죠?」
+									PRINTFORMW 사토리는 희미하게 미소를 지어보이고 있다...
+								ELSEIF EX:질내정액 >=1000
+									PRINTFORMW 「안에 잔뜩 싸셨네요...기분 좋았어요?」
+									PRINTFORMW 「...전 기분 좋았는데...」
+									PRINTFORMW 사토리는 얼굴을 붉히며 흘러내리는 정액을 바라보고 있다...
+								ELSEIF EX:질내정액 >= 500
+									PRINTFORMW 「근데...모처럼 위험한 날에 하는 생 사정인데, 좀 더 싸도 괜찮지 않나요?」
+									PRINTFORMW 「...뭐어...싫으면 말구요」
+								ENDIF
+							ENDIF
+						ENDIF
+					CASE 1
+						IF EX:C절정 + EX:V절정 + EX:A절정 + EX:B절정 + EX:M절정 < 3
+							PRINTFORMW 「이...이제 막 기분좋아질려 했는데...」
+							PRINTFORMW 「...너무해요...」
+							PRINTFORMW 사토리는 실망했는지 시무룩해졌다...
+						ELSE
+							PRINTFORMW 「..하아..하아...으응...♥」
+							PRINTFORMW 사토리는 떨어지기 싫다는듯이 %마스터를% 끌어안았다...
+							PRINTFORMW 한참을 놓아주지 않아서 빠져나오는데 고생했다...
+						ENDIF
+					CASE 2
+						IF EX:C절정 + EX:V절정 + EX:A절정 + EX:B절정 + EX:M절정 < 3
+							PRINTFORMW 「...우으으...이제 질려버린건가요?」
+							PRINTFORMW 「...조금만 더 해요, 네? 조금만...」
+							PRINTFORMW 사토리는 아쉬운지 자꾸만 보채왔다...
+						ELSE
+							PRINTFORMW 「후아....」
+							PRINTFORMW 「하고 나니까 왠지 나른...하네요...」
+							PRINTFORMW 사토리는 나른하게 몸을 펴며 %마스터의% 몸에 기대왔다
+							PRINTFORMW 「조금만 이러고 있죠, 아직 떨어지기 싫어요」
+							PRINTFORMW 그렇게 말한 사토리는 %마스터의% 몸을 양 팔로 단단히 끌어안고는 한참을 놓아주지 않았다...
+						ENDIF
+				ENDSELECT
 			ELSEIF TALENT:연모||TALENT:사모||TALENT:애욕
 				IF CFLAG:3000 == 0
-
+					SELECTCASE RAND:2
+						CASE 0
+							IF EX:C절정 + EX:V절정 + EX:A절정 + EX:B절정 + EX:M절정 < 3
+								PRINTFORMW 「...어라...벌써 끝인가요...」
+								PRINTFORMW 「...네에...그럼 정리 하죠...」
+								PRINTFORMW 무언가 맥빠지는듯한 모습으로 옷을 고쳐입는 사토리는 계속해서 %마스터를% 힐끔힐끔 바라보고 있다...
+							ELSE
+								PRINTFORMW 「...하아...하아...으응...♥」
+								PRINTFORMW 사토리는 %마스터의% 손을 소중하게 끌어안은채 행위의 여운을 즐기고 있다...
+							ENDIF
+						CASE 1
+							IF EX:C절정 + EX:V절정 + EX:A절정 + EX:B절정 + EX:M절정 < 3
+								IF BASE:MASTER:체력 > 1000
+									PRINTFORMW 「...벌써 끝...」
+									PRINTFORMW 「...역시 나랑은...」
+									PRINTFORMW 「......아무것도 아녜요」
+									PRINTFORMW 사토리는 무언가 풀죽은듯한 모습으로 뒷정리를 하고 있다...
+								ELSE
+									PRINTFORMW 「음...벌써 지치셨나요...」
+									PRINTFORMW 「그럼 어쩔수 없죠, 괜히 무리하시다가 쓰러지는거보단 나으니까...」
+									PRINTFORMW 말은 저렇게 하면서도 약간 실망한듯한 눈치가 보인다...
+								ENDIF
+							ELSE
+								PRINTFORMW 「으으응...아직도 욱신욱신거려서...♥」
+								PRINTFORMW 「이거 마음에 든단 말이죠...♥ 찌릿찌릿 자꾸만 몸이 떨리는거어...♥」
+								PRINTFORMW 잔뜩 절정한 탓인지 사토리는 아직 헤롱헤롱한 채로 여운을 즐기고 있다...
+							ENDIF
+					ENDSELECT
 				ELSE
-				
+					SELECTCASE RAND:2
+						CASE 0
+							IF EX:C절정 + EX:V절정 + EX:A절정 + EX:B절정 + EX:M절정 < 3
+								PRINTFORMW 「...어라...벌써 끝인가요...」
+								PRINTFORMW 「...맨날 야한 생각 하면서, 막상 할때는 이게 뭐예요 정말」
+								PRINTFORMW 사토리는 서운한지 볼을 부풀리고 있다...
+							ELSE
+								PRINTFORMW 「...하아...하아...으응...♥」
+								PRINTFORMW 사토리는 %마스터의% 손을 소중하게 끌어안은채 행위의 여운을 즐기고 있다...
+							ENDIF
+						CASE 1
+							IF EX:C절정 + EX:V절정 + EX:A절정 + EX:B절정 + EX:M절정 < 3
+								IF BASE:MASTER:체력 > 1000
+									PRINTFORMW 「...벌써 끝...」
+									PRINTFORMW 「...맨날 야한 상상은 많이 하면서, 실전은 못하고, 사실은 나랑 하기 싫은거죠?」
+									PRINTFORMW 사토리는 삐진듯한 모습으로 뒷정리를 하고 있다...
+								ELSE
+									PRINTFORMW 「음...벌써 지치셨나요...」
+									PRINTFORMW 「머릿속에선 그렇게 절륜하시더니, 실제로 그러진 못하네요...」
+									PRINTFORMW 많이 실망한듯한 표정이다...
+								ENDIF
+							ELSE
+								PRINTFORMW 「으으응...아직도 욱신욱신거려서...♥」
+								PRINTFORMW 「이거 마음에 든단 말이죠...♥ 찌릿찌릿 자꾸만 몸이 떨리는거어...♥」
+								PRINTFORMW 잔뜩 절정한 탓인지 사토리는 아직 헤롱헤롱한 채로 여운을 즐기고 있다...
+							ENDIF
+					ENDSELECT
 				ENDIF
 			ELSEIF TALENT:섹프
-				IF CFLAG:3000 == 0
-
-				ELSE
-				
-				ENDIF
+				;PRINTFORMW 「」
+				SELECTCASE RAND:2
+					CASE 0
+						IF EX:C절정 + EX:V절정 + EX:A절정 + EX:B절정 + EX:M절정 < 3
+							PRINTFORMW 「...벌써 끝이라니, 이젠 야한짓도 귀찮다 이거예요?」
+							PRINTFORMW 「...야박하게시리...」
+							PRINTFORMW 사토리는 잔뜩 토라진듯하다...
+						ELSE
+							PRINTFORMW 「하아...♥ 하아...♥ 응..♥」
+							PRINTFORMW 사토리는 %마스터의% 손가락을 쪽쪽 빨며 쾌락의 늪을 허우적대고 있다...
+							PRINTFORMW 진정할때까지 한참동안 빨아대는 탓에 손가락이 퉁퉁 불어 사토리의 침냄새가 손가락에서 잔뜩 난다...
+						ENDIF
+					CASE 1
+						IF EX:C절정 + EX:V절정 + EX:A절정 + EX:B절정 + EX:M절정 < 3
+							PRINTFORMW 「...치이...전 아직 몇 번 느끼지도 못했는데 그러기에요?」
+							PRINTFORMW 「자꾸 그러다가 저 다른사람 찾아서 가버려요?」
+							PRINTFORMW 「...그러면 나만 손핸가...」
+							PRINTFORMW 사토리는 중얼중얼거리며 심통해하고 있다...
+						ELSE
+							PRINTFORMW 「으으응...♥ 역시 이거 기분 좋다니까..♥」
+							PRINTFORMW 「손으로 하는거 보다 훨~씬 오싹오싹하고 최고야...♥」
+							PRINTFORMW 무척 만족한듯 사토리의 얼굴이 밝아졌다...
+						ENDIF
+				ENDSELECT
 			ELSE
+				;PRINTFORMW 「」
 				IF CFLAG:3000 == 0
-
+					SELECTCASE RAND:2
+						CASE 0
+							IF EX:C절정 + EX:V절정 + EX:A절정 + EX:B절정 + EX:M절정 < 3
+								PRINTFORMW 「...별로 하고 싶지 않았으면, 안 했어도 될 것을...」
+								PRINTFORMW 「...네네...알겠어요...지친거라고 생각할게요...」
+								PRINTFORMW 사토리는 무덤덤하게 말하고는 있지만 조금 화난듯 하다...
+							ELSE
+								PRINTFORMW 「...으으응...확실히...기분좋기는 했네...」
+								PRINTFORMW 「...응...혼자하는거 보다 백배 천배 나아」
+								PRINTFORMW 어찌됐든 기분은 좋았던 모양이다...
+							ENDIF
+						CASE 1
+							IF EX:C절정 + EX:V절정 + EX:A절정 + EX:B절정 + EX:M절정 < 3
+								PRINTFORMW 「...고작 이정도 하고 말거면 그냥 하지 말지」
+								PRINTFORMW 「...하아...」
+							ELSE
+								PRINTFORMW 「기분 좋았어...응...」
+								PRINTFORMW 「...어찌됐든 내 손가락보다야 좋으니까...」
+							ENDIF
+					ENDSELECT
 				ELSE
-
+					SELECTCASE RAND:2
+						CASE 0
+							IF EX:C절정 + EX:V절정 + EX:A절정 + EX:B절정 + EX:M절정 < 3
+								PRINTFORMW 「...별로 하고 싶지 않았으면, 안 했어도 될 것을...」
+								PRINTFORMW 「...아니면 막상 보니까 할 맘이 사라진건가요?」
+								PRINTFORMW 사토리는 무덤덤하게 말하고는 있지만 조금 우울한듯 하다...
+							ELSE
+								PRINTFORMW 「...으으응...확실히...기분좋기는 했네...」
+								PRINTFORMW 「...응...남이 해주는게 역시 편해...상대가 누구라도 말야」
+								PRINTFORMW 어찌됐든 기분은 좋았던 모양이다...
+							ENDIF
+						CASE 1
+							IF EX:C절정 + EX:V절정 + EX:A절정 + EX:B절정 + EX:M절정 < 3
+								PRINTFORMW 「...고작 이정도 하고 말거면 그냥 하지 말지」
+								PRINTFORMW 「...하아...놀리는것도 아니고...」
+							ELSE
+								PRINTFORMW 「기분 좋았어...응...」
+								PRINTFORMW 「...머릿속 상상이랑 현실이랑 계속 겹쳐서 이상한 기분 드니까...묘하게 기분좋아...」
+							ENDIF
+					ENDSELECT
 				ENDIF
 			ENDIF
 		ENDIF
