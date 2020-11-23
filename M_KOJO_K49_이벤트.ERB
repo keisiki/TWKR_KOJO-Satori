@@ -8631,31 +8631,43 @@ IF LOCAL
 		ELSEIF TALENT:섹프
 			SELECTCASE RAND:3
 				CASE 0
-					PRINTFORMW 「」
+					PRINTFORMW 「...으응....에?」
+					PRINTFORMW 「...정말...감질나게만 하다니...」
+					PRINTFORMW 「기왕 장난칠거면 좀 더 확실히 기분좋게 해줘요」
+					PRINTFORMW 사토리는 입술을 삐죽이며 말해왔다...
 				CASE 1
-
+					PRINTFORMW 「...응...뭐예요, 이건...만지기만 하고 끝?」
+					PRINTFORMW 「그런게 재밌어요?」
+					PRINTFORMW 「어짜피 할 거면 좀 더 기분 좋게 해 주면 덧나요?」
 				CASE 2
-					
+					PRINTFORMW 「...응읏...으으응...」
+					PRINTFORMW 「...이거, 유혹하는건가요? 일부러 안달나게만 하고」
+					PRINTFORMW 사토리는 음흉한 미소를 띄며 %마스터를% 바라보고 있다...
 			ENDSELECT
+			BASE:무드 += 1500
 		ELSE
 			IF CFLAG:3000 == 0
-				SELECTCASE RAND:3
+				SELECTCASE RAND:2
 					CASE 0
-					
+						PRINTFORMW 「...읏...잠깐...뭐하는거예요...」
+						PRINTFORMW 「...변태...」
+						PRINTFORMW 사토리는 노골적으로 싫어하고 있다...
 					CASE 1
-
-					CASE 2
-					
+						PRINTFORMW 「...힛...뭐...뭐하는 짓...으...」
+						PRINTFORMW 갑자기 몸을 더듬는 감촉에 놀란 사토리는 %마스터를% 째려보고 있다...
 				ENDSELECT
+				CFLAG:3101++
 			ELSE
-				SELECTCASE RAND:3
+				SELECTCASE RAND:2
 					CASE 0
-					
+						PRINTFORMW 「...읏...잠깐...뭐하는..거야...」
+						PRINTFORMW 「...변태...」
+						PRINTFORMW 사토리는 노골적으로 싫어하고 있다...
 					CASE 1
-
-					CASE 2
-					
+						PRINTFORMW 「...힛...뭐...뭐하는 짓...으...」
+						PRINTFORMW 갑자기 몸을 더듬는 감촉에 놀란 사토리는 %마스터를% 노려보고 있다...
 				ENDSELECT
+				CFLAG:3101++
 			ENDIF
 		ENDIF
 		RETURN 1
