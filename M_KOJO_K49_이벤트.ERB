@@ -8673,11 +8673,134 @@ IF LOCAL
 		RETURN 1
 	ENDIF
 	;-------------------------------------------------
-	;絶頂
+	;絶頂 절정
 	;記入チェック（=0, 非表示、1, 表示）
-	LOCAL:1 = 0
+	LOCAL:1 = 1
 	;-------------------------------------------------
 	IF LOCAL:1 && ARG == 2
+		;PRINTFORMW 「」
+		IF MARK:반발각인 == 3
+			IF TALENT:연인
+				SELECTCASE RAND:2
+					CASE 0
+						PRINTFORMW 「흣♥ 으으응...」
+						PRINTFORMW 「아으으...♥ 갑자기 그러며언...♥」
+						PRINTFORMW 사토리는 절정에 몸을 떨면서 %마스터를% 바라보고 있다...
+					CASE 1
+						PRINTFORMW 「앗...♥ 지금 그러며언...♥」
+						PRINTFORMW 「흣, 응읏...♥ 안돼에에...♥ 이거 이상해져어...♥」
+						PRINTFORMW 사토리는 몰아치는 쾌감에 몸을 가누지 못하고 바닥에 주저 앉아 파르르 떨고 있다...
+				ENDSELECT
+			ELSE
+				IF CFLAG:3000 == 0
+					SELECTCASE RAND:2
+						CASE 0
+							PRINTFORMW 「아...? 앗...잠까...읏...♥ 아...♥」
+							PRINTFORMW 「가...갑자기 그렇게 하면...읏...」
+							PRINTFORMW 사토리는 갑자기 덮쳐온 쾌감에 몸을 떨며 %마스터를% 노려보고 있다...
+						CASE 1
+							PRINTFORMW 「읏...! 아..안돼 하지...앗♥ 읏♥ 안대에♥」
+							PRINTFORMW 사토리는 몰려오는 쾌감에 비명지르며 바닥에 주저앉아버렸다...
+					ENDSELECT
+					CFLAG:3101++
+				ELSE
+					SELECTCASE RAND:2
+						CASE 0
+							PRINTFORMW 「아...? 앗...잠까...읏...♥ 아...♥」
+							PRINTFORMW 「가...갑자기 그렇게 하면...읏...」
+							PRINTFORMW 사토리는 갑자기 덮쳐온 쾌감에 몸을 떨며 %마스터를% 노려보고 있다...
+						CASE 1
+							PRINTFORMW 「읏...! 아..안돼 하지...앗♥ 읏♥ 안대에♥」
+							PRINTFORMW 사토리는 몰려오는 쾌감에 비명지르며 바닥에 주저앉아버렸다...
+					ENDSELECT
+				ENDIF
+			ENDIF
+		ELSEIF TALENT:연인
+			SELECTCASE RAND:2
+				CASE 0
+					PRINTFORMW 「어라...아...♥ 이...이거...♥」
+					PRINTFORMW 「으으응...♥ 흣...♥ 흐으으...♥」
+					PRINTFORMW 사토리는 필사적으로 옷깃을 물고 신음소리를 참았지만 새어나가는건 어쩔수 없었던 모양이다
+					PRINTFORMW 「하아...하아...갑자기 그래서 놀랐어요...」
+					PRINTFORMW 「그...그래도 확실히 이거...좋을지도...」
+					PRINTFORMW 한참 허덕이던 사토리는 촉촉한 눈길로 %마스터를% 응시해오고 왔다...
+					BASE:무드 += 1500
+				CASE 1
+					PRINTFORMW 「앗...♥ 잠까...♥ 읏...으으으응...♥」
+					PRINTFORMW 「후으으으...♥」
+					PRINTFORMW 한순간에 느껴지는 강렬한 쾌감에 사토리는 정신을 못차리고 있다...
+			ENDSELECT
+		ELSEIF TALENT:연모||TALENT:사모||TALENT:애욕
+			IF CFLAG:3000 == 0
+				SELECTCASE RAND:2
+					CASE 0
+						PRINTFORMW 「아...? 아...안대...♥ 갑자기 그러며언...♥」
+						PRINTFORMW 「읏...아...♥ 거기 안대에...♥」
+						PRINTFORMW 사토리는 엄습해오는 쾌감에 멍한 표정으로 허덕였다...
+						PRINTFORMW 「하아...하아....이...이런거 뭐가 좋다고 하는거예요...진짜...」
+						PRINTFORMW 겨우 정신을 차린 사토리는 %마스터의% 등을 투닥투닥 때려왔다...
+					CASE 1
+						PRINTFORMW 「읏...안...안대에...♥」
+						PRINTFORMW 「아읏...시러어...그만...♥」
+						PRINTFORMW 한순간에 수없이 많은 자극을 받아대니 사토리는 온 몸을 파닥파닥 거리며 절정의 쾌감에 허우적대고 있다...
+				ENDSELECT
+				SIF RAND:2
+					CFLAG:3101++
+			ELSE
+				SELECTCASE RAND:2
+					CASE 0
+						PRINTFORMW 「아...? 아...안대...♥ 갑자기 그러며언...♥」
+						PRINTFORMW 「읏...아...♥ 거기 안대에...♥」
+						PRINTFORMW 사토리는 엄습해오는 쾌감에 멍한 표정으로 허덕였다...
+						PRINTFORMW 「하아...하아....이...이런거 뭐가 좋다고...진짜...」
+						PRINTFORMW 「...하기사 %사마스터가% 원래 이런 사람이긴 하지만...」
+					CASE 1
+						PRINTFORMW 「읏...안...안대에...♥」
+						PRINTFORMW 「아읏...시러어...그만...♥ 그렇게 만지며언..♥ 앙♥」
+						PRINTFORMW 한순간에 수없이 많은 자극을 받아대니 사토리는 온 몸을 파닥파닥 거리며 절정의 쾌감에 허우적대고 있다...
+				ENDSELECT
+			ENDIF
+		ELSEIF TALENT:섹프
+			SELECTCASE RAND:2
+				CASE 0
+					PRINTFORMW 「앗...♥ 왔다아....♥」
+					PRINTFORMW 「응읏...♥ 좀 더어...♥ 앗, 앙..♥ 이거어♥」
+					PRINTFORMW 사토리는 엄청 기분좋은듯이 절정에 몸을 떨고 있다
+					PRINTFORMW 「하아...하아...♥ 좋았어요...♥ 헤헤...」
+					PRINTFORMW 만족했는지 풀어진 얼굴로 %마스터를% 끌어안고 헤실거리고 있다...
+					BASE:무드 += 2000
+				CASE 1
+					PRINTFORMW 「앗...♥」
+					PRINTFORMW 사토리는 바보처럼 입을 벌린채 몰아치는 쾌감에 떨고 있다...
+					PRINTFORMW 평소에 보기 힘든 그 모습을 한참동안이나 구경할 수 있었다...
+					BASE:무드 += 1500
+			ENDSELECT
+		ELSE
+			IF CFLAG:3000 == 0
+				SELECTCASE RAND:2
+					CASE 0
+						PRINTFORMW 「앗...잠까...안대에...♥ 앗...앙...♥」
+						PRINTFORMW 사토리는 화들짝 놀라 몸을 부여잡았지만 그런다고 몰려오는 쾌감을 부정할 순 없었다...
+						PRINTFORMW 한참을 허덕이던 사토리는 눈물을 글썽이며 %마스터를% 노려봤다...
+					CASE 1
+						PRINTFORMW 「힛...뭐..안돼, 하지맛..앗...♥ 응읏...♥ 흐읏...♥」
+						PRINTFORMW 사토리는 옷깃을 물고 필사적으로 신음을 참고 있지만 그럼에도 흘러나오는건 어쩔수 없었다
+						PRINTFORMW 원망스러운듯이 %마스터를% 노려보고는 있지만 몸은 여전히 절정의 여운때문에 꼼짝도 할 수 없이 바들바들 떨 뿐이었다...
+				ENDSELECT
+			ELSE
+				SELECTCASE RAND:2
+					CASE 0
+						PRINTFORMW 「앗...잠까...안대에...♥ 앗...앙...♥」
+						PRINTFORMW 사토리는 화들짝 놀라 몸을 부여잡았지만 그런다고 몰려오는 쾌감을 부정할 순 없었다...
+						PRINTFORMW 한참을 허덕이던 사토리는 화난듯 %마스터를% 노려봤지만 아직도 몸이 바들바들 떨리고 있는걸 감출수 없었다
+					CASE 1
+						PRINTFORMW 「힛...뭐..안돼, 하지맛..앗...♥ 응읏...♥ 흐읏...♥」
+						PRINTFORMW 사토리는 옷깃을 물고 필사적으로 신음을 참고 있지만 그럼에도 흘러나오는건 어쩔수 없었다
+						PRINTFORMW 몸이 말을 듣지 않는듯 애처롭게 허덕이며 %마스터를% 노려보고 있다...
+				ENDSELECT
+			ENDIF
+			CFLAG:3101++
+		ENDIF
 		RETURN 1
 	ENDIF
 	;-------------------------------------------------
