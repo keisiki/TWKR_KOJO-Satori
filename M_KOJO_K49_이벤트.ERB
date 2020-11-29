@@ -25,11 +25,13 @@
 ;CFLAG:4001 불륜횟수
 ;CFLAG:4100 저번 검사에서의 마스터 삽입경험
 ;CFLAG:5000 반발각인 감소 이벤트 카운터
+;CFLAG:5100 팬티 훔침 대사 나온횟수
 ;
 ;****이벤트목록*****************************************************************
 ; EVENT NO.1 (성교종료시 불륜 허락)
 ; EVENT NO.2 (불장난 키스)
 ; EVENT NO.3 (소프녀 사토리)
+; EVENT NO.4 (그런 이유로 훔치는거야?)
 ;******************************************************************************
 ; 구상용 이어받아 테두리의 플래그
 ; 1.전회에 만난적 있다
@@ -8806,9 +8808,355 @@ IF LOCAL
 	;-------------------------------------------------
 	;パンツ紛失
 	;記入チェック（=0, 非表示、1, 表示）
-	LOCAL:1 = 0
+	LOCAL:1 = 1
 	;-------------------------------------------------
 	IF LOCAL:1 && ARG == 3
+		;PRINTFORMW 「」
+		CFLAG:5100++
+		CFLAG:3101++
+		CALL 아나타평가
+		IF MARK:반발각인 == 3
+			IF TALENT:연인
+				SELECTCASE RAND:3
+					CASE 0
+						IF CFLAG:5100 < 5
+							; EVENT NO.4 (그런 이유로 훔치는거야?)
+							IF CFLAG:5100 == 1
+								PRINTFORMW 「...읏...잠깐...그걸 왜 가져가요?!」
+								PRINTFORMW 「...하아아...진짜, 그런거 가져가서 어디에 쓰려고요?」
+							ELSE
+								PRINTFORMW 「...또...아으...전에 안 가져 간다고 약속 해놓고선...!」
+								PRINTFORMW 「이번엔 또 뭔데요?」
+							ENDIF
+							PRINTFORML [1] 너한테 미움받은것 때문에
+							PRINTFORML [2] 취미
+							PRINTFORML [3] 딸감
+							INPUT
+							IF RESULT == 1
+								PRINTFORMW 「...무슨...팬티 신한테 바치면 제가 화를 푼다고요? 정말로?」
+								PRINTFORMW 「...차라리 제대로 사과해 본다는 생각은 안 해 보셨나요...?」
+								PRINTFORMW 사토리는 머리를 짚으며 손에 들린 팬티를 묵묵히 바라보고 있다...
+								PRINTFORMW 「...그래요, 그래도 결국은 용서받고 싶다는거죠」
+								PRINTFORMW 「이제 화 안낼테니까, 훔치면 마세요」
+								PRINTFORMW 「...그리고 다음부터는 이런거 말고 제대로 사과해 주세요」
+								PRINTFORMW 어찌됐든 넘어가 주는 모양이다...
+								MARK:반발각인 = 0
+							ELSEIF RESULT == 2
+								PRINTFORMW 「...모으는게 취미? 하아...진짜...」
+								IF CFLAG:3000 == 0
+									PRINTFORMW 「...어쩌다 이렇게 된 걸까...」
+								ELSE
+									PRINTFORMW 「이런 사람인줄은 알고 있었지만...」
+								ENDIF
+								PRINTFORMW 「...알았어요, 그래도 우리사이니까 몇 장 정도는...허락할테니까...」
+								PRINTFORMW 「그...그래도 다음은 없어요?」
+								PRINTFORMW 사토리는 얼굴이 새빨게져선 고개를 획 돌려버렸다
+								PRINTFORMW 어쨌든 넘어가 주는 것 같다
+							ELSEIF RESULT == 3
+								PRINTFORMW 「...」
+								PRINTFORMW 사토리는 아무 말도 못한채 얼굴을 붉히고 있다...
+								IF CFLAG:3000 == 0
+									PRINTFORMW 「...의외로 변태라니까요...정말...」
+								ELSE
+									PRINTFORMW 「하아...이런 사람인줄은 알고 있지만...그래도...」
+								ENDIF
+								PRINTFORMW 「...그걸로 자위...한다는거죠? 그럴거면 차라리 부탁하셨다면 됐을것을...」
+								PRINTFORMW 「아으으...그...그럼 이번엔 넘어가 줄 테니까...」
+								PRINTFORMW 「다음부터는 그런거 말고, 직접...해달라면 해 드릴테니까」
+								PRINTFORMW 부끄러운 대답을 들어서인지 말을 엄청 더듬는 사토리는 이내 고개를 돌려버렸다...
+								PRINTFORMW 어쨌든, 팬티는 %마스터의% 것이 된 듯 하다
+							ELSE
+								PRINTFORMW 「...대답하기 싫은건가요?」
+								PRINTFORMW 「...하아...도로 뺏기도 뭐하고, 뺏어봤자 또 가져갈거죠?」
+								IF CFLAG:3000 == 0
+									PRINTFORMW 「...그래도 %마스터는% 착하니까, 다음에는 안 할거죠?」
+								ELSE
+									PRINTFORMW 「어짜피 이런 사람인줄은 알고 있으니까...」
+								ENDIF
+								PRINTFORMW 「...그깟 팬티정도로 화내진 않아요」
+								PRINTFORMW 사토리는 볼을 부풀린채 고개를 돌렸다...
+								PRINTFORMW 「...팬티가 나보다도 더 좋은가...칫...」
+								PRINTFORMW 작게 궁시렁대는 소리가 들린다...
+							ENDIF
+						ELSE
+							PRINTFORMW 「...정말이지...팬티 참 좋아하시네요」
+							PRINTFORMW 「저보다도 그게 더 좋은건가요? 이젠 팬티한테도 질투를 느껴야하나...」
+							PRINTFORMW 「...그렇게 좋다면 가져가세요...안 말릴테니까...」
+							PRINTFORMW 사토리는 질렸다는듯이 바라보고 있다...
+						ENDIF
+					CASE 1
+						PRINTFORMW 「...으에...어느새 가져갔담...」
+						PRINTFORMW 「...그게 그렇게 좋은가요?」
+						PRINTFORMW 사토리는 별걸 다 본다는 눈빛으로 %마스터를% 바라보고 있다...
+					CASE 2
+						IF CFLAG:5100 == 1
+							PRINTFORMW 「...읏...어느틈에...」
+							PRINTFORMW 「도...돌려주세요, 그거 가져가도 별로 재미 없잖아요? 부끄러우니까 그만...으으...」
+							PRINTFORMW 사토리는 팔을 휘적휘적 휘둘러 왔지만 애석하게도 팬티를 빼앗아 갈 수는 없었다...
+							PRINTFORMW 「으으...」
+						ELSE
+							PRINTFORMW 「...또야?...제발 그만 좀 가져가세요...」
+							PRINTFORMW 「이러다가 나중엔 아예 벗고 다녀야 하겠네...」
+						ENDIF
+				ENDSELECT
+			ELSE
+				IF CFLAG:3000 == 0
+					SELECTCASE RAND:3
+						CASE 0
+							PRINTFORMW 「......변태」
+							PRINTFORMW 다리 사이로 서늘한 바람이라도 느꼈는지 사토리는 몸을 움찔 하곤 %마스터를% 노려보기 시작했다...
+						CASE 1
+							PRINTFORMW 「...제 팬티 가져가서, 기쁜가요? 그래 그럼 됐어요」
+							PRINTFORMW 「뭐라 해도 돌려줄 것 같지도 않고, 또 안 훔칠것도 아니고」
+							PRINTFORMW 팬티 도둑이 눈 앞에 서 있어서 기분이 안 좋아졌는지 사토리는 궁시렁대고 있다...
+						CASE 2
+							PRINTFORMW 「...또야?...제발 그만 좀 가져가세요...」
+							PRINTFORMW 「이러다가 나중엔 아예 벗고 다녀야 하겠네...」
+					ENDSELECT
+				ELSE
+					SELECTCASE RAND:3
+						CASE 0
+							PRINTFORMW 「...하아...어쩜 이리 한결같이...참...」
+							IF CFLAG:5100 == 1
+								PRINTFORMW 「이번엔 팬티야? 하...가지가지 하네...」
+								PRINTFORMW 사토리는 한심하다는듯이 %마스터를% 바라보고 있다...
+							ELSE
+								PRINTFORMW 「...내가 뭘 잘못 했다고 계속...」
+								PRINTFORMW 「...아아...정말이지...」
+								PRINTFORMW 사토리는 짜증 섞인 눈빛으로 %마스터를% 노려보고 있다...
+							ENDIF
+						CASE 1
+							PRINTFORMW 「...내 팬티 가져가서, 기쁜가요? 그럼 됐어요」
+							PRINTFORMW 「돌려줄것도 아니고, 앞으로 안 훔칠것도 아닐테니 뭐...」
+							PRINTFORMW 팬티 도둑이 눈 앞에 서 있어서 기분이 안 좋아졌는지 사토리는 궁시렁대고 있다...
+						CASE 2
+							PRINTFORMW 「...또야?...제발 그만 좀 가져가세요...」
+							PRINTFORMW 「이러다가 나중엔 아예 벗고 다녀야 하겠네...」
+							PRINTFORMW 사토리는 무덤덤하게 %마스터가% 흐트러뜨린 옷 매무새를 다듬었다
+					ENDSELECT
+				ENDIF
+			ENDIF
+		;PRINTFORMW 「」
+		ELSEIF TALENT:연인
+			SELECTCASE RAND:3
+				CASE 0
+					IF CFLAG:5100 < 5
+						; EVENT NO.4 (그런 이유로 훔치는거야?)
+						IF CFLAG:5100 == 1
+							PRINTFORMW 「...읏...잠깐...그걸 왜 가져가요?!」
+							PRINTFORMW 「...하아아...진짜, 그런거 가져가서 어디에 쓰려고요?」
+						ELSE
+							PRINTFORMW 「...또...아으...전에 안 가져 간다고 약속 해놓고선...!」
+							PRINTFORMW 「이번엔 또 뭔데요?」
+						ENDIF
+						SIF MARK:반발각인
+							PRINTFORML [1] 너한테 미움받은것 때문에
+						PRINTFORML [2] 취미
+						PRINTFORML [3] 딸감
+						INPUT
+						IF RESULT == 1&&MARK:반발각인
+							PRINTFORMW 「...무슨...팬티 신한테 바치면 제가 화를 푼다고요? 정말로?」
+							PRINTFORMW 「...차라리 제대로 사과해 본다는 생각은 안 해 보셨나요...?」
+							PRINTFORMW 사토리는 머리를 짚으며 손에 들린 팬티를 묵묵히 바라보고 있다...
+							PRINTFORMW 「...그래요, 그래도 결국은 용서받고 싶다는거죠」
+							PRINTFORMW 「이제 화 안낼테니까, 훔치면 마세요」
+							PRINTFORMW 「...그리고 다음부터는 이런거 말고 제대로 사과해 주세요」
+							PRINTFORMW 어찌됐든 넘어가 주는 모양이다...
+							MARK:반발각인 = 0
+						ELSEIF RESULT == 2
+							PRINTFORMW 「...모으는게 취미? 하아...진짜...」
+							IF CFLAG:3000 == 0
+								PRINTFORMW 「...어쩌다 이렇게 된 걸까...」
+							ELSE
+								PRINTFORMW 「이런 사람인줄은 알고 있었지만...」
+							ENDIF
+							PRINTFORMW 「...알았어요, 그래도 우리사이니까 몇 장 정도는...허락할테니까...」
+							PRINTFORMW 「그...그래도 다음은 없어요?」
+							PRINTFORMW 사토리는 얼굴이 새빨게져선 고개를 획 돌려버렸다
+							PRINTFORMW 어쨌든 넘어가 주는 것 같다
+						ELSEIF RESULT == 3
+							PRINTFORMW 「...」
+							PRINTFORMW 사토리는 아무 말도 못한채 얼굴을 붉히고 있다...
+							IF CFLAG:3000 == 0
+								PRINTFORMW 「...의외로 변태라니까요...정말...」
+							ELSE
+								PRINTFORMW 「하아...이런 사람인줄은 알고 있지만...그래도...」
+							ENDIF
+							PRINTFORMW 「...그걸로 자위...한다는거죠? 그럴거면 차라리 부탁하셨다면 됐을것을...」
+							PRINTFORMW 「아으으...그...그럼 이번엔 넘어가 줄 테니까...」
+							PRINTFORMW 「다음부터는 그런거 말고, 직접...해달라면 해 드릴테니까」
+							PRINTFORMW 부끄러운 대답을 들어서인지 말을 엄청 더듬는 사토리는 이내 고개를 돌려버렸다...
+							PRINTFORMW 어쨌든, 팬티는 %마스터의% 것이 된 듯 하다
+						ELSE
+							PRINTFORMW 「...대답하기 싫은건가요?」
+							PRINTFORMW 「...하아...도로 뺏기도 뭐하고, 뺏어봤자 또 가져갈거죠?」
+							IF CFLAG:3000 == 0
+								PRINTFORMW 「...그래도 %마스터는% 착하니까, 다음에는 안 할거죠?」
+							ELSE
+								PRINTFORMW 「어짜피 이런 사람인줄은 알고 있으니까...」
+							ENDIF
+							PRINTFORMW 「...그깟 팬티정도로 화내진 않아요」
+							PRINTFORMW 사토리는 볼을 부풀린채 고개를 돌렸다...
+							PRINTFORMW 「...팬티가 나보다도 더 좋은가...칫...」
+							PRINTFORMW 작게 궁시렁대는 소리가 들린다...
+						ENDIF
+					ELSE
+						PRINTFORMW 「...정말이지...팬티 참 좋아하시네요」
+						PRINTFORMW 「저보다도 그게 더 좋은건가요? 이젠 팬티한테도 질투를 느껴야하나...」
+						PRINTFORMW 사토리는 입술을 삐죽이며 바라보고 있다...
+					ENDIF
+				CASE 1
+					IF CFLAG:5100 == 1
+						PRINTFORMW 「...읏...어..어느틈에...」
+						PRINTFORMW 「...그걸 왜 가져가요...! 이리 내!」
+						PRINTFORMW 사토리는 얼굴을 새빨갛게 물들인채 달려들어 팬티를 빼앗으려 했지만 팔이 닿지 않아 무리였다...
+						PRINTFORMW 「으으으으....! 부끄럽게... 이게 뭐예요 진짜...그거 가져다 뭐 할려고요?」
+						PRINTFORMW 「...변태...우으으...너무해...」
+						PRINTFORMW 사토리는 %마스터를% 투닥투닥 때려왔지만 그런다고 팬티를 돌려받을 수는 없었다...
+					ELSE
+						PRINTFORMW 「또...또 가져갔어...」
+						PRINTFORMW 「그게 그렇게나 좋아요...?」
+						PRINTFORMW 사토리는 기가막히다는듯이 %마스터를% 바라보고 있다...
+					ENDIF
+				CASE 2
+					IF CFLAG:5100 == 1
+						PRINTFORMW 「...?!」
+						PRINTFORMW 사토리는 화들짝 놀란 표정으로 다리를 오므렸다...
+						PRINTFORMW 「으...변태...」
+						PRINTFORMW 「...그런거 가져가서 도대체 뭐 할려고 그러는거예요...으으...」
+						PRINTFORMW 얼굴을 붉힌채 원망스런 시선을 보내오고 있다...
+					ELSE
+						PRINTFORMW 「...아으으...또...」
+						PRINTFORMW 「...너무해...」
+						PRINTFORMW 사토리는 투덜거리며 다리를 오므리고 있다...
+					ENDIF
+			ENDSELECT
+		ELSEIF TALENT:연모||TALENT:사모||TALENT:애욕
+			IF CFLAG:3000 == 0
+				SELECTCASE RAND:2
+					CASE 0
+						IF CFLAG:5100 == 1
+							PRINTFORMW 「...으에..? 자..잠깐...이게 무슨 일...팬티를 왜...?」
+							PRINTFORMW 「도..돌려 주세요...그런거 가져가도 하나도 재미 없어요?」
+							PRINTFORMW 사토리는 얼굴을 새빨갛게 물들인채로 달려들었지만 끝내 팬티를 빼앗을순 없었다...
+						ELSE
+							PRINTFORMW 「...또야...그렇게 팬티가 좋나요...?」
+							PRINTFORMW 「하아...언제부터 이렇게 된거람...」
+							PRINTFORMW 사토리는 어이가 없다는듯이 %마스터를% 바라보고 있다...
+						ENDIF
+					CASE 1
+						IF CFLAG:5100 == 1
+							PRINTFORMW 「...읏...?! 잠깐만...그걸 왜 가져가요...?!」
+							PRINTFORMW 「돌려줘...돌려줘요, 빨리...」
+							PRINTFORMW 사토리는 얼굴을 새빨갛게 물들인채로 달려들었지만 사토리의 팔이 팬티까지 닿는 일은 없었다...
+						ELSE
+							PRINTFORMW 「...또...또오...하아아...정말이지...」
+							PRINTFORMW 「...하아...맘대로 하세요...가져가던가...」
+							PRINTFORMW 「...그깟 팬티가 뭐라고...그게 그렇게 좋은가...」
+							PRINTFORMW 뾰루퉁해진 사토리는 화도 안 난다는 투로 말해왔다...
+						ENDIF
+				ENDSELECT
+			ELSE
+				SELECTCASE RAND:2
+					CASE 0
+						IF CFLAG:5100 == 1
+							PRINTFORMW 「...으에..? 자..잠깐...이게 무슨 일...팬티를 왜...?」
+							PRINTFORMW 「도..돌려 주세요...그런거 가져가도 하나도 재미 없어요?」
+							PRINTFORMW 사토리는 얼굴을 새빨갛게 물들인채로 달려들었지만 끝내 팬티를 빼앗을순 없었다...
+						ELSE
+							PRINTFORMW 「...또야...그렇게 팬티가 좋나요...?」
+							PRINTFORMW 「하아...언제부터 이렇게 된거람...」
+							PRINTFORMW 사토리는 어이가 없다는듯이 %마스터를% 바라보고 있다...
+						ENDIF
+					CASE 1
+						IF CFLAG:5100 == 1
+							PRINTFORMW 「...읏...?! 잠깐만...그걸 왜 가져가요...?!」
+							PRINTFORMW 「돌려줘...돌려줘요, 빨리...」
+							PRINTFORMW 사토리는 얼굴을 새빨갛게 물들인채로 달려들었지만 사토리의 팔이 팬티까지 닿는 일은 없었다...
+						ELSE
+							PRINTFORMW 「...또...또오...하아아...정말이지...」
+							PRINTFORMW 「...하아...맘대로 하세요...가져가던가...」
+							PRINTFORMW 「...그깟 팬티가 뭐라고...그게 그렇게 좋은가...」
+							PRINTFORMW 뾰루퉁해진 사토리는 화도 안 난다는 투로 말해왔다...
+						ENDIF
+				ENDSELECT
+			ENDIF
+		ELSEIF TALENT:섹프
+			IF CFLAG:5100 == 1
+				PRINTFORMW 「...으으음...으응...」
+				PRINTFORMW 「저기, 그거 가져가서 어디에 쓰시게요...?」
+				PRINTFORMW 갑자기 팬티를 빼앗겨 놀랐는지 드물게도 부끄러워 하고 있다...
+				PRINTFORMW 「...그으...쌓인거 해결용이라면 차라리 저한테 풀어줬음 하고...다...다른데 쓴다면야...뭐라할게 없기는 한데...」
+				PRINTFORMW 「...아으으...그래도 다음부터는 말하고 가져가시던가 해주세요...」
+				PRINTFORMW 사토리는 얼굴을 새빨갛게 물들인 채로 말해왔다...
+			ELSE
+				SELECTCASE RAND:3
+					CASE 0
+						PRINTFORMW 「...오늘은 어디에 쓰시려구 가져가시는걸까나...」
+						PRINTFORMW 「이럴줄 알았으면 좀 더 예쁜 걸 입어드릴걸 그랬나요?」
+						PRINTFORMW 사토리는 키득거리며 %마스터를% 바라보았다...
+					CASE 1
+						PRINTFORMW 「어라라...또 팬티인가요...그렇게나 마음에 드신걸까...」
+						PRINTFORMW 「처음에는 놀라도 곰곰히 생각해보면...왜인지 두근두근하고...」
+						PRINTFORMW 「...기왕 팬티도 없어진 겸 어디 가서 해버릴까...후후...」
+						PRINTFORMW 사토리는 킬킬대며 치마를 슬쩍 들어올려 보였다
+						BASE:무드 += 1500
+					CASE 2
+						PRINTFORMW 「아아...또 가져가셨나요」
+						PRINTFORMW 「이러다가 옷장에 남는 팬티가 한 장도 없겠네...그럼 그때부턴 아예 벗고 다녀야 하나?」
+						PRINTFORMW 「길가다 내키면 할 수도 있고, 여러모로 편리할 것 같긴 한데」
+				ENDSELECT
+			ENDIF
+		ELSE
+			IF CFLAG:3000 == 0
+				IF CFLAG:5100 == 1
+					PRINTFORMW 「...에..? 어라...? 무...무슨 일이...」
+					PRINTFORMW 「...읏...」
+					PRINTFORMW 사토리는 심상치 않은 감각을 느끼곤 %마스터를% 노려보고있다...
+					PRINTFORMW 「...변태...」
+					CFLAG:3101 += 5
+				ELSE
+					SELECTCASE RAND:3
+						CASE 0
+							PRINTFORMW 「...또야...하아...」
+							PRINTFORMW 「누구한테 하소연 할 수도 없고...참...」
+							PRINTFORMW 사토리는 짜증이 솟구치는지 땅을 차며 투덜거리고 있다...
+						CASE 1
+							PRINTFORMW 「...저게 뭐라고 저렇게 모아대는지...」
+							PRINTFORMW 「하루 종일 불편할 남은 생각 안하고」
+						CASE 2
+							PRINTFORMW 「...하아...진짜...저깟 천 쪼가리가 뭐라고...」
+							PRINTFORMW 「...다른 점만 보면 괜찮은데 말야...」
+							PRINTFORMW 사토리는 한심하다는듯이 %마스터를% 바라보고 있다...
+					ENDSELECT
+				ENDIF
+			ELSE
+				IF CFLAG:5100 == 1
+					PRINTFORMW 「...에..? 어라...? 무...무슨 일이...」
+					PRINTFORMW 「...읏...」
+					PRINTFORMW 사토리는 심상치 않은 감각을 느끼곤 %마스터를% 노려보고있다...
+					PRINTFORMW 「...변태...」
+					PRINTFORMW 무척이나 경멸하는것 같다...
+					CFLAG:3101 += 8
+				ELSE
+					SELECTCASE RAND:3
+						CASE 0
+							PRINTFORMW 「...또야...하아...」
+							PRINTFORMW 「누구한테 하소연 할 수도 없고...참...」
+							PRINTFORMW 「...어쩜 저리 하는 짓이랑 생각이랑...하아아...」
+							PRINTFORMW 사토리는 짜증이 솟구치는지 땅을 차며 투덜거리고 있다...
+						CASE 1
+							PRINTFORMW 「...저게 뭐라고 저렇게 모아대는지...」
+							PRINTFORMW 「하루 종일 불편할 남은 생각 안하고...」
+							PRINTFORMW 「하기사 그런걸 생각할 사람이 아니긴 하지만」
+						CASE 2
+							PRINTFORMW 「...하아...진짜...저깟 천 쪼가리가 뭐라고...」
+							PRINTFORMW 「...참..가지가지 하네...」
+							PRINTFORMW 사토리는 한심하다는듯이 %마스터를% 바라보고 있다...
+					ENDSELECT
+				ENDIF
+			ENDIF
+		ENDIF
 		RETURN 1
 	ENDIF
 	;-------------------------------------------------
