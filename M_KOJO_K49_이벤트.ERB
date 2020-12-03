@@ -9174,7 +9174,7 @@ IF LOCAL
 					SELECTCASE RAND:2
 						CASE 0
 							PRINTFORMW 「ㅡ으읍..?!..응읍...케헥...」
-							PRINTFORMW 사토리는 입 안에 상겨난 정액에 당황해 무심코 삼켜버렸다
+							PRINTFORMW 사토리는 입 안에 생겨난 정액에 당황해 무심코 삼켜버렸다
 							PRINTFORMW 「으윽...이...이런짓...너무해...우에엑...」
 							PRINTFORMW 당연히, 익숙하지도 않은걸 억지로 먹어버렸으니 연신 헛구역질을 해댔다
 							PRINTFORMW 사토리는 눈물을 글썽이며 %마스터를% 노려보고 있다...
@@ -9190,7 +9190,7 @@ IF LOCAL
 					SELECTCASE RAND:2
 						CASE 0
 							PRINTFORMW 「ㅡ으읍..?!..응읍...케헥...」
-							PRINTFORMW 사토리는 입 안에 상겨난 정액에 당황해 무심코 삼켜버렸다
+							PRINTFORMW 사토리는 입 안에 생겨난 정액에 당황해 무심코 삼켜버렸다
 							PRINTFORMW 「으윽...이...남이 괴로워 하는게 그렇게 즐거워요?」
 							PRINTFORMW 「...추악해...」
 							PRINTFORMW 사토리는 익숙하지 않은 정액 냄새에 눈물을 글썽이며 %마스터를% 노려보고 있다...
@@ -9268,8 +9268,102 @@ IF LOCAL
 			ENDIF
 		;精液中毒低吐き出し정액중독 저 토해냄
 		ELSEIF ARG:1 == 2
+			IF MARK:반발각인 == 3&&TALENT:연인 == 0
+				IF CFLAG:3000 == 0
+					SELECTCASE RAND:2
+						CASE 0
+							PRINTFORMW 「ㅡ으읍..?!..응읍...케헥...」
+							PRINTFORMW 사토리는 입 안에 상겨난 정액을 참지 못하고 연신 구역질을 해대고 있다
+							PRINTFORMW 「으윽...이...이런짓...너무해...우에엑...」
+							PRINTFORMW 사토리는 눈물을 글썽이며 %마스터를% 노려보고 있다...
+						CASE 1
+							PRINTFORMW 「...읍...! 응..커헉...무..무슨 짓...」
+							PRINTFORMW 「..우읍...우에에엑...」
+							PRINTFORMW 사토리는 갑자기 생겨난 정액에 연신 구역질을 하고 있다
+							PRINTFORMW 어찌나 심하게 하는지, 누가 보면 목구멍으로 임신해서 입덧하는줄 알 것 같다
+					ENDSELECT
+					CFLAG:3101 += 5
+				ELSE
+					SELECTCASE RAND:2
+						CASE 0
+							PRINTFORMW 「ㅡ으읍..?!..응읍...케헥...」
+							PRINTFORMW 사토리는 입 안에 상겨난 정액에 괴로워하며 연신 토해내고 있다
+							PRINTFORMW 「으윽...이...남이 괴로워 하는게 그렇게 즐거워요?」
+							PRINTFORMW 「...추악해...」
+							PRINTFORMW 사토리는 익숙하지 않은 정액 냄새에 눈물을 글썽이며 %마스터를% 노려보고 있다...
+						CASE 1
+							PRINTFORMW 「...읍...! 응..커헉...무..무슨 짓...」
+							PRINTFORMW 「..우읍...우에에엑...」
+							PRINTFORMW 사토리는 갑자기 생겨난 정액에 연신 구역질을 해댔다
+							PRINTFORMW 어찌나 심하게 하는지, 누가 보면 목구멍으로 임신해서 입덧하는줄 알 것 같다
+							PRINTFORMW 「으...나..남 괴롭히는게...취미예요?」
+							PRINTFORMW 「...저질...으읍...」
+							PRINTFORMW 사토리는 경멸하는 눈빛으로 노려보고는 있지만...그정도가 전부인듯 하다
+					ENDSELECT
+				ENDIF
+			ELSEIF TALENT:연인
+				SELECTCASE RAND:2
+					CASE 0
+						PRINTFORMW 「으읍...?! 응...」
+						PRINTFORMW 사토리는 입 안에서 나타난 정액에 곤혹한 표정을 지어보이고 있다...
+						PRINTFORMW 「으으음...푸하아...으으...역시 아직 익숙하지가 않아요」
+						PRINTFORMW 「그래도...기분 좋았나요...? 헤헤...」
+						PRINTFORMW 슬며시 손으로 뱉어낸뒤 잠시 그것을 바라보다 멋쩍게 웃어보였다
+					CASE 1
+						PRINTFORMW 「읍...으응...페엣...」
+						PRINTFORMW 「...푸하아...정말...갑자기 그러면 놀란다구요...?」
+						PRINTFORMW 사토리는 손바닥에 정액을 천천히 뱉어내었다
+				ENDSELECT
+			ELSEIF TALENT:연모||TALENT:사모||TALENT:애욕
+				IF CFLAG:3000 == 0
+					SELECTCASE RAND:2
+						CASE 0
+							PRINTFORMW 「...으읍...?!」
+							PRINTFORMW 사토리는 갑자기 생긴 정액에 놀란 눈치다
+							PRINTFORMW 이윽고 그녀는 떨떠름한 표정으로 손에다 정액을 주르륵 뱉어내었다
+							PRINTFORMW 「...으응...푸하아...으으... 이런 장난 하지 마세요...」
+							PRINTFORMW 「...으에에...냄새가 안좋아...」
+							PRINTFORMW 사토리는 거진 울상이 되어 투덜거렸다
+						CASE 1
+							PRINTFORMW 「...읍...! 우엑...읍...큽...」
+							PRINTFORMW 사토리는 갑자기 나타난 정액에 놀란표정으로 %마스터를% 바라보고 있다...
+							PRINTFORMW ...입 안에 가득찬 정액 냄새가 꽤나 마음에 안 드는지 안색이 안 좋다...
+							PRINTFORMW 결국 잔뜩 구역질을 해댄뒤 눈물이 그렁그렁한 얼굴로 %마스터를% 빤히 바라보고 있다...
+					ENDSELECT
+				ELSE
+					SELECTCASE RAND:2
+						CASE 0
+							PRINTFORMW 「...으읍...?!」
+							PRINTFORMW 사토리는 갑자기 생긴 정액에 놀란 눈치다
+							PRINTFORMW 이윽고 그녀는 떨떠름한 표정으로 손에다 정액을 주르륵 뱉어내었다
+							PRINTFORMW 「...으응...푸하아...으으...못됐어...」
+							PRINTFORMW 「너무 괴롭히지 마세요...힘들다고요?」
+							PRINTFORMW 사토리는 거진 울상이 된 채로 투덜거렸다...
+						CASE 1
+							PRINTFORMW 「...읍...! 우엑...읍...큽...」
+							PRINTFORMW 사토리는 갑자기 나타난 정액에 놀란표정으로 %마스터를% 바라보고 있다...
+							PRINTFORMW ...입 안에 가득찬 정액 냄새가 꽤나 마음에 안 드는지 안색이 안 좋다...
+							PRINTFORMW 결국 잔뜩 구역질을 해댄뒤 눈물이 그렁그렁한 얼굴로 %마스터를% 빤히 바라보고 있다...
+					ENDSELECT
+				ENDIF
+			ELSE
+				SELECTCASE RAND:2
+					CASE 0
+						PRINTFORMW 「ㅡ읍!...케헥...컥...」
+						PRINTFORMW 사토리는 갑자기 부어진 정액에 당황해 연거푸 기침을 해댔다
+						PRINTFORMW 당연히 익숙하지 않은 정액 냄새가 목구멍에서부터 올라오므로, 사토리의 안색은 무척 나빠졌다...
+						PRINTFORMW 「으윽...무..뭔 짓을...우에엑...」
+						PRINTFORMW 간신히 항의하고는 있지만, 계속해서 맡은 정액냄새에 비위가 상했는지 결국 모조리 토해버렸다...
+					CASE 1
+						PRINTFORMW 「...으에...?」
+						PRINTFORMW 사토리는 입 안에 생긴 정액을 눈치채곤 얼굴을 구겼다
+						PRINTFORMW 「....읍...! 우에엑...」
+						PRINTFORMW 이윽고 그 날 먹은걸 자랑하기라도 하듯이 배 속에 든 모든걸 토해내고 있다...
+				ENDSELECT
+			ENDIF
 		;精液中毒低手で覆う 정액중독 저 손으로 가림
 		ELSEIF ARG:1 == 3
+			
 		;精液中毒高精飲 정액중독 고 삼킴
 		ELSEIF ARG:1 == 4
 		;濃厚精液＆精液中毒低吐き出し 농후+중독 저 토해냄
