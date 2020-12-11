@@ -9780,11 +9780,147 @@ IF LOCAL
 	;-------------------------------------------------
 	;【無自覚手淫射精】
 	;記入チェック（=0, 非表示、1, 表示）
-	LOCAL:1 = 0
+	LOCAL:1 = 1
 	;-------------------------------------------------
 	IF LOCAL:1 && ARG == 6
-		;ぬぐい取り
+		;PRINTFORMW 「」
+		;ぬぐい取り 닦아내기
 		IF ARG:1 == 1
+			IF MARK:반발각인 == 3
+				IF TALENT:연인
+					SELECTCASE RAND:3
+						CASE 0
+							PRINTFORMW 「...으...뭐야 갑자기...끈적거려...」
+							PRINTFORMW 「...손에 싼거예요?」
+							PRINTFORMW 사토리는 인상을 쓰며 손을 닦았다
+						CASE 1
+							PRINTFORMW 「...기분 좋았나요? 그럼 됐어요」
+							PRINTFORMW 「저는 처리하기 귀찮아서 싫지만」
+							PRINTFORMW 사토리는 손수건으로 손에 묻은 정액을 슥슥 닦아냈다
+						CASE 2
+							PRINTFORMW 「...하아...」
+							PRINTFORMW 「적어도 뒷처리는 해줄수 있었잖아요?」
+							PRINTFORMW 사토리는 투덜거리며 정액을 닦아냈다
+					ENDSELECT
+				ELSE
+					IF CFLAG:3000 == 0
+						SELECTCASE RAND:3
+							CASE 0
+								PRINTFORMW 「...더럽게 이게 뭐예요」
+								PRINTFORMW 「조금 정도는 제 생각도 해주면 안될까요?」
+								PRINTFORMW 사토리는 떫은 표정으로 손에 묻은 정액을 털어냈다
+							CASE 1
+								PRINTFORMW 「......」
+								PRINTFORMW 사토리는 손에 뿌려진 정액을 물끄러미 바라보고 있다...
+								PRINTFORMW 이윽고 말없이 %마스터를% 노려보는 그 눈은 경멸감에 가득 차 있었다
+							CASE 2
+								PRINTFORMW 「...제 손은 티슈가 아닙니다만...」
+								PRINTFORMW 「뭐, 말 한다고 들을거라곤 생각 안했어요」
+								PRINTFORMW 「...그랬으면 지금껏 이러고 있을리가 없지」
+								PRINTFORMW 사토리는 나지막히 말하곤 손에 묻은 정액을 닦아냈다
+						ENDSELECT
+					ELSE
+						SELECTCASE RAND:3
+							CASE 0
+								PRINTFORMW 「...더럽게 이게 뭐야...하아...」
+								PRINTFORMW 「조금 정도는 남 생각도 해주면 어디가 덧나나?」
+								PRINTFORMW 사토리는 떫은 표정으로 손에 묻은 정액을 털어냈다
+							CASE 1
+								PRINTFORMW 「......」
+								PRINTFORMW 사토리는 손에 뿌려진 정액을 물끄러미 바라보고 있다...
+								PRINTFORMW 이윽고 말없이 %마스터를% 노려보는 그 눈은 경멸감에 가득 차 있었다
+							CASE 2
+								PRINTFORMW 「...남의 손에다 멋대로 비비는것도 모자라서, 뒷처리도 안하고 그냥 가요?」
+								PRINTFORMW 「...하기사 그 편이 %MASTERNAME:49%답긴 하죠」
+								PRINTFORMW 「안 그랬으면 지금껏 이러고 있을리가 없지」
+								PRINTFORMW 사토리는 나지막히 말하곤 손에 묻은 정액을 닦아냈다
+						ENDSELECT
+					ENDIF
+				ENDIF
+			ELSEIF TALENT:연인
+				SELECTCASE RAND:3
+					CASE 0
+						PRINTFORMW 「이번엔 손? ...엄청 찐득거리네요...이거」
+						PRINTFORMW 「이런게 몸 안에서 생긴다니, 조금 신기하네...」
+						PRINTFORMW 사토리는 손에 묻은 정액을 물끄러미 바라보며 중얼거리고 있다
+					CASE 1
+						PRINTFORMW 「음...기분 좋아졌다면 저도 기쁘기야 하지만...」
+						PRINTFORMW 「그렇다고 이렇게 뿌려두면 닦을때 고생이라고요? 의외로 냄새가 안 빠진단 말예요」
+						PRINTFORMW 사토리는 투덜투덜거리며 정액을 닦아냈다
+					CASE 2
+						PRINTFORMW 「제 손...기분 좋았나요? 후후...」
+						PRINTFORMW 「그랬으면 됐어요」
+						PRINTFORMW 사토리는 옅게 웃어보이며 정액을 털어냈다
+				ENDSELECT
+			ELSEIF TALENT:연모||TALENT:사모||TALENT:애욕
+				IF CFLAG:3000 == 0
+					SELECTCASE RAND:3
+						CASE 0
+							PRINTFORMW 「...기분 좋았나보네요, 잔뜩 싸신걸 보면」
+							PRINTFORMW 「그래도...뒷처리 정도는 해 줬음 해요」
+							PRINTFORMW 「한번 묻으면 냄새가 잘 안 빠져서 곤란하다고요?」
+						CASE 1
+							PRINTFORMW 「...아, 손에다가 뿌린 건가요...」
+							PRINTFORMW 「어중간하게 미지근한게 왠지 기분 나쁘긴 한데...뭐어, %사마스터는% 기분 좋아졌으니 된거겠죠」
+							PRINTFORMW 「...기왕이면 자기가 싼건 알아서 치워줬음 하지만」
+						CASE 2
+							PRINTFORMW 「...엄청 미끈거리네요, 이거」
+							PRINTFORMW 「게다가 손에 달라붙으면 털어도 털어도 떨어지지 않아」
+							PRINTFORMW 「...그리고 아직은 냄새도 적응 안돼고」
+							PRINTFORMW 사토리는 무척 떨떠름한 표정으로 손수건을 꺼내들었다
+					ENDSELECT
+				ELSE
+					SELECTCASE RAND:3
+						CASE 0
+							PRINTFORMW 「...기분 좋았나보네요, 잔뜩 싼걸 보면」
+							PRINTFORMW 「그래도...뒷처리 정도는 해 줬음 하지만」
+							PRINTFORMW 「한번 묻으면 냄새가 잘 안 빠져서 곤란하단 말이죠...」
+						CASE 1
+							PRINTFORMW 「...아, 손에다가 뿌린 건가요...」
+							PRINTFORMW 「어중간하게 미지근한게 기분 좋지는 않네요」
+							PRINTFORMW 「...하아...한동안 손에서 냄새 날것 같아...」
+						CASE 2
+							PRINTFORMW 「...엄청 미끈거리네요, 이거」
+							PRINTFORMW 「게다가 손에 달라붙으면 털어도 털어도 떨어지지 않아」
+							PRINTFORMW 「...그리고 아직은 냄새도 적응 안돼고」
+							PRINTFORMW 「이건 원래 이런건가요? 아니면 %사마스터가% 특히 이런건가요?」
+							PRINTFORMW 사토리는 무척 떨떠름한 표정으로 손수건을 꺼내들었다
+					ENDSELECT
+				ENDIF
+			ELSEIF TALENT:섹프
+				SELECTCASE RAND:3
+					CASE 0
+						PRINTFORMW 「...손에...하아...」
+						PRINTFORMW 「아무리 우리가 살을 섞는 사이라곤 하지만...이런건 좀...」
+						PRINTFORMW 「...냄새나고 끈적여서 별로예요」
+						PRINTFORMW 사토리는 떨떠름한 표정을 지으며 정액을 닦아냈다
+					CASE 1
+						PRINTFORMW 「손에 낭비할 체력이 있으면 좀 더 기분 좋은 일로 해주세요」
+						PRINTFORMW 「혼자만 기분 좋게 싸버리고, 치사하잖아요?」
+						PRINTFORMW 사토리는 툴툴거리며 손수건을 꺼냈다
+					CASE 2
+						PRINTFORMW 「...%사마스터랑% 야한짓 하는게 기분좋긴 하지마는...」
+						PRINTFORMW 「이거는 %MASTERNAME:49%만 좋은거잖아요?」
+						PRINTFORMW 「...기왕 할거라면 좀 더 서로가 기분 좋게, 혼자만 치사하게 그러지 말고」
+				ENDSELECT
+			ELSE
+				SELECTCASE RAND:3
+					CASE 0
+						PRINTFORMW 「...윽...이게 뭐야...」
+						PRINTFORMW 「...뭐하는 짓이에요...」
+						PRINTFORMW 사토리는 경멸섞인 시선으로 %마스터를% 노려보고 있다...
+						
+					CASE 1
+						PRINTFORMW 「......」
+						PRINTFORMW 사토리는 물끄러미 자신의 손에 묻은 정액을 바라보고 있다
+						PRINTFORMW 이윽고 사토리가 %마스터를% 바라볼때의 그 차가운 시선은 너무나도 무서웠다
+					CASE 2
+						PRINTFORMW 「...더러워...」
+						PRINTFORMW 사토리는 한숨을 쉬며 손수건을 꺼내들었다...
+				ENDSELECT
+				BASE:분노 = 1000
+				CFLAG:빡침 = 1
+			ENDIF
 		;舐めとり
 		ELSEIF ARG:1 == 2
 		ENDIF
