@@ -9985,11 +9985,128 @@ IF LOCAL
 	;-------------------------------------------------
 	;【無自覚アナル射精】
 	;記入チェック（=0, 非表示、1, 表示）
-	LOCAL:1 = 0
+	LOCAL:1 = 1
 	;-------------------------------------------------
 	IF LOCAL:1 && ARG == 7
+		;PRINTFORMW 「」
 		;Ａ感覚2以下
 		IF ARG:1 == 1
+			IF MARK:반발각인 == 3
+				IF TALENT:연인
+					SELECTCASE RAND:3
+						CASE 0
+							PRINTFORMW 「...에...? 아...? 어..엉덩이...?」
+							PRINTFORMW 「...이상한데에 이상한 짓...으...」
+							PRINTFORMW 사토리는 무척 당황한 눈치다
+							PRINTFORMW 아직 엉덩이로 하는건 익숙하지 않은 모양이다
+						CASE 1
+							PRINTFORMW 「...윽...이..이상한 느낌...뭘 한거...예요...」
+							PRINTFORMW 「어...엉덩이로 했다구요? 잠깐...거긴 그런데가...윽...」
+							PRINTFORMW 사토리는 익숙하지 않은 감각에 괴로워하고 있다...
+						CASE 2
+							PRINTFORMW 「..어..엉덩이라니...거기는...들어가는데가 아닌데...」
+							PRINTFORMW 사토리는 몸 안에서 부터 올라오는 낯선 감각에 허덕이고 있다...
+					ENDSELECT
+				ELSE
+					IF CFLAG:3000 == 0
+						SELECTCASE RAND:2
+							CASE 0
+								PRINTFORMW 「...아..자..잠깐..거긴 넣는데가 아니...으극...읏..」
+								PRINTFORMW 사토리는 다급하게 말해왔지만 이미 벌어진 일이다
+								PRINTFORMW 할 수 있는거라곤 낯선 감각에 괴로워하는 사토리를 바라보는것 뿐이다
+								PRINTFORMW 「읏...흐윽...어..엉덩이가 이상해...」
+								PRINTFORMW 사색이된 사토리는 금방이라도 주저 앉아버릴것 처럼 바들바들 떨고 있었다...
+							CASE 1
+								PRINTFORMW 「...윽...뭐..뭐하는거...야...」
+								PRINTFORMW 「여기는 그런짓 하는곳이...으읏...」
+								PRINTFORMW 사토리는 낯선 감각에 인상을 쓰며 %마스터를% 노려보고 있다...
+						ENDSELECT
+					ELSE
+						SELECTCASE RAND:2
+							CASE 0
+								PRINTFORMW 「...윽...뭐...뭐하는거야...」
+								IF TALENT:처녀
+									PRINTFORMW 「...그러라고 있는...구멍 아니니까...읏...」
+									PRINTFORMW 사토리는 무척 괴로워 보이는 표정으로 %마스터를% 노려보고 있다
+								ELSE
+									PRINTFORMW 「이젠...하다하다...구멍마저 착각할 정도로 바보가 된건가...?」
+									PRINTFORMW 사토리는 숨을 허덕이며 %마스터를% 노려보고 있다...
+								ENDIF
+								PRINTFORMW 「...게...게다가 안에다 싸기까지 하다니...정말이지...」
+								PRINTFORMW 조금 괜찮아졌나 했더니 이번엔 흘러나오는 정액에 또다시 사토리의 표정은 새파랗게 물들었다...
+							CASE 1
+								PRINTFORMW 「...거..거기는 넣는데가 아냐...!」
+								PRINTFORMW 「윽...아...아파...읏...」
+								PRINTFORMW 「아...안에서 흘러나와...느낌 이상해...」
+								PRINTFORMW 사토리는 다리를 오므리며 필사적으로 불쾌한 감각을 잊으려 하고 있다...
+						ENDSELECT
+					ENDIF
+				ENDIF
+			ELSEIF TALENT:연인
+				SELECTCASE RAND:2
+					CASE 0
+						PRINTFORMW 「...어..엉덩이라니..이런데로 기분 좋아질리가...읏...」
+						PRINTFORMW 「...아파...아파요...으으읏...」
+						PRINTFORMW 사토리는 %마스터의% 몸에 기댄채 낯선 감각에 허덕이고 있다...
+						PRINTFORMW 「하나도 기분 안 좋아요...으...아프기만 하고...」
+						PRINTFORMW 아직 엉덩이는 익숙하지 않아 싫은 모양이다...느끼려면 좀 더 개발해줘야 할 것 같다
+					CASE 1
+						PRINTFORMW 「...읏...자..잠깐...거기에 싸면...앗...」
+						PRINTFORMW 「...아으으...안에서 흘러나오는 이 느낌 싫어요...지리는거 같단 말야...」
+						PRINTFORMW 사토리는 무척이나 불만스러운듯한 표정으로 다리를 오므리고 있다...
+				ENDSELECT
+			ELSEIF TALENT:연모||TALENT:사모||TALENT:애욕
+				SELECTCASE RAND:2
+					CASE 0
+						PRINTFORMW 「...엉덩이라니...거기는 넣는데가 아니잖아요...」
+						PRINTFORMW 「...으읏...안에서...그게 흐르는게...」
+						PRINTFORMW 사토리는 안색이 창백해진 채로 장 안에 들어찬 이물감을 견디고 있다...
+					CASE 1
+						PRINTFORMW 「...에...자..잠깐...뭘 한거예요...?!」
+						PRINTFORMW 「...안에다...엉덩이 안에다 쌌다고요...?」
+						PRINTFORMW 「...제정신...으읏...아...안에서 흘러나와...안돼...」
+						PRINTFORMW 사토리는 박박 화를 내다 항문을 스쳐 빠져나오는 정액을 눈치채고 사색이 되었다...
+				ENDSELECT
+			ELSEIF TALENT:섹프
+				SELECTCASE RAND:2
+					CASE 0
+						PRINTFORMW 「으읏...확실히 여기로 느낄수도 있다곤 하지만...」
+						PRINTFORMW 「...기분 좋은건 모르겠고, 안에 들어간 정액이 기분 나쁜것만 알겠네요...」
+						PRINTFORMW 사토리는 무척이나 언짢아 보이는 표정으로 장내의 이물감을 견디고 있다...
+					CASE 1
+						PRINTFORMW 「엉덩이로 하는것만으로 모자라서...안에다 싸기까지 한 거예요...?」
+						PRINTFORMW 「...흘러나오는게...읏...왠지 지리는거 같아서 기분 나쁘다구요...」
+						PRINTFORMW 사토리는 다리를 오므린채 안절부절 하고 있다
+						PRINTFORMW 정액이 흘러나오지 않게 엉덩이에 힘을 꽉 주고 있는 모양이다...
+				ENDSELECT
+			ELSE
+				IF CFLAG:3000 == 0
+					SELECTCASE RAND:2
+						CASE 0
+							PRINTFORMW 「...어..엉덩이에 뭔 짓을 한거예요...」
+							PRINTFORMW 「아으...느...느낌이 이상해...」
+							PRINTFORMW 사토리는 장내에 가득 들어찬 정액의 감촉에 언짢은듯한 표정이다...
+						CASE 1
+							PRINTFORMW 「...?!...자..잠깐...뭔짓을 한거예요...?!」
+							PRINTFORMW 「거기에 박는것도 모자라서...안에 싸다니...읏...」
+							PRINTFORMW 사토리는 다리를 오므린채 눈물 섞인 눈으로 %마스터를% 노려보고 있다
+							PRINTFORMW 아마 뱃속에 가득 들어챈 정액이 흘러나오지 않게 노력하고 있는 모양이다...
+					ENDSELECT
+				ELSE
+					SELECTCASE RAND:2
+						CASE 0
+							PRINTFORMW 「...엉덩이라니...하고 많은곳중에 하필...」
+							PRINTFORMW 「...으으...아파...게다가 꿀렁거리는게...」
+							PRINTFORMW 사토리의 눈에 눈물이 살짝 고였다
+							PRINTFORMW 생각보다 많이 아프고 기분 나빴던 모양이다...
+						CASE 1
+							PRINTFORMW 「...?!...자..잠깐...뭔짓을 한거예요...?!」
+							PRINTFORMW 「거기에 박는것도 모자라서...안에 싸다니...읏...」
+							PRINTFORMW 「하아...뭐하는거예요...진짜...!」
+							PRINTFORMW 사토리는 다리를 오므린채 눈물 섞인 눈으로 %마스터를% 노려보고 있다
+					ENDSELECT
+				ENDIF
+			ENDIF
 		;ソレ以外
 		ELSEIF ARG:1 == 2
 		ENDIF
