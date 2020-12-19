@@ -10234,11 +10234,103 @@ IF LOCAL
 		RETURN 1
 	ENDIF
 	;-------------------------------------------------
-	;【無自覚処女喪失】
+	;【無自覚処女喪失】무자각 처녀 상실
 	;記入チェック（=0, 非表示、1, 表示）
-	LOCAL:1 = 0
+	LOCAL:1 = 1
 	;-------------------------------------------------
 	IF LOCAL:1 && ARG == 8
+		;PRINTFORMW 「」
+		IF MARK:반발각인 == 3
+			IF TALENT:연인
+				IF CFLAG:3000 == 0
+					PRINTFORMW 「...읏...? 어...아...」
+					PRINTFORMW 「...하하...안에 넣는건 또 처음이네요...아파라...」
+					PRINTFORMW 「기왕이면 좀 더 로맨틱 하게 버리고 싶었지만...응...」
+					PRINTFORMW 「...서로 어색하게 이러고 있을때, 이렇게 뺏어가 버릴줄은...」
+					PRINTFORMW 「그래도 뭐...그런건 중요하지 않겠죠...네...」
+					PRINTFORMW 「실상 저 혼자 화나 있는거니까...제가 좋게 받아들이지 않으면 손해겠죠...」
+					PRINTFORMW 사토리는 무척 침울한 얼굴이다...
+					PRINTFORMW 「그렇지 참, 기왕 이리 된 거, 이어서 할래요?」
+					PRINTFORMW 「기왕 이리 된 거, 잔뜩잔뜩 해주세요」
+					PRINTFORMW 「어짜피 해버린거...지금껏 안 해본 일 잔뜩 하는게 이득이잖아요?」
+					PRINTFORMW 사토리는 애써 웃어보이며 허리에 팔을 감아왔다
+					PRINTFORMW 그렇지만 어쩐지 조금 슬퍼보인다...
+					SIF CFLAG:합의 == 0
+						CFLAG:합의 = 1
+					SIF CFLAG:생해금 == 0
+						CFLAG:생해금 = 1
+					BASE:무드 += 1000
+				ELSEIF CFLAG:3000 == 1
+					PRINTFORMW 「...으읏...아..아파...」
+					PRINTFORMW 「...시간 정지로 빼앗아 가다니, 못됐네요...」
+					PRINTFORMW 「일생에 한번, 가장 소중한 시간을 그렇게나 허망하게...」
+					PRINTFORMW 「...첫 경험은 좀 더 사랑받으면서 하고 싶었어...」
+					PRINTFORMW 사토리는 조금 울적해진 모양이다
+					PRINTFORMW 「...하아...어쩔수 없죠 뭐...%사마스터가% 그런 분이란건 익히 알고 있었으니까...」
+					PRINTFORMW 「자, 그래서...이제 정조도 사랑하는 %사마스터의% 것으로 바쳤으니...앞으론 뭘 할 까요?」
+					PRINTFORMW 사토리는 애써 웃어보이며 이쪽을 바라보고 있다
+					PRINTFORMW 그 눈엔 약간의 쓸쓸함이 엿보인다...
+					SIF CFLAG:합의 == 0
+						CFLAG:합의 = 1
+					SIF CFLAG:생해금 == 0
+						CFLAG:생해금 = 1
+				ELSE
+					PRINTFORMW 「...아...아팟......」
+					PRINTFORMW 「이거...생각보다 아프네요, 갑자기 당해서 그런가...」
+					PRINTFORMW 사토리의 눈에 눈물이 살짝 고였다
+					PRINTFORMW ...그러나, 오로지 고통때문만은 아닌것 같다
+					PRINTFORMW 「...네, 솔직히 처음은 좀 더 무드 있게, 로맨틱하게 버리고 싶다는 소망은 있었어요」
+					PRINTFORMW 「그렇지만 어쩌겠어요, 사귀는 사람이 그런건 안 좋아 하는 변태인데」
+					PRINTFORMW 「자, 그러면 이 다음은 뭔가요? 일단은 좀 더 즐길래요?」
+					PRINTFORMW 「그치만 앞으론 되도록이면 저랑 마주보면서 해요, 괜히 몰래 하느라 힘쓰지 말고」
+					PRINTFORMW 사토리는 애써 밝게 말하고는 있지만, 많이 상심한것 같은 느낌이 든다...
+					SIF CFLAG:합의 == 0
+						CFLAG:합의 = 1
+					SIF CFLAG:생해금 == 0
+						CFLAG:생해금 = 1
+				ENDIF
+			ELSE
+				IF CFLAG:3000 == 0
+
+				ELSEIF CFLAG:3000 == 1
+
+				ELSE
+				
+				ENDIF
+			ENDIF
+		ELSEIF TALENT:연인
+			IF CFLAG:3000 == 0
+
+			ELSEIF CFLAG:3000 == 1
+
+			ELSE
+			
+			ENDIF
+		ELSEIF TALENT:연모||TALENT:사모||TALENT:애욕
+			IF CFLAG:3000 == 0
+
+			ELSEIF CFLAG:3000 == 1
+
+			ELSE
+			
+			ENDIF
+		ELSEIF TALENT:섹프
+			IF CFLAG:3000 == 0
+
+			ELSEIF CFLAG:3000 == 1
+
+			ELSE
+			
+			ENDIF
+		ELSE
+			IF CFLAG:3000 == 0
+
+			ELSEIF CFLAG:3000 == 1
+
+			ELSE
+			
+			ENDIF
+		ENDIF
 		RETURN 1
 	ENDIF
 	;-------------------------------------------------
