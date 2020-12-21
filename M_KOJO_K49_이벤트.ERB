@@ -10291,12 +10291,49 @@ IF LOCAL
 				ENDIF
 			ELSE
 				IF CFLAG:3000 == 0
-
+					PRINTFORMW 「...읏...아...아파...뭐야 이거...」
+					PRINTFORMW 사토리는 얼떨떨한 표정으로 자신의 배를 만지고 있다...
+					PRINTFORMW 「...해버린거구나, 나...」
+					PRINTFORMW 「이렇게 허망하게 버려질거였다면...지금껏 지켜온 나날이 바보같네...」
+					PRINTFORMW 「...그래서, 만족한건가요...?」
+					PRINTFORML [0] 그렇다
+					PRINTFORML [1] 아니다
+					INPUT
+					IF RESULT == 0
+						PRINTFORMW 「...그래요, 그럼 됐어요」
+						PRINTFORMW 「...어짜피 그저 살덩이일뿐...그다지 중요한것도 아니니...」
+						PRINTFORMW 「다만...」
+						PRINTFORMW 「조금은 화가 나네요, 전부터 저한테 왜 자꾸 그러는거죠?」
+						PRINTFORMW 「...저한테 싫은점이 있다면 말로 해 주세요, 그만...그만좀 괴롭히고요...」
+						PRINTFORMW 사토리는 힘없는 목소리로 뇌까렸다
+						PRINTFORMW 그녀의 눈에 약간 고인 눈물은 고통때문일까 아니면 억울함 때문일까
+					ELSE
+						PRINTFORMW 「...하아...그래요, 뭔가 더 하고 싶다...그런건가요」
+						PRINTFORMW 「그래, 차라리 그 편이 마음은 편하네요, %MASTERNAME:49%답달까」
+						PRINTFORMW 「그치만...도대체 왜 그러는건가요?」
+						PRINTFORMW 「제가 미운가요...? 네...? 뭐라도 잘못한게 있나요?」
+						PRINTFORMW 사토리의 눈에 눈물이 살짝 고였다
+						PRINTFORMW 과연 그 눈물은 고통때문에 흐르는것일까, 아니면 억울함때문에 흐르는것일까
+					ENDIF
 				ELSEIF CFLAG:3000 == 1
-
+					PRINTFORMW 「...그저 조금 질 나쁜 사람, 이라고만 생각했는데」
+					PRINTFORMW 「최악이네요...남의 마음따윈 조금도 신경쓰지 않는건가요?」
+					PRINTFORMW 사토리는 아픈지 몸을 파르르 떨고 있다
+					PRINTFORMW 「...고작 이런 추접한 사람한테...멋대로 뺏기기 위해 지금껏 지켜왔다니...엄청 화나네요...」
+					PRINTFORMW 「...%사마스터는%...도대체 왜 그러는건가요? 제가 그렇게 밉나요?」
+					PRINTFORMW 사토리는 눈물을 뚝뚝 흘리며 주먹을 움켜쥐고 있다...
 				ELSE
-
+					PRINTFORMW 「...언젠간...이런일도 당할지 모른다 생각은 했는데...」
+					PRINTFORMW 「...아파...생각보다 아파...몸보다도 마음이 아파...」
+					PRINTFORMW 사토리는 분한지 눈물을 뚝뚝 흘리고 있다
+					PRINTFORMW 「고작 살덩이, 찢어져도 개의치 않은데」
+					PRINTFORMW 「이렇게 멋대로 당하면서도 저항조차 못한게 너무 화가 나」
+					PRINTFORMW 너무 침울해 하는 사토리에게 다가가려 하니 밀쳐져 버렸다
+					PRINTFORMW 「저리가, 이 이상 다가 오지 마...그냥...그냥 내버려둬...」
+					PRINTFORMW 사토리는 씩씩거리며 화를 내다 이내 다시 울기 시작했다...
 				ENDIF
+				TALENT:기분 = -1
+				CFLAG:3101 += 5
 			ENDIF
 		ELSEIF TALENT:연인
 			IF CFLAG:3000 == 0
