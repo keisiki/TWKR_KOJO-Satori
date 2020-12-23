@@ -10337,12 +10337,35 @@ IF LOCAL
 			ENDIF
 		ELSEIF TALENT:연인
 			IF CFLAG:3000 == 0
-
+				PRINTFORMW 「...읏...?! 자..잠깐...무슨 짓을...」
+				PRINTFORMW 사토리는 아랫배를 더듬더듬 만지며 어리둥절한 표정을 짓고 있다
+				PRINTFORMW 「...저..저...처음이었는데...읏...이렇게 갑자기...」
+				PRINTFORMW 「...처음에는 좀 더 낭만적으로 하고 싶었는데...」
+				PRINTFORMW 사토리는 무척이나 실망한 눈치다...
+				PRINTFORMW 토라진 사토리를 달래는데 진땀을 빼야 했다
 			ELSEIF CFLAG:3000 == 1
-
+				PRINTFORMW 「...으긋...자...잠깐...무슨 짓이예요...」
+				PRINTFORMW 「...나...처음이었는데...」
+				PRINTFORMW 사토리는 아랫배를 더듬더듬 만지며 얼빠진 표정을 하고 있다...
+				PRINTFORMW 「...처음은 좀 더 무드있게...제가 직접 드리려고 했는데」
+				PRINTFORMW 「너무 큰 꿈이었나 보네요, 이런 변태분이 그런걸 기다려 주실리 없지」
+				PRINTFORMW 무척이나 실망한듯한 눈치다...사토리는 완전 토라져버렸다
+				PRINTFORMW 그탓에 한참동안이나 어르고 달래야만 했다...
 			ELSE
-
+				PRINTFORMW 「...아...아팟...잠깐...무슨 짓을...」
+				PRINTFORMW 「...정말이지, %사마스터는% 무드란 것도 몰라요...? 저는, 그게 처음이였다구요?」
+				PRINTFORMW 사토리는 무척 삐진듯한 표정으로 말해왔다...
+				PRINTFORMW 「처음에는 좀 더 느긋하고...음...분위기 있게, 그렇게 제가 직접 드릴려고 했는데...」
+				PRINTFORMW 「...미워요, 진짜, 내 맘도 몰라주고...」
+				PRINTFORMW 무척 토라진 모양이다...만, 한 것 자체에 대해서는 별 다른 언급이 없다
+				PRINTFORMW 「...몰라요, 앞으로 하던지 말던지...하지 말라해도 또 이렇게 범할거잖아요 이 변태」
+				PRINTFORMW 아무래도 사토리를 달래는데엔 한참 걸릴거 같다...
 			ENDIF
+			;이미 박힌거 뭐 하지 말라고 할게 있나
+			SIF CFLAG:합의 == 0
+				CFLAG:합의 = 1
+			SIF CFLAG:생해금 == 0
+				CFLAG:생해금 = 1
 		ELSEIF TALENT:연모||TALENT:사모||TALENT:애욕
 			IF CFLAG:3000 == 0
 
