@@ -10366,15 +10366,45 @@ IF LOCAL
 				CFLAG:합의 = 1
 			SIF CFLAG:생해금 == 0
 				CFLAG:생해금 = 1
-		ELSEIF TALENT:연모||TALENT:사모||TALENT:애욕
+		ELSEIF TALENT:연모||TALENT:사모
 			IF CFLAG:3000 == 0
-
+				PRINTFORMW 「...으극...?!...무...무슨짓을...」
+				PRINTFORMW 사토리는 얼빠진 표정으로 %마스터를% 바라보고 있다...
+				PRINTFORMW 「...이런 짓을 할 사람이라고 생각하진 않았는데...」
+				PRINTFORMW 「적어도 말로 해도 됐었잖아요, 그게 그렇게 어려웠나요...」
+				PRINTFORMW 무척이나 축 처진 사토리는 묵묵히 고개를 떨궜다
+				PRINTFORMW 「이까짓거, 고작 살덩이니까...딱히 상관은 없지만」
+				PRINTFORMW 「%사마스터가% 나랑 말도 안하고 멋대로 그런게 싫은거예요」
+				PRINTFORMW 울적해진 사토리를 달래는데엔 많은 시간과 노력이 들었다...
+				CFLAG:3101 += 5
 			ELSEIF CFLAG:3000 == 1
-
+				PRINTFORMW 「...읏...?! 자..잠깐...지금...뭔...」
+				IF CFLAG:합의
+					PRINTFORMW 「...갑자기 무슨 짓이에요...」
+					PRINTFORMW 사토리는 짐짓 화난듯한 표정으로 %마스터를% 바라보고 있다
+					PRINTFORMW 「아무리 야한짓 하게 해줬다곤 해도, 갑자기 덮쳐서는...저...처음이었다구요?」
+					PRINTFORMW 「...처음을 이렇게 버리게 하다니...너무하잖아요」
+					PRINTFORMW 「게..게다가...으극...아프기까지 하고...」
+					PRINTFORMW 「...적어도, 말정돈 했어도 됐잖아요...」
+					PRINTFORMW 눈물을 글썽이는 사토리를 달래는데 진땀을 빼야 했다...
+				ELSE
+					PRINTFORMW 「...아...아직 그런거 허락 안 했는데...」
+					PRINTFORMW 「그리고 나...처음...이었는데...」
+					PRINTFORMW 사토리는 무척이나 울적해진 모양이다...
+					PRINTFORMW 「그깟 살덩이, 중요하지도 않지마는...말도없이, 내 허락도 없이 뺏어갔다는게 너무 분해」
+					PRINTFORMW 「...제가 그렇게 만만하게 보이던가요?」
+					PRINTFORMW 완전 화가난 사토리를 달래는데 진땀을 빼야했다...
+				ENDIF
+				CFLAG:3101 += 3
 			ELSE
-
+				PRINTFORMW 「...으극...아...아파라...」
+				PRINTFORMW 「제멋대로인 사람인줄은 알았지만 이렇게 까지 일줄은 몰랐네...」
+				PRINTFORMW 사토리는 아랫배를 매만지며 %마스터를% 노려보고 있다
+				PRINTFORMW 「...뭐어, 계속 부대끼다보면 언젠간 이리 될 거 같긴 했죠...」
+				PRINTFORMW 「그런줄 알면서도 조금은 좋아하고 있다는게 문제지」
+				PRINTFORMW 「...자, 그럼 다음은 뭐죠? 되도록이면 안 아픈거로 부탁합니다」
 			ENDIF
-		ELSEIF TALENT:섹프
+		ELSEIF TALENT:섹프||TALENT:애욕
 			IF CFLAG:3000 == 0
 
 			ELSEIF CFLAG:3000 == 1
