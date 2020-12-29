@@ -10464,15 +10464,73 @@ IF LOCAL
 	;-------------------------------------------------
 	;【無自覚膣内射精】
 	;記入チェック（=0, 非表示、1, 表示）
-	LOCAL:1 = 0
+	LOCAL:1 = 1
 	;-------------------------------------------------
 	IF LOCAL:1 && ARG == 9
-		;非処女膣内射精ピルなし
+		;PRINTFORMW 「」
+		;비처녀 질내사정 피임약 없음
 		IF ARG:1 == 1
-		;非処女膣内射精ピルあり
+		;비처녀 질내사정 피임약 있음
 		ELSEIF ARG:1 == 2
-		;処女膣内射精
+		;처녀 질내사정
 		ELSEIF ARG:1 == 3
+			IF MARK:반발각인 == 3
+				IF TALENT:연인
+					PRINTFORMW 「...응...안쪽이 뜨거워...안에 싼거예요?」
+					PRINTFORMW 「응읏...이러다 아기가 생기면 어쩌지...」
+					SIF CFLAG:생리주기 == 7||CFLAG:생리주기 == 8
+						PRINTFORMW 「...종이 다르니 괜찮으려나...그래도...」
+					PRINTFORMW 사토리는 곤란해하며 %마스터를% 바라보고 있다...
+					PRINTFORMW 그러나 왜인지 그 표정엔 기쁨이 살짝 섞여있는듯 하다
+					SIF CFLAG:생리주기 == 7||CFLAG:생리주기 == 8
+						CFLAG:생해금 = 2
+				ELSE
+					IF CFLAG:3000 == 0
+						PRINTFORMW 「...하아...그냥 한것도 모자라 안에 싸버렸던 건가요...정말이지...」
+						PRINTFORMW 「%사마스터는% 남 생각은 조금도 안 하시나보네요, 이러다 생기면 어쩔려고 이러는거예요?」
+						PRINTFORMW 사토리는 머리를 짚으며 짜증을 내 왔다
+					ELSE
+						PRINTFORMW 「...거기에다, 안에 싸버렸잖아...생기면 어쩔려고...」
+						PRINTFORMW 사토리는 다리 사이로 흐르는 정액을 눈치챈 모양이다
+						PRINTFORMW 「...하아...이젠 진절머리가 나, 그냥 사라져 줘...제발...」
+						PRINTFORMW 많이 상심했는지 사토리는 부들부들 떨며 %마스터를% 노려보고 있다
+						PRINTFORMW 금방이라도 주저 앉아 펑펑 울거만 같은 그 모습에 %마스터는% 아무것도 못하고 그저 멍하니 서 있을 뿐이었다
+					ENDIF
+				ENDIF
+			ELSEIF TALENT:연인
+				PRINTFORMW 「...게다가 안에 싸버리기나 하고, 나는 아직 하라고 허락도 안했는데」
+				PRINTFORMW 다리 사이로 흐르는 정액을 눈치 챘는지 사토리는 더욱 토라져 버렸다...
+				PRINTFORMW 「...생기면 책임져요 진짜...안 그러면 정말 미워할거니까...」
+			ELSEIF TALENT:연모||TALENT:사모
+				IF CFLAG:3000 == 0
+					PRINTFORMW 「게다가 말도 없이 싸버리고, 생기면 어쩔려고 그러는거예요?」
+					PRINTFORMW 「...책임져 줄거라면 또 몰라...」
+					PRINTFORMW 사토리는 작게 중얼거렸으나 이내 아무말 안 했다는듯이 고개를 돌려버렸다
+				ELSEIF CFLAG:3000 == 1
+					PRINTFORMW 「...게다가 안에 싸버리기나 하고...생기면 어쩔려고...」
+					PRINTFORMW 「왜 그리 생각없이 그러는거예요...이런건 연인끼리나 하는거라구요...」
+					PRINTFORMW 사토리는 다리 사이에 흐르는 정액을 눈치챘는지 또다시 토라져버렸다...
+				ELSE
+					PRINTFORMW 「...안에 싸버린건가요...하아...」
+					PRINTFORMW 「그러다 혹시라도 생기면 어쩔려고 그래요?」
+					PRINTFORMW 사토리는 툴툴대며 %마스터를% 바라보고 있다
+					PRINTFORMW 「그럴리야 없겠지만 생겼다간 저만 곤란한게 아니잖아요?」
+					PRINTFORMW 「...또 하던 말던 상관 없으니까 앞으로는 안에 싸진 말아줘요」
+				ENDIF
+			ELSEIF TALENT:섹프||TALENT:애욕
+				PRINTFORMW 「...어라, 안에 싼거예요?」
+				PRINTFORMW 「정말이지...즐기는건 좋은데 안에 싸는건 봐줘요」
+				PRINTFORMW 「혹시라도 생기면 한동안 즐길수가 없잖아요?」
+			ELSE
+				PRINTFORMW 「게다가 안에다 싸버리기까지...」
+				PRINTFORMW 「...정말이지 양심이란건 없는건가요?」
+				PRINTFORMW 사토리는 무척이나 화난듯한 표정으로 %마스터를% 노려보고 있다...
+				IF CFLAG:3000 == 0
+					PRINTFORMW 「...하아...이딴거가 뭐가 그리 좋다고 그러는지, 참...」
+				ELSE
+					PRINTFORMW 「...되도록 앞으로 마주치지 않았음 하네요...」
+				ENDIF
+			ENDIF
 		ENDIF
 		RETURN 1
 	ENDIF
