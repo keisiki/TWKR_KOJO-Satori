@@ -10470,8 +10470,98 @@ IF LOCAL
 		;PRINTFORMW 「」
 		;비처녀 질내사정 피임약 없음
 		IF ARG:1 == 1
+			
 		;비처녀 질내사정 피임약 있음
 		ELSEIF ARG:1 == 2
+			IF MARK:반발각인 == 3
+				IF TALENT:연인
+					SELECTCASE RAND:2
+						CASE 0
+							PRINTFORMW 「...응읏...안에 싸셨나요? 으으음...이러면 흘러서 싫은데...」
+							PRINTFORMW 「다리사이로 줄줄 흘리고 다니면 마치 지리는 기분이란 말예요」
+							PRINTFORMW 사토리는 그닥 마음에 안 든다는듯 투덜거렸다...
+						CASE 1
+							PRINTFORMW 「아아...진짜, 이렇게 안에다 싸면 계속 흘러나온단 말예요...」
+							PRINTFORMW 「...혹시, 흘리고 다녀서 부끄러우라고 이러는건가요?」
+							PRINTFORMW 사토리는 정액이 흐르지 않게 최대한 다리를 오므리고 있다...
+					ENDSELECT
+				ELSE
+					SELECTCASE RAND:2
+						CASE 0
+							PRINTFORMW 「...으극...안에 싸다니...아무리 약을 먹었다고 해도...」
+							PRINTFORMW 사토리는 %마스터를% 노려보며 정액이 흐르지 않게 다리를 오므리고 있다...
+						CASE 1
+							PRINTFORMW 「...적어도 할거라면 콘돔이라도 쓰고 해 주세요...」
+							PRINTFORMW 「아무리 약을 먹었다고 한들 안에 기분나쁘게 정액이 흐르고 있는건 기분 별로거든요...」
+					ENDSELECT
+				ENDIF
+			ELSEIF TALENT:연인
+				SELECTCASE RAND:2
+					CASE 0
+						PRINTFORMW 「응읏...안에다 싸진 말아줘요...」
+						PRINTFORMW 「걸어다니면서 자꾸 흘려서 기분이...지리는거 같단 말예요」
+						PRINTFORMW 「...혹시 저 부끄러우라고 일부러 그러는건가요?」
+						PRINTFORMW 사토리는 투덜투덜거리며 %마스터를% 바라보고 있다...
+					CASE 1
+						PRINTFORMW 「으으응...정말이지, 닦아줄수도 있었잖아요」
+						PRINTFORMW 「바닥에 정액이 뚝뚝 떨어지는거, 들켰다가 저 변태로 찍히면 어쩌라구요?」
+						PRINTFORMW 사토리는 불만스러운 얼굴을 향해왔다...
+				ENDSELECT
+			ELSEIF TALENT:연모||TALENT:사모||TALENT:애욕
+				SELECTCASE RAND:2
+					CASE 0
+						PRINTFORMW 「...약 먹어서 안전한건 안전한건데요...」
+						PRINTFORMW 「그렇다고 안에 들어찬 정액의 뒷처리를 안 해도 되는건 아니잖아요?」
+						PRINTFORMW 「...냅두면 계속 흘러나와서...더러워지니까, 싫다구요」
+						PRINTFORMW 사토리는 툴툴대며 %마스터를% 바라보고 있다...
+					CASE 1
+						PRINTFORMW 「...읏...아..안에다 싸버렸어요...?」
+						PRINTFORMW 「그럴거라면 뒷처리를 해 주던가 콘돔정도는 끼고 해 주세요, 계속 흘러나와서...기분 별로니까」
+						PRINTFORMW 「...안에 싸는게 싫은건 아닌데 자꾸 지리고 다니게 되니까...그레텔도 아니고 말이죠」
+				ENDSELECT
+			ELSEIF TALENT:섹프
+				SELECTCASE RAND:2
+					CASE 0
+						PRINTFORMW 「..응...안에 싸는건 상관 없는데 말예요」
+						PRINTFORMW 「기분좋게 하고 난 다음 뒷처리는 %사마스터가% 하는게 맞지 않나요?」
+						PRINTFORMW 「계속 이렇게 정액 넣고 다니면 제가 지리고 다니는 기분이라 별로거든요」
+					CASE 1
+						PRINTFORMW 「아으응...안에 쌌군요...응...」
+						PRINTFORMW 「이럴거면 차라리 침대에서 진하게 하지 뭣하러 이리 성급하게...」
+						PRINTFORMW 「...생으로 하는건 기분 좋아도 갑자기 정액만 달랑 생기는건 별로예요, 안에 찬찬히 부어지는 감각이 좋단 말야」
+						PRINTFORMW 사토리는 시간정지로 범한게 불만스러운 모양이다...
+				ENDSELECT
+			ELSE
+				IF CFLAG:3000 == 0
+					SELECTCASE RAND:2
+						CASE 0
+							PRINTFORMW 「...하아...약을 먹었다곤 해도...」
+							PRINTFORMW 「이렇게 멋대로 싸고서 뒷처리도 안 해주는건 아니지 않나요?」
+							PRINTFORMW 사토리는 싸늘한 표정으로 %마스터를% 바라보고 있다...
+						CASE 1
+							PRINTFORMW 「...기분 좋던가요?」
+							PRINTFORMW 사토리는 담담한 표정으로 흘러나오는 정액을 닦아냈다
+							PRINTFORMW 「...쌀거면 콘돔에다 해주던가, 아니면 싸질 말던가, 것도 아니면 치우기라도 하던가」
+							PRINTFORMW 「아무 이유도 없이 안에다만 싸질러 놓다니, 정말이지...」
+							PRINTFORMW 정액묻은 휴지를 바라보며 무척이나 불만인듯한 표정으로 %마스터를% 바라보고 있다...
+					ENDSELECT
+				ELSE
+					SELECTCASE RAND:2
+						CASE 0
+							PRINTFORMW 「...하아...약을 먹었다곤 해도...」
+							PRINTFORMW 「이렇게 멋대로 싸고서 뒷처리도 안 해주는건 아니지 않나요?」
+							PRINTFORMW 「하기사 그럴 분이 아니긴 하지만」
+							PRINTFORMW 사토리는 싸늘한 표정으로 %마스터를% 바라보고 있다...
+						CASE 1
+							PRINTFORMW 「...기분 좋던가요?」
+							PRINTFORMW 사토리는 담담한 표정으로 흘러나오는 정액을 닦아냈다
+							PRINTFORMW 「...쌀거면 콘돔에다 해주던가, 아니면 싸질 말던가, 것도 아니면 치우기라도 하던가」
+							PRINTFORMW 「아무 이유도 없이 안에다만 싸질러 놓다니, 정말이지...하아...」
+							PRINTFORMW 「가끔씩은 남 생각도 좀 해줘요...」
+							PRINTFORMW 정액묻은 휴지를 바라보며 무척이나 불만인듯한 표정으로 %마스터를% 바라보고 있다...
+					ENDSELECT
+				ENDIF
+			ENDIF
 		;처녀 질내사정
 		ELSEIF ARG:1 == 3
 			IF MARK:반발각인 == 3
