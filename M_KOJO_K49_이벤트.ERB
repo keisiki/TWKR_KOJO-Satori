@@ -10470,7 +10470,119 @@ IF LOCAL
 		;PRINTFORMW 「」
 		;비처녀 질내사정 피임약 없음
 		IF ARG:1 == 1
-			
+			IF MARK:반발각인 == 3
+				IF TALENT:연인
+					SELECTCASE RAND:2
+						CASE 0
+							PRINTFORMW 「...안에 싸다니...하아...」
+							PRINTFORMW 「생기면 어쩔려고 이러는거예요?」
+						CASE 1
+							PRINTFORMW 「...안에 싼건가요...? 응...이러다 생기면 어쩔려고...」
+					ENDSELECT
+				ELSE
+					IF CFLAG:3000 == 0
+						SELECTCASE RAND:2
+							CASE 0
+								PRINTFORMW 「...뭐하는 짓이에요...?」
+							CASE 1
+								PRINTFORMW 「...잠...아..안에는 안돼...아...」
+								PRINTFORMW 「...안에 싸버렸나요...하아...」
+						ENDSELECT
+					ELSE
+						PRINTFORMW 「...무슨짓이야...안에 싸다니...」
+					ENDIF
+				ENDIF
+			ELSEIF TALENT:연인
+				SELECTCASE RAND:2
+					CASE 0
+						PRINTFORMW 「응...안쪽이 따뜻해...」
+						PRINTFORMW 「안에 싼거예요...?」
+					CASE 1
+						PRINTFORMW 「...으응...안에 싼거예요...?」
+				ENDSELECT
+			ELSEIF TALENT:연모||TALENT:사모||TALENT:애욕
+				IF CFLAG:3000 == 0
+					PRINTFORMW 「...안에다 싸버리다니...하아...」
+				ELSE
+					PRINTFORMW 「으긋...아...안에다...」
+				ENDIF
+			ELSEIF TALENT:섹프
+				SELECTCASE RAND:2
+					CASE 0
+						PRINTFORMW 「응...기분 좋았나봐요? 안에 잔뜩 내주신걸 보면」
+					CASE 1
+						PRINTFORMW 「하아...안쪽이 채워지는 느낌은 좋네요...」
+				ENDSELECT
+			ELSE
+				IF CFLAG:3000 == 0
+					PRINTFORMW 「...안에다...하아...」
+				ELSE
+					PRINTFORMW 「......」
+					PRINTFORMW 사토리는 묵묵히 %마스터를% 노려보고 있다
+				ENDIF
+			ENDIF
+			IF TALENT:임신 == 0
+				IF ((CFLAG:생리주기 == 7||CFLAG:생리주기 == 8)&&CFLAG:생해금 == 2)
+					;오늘 배란일, 노콘질싸 허락
+					IF MARK:반발각인 == 3&&!TALENT:연인
+						SELECTCASE RAND:2
+							CASE 0
+								PRINTFORMW 「...분명히 해도 된다고 말한건 맞긴 한데...」
+								PRINTFORMW 「적어도 할거라면 제대로 해야지 이런식으로 억지로 당하는건 싫어」
+								PRINTFORMW 사토리는 차가운 표정으로 %마스터를% 바라보고 있다...
+								PRINTFORMW 「하아...게다가 오늘 위험한 날이고...」
+								PRINTFORMW 「생긴다면...알아서 어떻게든 해주세요...」
+							CASE 1
+								PRINTFORMW 「아무리 허락했다곤 해도...」
+								PRINTFORMW 「이런식으로 느닷없이 범하라곤 안 했는데」
+								PRINTFORMW 무척이나 불만스러워 보이는 표정으로 %마스터를% 노려보고 있다...
+								PRINTFORMW 「뭐 됐어, 어짜피 싸버렸는걸...하아...」
+								PRINTFORMW 「또 생기면 책임이나 제대로 져 주세요...」
+						ENDSELECT
+					ELSEIF TALENT:연인
+						SELECTCASE RAND:2
+							CASE 0
+								PRINTFORMW 「으으으응...오늘 위험한 날인데...」
+								PRINTFORMW 「정말이지, 성급하다니까요...」
+								PRINTFORMW 사토리는 볼을 부풀렸다...
+							CASE 1
+								PRINTFORMW 「위험한 날에 하는 사정은 기분 좋았나요? 저는 무척 좋았어요♥」
+								PRINTFORMW 「왠지 아랫배가 두근두근한게 기분좋아...♥」
+								PRINTFORMW 사토리는 무척이나 황홀해보이는 표정으로 이쪽을 바라보고 있다...
+						ENDSELECT
+					ELSEIF TALENT:섹프
+						;가능함?
+						SELECTCASE RAND:2
+							CASE 0
+								PRINTFORMW 「그치만 오늘 위험한 날인데」
+								PRINTFORMW 「이렇게나 싸버리면 또 생기겠네요...」
+								PRINTFORMW 「그래도 그게 좋아서 하는걸테니 뭐어...♥」
+								PRINTFORMW 사토리는 히죽히죽 웃으며 아랫배를 만지고 있다
+								PRINTFORMW 「커다래진 배 흔들면서 하면 그것 나름대로 기분 좋으려나...♥」
+							CASE 1
+								PRINTFORMW 「으으응...근데 오늘은 하면 생기는 날인데...」
+								PRINTFORMW 「생기면 한동안은 즐기기 어려울텐데...으으응...」
+								PRINTFORMW 「그래도 싫지는 않을지도...」
+								IF EXP:출산경험 > 0
+									PRINTFORMW 「혹시 또 생기면 알아서 책임져 주세요, 알겠죠?」
+									PRINTFORMW 사토리는 히죽히죽 웃으며 이쪽을 바라보고 있다...
+								ENDIF
+						ENDSELECT
+					ELSE
+						;이게 가능함???
+						PRINTFORMW 「오늘은 위험한 날인데...하아...」
+						PRINTFORMW 「뭐어, 어쩔수 없죠...낳으면 알아서 기르던지 말던지하겠지」
+						PRINTFORMW 「어짜피 해도 된다 말한건 나니까...하아...」
+						PRINTFORMW 사토리는 언짢은 표정으로 아랫배를 내려다보고 있다...
+					ENDIF
+				ELSEIF ((CFLAG:생리주기 == 7||CFLAG:생리주기 == 8||TCVAR:강제배란)&&CFLAG:생해금 == 1)||(CFLAG:생해금 == 0)
+					IF ITEM:피임약
+
+					ELSE
+
+					ENDIF
+				ENDIF
+			ENDIF
 		;비처녀 질내사정 피임약 있음
 		ELSEIF ARG:1 == 2
 			IF MARK:반발각인 == 3
