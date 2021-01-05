@@ -10577,8 +10577,115 @@ IF LOCAL
 					ENDIF
 				ELSEIF ((CFLAG:생리주기 == 7||CFLAG:생리주기 == 8||TCVAR:강제배란)&&CFLAG:생해금 == 1)||(CFLAG:생해금 == 0)
 					IF ITEM:피임약
+						IF MARK:반발각인 == 3&&!TALENT:연인
+							SELECTCASE RAND:2
+								CASE 0
+									PRINTFORMW 「...생기면 저도 %MASTERNAME:49%도 귀찮겠죠? 그러니까 주머니에 있는 그거, 주세요」
+									PRINTFORMW 사토리는 불쾌해하는 표정으로 말해왔다...
+								CASE 1
+									PRINTFORMW 「...약이나 내놔요...하아」
+									PRINTFORMW 무척이나 짜증나 보인다...
+							ENDSELECT
+						ELSEIF TALENT:연인
+							SELECTCASE RAND:2
+								CASE 0
+									PRINTFORMW 「...응...저기, 생기면 조금 곤란하지 않겠어요?」
+									IF EXP:출산경험
+										PRINTFORMW 「벌써 또 갖기엔 무리 아닐까...싶은데요」
+									ELSE
+										PRINTFORMW 「아직 생기는건 무섭고...그리고 좀 더 둘만의 시간이 오래됐음 하니까요」
+										PRINTFORMW 「혹시 생기면 바빠질거 아녜요?」
+									ENDIF
+									PRINTFORMW 「그러니까 주머니의 그거, 주세요」
+								CASE 1
+									PRINTFORMW 「...으으응...아이는 조금...」
+									PRINTFORMW 「지금은 조금 이르다고 생각해요」
+									PRINTFORMW 「...어떻게 안 될까요?」
+									PRINTFORMW 사토리는 %마스터의% 주머니를 빤히 바라보고 있다		
+							ENDSELECT
+						ELSEIF TALENT:사모||TALENT:연모
+							SELECTCASE RAND:2
+								CASE 0
+									PRINTFORMW 「...생기면 어쩔려고 이러는거예요?」
+									IF EXP:출산경험
+										PRINTFORMW 「연인도, 부부도 아닌데...자꾸만 애만 생기면 어쩌자는거예요」
+									ELSE
+										PRINTFORMW 「우리가 그런 사이도 아니고...어떻게 감당하려고...」
+									ENDIF
+									PRINTFORMW 「다음부터는 하지 마시고...」
+									PRINTFORMW 사토리는 %마스터의% 주머니를 빤히 바라보고 있다
+								CASE 1
+									PRINTFORMW 「...오늘 위험한 날인데...」
+									PRINTFORMW 「하다못해 약이라도...」
+									PRINTFORMW 사토리는 %마스터의% 주머니를 빤히 바라보고 있다
+							ENDSELECT
+						ELSEIF TALENT:섹프||TALENT:애욕
+							SELECTCASE RAND:2
+								CASE 0
+									PRINTFORMW 「...으으응...애 생기면 그동안 야한짓 하기도 곤란할테고」
+									PRINTFORMW 「역시 약, 먹어두는게 좋겠죠?」
+									PRINTFORMW 「그러니까 주머니의 그거, 주세요」
+								CASE 1
+									PRINTFORMW 「기분은 좋지마는, 역시 생기면 피차 곤란하겠죠...」
+									PRINTFORMW 「그러니까 주머니에 있는 그거 주시면 안될까요?」
+							ENDSELECT
+						ELSE
+							SELECTCASE RAND:2
+								CASE 0
+									PRINTFORMW 「...이미 싸버린건 어쩔수가 없으니...」
+									PRINTFORMW 「하다못해 주머니에 들은 약이라도 주세요」
+								CASE 1
+									PRINTFORMW 「최소한의 양심이라도 있다면...주머니에 있는 그 약이라도 주시는건 어떨까요」
+									PRINTFORMW 「피차 생겼다간 곤란하고 말이죠」
+							ENDSELECT
+						ENDIF
+						PRINTFORML 피임약을 주겠습니까?(현재 피임약:{ITEM:피임약}개)
+						CALL ASK_YN
+						IF !RESULT
+							;준다
+							ITEM:피임약--
+							TCVAR:피임약 = 1
+							PRINTFORMW 사토리는 피임약을 받아먹고 조금 안심한듯 하다...
+						ELSE
+							;안준다
+							;PRINTFORMW 「」
+							IF MARK:반발각인 == 3&&!TALENT:연인
+								PRINTFORMW 「...하아...너무하네요, 멋대로 싸지르고선 나몰라라 하다니...」
+								PRINTFORMW 「저도 몰라요 그럼, 생기면 알아서 책임지시던가 말던가 하세요」
+							ELSEIF TALENT:연인||TALENT:애욕||TALENT:연모||TALENT:사모
+								PRINTFORMW 「...우으으...생겼으면 좋겠다 이건가요?」
+								IF EXP:출산경험
+									PRINTFORMW 「정말이지...몇명이나 낳을려는거예요...」
+									PRINTFORMW 사토리는 뾰루퉁한 얼굴이다...
+								ELSE
+									PRINTFORMW 「...하나쯤 있으면 귀엽기는 하겠지만...」
+									PRINTFORMW 「우으으...역시 조금 무서운걸요...」
+								ENDIF
+							ELSEIF TALENT:섹프
+								PRINTFORMW 「우으으...그렇다면...」
+								PRINTFORMW 「생겨도 계속 기분좋은일 해 준다고 약속해 줘요」
+								PRINTFORMW 뱃속의 아이가 있던 말던 사토리에겐 쾌락이 더 중요한 모양이다...
+							ELSE
+								SELECTCASE RAND:2
+									CASE 0
+										PRINTFORMW 사토리는 무척 화난듯이 이쪽을 바라보고 있다...
+									CASE 1
+										PRINTFORMW 사토리는 엄청 실망한 눈치다...
+								ENDSELECT
+								PALAM:반감 += 90000
+								PALAM:억울 += 10000
+								PALAM:불쾌 += 15000
+								IF RAND:2 == 0
+									;50% 확률로 자기가 사먹음
+									TCVAR:피임약 = 1
+								ENDIF
+								TCVAR:씨받음자각 = 1
+								CFLAG:자각사정 = 1
+							ENDIF
+						ENDIF
 
 					ELSE
+						;피임약 안 가지고 있음
 
 					ENDIF
 				ENDIF
