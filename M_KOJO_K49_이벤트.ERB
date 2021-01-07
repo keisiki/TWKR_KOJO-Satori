@@ -10686,7 +10686,98 @@ IF LOCAL
 
 					ELSE
 						;피임약 안 가지고 있음
+						IF MARK:반발각인 == 3&&!TALENT:연인
+							SELECTCASE RAND:2
+								CASE 0
+									PRINTFORMW 「...정말이지 자기 생각만 하고...」
+									PRINTFORMW 사토리는 경멸스러운 시선을 보내오고 있다...
+								CASE 1
+									PRINTFORMW 「...찐득찐득, 기분나빠...」
+							ENDSELECT
+							IF RAND:5 != 0
+								TCVAR:피임약 = 1
+							ELSE
+								TCVAR:씨받음자각 = 1
+								CFLAG:자각사정 = 1
+							ENDIF
+						ELSEIF TALENT:연인
+							SELECTCASE RAND:2
+								CASE 0
+									PRINTFORMW 「...그러고보니 오늘은 위험한 날인데...」
+									PRINTFORMW 「약이라도 챙겨먹어야 하나...」
 
+								CASE 1
+									PRINTFORMW 「정말이지, 오늘은 안에 싸면 안되는데...」
+									PRINTFORMW 「약이라도 사먹어야겠네요...」
+							ENDSELECT
+							PRINTFORML 어쩔까?
+							PRINTFORML [1] 슬슬 아이 하나쯤은...
+							PRINTFORML [2] 사토리의 의사를 존중한다
+							INPUT
+							;PRINTFORMW 「」
+							IF RESULT == 1
+								IF MAX(BASE:무드 - BASE:이성,0) + (ABL:친밀 * 20) + (ABL:욕망 * 15) +(ABL:순종 * 25)+(ABL:봉사정신 * 25)+MIN(200,CFLAG:호감도/50)+MIN(200,CFLAG:신뢰도/50) > 600 + RAND:300
+									PRINTFORMW 「...그, 그런가요...아기라...갑자기 들으면...」
+									PRINTFORMW 「...확실히 갖고 싶기는...한데...으으으음....」
+									PRINTFORMW 사토리는 얼굴을 붉혔다
+									IF RAND:3 == 0
+										PRINTFORMW 「...그래요, 까짓거 하나 둘...상관없겠죠, 만들어요 그러면...」
+										PRINTFORMW 「그래 확실히 생기게 오늘 밤에 좀 더...」
+										PRINTFORMW 사토리는 새빨게진 얼굴로 손을 잡아오고 있다...
+									ELSE
+										PRINTFORMW 「...그, 그래도 오늘은 조금...역시 만드는건 나중에 좀 더 제대로 된 자리에서 하죠...」
+										PRINTFORMW 사토리는 새빨게진 얼굴로 작게 고개를 끄덕였다...
+										TCVAR:피임약 = 1
+									ENDIF
+									CFLAG:생해금 = 2
+								ELSE
+									PRINTFORMW 「농담두...아무리 %사마스터가% 부탁해도 아직은 무리에요」
+									PRINTFORMW 「그런건 좀 더, 둘만의 시간을 보낸 뒤에 하는거라구요」
+									PRINTFORMW 사토리는 가볍게 딱밤을 날려왔다...
+								ENDIF
+							ELSE
+								PRINTFORMW 사토리의 뜻을 존중해 주기로 했다
+								TCVAR:피임약 = 1
+							ENDIF
+						ELSEIF TALENT:섹프
+							SELECTCASE RAND:2
+								CASE 0
+									PRINTFORMW 「근데 깜빡하고 말 안했는데」
+									PRINTFORMW 「오늘 위험한 날이었거든요...응..」
+									PRINTFORMW 「이따가 약이라도 사러 가야하나...」
+								CASE 1
+									PRINTFORMW 「맞다, 오늘은 안에 싸면 안되는데...」
+									PRINTFORMW 「...약먹으면 괜찮겠죠 뭐」
+							ENDSELECT
+							IF RAND:4 != 0
+								TCVAR:피임약 = 1
+							ELSE
+								TCVAR:씨받음자각 = 1
+								CFLAG:자각사정 = 1
+							ENDIF
+						ELSEIF TALENT:사모||TALENT:연모||TALENT:애욕
+							PRINTFORMW 「정말이지, 이런게 뭐가 좋다고 이러는거예요...」
+							PRINTFORMW 「이러고 다니다 생기면 어쩔려고요? 책임질거예요?」
+							IF RAND:4 != 0
+								TCVAR:피임약 = 1
+							ELSE
+								TCVAR:씨받음자각 = 1
+								CFLAG:자각사정 = 1
+							ENDIF
+						ELSE
+							SELECTCASE RAND:2
+								CASE 0
+									PRINTFORMW 「하아...흐르는게 기분나빠...」
+								CASE 1
+									PRINTFORMW 「...정말이지, 이딴게 뭐가 그리 즐겁다고...」				
+							ENDSELECT
+							IF RAND:5 != 0
+								TCVAR:피임약 = 1
+							ELSE
+								TCVAR:씨받음자각 = 1
+								CFLAG:자각사정 = 1
+							ENDIF
+						ENDIF
 					ENDIF
 				ENDIF
 			ENDIF
