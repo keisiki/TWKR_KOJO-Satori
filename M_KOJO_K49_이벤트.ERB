@@ -11090,9 +11090,95 @@ IF LOCAL
 	;-------------------------------------------------
 	;断った 안된다!
 	;記入チェック（=0, 非表示、1, 表示）
-	LOCAL:1 = 0
+	LOCAL:1 = 1
 	;-------------------------------------------------
 	IF LOCAL:1 && ARG == 2
+		;PRINTFORMW 「」
+		IF MARK:반발각인 == 3
+			IF TALENT:연인
+				SELECTCASE RAND:2
+					CASE 0
+						PRINTFORMW 「아무리 그렇게 말하셔도 말이죠, 안된다구요」
+					CASE 1
+						PRINTFORMW 「...저라고 모든걸 받아들일수는 없어요, 안되는건 안되는거예요」
+				ENDSELECT
+			ELSE
+				IF CFLAG:3000 == 0
+					SELECTCASE RAND:2
+						CASE 0
+							PRINTFORMW 「...말이나 된다고 생각하세요?」
+						CASE 1
+							PRINTFORMW 「...그렇게 부탁해도 들어줄수가 없는게 있어요」
+							PRINTFORMW 「우리 사이가 그런 사이도 아니고」
+					ENDSELECT
+				ELSE
+					SELECTCASE RAND:2
+						CASE 0
+							PRINTFORMW 「...하아...그렇게 말해도 안되는건 안 되는거야」
+							PRINTFORMW 「더군다나 우리가 그런 사이도 아니고, 그런건 당신 좋아서 헬렐레 거리는 애한테나 부탁해야지」
+						CASE 1
+							PRINTFORMW 「...혹시 내가 들어줄 거라고 생각하는건...아니겠지」
+							PRINTFORMW 「연인도 뭣도 아닌데, 더군다나 이런 관계에서 그런 부탁을 한다는건 너무 염치없는건 아닐지?」
+					ENDSELECT
+				ENDIF
+			ENDIF
+		ELSEIF TALENT:연인
+			SELECTCASE RAND:2
+				CASE 0
+					PRINTFORMW 「...아무리 그래도오...으으으음...역시 안돼요」
+					PRINTFORMW 「조금만 더 참아줘요, 아직은 무리야」
+				CASE 1
+					PRINTFORMW 「아직은 거기까진...마음이 내키지가 않아요」
+					PRINTFORMW 「혹시라도 생기면 둘이서 있을 시간도 줄거고」
+			ENDSELECT
+		ELSEIF TALENT:연모||TALENT:사모||TALENT:애욕
+			SELECTCASE RAND:2
+				CASE 0
+					PRINTFORMW 「아무리 그래도, 우리가 연인도 아닌데 거기까지는 아니라고 생각해요」
+					PRINTFORMW 「...아주 싫은건 아니어도, 아직은 일러요」
+				CASE 1
+					PRINTFORMW 「...아아아, 안돼요 안돼, 그렇게 부탁해도 말이죠, 무리니까」
+			ENDSELECT
+		ELSEIF TALENT:섹프
+			SELECTCASE RAND:2
+				CASE 0
+					PRINTFORMW 「...야한건 기분좋지마는, 혹시라도 생기면 서로 좋지는 않을거라 생각해요」
+					PRINTFORMW 「오늘 말고도 날은 많잖아요?」
+				CASE 1
+					PRINTFORMW 「다른때라면 몰라도 오늘은 정말 안되니까, 그렇게 부탁한다 해도 안되는건 안돼요」
+					PRINTFORMW 「그렇게 하고 싶으면 다른 사람을 찾아보시던가요, 예컨데 연인이라던가」
+					LOCAL:4 = 0
+					FOR LOCAL:3,1,CHARANUM
+						IF TALENT:(LOCAL:3):연인 == 1
+							PRINTFORMW 「아니면 혹시 거절당한건가요?」
+							LOCAL:4 = 1
+							BREAK
+						ENDIF
+					NEXT
+					IF LOCAL:4 == 0
+						PRINTFORMW 「...없는건가요?」
+					ENDIF
+			ENDSELECT
+		ELSE
+			IF CFLAG:3000 == 0
+				SELECTCASE RAND:2
+					CASE 0
+						PRINTFORMW 「그냥 하는것도 아니고 안에다 생으로 하자니, 염치란건 없나요?」
+						PRINTFORMW 「아무리 부탁해도 안되니까요」
+					CASE 1
+						PRINTFORMW 「제가 도대체 왜 그런 부탁을 들어줘야 하는건가요...」
+				ENDSELECT
+			ELSE
+				SELECTCASE RAND:2
+					CASE 0
+						PRINTFORMW 「하...?」
+						PRINTFORMW 사토리는 딱딱한 표정으로 %마스터를% 빤히 바라보고 있다...
+					CASE 1
+						PRINTFORMW 「그렇게 부탁해도 말이죠」
+						PRINTFORMW 「들어줄수가 있는 부탁이여야 생각을 해보던 말던 하는거지...」
+				ENDSELECT
+			ENDIF
+		ENDIF
 		RETURN 1
 	ENDIF
 	;-------------------------------------------------
