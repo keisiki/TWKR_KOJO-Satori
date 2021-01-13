@@ -11184,9 +11184,107 @@ IF LOCAL
 	;-------------------------------------------------
 	;断ったのに粘られて切れた 안된다고 했는데 아무튼 요구
 	;記入チェック（=0, 非表示、1, 表示）
-	LOCAL:1 = 0
+	LOCAL:1 = 1
 	;-------------------------------------------------
 	IF LOCAL:1 && ARG == 3
+		IF MARK:반발각인 == 3
+			IF TALENT:연인
+				SELECTCASE RAND:2
+					CASE 0
+						PRINTFORMW 「...그렇게 자꾸 부탁해도...아아 정말이지...」
+						PRINTFORMW 「안되는건 안되는거예요, 그렇게 억지부리지 마세요」
+					CASE 1
+						PRINTFORMW 「...아무리 그래도 허락할수 없는게 있어요」
+						PRINTFORMW 「억지부리실거라면 오늘은 그만하죠」
+				ENDSELECT
+			ELSE
+				IF CFLAG:3000 == 0
+					SELECTCASE RAND:2
+						CASE 0
+							PRINTFORMW 「...하아...그딴게 뭐가 그리 중요해서 고집인가요?」
+							PRINTFORMW 「그렇게 억지 부릴거라면 오늘은 그만 두세요」
+							PRINTFORMW 사토리는 고개를 돌려버렸다...
+						CASE 1
+							PRINTFORMW 「...정말이지, 그런거 하나 못한다고 그리 떼를 쓰다니...」
+							IF TALENT:MASTER:연령 == -1
+								PRINTFORMW 「어리광부리는건 상관 없는데, 이런거에 떼쓰는건 아니야...」
+							ELSE
+								PRINTFORMW 「그 나이 먹고도 아직도 애군요...하아...」
+							ENDIF
+							PRINTFORMW 「그럴거면 오늘은 하지 말죠 뭐」
+					ENDSELECT
+				ELSE
+					SELECTCASE RAND:2
+						CASE 0
+							PRINTFORMW 「...그딴게 뭐가 그리 좋다고...하아...」
+							PRINTFORMW 「자꾸 그럴거면 하질 말던가...따지는게 많아가지곤...」
+							PRINTFORMW 사토리는 화가난듯 고개를 돌려버렸다...
+						CASE 1
+							PRINTFORMW 「...정말이지, 그런거 하나 못한다고 그리 떼를...」
+							IF TALENT:MASTER:연령 == -1
+								PRINTFORMW 「정말이지 이런걸 보면 볼수록 더 허락하기 싫어지는걸, 누구와 비슷한 애가 생긴디고 생각하면 말야」
+							ELSE
+								PRINTFORMW 「나이는 장식인가? 그 나이 먹고도 7살 애처럼 굴고」
+							ENDIF
+							PRINTFORMW 「그럴거면 오늘은 하지 말던가 뭐...」
+					ENDSELECT
+				ENDIF
+			ENDIF
+		ELSEIF TALENT:연인
+			SELECTCASE RAND:2
+				CASE 0
+					PRINTFORMW 「...아무리 연인이라 해도 말이죠」
+					PRINTFORMW 「해도 되는 일이랑 안되는 일은 있는거잖아요」
+					PRINTFORMW 사토리는 조금 실망한듯한 표정이다...
+				CASE 1
+					PRINTFORMW 「아무리 그래도 그렇지, 그거 하나 하겠다고 떼 쓰면 안되잖아요」
+					PRINTFORMW 「...고작 그런게 저보다 중요한거예요...?」
+					PRINTFORMW 사토리의 눈에 눈물이 고였다
+			ENDSELECT
+		ELSEIF TALENT:연모||TALENT:사모||TALENT:애욕
+			SELECTCASE RAND:2
+				CASE 0
+					PRINTFORMW 「...솔직히 %사마스터의% 부탁이라면, 왠만하면 들어주고 싶어요」
+					PRINTFORMW 「근데...이것만은 무리니까, 안된다고요」
+					PRINTFORMW 「...싫으시다면...오늘은 하지 말까요?」
+				CASE 1
+					PRINTFORMW 「...싫어요」
+					PRINTFORMW 「백번 천번 부탁해도 싫어요」
+					PRINTFORMW 「...우리가 연인도 아닌데 그런 일을 하는건, 싫단 말예요」
+					PRINTFORMW 사토리는 조금 화가 난 표정이다...
+			ENDSELECT
+		ELSEIF TALENT:섹프
+			SELECTCASE RAND:2
+				CASE 0
+					PRINTFORMW 「저기, 기분좋게 야한짓하려고 온건데, 왜 그런 말을 들어야 하는거죠...?」
+					PRINTFORMW 「그냥 딱 한번만 참고 콘돔 끼는게 그렇게 싫은가요...?」
+					PRINTFORMW 사토리는 싸늘한 표정으로 쏘아붙였다...
+				CASE 1
+					PRINTFORMW 「...그냥 기분 전환용으로 야한짓 하러 왔는데」
+					PRINTFORMW 「그런 얘기를 들으면 기분이 더 안좋아진다구요」
+					PRINTFORMW 「꼭 해야 했어요...?」
+			ENDSELECT
+		ELSE
+			IF CFLAG:3000 == 0
+				SELECTCASE RAND:2
+					CASE 0
+						PRINTFORMW 「...들어줄리가 없잖아요?」
+						PRINTFORMW 「계속 그렇게 억지부릴 생각이면 그냥 하지 마세요」
+					CASE 1
+						PRINTFORMW 「그렇게 말한다고 생각이 바뀔리가 없잖아요」
+						PRINTFORMW 「그거 하나 참기가 싫다면 그만두죠 뭐」
+				ENDSELECT
+			ELSE
+				SELECTCASE RAND:2
+					CASE 0
+						PRINTFORMW 「...들어줄리가 없잖아」
+						PRINTFORMW 「그따위 억지만 자꾸 부리면 누구라도 화가날걸?」
+					CASE 1
+						PRINTFORMW 「...하아...백번 천번 말해도 말이지」
+						PRINTFORMW 「그런걸 허락하는 사람이 있을거라곤 생각되지 않는걸」
+				ENDSELECT
+			ENDIF
+		ENDIF
 		RETURN 1
 	ENDIF
 	;-------------------------------------------------
