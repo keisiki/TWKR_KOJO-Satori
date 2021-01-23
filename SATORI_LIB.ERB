@@ -153,3 +153,53 @@ CFLAG:4100 = EXP:MASTER:삽입경험
 EXP:MASTER:삽입경험 += ARG
 EXP:V성교경험 += ARG
 CFLAG:4100++
+
+
+@ST_LIVETOGETHER
+#FUNCTION
+
+IF MAIN_MAP == 9&&CFLAG:초기위치 == 919&&CFLAG:MASTER:초기위치 == 919
+    ;지저에서 사토리방에 같이 산다
+    RETURNF 1
+ELSEIF MAIN_MAP == 9&&CFLAG:초기위치 == 919&&(CFLAG:MASTER:초기위치 >= 901 && CFLAG:MASTER:초기위치 >= 930)
+    ;지령전에 산다
+    RETURNF 2
+ELSEIF (MAIN_MAP == 0 || MAIN_MAP == 13 || MAIN_MAP == 14) &&CFLAG:초기위치 == CFLAG:MASTER:초기위치
+    ;신사, 주택, 저택에서 같이 산다
+    RETURNF 3
+ELSEIF MAIN_MAP == 9&&CFLAG:초기위치 == 919
+    ;지저에 살지만 지령전엔 안 삼
+    RETURNF 4
+ELSE
+    ;따로 삼
+    RETURNF 0
+ENDIF
+
+;리턴값 1-가까워 2- 조금 거리 있어
+@ST_NEARBYHOME
+#FUNCTION
+#DIM DYNAMIC 지금위치
+#DIM DYNAMIC 사토리집
+
+사토리집 = CFLAG:49:초기위치
+지금위치 = CFLAG:49:현재위치
+IF 사토리집 == 919
+    ;사토리는 사토리 방에 살아
+    IF 지금위치 >= 901 && 지금위치 <= 930
+        ;지령전 안에 있어
+        RETURNF 1
+    ELSEIF 지금위치 >= 931 && 지금위치 <= 948
+        ;지저에 있어
+        RETURNF 2
+    ENDIF
+       
+ELSE
+    IF 현재위치 <= 초기위치 + 5 && 현재위치 >= 초기위치 - 5
+        ;5번 이내
+        RETURNF 1
+    ELSEIF 현재위치 <= 초기위치 + 10 && 현재위치 >= 초기위치 - 10
+        ;10번 이내
+        RETURNF 2
+    ENDIF
+ENDIF
+RETURNF 0

@@ -11499,32 +11499,226 @@ IF LOCAL
 ENDIF
 RETURN 1
 ;==================================================
-;帰宅時
+;帰宅時 귀가시
 ;==================================================
 @M_KOJO_EVENT_K49_20(ARG,ARG:1)
 ;口上主はLOCALS or RESULT
 ;--------------------------------------------------
 ;記入チェック（=0, 非表示、1, 表示）
-LOCAL = 0
+LOCAL = 1
+;PRINTFORMW 「」
 IF LOCAL
 	;-------------------------------------------------
 	;小分岐
 	;-------------------------------------------------
 	;通常帰宅
 	;記入チェック（=0, 非表示、1, 表示）
-	LOCAL:1 = 0
+	LOCAL:1 = 1
 	;-------------------------------------------------
 	IF LOCAL:1 && ARG == 1
-		PRINTFORML
+		IF MARK:반발각인 == 3
+			IF TALENT:연인
+				SELECTCASE RAND:3
+					CASE 0
+						PRINTFORMW 「슬슬 돌아가봐야 할 시간이네요」
+						PRINTFORMW 「아쉽지만 뭐...오늘만 날인건 아니잖아요」
+						PRINTFORMW 사토리는 %마스터를% 내버려두고 먼저 돌아갔다...
+					CASE 1
+						PRINTFORMW 「어라라, 벌써 이런 시간인가요...」
+						PRINTFORMW 「어쩔수 없죠...내일 또 봅시다」
+					CASE 2
+						PRINTFORMW 「...먼저 들어가 볼게요...」
+						PRINTFORMW 「좀 더 있고 싶지만...하여간 시간이 너무 빨리 가는 기분이라니깐요」
+						PRINTFORMW 사토리는 돌아가면서도 %마스터를% 계속해서 힐끔힐끔 바라보았다...
+				ENDSELECT
+			ELSE
+				IF CFLAG:3000 == 0
+					SELECTCASE RAND:3
+						CASE 0
+							PRINTFORMW 「...시간이 많이 늦어버렸네, 그러면 슬슬 돌아가봐야겠어요...」
+							PRINTFORMW 「...%MASTERNAME:49%도 너무 늦게까지 깨있진 말고요, 건강에 나빠요?」
+						CASE 1
+							PRINTFORMW 「어라, 벌써 이런 시간인가...먼저 가볼게요」
+							PRINTFORMW 사토리는 뒤도 안 돌아보고 떠나갔다...
+						CASE 2
+							PRINTFORMW 「하아암...」
+							PRINTFORMW 사토리는 한마디 인사도 없이 떠나가 버렸다...
+					ENDSELECT
+				ELSE
+					SELECTCASE RAND:3
+						CASE 0
+							PRINTFORMW 「...시간이 많이 늦어버렸네, 슬슬 돌아갈까...」
+							PRINTFORMW 「...그러면 안녕히」
+							PRINTFORMW 사토리는 무미건조한 표정으로 한번 바라보곤 떠나갔다...
+						CASE 1
+							PRINTFORMW 「어라, 벌써 이런 시간인가...언제 이렇게 시간이 지났지...」
+							PRINTFORMW 사토리는 뒤도 안 돌아보고 떠나갔다...
+						CASE 2
+							PRINTFORMW 「하아암...」
+							PRINTFORMW 사토리는 한마디 인사도 없이 떠나가 버렸다...
+					ENDSELECT
+				ENDIF
+			ENDIF
+		ELSEIF TALENT:연인
+			SELECTCASE RAND:3
+				CASE 0
+					PRINTFORMW 「하아암...피곤하니까 먼저 가 볼게요」
+					PRINTFORMW 「기왕이면 좀 더 같이 보내고 싶지만, 내일도 힘내려면 일찍 자야하니까...」
+					IF (ST_LIVETOGETHER() == 1||ST_LIVETOGETHER() == 3)
+						IF ST_NEARBYHOME() == 0
+							PRINTFORMW 「%MASTERNAME:49%도 얼른 들어오세요? 혼자 자긴 쓸쓸하니까」
+							PRINTFORMW 「너무 늦게 돌아오면 토라질거예요」
+						ELSE
+							PRINTFORMW 「침대 위에서는 좀 더 즐길수 있을거 같은데 말이죠?」
+							PRINTFORMW 사토리는 야릇한 미소를 지어보이곤 방으로 돌아갔다...
+						ENDIF
+					ELSEIF ST_LIVETOGETHER() == 2&&ST_NEARBYHOME() == 0
+						PRINTFORMW 「%MASTERNAME:49%도 너무 늦게까지 돌아다니진 마세요」
+						PRINTFORMW 사토리는 늘어지게 하품을 하며 돌아갔다...
+					ELSEIF ST_NEARBYHOME()
+						PRINTFORMW 사토리는 피곤한듯 흐물흐물 방으로 향했다
+					ELSE
+						PRINTFORMW 사토리는 아쉬운듯 계속해서 뒤돌아 보며 집으로 향했다...
+					ENDIF
+				CASE 1
+					PRINTFORMW 「어라...벌써 시간이 이렇게나...」
+					IF ST_NEARBYHOME()
+						PRINTFORMW 「좀 더 같이 놀곤 싶지만...내일도 있기 때문에 어쩔수없네요...」
+						PRINTFORMW 「...그러면 먼저 가볼게요, 안녕히 주무시길...」
+						PRINTFORMW 사토리는 무척이나 아쉬운듯한 표정으로 방에 돌아갔다...
+					ELSE
+						PRINTFORMW 「좀 더 같이 있고 싶었는데...우으으...왜이리 시간이 빨리가는지」
+						PRINTFORMW 「...먼저 가볼테니까, %MASTERNAME:49%도 조심히 들어가세요?」
+					ENDIF
+				CASE 2
+					PRINTFORMW 「...앗...벌써 시간이...」
+					PRINTFORMW 「정말이지, %사마스터랑% 있다보면 시간이 너무 빨리 간단 말이죠」
+					PRINTFORMW 「하루가 세 배는 더 길었음 좋겠어요, 그러면 좀 더 잔뜩 같이 있을수 있을텐데」
+					PRINTFORMW 「...우으...어쩔수 없죠, 내일도 있으니까요, 그러면 먼저 가볼게요, 안녕히」
+			ENDSELECT
+		ELSEIF TALENT:연모||TALENT:사모||TALENT:애욕
+			SELECTCASE RAND:3
+				CASE 0
+					PRINTFORMW 「음...벌써 시간이 이리...아쉽지만 먼저 들어가 볼게요」
+					PRINTFORMW 「내일 또 봅시다? 그럼 이만」
+					PRINTFORMW 사토리는 꾸벅 인사를 하고 떠나갔다...
+				CASE 1
+					PRINTFORMW 「슬슬 들어가봐야 할 시간이네요...」
+					PRINTFORMW 「나참, %사마스터랑% 있으면 시간이 참 빨리간단 말이죠...」
+					PRINTFORMW 「그러면 내일 또 봅시다, 안녕히」
+				CASE 2
+					PRINTFORMW 「하아암...더 있곤 싶지만 조금 피곤해지는걸요」
+					PRINTFORMW 「내일, 또 볼까요? 저는 괜찮은데」
+					PRINTFORMW 사토리는 옅게 미소를 지어보이곤 타박타박 떠나갔다
+			ENDSELECT
+		ELSEIF TALENT:섹프
+			SELECTCASE RAND:2
+				CASE 0
+					PRINTFORMW 「이크, 벌써 시간이 이리 되버렸네요」
+					PRINTFORMW 「그러면 저는 이만 들어가 볼게요, 안녕히 계세요」
+					PRINTFORMW 사토리는 뒤도 안 돌아보고 떠나갔다...
+				CASE 1
+					PRINTFORMW 「으음, 더 있고는 싶지만 슬슬 들어가봐야겠어요...」
+					IF CFLAG:초기위치 == 919&&ST_NEARBYHOME() == 0
+						PRINTFORMW 「그렇지 않으면 집에 있는 애들이 걱정할테니까」
+					ELSE
+						PRINTFORMW 「내일도 있으니까, 오늘은 이만 쉴래요...」
+					ENDIF
+			ENDSELECT
+		ELSE
+			SELECTCASE RAND:3
+				CASE 0
+					PRINTFORMW 「아차, 벌써 이런 시간인가...」
+					PRINTFORMW 사토리는 무언가 할 일이라도 있는듯 뒤도 안보고 저 멀리 떠나갔다...
+				CASE 1
+					PRINTFORMW 「...하아암...피곤하네...」
+					PRINTFORMW 사토리는 늘어지게 하품을 하며 떠나갔다
+				CASE 2
+					PRINTFORMW 사토리는 피곤한듯 터덜터덜 떠나갔다...
+			ENDSELECT
+		ENDIF
 		RETURN 1
 	ENDIF
 	;-------------------------------------------------
 	;デート中帰宅
 	;記入チェック（=0, 非表示、1, 表示）
-	LOCAL:1 = 0
+	LOCAL:1 = 1
 	;-------------------------------------------------
 	IF LOCAL:1 && ARG == 2
-		PRINTFORML
+		IF MARK:반발각인 == 3&&!TALENT:연인
+			SELECTCASE RAND:2
+				CASE 0
+					PRINTFORMW 「...먼저 가볼게요, 안녕히 계세요」
+					PRINTFORMW 「...아, 맞다...데이트는 좋았어요, 고마워요」
+					PRINTFORMW 사토리는 나지막히 인사하곤 타박타박 떠나갔다
+				CASE 1
+					IF CFLAG:3000 == 0
+						PRINTFORMW 「많이 늦었으니까, 먼저 들어가 볼게요」
+						PRINTFORMW 「...데이트는 좋았어요, 고마워요」
+						PRINTFORMW 자그마한 목소리로 감사인사를 한 사토리는 저 멀리 떠나가버렸다...
+					ELSE
+						PRINTFORMW 「...벌써 이런 시간이네, 미안하지만 먼저 가볼게요」
+						PRINTFORMW 사토리는 아무 말 없이 떠나가버렸다...
+					ENDIF
+			ENDSELECT
+		ELSEIF TALENT:연인
+			SELECTCASE RAND:2
+				CASE 0
+					PRINTFORMW 「으응...더 있고는 싶지만...너무 늦었다구요? 슬슬 들어가봐야 하니까요」
+					PRINTFORMW 「...내일도 또 나올래요? 전 괜찮은데」
+					PRINTFORMW 사토리는 희미하게 웃어보이며 집으로 돌아갔다
+				CASE 1
+					PRINTFORMW 「응...슬슬 돌아갈 시간이에요, 아쉽지만 이만 돌아가야겠어요」
+					PRINTFORMW 「맘만 같으면 하루 종일 돌아다니고 싶지만...어쩔수 없잖아요?」
+					PRINTFORMW 「그」
+					PRINTFORMW 사토리는 미안해하며 떠나갔다...
+			ENDSELECT
+		ELSEIF TALENT:사모||TALENT:연모||TALENT:애욕
+			IF CFLAG:3000 == 0
+				SELECTCASE RAND:2
+					CASE 0
+						PRINTFORMW 「이만 돌아가 볼게요」
+						PRINTFORMW 「...데이트 좋았어요, 다음에 또 나오지 않을래요?」
+						PRINTFORMW 사토리는 옅게 웃어보이곤 집으로 돌아갔다...
+					CASE 1
+						PRINTFORMW 「...즐거웠어요, %사마스터랑% 같이라서 그런가...」
+						PRINTFORMW 「그러면 슬슬 돌아가 볼게요...아, 내일 또 놀러갈래요?」
+						PRINTFORMW 「...후후...저는 언제라도 괜찮으니까, 내킬때 데려가 주세요?」
+						PRINTFORMW 사토리는 희미하게 웃는 얼굴로 손을 흔들며 돌아갔다...
+				ENDSELECT
+			ELSE
+				SELECTCASE RAND:2
+					CASE 0
+						PRINTFORMW 「이만 가볼게요」
+						PRINTFORMW 「...데이트는 좋았어요, 고마워요」
+						PRINTFORMW 사토리는 작게 웃어보이곤 집으로 돌아갔다...
+					CASE 1
+						PRINTFORMW 「...즐거웠어요, 같이 나들이 다니는거, 은근히 좋네요」
+						PRINTFORMW 「그러면 저는 슬슬 돌아가 볼게요...」
+						PRINTFORMW 사토리는 꾸벅 인사를 하곤 집으로 돌아갔다...
+				ENDSELECT
+			ENDIF
+		ELSE
+			SELECTCASE RAND:2
+				CASE 0
+					PRINTFORMW 「데이트 좋네요, 혼자 다니는것보다 재밌고」
+					PRINTFORMW 「가끔 코이시랑 다니던 거랑은 다른 신선한 느낌, 즐거웠어요」
+					PRINTFORMW 「그러면 먼저 돌아갈테니...안녕히 계세요?」
+					IF ST_LIVETOGETHER() == 1||ST_LIVETOGETHER() == 2||ST_LIVETOGETHER() == 3
+						PRINTFORMW 「라고 해봐야 집 가서 또 보겠지만 말이죠」
+						PRINTFORMW 사토리는 키득거리며 떠나갔다...
+					ENDIF
+				CASE 1
+					PRINTFORMW 「하아...재미는 있었지만, 조금 피곤하네요」
+					PRINTFORMW 「먼저 가볼게요...응...데이트 고마웠어요」
+					IF ST_LIVETOGETHER() == 1||ST_LIVETOGETHER() == 2||ST_LIVETOGETHER() == 3
+						PRINTFORMW 「%MASTERNAME:49%도 너무 늦게까지 돌아다니진 말고, 얼른 들어오세요?」
+					ELSE
+						PRINTFORMW 「그럼 안녕히」
+					ENDIF
+					PRINTFORMW 사토리는 꾸벅 인사를 하고 집으로 돌아갔다...
+			ENDSELECT
+		ENDIF
 		RETURN 1
 	ENDIF
 	;-------------------------------------------------
