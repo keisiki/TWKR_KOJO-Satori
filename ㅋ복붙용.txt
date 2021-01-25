@@ -123,18 +123,18 @@ ENDIF
 ;----------------
 IF MARK:반발각인 == 3
 	IF TALENT:연인
-					
+		
 	ELSE
-					
+		
 	ENDIF
 ELSEIF TALENT:연인
-				
+	
 ELSEIF TALENT:연모||TALENT:사모||TALENT:애욕
-				
+	
 ELSEIF TALENT:섹프
-				
+	
 ELSE
-				
+	
 ENDIF
 ;-----------------
 ;---약식---
@@ -150,20 +150,20 @@ ELSEIF TALENT:연인
 		CASE 0
 
 		CASE 1
-							
+
 	ENDSELECT
 ELSEIF TALENT:섹프
 	SELECTCASE RAND:2
 		CASE 0
 
 		CASE 1
-							
+		
 	ENDSELECT
 ELSE
 	SELECTCASE RAND:2
 		CASE 0
 
 		CASE 1
-							
+		
 	ENDSELECT
 ENDIF

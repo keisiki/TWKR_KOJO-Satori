@@ -11724,10 +11724,84 @@ IF LOCAL
 	;-------------------------------------------------
 	;玄関先でお見送り
 	;記入チェック（=0, 非表示、1, 表示）
-	LOCAL:1 = 0
+	LOCAL:1 = 1
 	;-------------------------------------------------
 	IF LOCAL:1 && ARG == 3
-		PRINTFORML
+		IF ST_LIVETOGETHER() == 1||ST_LIVETOGETHER() == 3
+			IF MARK:반발각인 == 3
+				IF TALENT:연인
+					PRINTFORMW 「네, 집에 왔네요」
+					PRINTFORMW 「이제 뭐할까요...」
+				ELSE
+					PRINTFORMW 「아아...드디어 집이네, 피곤해라...」
+					PRINTFORMW 「데이트라는것도 참 귀찮은거 같아...」
+				ENDIF
+			ELSEIF TALENT:연인
+				PRINTFORMW 「밖에서 돌아다니는것도 좋지만, 역시 집이 편하네요」
+				PRINTFORMW 「자, 그러면 이제 뭘 할까요?」
+			ELSEIF TALENT:연모||TALENT:사모||TALENT:애욕
+				PRINTFORMW 「데이트는 좋긴 하지만, 역시 다리가 아픈게 문제네요」
+				PRINTFORMW 「그래서, 이제 뭐 할까요?」
+			ELSEIF TALENT:섹프
+				PRINTFORMW 「가끔은 연인놀이도 즐겁죠 뭐」
+				PRINTFORMW 「기왕이면 정말 연인이면 좋겠지만 어쩌겠나요, 팔자가 이런데」
+				PRINTFORMW 「자, 그러면 이제 집에 왔겠다, 뭘 할까요?」
+			ELSE
+				PRINTFORMW 「피곤해라...역시 외출은 힘들어...」
+				PRINTFORMW 사토리는 투덜투덜거리며 집 안으로 들어섰다
+			ENDIF
+		ELSE
+			IF MARK:반발각인 == 3&&!TALENT:연인
+				SELECTCASE RAND:2
+					CASE 0
+						PRINTFORMW 「바래다 줘서 고마워요」
+						PRINTFORMW 「그럼 안녕히, 다음에 봅시다」
+					CASE 1
+						PRINTFORMW 「조심히 들어가보세요」
+						PRINTFORMW 「아니, 안 조심해도 딱히 상관 없지만」
+				ENDSELECT
+			ELSEIF TALENT:연인
+				SELECTCASE RAND:2
+					CASE 0
+						PRINTFORMW 「바래다 주셔서 고마워요」
+						PRINTFORMW 「...모처럼이니 좀 더 있다가도 되지만, 피곤한지라 오래는 상대 못 해드려요」
+					CASE 1
+						PRINTFORMW 「저기, 내일도 괜찮다면 또 데이트 하죠」
+						PRINTFORMW 「저는 언제라도 좋으니까 편하실때 와주세요」
+				ENDSELECT
+			ELSEIF TALENT:사모||TALENT:연모||TALENT:애욕
+				SELECTCASE RAND:2
+					CASE 0
+						PRINTFORMW 「데이트 재밌었어요」
+						PRINTFORMW 「내일도 같이 나갈수 있다면...음...역시 무릴까요?」
+						PRINTFORMW 「혹시 생각있으시다면 언제든 오셔도 좋으니까」
+						PRINTFORMW 사토리는 옅게 웃어보이며 집 안으로 들어갔다
+					CASE 1
+						PRINTFORMW 「조심히 들어가보세요」
+						PRINTFORMW 사토리는 작게 손을 흔들어보이며 집 안으로 들어갔다
+				ENDSELECT
+			ELSEIF TALENT:섹프
+				SELECTCASE RAND:2
+					CASE 0
+						PRINTFORMW 「가끔은 데이트란것도 좋은거 같아요」
+						PRINTFORMW 「맨날 야한짓만 하는것보다 신선하기도 하고」
+					CASE 1
+						PRINTFORMW 「데이트 고마웠어요, 이제 돌아가는건가요?」
+						PRINTFORMW 「아쉽네요, 집에서 조금 즐길려고 했었는데, 막상 와보니 피곤해져버렸어」
+						PRINTFORMW 「다음에 만날땐 또 같이 즐겨요, 그럼 안녕히」
+				ENDSELECT
+			ELSE
+				SELECTCASE RAND:2
+					CASE 0
+						PRINTFORMW 「데이트란것도 좋은거군요」
+						PRINTFORMW 「예전에는 잘 몰랐는데, 생각보다 재밌었어요」
+						PRINTFORMW 사토리는 큭큭대며 웃곤 집 안으로 들어가버렸다
+					CASE 1
+						PRINTFORMW 「하아...재미는 있긴 했지마는, 힘든건 어쩔수 없네요」
+						PRINTFORMW 사토리는 다리가 아픈지 조금 툴툴대며 집으로 들어가버렸다
+				ENDSELECT
+			ENDIF
+		ENDIF
 		RETURN 1
 	ENDIF
 ENDIF
