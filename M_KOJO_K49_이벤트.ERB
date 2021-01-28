@@ -11825,10 +11825,113 @@ IF LOCAL
 	;-------------------------------------------------
 	;恋慕取得 연모 취득
 	;記入チェック（=0, 非表示、1, 表示）
-	LOCAL:1 = 0
+	LOCAL:1 = 1
 	;-------------------------------------------------
 	IF LOCAL:1 && ARG == 1
-		PRINTFORML
+		IF CFLAG:6000 == 0
+			IF TALENT:섹프
+				PRINTFORMW 「이상하네...요즘따라 조금 기분이 묘한걸」
+				PRINTFORMW 「쌓였나? 아니, 그런거랑은 조금 다른걸」
+				PRINTFORMW 「몸이 쑤시고 애달파지는게 아냐, 가슴이 미어지는듯한...그런 기분」
+				PRINTFORMW 사토리는 왜 이런 일이 일어나는지 곰곰히 되짚어보기 시작했다
+				PRINTL
+				PRINTFORMW 「...그러고보니, 최근 %사마스터랑% 만나면 조금 두근두근거리긴 했어」
+				PRINTFORMW 「처음으로 할 때에도 이런 기분은 아니었는데, 왤까」
+				PRINTL
+				PRINTFORMW 「...설마, 나 %사마스터를%...」
+				PRINTFORMW 사토리는 슬쩍 얼굴을 붉혔다
+				PRINTL
+				PRINTFORMW 「무섭네, 그냥 몸만 겹치는 상대라 생각 했는데...어느새...」
+				PRINTFORMW 「...하기사 요근래에는 야한일 말고도 자주 했었긴 하지만...」
+				PRINTFORMW 그러면서도 %사마스터를% 떠올린 사토리의 입꼬리는 절로 올라갔다
+				PRINTFORMW 확실히 최근에는 몸의 쾌락보다도 %사마스터와% 같이 시간을 보내는 것 만으로도 기뻐했었다
+				PRINTL
+				PRINTFORMW 다만 깨닫고 있지 못했을뿐
+				PRINTL
+				PRINTFORMW 「%사마스터는% 나를 어떻게 생각할까...」
+				PRINTFORMW 「그냥 만나기 편한 여자라고 생각하고 있을까? 아니면 %MASTERNAME:49%도 나를...」
+				PRINTFORMW 「...혹시라도 그냥 쉬운 여자라고만 생각하고 있다는 말을 듣는다면...아아...그런건 싫은데...」
+				PRINTL
+				PRINTFORMW 「...묻지 말자, 그냥 마음속에 담아만 두자, 진정 나한테 마음이 있다면...스스로 와주겠지」
+				PRINTFORMW 「그때까진 얼마든지 기다려 줄 테니까...」
+			ELSE
+				;첫회차, 애욕은 이쪽에 통합
+				PRINTFORMW 「...중증이네...하아...」
+				PRINTFORMW 사토리는 한숨을 내쉬었다
+				PRINTL
+				PRINTFORMW 최근, 사토리의 머릿속은 %MASTERNAME:49%에 대한 생각으로 가득차 가고 있었다
+				PRINTL
+				PRINTFORMW 그 탓에 밤마다 베개를 끌어안은채로 그 복잡한 감정에 착잡해 하며 밤을 지새우는게 일상이 되어버렸다
+				PRINTFORMW 「밤마다 자꾸만 생각나서...그때마다 가슴이 미어지는거 같은 이 느낌」
+				PRINTFORMW 「낮에는 반대로 만날때마다 가슴이 너무 두근거려」
+				PRINTFORMW 「...이런걸, 기분탓이라 하기엔 이미 너무 늦었지」
+				PRINTL
+				PRINTFORMW 「처음에 만났을땐 이리 될줄은 몰랐는데」
+				PRINTFORMW 사토리는 허탈하게 웃었다
+				PRINTL
+				PRINTFORMW 「...뭐어, 괜찮겠지...」
+				IF CFLAG:3001 > 0||CFLAG:3002 > 0
+					;시간 경험 있음 또는 팬티 훔친 경험 있음
+					PRINTFORMW 「아주 좋은 사람은 아니어도...」
+					IF CFLAG:3000 == 0
+						;근데 다른 긍정적 평가 요소가 덮어버림
+						PRINTFORMW 「...좋은점도 꽤나 많고 말야?」
+					ELSE
+						;덮지 못함
+						PRINTFORMW 「아니, 그건 아닌가...그래도 상관없지...」
+						PRINTFORMW 「좋은 사람이던 말던, 그게 나랑 무슨 상관이야」
+					ENDIF
+				ELSE
+					;팬티나 시간 경험 없음
+					PRINTFORMW 「나쁜 사람도 아니고 말야」
+					IF CFLAG:3000 == 0
+						;대사없음
+					ELSE
+						;그러나 부정적 요소가 덮어버림,고통각인이나 욕망 같은 것
+						PRINTFORMW 「...조금 못된 점은 있긴 하지만 그쯤이야 뭐...」
+						PRINTFORMW 「사람이 살다보면 그정도 실수는...할수도 있지」
+						CFLAG:3100 += 5
+					ENDIF
+				ENDIF
+				PRINTFORMW 「누가 뭐래도 지금은, %사마스터가% 좋아서 견딜수가 없는걸」
+				PRINTL
+				PRINTFORMW 「아하하...그러면 내일이라도 당장 고백해볼...까...」
+				PRINTFORMW 사토리는 문득 자신의 가슴팍에 달린 서드아이를 떠올렸다
+				PRINTL
+				PRINTFORMW 「...괜히 이렇게 들떠있다가, 거절당하면 어쩌지...」
+				PRINTFORMW 「%사마스터는% 거절 안해도, 내가 %사마스터의% 마음속을 멋대로 읽다 화나게 하면?」
+				PRINTFORMW 「...그래서 미움받게 된다면 못참을거 같은데...」
+				PRINTFORMW 지금껏 자랑스러워 하던 그 눈이, 왜인지 지금은 밉게만 보였다
+				PRINTL
+				PRINTFORMW 「하아...내 주제에 연애는 무슨...」
+				PRINTFORMW 「안하는게 백배 나아, 나한테도...%MASTERNAME:49%한테도...」
+				PRINTFORMW 「가슴 속에 묻어두면 아무도 상처받지 않는걸...」
+				PRINTFORMW 결국 사토리는 힘빠진채로 자리에 누워버렸다
+				PRINTL
+				PRINTFORMW 자고 일어나면, %MASTERNAME:49%에 대한 생각도 잊혀지길 바라며
+				PRINTL
+				PRINTFORMW 그러나 그럴 일은 없을것이다
+				CFLAG:3100 += 1
+			ENDIF
+		ELSE
+			;회차
+			PRINTFORMW 「...하아...역시나 안되겠네」
+			PRINTFORMW 「조금쯤은 반항해보려 했지만 무리였어」
+			PRINTFORMW 사토리는 자리에 누운채 허탈하게 웃었다
+			PRINTL
+			PRINTFORMW 「한번 사랑받은 기억을 본 탓일까...」
+			PRINTFORMW 「지금이라도 순순히 인정하고 다시 시작하자고 할까?」
+			PRINTFORMW 「...아니, 그렇게 해 봤자 또 도망가버릴거 같은걸」
+			PRINTFORMW 「그렇지만 냅뒀다가 실망하고 다시 가버리면...?」
+			PRINTFORMW 사토리는 고민에 빠졌다
+			PRINTFORMW 어느쪽이든, 한번 버려졌다는 사실은 사토리의 마음속 깊히 박혀 쉽사리 빠질수 없는 돌이 되어버렸으니
+			PRINTL
+			PRINTFORMW 「...하아...나 혼자 고민해서 뭐해, 어짜피 가고 말고는...%사마스터의% 생각에 달렸는걸」
+			PRINTFORMW 결국 포기해버린채 이불을 뒤집어 쓰고 잠을 청했다
+			PRINTL
+			PRINTFORMW 이번에는 제발 버리고 가지 말아줬으면 하는 소망을 마음 속 깊이 품은 채로
+			CFLAG:3101 += 1
+		ENDIF
 		RETURN 1
 	ENDIF
 	;-------------------------------------------------
@@ -11842,30 +11945,51 @@ IF LOCAL
 			PRINTFORMW 늦은밤, 사토리는 잠에 들지 못하고 베개를 안은채 깊은 고민에 빠졌다
 			PRINTFORMW 요즘들어 왜인지 기분이 심숭생숭해져버린 탓에 자리에 앉아서도, 밥을 먹으면서도, 심지어 이렇게 잠들기 전에도 멍때리고 있는 시간이 늘어났다
 			PRINTL
-			PRINTFORMW 「...그 사람 때문이야, 그 전엔 이렇지 않았는데...」
-			PRINTFORMW 사토리는 %마스터를% 떠올렸다
-			PRINTL
-			PRINTFORMW 「계속해서 만나주고, 계속해서 살갑게 말걸어 오고」
-			PRINTFORMW 「보통은...그렇게까지 다가오는 사람은 없었는데 말이야」
-			IF CFLAG:3001 > 0||CFLAG:3002 > 0
-				PRINTFORMW 「...조금은 지독한 사람이긴 하지만...그래도 저렇게 먼저 다가와 주는건 좋은걸...그치만...」
-				IF CFLAG:3000 == 0
-					PRINTFORMW 「...그렇게까지 나쁜 사람도 아니고...」
-				ELSE
-					PRINTFORMW 「...아니, 역시 조금 글러먹은 사람이긴 한데...」
-				ENDIF
+			IF TALENT:섹프
+				PRINTFORMW 「그냥 서로 기분 좋아질 일만 할 뿐이었는데 말야」
+				PRINTFORMW 「...나날히 볼때마다 조금씩, 이상한 기분이 들어」
+				PRINTFORMW 「그저 몸뿐인 관계일텐데도 왜인지 살갑게 말걸어주고...같이 있어주고...」
+				PRINTFORMW 사토리는 천천히 %마스터와%의 시간을 떠올렸다
+				PRINTL
+				PRINTFORMW 분명히, 처음엔 그저 별것 아닌 관계였고, 그 다음엔 서로의 쾌락만을 위한 관계
+				PRINTL
+				PRINTFORMW 그리고 지금은 사토리의 마음속에 찬찬히, 쾌락 이외에 다른 감정이 피어오르고 있었다
+				PRINTL
+				PRINTFORMW 그러나 사토리는 인정하려 들지 않았다, 자신이 먼저 그 마음을 드러냈다 거절받아 상처입기가 싫었으니까
+				PRINTL
+				PRINTFORMW 「...괜시리 설레게 만들고 있어...아아...진짜...」
+				PRINTFORMW 사토리는 괜히 베개에 화풀이를 해댔다
+				PRINTL
+				PRINTFORMW 그렇지만 마음속에 조금씩 자리잡는 감정은 그정도로 쉽사리 떨쳐지는 것이 아니었다
+				PRINTL
+				PRINTFORMW 본인은 그걸 깨닫지 못했지만
 			ELSE
-				PRINTFORMW 「...뭐어...나쁜 사람은 아니지만...」
-				IF CFLAG:3000 == 0
-					PRINTFORMW 「...굳이 치자면 좋은 점이 더 많긴 한데...」
+				PRINTFORMW 「...그 사람 때문이야, 그 전엔 이렇지 않았는데...」
+				PRINTFORMW 사토리는 %마스터를% 떠올렸다
+				PRINTL
+				PRINTFORMW 「계속해서 만나주고, 계속해서 살갑게 말걸어 오고」
+				PRINTFORMW 「보통은...그렇게까지 다가오는 사람은 없었는데 말이야」
+				IF CFLAG:3001 > 0||CFLAG:3002 > 0
+					PRINTFORMW 「...조금은 지독한 사람이긴 하지만...그래도 저렇게 먼저 다가와 주는건 좋은걸...그치만...」
+					IF CFLAG:3000 == 0
+						PRINTFORMW 「...그렇게까지 나쁜 사람도 아니고...」
+					ELSE
+						PRINTFORMW 「...아니, 역시 조금 글러먹은 사람이긴 한데...」
+					ENDIF
 				ELSE
-					PRINTFORMW 「...아니, 그건 또 아냐...좋은 사람이라고 할 사람은 아니니까」
+					PRINTFORMW 「...뭐어...나쁜 사람은 아니지만...」
+					IF CFLAG:3000 == 0
+						PRINTFORMW 「...굳이 치자면 좋은 점이 더 많긴 한데...」
+					ELSE
+						PRINTFORMW 「...아니, 그건 또 아냐...좋은 사람이라고 할 사람은 아니니까」
+					ENDIF
 				ENDIF
+				PRINTL
+				PRINTFORMW 「하아...괜시리 신경쓰이게나 하고...아아...진짜...」
+				PRINTFORMW 애꿎은 베개에 화풀이를 하고있다
+				PRINTFORMW 그렇지만 내일 또 만나게 된다면 어떤 이야기를 나눌지 생각하고 있다는건 사토리 본인도 깨닫지 못하고 있었다
+				CFLAG:3100 += 1
 			ENDIF
-			PRINTL
-			PRINTFORMW 「하아...괜시리 신경쓰이게나 하고...아아...진짜...」
-			PRINTFORMW 애꿎은 베개에 화풀이를 하고있다
-			PRINTFORMW 그렇지만 내일 또 만나게 된다면 어떤 이야기를 나눌지 생각하고 있다는건 사토리 본인도 깨닫지 못하고 있었다
 			CFLAG:3100 += 3
 			CFLAG:1500 = 0
 		ELSE
