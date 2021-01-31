@@ -12014,16 +12014,68 @@ IF LOCAL
 	LOCAL:1 = 0
 	;-------------------------------------------------
 	IF LOCAL:1 && ARG == 3
-		PRINTFORML
+		IF CFLAG:6000 == 0
+
+		ELSE
+
+		ENDIF
 		RETURN 1
 	ENDIF
 	;-------------------------------------------------
 	;愛人取得 정부 취득
 	;記入チェック（=0, 非表示、1, 表示）
-	LOCAL:1 = 0
+	LOCAL:1 = 1
 	;-------------------------------------------------
 	IF LOCAL:1 && ARG == 4
-		PRINTFORML
+		IF CFLAG:6000 == 0
+			PRINTFORMW 「...하아...」
+			PRINTFORMW 「오늘도, 몸이 욱신거려...불편하네...」
+			PRINTFORMW 사토리는 또다시 다리 사이로 손을 옮겼다
+			PRINTL
+			PRINTFORMW 「이거로 참아야지...응읏...」
+			PRINTFORMW 부족한걸 알면서도 열기를 식히기 위해 손가락을 놀렸다
+			PRINTL
+			PRINTFORMW 「아핫..응...기분좋아아...」
+			PRINTFORMW 손가락은 더더욱 빠르게 움직이며 그 주인에게 쾌락을 선사했다
+			PRINTFORMW 무자비하게 움직이는 그 격한 손길에 절정에 이를순 있긴 했다, 그렇지만
+			PRINTL
+			PRINTFORMW 「...부족해...」
+			PRINTFORMW 사토리는 무언가 다른것이 더 필요한것을 느꼈다
+			PRINTL
+			PRINTFORMW 그러나 그것은 정욕이 아니었다, 단순한 육체의 쾌락은 이미 %마스터와% 충분히 나눌수 있었다
+			PRINTFORMW 사토리에게 필요한건 다름아닌 애정이었다, 사토리는 %마스터와%의 사랑을 원했다
+			PRINTL
+			PRINTFORMW 「하아...내 주제에 사랑은 무슨...」
+			PRINTFORMW 사토리는 고개를 내저었다
+			PRINTL
+			PRINTFORMW 그저 쾌락만을 위한 만남 아니었는가? 거기서 멋대로 혼자 연심을 품다가 거절당하면, 스스로 견딜수 없을것이다
+			PRINTFORMW 그러기에 그녀는 마음속 깊이 그 생각을 묻어두기로 했다
+			PRINTL
+			PRINTFORMW ...그런다고 간편히 사라질리가 없지만 말이다
+			CFLAG:3100 += 2
+			CFLAG:1500 = 0
+		ELSE
+			PRINTFORMW 「......」
+			PRINTFORMW 사토리는 한숨을 내쉬었다
+			PRINTL
+			PRINTFORMW 오늘도 한참동안 자위에 열중했지만 채워지지 않는 공허감을 느끼고 있는 참이었다
+			PRINTFORMW 성욕과는 다른, 채워지지 않는 무언가가 있었다
+			PRINTL
+			PRINTFORMW 그것은 사랑이었다
+			PRINTL
+			PRINTFORMW 「...아냐, 그럴리 없잖아...그런 사람을 좋아한다니...말도 안돼」
+			PRINTFORMW 「분명히 나를 그저 장난감으로 보고 있어, 여차하면 버리는 그런 하찮은 장난감」
+			PRINTFORMW 「그런데도...그런데도 어째서...」
+			PRINTFORMW 사토리는 고개를 푹 숙였다
+			PRINTL
+			PRINTFORMW 여태까진 부정했지만, 그럼에도 마음속 깊이서 조금씩 생겨나는 연정을 어찌할수는 없었다
+			PRINTL
+			PRINTFORMW 「...몰라...난 이런거 몰라...흐극...나한테 왜 이러는거야...」
+			PRINTFORMW 사토리는 머릿속이 복잡해짐을 느끼고 공연히 화를 내며 이불속으로 들어갔다
+			PRINTL
+			PRINTFORMW 자고 일어나면 조금쯤 괜찮아 지길 바라면서...
+			CFLAG:3100 += 2
+		ENDIF
 		RETURN 1
 	ENDIF
 	;-------------------------------------------------
