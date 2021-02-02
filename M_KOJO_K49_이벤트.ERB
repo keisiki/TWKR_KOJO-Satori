@@ -12011,14 +12011,65 @@ IF LOCAL
 	;-------------------------------------------------
 	;愛欲取得 애욕 취득
 	;記入チェック（=0, 非表示、1, 表示）
-	LOCAL:1 = 0
+	LOCAL:1 = 1
 	;-------------------------------------------------
 	IF LOCAL:1 && ARG == 3
 		IF CFLAG:6000 == 0
-
+			PRINTFORMW 「...뭔가 허전하네...」
+			PRINTFORMW 사토리는 왠지모를 공허감을 느끼고 무의식적으로 다리 사이에 손을 옮겼다
+			PRINTL
+			PRINTFORMW 「응...후으으..」
+			PRINTFORMW 무심하게 움직이는 손가락은 그 주인에게 쾌락을 선사했다, 그렇지만 그것이 마음속 공허감을 없애주진 않았다
+			PRINTFORMW 오히려 더더욱 허전해지는 느낌에 사토리의 손은 멈췄다
+			PRINTL
+			PRINTFORMW 「...외로워...」
+			IF CFLAG:현재위치 == CFLAG:MASTER:현재위치
+				PRINTFORMW 사토리는 옆에 누운 %마스터를% 바라보았다
+				PRINTL
+				PRINTFORMW 평소엔 그저 그렇게만 보였는데
+				PRINTFORMW 왜인지 오늘은 그 모습에 가슴 한켠이 욱신거린다
+				PRINTL
+				PRINTFORMW 사토리는 잠든 %마스터를% 끌어안았다, 서로의 심장 고동소리가 느껴진다
+				PRINTL
+				PRINTFORMW 한참을 말 없이, 그렇게 껴안고 있던 사토리는 그제야 허전한 기분이 사라짐을 느꼈다
+				PRINTL
+				PRINTFORMW 「...전엔 미처 몰랐는데, 나...당신이 조금 좋아지는걸」
+				PRINTFORMW 「계속 만나다보니 정든걸까...후후...」
+				PRINTFORMW 빙그레 웃어보이는 사토리는 %마스터를% 안은채로 잠들었다
+				PRINTL
+				PRINTFORMW 왜인지 좋은 꿈이라도 꾸는 걸까, 자면서도 굉장히 행복해 하는 얼굴이었다
+			ELSE
+				PRINTFORMW 사토리는 그 쓸쓸함에 한숨지었다
+				PRINTL
+				PRINTFORMW 「...%사마스터가% 보고 싶어...」
+				PRINTFORMW 「지금 만나러가면...너무 늦었겠지」
+				PRINTFORMW 분명히, 전에는 아무 감정도 안 드는 관계였는데
+				PRINTFORMW 이제는 어째서 이리 쓸쓸함을 느끼고 있는것인가
+				PRINTL
+				PRINTFORMW 스스로도 이해하지 못한채 혼란스러워 하는 사토리는 베개를 끌어안은채 울적함을 달래려 했다
+				PRINTFORMW 내일은 %CALLNAME:MASTER%한테 가야겠다고 생각하면서 
+			ENDIF
 		ELSE
-
+			PRINTFORMW 「...」
+			PRINTFORMW 사토리는 이유모를 공허감에 잠들지 못하고 있었다
+			PRINTL
+			PRINTFORMW 가슴 한 켠이 허전한 이 느낌
+			PRINTFORMW 어떻게든 달래보려고 자위라도 하며 달래보았지만 오히려 더더욱 쓸쓸해지기만 했다
+			PRINTL
+			PRINTFORMW 「....부족해, 이런거로는 이제 안돼, %사마스터가% 아니면...」
+			PRINTFORMW 사토리의 손은 %마스터와% 달리 포근하지도, 다정하지도 않았다, 사랑이 없었다
+			PRINTL
+			PRINTFORMW 사토리는 %마스터의% 손길을 떠올리며 손을 움직였지만, 그럴수록 한참 부족한 느낌에 싫증나 버렸다
+			PRINTL
+			PRINTFORMW 결국 자리에 대자로 누워버린 사토리는 내일 %마스터와% 하면 괜찮아 지겠지, 라고 생각했다
+			PRINTL
+			PRINTFORMW ...문득 사토리는 자신이 무슨 생각을 해버렸는지 떠올리곤 놀랐다, 어째서 %마스터가% 아니면 안된다고 생각한거지?
+			PRINTFORMW 스스로 몸뿐인 관계일뿐이라 선 그은건 어디로갔는가? 혼란에 빠진 사토리는 결국 깨달았다
+			PRINTL
+			PRINTFORMW 또 다시, 그에게 마음을 빼앗겨버렸다고
 		ENDIF
+		CFLAG:1500 = 0
+		CFLAG:3100 += 2
 		RETURN 1
 	ENDIF
 	;-------------------------------------------------
