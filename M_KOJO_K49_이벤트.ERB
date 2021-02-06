@@ -12261,12 +12261,110 @@ IF LOCAL
 		RETURN 1
 	ENDIF
 	;-------------------------------------------------
-	;同室時自慰
+	;同室時自慰 동거시 자위
 	;記入チェック（=0, 非表示、1, 表示）
-	LOCAL:1 = 0
+	LOCAL:1 = 1
 	;-------------------------------------------------
 	IF LOCAL:1 && ARG == 2
-		PRINTFORML  
+		IF MARK:반발각인 == 3
+			IF TALENT:연인
+				SELECTCASE RAND:3
+					CASE 0
+						PRINTFORMW 「...하아아...으응...읏...큿...」
+						PRINTFORMW 사토리는 시트를 입에 문 채 소리 죽여 스스로를 위로하고 있었다
+						PRINTFORMW 바로 옆에 있는 %마스터를% 딸감삼으면서, 들키지 않도록
+						PRINTFORMW 그 배덕감과 긴장감에 더욱 달아오른 사토리는 온 몸을 떨면서도 자위를 멈출수 없었다
+					CASE 1
+						PRINTFORMW 「으응...아..안되는데...%사마스터가% 깰텐데...읏...」
+						PRINTFORMW 「손이 안멈춰...흣...어째서어...」
+						PRINTFORMW 사토리는 입을 틀어막으며 최대한 조용히 자위하려 했지만
+						PRINTFORMW 도저히 감출수 없는 신음소리가 조금씩 새어나와 잠든 %마스터의% 귀를 간지럽혔다...
+					CASE 2
+						PRINTFORMW 「하으으...소리내면 안되는데...읏...」
+						PRINTFORMW 「그치만 %사마스터의% 손...내꺼보다 기분 좋은걸...흐읏...」
+						PRINTFORMW 「기왕이면 깨있을때 만져주면 좋지만...요즘 서먹해서...응...거기거기...으응...」
+						PRINTFORMW 사토리는 잠든 %마스터의% 손을 가랑이에 집어넣고 그 손으로 스스로를 위로하며 밤을 보냈다...
+						CFLAG:5000 ++
+				ENDSELECT
+			ELSE
+				SELECTCASE RAND:3
+					CASE 0
+						PRINTFORMW 「하아아...응...으읏...」
+						PRINTFORMW 「아아...조용히 안하면, 깰텐데...그래도 손이 안 멈춰...」
+						PRINTFORMW 「...상관없나아...어짜피 조금 밤잠 설친다고, 큰일 나는것도 아니고...♥」
+					CASE 1
+						PRINTFORMW 「흣..♥ 응...♥ 으응...♥」
+						PRINTFORMW 「손이 안 멈춰... 이제 슬슬 그만해야 하는데...♥」
+					CASE 2
+						PRINTFORMW 「...아아..이렇게 자위하다 깨면 무슨 망신이야...」
+						PRINTFORMW 「그치만...그치만 손이 멋대로...으으...♥」
+				ENDSELECT
+				SELECTCASE RAND:3
+					CASE 0
+						PRINTFORMW 사토리는 시트를 입에 문 채로 %CALLNAME:MASTER% 몰래 스스로를 위로하며 밤을 보냈다...
+					CASE 1
+						PRINTFORMW 사토리는 베개에 얼굴을 파묻은 채로 최대한 조용히 스스로의 몸을 위로하고 있었다
+						PRINTFORMW 그러나 베개 틈새 사이로 새어나오는 신음소리가 %마스터의% 귀를 간지럽히고 있다는건 눈치채지 못한 모양이다
+					CASE 2
+						PRINTFORMW 사토리는 입을 틀어막은채 몰래몰래 %마스터의% 옆에서 자위를 해나갔다...
+				ENDSELECT
+			ENDIF
+		ELSEIF TALENT:연인
+			SELECTCASE RAND:3
+					CASE 0
+						PRINTFORMW 「...하아아...♥ 으응...읏...큿...♥」
+						PRINTFORMW 사토리는 시트를 입에 문 채 소리 죽여 스스로를 위로하고 있었다
+						PRINTFORMW 눈 앞에 있는 %마스터를% 딸감삼아서, 깨우지 않도록 조용히
+						PRINTFORMW 「흣...♥ 으응...♥ 기왕이면, %사마스터가% 직접 해줬으면 하는데...」
+						PRINTFORMW 「...일어나주질 않으니까, 어쩔수 없네...아흣...♥」
+						PRINTFORMW 사토리는 %마스터의% 몸에 숨결이 닿을 정도로 달라붙은채 외로운 자위로 밤을 지새웠다...
+					CASE 1
+						PRINTFORMW 「으응...♥ 아..안되는데...%사마스터가% 깰텐데...♥ 읏...」
+						PRINTFORMW 「손이 안멈춰...♥ 흣...깨우면 안되는데에...♥」
+						PRINTFORMW 사토리는 입을 틀어막으며 최대한 조용히 자위하려 했지만
+						PRINTFORMW 도저히 감출수 없는 신음소리가 조금씩 새어나와 잠든 %마스터의% 귀를 간지럽혔다...
+					CASE 2
+						PRINTFORMW 「하으으...소리내면 안되는데...흐읏...」
+						PRINTFORMW 「그치만 %사마스터의% 손...내꺼보다 기분 좋은걸...♥ 앗...으응...♥」
+						PRINTFORMW 「기왕이면 깨있을때 만져주면 좋지만...깰것 같지도 않구...응...♥ 거기거기...아...♥」
+						PRINTFORMW 사토리는 잠든 %마스터의% 손을 가랑이에 집어넣고 그 손으로 스스로를 위로하며 밤을 보냈다...
+						CFLAG:5000 ++
+				ENDSELECT
+		ELSEIF TALENT:연모||TALENT:사모||TALENT:애욕
+			SELECTCASE RAND:2
+				CASE 0
+					PRINTFORMW 「아아...안되는데...읏...%사마스터가% 깰텐데...♥」
+					PRINTFORMW 「안되에...깨지마, 깨면 안돼에...♥조금만, 조금만 더 하면 되니, 깟...♥」
+					PRINTFORMW 사토리는 %마스터의% 귀에 깨지말라고 속삭이며 절정에 이르렀다
+					PRINTFORMW 잠든 %마스터의% 귀로 새된 교성이 흘러들어갔을거란 생각의 사토리는 얼굴을 붉혔다...
+				CASE 1
+					PRINTFORMW 「응...♥ 기분 좋아...♥ 그...그치만...이러다 %사마스터가% 깨면...」
+					PRINTFORMW 사토리는 걱정을 하면서도 그 배덕감에 흥분한건지 더더욱 손놀림이 빨라졌다
+					PRINTFORMW 주체도 못하고 계속 손을 놀리던 사토리는 결국 자기도 모르게 큰 신음을 내버리고 말았다
+					PRINTFORMW 놀란 사토리는 %마스터가% 깨진 않았나 노심초사하면서도 조금씩 자기 가랑이를 더듬거리고 있었다...
+			ENDSELECT
+		ELSEIF TALENT:섹프
+			SELECTCASE RAND:2
+				CASE 0
+					PRINTFORMW 「으으응...♥ 기분 좋아라...♥」
+					PRINTFORMW 「역시 이게 스트레스 풀기엔 딱 좋다니까...아..♥」
+					PRINTFORMW 사토리는 %마스터가% 없는것처럼 소리를 죽일 생각도 없이 자위를 하며 밤을 보냈다...
+				CASE 1
+					PRINTFORMW 「...아아...♥ 역시, 자기 전에 한번 하고 자야 마음이 편하다니까...♥」
+					PRINTFORMW 「그치만 좀 더 기분 좋은걸 해줄 사람이 자고 있으니 조금 아쉽지만...」
+					PRINTFORMW 사토리는 %마스터를% 흘끔흘끔 바라보며 스스로의 몸을 더듬었다...
+			ENDSELECT
+		ELSE
+			IF CFLAG:3000 == 0
+				PRINTFORMW 「하아...슬슬 자야하는데...」
+				PRINTFORMW 「계속, 이렇게 부스럭거리면 민폐고...으응...그치만...」
+				PRINTFORMW 「손이 안 멈춰...♥」
+			ELSE
+				PRINTFORMW 「슬슬 자야하는데...」
+				PRINTFORMW 「계속 부시럭대다 깨면 민망하고...응...그래도...」
+				PRINTFORMW 「손이 안 멈추는걸...♥ 그, 그러니까 이건 하고 싶어서 하는게 아냐아...」
+			ENDIF
+		ENDIF
 		RETURN 1
 	ENDIF
 	;-------------------------------------------------
