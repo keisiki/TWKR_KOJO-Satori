@@ -12611,7 +12611,7 @@ IF LOCAL
 ENDIF
 RETURN 1
 ;==================================================
-;浴場連れだし
+;浴場連れだし 목욕탕에 데려간다
 ;==================================================
 @M_KOJO_EVENT_K49_23(ARG,ARG:1)
 ;口上主はLOCAL
@@ -12623,11 +12623,181 @@ IF LOCAL
 	;-------------------------------------------------
 	;小分岐
 	;-------------------------------------------------
-	;断られた
+	;断られた 거절한다
 	;記入チェック（=0, 非表示、1, 表示）
-	LOCAL:1 = 0
+	LOCAL:1 = 1
 	;-------------------------------------------------
 	IF LOCAL:1 && ARG == 1
+		IF MARK:반발각인 == 3
+			IF TALENT:연인
+				SELECTCASE RAND:3
+					CASE 0
+						IF TALENT:MASTER:연령 < 0
+							PRINTFORMW 「...하아...저기, 오늘은 혼자서 씻는게 어떤가요?」
+							PRINTFORMW 「아무리 그래도 언제까지나 씻겨줄수도 없는 노릇이고...슬슬 혼자서도 잘 해낼수 있을거 같다고 생각하는데」
+							PRINTFORMW 「...그렇게 부탁해도 안 들어갈거니까 오늘은 혼자 들어가세요」
+							PRINTFORMW 사토리는 매몰차게 거절했다...
+						ELSE
+							PRINTFORMW 「...애도 아니고 참...목욕정도는 혼자서 하세요」
+							PRINTFORMW 「...같이 하자니, 무슨...」
+							PRINTFORMW 사토리는 쌀쌀맞게 거절했다...
+						ENDIF
+					CASE 1
+						PRINTFORMW 「...그정도는 혼자서도 할 수 있을텐데요...」
+						PRINTFORMW 「먼저 들어가세요, 저는 나중에 들어갈테니...」
+						PRINTFORMW 「...그렇게 바라봐도 안된다니깐요?」
+					CASE 2
+						PRINTFORMW 「같이 들어가고 싶진 않은데요...」
+						PRINTFORMW 「오늘은 혼자 들어가면 안될까요? 같이 들어가는건, 다음 기회에도 할 수 있으니까」
+						PRINTFORMW 「...오늘만 참아주세요...」
+				ENDSELECT
+			ELSE
+				IF CFLAG:3000 == 0
+					SELECTCASE RAND:3
+						CASE 0
+							IF TALENT:MASTER:연령 < 0
+								PRINTFORMW 「...혼자서 들어가는게 어떤가요?」
+								PRINTFORMW 「언제까지나 남에게 의지하기만 하면 안되니까」
+								PRINTFORMW 「슬슬 목욕정도는 혼자서 하세요」
+								PRINTFORMW 사토리는 냉담하게 말해왔다...
+							ELSE
+								PRINTFORMW 「어린애도 아니고, 그정도도 못하나요?」
+								PRINTFORMW 「목욕정도는 혼자서 할 수 있잖아요?」
+								PRINTFORMW 사토리는 매몰차게 거절했다...
+							ENDIF
+						CASE 1
+							PRINTFORMW 「...목욕정도는 혼자서 하세요」
+							PRINTFORMW 「...그렇게 바라봐도 말이죠, 원래 목욕은 혼자하는거예요」
+							PRINTFORMW 「누가 같이 들어가는게 오히려 별난 일이지」
+						CASE 2
+							PRINTFORMW 「...먼저 들어가세요」
+							PRINTFORMW 「같이 들어가는건 싫으니까」
+							PRINTFORMW 사토리는 차가운 표정으로 쏘아붙였다...
+					ENDSELECT
+				ELSE
+					SELECTCASE RAND:3
+						CASE 0
+							IF TALENT:MASTER:연령 < 0
+								PRINTFORMW 「...혼자서 들어가는게 어떤가요?」
+								PRINTFORMW 「언제까지나 남에게 의지하기만 하면 안되니까」
+								PRINTFORMW 「슬슬 목욕정도는 혼자서 하세요」
+								PRINTFORMW 사토리는 냉담하게 말해왔다...
+							ELSE
+								PRINTFORMW 「어린애도 아니고, 그정도도 못하나요?」
+								PRINTFORMW 「목욕정도는 혼자서 할 수 있잖아요?」
+								PRINTFORMW 사토리는 매몰차게 거절했다...
+							ENDIF
+						CASE 1
+							PRINTFORMW 「...목욕정도는 혼자서 하세요」
+							PRINTFORMW 「...그렇게 바라봐도 말이죠, 원래 목욕은 혼자하는거예요」
+							PRINTFORMW 「누가 같이 들어가는게 오히려 별난 일이지」
+						CASE 2
+							PRINTFORMW 「...먼저 들어가세요」
+							PRINTFORMW 「같이 들어가는건 싫으니까」
+							PRINTFORMW 사토리는 차가운 표정으로 쏘아붙였다...
+					ENDSELECT
+				ENDIF
+			ENDIF
+		ELSEIF TALENT:연인
+			SELECTCASE RAND:3
+				CASE 0
+					IF TALENT:MASTER:연령 < 0
+						PRINTFORMW 「으음, 아무리 그래도 슬슬 혼자서 목욕할줄도 알아야 하지 않을까요...」
+						PRINTFORMW 「늘 같이 들어갈수는 없으니까...」
+						PRINTFORMW 「그러니까 오늘은 혼자서 들어가주면...안될까요?」
+					ELSE
+						PRINTFORMW 「으으음...아무리 그래도 같이 씻는건 조금 부끄러운데요...」
+						PRINTFORMW 「그, 역시 무리니까 그냥 혼자 들어가 주세요...」
+						PRINTFORMW 사토리는 얼굴을 붉히며 고개를 돌렸다...
+					ENDIF
+				CASE 1
+					PRINTFORMW 「아으으...가..같이라니...그건 좀...」
+					PRINTFORMW 「아무리 그래도 부끄럽고, 으으음...」
+					PRINTFORMW 「역시 안돼요, 그냥 혼자 들어가주세요...」
+					PRINTFORMW 사토리는 얼굴이 새빨게진채로 고개를 숙였다...
+				CASE 2
+					PRINTFORMW 「...아무리 우리사이라 해도 그렇지, 같이 씻는건...」
+					PRINTFORMW 「역시 무리에요, 으으...아직 부끄럽다고요?」
+					PRINTFORMW 「다음번엔 같이 들어가 드릴테니까...어떻게 안될까요?」
+			ENDSELECT
+		ELSEIF TALENT:연모||TALENT:사모||TALENT:애욕
+			SELECTCASE RAND:3
+				CASE 0
+					IF TALENT:MASTER:연령 < 0
+						PRINTFORMW 「음...그러면 같이...으으응...역시 안돼」
+						PRINTFORMW 「아무리 우리끼리라도 조금 부끄러우니까...」
+						PRINTFORMW 「다..다음번엔 꼭 같이 들어가 드릴테니까...오늘은 그냥 혼자 들어가 주세요」
+					ELSE
+						PRINTFORMW 「으음...그...아무리 우리 사이가 그렇긴 해도...」
+						PRINTFORMW 「...역시 무리에요, 같이 들어가는건 좀 부끄러워...」
+						PRINTFORMW 「...미안하지만 그냥 혼자 들어가 주세요...」
+						PRINTFORMW 사토리는 얼굴을 붉혔다...
+					ENDIF
+				CASE 1
+					PRINTFORMW 「같이 들어가자니...으으...」
+					PRINTFORMW 「아직은 무리에요 그런거, 아무리 %사마스터가% 부탁한거라 해도...」
+					PRINTFORMW 사토리는 새빨게진 얼굴을 손바닥으로 가렸다...
+				CASE 2
+					PRINTFORMW 「...꼭 같이 들어가야 하나요?」
+					PRINTFORMW 「아무리 그래도 부끄럽다고요? 알몸인것도 부끄러운데...좁은 욕조에서 같이라니...」
+					PRINTFORMW 「...그렇게 부탁해도 안되는건 안되는거예요...」
+			ENDSELECT
+		ELSEIF TALENT:섹프
+			SELECTCASE RAND:3
+				CASE 0
+					IF TALENT:MASTER:연령 < 0
+						PRINTFORMW 「어라라, 같이 들어가자고요?」
+						PRINTFORMW 「응큼해라...그치만 같이 들어갈 마음은 없어요」
+						PRINTFORMW 「같이 들어가면 못참고 해버릴테니까...후후...」
+						PRINTFORMW 사토리는 음흉한 미소를 보내왔다...
+					ELSE
+						PRINTFORMW 「같이 들어가자니...참...」
+						PRINTFORMW 「그다지 그러고 싶진 않네요, 아무리 한 침대에 누웠던 사이라 해도 말이죠...」
+						PRINTFORMW 「그거랑 서로 알몸으로 탕에 진득히 있는거랑은 느낌이 다르잖아요?」
+					ENDIF
+				CASE 1
+					PRINTFORMW 「...먼저 들어가세요, 저는 나중에 들어갈테니」
+					PRINTFORMW 「...같이? 그건 싫은걸요」
+					PRINTFORMW 「혼자서 느긋하게 있다 나가고 싶으니까...같이 들어가는건 그닥」
+					PRINTFORMW 사토리는 쌀쌀맞게 거절해왔다...
+				CASE 2
+					PRINTFORMW 「같이라니, 그건 조금 그런데...」
+					PRINTFORMW 「%MASTERNAME:49%도 둘이 들어가는거 보단 혼자서 느긋히 있는게 낫지 않나요?」
+					PRINTFORMW 「저도 오늘은 그냥 혼자 씻고 싶은데 말이죠」
+			ENDSELECT
+		ELSE
+			IF CFLAG:3000 == 0
+				SELECTCASE RAND:2
+					CASE 0
+						IF TALENT:MASTER:연령 < 0
+							PRINTFORMW 「...혼자 씻는건 무서운거예요? 아니면 다른거예요?」
+							PRINTFORMW 「어느쪽이든 저는 그다지 들어가고 싶지 않으니까, 다른 사람한테 부탁하는건 어떨지...」
+							PRINTFORMW 사토리는 나지막히 타일러왔다
+						ELSE
+							PRINTFORMW 「혼자서 씻을수도 있잖아요?」
+							PRINTFORMW 「굳이 제가 들어가야 하는 이유가 있는거예요...?」
+						ENDIF
+					CASE 1
+						PRINTFORMW 「저기, 씻는거 정도는 혼자서도 할 수 있지 않나요...?」
+						PRINTFORMW 「...굳이 제가 씻겨드려야하나요...?」
+				ENDSELECT
+			ELSE
+				SELECTCASE RAND:2
+					CASE 0
+						IF TALENT:MASTER:연령 < 0
+							PRINTFORMW 「...혼자서 씻는거 조차 못하나요?」
+							PRINTFORMW 「하아... 아무리 어린 아이라고 해도 말이죠, 마냥 어리광만 받아줄순 없는 법이에요」
+							PRINTFORMW 사토리는 나지막히 타일러왔다
+						ELSE
+							PRINTFORMW 「...씻는것도 혼자서 못하는건 아니겠죠?」
+							PRINTFORMW 「굳이 제가 들어가야 하는 이유가 있는것도 아니고, 왜 제가 들어가야 하죠...?」
+						ENDIF
+					CASE 1
+						PRINTFORMW 「저기, 혼자서 들어갈수도 있잖아요...?」
+						PRINTFORMW 「...꼭 제가 들어가야하는것도 아니고...굳이 혼자들어가는게 싫으면 다른 아이라도...」
+				ENDSELECT
+			ENDIF
+		ENDIF
 		RETURN 1
 	ENDIF
 	;-------------------------------------------------
