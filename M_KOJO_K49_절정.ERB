@@ -1,0 +1,866 @@
+﻿;-------------------------------------------------
+;奴隷の絶頂時の구上
+;NOWEX:0～4 CVABM絶頂
+;NOWEX:6 이중절정
+;NOWEX:7 삼중절정
+;NOWEX:8 사중절정
+;NOWEX:9 오중절정
+;NOWEX:10 분유
+;NOWEX:11 사정
+;NOWEX:12 방뇨
+;適当に組み合わせて使ってください
+;-------------------------------------------------
+@M_KOJO_MESSAGE_PALAMCNG_B_K49
+CALL PALAM_MESSAGE_B
+;-------------------------------------------------
+;분유
+;記入チェック（=0, 非表示、1, 表示）
+LOCAL = 0
+;-------------------------------------------------
+IF LOCAL && NOWEX:분유
+	PRINTFORMW 
+ENDIF
+;-------------------------------------------------
+;사정
+;記入チェック（=0, 非表示、1, 表示）
+LOCAL = 0
+;-------------------------------------------------
+IF LOCAL && NOWEX:사정
+	PRINTFORMW 
+ENDIF
+;-------------------------------------------------
+;방뇨
+;記入チェック（=0, 非表示、1, 表示）
+LOCAL = 0
+;-------------------------------------------------
+IF LOCAL && NOWEX:방뇨
+	PRINTFORMW 
+ENDIF
+;-------------------------------------------------
+;絶頂
+;記入チェック（=0, 非表示、1, 表示）
+LOCAL = 0
+;-------------------------------------------------
+IF LOCAL
+	;-------------------------------------------------
+	;오중절정
+	;記入チェック（=0, 非表示、1, 表示）
+	LOCAL:1 = 0
+	;-------------------------------------------------
+	IF NOWEX:오중절정
+		PRINTFORMW 
+		RETURN 1
+	ENDIF
+	;-------------------------------------------------
+	;사중절정
+	;記入チェック（=0, 非表示、1, 表示）
+	LOCAL:1 = 0
+	;-------------------------------------------------
+	IF NOWEX:사중절정
+		;部位を손가락定せず簡易的に書く場合、[SKIPSTART]&[SKIPEND]のコメントアウトを外して、[SKIPSTART]とこのコメントの間に書いてください
+		;[SKIPSTART]
+		SELECTCASE NOWEX:사중절정
+			;Ｃ＆V＆A＆B절정
+			CASE 1
+				PRINTFORMW 
+				RETURN 1
+			;Ｃ＆V＆A＆M절정
+			CASE 2
+				PRINTFORMW 
+				RETURN 1
+			;Ｃ＆V＆B＆M절정
+			CASE 3
+				PRINTFORMW 
+				RETURN 1
+			;Ｃ＆A＆B＆M절정
+			CASE 4
+				PRINTFORMW 
+				RETURN 1
+			;V＆A＆B＆M절정
+			CASE 5
+				PRINTFORMW 
+				RETURN 1
+		ENDSELECT
+		;[SKIPEND]
+	ENDIF
+	;-------------------------------------------------
+	;삼중절정
+	;記入チェック（=0, 非表示、1, 表示）
+	LOCAL:1 = 0
+	;-------------------------------------------------
+	IF NOWEX:삼중절정
+		;部位を손가락定せず簡易的に書く場合、[SKIPSTART]&[SKIPEND]のコメントアウトを外して、[SKIPSTART]とこのコメントの間に書いてください
+		;[SKIPSTART]
+		SELECTCASE NOWEX:삼중절정
+			;Ｃ＆V＆A절정
+			CASE 1
+				PRINTFORMW 
+				RETURN 1
+			;B＆V＆A절정
+			CASE 2
+				PRINTFORMW 
+				RETURN 1
+			;Ｃ＆B＆A절정
+			CASE 3
+				PRINTFORMW 
+				RETURN 1
+			;Ｃ＆V＆B절정
+			CASE 4
+				PRINTFORMW 
+				RETURN 1
+			;Ｃ＆V＆M절정
+			CASE 5
+				PRINTFORMW 
+				RETURN 1
+			;B＆V＆M절정
+			CASE 6
+				PRINTFORMW 
+				RETURN 1
+			;A＆V＆M절정
+			CASE 7
+				PRINTFORMW 
+				RETURN 1
+			;Ｃ＆B＆M절정
+			CASE 8
+				PRINTFORMW 
+				RETURN 1
+			;A＆B＆M절정
+			CASE 9
+				PRINTFORMW 
+				RETURN 1
+			;Ｃ＆A＆M절정
+			CASE 10
+				PRINTFORMW 
+				RETURN 1
+		ENDSELECT
+		;[SKIPEND]
+	ENDIF
+	;-------------------------------------------------
+	;이중절정
+	;記入チェック（=0, 非表示、1, 表示）
+	LOCAL:1 = 0
+	;-------------------------------------------------
+	IF NOWEX:이중절정
+		;部位を손가락定せず簡易的に書く場合、[SKIPSTART]&[SKIPEND]のコメントアウトを外して、[SKIPSTART]とこのコメントの間に書いてください
+		;[SKIPSTART]
+		SELECTCASE NOWEX:이중절정
+			;Ｃ＆V절정
+			CASE 1
+				PRINTFORMW 
+				RETURN 1
+			;Ｃ＆A절정
+			CASE 2
+				PRINTFORMW 
+				RETURN 1
+			;V＆A절정
+			CASE 3
+				PRINTFORMW 
+				RETURN 1
+			;Ｃ＆B절정
+			CASE 4
+				PRINTFORMW 
+				RETURN 1
+			;V＆B절정
+			CASE 5
+				PRINTFORMW 
+				RETURN 1
+			;A＆B절정
+			CASE 6
+				PRINTFORMW 
+				RETURN 1
+			;A＆M절정
+			CASE 7
+				PRINTFORMW 
+				RETURN 1
+			;V＆M절정
+			CASE 8
+				PRINTFORMW 
+				RETURN 1
+			;Ｃ＆M절정
+			CASE 9
+				PRINTFORMW 
+				RETURN 1
+			;B＆M절정
+			CASE 10
+				PRINTFORMW 
+				RETURN 1
+		ENDSELECT
+		;[SKIPEND]
+	ENDIF
+	IF NOWEX:C절정
+		;超強絶頂Ｃ
+		IF NOWEX:C절정 == 3
+			PRINTFORMW 
+		;強絶頂Ｃ
+		ELSEIF NOWEX:C절정 == 2
+			PRINTFORMW 
+		;絶頂Ｃ
+		ELSE
+			PRINTFORMW 
+		ENDIF
+	ENDIF
+	IF NOWEX:V절정
+		;超強絶頂V
+		IF NOWEX:V절정 == 3
+			PRINTFORMW 
+		;強絶頂V
+		ELSEIF NOWEX:V절정 == 2
+			PRINTFORMW 
+		;絶頂V
+		ELSE
+			PRINTFORMW 
+		ENDIF
+	ENDIF
+	IF NOWEX:A절정
+		;超強絶頂A
+		IF NOWEX:A절정 == 3
+			PRINTFORMW 
+		;強絶頂A
+		ELSEIF NOWEX:A절정 == 2
+			PRINTFORMW 
+		;絶頂A
+		ELSE
+			PRINTFORMW 
+		ENDIF
+	ENDIF
+	IF NOWEX:B절정
+		;強絶頂B
+		IF NOWEX:B절정 == 3
+			PRINTFORMW 
+		;強絶頂B
+		ELSEIF NOWEX:B절정 == 2
+			PRINTFORMW 
+		;絶頂B
+		ELSE
+			PRINTFORMW 
+		ENDIF
+	ENDIF
+	IF NOWEX:M절정
+		;超強絶頂Ｍ
+		IF NOWEX:M절정 == 3
+			PRINTFORMW 
+		;強絶頂Ｍ
+		ELSEIF NOWEX:M절정 == 2
+			PRINTFORMW 
+		;絶頂Ｍ
+		ELSE
+			PRINTFORMW 
+		ENDIF
+	ENDIF
+ENDIF
+;-------------------------------------------------
+;奴隷の수면絶頂時の구上
+;-------------------------------------------------
+@M_KOJO_MESSAGE_PALAMCNG_B2_K49
+CALL PALAM_MESSAGE_B
+;-------------------------------------------------
+;분유
+;記入チェック（=0, 非表示、1, 表示）
+LOCAL = 0
+;-------------------------------------------------
+IF LOCAL && NOWEX:분유
+	PRINTFORMW 
+ENDIF
+;-------------------------------------------------
+;사정
+;記入チェック（=0, 非表示、1, 表示）
+LOCAL = 0
+;-------------------------------------------------
+IF LOCAL && NOWEX:사정
+	PRINTFORMW 
+ENDIF
+;-------------------------------------------------
+;방뇨
+;記入チェック（=0, 非表示、1, 表示）
+LOCAL = 0
+;-------------------------------------------------
+IF LOCAL && NOWEX:방뇨
+	PRINTFORMW 
+ENDIF
+;-------------------------------------------------
+;絶頂
+;記入チェック（=0, 非表示、1, 表示）
+LOCAL = 0
+;-------------------------------------------------
+IF LOCAL
+	;-------------------------------------------------
+	;오중절정
+	;記入チェック（=0, 非表示、1, 表示）
+	LOCAL:1 = 0
+	;-------------------------------------------------
+	IF NOWEX:오중절정
+		PRINTFORMW 
+		RETURN 1
+	ENDIF
+	;-------------------------------------------------
+	;사중절정
+	;記入チェック（=0, 非表示、1, 表示）
+	LOCAL:1 = 0
+	;-------------------------------------------------
+	IF NOWEX:사중절정
+		;部位を손가락定せず簡易的に書く場合、[SKIPSTART]&[SKIPEND]のコメントアウトを外して、[SKIPSTART]とこのコメントの間に書いてください
+		;[SKIPSTART]
+		SELECTCASE NOWEX:사중절정
+			;Ｃ＆V＆A＆B절정
+			CASE 1
+				PRINTFORMW 
+				RETURN 1
+			;Ｃ＆V＆A＆M절정
+			CASE 2
+				PRINTFORMW 
+				RETURN 1
+			;Ｃ＆V＆B＆M절정
+			CASE 3
+				PRINTFORMW 
+				RETURN 1
+			;Ｃ＆A＆B＆M절정
+			CASE 4
+				PRINTFORMW 
+				RETURN 1
+			;V＆A＆B＆M절정
+			CASE 5
+				PRINTFORMW 
+				RETURN 1
+		ENDSELECT
+		;[SKIPEND]
+	ENDIF
+	;-------------------------------------------------
+	;삼중절정
+	;記入チェック（=0, 非表示、1, 表示）
+	LOCAL:1 = 0
+	;-------------------------------------------------
+	IF NOWEX:삼중절정
+		;部位を손가락定せず簡易的に書く場合、[SKIPSTART]&[SKIPEND]のコメントアウトを外して、[SKIPSTART]とこのコメントの間に書いてください
+		;[SKIPSTART]
+		SELECTCASE NOWEX:삼중절정
+			;Ｃ＆V＆A절정
+			CASE 1
+				PRINTFORMW 
+				RETURN 1
+			;B＆V＆A절정
+			CASE 2
+				PRINTFORMW 
+				RETURN 1
+			;Ｃ＆B＆A절정
+			CASE 3
+				PRINTFORMW 
+				RETURN 1
+			;Ｃ＆V＆B절정
+			CASE 4
+				PRINTFORMW 
+				RETURN 1
+			;Ｃ＆V＆M절정
+			CASE 5
+				PRINTFORMW 
+				RETURN 1
+			;B＆V＆M절정
+			CASE 6
+				PRINTFORMW 
+				RETURN 1
+			;A＆V＆M절정
+			CASE 7
+				PRINTFORMW 
+				RETURN 1
+			;Ｃ＆B＆M절정
+			CASE 8
+				PRINTFORMW 
+				RETURN 1
+			;A＆B＆M절정
+			CASE 9
+				PRINTFORMW 
+				RETURN 1
+			;Ｃ＆A＆M절정
+			CASE 10
+				PRINTFORMW 
+				RETURN 1
+		ENDSELECT
+		;[SKIPEND]
+	ENDIF
+	;-------------------------------------------------
+	;이중절정
+	;記入チェック（=0, 非表示、1, 表示）
+	LOCAL:1 = 0
+	;-------------------------------------------------
+	IF NOWEX:이중절정
+		;部位を손가락定せず簡易的に書く場合、[SKIPSTART]&[SKIPEND]のコメントアウトを外して、[SKIPSTART]とこのコメントの間に書いてください
+		;[SKIPSTART]
+		SELECTCASE NOWEX:이중절정
+			;Ｃ＆V절정
+			CASE 1
+				PRINTFORMW 
+				RETURN 1
+			;Ｃ＆A절정
+			CASE 2
+				PRINTFORMW 
+				RETURN 1
+			;V＆A절정
+			CASE 3
+				PRINTFORMW 
+				RETURN 1
+			;Ｃ＆B절정
+			CASE 4
+				PRINTFORMW 
+				RETURN 1
+			;V＆B절정
+			CASE 5
+				PRINTFORMW 
+				RETURN 1
+			;A＆B절정
+			CASE 6
+				PRINTFORMW 
+				RETURN 1
+			;A＆M절정
+			CASE 7
+				PRINTFORMW 
+				RETURN 1
+			;V＆M절정
+			CASE 8
+				PRINTFORMW 
+				RETURN 1
+			;Ｃ＆M절정
+			CASE 9
+				PRINTFORMW 
+				RETURN 1
+			;B＆M절정
+			CASE 10
+				PRINTFORMW 
+				RETURN 1
+		ENDSELECT
+		;[SKIPEND]
+	ENDIF
+	IF NOWEX:C절정
+		;超強絶頂Ｃ
+		IF NOWEX:C절정 == 3
+			PRINTFORMW 
+		;強絶頂Ｃ
+		ELSEIF NOWEX:C절정 == 2
+			PRINTFORMW 
+		;絶頂Ｃ
+		ELSE
+			PRINTFORMW 
+		ENDIF
+	ENDIF
+	IF NOWEX:V절정
+		;超強絶頂V
+		IF NOWEX:V절정 == 3
+			PRINTFORMW 
+		;強絶頂V
+		ELSEIF NOWEX:V절정 == 2
+			PRINTFORMW 
+		;絶頂V
+		ELSE
+			PRINTFORMW 
+		ENDIF
+	ENDIF
+	IF NOWEX:A절정
+		;超強絶頂A
+		IF NOWEX:A절정 == 3
+			PRINTFORMW 
+		;強絶頂A
+		ELSEIF NOWEX:A절정 == 2
+			PRINTFORMW 
+		;絶頂A
+		ELSE
+			PRINTFORMW 
+		ENDIF
+	ENDIF
+	IF NOWEX:B절정
+		;強絶頂B
+		IF NOWEX:B절정 == 3
+			PRINTFORMW 
+		;強絶頂B
+		ELSEIF NOWEX:B절정 == 2
+			PRINTFORMW 
+		;絶頂B
+		ELSE
+			PRINTFORMW 
+		ENDIF
+	ENDIF
+	IF NOWEX:M절정
+		;超強絶頂Ｍ
+		IF NOWEX:M절정 == 3
+			PRINTFORMW 
+		;強絶頂Ｍ
+		ELSEIF NOWEX:M절정 == 2
+			PRINTFORMW 
+		;絶頂Ｍ
+		ELSE
+			PRINTFORMW 
+		ENDIF
+	ENDIF
+ENDIF
+
+
+;-------------------------------------------------
+;사정に関する구上の表示
+;一時的にTARGETを구上主に設定している
+;-------------------------------------------------
+
+@M_KOJO_MESSAGE_PALAMCNG_A_K49_00(ARG)
+CALL PALAM_MESSAGE_A
+;-------------------------------------------------
+;TARGETの손による사정で、사정対象が非TARGET
+;記入チェック（=0, 非表示、1, 表示）
+LOCAL = 0
+;-------------------------------------------------
+IF LOCAL
+	PRINTFORMW 
+	RETURN 1
+ENDIF
+RETURN 1
+
+@M_KOJO_MESSAGE_PALAMCNG_A_K49_0(ARG)
+CALL PALAM_MESSAGE_A
+;-------------------------------------------------
+;콘돔
+;記入チェック（=0, 非表示、1, 表示）
+LOCAL = 0
+;-------------------------------------------------
+IF LOCAL
+	PRINTFORMW 
+	RETURN 1
+ENDIF
+RETURN 1
+
+@M_KOJO_MESSAGE_PALAMCNG_A_K49_23(ARG)
+CALL PALAM_MESSAGE_A
+;-------------------------------------------------
+;이라마치오
+;記入チェック（=0, 非表示、1, 表示）
+LOCAL = 0
+;-------------------------------------------------
+IF LOCAL
+	PRINTFORMW 
+	RETURN 1
+ENDIF
+RETURN 1
+
+@M_KOJO_MESSAGE_PALAMCNG_A_K49_22(ARG)
+CALL PALAM_MESSAGE_A
+;-------------------------------------------------
+;식스나인
+;記入チェック（=0, 非表示、1, 表示）
+LOCAL = 0
+;-------------------------------------------------
+IF LOCAL
+	;同時사정
+	IF NOWEX:사정 && NOWEX:MASTER:사정
+		PRINTFORMW
+		RETURN 1
+	;TARGETだけ사정
+	ELSEIF NOWEX:사정
+		;PLAYERについてる
+		IF GETBIT(TALENT:PLAYER:성별,1)
+			PRINTFORMW
+			RETURN 1
+		;付いてない
+		ELSE
+			PRINTFORMW
+			RETURN 1
+		ENDIF
+	;PLAYERだけ사정
+	ELSE
+		;TARGETについてる
+		IF GETBIT(TALENT:성별,1)
+			PRINTFORMW
+			RETURN 1
+		;付いてない
+		ELSE
+			PRINTFORMW
+			RETURN 1
+		ENDIF
+	ENDIF
+ENDIF
+RETURN 1
+
+@M_KOJO_MESSAGE_PALAMCNG_A_K49_21(ARG)
+CALL PALAM_MESSAGE_A
+;-------------------------------------------------
+;파이즈리フェラ
+;記入チェック（=0, 非表示、1, 表示）
+LOCAL = 0
+;-------------------------------------------------
+IF LOCAL
+	PRINTFORMW 
+	RETURN 1
+ENDIF
+RETURN 1
+
+@M_KOJO_MESSAGE_PALAMCNG_A_K49_20(ARG)
+CALL PALAM_MESSAGE_A
+;-------------------------------------------------
+;수음フェラ
+;記入チェック（=0, 非表示、1, 表示）
+LOCAL = 0
+;-------------------------------------------------
+IF LOCAL
+	PRINTFORMW 
+	RETURN 1
+ENDIF
+RETURN 1
+
+@M_KOJO_MESSAGE_PALAMCNG_A_K49_9(ARG)
+CALL PALAM_MESSAGE_A
+;-------------------------------------------------
+;애널봉사
+;記入チェック（=0, 非表示、1, 表示）
+LOCAL = 0
+;-------------------------------------------------
+IF LOCAL
+	PRINTFORMW 
+	RETURN 1
+ENDIF
+RETURN 1
+
+@M_KOJO_MESSAGE_PALAMCNG_A_K49_8(ARG)
+CALL PALAM_MESSAGE_A
+;-------------------------------------------------
+;거품춤
+;記入チェック（=0, 非表示、1, 表示）
+LOCAL = 0
+;-------------------------------------------------
+IF LOCAL
+	;同時사정
+	IF NOWEX:사정 && NOWEX:MASTER:사정
+		PRINTFORMW
+		RETURN 1
+	;TARGETだけ사정
+	ELSEIF NOWEX:사정
+		;PLAYERについてる
+		IF GETBIT(TALENT:PLAYER:성별,1)
+			PRINTFORMW
+			RETURN 1
+		;付いてない
+		ELSE
+			PRINTFORMW
+			RETURN 1
+		ENDIF
+	;PLAYERだけ사정
+	ELSE
+		;TARGETについてる
+		IF GETBIT(TALENT:성별,1)
+			PRINTFORMW
+			RETURN 1
+		;付いてない
+		ELSE
+			PRINTFORMW
+			RETURN 1
+		ENDIF
+	ENDIF
+ENDIF
+RETURN 1
+
+@M_KOJO_MESSAGE_PALAMCNG_A_K49_7(ARG)
+CALL PALAM_MESSAGE_A
+;-------------------------------------------------
+;풋잡
+;記入チェック（=0, 非表示、1, 表示）
+LOCAL = 0
+;-------------------------------------------------
+IF LOCAL
+	PRINTFORMW 
+	RETURN 1
+ENDIF
+RETURN 1
+
+@M_KOJO_MESSAGE_PALAMCNG_A_K49_6(ARG)
+CALL PALAM_MESSAGE_A
+;-------------------------------------------------
+;스마타
+;記入チェック（=0, 非表示、1, 表示）
+LOCAL = 0
+;-------------------------------------------------
+IF LOCAL
+	PRINTFORMW 
+	RETURN 1
+ENDIF
+RETURN 1
+
+@M_KOJO_MESSAGE_PALAMCNG_A_K49_5(ARG)
+CALL PALAM_MESSAGE_A
+;-------------------------------------------------
+;파이즈리
+;記入チェック（=0, 非表示、1, 表示）
+LOCAL = 0
+;-------------------------------------------------
+IF LOCAL
+	PRINTFORMW 
+	RETURN 1
+ENDIF
+RETURN 1
+
+@M_KOJO_MESSAGE_PALAMCNG_A_K49_4(ARG)
+CALL PALAM_MESSAGE_A
+;-------------------------------------------------
+;펠라치오
+;記入チェック（=0, 非表示、1, 表示）
+LOCAL = 0
+;-------------------------------------------------
+IF LOCAL
+	PRINTFORMW 
+	RETURN 1
+ENDIF
+RETURN 1
+
+@M_KOJO_MESSAGE_PALAMCNG_A_K49_3(ARG)
+CALL PALAM_MESSAGE_A
+;-------------------------------------------------
+;수음
+;記入チェック（=0, 非表示、1, 表示）
+LOCAL = 0
+;-------------------------------------------------
+IF LOCAL
+	PRINTFORMW 
+	RETURN 1
+ENDIF
+RETURN 1
+
+@M_KOJO_MESSAGE_PALAMCNG_A_K49_2(ARG)
+CALL PALAM_MESSAGE_A
+;-------------------------------------------------
+;애널
+;記入チェック（=0, 非表示、1, 表示）
+LOCAL = 0
+;-------------------------------------------------
+IF LOCAL
+	PRINTFORMW 
+	RETURN 1
+ENDIF
+RETURN 1
+
+@M_KOJO_MESSAGE_PALAMCNG_A_K49_1(ARG)
+CALL PALAM_MESSAGE_A
+;-------------------------------------------------
+;질내
+;記入チェック（=0, 非表示、1, 表示）
+LOCAL = 0
+;-------------------------------------------------
+IF LOCAL
+	PRINTFORMW 
+	RETURN 1
+ENDIF
+RETURN 1
+
+;-------------------------------------------------
+;眠姦사정に関する구上の表示
+;一時的にTARGETを구上主に設定している
+;-------------------------------------------------
+
+@M_KOJO_MESSAGE_PALAMCNG_A2_K49_0(ARG)
+CALL PALAM_MESSAGE_A
+;-------------------------------------------------
+;콘돔
+;記入チェック（=0, 非表示、1, 表示）
+LOCAL = 0
+;-------------------------------------------------
+IF LOCAL
+	PRINTFORMW 
+	RETURN 1
+ENDIF
+RETURN 1
+
+@M_KOJO_MESSAGE_PALAMCNG_A2_K49_23(ARG)
+CALL PALAM_MESSAGE_A
+;-------------------------------------------------
+;이라마치오
+;記入チェック（=0, 非表示、1, 表示）
+LOCAL = 0
+;-------------------------------------------------
+IF LOCAL
+	PRINTFORMW 
+	RETURN 1
+ENDIF
+RETURN 1
+
+@M_KOJO_MESSAGE_PALAMCNG_A2_K49_7(ARG)
+CALL PALAM_MESSAGE_A
+;-------------------------------------------------
+;풋잡
+;記入チェック（=0, 非表示、1, 表示）
+LOCAL = 0
+;-------------------------------------------------
+IF LOCAL
+	PRINTFORMW 
+	RETURN 1
+ENDIF
+RETURN 1
+
+
+@M_KOJO_MESSAGE_PALAMCNG_A2_K49_5(ARG)
+CALL PALAM_MESSAGE_A
+;-------------------------------------------------
+;파이즈리
+;記入チェック（=0, 非表示、1, 表示）
+LOCAL = 0
+;-------------------------------------------------
+IF LOCAL
+	PRINTFORMW 
+	RETURN 1
+ENDIF
+RETURN 1
+
+@M_KOJO_MESSAGE_PALAMCNG_A2_K49_4(ARG)
+CALL PALAM_MESSAGE_A
+;-------------------------------------------------
+;펠라치오
+;記入チェック（=0, 非表示、1, 表示）
+LOCAL = 0
+;-------------------------------------------------
+IF LOCAL
+	PRINTFORMW 
+	RETURN 1
+ENDIF
+RETURN 1
+
+@M_KOJO_MESSAGE_PALAMCNG_A2_K49_3(ARG)
+CALL PALAM_MESSAGE_A
+;-------------------------------------------------
+;수음
+;記入チェック（=0, 非表示、1, 表示）
+LOCAL = 0
+;-------------------------------------------------
+IF LOCAL
+	PRINTFORMW 
+	RETURN 1
+ENDIF
+RETURN 1
+
+@M_KOJO_MESSAGE_PALAMCNG_A2_K49_2(ARG)
+CALL PALAM_MESSAGE_A
+;-------------------------------------------------
+;애널
+;記入チェック（=0, 非表示、1, 表示）
+LOCAL = 0
+;-------------------------------------------------
+IF LOCAL
+	PRINTFORMW 
+	RETURN 1
+ENDIF
+RETURN 1
+
+@M_KOJO_MESSAGE_PALAMCNG_A2_K49_1(ARG)
+CALL PALAM_MESSAGE_A
+;-------------------------------------------------
+;질내
+;記入チェック（=0, 非表示、1, 表示）
+LOCAL = 0
+;-------------------------------------------------
+IF LOCAL
+	PRINTFORMW 
+	RETURN 1
+ENDIF
+RETURN 1
+
+
+@M_KOJO_MESSAGE_PALAMCNG_F_K49(ARG)
+CALL PALAM_MESSAGE_F
+;-------------------------------------------------
+;焦らし
+;記入チェック（=0, 非表示、1, 表示）
+LOCAL = 0
+;-------------------------------------------------
+IF LOCAL
+	PRINTFORMW 
+	RETURN 1
+ENDIF
+RETURN 1
