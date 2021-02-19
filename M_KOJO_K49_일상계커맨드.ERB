@@ -758,6 +758,7 @@ RETURN 1
 ;==================================================
 ;412,공부
 ;ABL:교양(ABL:MASTER:교양より大=MASTERが教えてもらう ABL:MASTER:교양より小=TARGETが教えてもらう
+;CFLAG:1600 공부 커맨드 특수 출력 유무
 ;==================================================
 @M_KOJO_MESSAGE_COM_K49_412
 CALL TRAIN_MESSAGE
@@ -770,7 +771,95 @@ RETURN RESULT
 LOCAL = 0
 ;-------------------------------------------------
 IF LOCAL
-
+    IF ABL:MASTER:교양 < ABL:TARGET:교양
+        ;교양 0-2일때. 그러니까, 사토리한테 배울 때
+        IF MARK:반발각인
+            ;반발각인
+            ;안가르쳐주고 비웃기만 함. 학습경험 더 오르는건 빡쳐서 열심히 했다 칩시다.
+            PRINTFORML 사토리는 딴청을 부리고 있지만, 서드아이는 당신을 노려보고 있다.
+            PRINTFORML 「처량해라. 그런것도 모르는건가요?」
+            PRINTFORMW 싸늘한 비아냥이 신경을 긁는다...
+            PRINTL
+            PRINTFORML 사토리는 딴청을 부리고 있지만, 서드아이는 당신을 노려보고 있다.
+            PRINTFORML 「아아~ 오쿠가 더 똑똑하겠네~」
+            PRINTFORMW 사토리가 혼잣말인척 다 들리도록 말하고 있다...
+            PRINTL
+            PRINTFORML 사토리는 딴청을 부리고 있지만, 서드아이는 당신을 노려보고 있다.
+            PRINTFORML 「어차피 그럴듯한 말로 꼬실때나 써먹으려는거 아닌가요?」
+            PRINTFORMW 틀린말은 아니네라고 속으로 투덜거리자 특유의 비웃음을 보내고 있다...
+        ELSEIF TALENT:연인 || TALENT:연모 || TALENT:사모 ; || TALENT:애욕 || TALENT:섹프
+            ;함락 소질이 있을 때
+            PRINTFORML 사토리의 서툴지만 열정적인 지도를 경청했다.
+            PRINTFORML 그러다 사토리가 불쑥 손을 내민다.
+            PRINTFORML 「손!」
+            PRINTFORML 엉겁결에 내민 손을 마주 잡자 사토리도 당황한것 같다.
+            PRINTFORML 「그게, 그러니까...가만히 듣고 계시는게 저 아이들을 똑 닮아서 저도 모르게...」
+            PRINTFORMW 애완동물 말인가. 그런 플레이도 재밌을것 같다고 생각하자 사토리는 얼굴이 빨개져 붙잡은 손등을 찰싹찰싹 때렸다.
+        ELSEIF RAND:50 && !CFLAG:1600 ;2% 확률, 1번만
+            ;딱 한번?
+            PRINTFORML 「흐응... 그 부분은 그렇게 어렵게 생각할 부분이 아니에요.」
+            PRINTFORML 공부가 막히자 생각을 읽은 사토리가 설명을 해주었다.
+            PRINTFORML 모르겠어.
+            PRINTFORMW 「으음... 그러니까... 이렇게요. 이렇게! 되는거에요.」
+            PRINTL
+            PRINTFORML 「아아...답답해... 그냥 읽어버리면 쉬울텐데...」
+            PRINTFORML 무심결에 그렇게 대화 없이 살아서 설명을 못하는건 아닐까 생각했다.
+            PRINTFORML 세 개의 눈이 노려보고 있다.
+            PRINTFORMW 실수한것 같다...
+            CALL GET_ANGRY(TARGET) ;반발각인은 붙지 않지만 분노치 맥스
+        ELSE
+            ;일반
+            PRINTFORMW 사토리는 당신이 공부 중 막히거나 잘못 이해한 부분을 읽어 내 가르쳐 주었다.
+        ENDIF
+    ELSEIF GROUPMATCH(ABL:MASTER:교양, ABL:TARGET:교양,(ABL:TARGET:교양 + 1))
+        ;교양 3~4 그러니까 사토리와 대등하게 주고 받을 때.
+        IF MARK:반발각인
+            PRINTFORML 「뻔뻔하게...그럴듯한 말로 자기 변호가 하고 싶을 뿐이잖아.」
+            PRINTFORMW 논쟁을 시작한지 얼마 지나지도 않아 의도를 간파당했다...
+        ELSEIF TALENT:연인 || TALENT:연모 || TALENT:사모 ; || TALENT:애욕 || TALENT:섹프
+            ;함락 소질이 있을 때
+            PRINTFORML 잠깐 지루해져 농담을 건냈다.
+            PRINTFORML 「"사토리"니까 같이 공부를...? 뭐에요, 정말...」
+            PRINTFORMW 사토리는 당신의 시시한 말장난에 질색했지만, 그 입꼬리엔 미소가 걸려있다.
+        ELSE
+            PRINTFORML 「이 화두에 대해선 어떻게 생각해요? 아, 그럴지도.」
+            PRINTFORMW 질문을 하더니 생각을 읽어버리고 납득한 모양이다.
+            PRINTL
+            PRINTFORML 「커뮤니케이션에선 부호화와 해독이 각 주체마다 한 번씩, 두 번 일어나요.」
+            PRINTFORML 「생각을 말로 표현하고, 말을 이해하고, 이에 다시 생각을 말로, 말을 생각으로...」
+            PRINTFORML 「하지만 말은 생각의 불완전한 재현이에요. 여기서 오해가 생길 수 밖에 없어요.」
+            PRINTFORML 「음... 저는 마음을 읽을 수 있으니까, 그런 오해따윈 할 일이 없다는거에요!」
+            PRINTFORMW 특유의 미소를 띄고 이쪽을 바라보지만, 설명하려다 말이 막혀 급히 자기 자랑으로 마무리 지은것 같다...
+        ENDIF
+    ELSEIF ABL:MASTER:교양 > ABL:TARGET:교양 ;1 높은 경우는 위에서 이미 처리됨
+        ;교양 5 이상 그러니까 사토리를 가르칠 때.
+        IF MARK:반발각인
+            PRINTFORML 「그런 궤변을 납득할거라고 생각해요?」
+            PRINTFORML 그렇지만 논파도 못하지 않았나. 라고 생각하자 이를 악물고 이쪽을 노려본다.
+            PRINTFORMW 궤변으로 괴롭힘을 당해 사토리로서 자존심에 상처를 받은것 같다.
+        ELSE
+            PRINTFORML 「에? 그게 어떻게 그렇게 되는거죠?」
+            PRINTFORMW 생각을 읽어도 부족한지 구체적인 설명을 요구해왔다.
+            IF RAND:5 ;20% 확률
+                ;이어서 가끔
+                PRINTFORML 「흐응...」
+                PRINTFORMW 마음을 읽음에도 한번에 이해하지 못해 자존심이 상하는 모양이다.
+                PRINTL
+                PRINTFORML 「사토리 요괴를 가르치는건...」
+                PRINTFORML 「여러 사람한테 폐 끼치는거라구요?」
+                PRINTFORML 맞는 말이다. 독심술과 궤변으로 남을 괴롭히는게 사토리 요괴의 본질이니까.
+                PRINTFORML 「알고도 그러는건가요? 후후...분명 죽으면 지옥으로 떨어질거에요?」
+                PRINTFORMW 지옥의 관계자가 하는 말이라 농담으로 들리질 않는다...
+                IF TALENT:연인
+                    PRINTFORML 「음...재미 없었나요...」
+                    PRINTFORML 사토리는 풀이 죽어 고개를 숙인채 당신에게 들리지 않을 정도로 중얼거렸다.
+                    PRINTFORMW 「지옥에 떨어지시면... 그럼...」
+                ELSE
+                    PRINTFORMW 사토리는 짖궂은 농담에 당신이 쩔쩔매는 게 즐거운지 기묘한 미소를 띄고 있다.
+                ENDIF
+            ENDIF
+        ENDIF
+    ENDIF
 ENDIF
 RETURN 1
 ;==================================================
