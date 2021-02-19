@@ -768,98 +768,531 @@ RETURN RESULT
 @M_KOJO_MESSAGE_COM_K49_412_1
 ;-------------------------------------------------
 ;記入チェック（=0, 非表示、1, 表示）
-LOCAL = 0
+LOCAL = 1
 ;-------------------------------------------------
 IF LOCAL
-    IF ABL:MASTER:교양 < ABL:TARGET:교양
-        ;교양 0-2일때. 그러니까, 사토리한테 배울 때
-        IF MARK:반발각인
-            ;반발각인
-            ;안가르쳐주고 비웃기만 함. 학습경험 더 오르는건 빡쳐서 열심히 했다 칩시다.
-            PRINTFORML 사토리는 딴청을 부리고 있지만, 서드아이는 당신을 노려보고 있다.
-            PRINTFORML 「처량해라. 그런것도 모르는건가요?」
-            PRINTFORMW 싸늘한 비아냥이 신경을 긁는다...
-            PRINTL
-            PRINTFORML 사토리는 딴청을 부리고 있지만, 서드아이는 당신을 노려보고 있다.
-            PRINTFORML 「아아~ 오쿠가 더 똑똑하겠네~」
-            PRINTFORMW 사토리가 혼잣말인척 다 들리도록 말하고 있다...
-            PRINTL
-            PRINTFORML 사토리는 딴청을 부리고 있지만, 서드아이는 당신을 노려보고 있다.
-            PRINTFORML 「어차피 그럴듯한 말로 꼬실때나 써먹으려는거 아닌가요?」
-            PRINTFORMW 틀린말은 아니네라고 속으로 투덜거리자 특유의 비웃음을 보내고 있다...
-        ELSEIF TALENT:연인 || TALENT:연모 || TALENT:사모 ; || TALENT:애욕 || TALENT:섹프
-            ;함락 소질이 있을 때
-            PRINTFORML 사토리의 서툴지만 열정적인 지도를 경청했다.
-            PRINTFORML 그러다 사토리가 불쑥 손을 내민다.
-            PRINTFORML 「손!」
-            PRINTFORML 엉겁결에 내민 손을 마주 잡자 사토리도 당황한것 같다.
-            PRINTFORML 「그게, 그러니까...가만히 듣고 계시는게 저 아이들을 똑 닮아서 저도 모르게...」
-            PRINTFORMW 애완동물 말인가. 그런 플레이도 재밌을것 같다고 생각하자 사토리는 얼굴이 빨개져 붙잡은 손등을 찰싹찰싹 때렸다.
-        ELSEIF RAND:50 && !CFLAG:1600 ;2% 확률, 1번만
-            ;딱 한번?
-            PRINTFORML 「흐응... 그 부분은 그렇게 어렵게 생각할 부분이 아니에요.」
-            PRINTFORML 공부가 막히자 생각을 읽은 사토리가 설명을 해주었다.
-            PRINTFORML 모르겠어.
-            PRINTFORMW 「으음... 그러니까... 이렇게요. 이렇게! 되는거에요.」
-            PRINTL
-            PRINTFORML 「아아...답답해... 그냥 읽어버리면 쉬울텐데...」
-            PRINTFORML 무심결에 그렇게 대화 없이 살아서 설명을 못하는건 아닐까 생각했다.
-            PRINTFORML 세 개의 눈이 노려보고 있다.
-            PRINTFORMW 실수한것 같다...
-            CALL GET_ANGRY(TARGET) ;반발각인은 붙지 않지만 분노치 맥스
-        ELSE
-            ;일반
-            PRINTFORMW 사토리는 당신이 공부 중 막히거나 잘못 이해한 부분을 읽어 내 가르쳐 주었다.
-        ENDIF
-    ELSEIF GROUPMATCH(ABL:MASTER:교양, ABL:TARGET:교양,(ABL:TARGET:교양 + 1))
-        ;교양 3~4 그러니까 사토리와 대등하게 주고 받을 때.
-        IF MARK:반발각인
-            PRINTFORML 「뻔뻔하게...그럴듯한 말로 자기 변호가 하고 싶을 뿐이잖아.」
-            PRINTFORMW 논쟁을 시작한지 얼마 지나지도 않아 의도를 간파당했다...
-        ELSEIF TALENT:연인 || TALENT:연모 || TALENT:사모 ; || TALENT:애욕 || TALENT:섹프
-            ;함락 소질이 있을 때
-            PRINTFORML 잠깐 지루해져 농담을 건냈다.
-            PRINTFORML 「"사토리"니까 같이 공부를...? 뭐에요, 정말...」
-            PRINTFORMW 사토리는 당신의 시시한 말장난에 질색했지만, 그 입꼬리엔 미소가 걸려있다.
-        ELSE
-            PRINTFORML 「이 화두에 대해선 어떻게 생각해요? 아, 그럴지도.」
-            PRINTFORMW 질문을 하더니 생각을 읽어버리고 납득한 모양이다.
-            PRINTL
-            PRINTFORML 「커뮤니케이션에선 부호화와 해독이 각 주체마다 한 번씩, 두 번 일어나요.」
-            PRINTFORML 「생각을 말로 표현하고, 말을 이해하고, 이에 다시 생각을 말로, 말을 생각으로...」
-            PRINTFORML 「하지만 말은 생각의 불완전한 재현이에요. 여기서 오해가 생길 수 밖에 없어요.」
-            PRINTFORML 「음... 저는 마음을 읽을 수 있으니까, 그런 오해따윈 할 일이 없다는거에요!」
-            PRINTFORMW 특유의 미소를 띄고 이쪽을 바라보지만, 설명하려다 말이 막혀 급히 자기 자랑으로 마무리 지은것 같다...
-        ENDIF
-    ELSEIF ABL:MASTER:교양 > ABL:TARGET:교양 ;1 높은 경우는 위에서 이미 처리됨
-        ;교양 5 이상 그러니까 사토리를 가르칠 때.
-        IF MARK:반발각인
-            PRINTFORML 「그런 궤변을 납득할거라고 생각해요?」
-            PRINTFORML 그렇지만 논파도 못하지 않았나. 라고 생각하자 이를 악물고 이쪽을 노려본다.
-            PRINTFORMW 궤변으로 괴롭힘을 당해 사토리로서 자존심에 상처를 받은것 같다.
-        ELSE
-            PRINTFORML 「에? 그게 어떻게 그렇게 되는거죠?」
-            PRINTFORMW 생각을 읽어도 부족한지 구체적인 설명을 요구해왔다.
-            IF RAND:5 ;20% 확률
-                ;이어서 가끔
-                PRINTFORML 「흐응...」
-                PRINTFORMW 마음을 읽음에도 한번에 이해하지 못해 자존심이 상하는 모양이다.
-                PRINTL
-                PRINTFORML 「사토리 요괴를 가르치는건...」
-                PRINTFORML 「여러 사람한테 폐 끼치는거라구요?」
-                PRINTFORML 맞는 말이다. 독심술과 궤변으로 남을 괴롭히는게 사토리 요괴의 본질이니까.
-                PRINTFORML 「알고도 그러는건가요? 후후...분명 죽으면 지옥으로 떨어질거에요?」
-                PRINTFORMW 지옥의 관계자가 하는 말이라 농담으로 들리질 않는다...
-                IF TALENT:연인
-                    PRINTFORML 「음...재미 없었나요...」
-                    PRINTFORML 사토리는 풀이 죽어 고개를 숙인채 당신에게 들리지 않을 정도로 중얼거렸다.
-                    PRINTFORMW 「지옥에 떨어지시면... 그럼...」
-                ELSE
-                    PRINTFORMW 사토리는 짖궂은 농담에 당신이 쩔쩔매는 게 즐거운지 기묘한 미소를 띄고 있다.
-                ENDIF
-            ENDIF
-        ENDIF
-    ENDIF
+	;PRINTFORMW 「」
+	IF FIRSTTIME(SELECTCOM)
+		SELECTCASE ABL:MASTER:교양
+			CASE 0,1,2
+				PRINTFORMW 「...흐으응...그 부분은 그렇게 어렵게 생각할 부분이 아니에요」
+				PRINTFORMW 공부가 막히자, 생각을 읽은 사토리가 설명을 해 주었다
+				PRINTFORMW 그러나 역시 모르겠다
+				PRINTFORMW 「으음...그러니까...이렇게요, 아니, 이렇게! 되는거예요」
+				PRINTFORMW 설명이 잘 안되니 초조한지 손짓까지 섞어서 설명해 주고 있다
+				PRINTFORMW 귀엽긴 한데, 역시 모르겠다
+				PRINTFORMW 「...아아...답답해...그냥 읽어버리면 이야기가 쉬운데...」
+				PRINTFORMW 무심결에 '그렇게 대화없이 살아서 설명을 못하는건 아닐까...'라 생각했다
+				PRINTFORMW 세 개의 눈이 노려보기 시작했다...
+				PRINTFORMW 아무래도 실수한듯한 느낌이다...
+				TALENT:기분 = -1
+			CASE 3,4
+				PRINTFORMW 「으음...으으음...」
+				PRINTFORMW 사토리도 잘 모르겠는 문제인지 한참 고민하는 모양이다
+				PRINTFORMW 서로 답을 찾지 못한채 한참을 고민하며 보냈다...
+			CASE IS >= 5
+				PRINTFORMW 「으음...으으음...」
+				PRINTFORMW 「역시 모르겠네요 이거, 어려워」
+				IF MARK:반발각인 && !TALENT:연인
+					PRINTFORMW 「...혹시 이거 골탕먹이려고 일부러 이러는건가요?」
+					PRINTFORMW 사토리는 입술을 한번 삐죽이더니 다시 문제에 집중하기 시작했다...
+				ELSE
+					PRINTFORMW 「그래서 정답이 뭔데요?」
+					PRINTFORMW 사토리는 문제가 안풀리자 짜증이 난 모양이다...
+					PRINTFORML
+					PRINTFORMW 「...에? 그게 왜 그렇게 되는거죠?」
+					PRINTFORMW 슬며시 답을 알려주어도 고개를 갸웃거릴뿐이었다
+					PRINTFORMW 생각을 읽어도 부족한 모양이다, 한참동안 더욱 자세히 설명을 해주고 나서야 이해한듯 고개를 끄덕였다
+				ENDIF
+		ENDSELECT
+	ELSE
+		IF MARK:반발각인 == 3&&!TALENT:연인
+			IF CFLAG:3000 == 0
+				SELECTCASE RAND:5
+					CASE 0
+						SELECTCASE ABL:MASTER:교양
+							CASE 0,1,2
+								PRINTFORMW 「...그것도 모르는건가요?」
+								PRINTFORMW 「이건 이렇게 하면 되는거예요, 하아...정말이지, 어디까지 가르쳐야 하는거야...」
+								PRINTFORMW 싸늘한 비아냥이 신경을 긁는다...
+							CASE 3,4
+								PRINTFORMW 공부하다 애매한 부분에서 논쟁이 붙었다...
+								PRINTFORMW 그간 배운 현란한 말솜씨로 반박했지만...
+								PRINTFORMW 「그럴듯한 궤변으로 얼버무리려 하지 마세요, 보기 흉해요」
+								PRINTFORMW 사토리에게 금방 들키고 말았다...
+							CASEELSE
+								PRINTFORMW 「...하아, 그래서, 이걸 제가 왜 해야하죠..」
+								PRINTFORMW 「괜시리 머리만 아픈짓을 해서 무슨 이득을 보는거죠?」
+								PRINTFORMW 문제가 하도 안풀려 화가 났는지 사토리는 투덜거리기 시작했다...
+						ENDSELECT
+					CASE 1
+						SELECTCASE ABL:MASTER:교양
+							CASE 0,1,2
+								PRINTFORMW 「하아...우리집 애완동물보다도 심해...」
+								PRINTFORMW 「하다못해 오쿠도 이만큼은 할 수 있는데 도대체 이걸 왜 못하는걸까나」
+								PRINTFORMW 혼잣말인척 하고 있지만 뻔히 다 들린다는걸 본인도 알 텐데...
+							CASE 3,4
+								PRINTFORMW 「의외로 머리가 비어있진 않네요」
+								PRINTFORMW 「...그 머리로 남 생각도 조금만 해주면 참 좋을텐데 말야...」
+								PRINTFORMW 사토리는 빈정거리기 시작했다...
+							CASEELSE
+								PRINTFORMW 「그런 궤변을 납득할리가 없잖아요?」
+								PRINTFORMW 풀리지 않는 문제에 화가 난 사토리는 성을 내기 시작했다
+								PRINTFORMW 「애초부터 골탕먹이려 한거죠? 제가 끙끙대는걸 보려고!」
+								PRINTFORMW 궤변으로 괴롭힘을 당해 사토리로써 자존심에 상처를 받은듯, 씩씩거리며 고개를 돌렸다...
+						ENDSELECT
+					CASE 2
+						SELECTCASE ABL:MASTER:교양
+							CASE 0,1,2
+								PRINTFORMW 「저기, 그렇게 낑낑대며 배워서 도대체 어디에 쓰려고요?」
+								PRINTFORMW 「차라리 다른데에 시간을 투자하는게 효율적일수도 있어요」
+								PRINTFORMW 사토리는 능글맞게 비웃고 있다...
+							CASE 3,4
+								PRINTFORMW 「흐음...확실히 그렇게 볼 수도 있네요...」
+								PRINTFORMW 「여기에 쓸 머리에 1할만 투자했어도 이렇게 미움받을 일도 없을텐데」
+								PRINTFORMW 사토리는 빈정거리며 비웃고 있다...
+							CASEELSE
+								PRINTFORMW 「...공부를 가르치려 드는건지, 아니면 그냥 자기 자랑이 하고 싶은건지」
+								PRINTFORMW 「남들이 보는 저는 이런 모습인가요? 하아...」
+								PRINTFORMW 사토리는 투덜거리며 귀를 틀어 막았다...
+						ENDSELECT
+					CASE 3
+						SELECTCASE ABL:MASTER:교양
+							CASE 0,1,2
+								PRINTFORMW 「있죠, 공부가 세상사 전부는 아녜요」
+								PRINTFORMW 「이를테면...사람한테 무슨 말을 해야 싫어하고, 무슨 말을 해야 기뻐하는지는...책에 없다고요?」
+								PRINTFORMW 「...무슨 말인지 알아 들어요?」
+							CASE 3,4
+								PRINTFORMW 「...흐으으음...그런가요, 그럴수도 있겠네요」
+								PRINTFORMW 「생각보단 명석하시네요, 생각보단...」
+								PRINTFORMW 사토리는 작게 중얼거렸다...
+							CASEELSE
+								PRINTFORMW 「하아...그래요, 인정해요, 하나도 몰라요, 그런거 내가 알리가 없잖아」
+								PRINTFORMW 「...이제 만족했으면 그만 놔주실래요? 머리가 아파질려 하니까」
+								PRINTFORMW 사토리는 머리를 짚었다...
+						ENDSELECT
+					CASE 4
+						SELECTCASE ABL:MASTER:교양
+							CASE 0,1,2
+								PRINTFORMW 「삶에서 중요한건, 자기가 잘 하는걸 하는것」
+								PRINTFORMW 「자기가 못 하는걸 하려고 노력하는건 그닥 효율적인 짓이 아녜요」
+								PRINTFORMW 「이를테면 지금 상황이라던가?」
+								PRINTFORMW 사토리는 차갑게 웃어보였다...
+							CASE 3,4
+								PRINTFORMW 「남의 마음을 이해 못하는 사람, 그걸 보통은 사이코패스라고 부르죠」
+								PRINTFORMW 「엄밀히 말해선 경계선 성격 장애나 그런쪽이 맞지만...예, 그쪽은 동정받을 건덕지라도 있죠, 스스로도 어쩔수 없으니까」
+								PRINTFORMW 「그런데 왜 %사마스터는% 조금도 그런 마음이 안 들까요? 참 이상하네요」
+							CASEELSE
+								PRINTFORMW 「...네네, 그렇군요」
+								PRINTFORMW 「솔직히 하나도 모르겠지만 뭐...」
+								PRINTFORMW 사토리는 싫증이 나는지 듣는둥 마는둥 하고 있다...
+						ENDSELECT
+				ENDSELECT
+			ELSE
+				SELECTCASE RAND:5
+					CASE 0
+						SELECTCASE ABL:MASTER:교양
+							CASE 0,1,2
+								PRINTFORMW 「...처량해라 그것도 모르는건가요?」
+								PRINTFORMW 「이정도는 간단한거라고요」
+								PRINTFORMW 싸늘한 비아냥이 신경을 긁는다...
+							CASE 3,4
+								PRINTFORMW 공부하다 애매한 부분에서 논쟁이 붙었다...
+								PRINTFORMW 그간 배운 현란한 말 솜씨로 반박을 했지만
+								PRINTFORMW 「...뻔뻔해, 그럴듯한 말로 자기 변호가 하고 싶은것 뿐이잖아」
+								PRINTFORMW 금새 의도가 간파당해버렸다...
+							CASEELSE
+								PRINTFORMW 「...하아, 그래서, 이걸 제가 왜 해야하죠?」
+								PRINTFORMW 「별 도움도 안되는걸 그다지 해야할 이윤 없다고 생각하는데요...」
+								PRINTFORMW 문제가 하도 안풀려 화가 났는지 사토리는 비꼬기 시작했다...
+						ENDSELECT
+					CASE 1
+						SELECTCASE ABL:MASTER:교양
+							CASE 0,1,2
+								PRINTFORMW 「아아~ 오쿠가 더 똑똑하겠네~」
+								PRINTFORMW 「오쿠도 이만큼은 할 수 있는데 도대체 이걸 왜 못하는걸까나」
+								PRINTFORMW 혼잣말인척 하고 있지만 뻔히 다 들린다는걸 본인도 알 텐데...
+							CASE 3,4
+								PRINTFORMW 「의외로 머리가 비어있진 않네요」
+								PRINTFORMW 「그렇다면 그 머리로 남을 배려할 생각을 조금만 가졌으면 좋을텐데 말야」
+								PRINTFORMW 사토리는 빈정거리기 시작했다...
+							CASEELSE
+								PRINTFORMW 「그런 궤변을 납득할리가 없잖아」
+								PRINTFORMW 그렇지만 논파조차 못하고 있던 사토리가 화를 내는건 더더욱 말이 안되는것이 아닌가?
+								PRINTFORMW 사토리는 생각을 읽고 이를 갈며 %마스터를% 노려보고 있다...
+								PRINTFORMW 궤변으로 괴롭힘을 당해 사토리로써 자존심에 상처를 받은 것 같다...
+						ENDSELECT
+					CASE 2
+						SELECTCASE ABL:MASTER:교양
+							CASE 0,1,2
+								PRINTFORMW 「저기, 그렇게 끙끙대며 배워서 어디에 쓰려고요?」
+								PRINTFORMW 「어차피 그럴듯한 말로 꼬실때나 써먹으려는거 아닌가요?」
+								PRINTFORMW 사토리는 능글맞게 비웃고 있다...
+							CASE 3,4
+								PRINTFORMW 「흐으응...」
+								PRINTFORMW 사토리는 문제를 눈 앞에 두고서 %마스터를% 연신 훔쳐보고 있다...
+								PRINTFORMW 그러고는 잠깐잠깐 무어라 종이에 적고선 %마스터의% 앞에 들이밀었다
+								PRINTFORMW 「자요, 제가 먼저 풀었네요」
+								PRINTFORMW 「이렇게 쉬운걸 왜 그리 오래 푸는 거예요?」
+								PRINTFORMW 답지의 내용은 %마스터가% 쓴것과 거의 같았다...
+							CASEELSE
+								PRINTFORMW 「......솔직히, 공부를 가르치려 드는건지, 아니면 자기 지식을 뽐내고 싶은건지, 잘 모르겠네요」
+								PRINTFORMW 「읽어도 읽어도 머리아픈 정보만 들어와, 듣고 싶지 않아」
+								PRINTFORMW 사토리는 괜히 짜증을 내고 있다...
+						ENDSELECT
+					CASE 3
+						SELECTCASE ABL:MASTER:교양
+							CASE 0,1,2
+								PRINTFORMW 「어차피 소질이 없다면, 차라리 다른쪽으로 노력하는것도 좋은데」
+								PRINTFORMW 「세상에 공부 말고도 할 일은 많으니까 말이죠」
+								PRINTFORMW 「...뭐, 그 중에서 할 만한게 얼마나 있는지는 잘 모르겠지만 말예요?」
+							CASE 3,4
+								PRINTFORMW 「...흐으음...아무래도 머리속이 텅텅비진 않았나봐요?」
+								PRINTFORMW 「그러면 조금만 더 잘해줄수도 있었을텐데, 인성이 나쁜건지 뭔지」
+								PRINTFORMW 사토리는 작게 중얼거렸다...
+							CASEELSE
+								PRINTFORMW 「하아...그래요, 인정해요, 하나도 모르겠네요」
+								PRINTFORMW 「...이제 만족했으면 그만좀 해주실래요?」
+								PRINTFORMW 사토리는 머리를 짚었다...
+						ENDSELECT
+					CASE 4
+						SELECTCASE ABL:MASTER:교양
+							CASE 0,1,2
+								PRINTFORMW 「삶에서 중요한건, 자기가 잘 하는걸 하는것」
+								PRINTFORMW 「자기가 못 하는걸 하려고 노력하는건 그닥 효율적인 짓이 아녜요」
+								PRINTFORMW 「이를테면 지금 상황이라던가?」
+								PRINTFORMW 사토리는 차갑게 웃어보였다...
+							CASE 3,4
+								PRINTFORMW 「남의 마음을 이해 못하는 사람, 그걸 보통은 사이코패스라고 부르죠」
+								PRINTFORMW 「엄밀히 말해선 경계선 성격 장애나 그런쪽이 맞지만...예, 그쪽은 동정받을 건덕지라도 있죠, 스스로도 어쩔수 없으니까」
+								PRINTFORMW 「그런데 왜 %사마스터는% 조금도 그런 마음이 안 들까요? 참 이상하네요」
+							CASEELSE
+								PRINTFORMW 「...네네, 그렇군요」
+								PRINTFORMW 「솔직히 하나도 모르겠지만 뭐...」
+								PRINTFORMW 사토리는 싫증이 나는지 듣는둥 마는둥 하고 있다...
+						ENDSELECT
+				ENDSELECT
+			ENDIF
+		ELSEIF TALENT:연인
+			SELECTCASE RAND:5
+				CASE 0
+					SELECTCASE ABL:MASTER:교양
+						CASE 0,1,2
+							PRINTFORMW 「...에...그러니까...이거는 이렇게...」
+							PRINTFORMW 「음음...네, 바로 그거예요...아니아니, 다시, 아아...진짜...」
+							PRINTFORMW 사토리는 열정적으로 %마스터를% 가르쳐왔다...
+							PRINTFORMW 그래도 별반 성과가 없자 조금 짜증을 냈다...
+						CASE 3,4
+							PRINTFORMW 한참 공부하다보니 지루해져 농담을 건냈다
+							PRINTFORMW 「..."사토리" 니까, 같이 공부해서 "깨닫자"라고요? 뭐에요 정말...」
+							PRINTFORMW 사토리는 질색했지만, 그 입꼬리엔 미소가 걸려있었다
+						CASEELSE
+							PRINTFORMW 「사토리 요괴를 가르친다는건 말이죠...」
+							PRINTFORMW 「여러사람한테 폐끼치는 거라구요? 알고 계세요?」
+							PRINTFORMW 「궤변으로 남을 괴롭히는 요괴한테 많은 지식이란 남을 괴롭힐 수단으로 밖에 안 쓰여요」
+							PRINTFORMW 「...혹시 알면서 그러는건가요? 후후...분명히 이건 흑이네요 흑, 염마가 봤다간 한대 얻어 맞겠어」
+							PRINTFORMW 사토리는 낄낄거렸지만 %마스터가% 별 반응이 없자 시무룩해졌다
+							PRINTFORMW 「...재미없었나요...으으..」
+							PRINTFORMW 「지옥에 떨어지시면...그럼...」
+							PRINTFORMW 사토리는 풀이 죽어 고개를 숙여버렸다...
+					ENDSELECT
+				CASE 1
+					SELECTCASE ABL:MASTER:교양
+						CASE 0,1,2
+							PRINTFORMW 사토리는 서툴지만 열정적으로 공부를 가르쳐 왔다
+							PRINTFORMW ...문제 하나를 맞추자 사토리가 환하게 웃으며 손을 내밀었다
+							PRINTFORMW 「잘했어요~...손!」
+							PRINTFORMW ...엉겁결에 손을 올려주자 사토리의 얼굴이 새빨게졌다...
+							PRINTFORMW 「에..그..그게, 그러니까...가만히 듣고 계시는게 저 아이들을 똑 닮아서 저도 모르게...」
+							PRINTFORMW 애완동물들 말인가...?
+							PRINTFORML [0] 그런 플레이를 바라는건가?
+							PRINTFORML [1] 그럴수도 있지
+							PRINTFORML [2] 가끔은 사토리가 더 애완동물 같은데 말야
+							INPUT
+							IF RESULT == 0
+								IF ABL:새드끼 > 2
+									PRINTFORMW 「...그, 그런...흥미 없는건 아니지만...」
+									PRINTFORMW 「...%사마스터가% 제 애완동물...으으음...흥미롭긴 한데...」
+									PRINTFORMW 얼굴이 새빨게진 사토리는 %마스터를% 흘끔흘끔 바라보며 다리를 베베 꼬고 있다..
+									BASE:무드 += 100
+								ELSE
+									PRINTFORMW 애완동물 플레이도 가끔은 재밌겠다고 생각하니 얼굴이 새빨게진 사토리가 손등을 찰싹찰싹 때려왔다...
+								ENDIF
+							ELSEIF RESULT == 1
+								PRINTFORMW 「에에...그, 그렇죠! 가끔은 실수 하는것도 있는거니까...」
+								PRINTFORMW 「잊어주세요...제발...」
+								PRINTFORMW 사토리는 더이상 참을수가 없는지 고개를 푹 숙여버렸다...
+							ELSEIF RESULT == 2
+								PRINTFORMW 「...에에...그런...」
+								IF ABL:마조끼 > 2
+									PRINTFORMW 「...네에...솔직히 그런 기분도 가끔 들기는 하지만...」
+									PRINTFORMW 「...%사마스터가% 주인님이라면 그것도 나름...괜찮으려나요...」
+									PRINTFORMW 사토리는 새빨간 얼굴로 다리를 베베 꼬고 있다...
+								ELSE
+									PRINTFORMW 「부끄럽게...」
+									PRINTFORMW 사토리는 부끄러움을 이기지 못하고 고개를 숙였다...
+								ENDIF
+							ELSE
+								PRINTFORMW 「우으으...잊어주세요...」
+								PRINTFORMW 사토리는 울상이 되어버렸다...
+							ENDIF
+						CASE 3,4
+							PRINTFORMW 「사람의 행동은 이드의 욕망으로 시작되요」
+							PRINTFORMW 「그걸 사회적 규율과 상황에 맞춰 억제하는것이 슈퍼 에고」
+							PRINTFORMW 「그 둘의 치열한 경쟁의 결과가 행동이죠」
+							PRINTFORMW 「둘중에 하나라도 결여되면 정상적으로 행동할수가 없어져요」
+						CASEELSE
+						
+					ENDSELECT
+				CASE 2
+					SELECTCASE ABL:MASTER:교양
+						CASE 0,1,2
+							PRINTFORMW 「이렇게 가르치고 있으니 왠지 코이시같네요」
+							PRINTFORMW 「왠지 귀여운걸, 무심코 안아버릴지도 몰라요?」
+							PRINTFORMW 사토리는 흐뭇하게 웃으며 공부를 가르쳐왔다...
+						CASE 3,4
+
+						CASEELSE
+						
+					ENDSELECT
+				CASE 3
+					SELECTCASE ABL:MASTER:교양
+						CASE 0,1,2
+
+						CASE 3,4
+
+						CASEELSE
+						
+					ENDSELECT
+				CASE 4
+					SELECTCASE ABL:MASTER:교양
+						CASE 0,1,2
+
+						CASE 3,4
+
+						CASEELSE
+						
+					ENDSELECT
+			ENDSELECT
+		ELSEIF TALENT:연모||TALENT:사모||TALENT:애욕
+			SELECTCASE RAND:5
+				CASE 0
+					SELECTCASE ABL:MASTER:교양
+						CASE 0,1,2
+
+						CASE 3,4
+
+						CASEELSE
+
+					ENDSELECT
+				CASE 1
+					SELECTCASE ABL:MASTER:교양
+						CASE 0,1,2
+
+						CASE 3,4
+
+						CASEELSE
+						
+					ENDSELECT
+				CASE 2
+					SELECTCASE ABL:MASTER:교양
+						CASE 0,1,2
+
+						CASE 3,4
+
+						CASEELSE
+						
+					ENDSELECT
+				CASE 3
+					SELECTCASE ABL:MASTER:교양
+						CASE 0,1,2
+
+						CASE 3,4
+
+						CASEELSE
+						
+					ENDSELECT
+				CASE 4
+					SELECTCASE ABL:MASTER:교양
+						CASE 0,1,2
+
+						CASE 3,4
+
+						CASEELSE
+						
+					ENDSELECT
+			ENDSELECT
+		ELSEIF TALENT:섹프
+			SELECTCASE RAND:5
+				CASE 0
+					SELECTCASE ABL:MASTER:교양
+						CASE 0,1,2
+
+						CASE 3,4
+
+						CASEELSE
+
+					ENDSELECT
+				CASE 1
+					SELECTCASE ABL:MASTER:교양
+						CASE 0,1,2
+
+						CASE 3,4
+
+						CASEELSE
+						
+					ENDSELECT
+				CASE 2
+					SELECTCASE ABL:MASTER:교양
+						CASE 0,1,2
+
+						CASE 3,4
+
+						CASEELSE
+						
+					ENDSELECT
+				CASE 3
+					SELECTCASE ABL:MASTER:교양
+						CASE 0,1,2
+
+						CASE 3,4
+
+						CASEELSE
+						
+					ENDSELECT
+				CASE 4
+					SELECTCASE ABL:MASTER:교양
+						CASE 0,1,2
+
+						CASE 3,4
+
+						CASEELSE
+						
+					ENDSELECT
+			ENDSELECT
+		ELSE
+			;함락소질 없음
+			IF CFLAG:3000 == 0
+				SELECTCASE RAND:5
+					CASE 0
+						SELECTCASE ABL:MASTER:교양
+							CASE 0,1,2
+								PRINTFORMW 「아, 그건 이렇게 하는거예요」
+								PRINTFORMW 「으응...그래요, 그렇게...응...잘하네요」
+								PRINTFORMW 사토리는 막히는 부분과 잘못 이해한 부분마다 짚어내 가르쳐 주고 있다...
+							CASE 3,4
+								PRINTFORMW 「이거에 대해서 어떻게 생각하세요?」
+								PRINTFORMW 사토리는 최근 유행한 화제에 대해 물어왔다
+								PRINTFORMW 아는 지식을 동원해 스스로의 생각을 전했다...
+								PRINTFORMW 「음음, 그렇군요...」
+								PRINTFORMW 이야기 내내 사토리는 흥미롭다는듯이 들어주었다
+							CASEELSE
+
+						ENDSELECT
+					CASE 1
+						SELECTCASE ABL:MASTER:교양
+							CASE 0,1,2
+								PRINTFORMW 「음음...네, 맞아요, 그렇게 풀면...아아, 마지막에 틀렸어요, 다시다시」
+								PRINTFORMW 「응...네, 아주 잘했어요, 다음 문제도 풀어볼까요?」
+								PRINTFORMW 사토리는 무의식적으로 %마스터의% 머리를 쓰다듬었다...
+								PRINTFORMW 본인은 눈치조차 못 챈것 같지만...
+							CASE 3,4
+								PRINTFORMW 「개체간의 커뮤니케이션에선 부호화와 해독이 각자 한 번씩, 총 두 번 일어나는 거예요」
+								PRINTFORMW 「생각을 말로 표현하는것과 말을 이해해 다시 생각으로 바꾸는것, 그리고 다시....」
+								PRINTFORMW 「그렇지만 말은 불완전한 재현, 여기서 사람간의 오해란게 생기는 거예요」
+								PRINTFORMW 「으음...뭐, 저는 그런 복잡한 과정없이 생각을 읽어버리니, 그런 걱정은 필요 없어요」
+								PRINTFORMW 무언가 설명하다 막혔는지 급하게 자기 자랑으로 마무리지었다...
+							CASEELSE
+							
+						ENDSELECT
+					CASE 2
+						SELECTCASE ABL:MASTER:교양
+							CASE 0,1,2
+								PRINTFORMW 「이거를 잘 모르겠단 건가요?」
+								PRINTFORMW 「으음...아, 그래, 이거는 말이죠...이렇게 하면 쉬워요」
+								PRINTFORMW 「...잘 모르겠다고요? 으음, 그럼 다시...」
+								PRINTFORMW 사토리는 차근차근 설명해주기 시작했다...
+							CASE 3,4
+								PRINTFORMW 「인간의 마음속에는 크게 3가지가 있어요」
+								PRINTFORMW 「하나는 이드(원초아), 하나는 에고(자아), 또다른 하나는 슈퍼 에고(초자아)」
+								PRINTFORMW 「이드가 날뛰고, 슈퍼 에고는 억제하고, 그 두개의 긴장 속에서 행동을 결정하는게 에고」
+								PRINTFORMW 「물론 요즘에는 틀렸다는 말도 더러 있지만 저는 이 이론 되게 좋아해요」
+								PRINTFORMW 「...뭐, 생각을 읽지 못하는 사람들이 생각을 읽어보려는 노력이 신기하니까...」
+							CASEELSE
+							
+						ENDSELECT
+					CASE 3
+						SELECTCASE ABL:MASTER:교양
+							CASE 0,1,2
+
+							CASE 3,4
+
+							CASEELSE
+							
+						ENDSELECT
+					CASE 4
+						SELECTCASE ABL:MASTER:교양
+							CASE 0,1,2
+
+							CASE 3,4
+
+							CASEELSE
+							
+						ENDSELECT
+				ENDSELECT
+			ELSE
+				SELECTCASE RAND:5
+					CASE 0
+						SELECTCASE ABL:MASTER:교양
+							CASE 0,1,2
+
+							CASE 3,4
+
+							CASEELSE
+
+						ENDSELECT
+					CASE 1
+						SELECTCASE ABL:MASTER:교양
+							CASE 0,1,2
+
+							CASE 3,4
+
+							CASEELSE
+							
+						ENDSELECT
+					CASE 2
+						SELECTCASE ABL:MASTER:교양
+							CASE 0,1,2
+
+							CASE 3,4
+
+							CASEELSE
+							
+						ENDSELECT
+					CASE 3
+						SELECTCASE ABL:MASTER:교양
+							CASE 0,1,2
+
+							CASE 3,4
+
+							CASEELSE
+							
+						ENDSELECT
+					CASE 4
+						SELECTCASE ABL:MASTER:교양
+							CASE 0,1,2
+
+							CASE 3,4
+
+							CASEELSE
+							
+						ENDSELECT
+				ENDSELECT
+			ENDIF
+		ENDIF
+		
+	ENDIF
+ENDIF
 ENDIF
 RETURN 1
 ;==================================================
