@@ -8,20 +8,20 @@
 ;MARK:反発刻印(3以上=会話不能)(4以上はバグ
 ;TCVAR:泥酔(1=通常成功or大失敗)
 ;==================================================
-@M_KOJO_SUCCESS_COM_KX_300
+@M_KOJO_SUCCESS_COM_K49_300
 ;成否判定
 ;TFLAG:192(-2=コマンド終了、-1＝強制失敗、0=COM依存、1=強制成功or大成功
 TFLAG:192 =0
 
-@M_KOJO_MESSAGE_COM_KX_300
+@M_KOJO_MESSAGE_COM_K49_300
 ;コマンド共通メッセージ(TRAIN_MESSAGE) 
 ;削除すると「～話をした。」とかが消えます。また、削除した場合は自動で口上色が付きません。
 CALL TRAIN_MESSAGE
 ;口上メイン呼出
-CALL M_KOJO_MESSAGE_COM_KX_300_1
+CALL M_KOJO_MESSAGE_COM_K49_300_1
 RETURN RESULT
 
-@M_KOJO_MESSAGE_COM_KX_300_1
+@M_KOJO_MESSAGE_COM_K49_300_1
 ;-------------------------------------------------
 ;記入チェック（=0, 非表示、1, 表示）
 LOCAL = 0
@@ -34,17 +34,17 @@ RETURN 1
 ;301,お茶を淹れる
 ;TFLAG:193(1=大成功 0=成功 -1=失敗)
 ;==================================================
-@M_KOJO_SUCCESS_COM_KX_301
+@M_KOJO_SUCCESS_COM_K49_301
 ;成否判定
 ;TFLAG:192(-2=コマンド終了、-1＝強制失敗、0=COM依存、1=強制成功or大成功
 TFLAG:192 =0
 
-@M_KOJO_MESSAGE_COM_KX_301
+@M_KOJO_MESSAGE_COM_K49_301
 CALL TRAIN_MESSAGE
-CALL M_KOJO_MESSAGE_COM_KX_301_1
+CALL M_KOJO_MESSAGE_COM_K49_301_1
 RETURN RESULT
 
-@M_KOJO_MESSAGE_COM_KX_301_1
+@M_KOJO_MESSAGE_COM_K49_301_1
 ;-------------------------------------------------
 ;記入チェック（=0, 非表示、1, 表示）
 LOCAL = 0
@@ -57,17 +57,17 @@ RETURN 1
 ;302,スキンシップ
 ;TFLAG:193(1=大成功 0=成功 -1=失敗)
 ;==================================================
-@M_KOJO_SUCCESS_COM_KX_302
+@M_KOJO_SUCCESS_COM_K49_302
 ;成否判定
 ;TFLAG:192(-2=コマンド終了、-1＝強制失敗、0=COM依存、1=強制成功or大成功
 TFLAG:192 =0
 
-@M_KOJO_MESSAGE_COM_KX_302
+@M_KOJO_MESSAGE_COM_K49_302
 CALL TRAIN_MESSAGE
-CALL M_KOJO_MESSAGE_COM_KX_302_1
+CALL M_KOJO_MESSAGE_COM_K49_302_1
 RETURN RESULT
 
-@M_KOJO_MESSAGE_COM_KX_302_1
+@M_KOJO_MESSAGE_COM_K49_302_1
 ;-------------------------------------------------
 ;記入チェック（=0, 非表示、1, 表示）
 LOCAL = 0
@@ -80,17 +80,17 @@ RETURN 1
 ;303,謝る
 ;TFLAG:193(2=菓子折成功 1=大成功 0=成功 -1=失敗 -2=菓子折失敗)
 ;==================================================
-@M_KOJO_SUCCESS_COM_KX_303
+@M_KOJO_SUCCESS_COM_K49_303
 ;成否判定
 ;TFLAG:192(-2=コマンド終了、-1＝強制失敗、0=COM依存、1=強制成功or大成功
 TFLAG:192 =0
 
-@M_KOJO_MESSAGE_COM_KX_303
+@M_KOJO_MESSAGE_COM_K49_303
 CALL TRAIN_MESSAGE
-CALL M_KOJO_MESSAGE_COM_KX_303_1
+CALL M_KOJO_MESSAGE_COM_K49_303_1
 RETURN RESULT
 
-@M_KOJO_MESSAGE_COM_KX_303_1
+@M_KOJO_MESSAGE_COM_K49_303_1
 ;-------------------------------------------------
 ;記入チェック（=0, 非表示、1, 表示）
 LOCAL = 0
@@ -105,17 +105,17 @@ RETURN 1
 ;CFLAG:350(仕事内容(JOB_仕事内容.ERB参照のこと
 ;TCVAR:手伝えない(=2 手伝っても早くは終わらない、時間停止中不可 永琳の診察等)
 ;==================================================
-@M_KOJO_SUCCESS_COM_KX_304
+@M_KOJO_SUCCESS_COM_K49_304
 ;成否判定
 ;TFLAG:192(-2=コマンド終了、-1＝強制失敗、0=COM依存、1=強制成功or大成功
 TFLAG:192 =0
 
-@M_KOJO_MESSAGE_COM_KX_304
+@M_KOJO_MESSAGE_COM_K49_304
 CALL TRAIN_MESSAGE
-CALL M_KOJO_MESSAGE_COM_KX_304_1
+CALL M_KOJO_MESSAGE_COM_K49_304_1
 RETURN RESULT
 
-@M_KOJO_MESSAGE_COM_KX_304_1
+@M_KOJO_MESSAGE_COM_K49_304_1
 ;-------------------------------------------------
 ;記入チェック（=0, 非表示、1, 表示）
 LOCAL = 0
@@ -134,17 +134,17 @@ RETURN 1
 ;TFLAG:193(-5=MASTERがTARGETよりも巨体の場合(TALENT:MASTER:体型 > TALENT:体型 + 2) 1=大成功 0=成功 -1=失敗)(-5以外は地の文分岐無し)
 ;ABL:親密(6以上=顔をのぞき込みながら頭を撫でてくれる 3以上=ただ頭を撫でてくれる 2以下=縮こまっている)
 ;==================================================
-@M_KOJO_SUCCESS_COM_KX_305
+@M_KOJO_SUCCESS_COM_K49_305
 ;成否判定
 ;TFLAG:192(-2=コマンド終了、-1＝強制失敗、0=COM依存、1=強制成功or大成功
 TFLAG:192 =0
 
-@M_KOJO_MESSAGE_COM_KX_305
+@M_KOJO_MESSAGE_COM_K49_305
 CALL TRAIN_MESSAGE
-CALL M_KOJO_MESSAGE_COM_KX_305_1
+CALL M_KOJO_MESSAGE_COM_K49_305_1
 RETURN RESULT
 
-@M_KOJO_MESSAGE_COM_KX_305_1
+@M_KOJO_MESSAGE_COM_K49_305_1
 ;-------------------------------------------------
 ;記入チェック（=0, 非表示、1, 表示）
 LOCAL = 0
@@ -156,12 +156,12 @@ RETURN 1
 ;306,お腹を撫でる
 ;TFLAG:193(1=ABL:親密6以上かつ妊娠時 0=成功 -1=ABL:親密5以下)
 ;==================================================
-@M_KOJO_MESSAGE_COM_KX_306
+@M_KOJO_MESSAGE_COM_K49_306
 CALL TRAIN_MESSAGE
-CALL M_KOJO_MESSAGE_COM_KX_306_1
+CALL M_KOJO_MESSAGE_COM_K49_306_1
 RETURN RESULT
 
-@M_KOJO_MESSAGE_COM_KX_306_1
+@M_KOJO_MESSAGE_COM_K49_306_1
 ;-------------------------------------------------
 ;記入チェック（=0, 非表示、1, 表示）
 LOCAL = 0
@@ -182,17 +182,17 @@ RETURN 1
 	;ABL:親密(6以上=おずおずとやり返す
 	;ABL:従順(5以上=されるがまま
 ;==================================================
-@M_KOJO_SUCCESS_COM_KX_307
+@M_KOJO_SUCCESS_COM_K49_307
 ;成否判定
 ;TFLAG:192(-2=コマンド終了、-1＝強制失敗(注、抱きつきモード中は自動成功)、0=COM依存、1=強制成功or大成功
 TFLAG:192 =0
 
-@M_KOJO_MESSAGE_COM_KX_307
+@M_KOJO_MESSAGE_COM_K49_307
 CALL TRAIN_MESSAGE
-CALL M_KOJO_MESSAGE_COM_KX_307_1
+CALL M_KOJO_MESSAGE_COM_K49_307_1
 RETURN RESULT
 
-@M_KOJO_MESSAGE_COM_KX_307_1
+@M_KOJO_MESSAGE_COM_K49_307_1
 ;-------------------------------------------------
 ;記入チェック（=0, 非表示、1, 表示）
 LOCAL = 0
@@ -213,17 +213,17 @@ RETURN 1
 ;添い寝中or睡眠中限定
 ;TFLAG:193(1=大成功 0=成功 -1=失敗)
 ;==================================================
-@M_KOJO_SUCCESS_COM_KX_308
+@M_KOJO_SUCCESS_COM_K49_308
 ;成否判定
 ;TFLAG:192(-2=コマンド終了、-1＝強制失敗(注、抱きつきモード中は自動成功)、0=COM依存、1=強制成功or大成功
 TFLAG:192 =0
 
-@M_KOJO_MESSAGE_COM_KX_308
+@M_KOJO_MESSAGE_COM_K49_308
 CALL TRAIN_MESSAGE
-CALL M_KOJO_MESSAGE_COM_KX_308_1
+CALL M_KOJO_MESSAGE_COM_K49_308_1
 RETURN RESULT
 
-@M_KOJO_MESSAGE_COM_KX_308_1
+@M_KOJO_MESSAGE_COM_K49_308_1
 ;-------------------------------------------------
 ;記入チェック（=0, 非表示、1, 表示）
 LOCAL = 0
@@ -242,17 +242,17 @@ RETURN 1
 ;TFLAG:193(1=大成功 0=成功 -1=失敗)
 ;ABL:親密(6以上=通常成功時分岐
 ;==================================================
-@M_KOJO_SUCCESS_COM_KX_309
+@M_KOJO_SUCCESS_COM_K49_309
 ;成否判定
 ;TFLAG:192(-2=コマンド終了、-1＝強制失敗(注、抱きつきモード中は自動成功)、0=COM依存、1=強制成功or大成功
 TFLAG:192 =0
 
-@M_KOJO_MESSAGE_COM_KX_309
+@M_KOJO_MESSAGE_COM_K49_309
 CALL TRAIN_MESSAGE
-CALL M_KOJO_MESSAGE_COM_KX_309_1
+CALL M_KOJO_MESSAGE_COM_K49_309_1
 RETURN RESULT
 
-@M_KOJO_MESSAGE_COM_KX_309_1
+@M_KOJO_MESSAGE_COM_K49_309_1
 ;-------------------------------------------------
 ;記入チェック（=0, 非表示、1, 表示）
 LOCAL = 0
@@ -272,17 +272,17 @@ RETURN 1
 ;331,お茶を淹れる（薬入り）
 ;TFLAG:193(1=大成功 0=成功 -1=失敗)
 ;==================================================
-@M_KOJO_SUCCESS_COM_KX_331
+@M_KOJO_SUCCESS_COM_K49_331
 ;成否判定
 ;TFLAG:192(-2=強制失敗(注、非コマンド終了）、-1＝強制失敗、0=COM依存、1=強制成功or大成功(注、睡眠薬アイスティーは眠気を感じていると飲まない)
 TFLAG:192 =0
 
-@M_KOJO_MESSAGE_COM_KX_331
+@M_KOJO_MESSAGE_COM_K49_331
 CALL TRAIN_MESSAGE
-CALL M_KOJO_MESSAGE_COM_KX_331_1
+CALL M_KOJO_MESSAGE_COM_K49_331_1
 RETURN RESULT
 
-@M_KOJO_MESSAGE_COM_KX_331_1
+@M_KOJO_MESSAGE_COM_K49_331_1
 ;-------------------------------------------------
 ;記入チェック（=0, 非表示、1, 表示）
 LOCAL = 0
@@ -297,12 +297,12 @@ RETURN 1
 ;TFLAG:194(51=どぶろく 52=清酒 53=鬼殺し)
 ;ALCOHOL_TASTE(TFLAG:194)(15以上=気に入る 9以下=口に合わない)
 ;==================================================
-@M_KOJO_MESSAGE_COM_KX_332
+@M_KOJO_MESSAGE_COM_K49_332
 CALL TRAIN_MESSAGE
-CALL M_KOJO_MESSAGE_COM_KX_332_1
+CALL M_KOJO_MESSAGE_COM_K49_332_1
 RETURN RESULT
 
-@M_KOJO_MESSAGE_COM_KX_332_1
+@M_KOJO_MESSAGE_COM_K49_332_1
 ;-------------------------------------------------
 ;記入チェック（=0, 非表示、1, 表示）
 LOCAL = 0
@@ -315,17 +315,17 @@ RETURN 1
 ;333,愚痴を聞く
 ;TFLAG:193(6=大成功(酔い) 5=成功(酔い) 4=失敗(酔い) 3=大成功 2=成功 1=失敗)
 ;==================================================
-@M_KOJO_SUCCESS_COM_KX_333
+@M_KOJO_SUCCESS_COM_K49_333
 ;成否判定
 ;TFLAG:192(-2=コマンド終了、-1＝強制失敗、0=COM依存、1=強制成功or大成功
 TFLAG:192 =0
 
-@M_KOJO_MESSAGE_COM_KX_333
+@M_KOJO_MESSAGE_COM_K49_333
 CALL TRAIN_MESSAGE
-CALL M_KOJO_MESSAGE_COM_KX_333_1
+CALL M_KOJO_MESSAGE_COM_K49_333_1
 RETURN RESULT
 
-@M_KOJO_MESSAGE_COM_KX_333_1
+@M_KOJO_MESSAGE_COM_K49_333_1
 ;-------------------------------------------------
 ;記入チェック（=0, 非表示、1, 表示）
 LOCAL = 0
@@ -353,17 +353,17 @@ RETURN 1
 ;CFLAG:妊娠自覚状態(1=食事)
 ;TALENT:酒耐性(-2=食事)
 ;==================================================
-@M_KOJO_SUCCESS_COM_KX_334
+@M_KOJO_SUCCESS_COM_K49_334
 ;成否判定
 ;TFLAG:192(-2=コマンド終了、-1＝強制失敗、0=COM依存、1=強制成功or大成功
 TFLAG:192 =0
 
-@M_KOJO_MESSAGE_COM_KX_334
+@M_KOJO_MESSAGE_COM_K49_334
 CALL TRAIN_MESSAGE
-CALL M_KOJO_MESSAGE_COM_KX_334_1
+CALL M_KOJO_MESSAGE_COM_K49_334_1
 RETURN RESULT
 
-@M_KOJO_MESSAGE_COM_KX_334_1
+@M_KOJO_MESSAGE_COM_K49_334_1
 ;-------------------------------------------------
 ;記入チェック（=0, 非表示、1, 表示）
 LOCAL = 0
@@ -383,17 +383,17 @@ RETURN 1
 ;335,介抱する
 ;TFLAG:193(1=大成功 0=成功 -1=失敗)
 ;==================================================
-@M_KOJO_SUCCESS_COM_KX_335
+@M_KOJO_SUCCESS_COM_K49_335
 ;成否判定
 ;TFLAG:192(-2=コマンド終了、-1＝強制失敗、0=COM依存、1=強制成功or大成功
 TFLAG:192 =0
 
-@M_KOJO_MESSAGE_COM_KX_335
+@M_KOJO_MESSAGE_COM_K49_335
 CALL TRAIN_MESSAGE
-CALL M_KOJO_MESSAGE_COM_KX_335_1
+CALL M_KOJO_MESSAGE_COM_K49_335_1
 RETURN RESULT
 
-@M_KOJO_MESSAGE_COM_KX_335_1
+@M_KOJO_MESSAGE_COM_K49_335_1
 ;-------------------------------------------------
 ;記入チェック（=0, 非表示、1, 表示）
 LOCAL = 0
@@ -414,17 +414,17 @@ RETURN 1
 ;ABL:親密(4以下=居心地悪げ 9以下=恥ずかしげ それ以上=幸せそう
 ;TIME_PROGRESS(TFLAG:膝枕した)(44以下=失敗
 ;==================================================
-@M_KOJO_SUCCESS_COM_KX_336
+@M_KOJO_SUCCESS_COM_K49_336
 ;成否判定
 ;TFLAG:192(-2=コマンド終了、-1＝強制失敗、0=COM依存、1=強制成功or大成功
 TFLAG:192 =0
 
-@M_KOJO_MESSAGE_COM_KX_336
+@M_KOJO_MESSAGE_COM_K49_336
 CALL TRAIN_MESSAGE
-CALL M_KOJO_MESSAGE_COM_KX_336_1
+CALL M_KOJO_MESSAGE_COM_K49_336_1
 RETURN RESULT
 
-@M_KOJO_MESSAGE_COM_KX_336_1
+@M_KOJO_MESSAGE_COM_K49_336_1
 ;-------------------------------------------------
 ;記入チェック（=0, 非表示、1, 表示）
 LOCAL = 0
@@ -444,12 +444,12 @@ RETURN 1
 ;5=強引に迫られると断れぬ(素質臆病持ち専用) 6=まんざらでもない　7=駄目　8=論外 98=口上内特殊判定による失敗 99=口上内特殊判定による成功
 ;口上内特殊判定は該当するCFLAGが0だと無効
 ;==================================================
-@M_KOJO_MESSAGE_COM_KX_350
+@M_KOJO_MESSAGE_COM_K49_350
 CALL TRAIN_MESSAGE
-CALL M_KOJO_MESSAGE_COM_KX_350_1
+CALL M_KOJO_MESSAGE_COM_K49_350_1
 RETURN RESULT
 
-@M_KOJO_MESSAGE_COM_KX_350_1
+@M_KOJO_MESSAGE_COM_K49_350_1
 ;-------------------------------------------------
 ;記入チェック（=0, 非表示、1, 表示）
 LOCAL = 0
@@ -461,12 +461,12 @@ RETURN 1
 ;==================================================
 ;351,連れ出す
 ;==================================================
-@M_KOJO_MESSAGE_COM_KX_351
+@M_KOJO_MESSAGE_COM_K49_351
 ;連れ出しにはTRAIN_MESSAGEが無い
-CALL M_KOJO_MESSAGE_COM_KX_351_1
+CALL M_KOJO_MESSAGE_COM_K49_351_1
 RETURN RESULT
 
-@M_KOJO_MESSAGE_COM_KX_351_1
+@M_KOJO_MESSAGE_COM_K49_351_1
 ;-------------------------------------------------
 ;記入チェック（=0, 非表示、1, 表示）
 LOCAL = 0
@@ -484,17 +484,17 @@ RETURN 1
 ;FLAG:甲斐性無(1=失敗)
 ;TFLAG:193 (1=成功 0=失敗)
 ;==================================================
-@M_KOJO_SUCCESS_COM_KX_352
+@M_KOJO_SUCCESS_COM_K49_352
 ;成否判定
 ;TFLAG:192(-2=コマンド終了、-1＝強制失敗、0=COM依存、1=強制成功or大成功
 TFLAG:192 =0
 
-@M_KOJO_MESSAGE_COM_KX_352
+@M_KOJO_MESSAGE_COM_K49_352
 CALL TRAIN_MESSAGE
-CALL M_KOJO_MESSAGE_COM_KX_352_1
+CALL M_KOJO_MESSAGE_COM_K49_352_1
 RETURN RESULT
 
-@M_KOJO_MESSAGE_COM_KX_352_1
+@M_KOJO_MESSAGE_COM_K49_352_1
 ;-------------------------------------------------
 ;記入チェック（=0, 非表示、1, 表示）
 LOCAL = 0
@@ -507,12 +507,12 @@ RETURN 1
 ;353,イタズラする
 ;FLAG:甲斐性無(1=失敗)
 ;==================================================
-@M_KOJO_MESSAGE_COM_KX_353
+@M_KOJO_MESSAGE_COM_K49_353
 CALL TRAIN_MESSAGE
-CALL M_KOJO_MESSAGE_COM_KX_353_1
+CALL M_KOJO_MESSAGE_COM_K49_353_1
 RETURN RESULT
 
-@M_KOJO_MESSAGE_COM_KX_353_1
+@M_KOJO_MESSAGE_COM_K49_353_1
 ;-------------------------------------------------
 ;記入チェック（=0, 非表示、1, 表示）
 LOCAL = 0
@@ -526,12 +526,12 @@ RETURN 1
 ;CFLAG:衰弱(1以上=起きない
 ;CFLAG:お招き(0以外=起きない
 ;==================================================
-@M_KOJO_MESSAGE_COM_KX_354
+@M_KOJO_MESSAGE_COM_K49_354
 CALL TRAIN_MESSAGE
-CALL M_KOJO_MESSAGE_COM_KX_354_1
+CALL M_KOJO_MESSAGE_COM_K49_354_1
 RETURN RESULT
 
-@M_KOJO_MESSAGE_COM_KX_354_1
+@M_KOJO_MESSAGE_COM_K49_354_1
 ;-------------------------------------------------
 ;記入チェック（=0, 非表示、1, 表示）
 LOCAL = 0
@@ -543,12 +543,12 @@ RETURN 1
 ;==================================================
 ;355,時止め（地の文の改変程度に留めるべき
 ;==================================================
-@M_KOJO_MESSAGE_COM_KX_355
+@M_KOJO_MESSAGE_COM_K49_355
 CALL TRAIN_MESSAGE
-CALL M_KOJO_MESSAGE_COM_KX_355_1
+CALL M_KOJO_MESSAGE_COM_K49_355_1
 RETURN RESULT
 
-@M_KOJO_MESSAGE_COM_KX_355_1
+@M_KOJO_MESSAGE_COM_K49_355_1
 ;-------------------------------------------------
 ;記入チェック（=0, 非表示、1, 表示）
 LOCAL = 0
@@ -561,12 +561,12 @@ RETURN 1
 ;360,身を任せる
 ;TCVAR:20(27=谷間を見せる 32=前から抱きつく 35=スカートの中を見せる 53=パイズリ 73=ぱふぱふ 77=乳を吸わせる 85=Ｖ挿入する 86=だいしゅきホールド 87=Ａ挿入する 88=腰振りＶ 89=腰振りＡ
 ;==================================================
-@M_KOJO_MESSAGE_COM_KX_360
+@M_KOJO_MESSAGE_COM_K49_360
 CALL TRAIN_MESSAGE
-CALL M_KOJO_MESSAGE_COM_KX_360_1
+CALL M_KOJO_MESSAGE_COM_K49_360_1
 RETURN RESULT
 
-@M_KOJO_MESSAGE_COM_KX_360_1
+@M_KOJO_MESSAGE_COM_K49_360_1
 ;-------------------------------------------------
 ;記入チェック（=0, 非表示、1, 表示）
 LOCAL = 0
@@ -579,12 +579,12 @@ RETURN 1
 ;361,抵抗する
 ;TCVAR:20(27=谷間を見せる 32=前から抱きつく 35=スカートの中を見せる 53=パイズリ 73=ぱふぱふ 77=乳を吸わせる 85=Ｖ挿入する 86=だいしゅきホールド 87=Ａ挿入する 88=腰振りＶ 89=腰振りＡ
 ;==================================================
-@M_KOJO_MESSAGE_COM_KX_360
+@M_KOJO_MESSAGE_COM_K49_360
 CALL TRAIN_MESSAGE
-CALL M_KOJO_MESSAGE_COM_KX_360_1
+CALL M_KOJO_MESSAGE_COM_K49_360_1
 RETURN RESULT
 
-@M_KOJO_MESSAGE_COM_KX_360_1
+@M_KOJO_MESSAGE_COM_K49_360_1
 ;-------------------------------------------------
 ;記入チェック（=0, 非表示、1, 表示）
 LOCAL = 0
@@ -600,17 +600,17 @@ RETURN 1
 ;CFLAG:添い寝中(1=布団orベッドの中で本を読む
 ;MASTERがTARGETより大柄の場合、膝の上にTARGETを乗せる
 ;==================================================
-@M_KOJO_SUCCESS_COM_KX_363
+@M_KOJO_SUCCESS_COM_K49_363
 ;成否判定
 ;TFLAG:192(-2=コマンド終了、-1＝強制失敗、0=COM依存、1=強制成功or大成功
 TFLAG:192 =0
 
-@M_KOJO_MESSAGE_COM_KX_363
+@M_KOJO_MESSAGE_COM_K49_363
 CALL TRAIN_MESSAGE
-CALL M_KOJO_MESSAGE_COM_KX_363_1
+CALL M_KOJO_MESSAGE_COM_K49_363_1
 RETURN RESULT
 
-@M_KOJO_MESSAGE_COM_KX_363_1
+@M_KOJO_MESSAGE_COM_K49_363_1
 ;-------------------------------------------------
 ;記入チェック（=0, 非表示、1, 表示）
 LOCAL = 0
@@ -623,12 +623,12 @@ RETURN 1
 ;364,豆まき(萃香、勇儀、スカーレット姉妹用
 ;TFLAG:193(豆まきに参加してる人数
 ;==================================================
-@M_KOJO_MESSAGE_COM_KX_364
+@M_KOJO_MESSAGE_COM_K49_364
 CALL TRAIN_MESSAGE
-CALL M_KOJO_MESSAGE_COM_KX_364_1
+CALL M_KOJO_MESSAGE_COM_K49_364_1
 RETURN RESULT
 
-@M_KOJO_MESSAGE_COM_KX_364_1
+@M_KOJO_MESSAGE_COM_K49_364_1
 ;-------------------------------------------------
 ;記入チェック（=0, 非表示、1, 表示）
 LOCAL = 0
@@ -640,12 +640,12 @@ RETURN 1
 ;==================================================
 ;365,守矢神社へ移動(早苗、神奈子、諏訪子用
 ;==================================================
-@M_KOJO_MESSAGE_COM_KX_365
+@M_KOJO_MESSAGE_COM_K49_365
 CALL TRAIN_MESSAGE
-CALL M_KOJO_MESSAGE_COM_KX_365_1
+CALL M_KOJO_MESSAGE_COM_K49_365_1
 RETURN RESULT
 
-@M_KOJO_MESSAGE_COM_KX_365_1
+@M_KOJO_MESSAGE_COM_K49_365_1
 ;-------------------------------------------------
 ;記入チェック（=0, 非表示、1, 表示）
 LOCAL = 0
@@ -658,12 +658,12 @@ RETURN 1
 ;402,就寝
 ;TFLAG:193(0=通常 1=子供と一緒に川の字で寝る)
 ;==================================================
-@M_KOJO_MESSAGE_COM_KX_402
+@M_KOJO_MESSAGE_COM_K49_402
 ;就寝にTRAIN_MESSAGEは無い
-CALL M_KOJO_MESSAGE_COM_KX_402_1
+CALL M_KOJO_MESSAGE_COM_K49_402_1
 RETURN RESULT
 
-@M_KOJO_MESSAGE_COM_KX_402_1
+@M_KOJO_MESSAGE_COM_K49_402_1
 ;-------------------------------------------------
 ;記入チェック（=0, 非表示、1, 表示）
 LOCAL = 0
@@ -676,12 +676,12 @@ RETURN 1
 ;403,休憩
 ;CFLAG:TARGET:睡眠(1=TARGETが寝てる隣で休憩
 ;==================================================
-@M_KOJO_MESSAGE_COM_KX_403
+@M_KOJO_MESSAGE_COM_K49_403
 CALL TRAIN_MESSAGE
-CALL M_KOJO_MESSAGE_COM_KX_403_1
+CALL M_KOJO_MESSAGE_COM_K49_403_1
 RETURN RESULT
 
-@M_KOJO_MESSAGE_COM_KX_403_1
+@M_KOJO_MESSAGE_COM_K49_403_1
 ;-------------------------------------------------
 ;記入チェック（=0, 非表示、1, 表示）
 LOCAL = 0
@@ -694,12 +694,12 @@ RETURN 1
 ;405,出掛ける(同行時デート
 ;条件が厄介なので、COMF405 出掛ける.ERBを参照のこと
 ;==================================================
-@M_KOJO_MESSAGE_COM_KX_405
+@M_KOJO_MESSAGE_COM_K49_405
 ;出掛けるにTRAIN_MESSAGEは無い
-CALL M_KOJO_MESSAGE_COM_KX_405_1
+CALL M_KOJO_MESSAGE_COM_K49_405_1
 RETURN RESULT
 
-@M_KOJO_MESSAGE_COM_KX_405_1
+@M_KOJO_MESSAGE_COM_K49_405_1
 ;-------------------------------------------------
 ;記入チェック（=0, 非表示、1, 表示）
 LOCAL = 0
@@ -721,12 +721,12 @@ RETURN 1
 ;TFLAG:194(3=汚れ高 2=汚れ中 1=汚れ低 0=汚れ最小
 ;OUTROOF(CFLAG:現在位置)(野外掃除（冬は雪かき
 ;==================================================
-@M_KOJO_MESSAGE_COM_KX_410
+@M_KOJO_MESSAGE_COM_K49_410
 CALL TRAIN_MESSAGE
-CALL M_KOJO_MESSAGE_COM_KX_410_1
+CALL M_KOJO_MESSAGE_COM_K49_410_1
 RETURN RESULT
 
-@M_KOJO_MESSAGE_COM_KX_410_1
+@M_KOJO_MESSAGE_COM_K49_410_1
 ;-------------------------------------------------
 ;記入チェック（=0, 非表示、1, 表示）
 LOCAL = 0
@@ -741,12 +741,12 @@ RETURN 1
 ;411,戦闘訓練
 ;TFLAG:194(3=夏の昼間 2=ヤバい天気 1=悪天候 0=屋内or通常天気
 ;==================================================
-@M_KOJO_MESSAGE_COM_KX_411
+@M_KOJO_MESSAGE_COM_K49_411
 CALL TRAIN_MESSAGE
-CALL M_KOJO_MESSAGE_COM_KX_411_1
+CALL M_KOJO_MESSAGE_COM_K49_411_1
 RETURN RESULT
 
-@M_KOJO_MESSAGE_COM_KX_411_1
+@M_KOJO_MESSAGE_COM_K49_411_1
 ;-------------------------------------------------
 ;記入チェック（=0, 非表示、1, 表示）
 LOCAL = 0
@@ -759,12 +759,12 @@ RETURN 1
 ;412,勉強
 ;ABL:教養(ABL:MASTER:教養より大=MASTERが教えてもらう ABL:MASTER:教養より小=TARGETが教えてもらう
 ;==================================================
-@M_KOJO_MESSAGE_COM_KX_412
+@M_KOJO_MESSAGE_COM_K49_412
 CALL TRAIN_MESSAGE
-CALL M_KOJO_MESSAGE_COM_KX_412_1
+CALL M_KOJO_MESSAGE_COM_K49_412_1
 RETURN RESULT
 
-@M_KOJO_MESSAGE_COM_KX_412_1
+@M_KOJO_MESSAGE_COM_K49_412_1
 ;-------------------------------------------------
 ;記入チェック（=0, 非表示、1, 表示）
 LOCAL = 0
@@ -777,13 +777,13 @@ RETURN 1
 ;413,料理
 ;TFLAG:194(100以上=禁断のメニュー 3=デザート 2=主食 1=軽食
 ;==================================================
-@M_KOJO_MESSAGE_COM_KX_413
+@M_KOJO_MESSAGE_COM_K49_413
 ;TFLAG:194が100以上の場合のみ
 CALL TRAIN_MESSAGE
-CALL M_KOJO_MESSAGE_COM_KX_413_1
+CALL M_KOJO_MESSAGE_COM_K49_413_1
 RETURN RESULT
 
-@M_KOJO_MESSAGE_COM_KX_413_1
+@M_KOJO_MESSAGE_COM_K49_413_1
 ;-------------------------------------------------
 ;記入チェック（=0, 非表示、1, 表示）
 LOCAL = 0
@@ -797,17 +797,17 @@ RETURN 1
 ;TFLAG:194(1=ノーパンしゃぶしゃぶ 2=禁断のメニュー 31=ドーピングコンソメスープ 30=モッツァレラチーズとトマトのサラダ 34=ギンギー料理
 ;TCVAR:MASTER:308(bit0=濃い味 bit1=薄味 bit3=激辛 bit4=激甘 bit5=わさび bit6=激酸っぱ
 ;==================================================
-@M_KOJO_SUCCESS_COM_KX_414
+@M_KOJO_SUCCESS_COM_K49_414
 ;成否判定
 ;TFLAG:192(-2=コマンド終了(非TARGET時強制失敗)、-1＝強制失敗、0=COM依存(非TARGET時強制成功)、1=強制成功or大成功
 TFLAG:192 =0
 
-@M_KOJO_MESSAGE_COM_KX_414
+@M_KOJO_MESSAGE_COM_K49_414
 CALL TRAIN_MESSAGE
-CALL M_KOJO_MESSAGE_COM_KX_414_1
+CALL M_KOJO_MESSAGE_COM_K49_414_1
 RETURN RESULT
 
-@M_KOJO_MESSAGE_COM_KX_414_1
+@M_KOJO_MESSAGE_COM_K49_414_1
 ;-------------------------------------------------
 ;記入チェック（=0, 非表示、1, 表示）
 LOCAL = 0
@@ -821,17 +821,17 @@ RETURN 1
 ;TFLAG:193(1=大成功 0=成功 -1=失敗)
 ;TCVAR:MASTER:308(bit0=濃い味 bit1=薄味 bit3=激辛 bit4=激甘 bit5=わさび bit6=激酸っぱ
 ;==================================================
-@M_KOJO_SUCCESS_COM_KX_415
+@M_KOJO_SUCCESS_COM_K49_415
 ;成否判定
 ;TFLAG:192(-2=コマンド終了、-1＝強制失敗、0=COM依存、1=強制成功or大成功
 TFLAG:192 =0
 
-@M_KOJO_MESSAGE_COM_KX_415
+@M_KOJO_MESSAGE_COM_K49_415
 CALL TRAIN_MESSAGE
-CALL M_KOJO_MESSAGE_COM_KX_415_1
+CALL M_KOJO_MESSAGE_COM_K49_415_1
 RETURN RESULT
 
-@M_KOJO_MESSAGE_COM_KX_415_1
+@M_KOJO_MESSAGE_COM_K49_415_1
 ;-------------------------------------------------
 ;記入チェック（=0, 非表示、1, 表示）
 LOCAL = 0
@@ -845,17 +845,17 @@ RETURN 1
 ;TFLAG:193(1=大成功 0=成功 -1=失敗)
 ;TFLAG:使用楽器(1=キーボード 2=ピアノ 3=ギター 4=トランペット 5=ヴァイオリン)
 ;==================================================
-@M_KOJO_SUCCESS_COM_KX_416
+@M_KOJO_SUCCESS_COM_K49_416
 ;成否判定
 ;TFLAG:192(-2=コマンド終了、-1＝強制失敗、0=COM依存、1=強制成功or大成功
 TFLAG:192 =0
 
-@M_KOJO_MESSAGE_COM_KX_416
+@M_KOJO_MESSAGE_COM_K49_416
 CALL TRAIN_MESSAGE
-CALL M_KOJO_MESSAGE_COM_KX_416_1
+CALL M_KOJO_MESSAGE_COM_K49_416_1
 RETURN RESULT
 
-@M_KOJO_MESSAGE_COM_KX_416_1
+@M_KOJO_MESSAGE_COM_K49_416_1
 ;-------------------------------------------------
 ;記入チェック（=0, 非表示、1, 表示）
 LOCAL = 0
@@ -869,12 +869,12 @@ RETURN 1
 ;TFLAG:193(0=MASTERを抱き枕にして寝ている 1=MASTERの膝を枕にして寝ている 2=寝顔にキスされた 3=寝顔をのぞき込まれた 4=MASTERが膝枕されてる 5=秘処orペニス揉み
 ;CFLAG:添い寝中(1=一緒に寝ている
 ;==================================================
-@M_KOJO_MESSAGE_COM_KX_417
+@M_KOJO_MESSAGE_COM_K49_417
 CALL TRAIN_MESSAGE
-CALL M_KOJO_MESSAGE_COM_KX_417_1
+CALL M_KOJO_MESSAGE_COM_K49_417_1
 RETURN RESULT
 
-@M_KOJO_MESSAGE_COM_KX_417_1
+@M_KOJO_MESSAGE_COM_K49_417_1
 ;-------------------------------------------------
 ;記入チェック（=0, 非表示、1, 表示）
 LOCAL = 0
@@ -887,12 +887,12 @@ RETURN 1
 ;421,願掛けする
 ;条件が複雑なので、COMF421 願掛け.ERBおよび、EVENT_MESSAGE_COM400.ERBの願掛けするの項を参照のこと
 ;==================================================
-@M_KOJO_MESSAGE_COM_KX_421
+@M_KOJO_MESSAGE_COM_K49_421
 CALL TRAIN_MESSAGE
-CALL M_KOJO_MESSAGE_COM_KX_421_1
+CALL M_KOJO_MESSAGE_COM_K49_421_1
 RETURN RESULT
 
-@M_KOJO_MESSAGE_COM_KX_421_1
+@M_KOJO_MESSAGE_COM_K49_421_1
 ;-------------------------------------------------
 ;記入チェック（=0, 非表示、1, 表示）
 LOCAL = 0
@@ -912,12 +912,12 @@ RETURN 1
 ;TFLAG:211(4=地底の温泉で番台妖怪を怒らせている 1=温泉に入った
 ;TFLAG:194(1=連続入浴不可(表示しない可能性あり？
 ;==================================================
-@M_KOJO_MESSAGE_COM_KX_431
+@M_KOJO_MESSAGE_COM_K49_431
 CALL TRAIN_MESSAGE
-CALL M_KOJO_MESSAGE_COM_KX_431_1
+CALL M_KOJO_MESSAGE_COM_K49_431_1
 RETURN RESULT
 
-@M_KOJO_MESSAGE_COM_KX_431_1
+@M_KOJO_MESSAGE_COM_K49_431_1
 ;-------------------------------------------------
 ;記入チェック（=0, 非表示、1, 表示）
 LOCAL = 0
@@ -932,12 +932,12 @@ RETURN 1
 ;TFLAG:209(4=人里の銭湯で番台ちゃんを怒らせている 1=銭湯に入った
 ;TFLAG:211(4=地底の温泉で番台妖怪を怒らせている 1=温泉に入った
 ;==================================================
-@M_KOJO_MESSAGE_COM_KX_432
+@M_KOJO_MESSAGE_COM_K49_432
 CALL TRAIN_MESSAGE
-CALL M_KOJO_MESSAGE_COM_KX_432_1
+CALL M_KOJO_MESSAGE_COM_K49_432_1
 RETURN RESULT
 
-@M_KOJO_MESSAGE_COM_KX_432_1
+@M_KOJO_MESSAGE_COM_K49_432_1
 ;-------------------------------------------------
 ;記入チェック（=0, 非表示、1, 表示）
 LOCAL = 0
@@ -950,21 +950,21 @@ RETURN 1
 ;436,読書
 ;TFLAG:193(選択肢文学(1=忍殺(文学？) 2=失敗 3=文学),選択肢実用書(4=失敗 5=実用書),選択肢エッチな本(6=薄い高い本 7=保健体育 8=カーマスートラ))
 ;==================================================
-@M_KOJO_MESSAGE_COM_KX_436
+@M_KOJO_MESSAGE_COM_K49_436
 CALL TRAIN_MESSAGE
-CALL M_KOJO_MESSAGE_COM_KX_436_1
+CALL M_KOJO_MESSAGE_COM_K49_436_1
 RETURN RESULT
 
-@M_KOJO_MESSAGE_COM_KX_436_1
+@M_KOJO_MESSAGE_COM_K49_436_1
 ;==================================================
 ;440,待つ
 ;==================================================
-@M_KOJO_MESSAGE_COM_KX_440
+@M_KOJO_MESSAGE_COM_K49_440
 CALL TRAIN_MESSAGE
-CALL M_KOJO_MESSAGE_COM_KX_440_1
+CALL M_KOJO_MESSAGE_COM_K49_440_1
 RETURN RESULT
 
-@M_KOJO_MESSAGE_COM_KX_440_1
+@M_KOJO_MESSAGE_COM_K49_440_1
 ;-------------------------------------------------
 ;記入チェック（=0, 非表示、1, 表示）
 LOCAL = 0
@@ -976,12 +976,12 @@ RETURN 1
 ;==================================================
 ;441,授業を受ける(慧音専用
 ;==================================================
-@M_KOJO_MESSAGE_COM_KX_441
+@M_KOJO_MESSAGE_COM_K49_441
 CALL TRAIN_MESSAGE
-CALL M_KOJO_MESSAGE_COM_KX_441_1
+CALL M_KOJO_MESSAGE_COM_K49_441_1
 RETURN RESULT
 
-@M_KOJO_MESSAGE_COM_KX_441_1
+@M_KOJO_MESSAGE_COM_K49_441_1
 ;-------------------------------------------------
 ;記入チェック（=0, 非表示、1, 表示）
 LOCAL = 0
@@ -993,12 +993,12 @@ RETURN 1
 ;==================================================
 ;442,伐採する（未実装
 ;==================================================
-@M_KOJO_MESSAGE_COM_KX_442
+@M_KOJO_MESSAGE_COM_K49_442
 CALL TRAIN_MESSAGE
-CALL M_KOJO_MESSAGE_COM_KX_442_1
+CALL M_KOJO_MESSAGE_COM_K49_442_1
 RETURN RESULT
 
-@M_KOJO_MESSAGE_COM_KX_442_1
+@M_KOJO_MESSAGE_COM_K49_442_1
 ;-------------------------------------------------
 ;記入チェック（=0, 非表示、1, 表示）
 LOCAL = 0
@@ -1022,12 +1022,12 @@ RETURN 1
 ;==================================================
 ;600,デート会話
 ;==================================================
-@M_KOJO_MESSAGE_COM_KX_600
+@M_KOJO_MESSAGE_COM_K49_600
 CALL TRAIN_MESSAGE
-CALL M_KOJO_MESSAGE_COM_KX_600_1
+CALL M_KOJO_MESSAGE_COM_K49_600_1
 RETURN RESULT
 
-@M_KOJO_MESSAGE_COM_KX_600_1
+@M_KOJO_MESSAGE_COM_K49_600_1
 ;-------------------------------------------------
 ;記入チェック（=0, 非表示、1, 表示）
 LOCAL = 0
@@ -1040,12 +1040,12 @@ RETURN 1
 ;==================================================
 ;601,デートスキンシップ
 ;==================================================
-@M_KOJO_MESSAGE_COM_KX_601
+@M_KOJO_MESSAGE_COM_K49_601
 CALL TRAIN_MESSAGE
-CALL M_KOJO_MESSAGE_COM_KX_601_1
+CALL M_KOJO_MESSAGE_COM_K49_601_1
 RETURN RESULT
 
-@M_KOJO_MESSAGE_COM_KX_601_1
+@M_KOJO_MESSAGE_COM_K49_601_1
 ;-------------------------------------------------
 ;記入チェック（=0, 非表示、1, 表示）
 LOCAL = 0
@@ -1058,12 +1058,12 @@ RETURN 1
 ;==================================================
 ;602,デートキス
 ;==================================================
-@M_KOJO_MESSAGE_COM_KX_602
+@M_KOJO_MESSAGE_COM_K49_602
 CALL TRAIN_MESSAGE
-CALL M_KOJO_MESSAGE_COM_KX_602_1
+CALL M_KOJO_MESSAGE_COM_K49_602_1
 RETURN RESULT
 
-@M_KOJO_MESSAGE_COM_KX_602_1
+@M_KOJO_MESSAGE_COM_K49_602_1
 ;-------------------------------------------------
 ;記入チェック（=0, 非表示、1, 表示）
 LOCAL = 0
@@ -1077,17 +1077,17 @@ RETURN 1
 ;603,手を繋ぐ
 ;TFLAG:193(1=大成功 0=成功 -1=失敗)(失敗でもふりほどかれたりはしません
 ;==================================================
-@M_KOJO_SUCCESS_COM_KX_603
+@M_KOJO_SUCCESS_COM_K49_603
 ;成否判定
 ;TFLAG:192(-2=コマンド終了、-1＝強制失敗、0=COM依存、1=強制成功or大成功
 TFLAG:192 =0
 
-@M_KOJO_MESSAGE_COM_KX_603
+@M_KOJO_MESSAGE_COM_K49_603
 CALL TRAIN_MESSAGE
-CALL M_KOJO_MESSAGE_COM_KX_603_1
+CALL M_KOJO_MESSAGE_COM_K49_603_1
 RETURN RESULT
 
-@M_KOJO_MESSAGE_COM_KX_603_1
+@M_KOJO_MESSAGE_COM_K49_603_1
 ;-------------------------------------------------
 ;記入チェック（=0, 非表示、1, 表示）
 LOCAL = 0
@@ -1101,12 +1101,12 @@ RETURN 1
 ;604,散策する
 ;デート中の場合、CFLAG:現在位置に移動先の場所が既に入ってる
 ;==================================================
-@M_KOJO_MESSAGE_COM_KX_604
+@M_KOJO_MESSAGE_COM_K49_604
 ;散策するにはTRAIN_MESSAGEが無い
-CALL M_KOJO_MESSAGE_COM_KX_604_1
+CALL M_KOJO_MESSAGE_COM_K49_604_1
 RETURN RESULT
 
-@M_KOJO_MESSAGE_COM_KX_604_1
+@M_KOJO_MESSAGE_COM_K49_604_1
 ;-------------------------------------------------
 ;記入チェック（=0, 非表示、1, 表示）
 LOCAL = 0
@@ -1119,17 +1119,17 @@ RETURN 1
 ;605,寄り道する
 ;TFLAG:193(1=大成功 0=成功 -1=失敗)(地の文無し
 ;==================================================
-@M_KOJO_SUCCESS_COM_KX_605
+@M_KOJO_SUCCESS_COM_K49_605
 ;成否判定
 ;TFLAG:192(-2=コマンド終了、-1＝強制失敗、0=COM依存、1=強制成功or大成功
 TFLAG:192 =0
 
-@M_KOJO_MESSAGE_COM_KX_605
+@M_KOJO_MESSAGE_COM_K49_605
 ;寄り道するにはTRAIN_MESSAGEが無い
-CALL M_KOJO_MESSAGE_COM_KX_605_1
+CALL M_KOJO_MESSAGE_COM_K49_605_1
 RETURN RESULT
 
-@M_KOJO_MESSAGE_COM_KX_605_1
+@M_KOJO_MESSAGE_COM_K49_605_1
 ;-------------------------------------------------
 ;記入チェック（=0, 非表示、1, 表示）
 LOCAL = 0
@@ -1143,17 +1143,17 @@ RETURN 1
 ;610,食事に誘う
 ;TFLAG:193(1=大成功 0=成功 -1=失敗)
 ;==================================================
-@M_KOJO_SUCCESS_COM_KX_610
+@M_KOJO_SUCCESS_COM_K49_610
 ;成否判定
 ;TFLAG:192(-2=コマンド終了、-1＝強制失敗、0=COM依存、1=強制成功or大成功
 TFLAG:192 =0
 
-@M_KOJO_MESSAGE_COM_KX_610
+@M_KOJO_MESSAGE_COM_K49_610
 CALL TRAIN_MESSAGE
-CALL M_KOJO_MESSAGE_COM_KX_610_1
+CALL M_KOJO_MESSAGE_COM_K49_610_1
 RETURN RESULT
 
-@M_KOJO_MESSAGE_COM_KX_610_1
+@M_KOJO_MESSAGE_COM_K49_610_1
 ;-------------------------------------------------
 ;記入チェック（=0, 非表示、1, 表示）
 LOCAL = 0
@@ -1166,17 +1166,17 @@ RETURN 1
 ;==================================================
 ;613,お金稼ぎする（オミットされました
 ;==================================================
-@M_KOJO_SUCCESS_COM_KX_613
+@M_KOJO_SUCCESS_COM_K49_613
 ;成否判定
 ;TFLAG:192(-2=コマンド終了、-1＝強制失敗、0=COM依存、1=強制成功or大成功
 TFLAG:192 =0
 
-@M_KOJO_MESSAGE_COM_KX_613
+@M_KOJO_MESSAGE_COM_K49_613
 CALL TRAIN_MESSAGE
-CALL M_KOJO_MESSAGE_COM_KX_613_1
+CALL M_KOJO_MESSAGE_COM_K49_613_1
 RETURN RESULT
 
-@M_KOJO_MESSAGE_COM_KX_613_1
+@M_KOJO_MESSAGE_COM_K49_613_1
 ;-------------------------------------------------
 ;記入チェック（=0, 非表示、1, 表示）
 LOCAL = 0
@@ -1189,12 +1189,12 @@ RETURN 1
 ;614,食材の買い出し
 ;TFLAG:193(1=購入＆デート経験アップ 0=購入 -1=非購入)
 ;==================================================
-@M_KOJO_MESSAGE_COM_KX_614
+@M_KOJO_MESSAGE_COM_K49_614
 CALL TRAIN_MESSAGE
-CALL M_KOJO_MESSAGE_COM_KX_614_1
+CALL M_KOJO_MESSAGE_COM_K49_614_1
 RETURN RESULT
 
-@M_KOJO_MESSAGE_COM_KX_614_1
+@M_KOJO_MESSAGE_COM_K49_614_1
 ;-------------------------------------------------
 ;記入チェック（=0, 非表示、1, 表示）
 LOCAL = 0
@@ -1209,12 +1209,12 @@ RETURN 1
 ;TFLAG:193(1=大成功 0=成功 -1=失敗)
 ;ABL:料理技能(2未満=微妙な出来 4未満=そこそこ美味しい 4以上=絶品)
 ;==================================================
-@M_KOJO_MESSAGE_COM_KX_615
+@M_KOJO_MESSAGE_COM_K49_615
 CALL TRAIN_MESSAGE
-CALL M_KOJO_MESSAGE_COM_KX_615_1
+CALL M_KOJO_MESSAGE_COM_K49_615_1
 RETURN RESULT
 
-@M_KOJO_MESSAGE_COM_KX_615_1
+@M_KOJO_MESSAGE_COM_K49_615_1
 ;-------------------------------------------------
 ;記入チェック（=0, 非表示、1, 表示）
 LOCAL = 0
@@ -1227,17 +1227,17 @@ RETURN 1
 ;617,甘味処に誘う
 ;TFLAG:193(1=大成功 0=成功 -1=失敗)(地の文分岐は大成功のみ追加
 ;==================================================
-@M_KOJO_SUCCESS_COM_KX_617
+@M_KOJO_SUCCESS_COM_K49_617
 ;成否判定
 ;TFLAG:192(-2=コマンド終了、-1＝強制失敗、0=COM依存、1=強制成功or大成功
 TFLAG:192 =0
 
-@M_KOJO_MESSAGE_COM_KX_617
+@M_KOJO_MESSAGE_COM_K49_617
 CALL TRAIN_MESSAGE
-CALL M_KOJO_MESSAGE_COM_KX_617_1
+CALL M_KOJO_MESSAGE_COM_K49_617_1
 RETURN RESULT
 
-@M_KOJO_MESSAGE_COM_KX_617_1
+@M_KOJO_MESSAGE_COM_K49_617_1
 ;-------------------------------------------------
 ;記入チェック（=0, 非表示、1, 表示）
 LOCAL = 0
@@ -1249,12 +1249,12 @@ RETURN 1
 ;==================================================
 ;618,花屋（口上は表示されない模様？
 ;==================================================
-@M_KOJO_MESSAGE_COM_KX_618
+@M_KOJO_MESSAGE_COM_K49_618
 CALL TRAIN_MESSAGE
-CALL M_KOJO_MESSAGE_COM_KX_618_1
+CALL M_KOJO_MESSAGE_COM_K49_618_1
 RETURN RESULT
 
-@M_KOJO_MESSAGE_COM_KX_618_1
+@M_KOJO_MESSAGE_COM_K49_618_1
 ;-------------------------------------------------
 ;記入チェック（=0, 非表示、1, 表示）
 LOCAL = 0
@@ -1268,12 +1268,12 @@ RETURN 1
 ;TFLAG:193(1=貸し出しOK 0=貸し出し不可
 ;ITEM:10X (X=1戦術指南書 X=2調理指南書 X=3字引 X=4御伽草子
 ;==================================================
-@M_KOJO_MESSAGE_COM_KX_620
+@M_KOJO_MESSAGE_COM_K49_620
 CALL TRAIN_MESSAGE
-CALL M_KOJO_MESSAGE_COM_KX_620_1
+CALL M_KOJO_MESSAGE_COM_K49_620_1
 RETURN RESULT
 
-@M_KOJO_MESSAGE_COM_KX_620_1
+@M_KOJO_MESSAGE_COM_K49_620_1
 ;-------------------------------------------------
 ;記入チェック（=0, 非表示、1, 表示）
 LOCAL = 0
@@ -1287,12 +1287,12 @@ RETURN 1
 ;TFLAG:193(0=釣れない 1～4=魚 11～15=うまい魚 610=木材 131=守矢の守札 21=ローター 609=氷の鱗 606=龍の爪)
 ;TFLAG:194(1000以上ならTARGETが釣った)
 ;==================================================
-@M_KOJO_MESSAGE_COM_KX_621
+@M_KOJO_MESSAGE_COM_K49_621
 CALL TRAIN_MESSAGE
-CALL M_KOJO_MESSAGE_COM_KX_621_1
+CALL M_KOJO_MESSAGE_COM_K49_621_1
 RETURN RESULT
 
-@M_KOJO_MESSAGE_COM_KX_621_1
+@M_KOJO_MESSAGE_COM_K49_621_1
 ;-------------------------------------------------
 ;記入チェック（=0, 非表示、1, 表示）
 LOCAL = 0
@@ -1305,12 +1305,12 @@ RETURN 1
 ;660,読書
 ;TFLAG:193(選択肢文学(1=忍殺(文学？) 2=失敗 3=文学),選択肢実用書(4=失敗 5=実用書),選択肢エッチな本(6=薄い高い本 7=保健体育 8=カーマスートラ))
 ;==================================================
-@M_KOJO_MESSAGE_COM_KX_660
+@M_KOJO_MESSAGE_COM_K49_660
 CALL TRAIN_MESSAGE
-CALL M_KOJO_MESSAGE_COM_KX_660_1
+CALL M_KOJO_MESSAGE_COM_K49_660_1
 RETURN RESULT
 
-@M_KOJO_MESSAGE_COM_KX_660_1
+@M_KOJO_MESSAGE_COM_K49_660_1
 ;-------------------------------------------------
 ;記入チェック（=0, 非表示、1, 表示）
 LOCAL = 0
@@ -1323,12 +1323,12 @@ RETURN 1
 ;698,部屋に入る
 ;TARGETの部屋に入る場合のみ表示
 ;==================================================
-@M_KOJO_MESSAGE_COM_KX_698
+@M_KOJO_MESSAGE_COM_K49_698
 CALL TRAIN_MESSAGE
-CALL M_KOJO_MESSAGE_COM_KX_698_1
+CALL M_KOJO_MESSAGE_COM_K49_698_1
 RETURN RESULT
 
-@M_KOJO_MESSAGE_COM_KX_698_1
+@M_KOJO_MESSAGE_COM_K49_698_1
 ;-------------------------------------------------
 ;記入チェック（=0, 非表示、1, 表示）
 LOCAL = 0
@@ -1340,12 +1340,12 @@ RETURN 1
 ;==================================================
 ;699,外に出る
 ;==================================================
-@M_KOJO_MESSAGE_COM_KX_699
+@M_KOJO_MESSAGE_COM_K49_699
 CALL TRAIN_MESSAGE
-CALL M_KOJO_MESSAGE_COM_KX_699_1
+CALL M_KOJO_MESSAGE_COM_K49_699_1
 RETURN RESULT
 
-@M_KOJO_MESSAGE_COM_KX_699_1
+@M_KOJO_MESSAGE_COM_K49_699_1
 ;-------------------------------------------------
 ;記入チェック（=0, 非表示、1, 表示）
 LOCAL = 0
@@ -1363,16 +1363,16 @@ RETURN 1
 ;前ターン膝枕後スキンシップコマンド
 ;TFLAG:193(1=大成功 0=成功 -1=失敗)(失敗するのはTARGET
 ;==================================================
-@M_KOJO_SUCCESS_SCOM_KX_60
+@M_KOJO_SUCCESS_SCOM_K49_60
 ;成否判定
 ;TFLAG:192(-2=コマンド終了、-1＝強制失敗、0=COM依存、1=強制成功or大成功
 TFLAG:192 =0
 
-@M_KOJO_MESSAGE_SCOM_KX_60
+@M_KOJO_MESSAGE_SCOM_K49_60
 CALL TRAIN_MESSAGE
-CALL M_KOJO_MESSAGE_SCOM_KX_60_1
+CALL M_KOJO_MESSAGE_SCOM_K49_60_1
 RETURN RESULT
-@M_KOJO_MESSAGE_SCOM_KX_60_1
+@M_KOJO_MESSAGE_SCOM_K49_60_1
 ;-------------------------------------------------
 ;記入チェック（=0, 非表示、1, 表示）
 LOCAL = 0
@@ -1386,11 +1386,11 @@ RETURN 1
 ;(TARGET睡眠時間or衰弱)添い寝中、前ターン抱きつく後就寝コマンド
 ;分岐無し
 ;==================================================
-@M_KOJO_MESSAGE_SCOM_KX_61
+@M_KOJO_MESSAGE_SCOM_K49_61
 CALL TRAIN_MESSAGE
-CALL M_KOJO_MESSAGE_SCOM_KX_61_1
+CALL M_KOJO_MESSAGE_SCOM_K49_61_1
 RETURN RESULT
-@M_KOJO_MESSAGE_SCOM_KX_61_1
+@M_KOJO_MESSAGE_SCOM_K49_61_1
 ;-------------------------------------------------
 ;記入チェック（=0, 非表示、1, 表示）
 LOCAL = 0
@@ -1406,16 +1406,16 @@ RETURN 1
 ;ABL:欲望(5以上=物足りない
 ;ABL:親密(5以上=照れる
 ;==================================================
-@M_KOJO_SUCCESS_SCOM_KX_62
+@M_KOJO_SUCCESS_SCOM_K49_62
 ;成否判定
 ;TFLAG:192(-2=コマンド終了、-1＝強制失敗、0=COM依存、1=強制成功or大成功
 TFLAG:192 =0
 
-@M_KOJO_MESSAGE_SCOM_KX_62
+@M_KOJO_MESSAGE_SCOM_K49_62
 CALL TRAIN_MESSAGE
-CALL M_KOJO_MESSAGE_SCOM_KX_62_1
+CALL M_KOJO_MESSAGE_SCOM_K49_62_1
 RETURN RESULT
-@M_KOJO_MESSAGE_SCOM_KX_62_1
+@M_KOJO_MESSAGE_SCOM_K49_62_1
 ;-------------------------------------------------
 ;記入チェック（=0, 非表示、1, 表示）
 LOCAL = 0
@@ -1429,16 +1429,16 @@ RETURN 1
 ;前ターンキスする後キスする
 ;分岐条件はEVENT_MESSAGE_COM500.ERB参照
 ;==================================================
-@M_KOJO_SUCCESS_SCOM_KX_63
+@M_KOJO_SUCCESS_SCOM_K49_63
 ;成否判定
 ;TFLAG:192(-2=コマンド終了、-1＝強制失敗、0=COM依存、1=強制成功or大成功
 TFLAG:192 =0
 
-@M_KOJO_MESSAGE_SCOM_KX_63
+@M_KOJO_MESSAGE_SCOM_K49_63
 CALL TRAIN_MESSAGE
-CALL M_KOJO_MESSAGE_SCOM_KX_63_1
+CALL M_KOJO_MESSAGE_SCOM_K49_63_1
 RETURN RESULT
-@M_KOJO_MESSAGE_SCOM_KX_63_1
+@M_KOJO_MESSAGE_SCOM_K49_63_1
 ;-------------------------------------------------
 ;記入チェック（=0, 非表示、1, 表示）
 LOCAL = 0
@@ -1454,16 +1454,16 @@ RETURN 1
 ;デート出発後目的地に着くまでの間
 ;TFLAG:193(1=大成功 0=成功 -1=失敗)
 ;==================================================
-@M_KOJO_SUCCESS_SCOM_KX_80
+@M_KOJO_SUCCESS_SCOM_K49_80
 ;成否判定
 ;TFLAG:192(-2=コマンド終了、-1＝強制失敗、0=COM依存、1=強制成功or大成功
 TFLAG:192 =0
 
-@M_KOJO_MESSAGE_SCOM_KX_80
+@M_KOJO_MESSAGE_SCOM_K49_80
 CALL TRAIN_MESSAGE
-CALL M_KOJO_MESSAGE_SCOM_KX_80_1
+CALL M_KOJO_MESSAGE_SCOM_K49_80_1
 RETURN RESULT
-@M_KOJO_MESSAGE_SCOM_KX_80_1
+@M_KOJO_MESSAGE_SCOM_K49_80_1
 ;-------------------------------------------------
 ;記入チェック（=0, 非表示、1, 表示）
 LOCAL = 0
