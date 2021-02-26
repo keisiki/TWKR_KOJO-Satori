@@ -1352,7 +1352,9 @@ IF LOCAL
 								PRINTFORMW 「물론 요즘에는 틀렸다는 말도 더러 있지만 저는 이 이론 되게 좋아해요」
 								PRINTFORMW 「...뭐, 생각을 읽지 못하는 사람들이 생각을 읽어보려는 노력이 신기하니까...」
 							CASEELSE
-
+								PRINTFORMW 「......」
+								PRINTFORMW 사토리는 %마스터의% 눈치를 보며 답을 적었다 지웠다를 반복하고 있다...
+								PRINTFORMW 정답이 나올때까지 계속하려는 모양이다...
 						ENDSELECT
 					CASE 3
 						SELECTCASE ABL:MASTER:교양
@@ -1363,9 +1365,14 @@ IF LOCAL
 								PRINTFORMW 「엑...이..이건...보지마세요, 아직 다 못쓴거니까 보지마요...」
 								PRINTFORMW 아무래도 사토리가 쓴 것인 모양이다...
 							CASE 3,4
-
+								PRINTFORMW 「사람은 받아들이기 어려운 일을 겪었을때 스스로의 마음을 지키는 기제가 있다고 하죠」
+								PRINTFORMW 「현실을 부정하거나, 왜곡해서 이해하거나, 남의 탓을 하던가...」
+								PRINTFORMW 「그럼에도 온전히 막아낸다곤 말 못해요, 너무 강한 충격이라면...한번에 헤까닥 가버리니까」
+								PRINTFORMW 「그 광경을 지켜보는것도 의외로 구경거리지요」
 							CASEELSE
-							
+								PRINTFORMW 「...답이 뭔가요? 도대체가 풀수가 있어야지...」
+								PRINTFORMW 「...어라? 고작 그거라고요...?」
+								PRINTFORMW 사토리는 의외로 쉬운 답에 당황한 모양이다...
 						ENDSELECT
 					CASE 4
 						SELECTCASE ABL:MASTER:교양
@@ -1375,62 +1382,114 @@ IF LOCAL
 								PRINTFORMW 「...고, 공부하러 온거 아닌가요? 그러니까 그런 책은 저리 치워주세요...」
 								PRINTFORMW 아무래도 신경쓰이는 모양이다...
 							CASE 3,4
-
+								PRINTFORMW 「고백을 할때엔 무서운 곳에서 하는게 좋아요」
+								PRINTFORMW 「그런 상황에선 공포와 두근거림을 구별하기 어려우니까」
+								PRINTFORMW 「그래서일까요...파르시씨 옆에서 고백하는 사람이 꽤 많던데...」
+								PRINTFORMW 「확실히 효과는 있어보이더군요」
 							CASEELSE
-							
+								PRINTFORMW 「...어떤 사람을 가르칠때엔 교육자의 기대가 중요해요」
+								PRINTFORMW 「확실히 잘 해낼거라는 믿음을 가지고 가르쳐야 그 사람이 정말 잘 해내게 된다는건데...」
+								PRINTFORMW 「....실제로 별 효과는 없는거 같아요, 의식하면서 해서 그런가...」
 						ENDSELECT
 				ENDSELECT
 			ELSE
+				;PRINTFORMW 「」
 				SELECTCASE RAND:5
 					CASE 0
 						SELECTCASE ABL:MASTER:교양
 							CASE 0,1,2
-
+								PRINTFORMW 「아, 그건 이렇게 하는거 아닌데」
+								PRINTFORMW 「...아니, 그것도 아니고...하아...이거잖아요, 이거」
+								PRINTFORMW 사토리는 답답해했다...
 							CASE 3,4
-
+								PRINTFORMW 「이거에 대해서 어떻게 생각하세요?」
+								PRINTFORMW 사토리는 최근 유행한 화제에 대해 물어왔다
+								PRINTFORMW 아는 지식을 동원해 스스로의 생각을 전했다...
+								PRINTFORMW 「헤에....」
+								PRINTFORMW 별로 만족스러운 대답은 아니었던 모양이다
 							CASEELSE
-
+								PRINTFORMW 「...으으음...이걸...이렇게...?」
+								PRINTFORMW 사토리는 종이에 무어라 조금 끄적이곤 조용히 %마스터의% 눈치를 살폈다
+								PRINTFORMW 그러나 사토리가 적은것은 답이 아니었다
+								PRINTFORMW 그 생각을 읽은 사토리는 입술을 삐죽이며 다시 문제를 풀기 시작했다
 						ENDSELECT
 					CASE 1
 						SELECTCASE ABL:MASTER:교양
 							CASE 0,1,2
-
+								PRINTFORMW 「음음...그렇게만 풀면...아아, 마지막에 틀렸어, 다시다시」
+								PRINTFORMW 「으음... 잘했어요, 다음 문제도 풀어보죠」
+								PRINTFORMW 사토리는 %마스터의% 문제지를 보고 고개를 끄덕였다
+								PRINTFORMW 그리고 다음 문제지가 한가득 쌓여 있다는걸 깨달았다...
 							CASE 3,4
-
+								PRINTFORMW 「이면지 가져왔어요」
+								PRINTFORMW 사토리는 대량의 종이 뭉치를 가져왔다...
+								PRINTFORMW 슬쩍 살펴보니 대부분 한두줄 끄적인 소설이나 회계장부였다...
+								PRINTFORMW 「...자꾸 공부 안하고 딴짓 할거예요?」
 							CASEELSE
-							
+								PRINTFORMW 「...으으음...어려워라...」
+								PRINTFORMW 「솔직히 말해서...하나도 이해 못하겠는걸...」
+								PRINTFORMW 「머리만 아프고...으으...」
+								PRINTFORMW 사토리는 머리를 짚은채 계속 투덜거렸다
 						ENDSELECT
 					CASE 2
 						SELECTCASE ABL:MASTER:교양
 							CASE 0,1,2
-
+								PRINTFORMW 「이거를 잘 모르겠단 건가요?」
+								PRINTFORMW 「으음...아, 그렇지, 이거는 말이죠...이렇게 하면...」
+								PRINTFORMW 「...잘 모르겠다? 하아...다시 할게요」
+								PRINTFORMW 사토리는 차근차근 설명해주기 시작했다...
 							CASE 3,4
-
+								PRINTFORMW 「가끔씩 외래의 물건이 지저에도 흘러들어오긴 하지만...지저 사람들은 그닥 흥미 없어 하는게 문제네요」
+								PRINTFORMW 「그래도 잡지나 서적정도는 자주 들어와 줬음 하는데...」
+								PRINTFORMW 「...주민들이 그런거에 관심이 없어서 들여놓지도 않는게 문제죠...」
+								PRINTFORMW 「기껏해야 춘화집이나 돌아다니지...」
+								PRINTFORMW 사토리는 투덜거리면서 문제를 풀어나갔다...
 							CASEELSE
-							
+								PRINTFORMW 「......이건가...으음...」
+								PRINTFORMW 사토리는 %마스터의% 눈치를 보며 답을 적었다 지웠다를 반복하고 있다...
+								PRINTFORMW 정답이 나올때까지 계속하려는 모양이다...
 						ENDSELECT
 					CASE 3
 						SELECTCASE ABL:MASTER:교양
 							CASE 0,1,2
-
+								PRINTFORMW 「오늘은 뭐를 공부해볼까나...」
+								PRINTFORMW 사토리는 쌓인 책중에서 적당한것을 고르고 있다
+								PRINTFORMW 그러던중 원고지 한뭉치가 우수수 쏟아져내렸다
+								PRINTFORMW 「엑...이..이건...보지마, 아직 다 못쓴거니까 보지마...!」
+								PRINTFORMW 사토리는 얼굴을 붉히며 원고지를 감췄다
+								PRINTFORMW 아무래도 사토리가 쓴 것인 모양이다...
 							CASE 3,4
-
+								PRINTFORMW 「사람은 받아들이기 어려운 일을 겪었을때 스스로의 마음을 지키는 기제가 있다고 하는데」
+								PRINTFORMW 「현실을 부정하거나, 왜곡해서 이해하거나, 남의 탓을 하던가...」
+								PRINTFORMW 「그럼에도 온전히 막아낸다곤 말 못해요, 너무 강한 충격이라면...한번에 헤까닥 가버리니까」
+								PRINTFORMW 「그 광경을 지켜보는것도 의외로 구경거리지요」
+								PRINTFORMW 「그렇다고 함부로 남들을 그렇게 만드는건 좋다고 생각하지 않아요」
+								PRINTFORMW 사토리는 %마스터를% 빤히 바라보며 말해왔다...
 							CASEELSE
-							
+								PRINTFORMW 「...답이 뭔가요? 도대체가 풀수가 있어야지...」
+								PRINTFORMW 「...어라? 고작 그거...? 말도 안돼, 그럴리 없잖아...」
+								PRINTFORMW 사토리는 의외로 쉬운 답에 당황한 모양이다...
 						ENDSELECT
 					CASE 4
 						SELECTCASE ABL:MASTER:교양
 							CASE 0,1,2
-
+								PRINTFORMW 사토리와 공부할 책을 찾아보던중, 선정적인 제목의 책이 눈에 들어왔다
+								PRINTFORMW 「...아..그...흠흠! 누가 서재에 저런걸 둔거람...으...」
+								PRINTFORMW 「...공부하러 온거 아닌가요? 그런 책은 저리 치워요...」
+								PRINTFORMW 사토리는 신경질적으로 책을 치웠다...
 							CASE 3,4
-
+								PRINTFORMW 「사실 공부라는건 그닥 즐거운 일이 아니죠」
+								PRINTFORMW 「배우는것 보다 써먹는게 훨씬 재밌으니까」
+								PRINTFORMW 「...문제 풀때 쓰는건 빼고...」
 							CASEELSE
-							
+								PRINTFORMW 「...어떤 사람을 가르칠때엔 교육자의 기대가 중요해요」
+								PRINTFORMW 「확실히 잘 해낼거라는 믿음을 가지고 가르쳐야 그 사람이 정말 잘 해내게 된다는건데...」
+								PRINTFORMW 「....실제로 별 효과는 없는거 같아요, 의식하면서 해서 그런가...」
+								PRINTFORMW 「아니면 별 기대 안하는건가?」
 						ENDSELECT
 				ENDSELECT
 			ENDIF
 		ENDIF
-		
 	ENDIF
 ENDIF
 ENDIF
