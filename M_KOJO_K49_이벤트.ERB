@@ -13259,65 +13259,178 @@ IF LOCAL
 				;경산부 + 반발각인 3
 				IF TALENT:연인
 					;경산부+ 반발각인 3 + 연인
-					PRINTFORMW 「...으읍...또야...?」
-					PRINTFORMW 「정말이지...이건 적응이 안된단 말야...」
-					PRINTFORMW 사토리는 연신 신물을 토해내며 괴로워 하고 있었다...
-					IF CFLAG:생해금 == 2
-						;경산부 + 반발각인 3 + 연인 + 애만들기 허락
-						PRINTFORMW 「...싫은건 아니지만, 힘든건 어쩔수 없네...」
-						PRINTFORMW 「나른하고 메스껍고...하아...벌써부터 지치네」
-						PRINTFORMW 「...그래도 조금정도는 도와 주겠지, 양심이란게 있다면 말야」
-					ELSE
-						;경산부 + 반발각인 3 + 연인 + 애만들기 미허가
-						PRINTFORMW 「정말이지, 이런짓을 할거면 나한테 허락정도는 맞아야 하는거 아냐...?」
-						PRINTFORMW 「...이미 한 번 했다고 이러는건가...」
-						PRINTFORMW 「...하아...이미 생긴거, 어쩔수 없나...」
-						PRINTFORMW 「나중에 한번 혼내줘야지...」
-					ENDIF
-					PRINTFORMW 사토리는 한숨을 쉬며 자리에 누웠다
+					SELECTCASE RAND:3
+						CASE 0
+							PRINTFORMW 「하아...」
+							PRINTFORMW 사토리는 연신 한숨을 쉬며 거울에 비친 자신의 배를 바라보고 있다
+							PRINTFORMW 그렇게 티나지는 않지만 확실히 부풀어오른 그것은 태내에 생명이 잉태했음을 알려주고 있었다
+							PRINTFORMW 「...피곤하게...」
+							PRINTFORMW 「그래도 이걸로 조금은 다정해지려나」
+							PRINTFORMW 사토리는 복잡한 마음으로 배를 만지작거리고 있다...
+						CASE 1
+							PRINTFORMW 「...이런 사이에서도 생길건 생기는구나」
+							PRINTFORMW 「좀 더 사이 좋을때에 생겼다면 좋을것을」
+							PRINTFORMW 사토리는 살며시 부풀어오른 배를 바라보며 미안해하고 있었다
+							PRINTFORMW 「...뭐라고 말해줘야 하려나...하아...」
+						CASE 2
+							PRINTFORMW 「...으읍...또야...?」
+							PRINTFORMW 「정말이지...이건 적응이 안된단 말야...」
+							PRINTFORMW 사토리는 연신 신물을 토해내며 괴로워 하고 있었다...
+							IF CFLAG:생해금 == 2
+								;경산부 + 반발각인 3 + 연인 + 애만들기 허락
+								PRINTFORMW 「...싫은건 아니지만, 힘든건 어쩔수 없네...」
+								PRINTFORMW 「나른하고 메스껍고...하아...벌써부터 지치네」
+								PRINTFORMW 「...그래도 조금정도는 도와 주겠지, 양심이란게 있다면 말야」
+							ELSE
+								;경산부 + 반발각인 3 + 연인 + 애만들기 미허가
+								PRINTFORMW 「정말이지, 이런짓을 할거면 나한테 허락정도는 맞아야 하는거 아냐...?」
+								PRINTFORMW 「...이미 한 번 했다고 이러는건가...」
+								PRINTFORMW 「...하아...이미 생긴거, 어쩔수 없나...」
+								PRINTFORMW 「나중에 한번 날잡고 혼내줘야지...」
+							ENDIF
+							PRINTFORMW 사토리는 한숨을 쉬며 자리에 누웠다
+					ENDSELECT
 				ELSE
 					;경산부 + 반발각인 3 + 연인 아님
 					IF CFLAG:3000 == 0
 						;경산부 + 반발각인 3 + 연인 아님 + 인상 좋음
-
 						IF CFLAG:생해금 == 2
-							;경산부 + 반발각인 3 + 연인 아님 + 인상 좋음 + 애만들기 허가
-
+							SELECTCASE RAND:3
+								CASE 0
+									PRINTFORMW 「...또 생겼네에..」
+									PRINTFORMW 「...연인도 아닌데 벌써 몇명이야...{CFLAG:아이인원수}명인가...」
+									PRINTFORMW 사토리는 부푼 자신의 배를 물끄러미 내려다보고 있었다
+									PRINTFORMW 「뭐어, 동생이 새로 생긴다 하면 좋아하겠지」
+									PRINTFORMW 「...이미 생겨버린걸 어쩔수도 없고 말야」
+								CASE 1
+									PRINTFORMW 「...역시나...임신이네...」
+									PRINTFORMW 「계속 사고치면 안되는데 말야, 연인도 아니고, 사이가 좋은것도 아니고...」
+									PRINTFORMW 사토리는 떨떠름한 표정으로 거울에 비친 자기 배를 바라보고 있다
+									IF CFLAG:6000
+										PRINTFORMW 「...이전 세계의 나도 이런 일 당한걸까...」
+										PRINTFORMW 「나를 괴롭히려고 시간을 돌린걸까...」
+										PRINTFORMW 「아니면, 더 심한일 해놓고 속죄라도 하려고 돌린걸까?」
+										PRINTFORMW 「어느쪽이든 슬프네, 차라리 몰랐다면 좋았겠어」
+									ELSE
+										PRINTFORMW 「...내 입으로 허락했으니 남 탓할거 없긴 하지만」
+										PRINTFORMW 「그래도 역시 이런일은 연인끼리 해야하는거야...」
+										PRINTFORMW 사토리는 한숨을 쉬며 되뇌였다
+									ENDIF
+								CASE 2
+									PRINTFORMW 「임신인가...하아...」
+									PRINTFORMW 「원하는 부부끼리도 안 생겨서 고민하는 판에, 나는 덜컥덜컥 임신해 버리네」
+									PRINTFORMW 「...자존심이란건 하나도 없는걸까, 내 몸은...몇번쯤은 튕겨도 될것을」
+									PRINTFORMW 사토리는 씁쓸하게 웃으며 배를 쓰다듬었다...
+							ENDSELECT
 						ELSE
-							;경산부 + 반발각인 3 + 연인 아님 + 인상 좋음 + 애만들기 미허가
-
+							SELECTCASE RAND:3
+								CASE 0
+									PRINTFORMW 「...또야? 아무리 그래도 그렇지...」
+									PRINTFORMW 「...하아...연인도 아닌데...어쩌다 이렇게 된거람...」
+									PRINTFORMW 사토리는 부푼 자신의 배를 물끄러미 내려다보고 있었다
+									PRINTFORMW 「그렇게 나쁜 사람은 아닌데 말야, 나한테만 심한짓 하고 다니는 이유가 뭘까」
+									PRINTFORMW 「...모르겠어...전혀 모르겠어...」
+								CASE 1
+									PRINTFORMW 「...또 생겨버렸네, 어쩌지...」
+									PRINTFORMW 「연인도 아닌 사람이랑 계속 사고치고 다니는거, 좋은 일은 아닌데 말야...」
+									PRINTFORMW 사토리는 떨떠름한 표정으로 거울에 비친 자기 배를 바라보고 있다
+									IF CFLAG:6000
+										PRINTFORMW 「이럴거면 굳이 되돌리지 말고 거기서 행복하게 사는게 나을텐데...」
+										PRINTFORMW 「이해할수가 없어..」
+									ELSE
+										PRINTFORMW 「...이미 생긴건 어쩔수 없으니, 다음부턴 하지 말자고 말해둬야지...」
+										PRINTFORMW 사토리는 배를 부드럽게 쓰다듬으며 되뇌였다
+									ENDIF
+								CASE 2
+									PRINTFORMW 「임신인가...하아...」
+									PRINTFORMW 「원하는 부부끼리도 안 생겨서 고민하는 판에, 나는 좋아하지도 않는 사람한테 덜컥 임신해 버리네」
+									PRINTFORMW 「...참 얄궃기도 하지...이런 험악한 사이에서 생긴 애라니, 불쌍하기도 해라」
+									PRINTFORMW 사토리는 씁쓸하게 웃으며 배를 쓰다듬었다...
+							ENDSELECT
 						ENDIF
-						
 					ELSE
 						;경산부 + 반발각인 3 + 연인 아님 + 인상 나쁨
-
 						IF CFLAG:생해금 == 2
-							;경산부 + 반발각인 3 + 연인 아님 + 인상 나쁨 + 애만들기 허가
-
+							SELECTCASE RAND:3
+								CASE 0
+									PRINTFORMW 「...또 생겼네...」
+									PRINTFORMW 「...내 입으로 허락하긴 했어도 역시 이상한 기분이란 말이지」
+									PRINTFORMW 사토리는 부푼 자신의 배를 물끄러미 내려다보고 있었다
+									PRINTFORMW 「뭐어...동생이 생기니까 그 애한테는 좋으려나...」
+									PRINTFORMW 「좀 더 기다렸다가 깜짝 선물이라 해주면 좋아하겠지...」
+									PRINTFORMW 사토리는 힘없이 웃어보였다...
+								CASE 1
+									PRINTFORMW 「...임신인가아...」
+									PRINTFORMW 사토리는 떨떠름한 표정으로 거울에 비친 자기 배를 바라보고 있다
+									IF CFLAG:6000
+										PRINTFORMW 「결국은 이런 관계까지 왔구나, 그렇게 미워했었는데 말이지」
+										PRINTFORMW 「아직도 밉고, 글러먹은 사람이라 생각은 하지만...이미 이렇게 잔뜩 해버리고 난 사람이 할 말은 아니지」
+										PRINTFORMW 「...이러다 또 시간을 돌려서 도망가버리는건 아닌가 몰라...」
+									ELSE
+										PRINTFORMW 「딱히 싫은건 아니지만...그래도 역시 기분 좋진 않은걸」
+										PRINTFORMW 「아무리 허락했어도 상대가 그런 글러먹은 사람이면 좀 그렇지, 단순히 같이 자는것도 아니고...」
+										PRINTFORMW 「...하기사 그런 사람한테 좋다고 몸을 맡긴 내 잘못도 있지만...하아...」
+									ENDIF
+								CASE 2
+									PRINTFORMW 「임신인가...하아...」
+									PRINTFORMW 「원하는 부부끼리도 안 생겨서 고민하는 판에, 나는 그런 글러먹은 사람한테 덜컥 임신해 버리네」
+									PRINTFORMW 「싫은건 아니지마는, 기분 좋지도 않네」
+									PRINTFORMW 사토리는 씁쓸하게 웃으며 부푼 배를 바라보고 있다...
+							ENDSELECT
 						ELSE
-							;경산부 + 반발각인 3 + 연인 아님 + 인상 나쁨 + 애만들기 미허가
-							
+							SELECTCASE RAND:3
+								CASE 0
+									PRINTFORMW 「...또야? 아무리 그래도 그렇지...」
+									PRINTFORMW 「...하아...연인도 아닌데...어쩌다 이렇게 된거람...」
+									PRINTFORMW 사토리는 부푼 자신의 배를 물끄러미 내려다보고 있었다
+									PRINTFORMW 「내가 무슨 잘못을 했다고 이러는지...」
+								CASE 1
+									PRINTFORMW 「...또 생겨버렸네...」
+									PRINTFORMW 사토리는 떨떠름한 표정으로 거울에 비친 자기 배를 바라보고 있다
+									IF CFLAG:6000
+										PRINTFORMW 「기껏 시간까지 되돌려 놓고서 한다는게 이런일이라니」
+										PRINTFORMW 「도대체 이유가 뭐야...하아...」
+									ELSE
+										PRINTFORMW 「이런걸 한다고 뭐가 좋은지 참...」
+										PRINTFORMW 「모르겠어...도대체 왜 그러는거람...」
+									ENDIF
+								CASE 2
+									PRINTFORMW 「임신인가...하아...」
+									PRINTFORMW 「원하는 부부끼리도 안 생겨서 고민하는 판에, 나는 그런 글러먹은 사람한테 덜컥 임신해 버리네」
+									PRINTFORMW 「...그것도 한번도 아니고 말야...」
+									PRINTFORMW 사토리는 연신 한숨을 쉬며 부푼 배를 바라보고 있다...
+							ENDSELECT
 						ENDIF
 					ENDIF
 				ENDIF
 			ELSEIF TALENT:연인
+				;PRINTFORMW 「」
 				;경산부+연인
-
-				IF CFLAG:생해금 == 2
-					;경산부+연인+애만들기 허락
-					
-				ELSE
-					;경산부+연인+애만들기 미허락
-					
-				ENDIF
-				
-				IF CFLAG:4001&&CFLAG:4000 != 1
-					;경산부+연인+불륜 미허락+불륜한적 있음
-					
-				ELSEIF CFLAG:4001&&CFLAG:4000
-					;경산부+연인+불륜허락+불륜한적 있음
-					
-				ENDIF
+				SELECTCASE RAND:3
+					CASE 0
+						PRINTFORMW 「...생겼네에...으응...어쩐지 요즘 나른하더라...」
+						IF CFLAG:샘해금 == 2
+							PRINTFORMW 「후후...동생이 생긴다고 하면 좋아하려나아...」
+							PRINTFORMW 「그래도 피곤하고 움직이기 힘든건 역시 불편한걸」
+							PRINTFORMW 사토리는 부드러운 미소를 지으며 배를 쓰다듬었다
+						ELSE
+							PRINTFORMW 「멋대로 범하고, 또 임신시키고...참 못된 사람이란 말이지...」
+							PRINTFORMW 「그냥 말 한번 하는게 뭐가 어렵다고...」
+							PRINTFORMW 사토리는 입술을 삐죽이며 부푼 배를 쓰다듬고 있다...
+						ENDIF
+					CASE 1
+						PRINTFORMW 「...임신이라...」
+						PRINTFORMW 사토리는 수줍게 부푼 자신의 배를 물끄러미 바라보고 있다
+						IF CFLAG:생해금 == 2
+							PRINTFORMW 「분명히 이번 아이도 귀엽겠지, %사마스터랑% 내 아인데...후후...」
+							PRINTFORMW 「%MASTERNAME:49%도 기뻐할거야, 얼른 나와줬음 좋겠네...」
+							PRINTFORMW 사토리는 옅게 웃으며 배를 쓰다듬고 있다...
+						ELSE
+							PRINTFORMW 「{CFLAG:아이인원수}명을 임신할 동안 한번도 나한테 물어본 적이 없네」
+							PRINTFORMW 「못됐다니까 정말...」
+							PRINTFORMW 사토리는 투덜거리며 배를 쓰다듬고 있다...
+						ENDIF
+				ENDSELECT
 			ELSEIF TALENT:연모||TALENT:사모||TALENT:애욕
 				;경산부+연사애
 				
