@@ -13433,66 +13433,56 @@ IF LOCAL
 				ENDSELECT
 			ELSEIF TALENT:연모||TALENT:사모||TALENT:애욕
 				;경산부+연사애
-				
-				IF CFLAG:생해금 == 2
-					;경산부+연사애+애만들기 허락
-					
-				ELSE
-					;경산부+연사애+애만들기 미허락
-					
-					IF CFLAG:3000 == 0
-						
-					ELSE
-						
-					ENDIF
-					
-				ENDIF
-				IF CFLAG:3000 == 0
-					
-				ELSE
-					
-				ENDIF
+				SELECTCASE RAND:2
+					CASE 0
+						PRINTFORMW 「...설마했지만 생겼던 거네, 어쩐지 좀 피곤하더라」
+						PRINTFORMW 사토리는 거울에 비친 자신의 볼록해진 배를 보며 곤혹해 하고 있었다
+						IF CFLAG:생해금 == 2
+							PRINTFORMW 「싫은건 아니지만, 역시 또 낳는다 생각하면 벌써부터 걱정되는걸」
+							PRINTFORMW 「...%사마스터가% 아무리 좋긴 해도 부부도 아닌데...」
+							IF CFLAG:3000 == 0
+								PRINTFORMW 「...%사마스터랑% 나랑...으으음...」
+								PRINTFORMW 사토리는 %마스터와%의 연애를 상상하곤 얼굴을 붉혔다...
+							ELSE
+								PRINTFORMW 「...으으음...그렇지만 이미 생긴건 어쩔수 없지...」
+								PRINTFORMW 「그렇다면 차라리 책임져달라고 계속 떼라도 써볼까...」
+								PRINTFORMW 「...그런짓 한다고 받아들여질리는 없을거 같지만...오히려 핀잔이나 듣겠지...」
+							ENDIF
+						ELSE
+							PRINTFORMW 「멋대로 안에 싸서...한번도 아니고 {CFLAG:아이인원수+1}번이나...」
+							PRINTFORMW 「%사마스터는% 좋아하지만, 이런건 조금...」
+							PRINTFORMW 「...도대체 왜 그러는거람...」
+							PRINTFORMW 사토리는 연신 한숨을 쉬며 배를 쓰다듬고 있다...
+						ENDIF
+					CASE 1
+						PRINTFORMW 「...임신이라...」
+						PRINTFORMW 사토리는 묵묵히 부푼 배를 바라보고 있다
+						PRINTFORMW 「부부도 아니고, 하다못해 연인도 아닌데...」
+						IF CFLAG:생해금 == 2
+							PRINTFORMW 「한번도 아니고 계속 사고쳐버렸어...」
+							PRINTFORMW 「이제 어쩌지...」
+							PRINTFORMW 사토리는 심란한 마음으로 배를 만져보고 있다...
+						ELSE
+							PRINTFORMW 「한번도 아니고...왜 자꾸 이러는거야」
+							PRINTFORMW 「멋대로 안에...나는 그런거 허락한 적 없는걸」
+							PRINTFORMW 사토리는 작게 투덜거리며 부푼 배를 만져보고 있다...
+						ENDIF
+				ENDSELECT
 			ELSEIF TALENT:섹프
 				;경산부+섹프
 				
-				IF CFLAG:생해금 == 2
-					;경산부+섹프+애만들기 허락
-					
-				ELSE
-					;경산부+섹프+애만들기 미허락
-					
-					IF CFLAG:3000 == 0
-						;경산부+섹프+애만들기 미허락+인상 좋음
-						
-					ELSE
-						;경산부+섹프+애만들기 미허락+인상 나쁨
-						
-					ENDIF
-					
-				ENDIF
+				
 			ELSE
 				;경산부+함락소질 없음
 				;솔직히 별로 뜰 일 없다, 간단히 적자
 				IF CFLAG:3000 == 0
 					;경산부+함락소질 없음+인상 좋음
 					
-					IF CFLAG:생해금 == 2
-						;경산부+함락소질 없음+인상 좋음+애만들기 허락
-						
-					ELSE
-						;경산부+함락소질 없음+인상 좋음+애만들기 미허락
-						
-					ENDIF
+					
 				ELSE
 					;경산부+함락소질 없음+인상 나쁨
 					
-					IF CFLAG:생해금 == 2
-						;경산부+함락소질 없음+인상 나쁨+애만들기 허락
-						
-					ELSE
-						;경산부+함락소질 없음+인상 나쁨+애만들기 미허락
-						
-					ENDIF
+					
 				ENDIF
 			ENDIF
 		ENDIF
