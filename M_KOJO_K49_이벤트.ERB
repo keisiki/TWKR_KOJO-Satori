@@ -13429,6 +13429,7 @@ IF LOCAL
 							PRINTFORMW 「{CFLAG:아이인원수}명을 임신할 동안 한번도 나한테 물어본 적이 없네」
 							PRINTFORMW 「못됐다니까 정말...」
 							PRINTFORMW 사토리는 투덜거리며 배를 쓰다듬고 있다...
+							CFLAG:3101 ++
 						ENDIF
 				ENDSELECT
 			ELSEIF TALENT:연모||TALENT:사모||TALENT:애욕
@@ -13453,6 +13454,7 @@ IF LOCAL
 							PRINTFORMW 「%사마스터는% 좋아하지만, 이런건 조금...」
 							PRINTFORMW 「...도대체 왜 그러는거람...」
 							PRINTFORMW 사토리는 연신 한숨을 쉬며 배를 쓰다듬고 있다...
+							CFLAG:3101 ++
 						ENDIF
 					CASE 1
 						PRINTFORMW 「...임신이라...」
@@ -13466,23 +13468,69 @@ IF LOCAL
 							PRINTFORMW 「한번도 아니고...왜 자꾸 이러는거야」
 							PRINTFORMW 「멋대로 안에...나는 그런거 허락한 적 없는걸」
 							PRINTFORMW 사토리는 작게 투덜거리며 부푼 배를 만져보고 있다...
+							CFLAG:3101 ++
 						ENDIF
 				ENDSELECT
 			ELSEIF TALENT:섹프
 				;경산부+섹프
-				
-				
+				SELECTCASE RAND:2
+					CASE 0
+						PRINTFORMW 「설마 또 생겼을줄은 몰랐는데」
+						PRINTFORMW 사토리는 떨떠름한 표정으로 부푼 배를 바라보고 있다
+						IF CFLAG:생해금 == 2
+							PRINTFORMW 「한동안 야한 일은 참아야 하나」
+							PRINTFORMW 「역시 이런 몸 상태론 무리겠지...」
+							PRINTFORMW 사토리는 조금 시무룩해진 모양이다...
+						ELSE
+							PRINTFORMW 「이런거 까지 허락한적은 없는데...」
+							PRINTFORMW 「그냥 서로 기분 좋자고 만나는것 뿐이었는데, 왜 이렇게 된 걸까...」
+							CFLAG:3101 ++
+						ENDIF
+					CASE 1
+						PRINTFORMW 「...하아...」
+						PRINTFORMW 사토리는 착잡한 표정으로 거울에 비친 볼록한 자기 배를 바라보고 있었다
+						PRINTFORMW 「곤란하네, 이를 어쩐담」
+						IF CFLAG:생해금 == 2
+							PRINTFORMW 「...그 사람 탓을 할 수도 없고 말야...」
+							PRINTFORMW 「하아...어쩌다 이렇게 된거람...」
+						ELSE
+							PRINTFORMW 「...이런거까지 원한건 아닌데...」
+							PRINTFORMW 「그냥 기분좋자고 만나는것 뿐이었는데...어쩌다 이렇게...」
+							CFLAG:3101 ++
+						ENDIF
+				ENDSELECT
 			ELSE
 				;경산부+함락소질 없음
 				;솔직히 별로 뜰 일 없다, 간단히 적자
 				IF CFLAG:3000 == 0
 					;경산부+함락소질 없음+인상 좋음
-					
-					
+					PRINTFORMW 「설마 또 생길줄은...」
+					IF CFLAG:6000
+						PRINTFORMW 「도대체 왜 그러는거람...」
+						PRINTFORMW 「시간까지 되돌리면서 이런 짓을 어째서...」
+						PRINTFORMW 「이해할수가 없어...」
+					ELSEIF CFLAG:생해금 == 2
+						PRINTFORMW 「어쩌다 이렇게 된거야...」
+					ELSE
+						PRINTFORMW 「...나한테 왜 이러는거야...」
+						CFLAG:3101 ++
+					ENDIF
 				ELSE
 					;경산부+함락소질 없음+인상 나쁨
-					
-					
+					PRINTFORMW 「또...또 생겨버렸어...」
+					IF CFLAG:6000
+						PRINTFORMW 「도대체 나한테 원하는게 뭐야...」
+						PRINTFORMW 「시간까지 되돌려서 한다는게...고작 이런짓이라니...어째서...」
+					ELSEIF CFLAG:생해금 == 2
+						
+							PRINTFORMW 「연인도 뭣도 아닌 사람인데...하아...」
+							PRINTFORMW 「벌써 {CFLAG:아이인원수 + 1}명 째라니...」
+					ELSE
+						PRINTFORMW 「...도대체...내가 뭘 했다고 이러는거야...」
+						PRINTFORMW 「너무하잖아...」
+						CFLAG:3101 ++
+						TALENT:기분 = -1
+					ENDIF
 				ENDIF
 			ENDIF
 		ENDIF
