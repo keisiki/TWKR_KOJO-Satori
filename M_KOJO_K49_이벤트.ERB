@@ -13522,9 +13522,8 @@ IF LOCAL
 						PRINTFORMW 「도대체 나한테 원하는게 뭐야...」
 						PRINTFORMW 「시간까지 되돌려서 한다는게...고작 이런짓이라니...어째서...」
 					ELSEIF CFLAG:생해금 == 2
-						
-							PRINTFORMW 「연인도 뭣도 아닌 사람인데...하아...」
-							PRINTFORMW 「벌써 {CFLAG:아이인원수 + 1}명 째라니...」
+						PRINTFORMW 「연인도 뭣도 아닌 사람인데...하아...」
+						PRINTFORMW 「벌써 {CFLAG:아이인원수 + 1}명 째라니...」
 					ELSE
 						PRINTFORMW 「...도대체...내가 뭘 했다고 이러는거야...」
 						PRINTFORMW 「너무하잖아...」
@@ -13539,9 +13538,42 @@ IF LOCAL
 	;-------------------------------------------------
 	;無自覚 무자각
 	;記入チェック（=0, 非表示、1, 表示）
-	LOCAL:1 = 0
+	LOCAL:1 = 1
 	;-------------------------------------------------
+	;사토리의 눈 앞에서 시간정지 해제를 안했다는거지
+	;PRINTFORMW 「」
 	IF LOCAL:1 && ARG == 4
+		IF CFLAG:안면
+			IF MARK:반발각인 == 3
+				IF TALENT:연인
+					PRINTFORMW 「...이....임신...하아...」
+					PRINTFORMW 「그래서 그렇게 매일 후다닥 도망가는거였나...」
+					PRINTFORMW 「왜 그런가 했더니...으으..」
+				ELSE
+					PRINTFORMW 「...맨날 있었던 그 이상한 느낌...그게 정말로 범해지는거였어」
+					PRINTFORMW 「그 힘으로 하는게 이딴 짓이라니...하아...」
+				ENDIF
+			ELSEIF TALENT:연인
+				PRINTFORMW 「임신이라니...아아...정말, 어쩌자는거야...」
+				PRINTFORMW 「맨날 갑자기 덮치고 도망가니까 이런일이 나잖아...」
+				PRINTFORMW 사토리는 당혹스러운 표정으로 배를 만져보고 있다...
+			ELSEIF TALENT:연모||TALENT:사모||TALENT:애욕
+				PRINTFORMW 「...조금 머리가 아픈걸, 설마 매일매일 몰래 범하고 도망다닌게 명중할줄이야」
+				PRINTFORMW 「차라리 말이라도 했으면 기쁘게 받아들여 줄텐데 말이지...」
+			ELSEIF TALENT:섹프
+				PRINTFORMW 「...정말이지, 곤란하게...」
+				PRINTFORMW 「기분좋은것도 못하고 몸도 무겁게 만들어버리곤...」
+				PRINTFORMW 「장난도 심하잖아...」
+			ELSE
+				PRINTFORMW 「...어짜피 이런짓하고 도망갈 사람은 하나뿐인데, 굳이 내 앞에서 숨을 필요가 있었으려나」
+				PRINTFORMW 「악취미가 따로 없네...」
+			ENDIF
+		ELSE
+			;만난적도 없고
+			PRINTFORMW 「...이...임신이라니...어째서...」
+			PRINTFORMW 「설마 그때 그 일...」
+			PRINTFORMW 사토리는 드물게도 손톱까지 물어뜯을정도로 불안해하며 살짝 부푼 스스로의 배를 바라보고 있었다
+		ENDIF
 		RETURN 1
 	ENDIF
 	;その他
