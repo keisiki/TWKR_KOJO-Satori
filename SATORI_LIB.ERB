@@ -213,3 +213,115 @@ IF RESULT == 1
     RETURNF 1
 ENDIF
 RETURNF 0
+
+@ST_중복대사(ARGS)
+
+IF ARGS == "연인첫출산"
+    PRINTFORMW 「흐읏...아...아파...배가 찢어질거 같아...」
+    PRINTFORMW 늦은 밤, 사토리는 진통에 괴로워하고 있었다
+    IF ST_NEARBYHOME()
+        PRINTFORMW 「도..도와줘...너무 아파...죽을거 같아...」
+        PRINTFORMW 가까스로 근처에 있던 %마스터를% 깨운 사토리는 그렁그렁한 눈으로 %마스터를% 바라보고 있었다
+        PRINTFORMW 이미 터진 양수를 보아하니 곧 아이가 나오려는 모양이다
+        PRINTFORMW 「흐긋...으으윽....제발...뭐라도 좀...해줘....」
+        PRINTFORMW 진통에 사토리의 얼굴은 일그러져 갔다
+        PRINTFORML
+        PRINTFORMW 따뜻한 물수건과 소독된 가위를 준비시켜놓고 사토리의 손을 붙잡았다
+        PRINTFORMW 괜찮다고 연신 속삭이는 말은 고통에 찬 신음소리에 묻혀 사라져갔다
+        PRINTFORMW 첫 출산의 고통에 괴로워 하는 사토리는 %마스터의% 손을 강하게 붙들어 맨 채 끊어질락 말락한 호흡을 이어나갔다
+        PRINTFORML
+        PRINTFORMW 이윽고 아이의 머리가 서서히 산도를 타고 내려왔다
+        PRINTFORMW 미끄러지듯 스르륵 나오는 아이에겐 탯줄과 검붉은 서드아이가 함께 있었다
+        PRINTFORMW 「흐읏...하아...하아...끄...끝난...건가요...」
+        PRINTFORMW 탯줄을 잘라낸 아이를 품에 살포시 안고보니 사토리는 완전히 탈진해 가는 숨을 겨우 내쉬고 있을 뿐이었다
+        PRINTFORMW 지나친 고통에 괴로웠었는지, 그 표정은 초췌했다
+        PRINTFORM 그럼에도 아이를 품에 들려주자 
+        IF CFLAG:생해금
+            PRINTFORMW 희미한 웃음을 지어보였다...
+            PRINTFORMW 「...역시 귀엽네요...%사마스터랑% 제 아이니까...당연하겠지만...」
+        ELSE
+            PRINTFORMW 무척 착잡한 표정으로 아이를 바라보고 있다...
+            PRINTFORMW 「...이제사 실감되는거지만, 저...이제부터 엄마인거네요...」
+            PRINTFORMW 「...기분이 묘해...」
+        ENDIF
+        PRINTFORMW 「...저기, 이름은...뭐로 지을까요?」
+    ELSE
+        PRINTFORMW 그러나 도와줄 사람도 근처에 없는 터라 홀로 견뎌낼 수 밖에 없었다
+        PRINTFORMW 고통속에서 연신 신음하며 도움을 청하려 밖으로 나가려 했지만 출산 직전의 몸은 조금도 움직일 수가 없었다
+        IF CFLAG:신사거주 == 0
+            IF CFLAG:38:신사거주 == 0
+                PRINTFORML
+                PRINTFORMW 『어..언니? 괜찮아?』
+                PRINTFORMW 요행히 코이시가 이변을 눈치채고 들어와주었다
+                PRINTFORML
+                PRINTFORMW 간신히 입술을 움직인 사토리는 코이시를 시켜 아이를 받을 준비를 시켰다
+                PRINTFORMW 따뜻하게 데운 물수건과 소독한 가위, 그리고 바구니를 들고온 코이시는 제 언니의 머리를 부드럽게 쓰다듬어주기 시작했다
+                PRINTFORMW 「..코...코이시, 그런거, 그만하고...으그긋...어느정도 나온건지...좀, 봐줘...」
+                PRINTFORMW 『으응...머리가 보여, 아, 나온다나온다...』
+                PRINTFORMW 코이시는 산도를 따라 미끄러져 내려오는 아이를 받아내 사토리에게 안겨주었다
+                PRINTFORMW 「아하핫...끄..끝난거지? 응?」
+                PRINTFORMW 『끝이야...아마도? 아무튼간에 굉장히 귀여운 아이네~』
+                IF CFLAG:생해금
+                    PRINTFORMW 「그럼...당연하지, 나랑 %사마스터의% 아인데...후후...」
+                    PRINTFORMW 사토리는 괴로운 와중에도 특유의 웃음을 지어보이며 아이를 바라보았다
+                ELSE
+                    PRINTFORMW 「그..렇겠지...후후...그럴거야...응...」
+                    PRINTFORMW 「아무리 그래도...나랑, %사마스터의% 아이니까...」
+                    PRINTFORMW 사토리는 착잡한 표정으로 아이를 바라보았다...
+                ENDIF
+            ELSEIF CFLAG:36:신사거주 == 0
+                PRINTFORML
+                PRINTFORMW 「사토리님...괜찮으세요...?」
+                PRINTFORMW 요행히 오린이 이변을 눈치채고 들어와 주었다
+                PRINTFORML
+                PRINTFORMW 상황을 파악한 오린은 서둘러 아이를 받을 채비를 하였다
+                PRINTFORMW 겨우 안심한 사토리는 오린의 손을 묵묵히 붙잡은채 가는 신음소리를 흘리고 있었다
+                PRINTFORMW 「으극...오...오린, 이거, 언제까지 해야하는거야...?」
+                PRINTFORMW 『이제 곧...아아, 머리가 나와요, 조금만 더...』
+                PRINTFORMW 산도를 따라 미끄러져 내려오는 아이를 받아낸 오린은 부드럽게 요람에 싸서 사토리의 품에 안겨주었다
+                PRINTFORMW 『축하드려요 사토리님, 귀엽고 사랑스러운 아이네요』
+                PRINTFORMW 「당연한거야...나랑, %사마스터의% 아이니까...후후....」
+                IF CFLAG:생해금
+                    PRINTFORMW 「나랑 %사마스터의% 아인데...당연히 귀엽지...후후...」
+                    PRINTFORMW 사토리는 괴로운 와중에도 특유의 웃음을 지어보이며 아이를 바라보았다
+                ELSE
+                    PRINTFORMW 「그..렇겠지...후후...그럴거야...응...」
+                    PRINTFORMW 「아무리 그래도...나랑, %사마스터의% 아이니까...」
+                    PRINTFORMW 사토리는 착잡한 표정으로 아이를 바라보았다...
+                ENDIF
+            ELSEIF CFLAG:37:신사거주 == 0
+                PRINTFORML
+                PRINTFORMW 「사토리님...괜찮으세요...?」
+                PRINTFORMW 요행히 오쿠가 이변을 눈치채고 들어와 주었다
+                PRINTFORML
+                PRINTFORMW 상황을 파악한 오쿠는 화들짝 놀라 뛰어다니며 아이를 받을 채비를 하였다
+                PRINTFORMW 영 신용이 안가지만 제대로 도구를 챙겨온 걸 본 사토리는 호들갑을 떠는 오쿠의 손을 묵묵히 붙잡은채 가는 신음소리를 흘리고 있었다
+                PRINTFORMW 「으극...오...오쿠, 아직 멀은거니..?」
+                PRINTFORMW 『머리, 머리가 나왔으니까...이제 곧...아아, 나와요, 조금만 더...』
+                PRINTFORMW 산도를 따라 미끄러져 내려오는 아이를 받아낸 오쿠는 부드럽게 요람에 싸서 사토리의 품에 안겨주었다
+                PRINTFORMW 『축하해요 사토리님! 엄청 건강하고 귀여운 아이에요』
+                IF CFLAG:생해금
+                    PRINTFORMW 「당연하지... 나랑 %사마스터의% 아인데...후후...」
+                    PRINTFORMW 사토리는 괴로운 와중에도 특유의 웃음을 지어보이며 아이를 바라보았다
+                ELSE
+                    PRINTFORMW 「그..렇겠지...후후...그럴거야...응...」
+                    PRINTFORMW 「아무리 그래도...나랑, %사마스터의% 아이니까...」
+                    PRINTFORMW 사토리는 착잡한 표정으로 아이를 바라보았다...
+                ENDIF
+            ELSE
+                PRINTFORMW 아무도 도와주지 않은채, 홀로 쓸쓸히 아이를 낳은 사토리는, 끊어질것만 같은 의식 속에서 탯줄을 끊고 아이를 품에 안았다
+            ENDIF
+            PRINTFORMW 「...이름, 뭐로 할까...」
+        ELSE
+            PRINTFORMW 아무도 도와주지 않은채, 홀로 쓸쓸히 고통을 견디다 아이를 낳은 사토리는, 끊어질것만 같은 의식 속에서 탯줄을 끊고 아이를 품에 안았다
+            PRINTFORM 초췌한 표정으로 울어대는 아이를 바라본 사토리는
+            IF CFLAG:생해금
+                PRINTFORMW 희미한 웃음을 지어보였다...
+            ELSE
+                PRINTFORMW 무척 착잡한 표정이다...
+            ENDIF
+        ENDIF
+    ENDIF
+ELSE
+    
+ENDIF
