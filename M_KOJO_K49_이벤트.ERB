@@ -13606,18 +13606,174 @@ IF LOCAL
 				IF TALENT:연인
 					CALL ST_중복대사("연인첫출산")
 				ELSE
-					IF CFLAG:3000 == 0
-
+					PRINTFORMW 「으극...아...아파...배가 찢어질거 같아...」
+					PRINTFORMW 한밤중에 찾아온 진통에 고통스러워하며 일어난 사토리는 다리 사이에 흐르는 물기를 눈치챘다
+					PRINTFORMW 「이...이거, 그거지...읏...이게 터졌다는건...」
+					IF ST_NEARBYYOU() == 1
+						PRINTFORMW 이미 파수가 진행되었다, 고통으로 인해 멀리 움직일수도 없고, 근처에 도와줄 사람은...
+						PRINTFORMW 「...저, 저기...%MASTERNAME:49%...」
+						PRINTFORMW 사토리는 힘없이 %마스터를% 흔들어 깨웠다
+						PRINTFORMW 그리도 싫어하던 사람이지만 그래도 뱃속 아이의 아빠이니... 
 					ELSE
-
+						PRINTFORMW 이미 파수가 진행되었다, 고통이 심해 멀리 움직일 수 없다
+						PRINTFORMW 고통에 찬 신음소리가 사토리의 방문을 타고 흘러나갔다
+						IF CFLAG:신사거주 == 0
+							IF CFLAG:38:신사거주 == 0
+								CALL ST_중복대사("초산코이시도움")
+								IF CFLAG:생해금
+									PRINTFORMW 「당연하지...내 아이니까...후후...」
+									PRINTFORMW 사토리는 괴로운 와중에도 특유의 웃음을 지어보이며 아이를 바라보았다
+								ELSE
+									PRINTFORMW 「그..렇겠지...후후...그럴거야...응...」
+									PRINTFORMW 「아무리 그래도...내 아이니까...무척 귀여운게 당연하지...」
+									
+									PRINTFORMW 사토리는 착잡한 표정으로 아이를 바라보았다...
+								ENDIF
+							ELSEIF CFLAG:36:신사거주 == 0
+								CALL ST_중복대사("초산오린도움")
+								IF CFLAG:생해금
+									PRINTFORMW 「그럼...내 아인데...당연히 귀엽지...후후...」
+									PRINTFORMW 사토리는 괴로운 와중에도 특유의 웃음을 지어보이며 아이를 바라보았다
+								ELSE
+									PRINTFORMW 「그..렇겠지...그럴거야...응...」
+									PRINTFORMW 「아무리 그래도...일단은 내 아이니까...」
+									PRINTFORMW 사토리는 착잡한 표정으로 아이를 바라보았다...
+								ENDIF
+							ELSEIF CFLAG:37:신사거주 == 0
+								CALL ST_중복대사("초산오쿠도움")
+								IF CFLAG:생해금
+									PRINTFORMW 「당연하지... 나를 닮았을테니까...후후...」
+									PRINTFORMW 「...그 사람도, 조금은 닮았지만...」
+									PRINTFORMW 사토리는 괴로운 와중에도 특유의 웃음을 지어보이며 아이를 바라보았다
+								ELSE
+									PRINTFORMW 「그..렇겠지...후후...그럴거야...응...」
+									PRINTFORMW 「아무리 그래도...내가 낳은 아이니까...」
+									PRINTFORMW 「...그치만 왜 그 사람의 얼굴이 보이는걸까...」
+									PRINTFORMW 사토리는 착잡한 표정으로 아이를 바라보았다...
+								ENDIF
+							ELSE
+								PRINTFORMW 아무도 도와주지 않은채, 홀로 쓸쓸히 고통을 견디다 아이를 낳은 사토리는, 끊어질것만 같은 의식 속에서 탯줄을 끊고 아이를 품에 안았다
+							ENDIF
+							IF CFLAG:3000 == 0
+								PRINTFORMW 「...그래도 이럴땐 곁에 있어줬으면 했는데...」
+							ELSE
+								PRINTFORMW 「...그 사람은 코빼기도 보이지 않네...」
+							ENDIF
+							PRINTFORMW 「...이름, 뭐로 할까...」
+						ELSE
+							PRINTFORMW 아무도 도와주지 않은채, 홀로 쓸쓸히 고통을 견디다 아이를 낳은 사토리는, 끊어질것만 같은 의식 속에서 탯줄을 끊고 아이를 품에 안았다
+							PRINTFORM 초췌한 표정으로 울어대는 아이를 바라본 사토리는
+							IF CFLAG:생해금
+								PRINTFORMW 무척 복잡한 심정이었다...
+							ELSE
+								PRINTFORMW 매우 어두운 표정이다...
+							ENDIF
+						ENDIF
 					ENDIF
 				ENDIF
 			ELSEIF TALENT:연인
 				CALL ST_중복대사("연인첫출산")
 			ELSEIF TALENT:연모||TALENT:사모||TALENT:애욕
-				
+				PRINTFORMW 「으읏...아..아파...배가...!」
+				PRINTFORMW 늦은밤, 돌연 찾아온 진통에 괴로워 하던 사토리는 다리 사이가 축축함을 깨달았다
+				PRINTFORMW 「아...이..이건...」
+				PRINTFORMW 오줌과는 다른 무언가, 끝없는 진통...이것이 의미하는 바를 깨닫는덴 오래걸리지 않았다
+				IF ST_NEARBYYOU() == 1
+					PRINTFORML
+					PRINTFORMW 「저기...%MASTERNAME:49%...」
+					PRINTFORMW 가느다란 목소리가 %마스터의% 귀를 간지럽혔다
+					PRINTFORMW 하지만 눈을 뜨자 보인건 괴로워하고 있는 사토리였다
+				ELSE
+					
+					IF CFLAG:신사거주 == 0
+						IF CFLAG:38:신사거주 == 0
+							CALL ST_중복대사("초산코이시도움")
+							IF CFLAG:생해금
+								
+							ELSE
+
+							ENDIF
+						ELSEIF CFLAG:36:신사거주 == 0
+							CALL ST_중복대사("초산오린도움")
+							IF CFLAG:생해금
+								
+							ELSE
+								
+							ENDIF
+						ELSEIF CFLAG:37:신사거주 == 0
+							CALL ST_중복대사("초산오쿠도움")
+							IF CFLAG:생해금
+								
+							ELSE
+								
+							ENDIF
+						ELSE
+							PRINTFORMW 아무도 도와주지 않은채, 홀로 쓸쓸히 고통을 견디다 아이를 낳은 사토리는, 끊어질것만 같은 의식 속에서 탯줄을 끊고 아이를 품에 안았다
+						ENDIF
+						IF CFLAG:3000 == 0
+							
+						ELSE
+							
+						ENDIF
+						PRINTFORMW 「...이름, 뭐로 할까...」
+					ELSE
+						PRINTFORMW 아무도 도와주지 않은채, 홀로 쓸쓸히 고통을 견디다 아이를 낳은 사토리는, 끊어질것만 같은 의식 속에서 탯줄을 끊고 아이를 품에 안았다
+						PRINTFORM 초췌한 표정으로 울어대는 아이를 바라본 사토리는
+						IF CFLAG:생해금
+							PRINTFORMW 무척 복잡한 심정이었다...
+						ELSE
+							PRINTFORMW 매우 어두운 표정이다...
+						ENDIF
+					ENDIF
+				ENDIF
 			ELSEIF TALENT:섹프
-				
+
+
+				IF ST_NEARBYYOU() == 1
+					
+				ELSE
+					
+					IF CFLAG:신사거주 == 0
+						IF CFLAG:38:신사거주 == 0
+							CALL ST_중복대사("초산코이시도움")
+							IF CFLAG:생해금
+								
+							ELSE
+
+							ENDIF
+						ELSEIF CFLAG:36:신사거주 == 0
+							CALL ST_중복대사("초산오린도움")
+							IF CFLAG:생해금
+								
+							ELSE
+								
+							ENDIF
+						ELSEIF CFLAG:37:신사거주 == 0
+							CALL ST_중복대사("초산오쿠도움")
+							IF CFLAG:생해금
+								
+							ELSE
+								
+							ENDIF
+						ELSE
+							PRINTFORMW 아무도 도와주지 않은채, 홀로 쓸쓸히 고통을 견디다 아이를 낳은 사토리는, 끊어질것만 같은 의식 속에서 탯줄을 끊고 아이를 품에 안았다
+						ENDIF
+						IF CFLAG:3000 == 0
+							
+						ELSE
+							
+						ENDIF
+						PRINTFORMW 「...이름, 뭐로 할까...」
+					ELSE
+						PRINTFORMW 아무도 도와주지 않은채, 홀로 쓸쓸히 고통을 견디다 아이를 낳은 사토리는, 끊어질것만 같은 의식 속에서 탯줄을 끊고 아이를 품에 안았다
+						PRINTFORM 초췌한 표정으로 울어대는 아이를 바라본 사토리는
+						IF CFLAG:생해금
+							PRINTFORMW 무척 복잡한 심정이었다...
+						ELSE
+							PRINTFORMW 매우 어두운 표정이다...
+						ENDIF
+					ENDIF
+				ENDIF
 			ELSE
 				IF CFLAG:3000 == 0
 
