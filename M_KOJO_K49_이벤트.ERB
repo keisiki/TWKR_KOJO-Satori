@@ -13613,7 +13613,59 @@ IF LOCAL
 						PRINTFORMW 이미 파수가 진행되었다, 고통으로 인해 멀리 움직일수도 없고, 근처에 도와줄 사람은...
 						PRINTFORMW 「...저, 저기...%MASTERNAME:49%...」
 						PRINTFORMW 사토리는 힘없이 %마스터를% 흔들어 깨웠다
-						PRINTFORMW 그리도 싫어하던 사람이지만 그래도 뱃속 아이의 아빠이니... 
+						PRINTFORMW 그리도 싫어하던 사람이지만 그래도 뱃속 아이의 아빠이니...
+						PRINTFORML
+						PRINTFORMW 사토리는 괴로워 보이는 표정으로 %마스터의% 곁에 반쯤 쓰러져 있었다
+						PRINTFORMW 다리 사이가 축축하고, 고통스럽게 배를 움켜쥐고 있는걸 보아 곧 아이가 나오려는 모양이다
+						PRINTFORML
+						PRINTFORML 어떻게 해줄까?
+						PRINTFORML [0] 내버려둔다
+						PRINTFORML [1] 도와준다
+						INPUT
+						IF RESULT
+							PRINTFORMW 그래도 괴로워 하는데 도와주는게 맞을것이다
+							PRINTFORMW 따뜻한 물수건과 소독한 가위를 준비해 놓고 가는 숨을 헐떡이는 사토리의 떨리는 손을 붙잡아준다
+							PRINTFORMW 사토리는 그토록 미워하던 사람의 손이나마 거칠게 붙들고 고통을 견디려 했다
+							PRINTFORMW 「흐긋...아파...아파아....언제 끝나는거야...」
+							PRINTFORMW 슬며시 벌쳐본 산도에서는 머리가 보이고 있었다
+							PRINTFORMW 천천히, 미끄러지듯이 내려오는 아이와 반대로 사토리의 비명소리는 커져갔다
+							PRINTFORMW 그렇지만 해 줄수 있는건 고작 손을 잡아주는것뿐, 지금 이 고통은 온전히 홀로 견뎌야 한다
+							PRINTFORMW 마침내 아이를 품에 안겨주었을때, 사토리는 고통에 반쯤 기절해 있었다
+							PRINTFORMW 「아...아하하...끝났구나...드디어...아하핫...」
+							PRINTFORMW 지나친 고통에 헤롱헤롱해진 사토리는 힘없이 웃고 있었다...
+						ELSE
+							CFLAG:3101 += 5
+							PRINTFORMW 하지만 도와줄 마음은 없다
+							PRINTFORMW 「그...그런...제발...죽을것, 같으니까...」
+							PRINTFORMW 「뭔가 불편하게 한게 있다면 나중에 사과할테니까...지금은, 제발...」
+							PRINTFORMW 사토리는 간절히 부탁해왔지만 냉담히 선을 그었다
+							PRINTFORMW 사토리는 이를 악물고 고통을 견디려 했지만 역부족이었다, 지나친 고통에 숨이 끊어질것만 같은 기분이었다
+							IF CFLAG:신사거주 == 0
+								IF CFLAG:38:신사거주 == 0
+									CALL ST_중복대사("초산코이시도움")
+									PRINTFORMW 「아아...그래...귀엽...네...」
+									PRINTFORMW 사토리는 착잡한 표정으로 아이를 바라보고 있다...
+								ELSEIF CFLAG:36:신사거주 == 0
+									CALL ST_중복대사("초산오린도움")
+									PRINTFORMW 「아아...그래...귀엽...네...」
+									PRINTFORMW 사토리는 착잡한 표정으로 아이를 바라보고 있다...
+								ELSEIF CFLAG:37:신사거주 == 0
+									CALL ST_중복대사("초산오쿠도움")
+									PRINTFORMW 「아아...그래...귀엽...네...」
+									PRINTFORMW 사토리는 착잡한 표정으로 아이를 바라보고 있다...
+								ELSE
+									PRINTFORMW 아무도 도와주지 않은채, 홀로 쓸쓸히 고통을 견디다 아이를 낳은 사토리는, 끊어질것만 같은 의식 속에서 탯줄을 끊고 아이를 품에 안았다
+								ENDIF
+								IF CFLAG:3000 == 0
+									PRINTFORMW 「...나한테, 왜 이러는거야...」
+									PRINTFORMW 「...어째서...어째서야...흐윽...」
+									CFLAG:3101++
+								ELSE
+									PRINTFORMW 「...왜, 나한테 이러는거야...」
+									PRINTFORMW 「내가 뭘 그렇게까지 잘못했다고...」
+								ENDIF
+							ENDIF
+						ENDIF
 					ELSE
 						PRINTFORMW 이미 파수가 진행되었다, 고통이 심해 멀리 움직일 수 없다
 						PRINTFORMW 고통에 찬 신음소리가 사토리의 방문을 타고 흘러나갔다
@@ -13683,6 +13735,9 @@ IF LOCAL
 					PRINTFORMW 「저기...%MASTERNAME:49%...」
 					PRINTFORMW 가느다란 목소리가 %마스터의% 귀를 간지럽혔다
 					PRINTFORMW 하지만 눈을 뜨자 보인건 괴로워하고 있는 사토리였다
+					PRINTFORMW 「배..배가 너무 아파...흣...양수도 터져버린거 같고...」
+					PRINTFORMW 「뭐라도...좀...!」
+					PRINTFORMW 
 				ELSE
 					
 					IF CFLAG:신사거주 == 0
