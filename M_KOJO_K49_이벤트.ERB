@@ -13624,14 +13624,21 @@ IF LOCAL
 						INPUT
 						IF RESULT
 							PRINTFORMW 그래도 괴로워 하는데 도와주는게 맞을것이다
+							PRINTFORML
 							PRINTFORMW 따뜻한 물수건과 소독한 가위를 준비해 놓고 가는 숨을 헐떡이는 사토리의 떨리는 손을 붙잡아준다
 							PRINTFORMW 사토리는 그토록 미워하던 사람의 손이나마 거칠게 붙들고 고통을 견디려 했다
+							PRINTFORML
 							PRINTFORMW 「흐긋...아파...아파아....언제 끝나는거야...」
 							PRINTFORMW 슬며시 벌쳐본 산도에서는 머리가 보이고 있었다
+							PRINTFORML
 							PRINTFORMW 천천히, 미끄러지듯이 내려오는 아이와 반대로 사토리의 비명소리는 커져갔다
+							PRINTFORML
 							PRINTFORMW 그렇지만 해 줄수 있는건 고작 손을 잡아주는것뿐, 지금 이 고통은 온전히 홀로 견뎌야 한다
+							PRINTFORML
+							PRINTFORML
 							PRINTFORMW 마침내 아이를 품에 안겨주었을때, 사토리는 고통에 반쯤 기절해 있었다
 							PRINTFORMW 「아...아하하...끝났구나...드디어...아하핫...」
+							PRINTFORML
 							PRINTFORMW 지나친 고통에 헤롱헤롱해진 사토리는 힘없이 웃고 있었다...
 						ELSE
 							CFLAG:3101 += 5
@@ -13639,7 +13646,9 @@ IF LOCAL
 							PRINTFORMW 「그...그런...제발...죽을것, 같으니까...」
 							PRINTFORMW 「뭔가 불편하게 한게 있다면 나중에 사과할테니까...지금은, 제발...」
 							PRINTFORMW 사토리는 간절히 부탁해왔지만 냉담히 선을 그었다
-							PRINTFORMW 사토리는 이를 악물고 고통을 견디려 했지만 역부족이었다, 지나친 고통에 숨이 끊어질것만 같은 기분이었다
+							PRINTFORML
+							PRINTFORML
+							PRINTFORMW 의지할 곳 없어진 사토리는 이를 악물고 고통을 견디려 했지만 역부족이었다, 지나친 고통에 숨이 끊어질것만 같은 기분이었다
 							IF CFLAG:신사거주 == 0
 								IF CFLAG:38:신사거주 == 0
 									CALL ST_중복대사("초산코이시도움")
