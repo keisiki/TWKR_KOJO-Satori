@@ -13743,41 +13743,67 @@ IF LOCAL
 					PRINTFORML
 					PRINTFORMW 「저기...%MASTERNAME:49%...」
 					PRINTFORMW 가느다란 목소리가 %마스터의% 귀를 간지럽혔다
+					PRINTFORML
 					PRINTFORMW 하지만 눈을 뜨자 보인건 괴로워하고 있는 사토리였다
-					PRINTFORMW 「배..배가 너무 아파...흣...양수도 터져버린거 같고...」
+					PRINTFORMW 「배..배가 너무 아파...흣...벌써 양수도 터져버린거 같고...」
 					PRINTFORMW 「뭐라도...좀...!」
-					PRINTFORMW 
+					PRINTFORMW 숨을 헐떡이며 도움을 청하던 사토리는 %마스터의% 옆에 쓰러져 거친 숨을 몰아쉬고 있었다
+					PRINTFORML
+					PRINTFORMW %마스터가% 아이를 받을 채비를 하고 보니 자궁구가 한가득 열려 아이를 내보낼 준비를 하고 있었다
+					PRINTFORMW 「마..말도 안돼...아직 머리도 안 나온거라니...」
+					PRINTFORMW 사토리는 앞으로 더 큰 고통이 올거라는 생각에 겁을 먹은 모양이다
+					PRINTFORML
+					PRINTFORMW 그렇지만 별달리 해줄수 있는게 없다, 겁먹은 사토리의 손을 조용히 잡아주며 다독여주는 수밖에 없었다
+					PRINTFORML
+					PRINTFORMW 이윽고, 아이의 머리가 슬며시 내려오기 시작하더니, 산도를 따라 미끄러지듯 스르륵 내려왔다
+					PRINTFORML
+					PRINTFORMW 새빨간 서드아이와 탯줄이 뒤엉켜 꽤나 곤란했다, 조심히 탯줄을 잘라내 요람에 싸 사토리의 품 안에 안겨주었다
+					PRINTFORML
+					PRINTFORMW 「하아...하아...드..드디어 끝......아아...」
+					PRINTFORMW 사토리는 힘이 빠졌는지 제대로 안지도 못하고 있었다
+					PRINTFORML
+					PRINTFORMW 그나저나, 이름은 뭐로 지어줄까
 				ELSE
-					
+					PRINTFORMW 그러나 이미 고통이 심해져 주위에 도움을 청하러 나가지도 못하고 침대에 꼼짝없이 갇혀버렸다
+					PRINTFORMW 고통에 찬 신음소리가 방 밖으로 흘러나갔다
 					IF CFLAG:신사거주 == 0
 						IF CFLAG:38:신사거주 == 0
 							CALL ST_중복대사("초산코이시도움")
 							IF CFLAG:생해금
-								
+								PRINTFORMW 「아하하...그렇겠지...」
+								PRINTFORMW 「나랑, %사마스터의% 아이니까...」
+								PRINTFORMW 사토리는 아이의 얼굴을 보고 힘없이 웃어보였다
 							ELSE
-
+								PRINTFORMW 「...그러...네...아하하...」
+								PRINTFORMW 사토리는 힘없이 웃어보였다...
 							ENDIF
 						ELSEIF CFLAG:36:신사거주 == 0
 							CALL ST_중복대사("초산오린도움")
 							IF CFLAG:생해금
-								
+								PRINTFORMW 「아하하...그렇겠지...」
+								PRINTFORMW 「나랑, %사마스터의% 아이니까...」
+								PRINTFORMW 사토리는 아이의 얼굴을 보고 힘없이 웃어보였다
 							ELSE
-								
+								PRINTFORMW 「...그러...네...아하하...」
+								PRINTFORMW 사토리는 힘없이 웃어보였다...
 							ENDIF
 						ELSEIF CFLAG:37:신사거주 == 0
 							CALL ST_중복대사("초산오쿠도움")
 							IF CFLAG:생해금
-								
+								PRINTFORMW 「아하하...그렇겠지...」
+								PRINTFORMW 「나랑, %사마스터의% 아이니까...」
+								PRINTFORMW 사토리는 아이의 얼굴을 보고 힘없이 웃어보였다
 							ELSE
-								
+								PRINTFORMW 「...그러...네...아하하...」
+								PRINTFORMW 사토리는 힘없이 웃어보였다...
 							ENDIF
 						ELSE
 							PRINTFORMW 아무도 도와주지 않은채, 홀로 쓸쓸히 고통을 견디다 아이를 낳은 사토리는, 끊어질것만 같은 의식 속에서 탯줄을 끊고 아이를 품에 안았다
 						ENDIF
 						IF CFLAG:3000 == 0
-							
+							PRINTFORMW 「...옆에라도 있어줬으면 했는데...」
 						ELSE
-							
+							PRINTFORMW 「...얼굴도 안 비춰주네...자기 아인데 말야」
 						ENDIF
 						PRINTFORMW 「...이름, 뭐로 할까...」
 					ELSE
