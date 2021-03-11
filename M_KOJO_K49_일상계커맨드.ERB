@@ -579,12 +579,12 @@ RETURN 1
 ;361,저항한다
 ;TCVAR:20(27=谷間を見せる 32=前から抱きつく 35=치마の中を見せる 53=파이즈리 73=ぱふぱふ 77=乳を吸わせる 85=V挿入する 86=だいしゅきホールド 87=A挿入する 88=허리振りV 89=허리振りA
 ;==================================================
-@M_KOJO_MESSAGE_COM_K49_360
+@M_KOJO_MESSAGE_COM_K49_361
 CALL TRAIN_MESSAGE
-CALL M_KOJO_MESSAGE_COM_K49_360_1
+CALL M_KOJO_MESSAGE_COM_K49_361_1
 RETURN RESULT
 
-@M_KOJO_MESSAGE_COM_K49_360_1
+@M_KOJO_MESSAGE_COM_K49_361_1
 ;-------------------------------------------------
 ;記入チェック（=0, 非表示、1, 表示）
 LOCAL = 0
@@ -1491,7 +1491,6 @@ IF LOCAL
 			ENDIF
 		ENDIF
 	ENDIF
-ENDIF
 ENDIF
 RETURN 1
 ;==================================================

@@ -207,11 +207,11 @@ RETURNF 0
 @ST_NEARBYYOU
 #FUNCTION
 #DIM DYNAMIC 지금위치
-#DIM DYNAMIC 사토리위치
+#DIM DYNAMIC 사토리집
 
-사토리위치 = CFLAG:49:현재위치
+사토리집 = CFLAG:49:현재위치
 지금위치 = CFLAG:MASTER:현재위치
-IF 사토리위치 == 919
+IF 사토리집 == 919
     ;사토리는 사토리 방
     IF 지금위치 >= 901 && 지금위치 <= 930
         ;지령전 안에 있어
