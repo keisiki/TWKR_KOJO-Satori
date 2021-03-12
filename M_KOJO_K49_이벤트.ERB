@@ -14082,28 +14082,133 @@ IF LOCAL
 			;----------------------------------------------------------------------------------------------------------------------------
 			;----------------------------------------------------------------------------------------------------------------------------
 			;출산경험 있다
+			;PRINTFORMW 「」
 			IF MARK:반발각인 == 3
 				IF TALENT:연인
-					
+					SELECTCASE RAND:3
+						CASE 0
+							PRINTFORMW 한밤중, 사토리가 출산을 위해 찾아간 병원에서 연락이 왔다
+							PRINTFORMW 찾아가보니 사토리가 품에 아이를 안고 있었다
+							PRINTFORMW 「벌써 {CFLAG:아이인원수}번째 아이네요...」
+							PRINTFORMW 「%사마스터를% 닮아 무척이나...귀여워요」
+							PRINTFORMW 희미하게 웃는 얼굴은 피로감에 가득 차 있었다, {CFLAG:아이인원수}번째 출산이어도 힘든건 매한가지인 모양이다
+							PRINTFORMW 「...그래서, 이름은 생각해 두셨나요?」
+						CASE 1
+							IF ST_NEARBYYOU() == 1
+								PRINTFORMW 「저기...진통이 시작됐어요...병원에 가 볼게요...?」
+								PRINTFORMW 사토리는 힘겹게 무거운 몸을 이끌고 걸어나갔다...
+								PRINTFORML [0] 데려다준다
+								PRINTFORML [1] 이따가 찾아간다
+								INPUT
+								IF !RESULT
+									PRINTFORMW 「...데려다 주신다고요? 그...그럼 저야 좋지만」
+									PRINTFORMW 사토리는 얼굴을 붉히며 %마스터의% 손을 잡았다...
+									PRINTFORML
+									PRINTFORMW 병원에 도착하고, %마스터는% 벤치에 앉았다
+									PRINTFORMW 사토리는 애써 웃어보이며 들어갔지만, 분만실에서 들려오는 고통에찬 신음소리는 참지 못한 모양이다
+								ELSE
+									PRINTFORMW 이따가 찾으러 가기만 해도 충분할 것이다
+									PRINTFORML
+									PRINTFORMW 한참후, 병원을 찾아가니 좀 더 대기하라는 말을 들었다
+								ENDIF
+								PRINTFORML
+								PRINTFORMW 마침내 안으로 들어갔을때 사토리는 품에 아이를 안은채 진이 빠져 있었다
+								PRINTFORMW 「...아아...왔어요...?」
+								PRINTFORMW 「아팠지만...힘냈으니까...」
+								PRINTFORMW 겨우 웃어보이지만 지친 몸은 그것조차 제대로 할 수 없었다
+								PRINTFORMW 「으으응...그나저나, 이름은 뭐로 할까요...」
+							ELSE
+								PRINTFORMW 사토리가 편지를 보내왔다
+								PRINTFORMW 건강한 아이를 낳았다는 모양이다...
+								PRINTFORMW 아이의 이름은 아직 안 정했으니 부디 정해달라고 한다
+								PRINTFORMW 아주아주 자그마하게, 곁에 없어서 서운했다는 말도 적혀있었다
+							ENDIF
+						CASE 2
+							IF ST_NEARBYYOU() == 1
+								PRINTFORMW 「으극...배...배가...」
+								PRINTFORMW 「또 그렇게 아플까...그건 싫은데...」
+								PRINTFORMW 사토리는 파르르 떨며 괴로워하고 있다
+								PRINTFORML
+								PRINTFORMW 요행히 이번엔 제 시간에 병원에 도착했다
+								PRINTFORMW %마스터는% 출산이 임박한 사토리를 의사에게 맡기고 분만실 앞 의자에 앉았다
+								PRINTFORML
+								PRINTFORMW 안에서 들려오는 찢어지는 비명소리가 끝나고, 안으로 들여보내진 %마스터는% 초췌한 표정의 사토리를 발견했다
+								PRINTFORMW 힘겹게 아이를 안고 있는 사토리는 %마스터를% 보고도 아무 말도 못했다
+								PRINTFORMW ...그래서, 이름은 뭐로 지어줄까
+							ELSE
+								PRINTFORMW 「...귀엽네...역시 부모를 잘 닮았어...」
+								PRINTFORMW 「그치만 %사마스터가% 곁에 없는건 조금 쓸쓸한걸...」
+								PRINTFORMW 사토리는 품에 안긴 아이를 바라보며 씁쓸해했다...
+								PRINTFORMW 「이름은, 뭐로 할까나」
+							ENDIF
+					ENDSELECT
 				ELSE
-					IF CFLAG:3000 == 0
-
-					ELSE
-
-					ENDIF
+					
 				ENDIF
 			ELSEIF TALENT:연인
-				
+				SELECTCASE RAND:3
+					CASE 0
+						PRINTFORMW 한밤중, 사토리가 출산을 위해 찾아간 병원에서 연락이 왔다
+						PRINTFORMW 찾아가보니 사토리가 품에 아이를 안고 있었다
+						PRINTFORMW 「벌써 {CFLAG:아이인원수}번째 아이네요...」
+						PRINTFORMW 「%사마스터를% 닮아 무척이나...귀여워요」
+						PRINTFORMW 희미하게 웃는 얼굴은 피로감에 가득 차 있었다, {CFLAG:아이인원수}번째 출산이어도 힘든건 매한가지인 모양이다
+						PRINTFORMW 「...그래서, 이름은 생각해 두셨나요?」
+					CASE 1
+						IF ST_NEARBYYOU() == 1
+							PRINTFORMW 「저기...진통이 시작됐어요...병원에 가 볼게요...?」
+							PRINTFORMW 사토리는 힘겹게 무거운 몸을 이끌고 걸어나갔다...
+							PRINTFORML [0] 데려다준다
+							PRINTFORML [1] 이따가 찾아간다
+							INPUT
+							IF !RESULT
+								PRINTFORMW 「...데려다 주신다고요? 그...그럼 저야 좋지만」
+								PRINTFORMW 사토리는 얼굴을 붉히며 %마스터의% 손을 잡았다...
+								PRINTFORML
+								PRINTFORMW 병원에 도착하고, %마스터는% 벤치에 앉았다
+								PRINTFORMW 사토리는 애써 웃어보이며 들어갔지만, 분만실에서 들려오는 고통에찬 신음소리는 참지 못한 모양이다
+							ELSE
+								PRINTFORMW 이따가 찾으러 가기만 해도 충분할 것이다
+								PRINTFORML
+								PRINTFORMW 한참후, 병원을 찾아가니 좀 더 대기하라는 말을 들었다
+							ENDIF
+							PRINTFORML
+							PRINTFORMW 마침내 안으로 들어갔을때 사토리는 품에 아이를 안은채 진이 빠져 있었다
+							PRINTFORMW 「...아아...왔어요...?」
+							PRINTFORMW 「아팠지만...힘냈으니까...」
+							PRINTFORMW 겨우 웃어보이지만 지친 몸은 그것조차 제대로 할 수 없었다
+							PRINTFORMW 「으으응...그나저나, 이름은 뭐로 할까요...」
+						ELSE
+							PRINTFORMW 사토리가 편지를 보내왔다
+							PRINTFORMW 건강한 아이를 낳았다는 모양이다...
+							PRINTFORMW 아이의 이름은 아직 안 정했으니 부디 정해달라고 한다
+							PRINTFORMW 아주아주 자그마하게, 곁에 없어서 서운했다는 말도 적혀있었다
+						ENDIF
+					CASE 2
+						IF ST_NEARBYYOU() == 1
+							PRINTFORMW 「으극...배...배가...」
+							PRINTFORMW 「또 그렇게 아플까...그건 싫은데...」
+							PRINTFORMW 사토리는 파르르 떨며 괴로워하고 있다
+							PRINTFORML
+							PRINTFORMW 요행히 이번엔 제 시간에 병원에 도착했다
+							PRINTFORMW %마스터는% 출산이 임박한 사토리를 의사에게 맡기고 분만실 앞 의자에 앉았다
+							PRINTFORML
+							PRINTFORMW 안에서 들려오는 찢어지는 비명소리가 끝나고, 안으로 들여보내진 %마스터는% 초췌한 표정의 사토리를 발견했다
+							PRINTFORMW 힘겹게 아이를 안고 있는 사토리는 %마스터를% 보고도 아무 말도 못했다
+							PRINTFORMW ...그래서, 이름은 뭐로 지어줄까
+						ELSE
+							PRINTFORMW 「...귀엽네...역시 부모를 잘 닮았어...」
+							PRINTFORMW 「그치만 %사마스터가% 곁에 없는건 조금 쓸쓸한걸...」
+							PRINTFORMW 사토리는 품에 안긴 아이를 바라보며 씁쓸해했다...
+							PRINTFORMW 「이름은, 뭐로 할까나」
+						ENDIF
+				ENDSELECT
 			ELSEIF TALENT:연모||TALENT:사모||TALENT:애욕
 				
 			ELSEIF TALENT:섹프
 				
 			ELSE
-				IF CFLAG:3000 == 0
-
-				ELSE
-
-				ENDIF
+				
 			ENDIF
 		ENDIF
 		RETURN 1
