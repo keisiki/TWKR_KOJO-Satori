@@ -14143,7 +14143,67 @@ IF LOCAL
 							ENDIF
 					ENDSELECT
 				ELSE
-					
+					;PRINTFORMW 「」
+					SELECTCASE RAND:3
+						CASE 0
+							PRINTFORMW 「...하아...」
+							PRINTFORMW 「연인도 뭣도 아닌데 벌써 애가 몇이야...」
+							IF CFLAG:생해금 == 2
+								PRINTFORMW 사토리는 품에 안긴 아이를 착잡한 표정으로 바라보고 있다...
+							ELSE
+								PRINTFORMW 사토리는 품에 안긴 아이를 애증 섞인 시선으로 바라보고 있다...
+							ENDIF
+							IF CFLAG:3000 == 0
+								PRINTFORMW 「일부로 이러는건 아닐텐데」
+							ELSE
+								PRINTFORMW 「...슬슬 적당히 해줬음 하는데...」
+								PRINTFORMW 「역시 무리겠지」
+							ENDIF
+						CASE 1
+							PRINTFORMW 늦은 밤, 분만실에서 울리던 비명이 끝났다
+							PRINTFORMW 「하아...하아...끄..끝났다...아아...」
+							PRINTFORMW 착잡한 표정으로 아이를 넘겨받은 사토리는 기진맥진해 일어날 수도 없었다
+							PRINTFORMW 「...이런게 좋은건 아닌데...」
+							PRINTFORMW 「부부도 아니고, 사이가 좋은것도 아니고...그런 와중에 애는 {CFLAG:아이인원수}...」
+							PRINTFORMW 앞으로에 대한 걱정에 찬 사토리는 품에 안긴 생명을 멍하니 바라볼 뿐이었다
+						CASE 2
+							IF ST_NEARBYYOU() == 1
+								PRINTFORMW 사토리는 말없이 집을 나서서 어디론가 향했다
+								PRINTFORML 뒤쫓을까?
+								CALL ASK_YN()
+								IF RESULT
+									;아니오
+									PRINTFORML
+									PRINTFORMW 사토리는 한참이 지나서야 돌아왔다
+									PRINTFORMW 품에는 새근새근 잠들어 있는 아이가 있었다
+									PRINTFORMW 「......」
+									PRINTFORMW %마스터를% 한번 바라본 사토리는 왜인지 실망스러운 표정이다...
+								ELSE
+									;예
+									PRINTFORMW 사토리는 부푼 배를 이끌고 조심조심 걸어 산책을 나섰다
+									PRINTFORMW 그리고 도착한곳은...병원이었다
+									PRINTFORMW 사토리는 터질것만 같이 부푼 배를 안고 안으로 들어갔다
+									PRINTFORMW 아무래도 오늘이 예정일 이었던 모양이다...
+									PRINTFORMW 「...어, 어라...? 어쩐 일로...」
+									PRINTFORMW 뒤따라 들어가니 사토리는 의외라는듯이 %마스터를% 바라보았다
+									PRINTFORMW 따라오지 않을것이라 생각했던 모양이다
+									PRINTFORML
+									PRINTFORMW 어색한 시간이 흐르고, 사토리는 분만실로 들어갔다
+									PRINTFORMW 안에선 고통에 찬 신음소리만이 새어나왔다
+									PRINTFORML
+									PRINTFORMW 한참동안 사토리의 목소리가 들리더니, 이내 멎었다
+									PRINTFORMW 그리고 새로운 목소리가 들려왔다
+									PRINTFORMW 안으로 들어가 보니 기진맥진한채로 아이를 안고 있는 사토리가 있었다
+									PRINTFORMW 힘없이 %마스터를% 바라보는 그 눈엔 복잡한 감정이 보였다...
+									CFLAG:3100 += 3
+									CFLAG:5000 += 2
+								ENDIF
+							ELSE
+								PRINTFORMW 사토리가 편지를 보내왔다
+								PRINTFORMW 내용인즉슨, 뱃속의 아이가 태어났으니 아빠로써 이름정도는 지으러 와 달라는 내용이었다
+								PRINTFORMW 딱딱하고 무미건조한 문체에서 %CALLNAME:MASTER%에 대한 짜증이 느껴지는 글이었다...
+							ENDIF
+					ENDSELECT
 				ENDIF
 			ELSEIF TALENT:연인
 				SELECTCASE RAND:3
@@ -14204,7 +14264,65 @@ IF LOCAL
 						ENDIF
 				ENDSELECT
 			ELSEIF TALENT:연모||TALENT:사모||TALENT:애욕
-				
+				SELECTCASE RAND:3
+					CASE 0
+						IF ST_LIVETOGETHER() == 0||ST_LIVETOGETHER() == 4
+							PRINTFORMW 사토리가 편지를 보내왔다
+							PRINTFORMW ...뱃속의 아이를 무사히 낳았다는 모양이다
+							PRINTFORMW 모쪼록 찾아와서 아이 얼굴도 좀 보고 아빠로써 이름도 지어달라고 덧붙여져 있다...
+						ELSE
+							PRINTFORMW 「...기...저기...%MASTERNAME:49%...」
+							PRINTFORMW 잠든 %마스터를% 살며시 깨운 사토리는 품에서 잠든 아이를 들이밀었다
+							PRINTFORMW 「%사마스터의% 아이에요, 처음은 아니지만 그래도 많이 아팠다고요?」
+							PRINTFORMW 「부부사이도 아닌데 번번히 사고나 쳐서 이렇게 힘들게 만들다니...%MASTERNAME:49%도 너무하다니까요」
+							PRINTFORMW 투덜거리는 사토리의 표정엔 가릴수 없는 미소가 옅보였다
+							PRINTFORMW 「정말, 보고 있지만 말고 이름이라도 지어주세요, 어찌됐든 당신 아이니까」
+						ENDIF
+					CASE 1
+						PRINTFORMW 늦은 밤, 분만실에서 울리던 비명이 끝났다
+						PRINTFORMW 「하아...하아...끄..끝났다...아하하...」
+						PRINTFORMW 초췌한 표정으로 아이를 넘겨받은 사토리는 힘없이 웃어보였다
+						PRINTFORMW 「벌써 {CFLAG:아이인원수}명이네...참 너무하기도 하지, 부부사이도 아닌데 계속 사고만 치고...」
+						PRINTFORMW 「...그게 싫은건 또 아니지만」
+					CASE 2
+						IF ST_NEARBYYOU() == 1
+							PRINTFORMW 한밤중, 사토리는 말없이 집을 나서서 어디론가 향했다
+							PRINTFORMW 산달이 임박한 지금, 무거워진 몸을 이끌고 하는 외출은 상당한 고역일텐데...
+							PRINTFORML 뒤쫓을까?
+							CALL ASK_YN()
+							IF RESULT
+								;아니오
+								PRINTFORML
+								PRINTFORMW 사토리는 한참이 지나서야 돌아왔다
+								PRINTFORMW 품에는 새근새근 잠들어 있는 아이가 있었다
+								PRINTFORMW 사토리의 얼굴은 굉장히 밝아보였다...
+							ELSE
+								;예
+								PRINTFORMW 사토리는 부푼 배를 이끌고 조심조심 걸어 산책을 나섰다
+								PRINTFORMW 그리고 도착한곳은...병원이었다
+								PRINTFORMW 사토리는 터질것만 같이 부푼 배를 안고 안으로 들어갔다
+								PRINTFORMW 아무래도 오늘이 예정일 이었던 모양이다...
+								PRINTFORMW 「...어, 어라...? 어쩐 일로...」
+								PRINTFORMW 뒤따라 들어가니 사토리는 의외라는듯이 %마스터를% 바라보았다
+								PRINTFORMW 뒤를 밟히는지도 몰랐던 모양이다
+								PRINTFORML
+								PRINTFORMW 출산을 앞둔 사토리를 몇번 다독여주고 나니, 분만실로 들어갈 시간이 되어버렸다
+								PRINTFORMW 의기양양하게 들어간 사토리였지만, 이내 들리는건 고통스런 신음소리 뿐이었다
+								PRINTFORML
+								PRINTFORMW 한참동안 사토리의 목소리가 들리더니, 이내 멎었다
+								PRINTFORMW 그리고 새로운 목소리가 들려왔다
+								PRINTFORMW 안으로 들어가 보니 기진맥진한채로 아이를 안고 있는 사토리가 있었다
+								PRINTFORMW 「...여러번 한다고 적응되는 종류는 아니네요, 역시 아파」
+								CFLAG:3100 += 1
+								CFLAG:5000 += 1
+							ENDIF
+						ELSE
+							PRINTFORMW 「...귀엽네...역시 부모를 잘 닮았어...」
+							PRINTFORMW 「내 아이니까, 당연한거지만」
+							PRINTFORMW 사토리는 품에 안긴 아이를 바라보며 희미하게 웃고 있었다
+							PRINTFORMW 「이름은, 뭐로 할까나...」
+						ENDIF
+				ENDSELECT
 			ELSEIF TALENT:섹프
 				
 			ELSE
