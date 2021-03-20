@@ -14656,9 +14656,142 @@ IF LOCAL
 		CASE 2
 		;そのまま続行 그대로 속행한다
 		;記入チェック（=0, 非表示、1, 表示）
-		LOCAL:1 = 0
+		LOCAL:1 = 1
 		;-------------------------------------------------
 		IF LOCAL:1
+			IF MARK:반발각인 == 3
+				IF TALENT:연인
+					SELECTCASE RAND:3
+						CASE 0
+							PRINTFORMW 「...계..계속하라니...그런...」
+							PRINTFORMW 「아무리 그래도 그건 부끄러운데...」
+							PRINTFORMW 사토리는 수치심에 고개를 떨궜다
+							PRINTFORML
+							PRINTFORMW 「...그, 그렇게 보고 싶다면야...」
+							PRINTFORMW 이윽고 사토리는 %마스터의% 눈치를 살피다 다시 가랑이로 쭈뼛쭈뼛 손을 옮기기 시작했다
+							PRINTFORMW 수줍은 자위를 %마스터의% 눈 앞에 선보이는 사토리는 수치심에 터지기 일보 직전이 되었다...
+							PRINTFORMW 「아아...부끄러워...어쩌다 이런 일이...」
+						CASE 1
+							PRINTFORMW 「...네...? 그...계속하라고요...?」
+							PRINTFORMW 「그런 부끄러운짓을 어떻게 하라고요...」
+							PRINTFORMW 사토리는 연신 항의했지만 들어줄 기미도 없는 %마스터의% 태도에 이내 체념했다
+							PRINTFORMW 느릿느릿 가랑이를 매만지는 자신의 손길이 %마스터의% 눈에 선명히 보여진다는 사실에 사토리는 반쯤 울상이 되었다... 
+						CASE 2
+							PRINTFORMW 「...계속 하라고요...? %사마스터의% 눈 앞에서...?」
+							PRINTFORMW 「...악취미네요...좋아요, 그렇게 보고 싶으시다면야...!」
+							PRINTFORMW 사토리는 반쯤 울어버릴것만 같은 표정으로 자위를 시작했다...
+					ENDSELECT
+				ELSE
+					IF CFLAG:3000 == 0
+						SELECTCASE RAND:3
+							CASE 0
+								PRINTFORMW 「...계속하라니...무슨...하아...」
+								PRINTFORMW 「그래요, 제가 무슨말 해도 안 들을거죠?」
+								PRINTFORMW 「그럼 거기서 보던가 말던가 하세요...이런걸 봐서 뭐가 좋은건지...」
+								PRINTFORMW 사토리는 %마스터를% 애써 무시하고 자위를 재개했다...
+							CASE 1
+								PRINTFORMW 「...자위가 보고 싶은건가요, 정말이지 지독한 사람...」
+								PRINTFORMW 「보기 전까지 죽치고 있을거죠? 볼테면 보세요, 안 말릴테니」
+								PRINTFORMW 쏘아붙이고는 있지만 꼼지락꼼지락 손을 놀리는 사토리의 얼굴은 수치심에 붉게 물들어 있었다...
+							CASE 2
+								PRINTFORMW 「...성격 참 좋으시네요, 남의 방에 쳐들어와서 한다는게 '더 보고 싶으니 빨리 다시 하라'...」
+								PRINTFORMW 「좋아요, 보던가 말던가...어짜피 보기 전까지 안 나갈 생각이잖아」
+								PRINTFORMW 「차라리 후딱 보고 나가주세요」
+								PRINTFORMW 사토리는 수치심에 울상이 된 채로 자위를 재개했다...
+						ENDSELECT
+					ELSE
+						SELECTCASE RAND:3
+							CASE 0
+								PRINTFORMW 「...계속하라니...무슨...하아...」
+								PRINTFORMW 「제가 무슨 말 해도 들을 생각도 안할거죠, 안봐도 뻔해...」
+								PRINTFORMW 「거기서 보던가 나가던가 맘대로 하세요... 별 신경도 안 쓰이니까」
+								PRINTFORMW 사토리는 %마스터를% 애써 무시하고 자위를 재개했다...
+								PRINTFORMW ...만, 그럼에도 시선이 부끄러운건지 얼굴이 새빨갛다...
+							CASE 1
+								PRINTFORMW 「...자위가 보고 싶다라...늘 생각하는거지만 지독한 성격이네요」
+								PRINTFORMW 「보기 전까지 죽치고 있을거죠? 볼테면 보던가요, 닳는것도 아닌데」
+								PRINTFORMW 쏘아붙이고는 있지만 꼼지락꼼지락 손을 놀리는 사토리의 얼굴은 수치심에 붉게 물들어 있었다...
+							CASE 2
+								PRINTFORMW 「...성격 참 좋네, 남의 방에 갑자기 쳐들어와서 한다는 소리가 '더 보고 싶으니 빨리 다시 해라'...」
+								PRINTFORMW 「좋아요, 보던가 말던가...어짜피 보기 전까지 안 나갈 생각이잖아」
+								PRINTFORMW 「차라리 후딱 보고 사라져주는게 더 나을거 같아...」
+								PRINTFORMW 사토리는 수치심에 몸을 파르르 떨며 자위를 재개했다...
+						ENDSELECT
+					ENDIF
+				ENDIF
+			ELSEIF TALENT:연인
+				SELECTCASE RAND:3
+					CASE 0
+						PRINTFORMW 「...계속...하라고요...?」
+						PRINTFORMW 「부끄러운데...%사마스터가% 보고싶다면야...」
+						PRINTFORMW 사토리는 쭈뼛쭈뼛 자위를 재개했다...
+						PRINTFORMW 손가락이 수줍게 가랑이를 매만지고 있다...
+						PRINTFORMW 「그, 그렇게 뚫어져라 보지 마요...역시 부끄러워...으아아...」
+					CASE 1
+						PRINTFORMW 「...더 보고 싶으니 계속 하라니...」
+						PRINTFORMW 「으으으...알았어요, 하면 될거 아녜요...」
+						PRINTFORMW 사토리는 수치심에 얼굴을 붉히며 자위를 재개했다...
+					CASE 2
+						PRINTFORMW 「...변태...」
+						PRINTFORMW 「남의 자위가 그렇게 궁금해요...?」
+						PRINTFORMW 사토리는 볼을 부풀렸지만 이내 포기했는지 가랑이로 손을 옮겼다...
+						PRINTFORMW 「변태...변태...우으으...못됐어...」
+						PRINTFORMW 투덜거리면서도 사토리의 숨결이 점차 거칠어지는걸 느낄수 있었다...
+				ENDSELECT
+			ELSEIF TALENT:연모||TALENT:사모||TALENT:애욕
+				SELECTCASE RAND:3
+					CASE 0
+						PRINTFORMW 「......네?」
+						PRINTFORMW 「잘못...들은거 같은데...」
+						PRINTFORMW 사토리는 얼빠진 표정으로 %마스터를% 바라보았다
+						PRINTFORMW 그러나 이내 자신이 들은게 맞다는 사실을 안 사토리는 수치심에 고개를 파묻고 파르르 떨기 시작했다...
+						PRINTFORMW 「...너무해요, 안 그래도 부끄러 죽을것 같았는데...」
+						PRINTFORMW 「그런거보다 자위가 더 중요한거죠, 이 호색한...그렇게 보고 싶으면 맘껏 보던가요」
+						PRINTFORMW 사토리는 눈물을 글썽이며 %마스터의% 얼굴 바로 앞에서 자위를 재개했다...
+					CASE 1
+						PRINTFORMW 「...다시 하라니...그런...」
+						PRINTFORMW 「...우으으...알았어요...보고 웃지마세요...」
+						PRINTFORMW 사토리는 쭈뼛쭈뼛 자위를 재개했다...
+					CASE 2
+						PRINTFORMW 「...무슨...하아...그런 변태같은 일을 어떻게 해요...」
+						PRINTFORMW 「...저..정말로 보고 싶은건가요...?」
+						PRINTFORMW 사토리는 %마스터를% 한번 살펴보곤 한숨을 쉬며 가랑이로 손을 옮겼다...
+						PRINTFORMW 「...변태, 호색한, 양심이라곤 조금도 없나요?」
+						PRINTFORMW 「그렇게나 보고 싶다면야...어쩔수 없네요, 맘껏 보던가 말던가요...!」
+						PRINTFORMW 사토리는 수치심에 울상이 된 채로 과시하듯이 자위를 시작했다...
+				ENDSELECT
+			ELSEIF TALENT:섹프
+				SELECTCASE RAND:3
+					CASE 0
+						PRINTFORMW 「에- 상대해주진 않는 건가요」
+						PRINTFORMW 「눈 앞에 훌륭한 상대가 있는데, 저는 고작 손가락으로 만족하라니...」
+						PRINTFORMW 「너무하다구요, 잡아먹는것도 아닌데」
+						PRINTFORMW 사토리는 입술을 삐죽이며 손을 놀렸다...
+					CASE 1
+						PRINTFORMW 「...보기만 한다니...그런...」
+						PRINTFORMW 「...방치 플레이인가요, 그치만 그런건...싫은데...」
+						PRINTFORMW 사토리는 조금 토라진 모양이다...
+						PRINTFORMW 「알았어요, 이번엔 혼자 할테니까...다음엔 꼭 상대해주세요?」
+					CASE 2
+						PRINTFORMW 「에에...어째서...」
+						PRINTFORMW 「...그, 그럼 적어도 옆에 앉아 주세요, 그러면 조금 더 나을거 같으니까」
+						PRINTFORMW 바램대로 옆에 앉아주자 사토리는 %마스터의% 허벅다리를 한손으로 매만지며 스스로를 위로하기 시작했다...
+				ENDSELECT
+			ELSE
+				SELECTCASE RAND:3
+					CASE 0
+						PRINTFORMW 「...변태...」
+						PRINTFORMW 「...뭐, 상관없나...이미 보여졌고...」
+						PRINTFORMW 사토리는 체념한듯 천천히 손을 놀리기 시작했다...
+					CASE 1
+						PRINTFORMW 「...당당하시네요, 어이가 없을 정도로」
+						PRINTFORMW 「보고 싶음 보던가요, 어짜피 뭔 말 해도 들을것 같지 않으니」
+					CASE 2
+						PRINTFORMW 「......하아...보여주면 나갈거죠? 그러면 실컷보고 얼른 가 줬으면 하는데요」
+						PRINTFORMW 「자아, 됐나요? 이제 잘 보이죠?」
+						PRINTFORMW 사토리는 %마스터의% 얼굴 바로 앞에서 과시하듯 자위하기 시작했다...
+				ENDSELECT
+			ENDIF
 			RETURN 1
 		ENDIF
 		;-------------------------------------------------
