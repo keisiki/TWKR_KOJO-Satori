@@ -14911,9 +14911,124 @@ IF LOCAL
 		CASE 4
 		;やっちゃう 그대로 야스한다
 		;記入チェック（=0, 非表示、1, 表示）
-		LOCAL:1 = 0
+		LOCAL:1 = 1
 		;-------------------------------------------------
+		;PRINTFORMW 「」
 		IF LOCAL:1
+			IF MARK:반발각인 == 3
+				IF TALENT:연인
+					SELECTCASE RAND:3
+						CASE 0
+							PRINTFORMW 「무슨...잠깐, 아직 들어오라고 안했는데...!」
+							PRINTFORMW 「정말...제멋대로라니까요...으으...」
+							PRINTFORMW 사토리는 깜짝 놀란 눈치지만 거부하는것 같진 않다...
+						CASE 1
+							PRINTFORMW 「에...? 잠깐, 어딜 들어오는...!」
+							PRINTFORMW 「갑자기 들어와 놓고선 외로워 보이니 상대해준다니...그런 억지가...」
+							PRINTFORMW 사토리는 싫은 소리를 하고 있지만 내심 기대하는것만 같이 안겨들어왔다...
+						CASE 2
+							PRINTFORMW 「같이 하자니 무슨...잠깐, 들어오라 안했는데...?!」
+							PRINTFORMW 「정말, 어쩜 사람이 그리 제멋대로에요? 아직 해도 된다고 말도 안했는데...」
+							PRINTFORMW 사토리는 볼멘소리를 내면서도 %마스터의% 손에 몸을 맡기기 시작했다
+					ENDSELECT
+				ELSE
+					IF CFLAG:3000 == 0
+						SELECTCASE RAND:2
+							CASE 0
+								PRINTFORMW 「...같이 하자니...무슨...」
+								PRINTFORMW 「...아니, 생각해보면 그것도 괜찮으려나...마침 쌓여있기도 하고...」
+								PRINTFORMW 「...윽, 잠깐...들어오라곤 안했는...마..만지라고 한 적도 없는데...」
+								PRINTFORMW 사토리는 고민에 빠져 %마스터가% 옆에 온것도 모르고 있다가 깜짝 놀란 모양이다
+								PRINTFORMW 그래도 별 다른 저항이 없는걸 보면 사토리도 싫지는 않은 모양이다
+							CASE 1
+								PRINTFORMW 「...간도 크셔라, 연인도 뭣도 아닌 상대에게 그런 말을 하다니」
+								PRINTFORMW 「...뭐, 상관없나...막 기분 좋을때 흐름 끊겼던 참이니까...」
+								PRINTFORMW 「좋아요, 그러면 하고 싶은대로 하시던가요...」
+								PRINTFORMW 사토리는 한숨을 쉬며 자리에 드러누웠다...
+						ENDSELECT
+					ELSE
+						SELECTCASE RAND:2
+							CASE 0
+								PRINTFORMW 「...같이 하자니...무슨...」
+								PRINTFORMW 「...아니, 생각해보면 그것도 괜찮으려나...마침 쌓여있기도 하고...」
+								PRINTFORMW 「...윽, 잠깐...들어오라곤 안했...마..만져도 된다고 한 적도 없는데...」
+								PRINTFORMW 사토리는 고민에 빠져 %마스터가% 옆에 온것도 모르고 있다가 깜짝 놀란 모양이다
+								PRINTFORMW 그래도 별 다른 저항이 없는걸 보면 사토리도 싫지는 않은 모양이다
+							CASE 1
+								PRINTFORMW 「...간도 크기도 해라, 연인도 뭣도 아닌 상대에게 그런 말을 할줄은 몰랐네」
+								PRINTFORMW 「%사마스터가% 그런 사람이긴 하지만」
+								PRINTFORMW 사토리는 빈정거리며 %마스터를% 올려다보고 있다...
+								PRINTFORMW 「...뭐, 상관없나...막 기분 좋을때 흐름 끊겼던 참이니...」
+								PRINTFORMW 「좋아, 그러면 하고 싶은대로 하던가...」
+								PRINTFORMW 「대신에 기분좋게 해주지 않으면 안되니까」
+								PRINTFORMW 사토리는 한숨을 쉬며 자리에 드러누웠다...
+						ENDSELECT
+					ENDIF
+				ENDIF
+			ELSEIF TALENT:연인
+				SELECTCASE RAND:3
+					CASE 0
+						PRINTFORMW 「...갑자기 들어와서 그렇게 말해도 말이죠...」
+						PRINTFORMW 사토리는 볼멘소리를 하고 있지만 아까부터 허벅다리를 꼼지락 거리는게 뻔히 보인다
+						PRINTFORMW 「그..그건...흐름이 끊겼으니까 어쩔수 없는...」
+						PRINTFORMW 「...아아...알았어요, 하죠, 하면 될거 아녜요, 진짜...못됐다니까..」
+						PRINTFORMW 사토리는 툴툴거리며 %CALLNAME:MASTER%에게 몸을 맡겼다..
+					CASE 1
+						PRINTFORMW 「갑자기 들어와 놓고 그런 부끄러운 짓을...으으으...」
+						PRINTFORMW 「...으으...조금만이에요?」
+						PRINTFORMW 사토리는 얼굴을 붉히며 %마스터를% 받아들였다..
+					CASE 2
+						PRINTFORMW 「정말...갑자기 들어와놓고 한다는게 그 소리에요?」
+						PRINTFORMW 「...남의 마음은 하나도 안 알아주고...너무해...」
+						PRINTFORMW 사토리는 볼멘소리를 하면서도 %마스터의% 손결을 거부하지 않고 있다
+						PRINTFORMW 「우으으...기분 좋은 흐름 다 끊어놨으니까, 책임지고 기분좋게 해주셔야해요?」
+				ENDSELECT
+			ELSEIF TALENT:연모||TALENT:사모||TALENT:애욕
+				SELECTCASE RAND:3
+					CASE 0
+						PRINTFORMW 「...기왕 할거면 같이? 그...그건...」
+						PRINTFORMW 「...나쁘진...않으려나...」
+						PRINTFORMW 사토리는 발그레해진 얼굴로 %마스터를% 받아들였다...
+					CASE 1
+						PRINTFORMW 「아무리 그래도 그건...으으으...」
+						PRINTFORMW 「...싫은건 아니지만 역시 부끄럽고...잠깐, 말좀 들어요?!」
+						PRINTFORMW 사토리는 다가오는 %마스터를% 보고 얼굴을 붉혔지만 거부의 의사는 전혀 보이지 않았다
+					CASE 2
+						PRINTFORMW 「...가...같이 이어서 하자니...」
+						PRINTFORMW 「진심이라서 더 무서워...으으...」
+						PRINTFORMW 「그렇게까지 말한다면, 괜찮으려나...」
+						PRINTFORMW 「알았어요, 하죠, 합시다...야한짓...♥」
+				ENDSELECT
+			ELSEIF TALENT:섹프
+				SELECTCASE RAND:3
+					CASE 0
+						PRINTFORMW 「후후...♥ 그러면 얼른 들어오세요♥」
+						PRINTFORMW 사토리는 해냈다는듯이 해맑게 웃으며 %마스터를% 끌어안았다...
+					CASE 1
+						PRINTFORMW 「그러면...얼른 하죠, 이 이상 기다리는거 무리니까..♥」
+						PRINTFORMW 「아까부터 계속 참아서 온 몸이 쓸쓸하니까아, 잔뜩 만져주세요?」
+						PRINTFORMW 사토리는 온 몸을 %CALLNAME:MASTER%에게 밀착하고 마구 문지르고 있다...
+					CASE 2
+						PRINTFORMW 「후후...어서오시길」
+						PRINTFORMW 사토리는 굉장히 기쁜지 다가온 %마스터를% 끌어안았다
+						PRINTFORMW 「시간도 많으니 천천히 즐겨요, 뭣하면 하루 종일 이러고 있는것도 괜찮을테고...♥」
+						PRINTFORMW 「그러면..♥ 후후...얼른 합시다?」
+				ENDSELECT
+			ELSE
+				SELECTCASE RAND:2
+					CASE 0
+						PRINTFORMW 「읏...그...그렇게 말해도...」
+						PRINTFORMW 「확실히 끊겨서 그런것도 있긴 하지만 아무리 그래도...」
+						PRINTFORMW 「...으으...아..알았어요, 조금만 이라면...」
+						PRINTFORMW 사토리는 얼굴을 붉혔다..
+					CASE 1
+						PRINTFORMW 「그런...아무리 쌓였다곤 해도 어떻게 그런걸 해요...」
+						PRINTFORMW 「...화...확실히 잔뜩 쌓여서 해소하곤 싶지만...」
+						PRINTFORMW 사토리는 다리를 베베 꼬며 갈등하고 있다...
+						PRINTFORMW 「조...좋아요, 조금만이라면 괜찮겠지...」
+						PRINTFORMW 결국 욕망이 이겼는지, 사토리는 몸을 허락하고 말았다
+				ENDSELECT
+			ENDIF
 			RETURN 1
 		ENDIF
 		;-------------------------------------------------
@@ -14923,6 +15038,74 @@ IF LOCAL
 		LOCAL:1 = 0
 		;-------------------------------------------------
 		IF LOCAL:1
+			IF MARK:반발각인 == 3
+				IF TALENT:연인
+					SELECTCASE RAND:3
+						CASE 0
+
+						CASE 1
+
+						CASE 2
+
+					ENDSELECT
+				ELSE
+					IF CFLAG:3000 == 0
+						SELECTCASE RAND:3
+							CASE 0
+
+							CASE 1
+
+							CASE 2
+							
+						ENDSELECT
+					ELSE
+						SELECTCASE RAND:3
+							CASE 0
+
+							CASE 1
+
+							CASE 2
+							
+						ENDSELECT
+					ENDIF
+				ENDIF
+			ELSEIF TALENT:연인
+				SELECTCASE RAND:3
+					CASE 0
+
+					CASE 1
+
+					CASE 2
+					
+				ENDSELECT
+			ELSEIF TALENT:연모||TALENT:사모||TALENT:애욕
+				SELECTCASE RAND:3
+					CASE 0
+
+					CASE 1
+
+					CASE 2
+					
+				ENDSELECT
+			ELSEIF TALENT:섹프
+				SELECTCASE RAND:3
+					CASE 0
+
+					CASE 1
+
+					CASE 2
+					
+				ENDSELECT
+			ELSE
+				SELECTCASE RAND:3
+					CASE 0
+
+					CASE 1
+
+					CASE 2
+					
+				ENDSELECT
+			ENDIF
 			RETURN 1
 		ENDIF
 		;-------------------------------------------------
