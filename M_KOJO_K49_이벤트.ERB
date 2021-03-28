@@ -15155,8 +15155,122 @@ IF LOCAL
 		CASE 6
 		;事後お泊り 야스 후 숙박까지
 		;記入チェック（=0, 非表示、1, 表示）
-		LOCAL:1 = 0
+		LOCAL:1 = 1
 		;-------------------------------------------------
+		;PRINTFORMW 「」
+		IF LOCAL:1
+			IF MARK:반발각인 == 3
+				IF TALENT:연인
+					SELECTCASE RAND:3
+						CASE 0
+							PRINTFORMW 「하아...하아...으으응...격렬했어...」
+							PRINTFORMW 「...저기, 기왕 이리된거 자고 가지 않을래요?」
+							PRINTFORMW 「모처럼이니 좀 더 같이 있으면...」
+							PRINTFORMW 사토리는 %마스터의% 옷깃을 붙잡고 애원하고 있다...
+						CASE 1
+							PRINTFORMW 「...이...이제 가는건가요...」
+							PRINTFORMW 「기왕 온거 자고 가던가...하다못해 조금만 이라도 더...」
+							PRINTFORMW %마스터의% 옷깃을 붙잡고 애원하는 사토리에 이끌려 하룻밤 자고 가기로 했다...
+						CASE 2
+							PRINTFORMW 「하아아...기분 좋았어...」
+							PRINTFORMW 「...잠깐..벌써 가게요...? 그러지 말고 조금만 더 쉬다 가는건 어때요...? 차라도 내 올테니...」
+							PRINTFORMW 「잠시만 이라도 더 있다가 가세요...」
+							PRINTFORMW 사토리가 계속 매달려 왔기에 하룻밤 자고 가기로 했다...
+					ENDSELECT
+				ELSE
+					SELECTCASE RAND:2
+						CASE 0
+							PRINTFORMW 「...저기, 시간도 늦었는데...돌아가기엔 조금 위험하겠죠?」
+							PRINTFORMW 「자고 가세요, 자리야 이 방밖에 없긴 하지만...」
+							PRINTFORMW 사토리는 딴청을 피우며 동침을 권해왔다...
+						CASE 1
+							PRINTFORMW 「...아아...벌써...아니아니, 이제야 끝난거군요...」
+							PRINTFORMW 「...저기, 괜찮다면 하룻밤 자고 가면 안될까요?」
+							PRINTFORMW 「그...그게...싫으면 안 해도 되는데...」
+							PRINTFORMW 사토리는 %마스터를% 연신 흘끔흘끔 바라보고 있다...
+							PRINTFORMW 그러나 손은 이미 옷깃을 붙잡고 놓을 생각이 없는걸 보니 보내줄거 같진 않다
+							PRINTFORMW 어쩔수 없이 하룻밤 자고 가기로 했다...
+					ENDSELECT
+				ENDIF
+			ELSEIF TALENT:연인
+				SELECTCASE RAND:3
+					CASE 0
+						PRINTFORMW 「하아...♥ 최고, 였어요...♥」
+						PRINTFORMW 「후후...역시 상상보다는 실제가 훨씬 낫다니깐요」
+						PRINTFORMW 사토리는 히죽히죽 웃으며 %마스터의% 허리참에 팔을 둘러왔다...
+						PRINTFORMW 「맞다, 기왕 온 김에 자고 가죠? 그리고 몇번 더 하고...후후후...♥」
+						PRINTFORMW ...사토리는 %마스터를% 잡아끌며 다시 침대에 밀어넣었다...
+					CASE 1
+						PRINTFORMW 「아아...♥ 기분좋았어요...♥」
+						PRINTFORMW 「혼자서 하는거론 절대로 이런 기분 못 느끼니까 말이죠」
+						PRINTFORMW 「차라리 이대로 맨날 둘이서 야한짓만 하는것도 좋을텐데에」
+						PRINTFORMW 「...그런고로 오늘은 집에 안 보내 드릴거예요, 각오하세요?」
+					CASE 2
+						PRINTFORMW 「에- 벌써 끝내는건가요...」
+						PRINTFORMW 「자고 가는건 어때요? 안되나요?」
+						PRINTFORMW 「...간다고 해도 안 보내줄거지만♥」
+						PRINTFORMW 사토리는 서드아이의 코드로 %마스터를% 묶어버렸다...
+						PRINTFORMW 「우후후...아직 보낼 마음 없어요, 좀 더 같이 놀자구요?」
+				ENDSELECT
+			ELSEIF TALENT:연모||TALENT:사모||TALENT:애욕
+				SELECTCASE RAND:3
+					CASE 0
+						PRINTFORMW 「으응...얼결에 해버린거 치곤 기분 되게 좋네요...」
+						PRINTFORMW 「...그치만 아직 뭔가 부족한 느낌...」
+						PRINTFORMW 사토리는 %마스터의% 몸을 양 팔로 끌어안았다
+						PRINTFORMW 「기왕 이리 된거 오늘은 여기서 자고 가요, 네?」
+						PRINTFORMW ...부탁하는거 치곤 팔에 힘이 실려있다...
+						PRINTFORMW 「...대답 안 하는거는 자고 간다는거죠?」
+						PRINTFORMW 자연스레 침대로 끌려 들어가졌다...
+					CASE 1
+						PRINTFORMW 「...기분 좋았어요...♥」
+						PRINTFORMW 「..으응..잠깐, 가지 말고 있어봐요, 기왕 온거 아직 보내고 싶지 않단 말야」
+						PRINTFORMW 「그러니까...오늘은 집에 안 보내 드릴거예요?」
+						PRINTFORMW 사토리는 서드아이의 코드로 %마스터를% 묶어 침대에 내동댕이 쳤다
+						PRINTFORMW 「에헤헤...♥ 그러면 이제 뭐하고 놀까요?」
+					CASE 2
+						PRINTFORMW 「...확실히 제 손보다 기분 좋은거 같긴 하네요...♥」
+						PRINTFORMW 사토리는 옅게 웃으며 %마스터의% 몸에 기대있다...
+						PRINTFORMW 「그러니까 오늘은 자고 가는거로 하죠? 아직은 보내고 싶은 마음이 없으니까」
+						PRINTFORMW 기대고 있는줄 알았던 사토리는 %마스터의% 몸을 서드아이의 코드로 칭칭 묶어다 도로 이불 속에 밀어넣었다...
+				ENDSELECT
+			ELSEIF TALENT:섹프
+				SELECTCASE RAND:3
+					CASE 0
+						PRINTFORMW 「후우...역시 이 편이 좋다니깐요」
+						PRINTFORMW 「%사마스터는% 어땠나요? 기분 좋았어요?」
+						PRINTFORMW 사토리는 무척이나 만족스러워 보이는 표정이다...
+					CASE 1
+						PRINTFORMW 「하아...하아...♥ 기분 좋아라...♥」
+						PRINTFORMW 「역시 자기 손가락보단 남이 해주는게 훨씬 낫다니깐...후후...」
+					CASE 2
+						PRINTFORMW 「으응~ 개운해라, 이제 좀 쌓인게 풀리는 느낌...」
+						PRINTFORMW 「혼자 백날 하는것보다 한번씩 해버리는게 더 즐거운거 같네요...나중에 쌓이면 찾아가도 될까요?」
+						PRINTFORMW 사토리는 지치지도 않는지 히죽히죽 웃으며 농담을 건내왔다
+						PRINTFORMW 「...농담이라...후후후...과연 그럴까나...」
+				ENDSELECT
+				PRINTFORMW 「그치만 벌써 보내는건 조금 아쉬운거 같기도 하고...」
+				PRINTFORMW 「오늘 하루동안은 여기서 계속 같이 하고 싶은데...후후후...♥」
+				PRINTFORMW %마스터는% 무어라 대답하기도 전에 도로 이불 속으로 끌려갔다...
+			ELSE
+				SELECTCASE RAND:3
+					CASE 0
+						PRINTFORMW 「으으응...막상 하고 나니 생각보다 좋았네요...」
+						PRINTFORMW 「혼자 할때는 못해보는것도 잔뜩 하고...」
+						PRINTFORMW 사토리는 얼굴을 붉혔다...
+					CASE 1
+						PRINTFORMW 「......」
+						PRINTFORMW 행위가 끝나자, 사토리는 수치심에 새빨게진 얼굴을 베개에 파묻었다...
+					CASE 2
+						PRINTFORMW 「응읏...나쁘진 않긴 했는데...」
+						PRINTFORMW 「...역시 부끄러워...괜히 해버렸나...」
+						PRINTFORMW 쾌락의 시간이 끝나자, 사토리는 자신이 뭘 했는지 떠올리곤 얼굴을 붉게 물들이고 있다...
+				ENDSELECT
+				PRINTFORMW 「...기왕 해버린거, 좀 더 저질러 버릴거야...」
+				PRINTFORMW 「그러니까 다시 들어와요, 더, 더할거니까...」
+				PRINTFORMW 사토리는 서드아이의 코드로 %마스터를% 묶고는 도로 침대에 내동댕이 쳤다...
+			ENDIF
+		ENDIF
 	ENDSELECT
 ENDIF
 
