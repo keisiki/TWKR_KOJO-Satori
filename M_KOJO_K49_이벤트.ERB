@@ -15275,29 +15275,187 @@ IF LOCAL
 ENDIF
 
 ;==================================================
-;相手からデートのお誘い
+;相手からデートのお誘い 상대로부터 데이트 신청
 ;==================================================
 @M_KOJO_EVENT_K49_27(ARG,ARG:1)
+#DIM DYNAMIC S_목적지
+#DIMS DYNAMIC S_목적지명
 ;口上主はLOCAL
-;ARG:1は目的地
+;ARG:1은 목적지
 ;--------------------------------------------------
 ;記入チェック（=0, 非表示、1, 表示）
-LOCAL = 0
+LOCAL = 1
 ;-------------
 IF LOCAL
+	SELECTCASE STR:(5000 + ARG:1)
+		CASE "하쿠레이 신사"
+			S_목적지 = 1
+			S_목적지명 = 하쿠레이 신사
+		CASE "명련사"
+			S_목적지 = 2
+			S_목적지명 = 묘렌사
+		CASE "인간마을"
+			S_목적지 = 3
+			S_목적지명 = 마을
+		CASE "안개의호수~홍마관"
+			S_목적지 = 4
+			S_목적지명 = 안개의 호수
+		CASE "미혹의 죽림"
+			S_목적지 = 5
+			S_목적지명 = 죽림
+		CASE "마법의 숲"
+			S_목적지 = 6
+			S_목적지명 = 마법의 숲
+		CASE "삼도천~명계"
+			S_목적지 = 7
+			S_목적지명 = 명계
+		CASE "요괴의 산(산록)"
+			S_목적지 = 8
+			S_목적지명 = 산 기슭
+		CASE "요괴의 산(산정)"
+			S_목적지 = 9
+			S_목적지명 = 산 꼭대기
+		CASE "지저"
+			S_목적지 = 10
+			S_목적지명 = 지저
+		CASE "꿈의 세계~달"
+			S_목적지 = 11
+			S_목적지명 = 달
+		CASEELSE
+			S_목적지 = 12
+			S_목적지명 = 어딘가
+	ENDSELECT
 	SELECTCASE ARG
 		;-------------------------------------------------
 		CASE 0
-		;誘い文句
+		;誘い文句 권하는 말
 		;記入チェック（=0, 非表示、1, 表示）
-		LOCAL:1 = 0
+		LOCAL:1 = 1
 		;-------------------------------------------------
 		IF LOCAL:1
+			;PRINTFORMW 「」
+			IF MARK:반발각인 == 3
+				IF TALENT:연인
+					SELECTCASE RAND:3
+						CASE 0
+							PRINTFORMW 「바쁘지 않다면, %S_목적지%에 놀러가지 않을래요?」
+							PRINTFORMW 「나가서 산책도 하고...이것저것 하고...」
+							PRINTFORMW 「...안될까요?」
+						CASE 1
+							PRINTFORMW 「오늘 일정 있으신가요? 아니라면 어딘가 같이 나가려고 했는데」
+							PRINTFORMW 「...요즘에 좀 그랬으니까, 둘만의 시간을 조금 가지려고요」
+							PRINTFORMW 사토리는 %마스터의% 눈치를 살피며 조심스레 물어왔다...
+						CASE 2
+							PRINTFORMW 「저기, %S_목적지명%에 가지 않을래요?」
+							SELECTCASE S_목적지
+								CASE 1
+									PRINTFORMW 「같이 나가서 참배라던가...그쪽 경치도 괜찮고...」
+									PRINTFORMW 사토리는 쭈뼛쭈뼛거리며 데이트를 권해왔다...
+								CASE 2
+									PRINTFORMW 「코이시가 가끔 신세지는 곳이라, 간간히 감사인사를 드리러 가는데...」
+									PRINTFORMW 「...기왕 갈거면 같이 가는것도 나쁘지 않겠다 싶어서...」
+									PRINTFORMW 사토리의 얼굴은 왜인지 옅은 붉은빛으로 물들어 있다...
+								CASE 3
+									PRINTFORMW 「쇼핑도 좋고...대본소도 좋고요, 지저랑은 다른 느낌이라 마음에 드는걸」
+									PRINTFORMW 「...같이 갈래요...?」
+									PRINTFORMW 사토리는 얼굴을 붉히며 데이트를 권해왔다...
+								CASE 4
+									PRINTFORMW 「호숫가 경치가 상당히 예쁘다고 소문났으니까」
+									PRINTFORMW 「지저의 호수랑은 확연히 차이나는 경치라고 말이죠」
+									PRINTFORMW 「...그래서 말인데, 같이 가는건 어떨까요...?」
+								CASE 5
+									PRINTFORMW 「죽림에 일이 있어서 말인데...기왕이면 같이 갈까 하고요」
+									PRINTFORMW 「...싫으면 안가도 상관없지만...」
+									PRINTFORMW 사토리는 %마스터의% 눈치를 살피고 있다...
+								CASE 9
+									PRINTFORMW 「산 위쪽 신사도 구경가면 좋잖아요」
+									PRINTFORMW 「그쪽 경치도 상당히 좋고 말이죠」
+									PRINTFORMW 「...뭐어, 굳이 안 갈거라면 말고요...」
+								CASE 10
+									PRINTFORMW 「안 들어가본지도 꽤 된거 같으니까 말이죠」
+									PRINTFORMW 「난장판만 안 되어있으면 좋으련만」
+								CASE 11
+									PRINTFORMW 「최근에는 왕래하기가 쉬워졌다니까, 구경 한번 가보고 싶어져서요」
+									PRINTFORMW 「그렇다고 혼자 가긴 조금 그렇지만...」
+								CASEELSE
+									PRINTFORMW 「...아..아니, 꼭 가야하는건 아니니까...같이 가줬으면 하지만...」
+									PRINTFORMW 사토리는 얼굴을 붉혔다
+							ENDSELECT
+					ENDSELECT
+				ELSE
+					IF CFLAG:3000 == 0
+						SELECTCASE RAND:3
+							CASE 0
+
+							CASE 1
+
+							CASE 2
+							
+						ENDSELECT
+					ELSE
+						SELECTCASE RAND:3
+							CASE 0
+
+							CASE 1
+
+							CASE 2
+							
+						ENDSELECT
+					ENDIF
+				ENDIF
+			ELSEIF TALENT:연인
+				SELECTCASE RAND:3
+					CASE 0
+
+					CASE 1
+
+					CASE 2
+					
+				ENDSELECT
+			ELSEIF TALENT:연모||TALENT:사모||TALENT:애욕
+				SELECTCASE RAND:3
+					CASE 0
+
+					CASE 1
+
+					CASE 2
+					
+				ENDSELECT
+			ELSEIF TALENT:섹프
+				SELECTCASE RAND:3
+					CASE 0
+
+					CASE 1
+
+					CASE 2
+					
+				ENDSELECT
+			ELSE
+				IF CFLAG:3000 == 0
+					SELECTCASE RAND:3
+						CASE 0
+
+						CASE 1
+
+						CASE 2
+						
+					ENDSELECT
+				ELSE
+					SELECTCASE RAND:3
+						CASE 0
+
+						CASE 1
+
+						CASE 2
+						
+					ENDSELECT
+				ENDIF
+			ENDIF
 			RETURN 1
 		ENDIF
 		;-------------------------------------------------
 		CASE 1
-		;受けた
+		;受けた 수락
 		;記入チェック（=0, 非表示、1, 表示）
 		LOCAL:1 = 0
 		;-------------------------------------------------
@@ -15306,7 +15464,7 @@ IF LOCAL
 		ENDIF
 		;-------------------------------------------------
 		CASE 2
-		;断った
+		;断った 거절
 		;記入チェック（=0, 非表示、1, 表示）
 		LOCAL:1 = 0
 		;-------------------------------------------------
@@ -15315,7 +15473,7 @@ IF LOCAL
 		ENDIF
 		;-------------------------------------------------
 		CASE 3
-		;部屋に誘われた
+		;部屋に誘われた 방으로 데려가려함
 		;記入チェック（=0, 非表示、1, 表示）
 		LOCAL:1 = 0
 		;-------------------------------------------------
@@ -15324,7 +15482,7 @@ IF LOCAL
 		ENDIF
 		;-------------------------------------------------
 		CASE 4
-		;部屋に誘われたのを受けた
+		;部屋に誘われたのを受けた 방으로 데려가기 수락
 		;記入チェック（=0, 非表示、1, 表示）
 		LOCAL:1 = 0
 		;-------------------------------------------------
@@ -15333,7 +15491,7 @@ IF LOCAL
 		ENDIF
 		;-------------------------------------------------
 		CASE 5
-		;部屋に誘われたのを断った
+		;部屋に誘われたのを断った 방으로 데려가기 거절
 		;記入チェック（=0, 非表示、1, 表示）
 		LOCAL:1 = 0
 		;-------------------------------------------------
