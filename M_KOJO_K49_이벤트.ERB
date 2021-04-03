@@ -15501,9 +15501,73 @@ IF LOCAL
 		CASE 1
 		;受けた 수락
 		;記入チェック（=0, 非表示、1, 表示）
-		LOCAL:1 = 0
+		LOCAL:1 = 1
 		;-------------------------------------------------
 		IF LOCAL:1
+			IF MARK:반발각인 == 3
+				IF TALENT:연인
+					SELECTCASE RAND:3
+						CASE 0
+							PRINTFORMW 「...♥ 그러면 얼른 가도록 할까요」
+							PRINTFORMW %마스터의% 말에 사토리의 얼굴이 밝아졌다...
+						CASE 1
+							PRINTFORMW 「...그럼 어쩔수 없......가신다고요?」
+							PRINTFORMW 「아, 아녜요...잠깐 딴 생각 하다가...그러면 얼른 가요」
+							PRINTFORMW 사토리는 %마스터의% 말에 조금 당황한듯 하지만 이내 기뻐보이는 표정으로 %마스터의% 손을 이끌었다
+						CASE 2
+							PRINTFORMW 「...네, 그럼 준비해야할게...」
+							PRINTFORMW 사토리는 내색하진 않지만 꽤나 들뜬듯 하다
+							PRINTFORMW 같이 가는게 즐거운 모양이다
+					ENDSELECT
+				ELSE
+					SELECTCASE RAND:3
+						CASE 0
+							PRINTFORMW 「희한하네요, 거절할줄 알았는데...」
+							PRINTFORMW 「...아녜요, 아무말도 안했어, 그러면 출발합시다」
+							PRINTFORMW 사토리는 무언가 중얼거리면서 앞장섰다...
+						CASE 1
+							PRINTFORMW 「네네, 그러면 얼른 갑시다」
+							PRINTFORMW 「늦으면 버리고 갈거니까」
+							PRINTFORMW 말은 그렇게 하면서도 %마스터가% 잘 따라오나 연신 뒤돌아 보며 걸음걸이를 늦추고 있다...
+						CASE 2
+							PRINTFORMW 「네에, 그럼 갈까요」
+							PRINTFORMW 「...이럴때는 말 들어주네...다른때에도 이래주면...」
+							PRINTFORMW 사토리는 무언가 중얼거렸지만 이내 시치미를 뚝 뗴고 앞장서 걷기 시작했다...
+					ENDSELECT
+				ENDIF
+			ELSEIF TALENT:연인
+				SELECTCASE RAND:3
+					CASE 0
+						PRINTFORMW 「...♥ 그러면 얼른 가죠」
+						PRINTFORMW 사토리는 해맑게 웃으며 %마스터의% 손을 잡아끌었다...
+					CASE 1
+						PRINTFORMW 「후후...그렇게 말할줄 알았어요」
+						PRINTFORMW 「그럼, 갈까요?」
+						PRINTFORMW 사토리는 앞장서서 %마스터의% 손을 잡아끌고 있다... 
+					CASE 2
+						PRINTFORMW 「코이시의 기분을 알거 같네요」
+						PRINTFORMW 「맨날 들떠있는걸 봐도 그닥 이해가 안갔는데, 이런 기분이었을려나」
+						IF TALENT:38:연인
+							PRINTFORMW 「그 기분에다 %사마스터랑% 데이트까지 나간다면...저라면 기뻐서 쓰러질지도 몰라요」
+						ENDIF
+						PRINTFORMW 사토리는 얼굴을 붉혔다
+				ENDSELECT
+			ELSE
+				SELECTCASE RAND:3
+					CASE 0
+						PRINTFORMW 「...♥ 네에, 그럼 같이 갑시다」
+						PRINTFORMW 왜인지 사토리는 무척 기뻐보이는 표정이다...
+					CASE 1
+						PRINTFORMW 「같이 가 주신다고요? 네에, 그럼 얼른 갑시다」
+						PRINTFORMW 「...후후후...♥」
+						PRINTFORMW 사토리는 해냈다는듯한 표정이다...
+					CASE 2
+						PRINTFORMW 「그러면 갈까요」
+						PRINTFORMW 사토리는 %마스터의% 손을 부드럽게 잡아왔다
+						PRINTFORMW 무덤덤하게 앞장서서 걷고 있는 사토리였지만, 정작 손에선 땀방울이 만져진다
+						PRINTFORMW 많이 긴장한 모양이다
+				ENDSELECT
+			ENDIF
 			RETURN 1
 		ENDIF
 		;-------------------------------------------------
