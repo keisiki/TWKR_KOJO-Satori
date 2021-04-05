@@ -15574,9 +15574,68 @@ IF LOCAL
 		CASE 2
 		;断った 거절
 		;記入チェック（=0, 非表示、1, 表示）
-		LOCAL:1 = 0
+		LOCAL:1 = 1
 		;-------------------------------------------------
+		;PRINTFORMW 「」
 		IF LOCAL:1
+			IF MARK:반발각인 == 3
+				IF TALENT:연인
+					SELECTCASE RAND:3
+						CASE 0
+							PRINTFORMW 「...그...그런가요...네에...」
+							PRINTFORMW 「싫으시다면 어쩔수 없죠...」
+							PRINTFORMW 사토리는 무척이나 실망한 모양이다...
+						CASE 1
+							PRINTFORMW 「...네, 그러면 어쩔수 없죠...」
+							PRINTFORMW 「다음 기회에 가던가 해야겠네...」
+							PRINTFORMW 사토리의 표정은 굉장히 어두워졌다...
+						CASE 2
+							PRINTFORMW 「...네...알았어요...」
+							PRINTFORMW 「...그럼 저도 안 나가고 말죠 뭐...」
+							PRINTFORMW 사토리는 굉장히 실망한듯이 말해왔다...
+					ENDSELECT
+				ELSE
+					SELECTCASE RAND:3
+						CASE 0
+							PRINTFORMW 「...싫음 말구요」
+							PRINTFORMW 사토리는 툴툴거리며 돌아섰다...
+							PRINTFORMW 나가진 않으려는 모양이다
+						CASE 1
+							PRINTFORMW 「뭐, 그러시다면야」
+							PRINTFORMW 사토리는 기대도 안했다는듯이 말해왔다...
+						CASE 2
+							PRINTFORMW 「뭐, 그럴줄 알았어요」
+							PRINTFORMW 「%사마스터가% 나를 따라올리가 있나...」
+					ENDSELECT
+				ENDIF
+			ELSEIF TALENT:연인
+				SELECTCASE RAND:3
+					CASE 0
+						PRINTFORMW 「...네? 어째서...」
+						PRINTFORMW 「...너무해...」
+						PRINTFORMW 사토리는 삐진 모양이다...
+					CASE 1
+						PRINTFORMW 「...우으으...」
+						PRINTFORMW 거절당한 사토리는 조금 시무룩해 보인다...
+					CASE 2
+						PRINTFORMW 「에에...어째서죠...」
+						PRINTFORMW 「그러지 말구 가요, 네?」
+						PRINTFORMW 사토리는 포기하지 않고 계속 졸라왔지만 이내 안된다는걸 알고 시무룩해졌다...
+				ENDSELECT
+			ELSE
+				SELECTCASE RAND:3
+					CASE 0
+						PRINTFORMW 「...그런가요, 어쩔수 없죠 뭐...」
+						PRINTFORMW 사토리는 어쩐지 실망한 모양이다...
+					CASE 1
+						PRINTFORMW 「...네에, 알겠어요...」
+						PRINTFORMW 「...뭐, 다음에 가면 되겠죠」
+						PRINTFORMW 사토리는 약간 시무룩해진것 같다...
+					CASE 2
+						PRINTFORMW 「...뭐어, 그렇다면야...」
+						PRINTFORMW 사토리는 어쩐지 불만스러워 보인다...
+				ENDSELECT
+			ENDIF
 			RETURN 1
 		ENDIF
 		;-------------------------------------------------
