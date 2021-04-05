@@ -15642,27 +15642,104 @@ IF LOCAL
 		CASE 3
 		;部屋に誘われた 방으로 데려가려함
 		;記入チェック（=0, 非表示、1, 表示）
-		LOCAL:1 = 0
+		LOCAL:1 = 1
 		;-------------------------------------------------
 		IF LOCAL:1
+			IF MARK:반발각인 == 3
+				IF TALENT:연인
+					SELECTCASE RAND:3
+						CASE 0
+							PRINTFORMW 「크흠...저기, 여기서 이러지 말고...방으로...네?」
+							PRINTFORMW 사토리는 묘하게 붉은 표정으로 %마스터의% 옷깃을 잡아끌고 있다...
+						CASE 1
+							PRINTFORMW 「그...방으로 한번 와주실래요? 뭔가 도와주셨으면 하는게 있어서...」
+							PRINTFORMW 사토리는 쭈뼛거리며 %마스터의% 손을 잡아끌고 있다...
+						CASE 2
+							PRINTFORMW 「저기...그게...조금 쉬다 가지 않을래요?」
+							PRINTFORMW 「잠깐이라도 좋으니까...」
+							PRINTFORMW 사토리는 묘하게 붉어진 표정으로 %마스터의% 팔을 잡아끌고 있다...
+					ENDSELECT
+				ELSE
+					SELECTCASE RAND:2
+						CASE 0
+							PRINTFORMW 「...저기, 다리 안 아픈가요?」
+							PRINTFORMW 「힘들면 방에서 조금 쉬다가도 상관없는데」
+							PRINTFORMW 사토리는 왠지 쭈뼛거리며 휴식을 권해왔다...
+						CASE 1
+							PRINTFORMW 「잠깐 방에 들어와 주세요, 부탁할 일이 있으니까」
+							PRINTFORMW 「...아아, 별건 아니에요, 금방 끝나는 일이라고요?」
+							PRINTFORMW 사토리는 몸을 흠칫흠칫 떨며 방에 들어올것을 재촉하고 있다...
+					ENDSELECT
+				ENDIF
+			ELSEIF TALENT:연인
+				SELECTCASE RAND:3
+					CASE 0
+						PRINTFORMW 「저기- 방에서 쉬다가면 안될까요?」
+						PRINTFORMW 「계속 이렇게 밖에서 있기도 뭐하고, 네?」
+						PRINTFORMW 사토리는 %마스터의% 팔뚝을 자기 가슴에 끌어안으며 보채오고 있다...
+					CASE 1
+						PRINTFORMW 「들어가서 차라도 한 잔 할까요?」
+						PRINTFORMW 「기왕 온 거 느긋하게 있다 가면 좋잖아요...후후...♥」
+						PRINTFORMW 사토리는 발그레해진 얼굴로 %마스터를% 응시하고 있다...
+					CASE 2
+						PRINTFORMW 「여기서 이러지 말구 방에서 얘기하죠」
+						PRINTFORMW 「그 편이 더 좋을거 같으니까...후훗...♥」
+						PRINTFORMW %마스터의% 팔을 사토리의 코드가 칭칭 감아오고 있다...
+				ENDSELECT
+			ELSE
+				SELECTCASE RAND:3
+					CASE 0
+						PRINTFORMW 「저기, 괜찮다면 방에서 차라도 한 잔...」
+						PRINTFORMW 사토리는 쭈뼛거리며 말해왔다...
+					CASE 1
+						PRINTFORMW 「음음...여기까지 오느라 다리도 아프실텐데...방에 들어가서 쉬다갈래요?」
+						PRINTFORMW 사토리는 약간 붉어진 볼을 미처 가리지도 못하고 %마스터를% 빤히 올려다보고 있다...
+					CASE 2
+						PRINTFORMW 「혹시 시간 있으시면 방에서 차라도 한 잔 하지 않으실래요?」
+						PRINTFORMW 「가끔은 여유롭게 쉬는것도 좋다구요」
+						PRINTFORMW 사토리는 수줍게 휴식을 권해왔다...
+				ENDSELECT
+			ENDIF
 			RETURN 1
 		ENDIF
 		;-------------------------------------------------
 		CASE 4
 		;部屋に誘われたのを受けた 방으로 데려가기 수락
 		;記入チェック（=0, 非表示、1, 表示）
-		LOCAL:1 = 0
+		LOCAL:1 = 1
 		;-------------------------------------------------
 		IF LOCAL:1
+			IF MARK:반발각인 == 3
+				IF TALENT:연인
+					
+				ELSE
+					
+				ENDIF
+			ELSEIF TALENT:연인
+				
+			ELSE
+				
+			ENDIF
 			RETURN 1
 		ENDIF
 		;-------------------------------------------------
 		CASE 5
 		;部屋に誘われたのを断った 방으로 데려가기 거절
 		;記入チェック（=0, 非表示、1, 表示）
-		LOCAL:1 = 0
+		LOCAL:1 = 1
 		;-------------------------------------------------
 		IF LOCAL:1
+			IF MARK:반발각인 == 3
+				IF TALENT:연인
+					
+				ELSE
+					
+				ENDIF
+			ELSEIF TALENT:연인
+				
+			ELSE
+				
+			ENDIF
 			RETURN 1
 		ENDIF
 	ENDSELECT
