@@ -35,6 +35,8 @@
 ; EVENT NO.3 (소프녀 사토리)
 ; EVENT NO.4 (그런 이유로 훔치는거야?)
 ; EVENT NO.5 (뭐, 당신의 아이라면...)
+;****ST_대사플래그*****************************************************************
+; FLAG 0 (방으로 데려가려 한다 > 시킬 일이 있다 루트)
 ;******************************************************************************
 ; 구상용 이어받아 테두리의 플래그
 ; 1.전회에 만난적 있다
@@ -15645,6 +15647,7 @@ IF LOCAL
 		LOCAL:1 = 1
 		;-------------------------------------------------
 		IF LOCAL:1
+			ST_대사플래그:0 = 0
 			IF MARK:반발각인 == 3
 				IF TALENT:연인
 					SELECTCASE RAND:3
@@ -15654,6 +15657,7 @@ IF LOCAL
 						CASE 1
 							PRINTFORMW 「그...방으로 한번 와주실래요? 뭔가 도와주셨으면 하는게 있어서...」
 							PRINTFORMW 사토리는 쭈뼛거리며 %마스터의% 손을 잡아끌고 있다...
+							ST_대사플래그:0 = 1
 						CASE 2
 							PRINTFORMW 「저기...그게...조금 쉬다 가지 않을래요?」
 							PRINTFORMW 「잠깐이라도 좋으니까...」
@@ -15669,6 +15673,7 @@ IF LOCAL
 							PRINTFORMW 「잠깐 방에 들어와 주세요, 부탁할 일이 있으니까」
 							PRINTFORMW 「...아아, 별건 아니에요, 금방 끝나는 일이라고요?」
 							PRINTFORMW 사토리는 몸을 흠칫흠칫 떨며 방에 들어올것을 재촉하고 있다...
+							ST_대사플래그:0 = 1
 					ENDSELECT
 				ENDIF
 			ELSEIF TALENT:연인
@@ -15711,15 +15716,84 @@ IF LOCAL
 		IF LOCAL:1
 			IF MARK:반발각인 == 3
 				IF TALENT:연인
-					
+					IF ST_대사플래그:0 == 1
+						PRINTFORMW 사토리의 손길에 이끌려 방 안에 들어섰다...
+						SELECTCASE RAND:2
+							CASE 0
+								PRINTFORMW 「에...그러니까...할 일이란건...」
+								PRINTFORMW 막상 들어서고 나니 사토리는 딴청을 피우고 있다...
+								PRINTFORMW 「...우으으...어쩔수 없잖아요, 그냥 들어오라 해도 안 올거 같고」
+							CASE 1
+								PRINTFORMW 「에...그러니까...저기, 저 책상을 정리하는걸 도와주실래요?」
+								PRINTFORMW 사토리는 아무렇게나 어질러져 있는 책상을 가르켰다
+								PRINTFORML
+								PRINTFORMW 가까이 다가가 보니 대충 휘갈겨져 있는 종이나 다 쓴 휴지등이 한 가득 놓여있었다
+								PRINTFORMW 무언가 이상한거 같은 느낌이 물씬 드는 그것을 보던 사이, 사토리에게 등 뒤로부터 껴안겨져 침대에 뒹굴었다
+								PRINTFORMW 「...역시나 이 편이 잘 속네요...」
+								PRINTFORMW 「그치만 %사마스터가% 잘못한 거예요, 그냥 말하면 안 들어올테니까」
+								PRINTFORMW 사토리는 무척 뾰루퉁한 얼굴로 %마스터를% 끌어안고 있다
+						ENDSELECT
+					ELSE
+						SELECTCASE RAND:3
+							CASE 0
+								PRINTFORMW 「...후후후...」
+								PRINTFORMW 사토리는 어쩐지 해냈다는듯이 웃고 있다...
+							CASE 1
+								PRINTFORMW 「네에, 그럼 이쪽으로...」
+								PRINTFORMW 사토리는 %마스터를% 방 안으로 밀어넣었다...
+							CASE 2
+								PRINTFORMW 「...으으음~...일단은 차라도 내올까요...」
+								PRINTFORMW 사토리는 왜인지 입꼬리를 올리고 있다...
+						ENDSELECT
+					ENDIF
 				ELSE
-					
+					IF ST_대사플래그:0 == 1
+						PRINTFORMW 「후우...네, 일단은 저기 앉아 계실래요?」
+						PRINTFORMW 사토리의 입꼬리가 왜인지 올라간다...
+						BASE:무드 = MIN(10000,BASE:무드+3500)
+						BASE:이성 = MAX(0,BASE:무드-7000)
+						PALAM:욕정 += 5000
+					ELSE
+						SELECTCASE RAND:2
+							CASE 0
+								PRINTFORMW 「...」
+								PRINTFORMW 사토리는 묘한 웃음을 띄며 방 안으로 %마스터를% 밀어넣고 있다...
+							CASE 1
+								PRINTFORMW 「뭐어, 별건 없지만...일단은 침대에 앉아계세요」
+								PRINTFORMW 사토리는 뭐가 그리 재밌는지 히죽거리고 있다...
+						ENDSELECT
+					ENDIF
 				ENDIF
 			ELSEIF TALENT:연인
-				
+				SELECTCASE RAND:3
+					CASE 0
+						PRINTFORMW 「네에- 그럼 입장」
+						PRINTFORMW 사토리는 방 안으로 %마스터의% 등을 떠밀었다...
+					CASE 1
+						PRINTFORMW 「네에, 후후후...♥ 그러면 방으로 가죠」
+						PRINTFORMW 사토리는 뭐가 그리 기쁜지 방으로 가는 내내 %마스터의% 옆구리에 붙어서 웃고 있었다...
+					CASE 2
+						PRINTFORMW 사토리는 %마스터의% 팔을 잡아끌어 방에 집어넣고는 기쁜듯한 얼굴로 %마스터를% 껴안았다
+						PRINTFORMW 「이제 뭐하고 놀까요? 뭐하고 놀까요?」
+						PRINTFORMW 굉장히 즐거워 보인다...
+				ENDSELECT
+				BASE:무드 = MIN(10000,BASE:무드+1500)
 			ELSE
-				
+				SELECTCASE RAND:2
+					CASE 0
+						PRINTFORMW 「...♥」
+						PRINTFORMW 사토리는 왜인지 조금 기뻐보인다...
+					CASE 1
+						PRINTFORMW 「...우...우선은 침대에 앉아계세요, 책상은 정돈도 안되서 지저분 하니까...」
+						PRINTFORMW 사토리는 붉어진 얼굴로 책상위 종이들을 쓰레기통에 쑤셔박고 있다...
+						IF RAND:5 == 0
+							PRINTFORMW 문득, 한장의 종이가 떨어졌다
+							PRINTFORMW 황급히 주운 사토리였지만, 그 내용은 선명하게 보였다
+							PRINTFORMW 누군가에 대한 연정을 구구절절하게 쓴 편지였다...과연 누굴까
+						ENDIF
+				ENDSELECT
 			ENDIF
+			ST_대사플래그:0 = 0
 			RETURN 1
 		ENDIF
 		;-------------------------------------------------
@@ -15731,14 +15805,42 @@ IF LOCAL
 		IF LOCAL:1
 			IF MARK:반발각인 == 3
 				IF TALENT:연인
-					
+					SELECTCASE RAND:3
+						CASE 0
+
+						CASE 1
+
+						CASE 2
+
+					ENDSELECT
 				ELSE
-					
+					SELECTCASE RAND:3
+						CASE 0
+
+						CASE 1
+
+						CASE 2
+						
+					ENDSELECT
 				ENDIF
 			ELSEIF TALENT:연인
-				
+				SELECTCASE RAND:3
+					CASE 0
+
+					CASE 1
+
+					CASE 2
+					
+				ENDSELECT
 			ELSE
-				
+				SELECTCASE RAND:3
+					CASE 0
+
+					CASE 1
+
+					CASE 2
+					
+				ENDSELECT
 			ENDIF
 			RETURN 1
 		ENDIF

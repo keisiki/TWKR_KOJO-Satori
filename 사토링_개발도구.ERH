@@ -23,3 +23,5 @@
 #DIM SAVEDATA 오린A경험
 #DIM SAVEDATA 오쿠V경험
 #DIM SAVEDATA 오쿠A경험
+
+#DIM ST_대사플래그,100
