@@ -16021,80 +16021,86 @@ IF !FLAG:70
 			IF TALENT:연인
 				SELECTCASE RAND:3
 					CASE 0
-
+						PRINTFORMW 「...흐에에...더워어..」
+						PRINTFORMW 사토리는 스스로 옷을 풀어헤치기 시작했다...
 					CASE 1
-
+						PRINTFORMW 「으에...머하는거야...?」
+						PRINTFORMW 「간지러어...」
+						PRINTFORMW 사토리는 헤롱헤롱한 표정으로 %마스터를% 바라보고 있다...
 					CASE 2
-
+						PRINTFORMW 「...시원해에...」
+						PRINTFORMW 「이대로 야한짓 하꼬야...? 변태에...」
+						PRINTFORMW 사토리는 %마스터의% 허리를 끌어안은채 헤죽거리고 있다...
 				ENDSELECT
 			ELSE
-				IF CFLAG:3000 == 0
-					SELECTCASE RAND:3
-						CASE 0
-
-						CASE 1
-
-						CASE 2
-						
-					ENDSELECT
-				ELSE
-					SELECTCASE RAND:3
-						CASE 0
-
-						CASE 1
-
-						CASE 2
-						
-					ENDSELECT
-				ENDIF
+				SELECTCASE RAND:3
+					CASE 0
+						PRINTFORMW 「아...? 으에에....」
+						PRINTFORMW 사토리는 %마스터의% 손길을 의아스럽게 바라보고 있다 
+						PRINTFORMW 그러나 무엇을 당하는진 제대로 알지 못하는 눈치였다
+					CASE 1
+						PRINTFORMW 「옷 버겨서 머하려고오...」
+						PRINTFORMW 「추워어...내놔아...」
+						PRINTFORMW 옷을 빼앗기지 않으려는 사토리와 한참 실랑이를 벌였다...
+					CASE 2
+						PRINTFORMW 「안대에...벗기지 마아...」
+						PRINTFORMW 「히끅...그마안...」
+						PRINTFORMW 사토리는 안된다고 자꾸 되뇌였지만, 잔뜩 취한 몸으로는 제대로 저항할순 없었다...
+				ENDSELECT
 			ENDIF
 		ELSEIF TALENT:연인
 			SELECTCASE RAND:3
 				CASE 0
-
+					PRINTFORMW 「옷 버겨서 머하려구우...응큼해에...」
+					PRINTFORMW 「아핫...간지럽히지 마아~」
+					PRINTFORMW 사토리는 간지러운지 꺄르르 웃으며 %마스터의% 손길을 받아들이고 있다...
 				CASE 1
-
+					PRINTFORMW 「이제 야한짓 하꺼야...?」
+					PRINTFORMW 술의 탓인지, 아니면 부끄러운건지, 사토리는 얼굴을 붉혔다
 				CASE 2
-				
+					PRINTFORMW 「으에...? 오슨 왜에...?」
+					PRINTFORMW 「벗어? 이러케...? 으응...」
+					PRINTFORMW 어린 아이마냥 만세를 한 사토리에게서 한겹 한겹 옷을 벗겨내었다...
 			ENDSELECT
 		ELSEIF TALENT:연모||TALENT:사모||TALENT:애욕
 			SELECTCASE RAND:3
 				CASE 0
-
+					PRINTFORMW 「옷 벗겨서 머하려고...」
+					PRINTFORMW 「변태에- 안 벗을거야아...」
+					PRINTFORMW 사토리는 옷을 빼앗기지 않으려 한참 실랑이를 벌였다...
 				CASE 1
-
+					PRINTFORMW 「야한짓 하게에...?」
+					PRINTFORMW 「...왠지 부끄러- 벗기지 마아...벗지 말구 해-...」
+					PRINTFORMW 사토리는 바둥바둥 저항했지만 취한 팔에는 힘이 실리지 않았다...
 				CASE 2
-				
+					PRINTFORMW 「으에...?」
+					PRINTFORMW 사토리는 옷이 벗겨지는걸 멀뚱멀뚱 바라볼 뿐이었다...
 			ENDSELECT
 		ELSEIF TALENT:섹프
 			SELECTCASE RAND:3
 				CASE 0
-
+					PRINTFORMW 「빨리이- 야한짓, 이제 못 차므니까아...」
+					PRINTFORMW 사토리는 %마스터의% 허리를 양 팔로 붙잡고 보채오고 있다...
 				CASE 1
-
+					PRINTFORMW 「으에에...?」
+					PRINTFORMW 사토리는 고개를 갸웃거리며 옷이 벗겨지는걸 멀뚱히 바라보고 있다...
 				CASE 2
-				
+					PRINTFORMW 「시원해에~...」
+					PRINTFORMW 「바람 기분 죠아아...헤헤...」
+					PRINTFORMW 사토리는 히죽히죽 웃으며 %마스터의% 손에 몸을 맡기고 있다...
 			ENDSELECT
 		ELSE
-			IF CFLAG:3000 == 0
-				SELECTCASE RAND:3
-					CASE 0
-
-					CASE 1
-
-					CASE 2
-					
-				ENDSELECT
-			ELSE
-				SELECTCASE RAND:3
-					CASE 0
-
-					CASE 1
-
-					CASE 2
-					
-				ENDSELECT
-			ENDIF
+			SELECTCASE RAND:3
+				CASE 0
+					PRINTFORMW 「하지마아- 이 변태에...」
+					PRINTFORMW 사토리는 바둥바둥 저항해왔지만 역부족이었다
+				CASE 1
+					PRINTFORMW 「...시원해에-...」
+					PRINTFORMW 맨 살이 허공에 드러나자 사토리는 무척이나 기분 좋아보이는 표정이 되었다 
+				CASE 2
+					PRINTFORMW 「옷은 왜에...?」
+					PRINTFORMW 사토리는 의아해 하며 %마스터를% 바라보고 있다...
+			ENDSELECT
 		ENDIF
 		RETURN 1
 	ENDIF
