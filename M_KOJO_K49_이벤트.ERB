@@ -16217,6 +16217,108 @@ IF LOCAL
 			IF FLAG:70
 			;通常
 			ELSE
+				IF MARK:반발각인 == 3
+					IF TALENT:연인
+						SELECTCASE RAND:4
+							CASE 0
+								PRINTFORMW 「속옷은 벗지 말라고요?」
+								PRINTFORMW 「..읏차, 이렇게요?」
+							CASE 1
+								PRINTFORMW 「겉옷만...? 알았어요」
+								PRINTFORMW 「이럴줄 알았으면 좀 더 신경써서 입는건데」
+								PRINTFORMW 사토리는 멋쩍게 웃어보였다
+							CASE 2
+								PRINTFORMW 「다 벗진 말라고요? 그치만 묻으면 세탁하기 곤란할텐데...」
+								PRINTFORMW 「...뭐어, %사마스터랑% 하는거라면 상관 없겠죠, 다른 사람이 볼일도 없을테니...」
+							CASE 3
+								PRINTFORMW 「...♥」
+								PRINTFORMW 사토리는 무척이나 기대하는 표정으로 %마스터를% 바라보고 있다
+						ENDSELECT
+					ELSE
+						SELECTCASE RAND:3
+							CASE 0
+								PRINTFORMW 「...속옷은 빼고? 그러면 잔뜩 묻어서 찝찝한데...」
+								PRINTFORMW 「...알았어요 알았어, 벗으면 될거 아녜요...」
+								PRINTFORMW 사토리는 투덜거리면서 옷을 벗었다...
+							CASE 1
+								PRINTFORMW 「속옷 바람이라니, 번거롭게 하네...」
+								PRINTFORMW 「자자, 이게 좋은거죠? 실컷 보던가요」
+								PRINTFORMW 사토리는 궁시렁거리면서 속옷뿐인 자신의 몸을 보여왔다
+								PRINTFORMW 「...뭐예요? 기껏 벗어줬더니...구경만 하지말고 뭐라도 하라구요」
+							CASE 2
+								PRINTFORMW 「...옷도 다 벗었으니, 얼른 하고 끝내죠」
+								PRINTFORMW 무심하게 말해오곤 있지만 감출수 없는 기대감이 엿보였다...
+						ENDSELECT
+					ENDIF
+				ELSEIF TALENT:연인
+					SELECTCASE RAND:4
+						CASE 0
+							PRINTFORMW 「...왠지 알몸보다 부끄러운 느낌이 드는걸요」
+							PRINTFORMW 「...그...그렇게 뚫어져라 쳐다보진 마세요...」
+							PRINTFORMW 사토리는 얼굴을 붉혔다
+						CASE 1
+							PRINTFORMW 「다 벗진 말라구요?」
+							PRINTFORMW 「으음...그쪽이 취향이면 뭐어...」
+						CASE 2
+							PRINTFORMW 「네에- 다 벗었어요」
+							PRINTFORMW 「...만족스러운가요?」
+							PRINTFORMW 사토리는 수줍게 자신의 속옷차림을 과시해왔다...
+						CASE 3
+							PRINTFORMW 「그러면...이제 뭘 할건가요...?」
+							PRINTFORMW 사토리는 무척이나 기뻐보이는 표정으로 %마스터를% 응시해오고 있다...
+					ENDSELECT
+				ELSEIF TALENT:연모||TALENT:사모
+					SELECTCASE RAND:4
+						CASE 0
+							PRINTFORMW 「...어...어쩐지 더 부끄러운데...」
+							PRINTFORMW 「...뚫어져라 보진 마세요...」
+							PRINTFORMW 사토리는 몸을 움츠러뜨렸다...
+						CASE 1
+							PRINTFORMW 「저기, 어떤가요...?」
+							PRINTFORMW 사토리는 속옷차림으로 %마스터를% 바라보고 있다...
+							PRINTFORMW 조금 부끄러운지 얼굴이 발갛다...
+						CASE 2
+							PRINTFORMW 「이런게 좋아요...?」
+							PRINTFORMW 「시..싫은건 아니지만...알몸보다도 부끄럽다구요?」
+							PRINTFORMW 「그러니까...얼른 안아주세요, 조금이라도 잊게...」
+							PRINTFORMW 사토리는 %마스터의% 품에 얼굴을 파묻었다...
+						CASE 3
+							PRINTFORMW 「......」
+							PRINTFORMW 사토리는 얌전히 %마스터의% 손길을 받아들이고 있다
+							PRINTFORMW 속옷은 남겨주었지만 그래도 부끄러운지 양 팔로 몸을 가리고 있다...
+					ENDSELECT
+				ELSEIF TALENT:섹프||TALENT:애욕
+					SELECTCASE RAND:4
+						CASE 0
+							PRINTFORMW 「그러고보니 코이시가 가끔 이러고 다닌적이 있었네요」
+							PRINTFORMW 「그땐 몰랐는데, 이거...은근히 편하네요」
+							PRINTFORMW 「나중에 나도 벗고 다녀볼까...」
+						CASE 1
+							PRINTFORMW 「후후...어떤가요?」
+							PRINTFORMW 사토리는 속옷차림의 몸을 과시하며 다가왔다...
+						CASE 2
+							PRINTFORMW 「다 벗었어요, 그러니까 얼른, 얼른 기분좋은거 하죠」
+							PRINTFORMW 「더 이상은 못 기다린단 말예요?」
+							PRINTFORMW 속옷바람으로 옆에서 보채오는 사토리의 숨결은 무척이나 거칠었다...
+						CASE 3
+							PRINTFORMW 「빨리, 빨리 벗겨줘요」
+							PRINTFORMW 「이 이상은 못 참는다구요, 얼르은」
+							PRINTFORMW 사토리는 %마스터의% 몸에 안겨들며 연신 보채오고 있다...
+					ENDSELECT
+				ELSE
+					SELECTCASE RAND:3
+						CASE 0
+							PRINTFORMW 「...너무 뚫어져라 보진 마세요」
+							PRINTFORMW 사토리는 팔로 몸을 살짝 가렸지만 그런다고 온전히 가릴수는 없었다
+						CASE 1
+							PRINTFORMW 「...부끄러운걸...」
+							PRINTFORMW 사토리는 얼굴을 붉혔다...
+						CASE 2
+							PRINTFORMW 「깔끔하게 해주세요」
+							PRINTFORMW 「나중에 세탁할때 번거로워지니까」
+					ENDSELECT
+				ENDIF
+			ENDIF
 			ENDIF
 			RETURN 1
 		ENDIF
