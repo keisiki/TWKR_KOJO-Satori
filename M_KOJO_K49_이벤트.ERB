@@ -16452,7 +16452,7 @@ IF LOCAL
 		CASE 3
 		;パンツちょうだい 팬티 줘요
 		;記入チェック（=0, 非表示、1, 表示）
-		LOCAL:1 = 0
+		LOCAL:1 = 1
 		;-------------------------------------------------
 		IF LOCAL:1
 			SELECTCASE ARG:1
@@ -16460,9 +16460,78 @@ IF LOCAL
 				CASE 0
 				;交換です 맞교환
 				;記入チェック（=0, 非表示、1, 表示）
-				LOCAL:1 = 0
+				LOCAL:1 = 1
 				;-------------------------------------------------
 				IF LOCAL:1
+					;PRINTFORMW 「」
+					IF MARK:반발각인 == 3
+						IF TALENT:연인
+							SELECTCASE RAND:2
+								CASE 0
+									PRINTFORMW 「...」
+									PRINTFORMW 사토리는 손에 들린 %마스터의% 팬티를 묵묵히 바라보고 있다...
+									PRINTFORMW 얼굴이 새빨게져 있다...
+								CASE 1
+									PRINTFORMW 「...팬티는 어디에 쓰시려구요, 응큼해」
+									PRINTFORMW 「...뭐어...저도 응큼한데에 쓸거지만...♥」
+									PRINTFORMW 사토리는 멋쩍게 웃어보였다
+							ENDSELECT
+						ELSE
+							SELECTCASE RAND:2
+								CASE 0
+									PRINTFORMW 「...그렇게 갖고 싶었어요?」
+									PRINTFORMW 「자기 팬티를 줄 정도로...으으...」
+									PRINTFORMW 사토리는 얼굴을 붉힌채 손에 들린 %마스터의% 팬티를 빤히 바라보고 있다...
+								CASE 1
+									PRINTFORMW 「...달랜다고 정말 줄거라곤 생각 안했는데...」
+									PRINTFORMW 「...뭐, 원래도 그런 사람이긴 했지만...」
+									PRINTFORMW 사토리는 손에 쥐여진 %마스터의% 팬티를 물끄러미 바라보고 있다...
+							ENDSELECT
+						ENDIF
+					ELSEIF TALENT:연인
+						SELECTCASE RAND:3
+							CASE 0
+								PRINTFORMW 「에헤헤...%사마스터의% 팬티...♥」
+								PRINTFORMW 사토리는 손에 들린 %마스터의% 팬티를 굉장히 기뻐하며 바라보고 있다...
+								PRINTFORMW 「그치만 %사마스터의% 진한 냄새가 한가득 배어있는걸요」
+								PRINTFORMW 「냄새만으로도 %사마스터가% 안아주는것만 같아서...가슴이 두근두근 거리고...」
+								PRINTFORMW 사토리는 굉장히 들뜬 모양이다...
+								TALENT:기분 = 1
+							CASE 1
+								PRINTFORMW 「후후...또 한장...♥」
+								PRINTFORMW 사토리는 %마스터의% 팬티를 받은게 상당히 기쁜 모양이다...
+							CASE 2
+								PRINTFORMW 「...♥」
+								PRINTFORMW 사토리는 갓 벗은 %마스터의% 팬티를 끌어안은채 연신 허벅지를 비비고 있다...
+						ENDSELECT
+					ELSEIF TALENT:연모||TALENT:사모
+						SELECTCASE RAND:2
+							CASE 0
+								PRINTFORMW 「......」
+								PRINTFORMW 사토리는 얼굴을 새빨갛게 물들이며 팬티를 만지작 거리고 있다...
+							CASE 1
+								PRINTFORMW 「...설마 진짜로 줄거라곤 생각도 안 했는데...」
+								PRINTFORMW 사토리는 복잡한 표정으로 손에 들린 팬티를 바라보고 있다...
+						ENDSELECT
+					ELSEIF TALENT:섹프||TALENT:애욕
+						SELECTCASE RAND:2
+							CASE 0
+								PRINTFORMW 「후후♥ 그러면 이건 밤에 유용히 쓰도록 할게요」
+								PRINTFORMW 사토리는 무척이나 신나보이는 표정으로 팬티를 받았다...
+							CASE 1
+								PRINTFORMW 「그래서 그 팬티는 어쩌려고요?」
+								PRINTFORMW 「저야 뭐, 밤의 불끈불끈함을 풀때 쓸거지만」
+						ENDSELECT
+					ELSE
+						SELECTCASE RAND:2
+							CASE 0
+								PRINTFORMW 「...으으...정말로 줄지는 몰랐는데...」
+								PRINTFORMW 사토리는 얼굴을 붉히면서도 %마스터의% 팬티를 소중히 품에 안고 있다...
+							CASE 1
+								PRINTFORMW 「......」
+								PRINTFORMW 사토리는 새빨게진 얼굴로 손에 들린 팬티를 바라보고 있다...
+						ENDSELECT
+					ENDIF
 					RETURN 1
 				ENDIF
 				;-------------------------------------------------
@@ -16472,6 +16541,75 @@ IF LOCAL
 				LOCAL:1 = 0
 				;-------------------------------------------------
 				IF LOCAL:1
+					IF MARK:반발각인 == 3
+						IF TALENT:연인
+							SELECTCASE RAND:5
+								CASE 0
+									
+								CASE 1
+									
+								CASE 2
+									
+								CASE 3
+									
+								CASE 4
+									
+							ENDSELECT
+						ELSE
+							SELECTCASE RAND:4
+								CASE 0
+									
+								CASE 1
+									
+								CASE 2
+									
+								CASE 3
+									
+							ENDSELECT
+						ENDIF
+					ELSEIF TALENT:연인
+						SELECTCASE RAND:6
+							CASE 0
+								
+							CASE 1
+								
+							CASE 2
+								
+							CASE 3
+								
+							CASE 4
+								
+							CASE 5
+								
+						ENDSELECT
+					ELSEIF TALENT:연모||TALENT:사모
+						SELECTCASE RAND:3
+							CASE 0
+								
+							CASE 1
+								
+							CASE 2
+								
+						ENDSELECT
+					ELSEIF TALENT:섹프||TALENT:애욕
+						SELECTCASE RAND:3
+							CASE 0
+								
+							CASE 1
+								
+							CASE 2
+								
+						ENDSELECT
+					ELSE
+						SELECTCASE RAND:3
+							CASE 0
+								
+							CASE 1
+								
+							CASE 2
+								
+						ENDSELECT
+					ENDIF
 					RETURN 1
 				ENDIF
 				;-------------------------------------------------
