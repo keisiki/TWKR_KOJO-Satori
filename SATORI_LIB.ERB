@@ -354,4 +354,231 @@ ELSEIF ARGS == "초산오쿠도움"
     PRINTFORMW 『머리, 머리가 나왔으니까...이제 곧...아아, 나와요, 조금만 더...』
     PRINTFORMW 산도를 따라 미끄러져 내려오는 아이를 받아낸 오쿠는 부드럽게 요람에 싸서 사토리의 품에 안겨주었다
     PRINTFORMW 『축하해요 사토리님! 엄청 건강하고 귀여운 아이에요』
+ELSEIF ARGS == "팬티어디에쓰려고"
+    ; EVENT NO.6 (어디에 쓰려고?)
+    IF MARK:반발각인 == 3
+        IF TALENT:연인
+            PRINTFORMW 「그런데 팬티는 가져다 어따 쓰실려고요?」
+        ELSE
+            PRINTFORMW 「근데 그렇게 모아서 도대체 뭘 하려는건가요?」
+        ENDIF
+    ELSEIF TALENT:연인||TALENT:연모||TALENT:사모||TALENT:애욕
+        PRINTFORMW 「근데...이렇게 모은 팬티는 어쩔 생각인가요?」
+    ELSEIF TALENT:섹프
+       PRINTFORMW 「근데, 팬티는 모아서 어디에 쓰시려고요?」
+    ELSE
+        PRINTFORMW 「...그래서 팬티는 모아다 뭐에 쓰려는건가요?」
+    ENDIF
+    PRINTFORML [0] 소장한다
+    PRINTFORML [1] 신님께 바친다
+    PRINTFORML [2] 딸감으로 삼는다
+    PRINTFORML [3] 판다
+    INPUT
+    SELECTCASE RESULT
+        CASE 0
+            PRINTFORMW 「...늘 생각해봤지만 역시 변태라니깐요」
+            PRINTFORMW 사토리는 얼굴을 붉혔다
+        CASE 1
+            PRINTFORMW 「...그, 팬티신이란 신은 도대체 왜 그걸...하아...」
+            PRINTFORMW 「...그래서 뭘 빌건가요?」
+            PRINTFORML [1] 사토리가 너무 격렬하므로 어떻게든 해 달라고
+            PRINTFORML [2] 사토리가 좀 더 H하게 되도록
+            PRINTFORML [3] 사토리와의 자식기원
+            PRINTFORML [4] 사토리의 감도를 올리고 싶어
+            PRINTFORML [5] 사토리에게 미움받아 버린 것을 어떻게든 하고 싶다
+            PRINTFORML [6] 사토리에게 약점잡혀 버린 것을 어떻게든 하고 싶다
+            INPUT
+            IF RESULT == 1
+                IF MARK:반발각인 == 3
+                    IF TALENT:연인
+                        PRINTFORMW 「그...그랬나요...? 죄송해요...」
+                        PRINTFORMW 「...으으으...」
+                        PRINTFORMW 사토리는 얼굴을 새빨갛게 물들이고 있다...
+                    ELSE
+                        PRINTFORMW 「......」
+                        PRINTFORMW 사토리는 얼굴을 새빨갛게 물들이더니, 이내 고개를 돌려버렸다...
+                    ENDIF
+                ELSEIF TALENT:연인||TALENT:연모||TALENT:사모||TALENT:애욕
+                    PRINTFORMW 「에에...그...그렇게 격렬했나요...」
+                    PRINTFORMW 「다음부턴 자제할게요...」
+                    PRINTFORMW 사토리는 얼굴을 붉혔다...
+                ELSEIF TALENT:섹프
+                    PRINTFORMW 「에- 그치만 그정도로 하지 않으면 개운해지질 않는걸요」
+                    PRINTFORMW 사토리는 입술을 삐죽였다
+                ELSE
+                    PRINTFORMW 「그, 그랬나요...그렇게 격렬하게 하진 않은거 같은데...」
+                    PRINTFORMW 「...다음부턴 주의 할게요? 다음부터는 말이죠....」
+                ENDIF
+                IF RAND:5 == 0
+                    ABL:새드끼 = MAX(ABL:새드끼 - 1 , 0)
+                    JUEL:우월 = 0
+                    EXP:가학쾌락경험 = MAX(EXP:가학쾌락경험 - 200, 0)
+                ENDIF
+            ELSEIF RESULT == 2
+                IF MARK:반발각인 == 3
+                    IF TALENT:연인
+                        PRINTFORMW 「에...여기서 더 야하게...」
+                        PRINTFORMW 「...그러는 편이 좋은가요...?」
+                    ELSE
+                        PRINTFORMW 「...추잡해...」
+                        PRINTFORMW 사토리는 깬다는듯이 %마스터를% 바라보고 있다...
+                    ENDIF
+                ELSEIF TALENT:연인||TALENT:연모||TALENT:사모||TALENT:애욕
+                    PRINTFORMW 「에...더 야하게라니...」
+                    PRINTFORMW 「...노력은 해볼게요...」
+                ELSEIF TALENT:섹프
+                    PRINTFORMW 「더 야하게 만들어 달라니...」
+                    PRINTFORMW 「정말이지, 변태라니깐요」
+                    PRINTFORMW 사토리는 키득거리며 %마스터를% 바라보고 있다...
+                ELSE
+                    PRINTFORMW 「...더 야하게라니, 무슨...하아...」
+                    PRINTFORMW 사토리는 깬다는듯이 %마스터를% 바라보고 있다...
+                ENDIF
+            ELSEIF RESULT == 3
+                IF MARK:반발각인 == 3
+                    IF TALENT:연인
+                        PRINTFORMW 「...아...아이라니...으...」
+                        IF TALENT:임신||CFLAG:육아인원수
+                            PRINTFORMW 「...그렇게 원한다면...으으응...」
+                            PRINTFORMW 「이번 아이가 제대로 자라고 난 뒤에, 또 한번...♥」
+                            CFLAG:자식기원 += 6
+                        ELSEIF CFLAG:생해금 == 2
+                            PRINTFORMW 「...그...그렇게 원하신다면야...」
+                            PRINTFORMW 「...열심히 해야겠네요...후후...」
+                            PRINTFORMW 사토리는 정욕에 찬 얼굴을 하고 있다...
+                            CFLAG:자식기원 += 5
+                        ELSE
+                            PRINTFORMW 「아이라니...그건...아직...」
+                            PRINTFORMW 「...으으...그렇게나 원하는거예요...?」
+                            PRINTFORMW 조금 깬다는듯한 표정으로 이쪽을 응시하고 있다...
+                        ENDIF
+                    ELSE
+                        IF TALENT:임신||CFLAG:육아인원수
+                            PRINTFORMW 「지금도 힘든데 여기서 더라니, 하아...」
+                            PRINTFORMW 「조금은 제 생각도 해주시면 안되나요?」
+                        ELSEIF CFLAG:생해금 == 2
+                            PRINTFORMW 「...그렇게나 원하는건가요?」
+                            PRINTFORMW 「그렇게 말해도 마냥 기쁘진 않지만...」
+                        ELSE
+                           PRINTFORMW 「...하아...」
+                           PRINTFORMW 사토리는 머리를 짚었다...
+                        ENDIF
+                    ENDIF
+                ELSEIF TALENT:연인||TALENT:연모||TALENT:사모||TALENT:애욕
+                    PRINTFORMW 「...아...아이라니...으...」
+                    IF TALENT:임신||CFLAG:육아인원수
+                        PRINTFORMW 「...그렇게 원한다면...으으응...」
+                        PRINTFORMW 「이번 아이가 제대로 자라고 난 뒤에, 또 한번...♥」
+                        CFLAG:자식기원 += 6
+                    ELSEIF CFLAG:생해금 == 2
+                        PRINTFORMW 「...그...그렇게 원하신다면야...」
+                        PRINTFORMW 「...열심히 해야겠네요...후후...」
+                        PRINTFORMW 사토리는 정욕에 찬 얼굴을 하고 있다...
+                        CFLAG:자식기원 += 5
+                    ELSE
+                        PRINTFORMW 「아이라니...그건...아직...」
+                        PRINTFORMW 「...으으...그렇게나 원하는거예요...?」
+                        PRINTFORMW 조금 깬다는듯한 표정으로 이쪽을 응시하고 있다...
+                    ENDIF
+                ELSE
+                    IF TALENT:임신||CFLAG:육아인원수
+                        PRINTFORMW 「...이미 있는것도 힘들다구요?」
+                        PRINTFORMW 사토리는 투덜거렸다...
+                    ELSEIF CFLAG:생해금 == 2
+                        PRINTFORMW 「으음...그렇게나 원하실줄은...」
+                        PRINTFORMW 사토리는 곤란해보이는 표정이다...
+                        CFLAG:자식기원 += 5
+                    ELSE
+                        PRINTFORMW 「아이라니...그런건 부부 사이에서나 만드는거예요」
+                        PRINTFORMW 「...그렇게 봐도 안된다고요?」
+                        PRINTFORMW 사토리는 조금 깬다는듯한 표정으로 이쪽을 응시하고 있다...
+                    ENDIF
+                ENDIF
+            ELSEIF RESULT == 4
+                IF MARK:반발각인 == 3
+                    IF TALENT:연인
+                        PRINTFORMW 「에에...더 민감하게라니...」
+                        PRINTFORMW 「그렇게 점점 민감하게 만들면 나중가선 일상에 지장이 갈지도 모르겠네요...」
+                    ELSE
+                        PRINTFORMW 「...그런짓은 하지 말아줬으면 하는데」
+                        PRINTFORMW 「왜냐니...제 몸이 장난감인가요?」
+                        PRINTFORMW 사토리는 투덜거리고 있다...
+                    ENDIF
+                ELSEIF TALENT:연인||TALENT:연모||TALENT:사모||TALENT:애욕
+                    PRINTFORMW 「더 민감하게 만들고 싶다니, 참...」
+                    PRINTFORMW 「그런거 없이도 %사마스터가% 만져주기만 하면 충분한데」
+                ELSEIF TALENT:섹프
+                    PRINTFORMW 「더욱 민감하게라니...으음...」
+                    PRINTFORMW 「그랬다간 걸어다니기도 힘들어지는게 아닐까요?」
+                    PRINTFORMW %마스터의% 말에 사토리는 키득키득 웃었다
+                ELSE
+                    PRINTFORMW 「...으으...」
+                    PRINTFORMW 사토리는 떨떠름한 표정으로 %마스터를% 바라보고 있다...
+                ENDIF
+            ELSEIF RESULT == 5
+                IF MARK:반발각인 == 3
+                    IF TALENT:연인
+                        PRINTFORMW 「...그, 그런가요...」
+                        PRINTFORMW 「그런건 차라리 말로 하는게 좋을거 같지만...」
+                        PRINTFORMW 사토리는 조금 무안한듯이 %마스터를% 바라보고 있다...
+                    ELSE
+                        PRINTFORMW 「...하아...」
+                        PRINTFORMW 「그런거에 의지해야만 사과할수 있는건가요?」
+                        PRINTFORMW 사토리는 조금 짜증 난 모양이다...
+                    ENDIF
+                ELSE
+                    PRINTFORMW 「...그, 그런가요...」
+                    PRINTFORMW 「그런건 차라리 말로 하는게 좋을거 같지만...」
+                    PRINTFORMW 사토리는 조금 무안한듯이 %마스터를% 바라보고 있다...
+                ENDIF
+                CFLAG:5000 ++
+            ELSEIF RESULT == 6
+                PRINTFORMW 「아...그거...」
+                PRINTFORMW 「그렇게나 힘들어하실줄은 몰랐는데...」
+                PRINTFORMW 「...미안해요?」
+                PRINTFORMW 사토리는 옅게 웃어보였다...
+                IF RAND:5 == 0
+                    PRINTFORMW 「뭐어...전의 그건 없던 거로 해드릴게요」
+                    PRINTFORMW 「그걸로 계속 트집잡기도 뭐하고」
+                    PRINTFORMW 사토리는 %마스터의% 손을 부드럽게 잡아왔다...
+                    CFLAG:약점잡음 = 0
+                ENDIF
+            ELSE
+                PRINTFORMW 「...원하는게 없다는건가요? 아님 말하기 곤란한거?」
+                PRINTFORMW 「뭐어...굳이 읽어보진 않겠지만...이상한건 빌지 말아주세요」
+            ENDIF
+        CASE 2
+            IF MARK:반발각인 == 3
+                IF TALENT:연인
+                    PRINTFORMW 「...그런거라면 팬티같은거 말고 직접 해도 괜찮잖아요...」
+                    PRINTFORMW 사토리는 입술을 삐죽였다...
+                ELSE
+                    PRINTFORMW 「...왠지 주기 싫어지는걸요」
+                    PRINTFORMW 사토리는 떨떠름한 표정으로 %마스터를% 바라보고 있다...
+                ENDIF
+            ELSE
+                PRINTFORMW 「......」
+                PRINTFORMW 사토리의 얼굴이 새빨게졌다...
+            ENDIF
+        CASE 3
+            
+            IF MARK:반발각인 == 3
+                IF TALENT:연인
+                    PRINTFORMW 「...팔다니, 제 팬티를...그런...」
+                    PRINTFORMW 사토리는 얼굴을 붉혔다...
+                ELSE
+                    PRINTFORMW 「...하아...추잡해...」
+                    PRINTFORMW 「그런걸 팔 생각을 하는 %MASTERNAME:49%도, 그걸 사가는 사람도...」
+                    PRINTFORMW 사토리는 짜증이 가득찬 얼굴로 %마스터를% 바라보고 있다..
+                ENDIF
+            ELSE
+                PRINTFORMW 「...판다니...으으...그런걸 사가는 사람이 있다는건가요?」
+                PRINTFORMW 사토리의 얼굴이 새빨게졌다...
+            ENDIF
+        CASE 6974
+            PRINTFORMW 머릿속으로 팬티를 으적으적 씹어먹는 상상을 하자, 사토리가 질겁했다...
+        CASEELSE
+            PRINTFORMW 「대답 안 한다는건...별 생각없이 그냥 가지고 싶어서, 라는건가요」
+            PRINTFORMW 「굳이 읽진 않을게요, 읽고 싶진 않아...」
+    ENDSELECT
 ENDIF
