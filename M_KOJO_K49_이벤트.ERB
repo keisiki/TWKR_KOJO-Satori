@@ -16749,76 +16749,98 @@ IF LOCAL
 				CASE 3
 				;嫌です 싫어
 				;記入チェック（=0, 非表示、1, 表示）
-				LOCAL:1 = 0
+				LOCAL:1 = 1
 				;-------------------------------------------------
 				IF LOCAL:1
+				;PRINTFORMW 「」
 					IF MARK:반발각인 == 3
 						IF TALENT:연인
-							SELECTCASE RAND:5
+							SELECTCASE RAND:3
 								CASE 0
-									
+									PRINTFORMW 「...말이 되는 소릴...」
+									PRINTFORMW 「안 줄거예요, 절대로...이런걸 어떻게 준단거예요?」
+									PRINTFORMW 사토리는 볼멘소리를 해왔다...
 								CASE 1
-									
+									PRINTFORMW 「팬티를 달라니, 무슨...」
+									PRINTFORMW 「아무리 부탁해도 안 줄거니까요」
+									PRINTFORMW 사토리는 단호하게 말해왔다...
 								CASE 2
-									
-								CASE 3
-									
-								CASE 4
-									
+									PRINTFORMW 「...이런 천쪼가리가 저보다 중요한가요...?」
+									PRINTFORMW 사토리는 약간 서글픈 표정으로 %마스터를% 올려다보고 있다...
 							ENDSELECT
 						ELSE
-							SELECTCASE RAND:4
+							SELECTCASE RAND:3
 								CASE 0
-									
+									PRINTFORMW 「......」
+									PRINTFORMW 사토리는 못볼걸 봤다는 표정으로 팬티를 숨겼다...
 								CASE 1
-									
+									PRINTFORMW 「...꼭 지금 그런 소릴 해야 했나요?」
+									PRINTFORMW 「아니, 말 안했어도 소용없으려나...」
 								CASE 2
-									
-								CASE 3
-									
+									PRINTFORMW 「...%MASTERNAME:49% 같으면 주겠어요?」
+									PRINTFORMW 「꿈도 꾸지 마세요, 팬티는 무슨...」
+									PRINTFORMW 사토리는 등 뒤로 팬티를 숨겼다...
 							ENDSELECT
 						ENDIF
 					ELSEIF TALENT:연인
-						SELECTCASE RAND:6
+						SELECTCASE RAND:5
 							CASE 0
-								
+								PRINTFORMW 「...말이 되는 소릴...」
+								PRINTFORMW 「안 줄거예요, 절대로...이런걸 어떻게 준단거예요?」
+								PRINTFORMW 사토리는 볼멘소리를 해왔다...
 							CASE 1
-								
+								PRINTFORMW 「팬티를 달라니, 무슨...」
+								PRINTFORMW 「아무리 부탁해도 안 줄거니까요」
+								PRINTFORMW 사토리는 단호하게 말해왔다...
 							CASE 2
-								
+								PRINTFORMW 「...이런 천쪼가리가 저보다 중요한가요...?」
+								PRINTFORMW 사토리는 약간 서글픈 표정으로 %마스터를% 올려다보고 있다...
 							CASE 3
-								
+								PRINTFORMW 「팬티가 갖고 싶다니...으으...」
+								PRINTFORMW 「...역시 싫어요, 이런거 부끄러워서 절대 못준다고요?」
 							CASE 4
-								
-							CASE 5
-								
+								PRINTFORMW 「...그으...이런 냄새나는걸 뭐가 좋다고 달라는건가요?」
+								PRINTFORMW 「...아뇨, 대답하지 마세요, 생각하지도 말아주세요...으으...절대로 안 줄거야...」
+								PRINTFORMW 사토리는 서드아이와 귀를 틀어막았다...
 						ENDSELECT
 					ELSEIF TALENT:연모||TALENT:사모
 						SELECTCASE RAND:3
 							CASE 0
-								
+								PRINTFORMW 「...아무리 그래도 그건 부끄러운걸요」
+								PRINTFORMW 「잠깐도 아니고 계속해서 그 냄새나는걸...으으으...」
 							CASE 1
-								
+								PRINTFORMW 「팬티를 달라고요...?」
+								PRINTFORMW 「...안돼요, 안돼...절대 못주니까 꿈도 꾸지 마세요」
+								PRINTFORMW 얼굴이 새빨게진 사토리는 허겁지겁 등 뒤로 팬티를 숨겼다...
 							CASE 2
-								
+								PRINTFORMW 「팬티가 갖고 싶다니...으...」
+								PRINTFORMW 「안돼요, 가져가서 어디에 쓰든간에 안되니까」
 						ENDSELECT
 					ELSEIF TALENT:섹프||TALENT:애욕
 						SELECTCASE RAND:3
 							CASE 0
-								
+								PRINTFORMW 「싫은걸요」
+								PRINTFORMW 「아무리 볼장 다 본 사이라 해도 그리 당당하게 팬티를 넘겨달라니...」
+								PRINTFORMW 사토리는 볼멘소리를 해왔다...
 							CASE 1
-								
+								PRINTFORMW 「으음...싫은걸요」
+								PRINTFORMW 「라고 말 해도 맘만 먹으면 훔쳐가실테니 소용없나...」
+								PRINTFORMW 사토리는 입술을 삐죽 내밀었다...
 							CASE 2
-								
+								PRINTFORMW 「팬티가 그렇게 갖고 싶나요?」
+								PRINTFORMW 「...뭐어- 오늘 하루 엄청 기분좋게 해준다면야...생각정도는 해볼게요?」
+								PRINTFORMW 「...생각정도는 말이죠?」
+								PRINTFORMW 사토리는 키득키득 웃으며 등 뒤로 팬티를 숨겼다...
 						ENDSELECT
 					ELSE
-						SELECTCASE RAND:3
+						SELECTCASE RAND:2
 							CASE 0
-								
+								PRINTFORMW 「팬티를 달라니, 무슨...」
+								PRINTFORMW 「아무리 부탁해도 안 줄거니까요」
+								PRINTFORMW 사토리는 단호하게 말해왔다...
 							CASE 1
-								
-							CASE 2
-								
+								PRINTFORMW 「......」
+								PRINTFORMW 사토리는 못볼걸 봤다는 표정으로 팬티를 숨겼다...
 						ENDSELECT
 					ENDIF
 					RETURN 1
