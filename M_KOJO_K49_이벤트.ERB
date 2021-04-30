@@ -26,6 +26,7 @@
 ;CFLAG:4001 불륜횟수
 ;CFLAG:4100 저번 검사에서의 마스터 삽입경험
 ;CFLAG:5000 반발각인 감소 이벤트 카운터
+;CFLAG:5001 회화에서 반발각인 감소 이벤트 발동 트리거
 ;CFLAG:5100 팬티 훔침 대사 나온횟수
 ;CFLAG:6000 전 회차 연인 이상
 ;
@@ -16860,7 +16861,8 @@ RETURN 1
 ;ARGはTARGETの度胸で分岐
 ;--------------------------------------------------
 ;記入チェック（=0, 非表示、1, 表示）
-LOCAL = 0
+LOCAL = 1
+CALL 아나타평가()
 ;-------------
 IF LOCAL
 	;-------------------------------------------------
@@ -16868,9 +16870,106 @@ IF LOCAL
 	;-------------------------------------------------
 	;怒らせてしまった
 	;記入チェック（=0, 非表示、1, 表示）
-	LOCAL:1 = 0
+	LOCAL:1 = 1
 	;-------------------------------------------------
 	IF LOCAL:1 && ARG == 1
+		IF MARK:반발각인 == 3
+			IF TALENT:연인
+				SELECTCASE RAND:4
+					CASE 0
+						PRINTFORMW 「......」
+						PRINTFORMW 사토리는 무척이나 언짢아 보이는 표정으로 이쪽을 응시해오고 있다...
+					CASE 1
+						PRINTFORMW 「저리가요...」
+						PRINTFORMW 사토리는 거리를 벌렸다...
+					CASE 2
+						PRINTFORMW 「...저한테 왜 그러는건가요?」
+						PRINTFORMW 사토리는 울적해 보이는 표정으로 물어왔다
+					CASE 3
+						PRINTFORMW 「...요즘따라 왜 그러는건가요?」
+						PRINTFORMW 「조금만이라도 좋으니 제 생각도 좀 해주시면 안되나요?」
+						PRINTFORMW 사토리는 짐짓 화가 난듯한 표정으로 쏘아붙였다...
+				ENDSELECT
+			ELSE
+				IF CFLAG:3000 == 0
+					SELECTCASE RAND:3
+						CASE 0
+							PRINTFORMW 「...도대체가, 왜 그러는건가요?」
+							PRINTFORMW 「남 생각도 좀 하고 행동하라고요, 제발 좀」
+							PRINTFORMW 사토리는 짜증을 내며 말해왔다..
+						CASE 1
+							PRINTFORMW 「정말이지 남 화나게 하는데는 재주가 있는 모양이네요」
+							PRINTFORMW 「...하아...다른때는 괜찮은 사람인데 말야...」
+							PRINTFORMW 사토리는 무척이나 언짢아 보이는 표정이다...
+						CASE 2
+							PRINTFORMW 사토리는 입술을 자근자근 씹고 있다...
+					ENDSELECT
+				ELSE
+					SELECTCASE RAND:3
+						CASE 0
+							PRINTFORMW 「...도대체가, 왜 그러는건가요?」
+							PRINTFORMW 「남 생각이라곤 하나도 안 하나요?」
+							PRINTFORMW 사토리는 짜증을 내며 말해왔다..
+						CASE 1
+							PRINTFORMW 「정말이지 남 화나게 하는데는 재주가 있는 모양이네요」
+							PRINTFORMW 「하기사 원래부터 그런 사람이지만」
+						CASE 2
+							PRINTFORMW 사토리는 입술을 자근자근 씹고 있다...
+					ENDSELECT
+				ENDIF
+			ENDIF
+		ELSEIF TALENT:연인
+			SELECTCASE RAND:4
+					CASE 0
+						PRINTFORMW 「......」
+						PRINTFORMW 사토리는 무척이나 언짢아 보이는 표정으로 이쪽을 응시해오고 있다...
+					CASE 1
+						PRINTFORMW 「저리가요...」
+						PRINTFORMW 사토리는 거리를 벌렸다...
+					CASE 2
+						PRINTFORMW 「...아무리 저희 사이라고 해도 하지 말아야할게 있는거 아닌가요?」
+						PRINTFORMW 「...자꾸 그렇게 나오시면...저도 화내요?」
+						PRINTFORMW 사토리는 이미 화난 표정이란걸 깨닫지 못하고 있다...
+					CASE 3
+						PRINTFORMW 「방금건 좀 심했어요」
+						PRINTFORMW 「...우리끼리라고 해도 하지 말아야 할게 있는거예요...」
+						PRINTFORMW 사토리는 언짢은듯 말해왔다...
+				ENDSELECT
+		ELSEIF TALENT:연모||TALENT:사모||TALENT:애욕
+			SELECTCASE RAND:3
+				CASE 0
+					PRINTFORMW 「......」
+					PRINTFORMW 사토리는 언짢은듯한 표정을 보여왔다...
+				CASE 1
+					PRINTFORMW 사토리는 말없이 고개를 돌렸다...
+				CASE 2
+					PRINTFORMW 「하아...정도껏 해줬음 했는데...」
+					PRINTFORMW 「그게 그리 어렵나요?」
+					PRINTFORMW 사토리는 몹시 짜증난듯이 말해왔다...
+			ENDSELECT
+		ELSEIF TALENT:섹프
+			SELECTCASE RAND:2
+				CASE 0
+					PRINTFORMW 「...선이라는걸 모르는걸까?」
+					PRINTFORMW 「참아주는것도 한계가 있지...」
+					PRINTFORMW 사토리는 %마스터를% 노려보고 있다...
+				CASE 1
+					PRINTFORMW 「하아......」
+					PRINTFORMW 사토리는 무척이나 언짢은듯이 %마스터를% 바라보고 있다...
+			ENDSELECT
+		ELSE
+			SELECTCASE RAND:3
+				CASE 0
+					PRINTFORMW 사토리는 세 개의 눈으로 %마스터를% 노려보고 있다...
+				CASE 1
+					PRINTFORMW 「...하, 정말이지 끝도 한도 없이...」
+					PRINTFORMW 「어련히 그만하겠거니 했더니만...」
+					PRINTFORMW 사토리의 서드아이가 %마스터를% 뚫어져라 쳐다보고 있다...
+				CASE 2
+					PRINTFORMW 「......」
+					PRINTFORMW %마스터를% 노려보는 사토리의 세 눈에서는 살기마저 느껴졌다...
+			ENDSELECT
+		ENDIF
 		RETURN 1
 	ENDIF
 	;-------------------------------------------------
@@ -16936,7 +17035,7 @@ RETURN 1
 
 
 ;==================================================
-;一日の終了時(AFTERTRAニーの前)、面識がなければ呼び出されない
+;一日の終了時(AFTERTRAニーの前)、面識がなければ呼び出されない, 하루 끝 대사, 안면 없으면 발동 안함
 ;==================================================
 @M_KOJO_EVENT_K49_31(ARG,ARG:1)
 ;口上主はTARGET
@@ -16945,25 +17044,32 @@ RETURN 1
 ;CFLAG:オナバレで分岐入れてもよさそう
 ;--------------------------------------------------
 ;記入チェック（=0, 非表示、1, 表示）
-LOCAL = 0
+LOCAL = 1
 ;-------------
 IF LOCAL
 	;-------------------------------------------------
 	;小分岐
 	;-------------------------------------------------
-	;今日会っていない
+	;今日会っていない 오늘 만나지 않았다
 	;記入チェック（=0, 非表示、1, 表示）
-	LOCAL:1 = 0
+	LOCAL:1 = 1
 	;-------------------------------------------------
 	IF LOCAL:1 && ARG
 		RETURN 1
 	ENDIF
 	;-------------------------------------------------
-	;今日会っている
+	;今日会っている 오늘 만났다
 	;記入チェック（=0, 非表示、1, 表示）
-	LOCAL:1 = 0
+	LOCAL:1 = 1
 	;-------------------------------------------------
 	IF LOCAL:1 && ARG == 0
+		IF CFLAG:5000 > 5
+			;NO.0
+			;반발각인 감소 플래그 세우기
+			;대사없음
+			CFLAG:5000 -= 5
+			CFLAG:5001 = 1
+		ENDIF
 		RETURN 1
 	ENDIF
 ENDIF
