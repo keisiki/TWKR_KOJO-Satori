@@ -17092,7 +17092,90 @@ IF LOCAL
 	;-------------------------------------------------
 	IF LOCAL:1 && ARG == 2
 	;満足して解放
-		PRINTFORML
+	;PRINTFORMW 「」
+		IF MARK:반발각인 == 3
+			IF TALENT:연인
+				SELECTCASE RAND:4
+					CASE 0
+						PRINTFORMW 「후우...♥ 기분 좋았어요 %MASTERNAME:49%♥」
+						PRINTFORMW 사토리는 반들반들해진 얼굴로 %마스터의% 볼에 키스해왔다...
+					CASE 1
+						PRINTFORMW 「하아...하아...♥ 최고였어요...♥」
+						PRINTFORMW 사토리는 %마스터를% 가볍게 끌어안으며 만면에 미소를 지어보이고 있다...
+					CASE 2
+						PRINTFORMW 「에헤헤...기분 좋아아...♥」
+						PRINTFORMW 사토리는 쾌락의 여운에 빠져 헤롱거리고 있다...
+					CASE 3
+						PRINTFORMW 「하아...하아...♥ 최고로...기분 좋았어...♥」
+						PRINTFORMW 사토리는 쾌락에 파르르 떨며 %마스터를% 놓아주었다
+				ENDSELECT
+			ELSE
+				SELECTCASE RAND:3
+					CASE 0
+						PRINTFORMW 「하아아...♥ 기분 좋아라...」
+						PRINTFORMW 「매일같이 이렇게만 해준다면야 조금쯤은 다시 봐도 괜찮으려나」
+						PRINTFORMW 사토리는 %마스터를% 바라보며 킥킥거리고 있다...
+					CASE 1
+						PRINTFORMW 「후으으...♥ 최고네 이거... 기분 좋아...♥」
+						IF TALENT:연인||TALENT:연모||TALENT:사모||TALENT:애욕||TALENT:섹프
+							PRINTFORMW 사토리는 %마스터를% 부드럽게 안으며 쾌락의 여운을 즐기고 있다... 
+						ELSE
+							PRINTFORMW 「...상대가 별로란것만 뺀다면 더 좋았겠지만...」
+						ENDIF
+					CASE 2
+						PRINTFORMW 「하아아...♥ 기분 좋아아...♥」
+						PRINTFORMW 사토리는 녹아내린 표정으로 %마스터의% 품에 달라붙었다...
+				ENDSELECT
+			ENDIF
+		ELSEIF TALENT:연인||TALENT:연모||TALENT:사모||TALENT:애욕
+			SELECTCASE RAND:6
+				CASE 0
+					PRINTFORMW 「후우...♥ 기분 좋았어요 %MASTERNAME:49%♥」
+					PRINTFORMW 사토리는 반들반들해진 얼굴로 %마스터의% 볼에 키스해왔다...
+				CASE 1
+					PRINTFORMW 「하아...하아...♥ 최고였어요...♥」
+					PRINTFORMW 사토리는 %마스터를% 가볍게 끌어안으며 만면에 미소를 지어보이고 있다...
+				CASE 2
+					PRINTFORMW 「에헤헤...기분 좋아아...♥」
+					PRINTFORMW 사토리는 쾌락의 여운에 빠져 헤롱거리고 있다...
+				CASE 3
+					PRINTFORMW 「하아...하아...♥ 최고로...기분 좋았어...♥」
+					PRINTFORMW 사토리는 쾌락에 파르르 떨며 %마스터를% 놓아주었다
+				CASE 4
+					PRINTFORMW 「후후...♥ 잘 먹었습니다♥」
+					PRINTFORMW 「다음에도 또...♥」
+					PRINTFORMW 사토리는 해맑은 미소로 %마스터를% 안아왔다...
+				CASE 5
+					PRINTFORMW 「후아...♥ 기분 좋아라...♥」
+					PRINTFORMW 사토리는 행복해 보이는 표정으로 %마스터의% 품에 파고들어왔다..
+			ENDSELECT
+		ELSEIF TALENT:섹프
+			SELECTCASE RAND:3
+				CASE 0
+					PRINTFORMW 「으으응...♥ 역시 혼자 하는거보단 이게 낫다니깐요」
+					PRINTFORMW 「뭐어, 그러니까 다음에도 쌓이면 부탁드릴게요?」
+					PRINTFORMW 사토리는 히죽히죽 웃으며 %마스터를% 놓아주었다...
+				CASE 1
+					PRINTFORMW 「하아아...♥ 기분 좋았다...♥」
+					PRINTFORMW 사토리는 굉장히 상쾌해 보이는 표정이다...
+				CASE 2
+					PRINTFORMW 「후우...오늘은 여기까지 할까요?」
+					PRINTFORMW 얼굴이 반들반들해진 사토리는 부드럽게 %마스터를% 놓아주었다
+				CASE 3
+					PRINTFORMW 「후후...♥ 잘 먹었습니다♥」
+					PRINTFORMW 「다음에 쌓이면 또 잔뜩 하도록 하죠」
+					PRINTFORMW 사토리는 만면에 환한 미소로 %마스터를% 바라보고 있다...
+			ENDSELECT
+		ELSE
+			SELECTCASE RAND:2
+				CASE 0
+					PRINTFORMW 「후우...기분 좋았어요, 고마워요」
+					PRINTFORMW 사토리는 굉장히 만족한듯한 표정이다...
+				CASE 1
+					PRINTFORMW 「하아아... 기분 좋았다...♥」
+					PRINTFORMW 사토리는 굉장히 상쾌해 보이는 표정이다...
+			ENDSELECT
+		ENDIF
 		RETURN 1
 	ENDIF
 	;-------------------------------------------------
@@ -17103,7 +17186,54 @@ IF LOCAL
 	;-------------------------------------------------
 	IF LOCAL:1 && ARG == 3
 	;満足したところを押し倒された
-		PRINTFORML
+		IF MARK:반발각인 == 3
+			IF TALENT:연인
+				SELECTCASE RAND:3
+					CASE 0
+						
+					CASE 1
+						
+					CASE 2
+						
+				ENDSELECT
+			ELSE
+				SELECTCASE RAND:3
+					CASE 0
+						
+					CASE 1
+						
+					CASE 2
+						
+				ENDSELECT
+			ENDIF
+		ELSEIF TALENT:연인||TALENT:연모||TALENT:사모||TALENT:애욕
+			SELECTCASE RAND:3
+				CASE 0
+					
+				CASE 1
+					
+				CASE 2
+					
+			ENDSELECT
+		ELSEIF TALENT:섹프
+			SELECTCASE RAND:3
+				CASE 0
+					
+				CASE 1
+					
+				CASE 2
+					
+			ENDSELECT
+		ELSE
+			SELECTCASE RAND:3
+				CASE 0
+					
+				CASE 1
+					
+				CASE 2
+					
+			ENDSELECT
+		ENDIF
 		RETURN 1
 	ENDIF
 	;-------------------------------------------------
@@ -17114,7 +17244,54 @@ IF LOCAL
 	;-------------------------------------------------
 	IF LOCAL:1 && ARG == 4
 	;壊れるまでしてあげる
-		PRINTFORML
+		IF MARK:반발각인 == 3
+			IF TALENT:연인
+				SELECTCASE RAND:3
+					CASE 0
+						
+					CASE 1
+						
+					CASE 2
+						
+				ENDSELECT
+			ELSE
+				SELECTCASE RAND:3
+					CASE 0
+						
+					CASE 1
+						
+					CASE 2
+						
+				ENDSELECT
+			ENDIF
+		ELSEIF TALENT:연인||TALENT:연모||TALENT:사모||TALENT:애욕
+			SELECTCASE RAND:3
+				CASE 0
+					
+				CASE 1
+					
+				CASE 2
+					
+			ENDSELECT
+		ELSEIF TALENT:섹프
+			SELECTCASE RAND:3
+				CASE 0
+					
+				CASE 1
+					
+				CASE 2
+					
+			ENDSELECT
+		ELSE
+			SELECTCASE RAND:3
+				CASE 0
+					
+				CASE 1
+					
+				CASE 2
+					
+			ENDSELECT
+		ENDIF
 		RETURN 1
 	ENDIF
 ENDIF
