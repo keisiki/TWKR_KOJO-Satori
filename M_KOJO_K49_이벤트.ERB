@@ -16,6 +16,7 @@
 ;CFLAG:999 구상용이어받아 테두리(주회시에도 유지됨, 시스템 제공)
 ; 
 ;CFLAG:1500 용서 안 함 플래그
+;CFLAG:1600 안 만나줘서 만나러옴
 ;CFLAG:3000 아나타 평가 변수
 ;CFLAG:3001 전번 만남에서 아나타가 팬티를 얼마나 가지고 있었는가
 ;CFLAG:3002 전번 만남에서 아나타의 시간경험이 몇인가
@@ -27,6 +28,9 @@
 ;CFLAG:4100 저번 검사에서의 마스터 삽입경험
 ;CFLAG:5000 반발각인 감소 이벤트 카운터
 ;CFLAG:5001 회화에서 반발각인 감소 이벤트 발동 트리거
+;CFLAG:5005 오늘 대화 했다
+;CFLAG:5010 연속으로 만나지 못한 날 수
+;CFLAG:5011 대화하지 못한 날 수
 ;CFLAG:5100 팬티 훔침 대사 나온횟수
 ;CFLAG:6000 전 회차 연인 이상
 ;
@@ -790,7 +794,6 @@ RETURN 1
 LOCAL = 1
 ;-------------
 IF LOCAL
-	
 	;PRINTFORMW 「」
 	CALL 불륜폭로이벤트
 	CALL 아나타평가
@@ -802,6 +805,88 @@ IF LOCAL
 	LOCAL:1 = 1
 	;-------------------------------------------------
 	IF LOCAL:1 && ARG == 1
+		IF CFLAG:1600
+			IF TALENT:연인
+				SELECTCASE RAND:4
+					CASE 0
+						PRINTFORMW 「아, 드디어 만났다」
+						PRINTFORMW 사토리는 %마스터를% 발견하곤 입꼬리를 올려보였다
+						PRINTFORMW 「요즘 바빴나요? 통 만나러 와 주시질 않던데」
+						PRINTFORMW 「찾으러 와 봤더니 영 보이지도 않아서 조금 슬펐다구요?」
+						PRINTFORMW 오랜만에 만난게 그리 좋은지 쉬지 않고 재잘거리고 있다...
+					CASE 1
+						PRINTFORMW 「...안녕하세요 %MASTERNAME:49%...」
+						PRINTFORMW 사토리는 볼을 부풀리고 있다...
+						PRINTFORMW 「왜 요즘 만나러 와 주시지 않는건가요」
+						PRINTFORMW 「매일 보고싶었는데, 코빼기도 보이지 않고...」
+						IF CFLAG:MASTER:동행
+							PRINTFORMW 「...정작 찾고 보니 저는 홀라당 잊고 다른 사람이랑만...」
+							PRINTFORMW 사토리는 잔뜩 토라져버린 모양이다...
+						ELSE
+							PRINTFORMW 많이 토라진것 같은 사토리는 %마스터의% 품에 뛰어들었다
+							PRINTFORMW 「저기, 오늘은 같이 보내요, 네?」
+						ENDIF
+					CASE 2
+						PRINTFORMW 「아, %MASTERNAME:49%」
+						PRINTFORMW 사토리는 %마스터를% 발견하고 손을 흔들어보였다
+						PRINTFORMW 「오래간만이에요, 그러니까...{CFLAG:1600}일 만이었나요? {CFLAG:1600 + RAND:5 - 3}일?」
+						PRINTFORMW 「하도 오래되서 기억도 안나네요...너무하셔라...」
+						PRINTFORMW 「매일매일 보고싶었는데, 전혀 찾으러 올 기미도 없길래 이쪽에서 왔더니, 코빼기도 안 보여서 조마조마했다고요?」
+						PRINTFORMW 사토리는 섭섭했는지 볼을 살짝 부풀려보였다...
+					CASE 3
+						PRINTFORMW 「오랜만이네요 %MASTERNAME:49%」
+						PRINTFORMW %마스터를% 눈치챈 사토리는 작게 손을 흔들어보였다
+						PRINTFORMW 「요즘 통 본 적이 없길래 찾아왔어요」
+						PRINTFORMW 「정말이지, 한번 정도는 찾아와 달라구요?」
+						PRINTFORMW 「또 이러면 집으로 납치해버릴거예요?」
+						PRINTFORMW 사토리는 서드아이의 코드를 %마스터를% 슬며시 매만져왔다...
+				ENDSELECT
+			ELSEIF TALENT:연모
+				SELECTCASE RAND:4
+					CASE 0
+						PRINTFORMW 「...아, 안녕하세요...오래간만이네요...」
+						PRINTFORMW 「그...잘 지내셨나요?」
+						PRINTFORMW 사토리는 묘하게 얼굴을 붉히고 있다...
+					CASE 1
+						PRINTFORMW 「...아, %MASTERNAME:49%♥...」
+						PRINTFORMW 「...큼큼, 오, 오랜만이에요, 그간 잘 지내셨나요?」
+						PRINTFORMW 사토리는 %마스터를% 보고 환히 웃는 얼굴을 했다가 이내 무덤덤한 척 하고 있다...
+					CASE 2
+						PRINTFORMW 「안녕하세요 %MASTERNAME:49%, 보고 싶었...아, 아니, 잘 지내셨나요?」
+						PRINTFORMW 사토리는 무언가 말하려다 소스라치게 놀란듯 하다...
+						PRINTFORMW 「...그, 그게...요 근래 본 기억이 없길래 뭔 일 있나 하고, 자, 잘 지내면 됐어요」
+						PRINTFORMW 얼굴이 새빨갛게 물들었다...
+					CASE 3
+						PRINTFORMW 「어라라...오랜만이에요」
+						PRINTFORMW 「요즘 무슨 일 있으셨나요? 얼굴 한번 비추시질 않길래, 뭔 일 있나 했죠...」
+						PRINTFORMW 사토리는 %마스터를% 보고 배시시 웃고 있다...
+				ENDSELECT
+			ELSEIF TALENT:애욕
+				SELECTCASE RAND:4
+					CASE 0
+						PRINTFORMW 「오랜만이네요, 요즘 바쁜일이라도 있으셨나요?」
+						PRINTFORMW 「그게, 한동안 못보니까 보고싶어져서 말이죠...」
+						PRINTFORMW 「...그, 오랜만에 같이...?」
+						PRINTFORMW 사토리는 옷깃을 슬쩍 내리며 배시시 웃고 있다...
+					CASE 1
+						PRINTFORMW 「...아, %MASTERNAME:49%♥...」
+						PRINTFORMW 「...큼큼, 오, 오랜만이에요, 그간 잘 지내셨나요?」
+						PRINTFORMW 사토리는 %마스터를% 보고 환히 웃는 얼굴을 했다가 이내 무덤덤한 척 하고 있다...
+					CASE 2
+						PRINTFORMW 「안녕하세요 %MASTERNAME:49%, 보고 싶었...아, 아니, 잘 지내셨나요?」
+						PRINTFORMW 사토리는 무언가 말하려다 소스라치게 놀란듯 하다...
+						PRINTFORMW 「...그, 그게...요 근래 본 기억이 없길래 뭔 일 있나 하고, 자, 잘 지내면 됐어요」
+						PRINTFORMW 「...그렇지, 오랜만에 만났는데...한번 하지 않을래요?」
+						PRINTFORMW 사토리는 어쩐지 기대하는듯한 표정이다
+					CASE 3
+						PRINTFORMW 「어라라...오랜만이에요」
+						PRINTFORMW 「요즘 무슨 일 있으셨나요? 얼굴 한번 비추시질 않길래, 뭔 일 있나 했죠...」
+						PRINTFORMW 「...뭐어어...아무일도 없어보이니 됐어요」
+						PRINTFORMW 사토리는 %마스터를% 보고 배시시 웃고 있다...
+				ENDSELECT
+			ENDIF
+			RETURN 1
+		ENDIF
 		IF MARK:반발각인 == 3
 			IF TALENT:연인
 				SELECTCASE RAND:3
@@ -17391,6 +17476,23 @@ CALL 아나타평가()
 ;이것으로 최소한 매일 밤마다 평가가 갱신된다, 내가 까먹어서 함수 머리에 추가 안해도!
 ;-------------
 IF LOCAL
+	[SKIPSTART]
+		1. 만나지 않은 날이 오래될때 내방 플래그 킴, 그리고 랜덤하게 '방문목적'을 설정, 대개는 용무 있어 온다는 느낌
+
+		2. 저택 있을때 동거 요청
+
+		3. 만나지 않은날 카운트, 회화나 첫만남에 응용
+
+		4. 다른 여자랑 잔 거를 카운트
+	[SKIPEND]
+	;공통은 여기
+
+	IF !CFLAG:5005
+		;오늘 대화 못했으면 카운트 증가
+		CFLAG:5011++
+	ENDIF
+	CFLAG:1600 = 0
+
 	;-------------------------------------------------
 	;小分岐
 	;-------------------------------------------------
@@ -17399,6 +17501,18 @@ IF LOCAL
 	LOCAL:1 = 1
 	;-------------------------------------------------
 	IF LOCAL:1 && ARG
+		;만나지 못한 날 수 증가
+		CFLAG:5010++
+
+		IF CFLAG:5010 > 10&&CFLAG:다음날내방 == 0
+			IF TALENT:연모||TALENT:연인||TALENT:애욕
+				IF RAND:(10 + CFLAG:5010) >= 8
+					;안온다면 만나러 간다
+					CFLAG:다음날내방 = 1
+					CFLAG:1600 = 1
+				ENDIF
+			ENDIF
+		ENDIF
 		RETURN 1
 	ENDIF
 	;-------------------------------------------------
@@ -17407,6 +17521,8 @@ IF LOCAL
 	LOCAL:1 = 1
 	;-------------------------------------------------
 	IF LOCAL:1 && ARG == 0
+		;만나지 못한 날 수 초기화
+		CFLAG:5010 = 0
 		IF CFLAG:5000 > 5
 			;NO.0
 			;반발각인 감소 플래그 세우기
