@@ -31,6 +31,7 @@
 ;CFLAG:5005 오늘 대화 했다
 ;CFLAG:5010 연속으로 만나지 못한 날 수
 ;CFLAG:5011 대화하지 못한 날 수
+;CFLAG:5020 저택 동거 요청 했었다
 ;CFLAG:5100 팬티 훔침 대사 나온횟수
 ;CFLAG:6000 전 회차 연인 이상
 ;
@@ -17492,7 +17493,50 @@ IF LOCAL
 		CFLAG:5011++
 	ENDIF
 	CFLAG:1600 = 0
+	;PRINTFORMW 「」
 
+	IF CALLNAME:MASTER == "당신"
+		MASTERNAME:49 = %CALLNAME:MASTER%
+	ELSE
+		MASTERNAME:49 = %CALLNAME:MASTER%
+		MASTERNAME:49 += "씨"
+	ENDIF
+	;------------------------------------------------
+	; 저택 더부살이
+	;------------------------------------------------
+	IF ITEM:주택 >= 4&&ST_저택빈방()&&ST_동거요청()&&!CFLAG:5020
+		PRINTL
+		PRINTFORMW 돌연 들려오는 노크소리에 나와보니 사토리가 와 있었다
+		IF TALENT:연인
+			PRINTFORMW 「저기, 혹시 괜찮다면 여기서 같이 살게 해 주시면 안될까요?」
+			PRINTFORMW 「...같이 살면 더 자주 볼 수 있을테고, 이것저것 해드릴수 있는게 많으니깐요」
+			PRINTFORMW 「아무방이나 괜찮으니까, 네?」
+			PRINTFORMW 사토리는 %마스터를% 물끄러미 바라보고 있다...
+		ELSE
+			PRINTFORMW 「...저기이...혹시 여기에서 지내게 해 주시면 안 될까요?」
+			PRINTFORMW 「그게...으으음...집은 조금 답답해서...아니, 가끔은 지상에서 지내보고 싶어서...? 으으으...」
+			PRINTFORMW 「...아, 아무방이라도 괜찮으니까, 저기, 남는 방이 있다면 잠깐이라도 머물게 해 주세요, 네?」
+			PRINTFORMW 사토리는 새빨개진 얼굴로 말해오고 있다...
+		ENDIF
+		PRINTFORML 어쩔까?
+		PRINTFORML [0] 허락한다
+		PRINTFORML [1] 거절한다
+		INPUT
+		IF RESULT
+			;안돼
+			PRINTFORMW 「...그, 그런가요...」
+			PRINTFORMW 「어쩔수 없죠 그럼...더 부탁하는것도 민폐겠고」
+			PRINTFORMW 「...안녕히 계세요?」
+			PRINTFORMW 사토리는 굉장히 시무룩한 표정으로 떠나갔다...
+			CFLAG:5020 = 1
+		ELSE
+			;돼
+			PRINTFORMW 「...정말인가요?」
+			PRINTFORMW 「후후...감사합니다, 그러면 앞으로 잘 부탁드려요?」
+			PRINTFORMW 사토리는 무척이나 기뻐보인다...
+			CALL SET_TOMYHOUSESET(ST_저택빈방(),49)
+		ENDIF
+	ENDIF
 	;-------------------------------------------------
 	;小分岐
 	;-------------------------------------------------
