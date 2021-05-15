@@ -1046,6 +1046,88 @@ IF LOCAL
 	LOCAL:1 = 1
 	;-------------------------------------------------
 	IF LOCAL:1 && ARG == 2
+		IF CFLAG:1600
+			IF TALENT:연인
+				SELECTCASE RAND:4
+					CASE 0
+						PRINTFORMW 「아, 드디어 만났다」
+						PRINTFORMW 사토리는 %마스터를% 발견하곤 입꼬리를 올려보였다
+						PRINTFORMW 「요즘 바빴나요? 통 만나러 와 주시질 않던데」
+						PRINTFORMW 오랜만에 만난게 그리 좋은지 쉬지 않고 재잘거리고 있다...
+					CASE 1
+						PRINTFORMW 「...안녕하세요 %MASTERNAME:49%...」
+						PRINTFORMW 사토리는 볼을 부풀리고 있다...
+						PRINTFORMW 「왜 요즘 만나러 와 주시지 않는건가요」
+						PRINTFORMW 「매일 보고싶었는데, 코빼기도 보이지 않고...」
+						IF CFLAG:MASTER:동행
+							PRINTFORMW 「...정작 찾고 보니 저는 홀라당 잊고 다른 사람이랑만...」
+							PRINTFORMW 사토리는 잔뜩 토라져버린 모양이다...
+						ELSE
+							PRINTFORMW 많이 토라진것 같은 사토리는 %마스터의% 품에 뛰어들었다
+							PRINTFORMW 「저기, 오늘은 같이 보내요, 네?」
+						ENDIF
+					CASE 2
+						PRINTFORMW 「아, %MASTERNAME:49%」
+						PRINTFORMW 사토리는 %마스터를% 발견하고 손을 흔들어보였다
+						PRINTFORMW 「오래간만이에요, 그러니까...{CFLAG:1600}일 만이었나요? {CFLAG:1600 + RAND:5 - 3}일?」
+						PRINTFORMW 「하도 오래되서 기억도 안나네요...너무하셔라...」
+						PRINTFORMW 「매일매일 보고싶었는데, 전혀 찾으러 올 기미도 없고...」
+						PRINTFORMW 「정말이지, 가끔씩 얼굴이라도 비춰주세요, 네?」
+						PRINTFORMW 사토리는 섭섭했는지 볼을 살짝 부풀려보였다...
+					CASE 3
+						PRINTFORMW 「오랜만이네요 %MASTERNAME:49%」
+						PRINTFORMW %마스터를% 눈치챈 사토리는 작게 손을 흔들어보였다
+						PRINTFORMW 「요즘 통 본 적이 없길래 찾아왔어요」
+						PRINTFORMW 「정말이지, 한번 정도는 찾아와 달라구요?」
+						PRINTFORMW 「또 이러면 집으로 납치해버릴거예요?」
+						PRINTFORMW 사토리는 서드아이의 코드를 %마스터를% 슬며시 매만져왔다...
+				ENDSELECT
+			ELSEIF TALENT:연모
+				SELECTCASE RAND:4
+					CASE 0
+						PRINTFORMW 「...아, 안녕하세요...오래간만이네요...」
+						PRINTFORMW 「그...잘 지내셨나요?」
+						PRINTFORMW 사토리는 묘하게 얼굴을 붉히고 있다...
+					CASE 1
+						PRINTFORMW 「...아, %MASTERNAME:49%♥...」
+						PRINTFORMW 「...큼큼, 오, 오랜만이에요, 그간 잘 지내셨나요?」
+						PRINTFORMW 사토리는 %마스터를% 보고 환히 웃는 얼굴을 했다가 이내 무덤덤한 척 하고 있다...
+					CASE 2
+						PRINTFORMW 「안녕하세요 %MASTERNAME:49%, 보고 싶었...아, 아니, 잘 지내셨나요?」
+						PRINTFORMW 사토리는 무언가 말하려다 소스라치게 놀란듯 하다...
+						PRINTFORMW 「...그, 그게...요 근래 본 기억이 없길래 뭔 일 있나 하고, 자, 잘 지내면 됐어요」
+						PRINTFORMW 얼굴이 새빨갛게 물들었다...
+					CASE 3
+						PRINTFORMW 「어라라...오랜만이에요」
+						PRINTFORMW 「요즘 무슨 일 있으셨나요? 얼굴 한번 비추시질 않길래, 뭔 일 있나 했죠...」
+						PRINTFORMW 사토리는 %마스터를% 보고 배시시 웃고 있다...
+				ENDSELECT
+			ELSEIF TALENT:애욕
+				SELECTCASE RAND:4
+					CASE 0
+						PRINTFORMW 「오랜만이네요, 요즘 바쁜일이라도 있으셨나요?」
+						PRINTFORMW 「그게, 한동안 못보니까 보고싶어져서 말이죠...」
+						PRINTFORMW 「...그, 오랜만에 같이...?」
+						PRINTFORMW 사토리는 옷깃을 슬쩍 내리며 배시시 웃고 있다...
+					CASE 1
+						PRINTFORMW 「...아, %MASTERNAME:49%♥...」
+						PRINTFORMW 「...큼큼, 오, 오랜만이에요, 그간 잘 지내셨나요?」
+						PRINTFORMW 사토리는 %마스터를% 보고 환히 웃는 얼굴을 했다가 이내 무덤덤한 척 하고 있다...
+					CASE 2
+						PRINTFORMW 「안녕하세요 %MASTERNAME:49%, 보고 싶었...아, 아니, 잘 지내셨나요?」
+						PRINTFORMW 사토리는 무언가 말하려다 소스라치게 놀란듯 하다...
+						PRINTFORMW 「...그, 그게...요 근래 본 기억이 없길래 뭔 일 있나 하고, 자, 잘 지내면 됐어요」
+						PRINTFORMW 「...그렇지, 오랜만에 만났는데...한번 하지 않을래요?」
+						PRINTFORMW 사토리는 어쩐지 기대하는듯한 표정이다
+					CASE 3
+						PRINTFORMW 「어라라...오랜만이에요」
+						PRINTFORMW 「요즘 무슨 일 있으셨나요? 얼굴 한번 비추시질 않길래, 뭔 일 있나 했죠...」
+						PRINTFORMW 「...뭐어어...아무일도 없어보이니 됐어요」
+						PRINTFORMW 사토리는 %마스터를% 보고 배시시 웃고 있다...
+				ENDSELECT
+			ENDIF
+			RETURN 1
+		ENDIF
 		IF MARK:반발각인 == 3
 			IF TALENT:연인
 				SELECTCASE RAND:3
@@ -1562,6 +1644,57 @@ IF LOCAL
 	LOCAL:1 = 1
 	;-------------------------------------------------
 	IF LOCAL:1 && ARG == 6
+		;PRINTFORMW 「」
+		IF CFLAG:1600
+			IF TALENT:연인
+				SELECTCASE RAND:2
+					CASE 0
+						IF CFLAG:MASTER:현재위치 / 100 == 9
+							PRINTFORMW 「...오랜만이에요」
+							PRINTFORMW 「그동안 바빴나요? 한번쯤은 얼굴 비춰줘도 좋았을텐데」
+							PRINTFORMW 사토리는 굉장히 삐친것 같은 표정으로 말해왔다...
+						ELSE
+							PRINTFORMW 「...이런데서 다 보네요」
+							PRINTFORMW 「오랜만이에요, 요 근래 얼굴도 못 봤는데」
+							PRINTFORMW 사토리는 굉장히 삐친것 같은 말투다...
+						ENDIF
+					CASE 1
+						IF CFLAG:MASTER:현재위치 / 100 == 9
+							PRINTFORMW 「아, 드디어 와줬다」
+							PRINTFORMW 사토리는 %마스터를% 보곤 종종걸음으로 달려와 품에 안겼다
+							PRINTFORMW 「걱정했다구요? 무슨일이라도 있나...」
+							PRINTFORMW 「다음부터는 이렇게 오래 내버려두지 마세요...」
+						ELSE
+							PRINTFORMW 「어라, 여기서 뵐 줄은 몰랐는데」
+							PRINTFORMW 「그동안 코빼기도 안 보이더니 이런데 있을줄이야」
+							PRINTFORMW 사토리는 냉담한 표정으로 말해왔다...
+						ENDIF
+				ENDSELECT
+			ELSEIF TALENT:연모||TALENT:애욕
+				SELECTCASE RAND:2
+					CASE 0
+						IF CFLAG:MASTER:현재위치 / 100 == 9
+							PRINTFORMW 「앗...」
+							PRINTFORMW %마스터를% 발견한 사토리는 일순간 굉장히 기뻐보이는 표정을 지어보였다
+							PRINTFORMW 「아, 안녕하세요, 오랜만이에요?」
+							PRINTFORMW 그러나 이내 평소의 표정으로 되돌아갔다...
+						ELSE
+							PRINTFORMW 「어라, 이런데서 뵐줄은 몰랐는데」
+							PRINTFORMW 「오랜만이에요, 그동안 잘 지냈나요?」
+							PRINTFORMW 사토리는 묘하게 밝아보이는 표정으로 말을 건내왔다...
+						ENDIF
+					CASE 1
+						IF CFLAG:MASTER:현재위치 / 100 == 9
+							PRINTFORMW 「오랜만이에요 %MASTERNAME:49%, 잘 지내셨나요?」
+							PRINTFORMW 사토리는 %마스터를% 발견하곤 종종걸음으로 다가와 말을 걸어왔다...
+						ELSE
+							PRINTFORMW 「희한한 데서 만났네요, 잘 지냈나요?」
+							PRINTFORMW 「요새 잘 안보이길래 무슨 일이라도 있었나 해서요」
+						ENDIF
+				ENDSELECT
+			ENDIF
+			RETURN 1
+		ENDIF
 		IF MARK:반발각인 == 3
 			IF TALENT:연인
 				SELECTCASE RAND:3
