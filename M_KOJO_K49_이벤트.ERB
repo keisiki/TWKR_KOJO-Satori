@@ -16,7 +16,7 @@
 ;CFLAG:999 구상용이어받아 테두리(주회시에도 유지됨, 시스템 제공)
 ; 
 ;CFLAG:1500 용서 안 함 플래그
-;CFLAG:1600 안 만나줘서 만나러옴
+;CFLAG:1600 안 만나줘서 만나러옴(연모, 연인, 애욕중 하나라도 없으면 켜지지 않는다)
 ;CFLAG:3000 아나타 평가 변수
 ;CFLAG:3001 전번 만남에서 아나타가 팬티를 얼마나 가지고 있었는가
 ;CFLAG:3002 전번 만남에서 아나타의 시간경험이 몇인가
@@ -1646,53 +1646,7 @@ IF LOCAL
 	IF LOCAL:1 && ARG == 6
 		;PRINTFORMW 「」
 		IF CFLAG:1600
-			IF TALENT:연인
-				SELECTCASE RAND:2
-					CASE 0
-						IF CFLAG:MASTER:현재위치 / 100 == 9
-							PRINTFORMW 「...오랜만이에요」
-							PRINTFORMW 「그동안 바빴나요? 한번쯤은 얼굴 비춰줘도 좋았을텐데」
-							PRINTFORMW 사토리는 굉장히 삐친것 같은 표정으로 말해왔다...
-						ELSE
-							PRINTFORMW 「...이런데서 다 보네요」
-							PRINTFORMW 「오랜만이에요, 요 근래 얼굴도 못 봤는데」
-							PRINTFORMW 사토리는 굉장히 삐친것 같은 말투다...
-						ENDIF
-					CASE 1
-						IF CFLAG:MASTER:현재위치 / 100 == 9
-							PRINTFORMW 「아, 드디어 와줬다」
-							PRINTFORMW 사토리는 %마스터를% 보곤 종종걸음으로 달려와 품에 안겼다
-							PRINTFORMW 「걱정했다구요? 무슨일이라도 있나...」
-							PRINTFORMW 「다음부터는 이렇게 오래 내버려두지 마세요...」
-						ELSE
-							PRINTFORMW 「어라, 여기서 뵐 줄은 몰랐는데」
-							PRINTFORMW 「그동안 코빼기도 안 보이더니 이런데 있을줄이야」
-							PRINTFORMW 사토리는 냉담한 표정으로 말해왔다...
-						ENDIF
-				ENDSELECT
-			ELSEIF TALENT:연모||TALENT:애욕
-				SELECTCASE RAND:2
-					CASE 0
-						IF CFLAG:MASTER:현재위치 / 100 == 9
-							PRINTFORMW 「앗...」
-							PRINTFORMW %마스터를% 발견한 사토리는 일순간 굉장히 기뻐보이는 표정을 지어보였다
-							PRINTFORMW 「아, 안녕하세요, 오랜만이에요?」
-							PRINTFORMW 그러나 이내 평소의 표정으로 되돌아갔다...
-						ELSE
-							PRINTFORMW 「어라, 이런데서 뵐줄은 몰랐는데」
-							PRINTFORMW 「오랜만이에요, 그동안 잘 지냈나요?」
-							PRINTFORMW 사토리는 묘하게 밝아보이는 표정으로 말을 건내왔다...
-						ENDIF
-					CASE 1
-						IF CFLAG:MASTER:현재위치 / 100 == 9
-							PRINTFORMW 「오랜만이에요 %MASTERNAME:49%, 잘 지내셨나요?」
-							PRINTFORMW 사토리는 %마스터를% 발견하곤 종종걸음으로 다가와 말을 걸어왔다...
-						ELSE
-							PRINTFORMW 「희한한 데서 만났네요, 잘 지냈나요?」
-							PRINTFORMW 「요새 잘 안보이길래 무슨 일이라도 있었나 해서요」
-						ENDIF
-				ENDSELECT
-			ENDIF
+			CALL ST_중복대사("오랜만에외출처에서마주침")
 			RETURN 1
 		ENDIF
 		IF MARK:반발각인 == 3
@@ -4421,6 +4375,74 @@ IF LOCAL
 	;-------------------------------------------------
 	IF LOCAL:1 && ARG == 1
 		;PRINTFORMW 「」
+		IF CFLAG:1600
+			IF ST_LIVETOGETHER() == 4||ST_LIVETOGETHER() == 0
+				CALL ST_중복대사("오랜만에외출처에서마주침")
+			ELSE
+				IF MARK:반발각인 == 3
+					IF TALENT:연인
+						SELECTCASE RAND:3
+							CASE 0
+								PRINTFORMW 「어라라, 오랜만이네요」
+								PRINTFORMW 「요즘 통 안 보이시더니...」
+								PRINTFORMW 사토리는 묘하게 삐친것 같은 표정으로 말해왔다...
+							CASE 1
+								PRINTFORMW 「아, 오랜만이네요...」
+								PRINTFORMW 「요근래 얼굴도 못 본거 같은데」
+								PRINTFORMW 사토리는 약간 서운해 보인다...
+							CASE 2
+								PRINTFORMW 「안녕하세요 %MASTERNAME:49%」
+								PRINTFORMW 「...요즘 바쁜 일이라도 있으셨나요?」
+								PRINTFORMW 「요근래 한번도 얼굴 본 기억이 없는데...」
+								PRINTFORMW 사토리는 묘하게 부루퉁해보이는 표정으로 틱틱거렸다...
+						ENDSELECT
+					ELSE
+						SELECTCASE RAND:3
+							CASE 0
+								PRINTFORMW 「...오랜만이네요?」
+								PRINTFORMW 「정말이지, 요근래 안 보이길래 어딘가 멀리 떠나간줄만 알고 있었는데」
+								PRINTFORMW 사토리는 약간의 비웃음을 담아 말해왔다...
+							CASE 1
+								PRINTFORMW 「...어라라, 얼마만에 보는건가요」
+								PRINTFORMW 「맨날 이쪽으론 얼씬도 안하더니 말이죠」
+							CASE 2
+								PRINTFORMW 「어라, 살아있었네요」
+								PRINTFORMW 「보이지도 않길래 어디선가 죽어버린걸까- 하고 있었는데」
+								PRINTFORMW 사토리는 빈정거리며 말해왔다...
+						ENDSELECT
+					ENDIF
+				ELSEIF TALENT:연인
+					SELECTCASE RAND:3
+						CASE 0
+							PRINTFORMW 「......」
+							PRINTFORMW 사토리는 무언가 굉장히 삐진것같은 표정이다...
+						CASE 1
+							PRINTFORMW 「...되게 오랜만에 보는 기분이네요」
+							PRINTFORMW 「그렇게 오래 내버려두다니, 너무하잖아요?」
+							PRINTFORMW 사토리는 뾰루퉁해져선 쏘아붙여왔다...
+						CASE 2
+							PRINTFORMW 「...오랜만이에요...」
+							PRINTFORMW 「그렇게 가까이 살면서 며칠씩이나 얼굴조차 못 보다니...」
+					ENDSELECT
+				ELSE
+					SELECTCASE RAND:3
+						CASE 0
+							PRINTFORMW 「...오랜만이네요」
+							PRINTFORMW 「정말이지, 가까이 살면서도 이리 못볼줄이야」
+							PRINTFORMW 사토리는 약간 부루퉁한 표정으로 말해왔다...
+						CASE 1
+							PRINTFORMW 「흐으으응...이게 얼마만에 보는 얼굴이람」
+							PRINTFORMW 「뭔가 숨기는거라도 있나요? 왜 피하는거죠?」
+							PRINTFORMW 사토리는 많이 삐졌는지 틱틱거리고 있다...
+						CASE 2
+							PRINTFORMW 「어라라, 안녕하세요...」
+							PRINTFORMW 「요 며칠 얼굴도 못봤던거 같은데...」
+							PRINTFORMW 어쩐지 섭섭해보이는 표정이다...
+					ENDSELECT
+				ENDIF
+			ENDIF
+			RETURN 1
+		ENDIF
 		IF MARK:반발각인 == 3
 			IF TALENT:연인
 				SELECTCASE RAND:3

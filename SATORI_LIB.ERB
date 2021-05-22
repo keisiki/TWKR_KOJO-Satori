@@ -164,8 +164,11 @@ IF MAIN_MAP == 9&&CFLAG:초기위치 == 919&&CFLAG:MASTER:초기위치 == 919
 ELSEIF MAIN_MAP == 9&&CFLAG:초기위치 == 919&&(CFLAG:MASTER:초기위치 >= 901 && CFLAG:MASTER:초기위치 >= 930)
     ;지령전에 산다
     RETURNF 2
-ELSEIF (MAIN_MAP == 0 || MAIN_MAP == 13 || MAIN_MAP == 14) &&CFLAG:초기위치 == CFLAG:MASTER:초기위치
-    ;신사, 주택, 저택에서 같이 산다
+ELSEIF (MAIN_MAP == 13 || MAIN_MAP == 14) &&CFLAG:저택에거주
+    ;주택, 저택에서 같이 산다
+    RETURNF 3
+ELSEIF FLAG:더부살이캐릭터 == [[사토리]]
+    ;더부살이중이다(오두막에 산다)
     RETURNF 3
 ELSEIF MAIN_MAP == 9&&CFLAG:초기위치 == 919
     ;지저에 살지만 지령전엔 안 삼
@@ -607,4 +610,52 @@ ELSEIF ARGS == "팬티어디에쓰려고"
             PRINTFORMW 「대답 안 한다는건...별 생각없이 그냥 가지고 싶어서, 라는건가요」
             PRINTFORMW 「굳이 읽진 않을게요, 읽고 싶진 않아...」
     ENDSELECT
+    CASE "오랜만에외출처에서마주침"
+        IF TALENT:연인
+            SELECTCASE RAND:2
+                CASE 0
+                    IF CFLAG:MASTER:현재위치 / 100 == 9
+                        PRINTFORMW 「...오랜만이에요」
+                        PRINTFORMW 「그동안 바빴나요? 한번쯤은 얼굴 비춰줘도 좋았을텐데」
+                        PRINTFORMW 사토리는 굉장히 삐친것 같은 표정으로 말해왔다...
+                    ELSE
+                        PRINTFORMW 「...이런데서 다 보네요」
+                        PRINTFORMW 「오랜만이에요, 요 근래 얼굴도 못 봤는데」
+                        PRINTFORMW 사토리는 굉장히 삐친것 같은 말투다...
+                    ENDIF
+                CASE 1
+                    IF CFLAG:MASTER:현재위치 / 100 == 9
+                        PRINTFORMW 「아, 드디어 와줬다」
+                        PRINTFORMW 사토리는 %마스터를% 보곤 종종걸음으로 달려와 품에 안겼다
+                        PRINTFORMW 「걱정했다구요? 무슨일이라도 있나...」
+                        PRINTFORMW 「다음부터는 이렇게 오래 내버려두지 마세요...」
+                    ELSE
+                        PRINTFORMW 「어라, 여기서 뵐 줄은 몰랐는데」
+                        PRINTFORMW 「그동안 코빼기도 안 보이더니 이런데 있을줄이야」
+                        PRINTFORMW 사토리는 냉담한 표정으로 말해왔다...
+                    ENDIF
+            ENDSELECT
+        ELSEIF TALENT:연모||TALENT:애욕
+            SELECTCASE RAND:2
+                CASE 0
+                    IF CFLAG:MASTER:현재위치 / 100 == 9
+                        PRINTFORMW 「앗...」
+                        PRINTFORMW %마스터를% 발견한 사토리는 일순간 굉장히 기뻐보이는 표정을 지어보였다
+                        PRINTFORMW 「아, 안녕하세요, 오랜만이에요?」
+                        PRINTFORMW 그러나 이내 평소의 표정으로 되돌아갔다...
+                    ELSE
+                        PRINTFORMW 「어라, 이런데서 뵐줄은 몰랐는데」
+                        PRINTFORMW 「오랜만이에요, 그동안 잘 지냈나요?」
+                        PRINTFORMW 사토리는 묘하게 밝아보이는 표정으로 말을 건내왔다...
+                    ENDIF
+                CASE 1
+                    IF CFLAG:MASTER:현재위치 / 100 == 9
+                        PRINTFORMW 「오랜만이에요 %MASTERNAME:49%, 잘 지내셨나요?」
+                        PRINTFORMW 사토리는 %마스터를% 발견하곤 종종걸음으로 다가와 말을 걸어왔다...
+                    ELSE
+                        PRINTFORMW 「희한한 데서 만났네요, 잘 지냈나요?」
+                        PRINTFORMW 「요새 잘 안보이길래 무슨 일이라도 있었나 해서요」
+                    ENDIF
+            ENDSELECT
+        ENDIF
 ENDIF
