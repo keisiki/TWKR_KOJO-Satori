@@ -4838,6 +4838,61 @@ IF LOCAL
 	;-------------------------------------------------
 	IF LOCAL:1 && ARG == 3
 		;PRINTFORMW 「」
+		IF CFLAG:1600
+			IF MARK:반발각인 == 3
+				IF TALENT:연인
+					SELECTCASE RAND:3
+						CASE 0
+							PRINTFORMW 「엣...저기, 잠깐...」
+							PRINTFORMW 사토리는 굉장히 실망한듯한 표정이다...
+						CASE 1
+							PRINTFORMW 「......」
+							PRINTFORMW 사토리는 떠나가는 %마스터의% 등을 뚫어져라 바라보고 있다...
+						CASE 2
+							PRINTFORMW 「...어째서...」
+							PRINTFORMW 사토리는 토라진듯 하다...
+					ENDSELECT
+				ELSE
+					SELECTCASE RAND:3
+						CASE 0
+							PRINTFORMW 「......」
+							PRINTFORMW 사토리는 지나쳐가는 %마스터를% 애써 무시하려 하고 있다...
+						CASE 1
+							PRINTFORMW 「앗...」
+							PRINTFORMW 사토리는 지나쳐가는 %마스터를% 보곤 어쩐지 복잡스런 표정을 짓고 있다...
+						CASE 2
+							PRINTFORMW 「...이제는 말도 섞기 싫다는건가요...」
+							PRINTFORMW 사토리는 울적해 보이는 표정으로 지나쳐가는 %마스터의% 등 뒤를 바라보고 있다...
+					ENDSELECT
+				ENDIF
+			ELSEIF TALENT:연인
+				SELECTCASE RAND:3
+					CASE 0
+						PRINTFORMW 「......」
+						PRINTFORMW 사토리는 말없이 %마스터를% 바라볼 뿐이었다...
+					CASE 1
+						PRINTFORMW 「...너무해...」
+						PRINTFORMW 사토리는 서운해보이는 표정이다...
+					CASE 2
+						PRINTFORMW 「엣...저기...」
+						PRINTFORMW 사토리는 말도없이 지나간 %마스터를% 보고 잔뜩 토라져버린것 같다...
+				ENDSELECT
+			ELSE
+				SELECTCASE RAND:3
+					CASE 0
+						PRINTFORMW 「......」
+						PRINTFORMW 사토리는 입술을 잘근잘근 씹고 있다...
+					CASE 1
+						PRINTFORMW 「...인사라도 할 수 있었잖아...」
+						PRINTFORMW 무어라 작게 중얼거리는 소리가 들렸지만 제대로 들리지 않았다
+					CASE 2
+						PRINTFORMW 「......」
+						PRINTFORMW 사토리는 어쩐지 복잡스러운 표정을 짓고 있다
+				ENDSELECT
+			ENDIF
+			TALENT:기분 = -1
+			RETURN 1
+		ENDIF
 		IF MARK:반발각인 == 3
 			IF TALENT:연인
 				SELECTCASE RAND:3
