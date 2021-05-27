@@ -1,0 +1,295 @@
+﻿;===========================================
+;사토리 전용 회화 함수
+;
+;커맨드 파일의 길이가 너무 길어지면 디버그등에 애로사항이 크니까, 별로 복잡한 기능을 쓰지 않는 회화는 이쪽에 분리시켜둔다
+;도레미 구상의 제조기법을 참고하여서, 여러 대사함수를 만들어두고 어울리는 대사함수를 로드하는 방식으로
+;===========================================
+
+;순정TW에선 반발각인 3는 대화를 못하므로 고려를 하지 않아도 좋다
+;하지만 텍붕이 대응을 하려면 있는게 좋겠지, 그리고 회화 패턴을 다른곳에서 유용할수도 있으니까
+;그런고로 기본 대사를 만들고 나서 따로 반발각인 대사를 따로 다른 함수로 만들어 놓는다
+;각 패턴마다 최소 두줄, 기왕이면 3줄, 많으면 5줄까지도 가 보자
+;그리고 최소 40패턴은 넣읍시다
+
+[SKIPSTART]
+;SUMIKOIMI ROOM이 없는 맵도 있지만 언젠가 패치로 추가될수 있으므로
+SELECTCASE MAIN_MAP
+    CASE 0
+        ;신사
+        IF FLAG:더부살이캐릭터 != 49
+
+        ELSE
+            
+        ENDIF
+    CASE 1
+        ;절
+        IF FLAG:더부살이캐릭터 != 49
+
+        ELSE
+            
+        ENDIF
+    CASE 2
+        ;마을
+        IF FLAG:더부살이캐릭터 != 49
+
+        ELSE
+            
+        ENDIF
+    CASE 3
+        ;홍마관
+        IF FLAG:더부살이캐릭터 != 49
+
+        ELSE
+            
+        ENDIF
+    CASE 4
+        ;죽림
+        IF FLAG:더부살이캐릭터 != 49
+
+        ELSE
+            
+        ENDIF
+    CASE 5
+        ;마법의 숲
+        IF FLAG:더부살이캐릭터 != 49
+
+        ELSE
+            
+        ENDIF
+    CASE 6
+        ;삼도천
+        IF FLAG:더부살이캐릭터 != 49
+
+        ELSE
+            
+        ENDIF
+    CASE 7
+        ;산록
+        IF FLAG:더부살이캐릭터 != 49
+
+        ELSE
+            
+        ENDIF
+    CASE 8
+        ;산정
+        IF FLAG:더부살이캐릭터 != 49
+
+        ELSE
+            
+        ENDIF
+    CASE 9
+        ;지저
+        IF FLAG:더부살이캐릭터 != 49
+
+        ELSE
+            
+        ENDIF
+    CASE 10
+        ;달
+        IF FLAG:더부살이캐릭터 != 49
+
+        ELSE
+            
+        ENDIF
+    CASEELSE
+        ;아마도 주택
+        IF !CFLAG:저택에거주&&FLAG:더부살이캐릭터 != 49
+
+        ELSE
+            
+        ENDIF
+ENDSELECT
+[SKIPEND]
+
+@ST_통상회화
+;이 패턴에서는 통상적인 대화를 합니다
+;함락계마다 변화 없음, 넣으려면 넣을수도 있긴 하지만 뭐...
+
+;PRINTFORMW 「」
+;일단은 나오는 만큼만 잡아두자
+SELECTCASE RAND:6 ; RAND:40
+    CASE 0
+        IF !CFLAG:저택에거주&&FLAG:더부살이캐릭터 != 49
+            PRINTFORMW 「가끔 살다보면 지저 밖에서 살고 싶다는 생각도 들어요」
+            PRINTFORMW 「...주로 오니들이 문 앞에 토해놨을때 말이죠」
+        ELSE
+            PRINTFORMW 「지저에서 나오니 좋은건 하나 있네요」
+            PRINTFORMW 「...밤마다 난리치는 오니들이 없다는거?」
+        ENDIF
+        PRINTFORMW 사토리는 씁쓸하게 웃어보였다...
+    CASE 1
+        PRINTFORMW 「코이시는 늘상 밖으로 쏘다니곤 했죠」
+        PRINTFORMW 「그래도 요즘엔 조금 자중해주는거 같긴 하지만...」
+        PRINTFORMW 「어쩔때는 두어달정도 실종된적도 있다니깐요?」
+        IF CFLAG:38:현재위치 == CFLAG:현재위치
+            PRINTFORMW 『에, 그랬던가?』
+            PRINTFORMW 코이시는 고개를 갸웃거리고 있다...
+        ENDIF
+    CASE 2
+        PRINTFORMW 「솔직히 지령전은 조금 지저분 하죠...」
+        PRINTFORMW 「충동적으로 애완동물을 늘려버려서 그런걸까나」
+        PRINTFORMW 「치워도치워도 금새 털투성이에, 먼지가 풀풀...」
+        PRINTFORMW 사토리는 투덜거려왔다...
+    CASE 3
+        SELECTCASE MAIN_MAP
+            CASE 0
+                ;신사
+                IF FLAG:더부살이캐릭터 != 49
+                    PRINTFORMW 「요즘 신사쪽은 어떤가요?」
+                    PRINTFORMW 「지저는 원체 소식이 느리니 뭔 일이 있어도 잘 모르거든요」
+                ELSE
+                    PRINTFORMW 「여기서 사는것도 나름 괜찮네요」
+                    PRINTFORMW 「...뭐어, 참배객이 없는게 제 탓은 아니겠죠」
+                ENDIF
+            CASE 1
+                ;절
+                IF FLAG:더부살이캐릭터 != 49
+                    PRINTFORMW 「그나저나 절에선 어떤 일이 있었나요?」
+                    PRINTFORMW 「가끔 코이시를 데리러 갈때 말고는 그닥 알 길이 없단 말이죠, 신문은 제대로 오지도 않고」
+                    PRINTFORMW 사토리는 호기심 가득한 눈으로 %마스터를% 바라보고 있다...
+                ELSE
+                    PRINTFORMW 「절에서 사는것도 나름 나쁘진 않네요」
+                    PRINTFORMW 「...그치만 시키는일이 많은건 별로일지도, 게다가 사심이 다 드러난단 말이지...」
+                ENDIF
+            CASE 2
+                ;마을
+                IF FLAG:더부살이캐릭터 != 49
+                    PRINTFORMW 「마을에선 무슨 일이 있었나요?」
+                    PRINTFORMW 「뭐어, 신문을 통해 간간히 소식이 들리긴 해도...원체 믿을수가 있어야죠 그게」
+                    PRINTFORMW 사토리는 멋쩍게 웃어보였다...
+                ELSE
+                    PRINTFORMW 「마을도 적응되니 살만 하네요」
+                    PRINTFORMW 「인쇄도 편하고, 후후...」
+                ENDIF
+            CASE 3
+                ;홍마관
+                IF FLAG:더부살이캐릭터 != 49
+                    PRINTFORMW 「그쪽은 요즘 어떤가요?」
+                    PRINTFORMW 「지저는 워낙 소식이 안 들어오니 잘 모르겠단 말이죠, 직접 가긴 좀 멀고」
+                ELSE
+                    PRINTFORMW 「여기도 나름 괜찮은 곳 같아요, 딱 하나만 빼면 말이죠」
+                    PRINTFORMW 「...동물들이 없어...」
+                    PRINTFORMW 사토리는 약간 시무룩한 표정이다...
+                ENDIF
+            CASE 4
+                ;죽림
+                IF FLAG:더부살이캐릭터 != 49
+                    PRINTFORMW 「그쪽은 요즘 어떤가요?」
+                    PRINTFORMW 「뭐어, 간간히 들리고는 있지만...아무래도 소식이 느리니까요」
+                    PRINTFORMW 「...그래서, 토끼들은 아직 잘 있겠죠?」
+                ELSE
+                    PRINTFORMW 「여기도 나름 괜찮은거 같네요, 공기 좋고, 잔잔하고」
+                    PRINTFORMW 「무엇보다도 토끼들...후아아...♥」
+                ENDIF
+            CASE 5
+                ;마법의 숲
+                IF FLAG:더부살이캐릭터 != 49
+                    PRINTFORMW 「그쪽은 요즘 어떤가요?」
+                    PRINTFORMW 「들를 일이 거의 없다보니 잘 모르겠네요」
+                ELSE
+                    PRINTFORMW 「여기에 있으면 새삼 희한한게 많이 보여요」
+                    PRINTFORMW 「날아다닌 발광 버섯이라던가...」
+                ENDIF
+            CASE 6
+                ;삼도천
+                IF FLAG:더부살이캐릭터 != 49
+                    PRINTFORMW 「지옥쪽은 괜찮은가요?」
+                    PRINTFORMW 「그쪽 소식은 별로 들리는것도 없거든요...」
+                ELSE
+                    PRINTFORMW 「피안은 조용해서 좋네요」
+                    PRINTFORMW 「원령보다 다들 조용조용하고, 다루기도 쉽고...」
+                ENDIF
+            CASE 7
+                ;산록
+                IF FLAG:더부살이캐릭터 != 49
+                    PRINTFORMW 「산은 좀 어떤가요?」
+                    PRINTFORMW 「요즘 지저 온천 수온을 보면 분출이라도 할것만 같은데, 아직은 괜찮나요?」
+                ELSE
+                    PRINTFORMW 「산에 돌아온건 참 오랜만인거 같네요」
+                    PRINTFORMW 「...별로 변한건 없는거 같지만」
+                ENDIF
+            CASE 8
+                ;산정
+                IF FLAG:더부살이캐릭터 != 49
+                    PRINTFORMW 「산은 좀 어떻던가요?」
+                    PRINTFORMW 「요즘 지저 온천이 심상찮은게 금방이라도 분출할것만 같단 말이죠...아직은 괜찮은가요?」
+                ELSE
+                    PRINTFORMW 「산도 변한건 별로 없네요」
+                    PRINTFORMW 「그래도 신사 하나가 들어서니 좀 더 북적해진건 같지만」
+                ENDIF
+            CASE 9
+                ;지저
+                PRINTFORMW 「지저엔 지상의 요괴가 안 들어오기로 한거 같은데」
+                PRINTFORMW 「사실 그런 규칙 지키는 사람이 있는가 싶기도 하네요...」
+                PRINTFORMW 「뭐, 문제될건 없겠죠」
+            CASE 10
+                ;달
+                IF FLAG:더부살이캐릭터 != 49
+                    PRINTFORMW 「그쪽은 좀 어떤가요?」
+                    PRINTFORMW 「다른곳은 몰라도 달은 전혀 소식이 안 들어오거든요...」
+                    PRINTFORMW 사토리는 호기심에 찬 눈으로 바라보고 있다...
+                ELSE
+                    PRINTFORMW 「의외로 달에 들어와 살아도 별 말이 없네요」
+                    PRINTFORMW 「달토끼들도 만져볼수 있음 좋으련만」
+                ENDIF
+            CASEELSE
+                ;아마도 주택
+                IF !CFLAG:저택에거주&&FLAG:더부살이캐릭터 != 49
+                    PRINTFORMW 「요즘 어떻게 지내시나요?」
+                    PRINTFORMW 사토리는 호기심 가득한 눈으로 바라보고 있다...
+                ELSE
+                    PRINTFORMW 「살기 좋고, 나름대로 만족스럽긴 한데...」
+                    PRINTFORMW 「...동물들이 없는건 조금 불만일지도?」
+                ENDIF
+            ENDSELECT
+    CASE 4
+        IF TALENT:38:연모&&!TALENT:38:연인
+            PRINTFORMW 「그, 제 동생, 코이시랑은 어떤가요...?」
+            PRINTFORMW 「그게...요즘 %사마스터의% 대한 얘기만 연신 한단 말이죠」
+        ELSE
+            PRINTFORMW 「나중에라도 코이시가 이상한데 돌아다니고 있는걸 보신다면 꼭 데려와 주세요」
+            PRINTFORMW 「이리저리 돌아다니면서 사고치고 다니면 머리가 지끈거리거든요」
+            IF CFLAG:38:현재위치 == CFLAG:현재위치
+                PRINTFORMW 『그 정도는 아니다 뭐』
+                PRINTFORMW 코이시는 볼을 부풀렸다...
+            ENDIF
+        ENDIF
+    CASE 5
+        IF CFLAG:6100
+            PRINTFORMW 「가끔 지상이 지저보다 희한한게 많아보여요」
+            PRINTFORMW 「팬티가 하늘을 날질 않나...이상한 연기가 풀풀 피어오른다던가...」
+        ELSE
+            PRINTFORMW 「지저 밖에선 이상 기후도 자주 난다는게 사실인가요?」
+            PRINTFORMW 「이상한 분홍 안개라던가...팬티가 날아다닌다던가...」
+        ENDIF
+    CASE 6
+
+    CASE 7
+
+    CASE 8
+
+    CASE 9
+
+    CASE 10
+        
+    CASE 11
+
+    CASE 12
+
+    CASE 13
+
+    CASE 14
+
+    CASE 15
+
+    CASE 16
+
+    CASE 17
+
+    CASE 18
+
+    CASE 19
+
+    CASE 20
+    
+ENDSELECT
