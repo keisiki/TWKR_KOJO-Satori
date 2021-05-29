@@ -102,12 +102,31 @@ ENDSELECT
 [SKIPEND]
 
 @ST_통상회화
+#DIM 이전대화, 2
+#DIM DYNAMIC 대화선택
+#DIM CONST 대화개수 = 11
+;다만들면 40개가 되겠지...
 ;이 패턴에서는 통상적인 대화를 합니다
 ;함락계마다 변화 없음, 넣으려면 넣을수도 있긴 하지만 뭐...
 
 ;PRINTFORMW 「」
 ;일단은 나오는 만큼만 잡아두자
-SELECTCASE RAND:6 ; RAND:40
+대화선택 = RAND:대화개수
+IF 대화선택 == 이전대화:0
+    ;같은 대사가 나올확률을 줄인다
+    대화선택 = RAND:대화개수
+ENDIF
+IF 대화선택 == 이전대화:1
+    ;같은 대사가 나올확률을 줄인다
+    대화선택 = RAND:대화개수
+    IF 대화선택 == 이전대화:0
+        ;같은 대사가 나올확률을 줄인다
+        대화선택 = RAND:대화개수
+    ENDIF
+ENDIF
+이전대화:1 = 이전대화:0
+이전대화:0 = 대화선택
+SELECTCASE 대화선택
     CASE 0
         IF !CFLAG:저택에거주&&FLAG:더부살이캐릭터 != 49
             PRINTFORMW 「가끔 살다보면 지저 밖에서 살고 싶다는 생각도 들어요」
@@ -137,9 +156,12 @@ SELECTCASE RAND:6 ; RAND:40
                 IF FLAG:더부살이캐릭터 != 49
                     PRINTFORMW 「요즘 신사쪽은 어떤가요?」
                     PRINTFORMW 「지저는 원체 소식이 느리니 뭔 일이 있어도 잘 모르거든요」
+                    PRINTFORMW 「...오린한텐 툇마루에서 조는 기억뿐이고」
                 ELSE
                     PRINTFORMW 「여기서 사는것도 나름 괜찮네요」
                     PRINTFORMW 「...뭐어, 참배객이 없는게 제 탓은 아니겠죠」
+                    PRINTFORMW 「여기야 원래부터 요괴신사잖아요?」
+                    PRINTFORMW 사토리는 키득키득거리며 말해왔다
                 ENDIF
             CASE 1
                 ;절
@@ -149,7 +171,8 @@ SELECTCASE RAND:6 ; RAND:40
                     PRINTFORMW 사토리는 호기심 가득한 눈으로 %마스터를% 바라보고 있다...
                 ELSE
                     PRINTFORMW 「절에서 사는것도 나름 나쁘진 않네요」
-                    PRINTFORMW 「...그치만 시키는일이 많은건 별로일지도, 게다가 사심이 다 드러난단 말이지...」
+                    PRINTFORMW 「...그치만 시키는일이 많은건 별로일지도, 게다가 주지라는 사람이 사심이 다 드러난단 말이지...」
+                    PRINTFORMW 사토리는 소근소근 말해왔다..
                 ENDIF
             CASE 2
                 ;마을
@@ -236,9 +259,10 @@ SELECTCASE RAND:6 ; RAND:40
                 ;아마도 주택
                 IF !CFLAG:저택에거주&&FLAG:더부살이캐릭터 != 49
                     PRINTFORMW 「요즘 어떻게 지내시나요?」
+                    PRINTFORMW 「멋진 저택에서 사는데, 재밌는 이야기라도 없나요?」
                     PRINTFORMW 사토리는 호기심 가득한 눈으로 바라보고 있다...
                 ELSE
-                    PRINTFORMW 「살기 좋고, 나름대로 만족스럽긴 한데...」
+                    PRINTFORMW 「이 집도 꽤나 살기 좋고, 나름대로 만족스럽긴 한데...」
                     PRINTFORMW 「...동물들이 없는건 조금 불만일지도?」
                 ENDIF
             ENDSELECT
@@ -263,15 +287,60 @@ SELECTCASE RAND:6 ; RAND:40
             PRINTFORMW 「이상한 분홍 안개라던가...팬티가 날아다닌다던가...」
         ENDIF
     CASE 6
-
+        IF TALENT:연모||TALENT:애욕
+            PRINTFORMW 「...다른 사람이랑 얘기할땐 금방 질려버리는데」
+            PRINTFORMW 「%사마스터랑% 이야기할땐 그런게 없어서 좋아요」
+            PRINTFORMW 사토리는 희미한 웃음을 보내왔다
+        ELSE
+            PRINTFORMW 「상대가 할 말을 미리 안다는건 생각보다 고역이랍니다」
+            PRINTFORMW 「똑같은 이야기를 두 번 듣는 셈이니까요」
+            PRINTFORMW 「싫은 얘기도 좋은 얘기도 상관없이...」
+        ENDIF
     CASE 7
-
+        PRINTFORMW 「가끔 코이시가 제 책상에서 이것저것 훔쳐가는거 같은데」
+        PRINTFORMW 「...원고나 그런건 상관 없으니까 혹시라도, 회계장부를 들고 다니는걸 보시면 저한테 갖다주세요」
+        PRINTFORMW 「한번 잃어버리면 다시쓰는게 상당히 귀찮아지니까...으으...」
+        IF CFLAG:38:현재위치 == CFLAG:현재위치
+            PRINTFORMW 『그러면 원고는 맘대로 훔쳐도 되는거야?』
+            PRINTFORMW 「안되는거 알잖니?」
+            PRINTFORMW 『에- 야박해라』
+        ENDIF
     CASE 8
-
+        PRINTFORMW 「제 애완동물들도 저를 그닥 좋아하진 않는거 같아요」
+        PRINTFORMW 「...으으음...딱히 그 아이들한테 미움받을 일은 안 한거 같은데」
+        PRINTFORMW 「......몇 번 무턱대고 귀나 배를 쓰다듬은거 때문인가...」
     CASE 9
-
+        PRINTFORMW 「원령들도 알고보면 쓸모가 많단 말이죠」
+        PRINTFORMW 「다루는법도 방법만 알면 간단하고」
+        PRINTFORMW 「...가끔 예외가 있긴 하지만 대부분은 겁 좀 주면 도망가니까요」
     CASE 10
-        
+        SELECTCASE DAY:2
+            CASE 1
+                PRINTFORMW 「서드아이를 달고 태어난건 하나도 불만이 없어요」
+                PRINTFORMW 「이런 때에 지상에 있다면 꽃가루 때문에 고생하는게 문제일뿐」
+                PRINTFORMW 「...감을수도 없는 커다란 눈동자에 한가득 꽃가루가 들이치는건 유쾌한 경험은 아니죠」
+                IF CFLAG:현재위치 / 100 == 9
+                    PRINTFORMW 「지저에 있으면 상관없는 이야기지만요」
+                ENDIF
+            CASE 2
+                PRINTFORMW 「더운 여름엔 물놀이-겠지만...」
+                PRINTFORMW 「사람이 몰리는 곳에선 눈병이 옮을 가능성이 크지요」
+                PRINTFORMW 「...특히나 이런 커다랗고 수경도 없는 눈이라면 더더욱」
+                PRINTFORMW 사토리는 자신의 서드아이를 만지작거렸다...
+            CASE 3
+                IF CFLAG:현재위치 / 100 == 9
+                    PRINTFORMW 「지금 지상은 가을이겠죠...」
+                    PRINTFORMW 「단풍이니 오곡백과니 하는건 지저랑은 관련없는 이야기네요」
+                    PRINTFORMW 「...아니지, 지상에서 들여온 쌀로 청주 담그느라 바쁜 오니들의 모습이 있었죠」
+                ELSE
+                    PRINTFORMW 「지저에선 단풍같은걸 볼 일이 없어요」
+                    PRINTFORMW 「사철 내내 거기서 거기인 날씨니까...」
+                ENDIF
+            CASE 4
+                PRINTFORMW 「겨울...이맘때면 지저도 상당히 추워지죠」
+                PRINTFORMW 「작열 지옥의 열기가 있긴 해도 말이죠, 거리가 있다보니 별 체감은 안 가거든요」
+                PRINTFORMW 「그래서 겨울만 되면 애완동물들의 틈바구니에서 자는게 버릇이 되버렸네요」
+        ENDSELECT
     CASE 11
 
     CASE 12
