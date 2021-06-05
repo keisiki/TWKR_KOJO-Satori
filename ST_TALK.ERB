@@ -102,9 +102,9 @@ ENDSELECT
 [SKIPEND]
 
 @ST_통상회화
-#DIM 이전대화, 2
+#DIM 이전대화, 4
 #DIM DYNAMIC 대화선택
-#DIM CONST 대화개수 = 36
+#DIM CONST 대화개수 = 40
 ;다만들면 40개가 되겠지...
 ;이 패턴에서는 통상적인 대화를 합니다
 ;함락계마다 변화 없음, 넣으려면 넣을수도 있긴 하지만 뭐...
@@ -122,6 +122,34 @@ IF 대화선택 == 이전대화:1
     IF 대화선택 == 이전대화:0
         ;같은 대사가 나올확률을 줄인다
         대화선택 = RAND:대화개수
+    ENDIF
+ENDIF
+IF 대화선택 == 이전대화:2
+    ;같은 대사가 나올확률을 줄인다
+    대화선택 = RAND:대화개수
+    IF 대화선택 == 이전대화:1
+        ;같은 대사가 나올확률을 줄인다
+        대화선택 = RAND:대화개수
+        IF 대화선택 == 이전대화:0
+            ;같은 대사가 나올확률을 줄인다
+            대화선택 = RAND:대화개수
+        ENDIF
+    ENDIF
+ENDIF
+IF 대화선택 == 이전대화:3
+    ;같은 대사가 나올확률을 줄인다
+    대화선택 = RAND:대화개수
+    IF 대화선택 == 이전대화:2
+        ;같은 대사가 나올확률을 줄인다
+        대화선택 = RAND:대화개수
+        IF 대화선택 == 이전대화:1
+            ;같은 대사가 나올확률을 줄인다
+            대화선택 = RAND:대화개수
+            IF 대화선택 == 이전대화:0
+                ;같은 대사가 나올확률을 줄인다
+                대화선택 = RAND:대화개수
+            ENDIF
+        ENDIF
     ENDIF
 ENDIF
 이전대화:1 = 이전대화:0
@@ -444,11 +472,83 @@ SELECTCASE 대화선택
         PRINTFORMW 「그런거 치곤 왕래가 상당히 자유로운 편인거 같지만...」
         PRINTFORMW 「...대결계도 맘만 먹으면 왔다갔다 하는 판국이니 별 차이 없으려나」
     CASE 36
-
+        PRINTFORMW 「펫들의 털을 정리하다보면 상당히 아깝다는 생각도 들어요」
+        PRINTFORMW 「계속 모았으면 지금쯤 옷장 하나쯤은 가득 채우지 않았을까- 싶을 정도로 쌓이니까요」
     CASE 37
-
+        PRINTFORMW 「지저에도 분명히 기후가 있지요, 지금은 잘 안보이지만」
+        PRINTFORMW 「...그러면 지저에 내리는 비나 눈은, 천장에서 떨어지는 석회수인걸까요...아니면...」
+        PRINTFORMW 「...설마 오니들의 땀은...아니겠죠?」
     CASE 38
-
+        IF ST_식사이름 != "" && ST_대사플래그:1 + 45 <= TIME && ST_대사플래그:2 != -1
+            IF ST_대사플래그:2 == 1 && RAND:2 == 0
+                PRINTFORMW 「아까 먹은 %ST_식사이름%...굉장히 맛있었어요」
+                PRINTFORMW 「다음에 또 먹을수 있을라나요, 후후...」
+                PRINTFORMW 사토리는 굉장히 만족스러워 보이는 표정이다...
+            ELSE
+                PRINTFORMW 「아까먹은 %ST_식사이름%...맛있었어요...」
+                SELECTCASE ST_식사이름
+                    CASE "오믈렛"
+                        PRINTFORMW 「오믈렛이야 가끔 펫들이 떠넘긴 알로 해 먹지만, 남이 해주는게 역시 더 맛있단 말이죠」
+                    CASE "야채볶음"
+                        PRINTFORMW 「지저에선 야채는 구하기 번거로웠으니까요」
+                        PRINTFORMW 「가끔 먹으면 상당히 신선한 맛이죠」
+                    CASE "된장국"
+                        PRINTFORMW 「가정적인 맛이 일품이야」
+                        PRINTFORMW 「화려한 맛은 안 나도 이런게 그리워지는 때가 있는법이죠」
+                    CASE "햄버그"
+                        PRINTFORMW 「어린 아이 같다는 느낌도 들지마는...」
+                        PRINTFORMW 「그래도 맛있는걸요, 그럼 된거지...후후」
+                    CASE "우동", "소바", "소면", "라면"
+                        PRINTFORMW 「면요리는 역시 먹는 재미가 있다니깐요」
+                        PRINTFORMW 「후룩후룩 소리와 함께 들어오는 면발의 감촉이 너무 좋아」
+                    CASE "스테이크"
+                        PRINTFORMW 「한입 먹으면 올라오는 풍미, 이런건 스테이크로만 느낄수 있죠」
+                        PRINTFORMW 「돼지고기론 그만큼의 풍미가 안 나」
+                    CASE "모짜렐라 치즈와 토마토의 샐러드"
+                        PRINTFORMW 「인살라타 카프레제, 간단한만큼 재료 품질이 중요한 요리죠」
+                        PRINTFORMW 「후후, 상당히 맛있었어요...」
+                    CASE "튀김"
+                        PRINTFORMW 「건강에 나쁘니 뭐니 해도, 튀기면 뭐든 맛있죠」
+                        PRINTFORMW 「바삭바삭한 식감과 기름의 풍미는 참을수가 없으니까요」
+                    CASE "고봉밥"
+                        PRINTFORMW 「잘 지은 밥은 역시 제일이죠」
+                        PRINTFORMW 「밥상의 주인이란 말이 아깝지 않아」
+                    CASE "채소절임 곱빼기밥"
+                        PRINTFORMW 「이런 담백한 식사도 상당히 좋지요」
+                        PRINTFORMW 「화려한 맛과는 또 다른 즐거움이 있으니까요」
+                    CASE "푸딩"
+                        PRINTFORMW 「...코이시도 상당히 푸딩을 좋아하죠」
+                        PRINTFORMW 「전엔 푸딩가지고 자주 싸우기도 했는데 말예요」
+                        PRINTFORMW 「이젠 싸우기도 전에 제 몫을 챙겨 달아나버리니 뭐라 할 수도 없고...」
+                        IF CFLAG:38:현재위치 == CFLAG:현재위치
+                            PRINTFORMW 『그치만 언니도 내꺼 자주 빼먹었잖아?』
+                            PRINTFORMW 코이시는 볼을 부풀렸다...
+                        ENDIF
+                    CASE "쿠키"
+                        PRINTFORMW 「가끔 티타임에 만들어주셨음 할 정도로 괜찮았어요」
+                    CASE "스시", "생선회"
+                        PRINTFORMW 「나름 만들기 번거로웠을텐데」
+                        PRINTFORMW 「훌륭한 솜씨였어요, 후후」
+                    CASEELSE
+                        PRINTFORMW 「후후, 잘 먹었어요, 고마워요」
+                        PRINTFORMW 사토리는 온화한 미소를 띄고 있다...
+                        SIF TALENT:기분 == -1
+                            TALENT:기분 = 0
+                ENDSELECT
+            ENDIF
+            VARSET ST_식사이름
+        ELSE
+            PRINTFORMW 「...입이 심심해지네요, 과자라도 먹을까나」
+            PRINTFORMW 「...라고 해도 딱히 집히는건 없고...흐으음...」
+        ENDIF
     CASE 39
-
+        IF FLAG:더부살이캐릭터 != 49 || MAIN_MAP != 10
+            PRINTFORMW 「요즘은 달로 왕래하기도 쉬워진 모양이네요」
+            PRINTFORMW 「레이무나 그 스키마 요괴가 고생고생하면서 가던거랑은 비교가 안될만큼 쉽게」
+            PRINTFORMW 「기술의 발전이란건 참 무서운거 같아요...」
+        ELSE
+            PRINTFORMW 「달에서 바라보는 지구란 또 오묘한 느낌이네요」
+            PRINTFORMW 「제 아무리 뛰어난 요괴니 뭐니 해도, 결국 점 하나보다도 자그마한 존재...」
+            PRINTFORMW 「약간은...소름조차 느껴질 정도로요」
+        ENDIF
 ENDSELECT

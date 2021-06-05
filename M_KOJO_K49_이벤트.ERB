@@ -29,6 +29,7 @@
 ;CFLAG:5000 반발각인 감소 이벤트 카운터
 ;CFLAG:5001 회화에서 반발각인 감소 이벤트 발동 트리거
 ;CFLAG:5005 오늘 대화 했다
+;CFLAG:5006 오늘 아나타가 마지막으로 대접한 식사
 ;CFLAG:5010 연속으로 만나지 못한 날 수
 ;CFLAG:5011 대화하지 못한 날 수
 ;CFLAG:5020 저택 동거 요청 했었다
@@ -17826,7 +17827,12 @@ IF LOCAL
 	CFLAG:1600 = 0
 	;PRINTFORMW 「」
 	IF CFLAG:초기위치 / 100 != 9
+		;지저 밖에서 사토리가 거주한 적이 있는가 판별
 		CFLAG:6100 = 1
+	ENDIF
+	IF ST_식사이름 != ""
+		VARSET ST_식사이름
+		ST_대사플래그:1 = 0
 	ENDIF
 	IF CALLNAME:MASTER == "당신"
 		MASTERNAME:49 = %CALLNAME:MASTER%
