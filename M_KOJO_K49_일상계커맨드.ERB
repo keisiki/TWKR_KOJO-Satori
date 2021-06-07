@@ -29,7 +29,11 @@ LOCAL = 1
 IF LOCAL
 	;ここに구上書いて下さい
 	;일단 임시로
-	CALL ST_통상회화
+	IF TCVAR:302
+		CALL ST_마스터회화불능
+	ELSE
+		CALL ST_통상회화
+	ENDIF
 	CFLAG:5005 = 1
 ENDIF
 RETURN 1
