@@ -573,18 +573,6 @@ IF 대화선택 == 이전대화:0
     ENDIF
 ENDIF
 
-[SKIPSTART]
-    IF MARK:반발각인 == 3&&!TALENT:연인 ; 원판에선 표시되지 않는다
-            
-    ELSEIF TALENT:연인
-
-    ELSEIF TALENT:사모||TALENT:애욕
-        
-    ELSE
-        
-    ENDIF
-[SKIPEND]
-
 SELECTCASE 대화선택
     CASE 0
         PRINTFORMW 「...구태여 할 말이 없다면, 무리해서 하지 않아도 좋아요」

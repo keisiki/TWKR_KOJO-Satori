@@ -29,10 +29,29 @@ LOCAL = 1
 IF LOCAL
 	;ここに구上書いて下さい
 	;일단 임시로
-	IF TCVAR:302
-		CALL ST_마스터회화불능
+	IF FIRSTTIME(SELECTCOM)
+		;첫 대화
+		IF CFLAG:6000
+			;전회차 연인 이상
+			PRINTFORMW 「...뭔가 할 말이라도 있나요?」
+			PRINTFORMW 사토리는 딱딱한 목소리로 말해왔다...
+			PRINTFORMW 「용건이 없으면 그냥 가 줬음 하는데요...」
+			PRINTFORMW 「...대화? 저랑요?」
+			PRINTFORMW 「......」
+			PRINTFORMW 사토리는 무언가 불만스러운듯이 %마스터를% 빤히 바라보고 있다...
+			PRINTFORMW 「...하아...알았어요, 그것뿐이라면...」
+		ELSE
+			PRINTFORMW 「...대화요? 저와?」
+			PRINTFORMW 「뭐, 딱히 상관은 없지만...」
+			PRINTFORMW 「사토리랑 대화하자고 나서는건 또 희한한 사람이네요...」
+			PRINTFORMW 사토리는 의아스러운 표정이다...
+		ENDIF
 	ELSE
-		CALL ST_통상회화
+		IF TCVAR:302
+			CALL ST_마스터회화불능
+		ELSE
+			CALL ST_통상회화
+		ENDIF
 	ENDIF
 	CFLAG:5005 = 1
 ENDIF
@@ -52,12 +71,149 @@ CALL M_KOJO_MESSAGE_COM_K49_301_1
 RETURN RESULT
 
 @M_KOJO_MESSAGE_COM_K49_301_1
+#DIM 이전대화, 2
+#DIM DYNAMIC 대화선택
+#DIM CONST 대화개수 = 6
+;이 패턴에서는 마스터와 차를 마실때 대사를 합니다
+;목표치는 13~15개쯤
+;차마시기 커맨드로 발동함
+;함락계마다 변화 있음
 ;-------------------------------------------------
 ;記入チェック（=0, 非表示、1, 表示）
-LOCAL = 0
+LOCAL = 1
 ;-------------------------------------------------
 IF LOCAL
-
+	IF FIRSTTIME(SELECTCOM)
+		;처음 차를 마신다
+		PRINTFORMW 「...차인가요? 아아, 감사합니다」
+		PRINTFORMW 사토리는 희미한 웃음을 띄며 차를 받았다...
+	ELSE
+		IF TFLAG:193 == -1
+			;실패시, 마시고는 입맛에 맞지 않다는것
+			SELECTCASE RAND:3 ; 늘려야할거 같기도 하다
+				CASE 0
+					PRINTFORMW 「...별로 생각 없네요」
+					PRINTFORMW 입을 뗀 사토리는 슬며시 찻잔을 밀었다...
+				CASE 1
+					PRINTFORMW 「...으음...딱히 마시고 싶지가 않네요......」
+				CASE 2
+					PRINTFORMW 「...지금은 마시고 싶지 않네요...」
+					PRINTFORMW 사토리는 찻잔을 되돌려 왔다...
+			ENDSELECT
+		ELSE
+			;성공/대성공
+			;PRINTFORMW 「」
+			대화선택 = RAND:대화개수
+			IF 대화선택 == 이전대화:0
+				;같은 대사가 나올확률을 줄인다
+				대화선택 = RAND:대화개수
+				IF 대화선택 == 이전대화:1
+					;같은 대사가 나올확률을 줄인다
+					대화선택 = RAND:대화개수
+				ENDIF
+			ENDIF
+			[SKIPSTART]
+				IF MARK:반발각인 == 3&&!TALENT:연인
+						
+				ELSEIF TALENT:연인
+					
+				ELSEIF TALENT:연모||TALENT:사모||TALENT:애욕
+					
+				ELSE
+					
+				ENDIF
+			[SKIPEND]
+			SELECTCASE 대화선택
+				CASE 0
+					PRINTFORMW 「차? 흐으음...네, 좋아요」
+					PRINTFORMW 「...어디서 나오는건진 모르겠지만...」
+					PRINTFORMW 사토리는 차를 꺼내는 %마스터를% 유심히 바라보고 있다...
+				CASE 1
+					IF MARK:반발각인 == 3&&!TALENT:연인
+						PRINTFORMW 「...뭐, 주신다면야 감사히...」
+						PRINTFORMW 「...그나저나 늘 차를 들고 다니는 건가요...?」
+					ELSEIF TALENT:연인
+						PRINTFORMW 「아, 감사합니다...」
+						PRINTFORMW 「역시 %사마스터가% 타 주는게 좋다니깐요」
+						PRINTFORMW 사토리는 희미하게 웃어보이고 있다...
+					ELSEIF TALENT:연모||TALENT:사모||TALENT:애욕
+						PRINTFORMW 「차인가요...? 감사합니다」
+						PRINTFORMW 「...후우...마침 목이 좀 마르던 참이었는데...」
+					ELSE
+						PRINTFORMW 「어라...차인가요?」
+						PRINTFORMW 「...고마워요」
+						PRINTFORMW 사토리는 희미하게 웃어보이며 차를 마시기 시작했다...
+					ENDIF
+				CASE 2
+					PRINTFORMW 「차인가요...」
+					SELECTCASE ABL:MASTER:기교 - ABL:기교
+						CASE IS > 3
+							PRINTFORMW 「%사마스터의% 차는 참 맛있단 말이죠」
+							PRINTFORMW 「언제 한번 배워보고 싶을 정도로요」
+							PRINTFORMW 「...뭐, 남이 타주는거라 맛있는걸지도 모르겠지만」
+						CASE IS > 1
+							PRINTFORMW 「후후, 감사히 마시겠습니다」
+							PRINTFORMW 사토리는 편안해 보이는 표정으로 차를 마시고 있다...
+						CASE IS > -2
+							PRINTFORMW 사토리는 차를 한 모금 마시곤 약간 떨떠름해 보이는 표정을 지어왔다...
+							PRINTFORMW 「으으음...조금 텁텁해...」
+							PRINTFORMW 「...그래도 나름 괜찮은 맛이니긴 하네요...」
+						CASE IS <= -2
+							PRINTFORMW 사토리는 차를 한모금 마시고는 이내 떨떠름해 보이는 표정이 되었다...
+							PRINTFORMW 「못 마실 정도는 아니지만...」
+							PRINTFORMW 「...너무 써...찻잎이 익어버린 걸까나...」
+							SIF TALENT:기분 == 1
+								TALENT:기분 = 0
+					ENDSELECT
+				CASE 3
+					PRINTFORMW 「후으음...차라...」
+					PRINTFORMW 「감사히 마시긴 하겠는데요...이거, 보온병이라도 늘상 들고 다니시는 건가요...?」
+					PRINTFORMW 사토리는 의아해 보이는 표정이다...
+				CASE 4
+					PRINTFORMW 「아, 감사합니다...」
+					IF CFLAG:현재위치 == CFLAG:초기위치 && (TALENT:연모 || TALENT:애욕 || TALENT:연인)
+						PRINTFORMW 「...그렇지, 차에 어울릴진 모르겠지만 과자라도 같이 드실래요?」
+						PRINTFORM 사토리는 어딘가에서 꺼내온 
+						SELECTCASE RAND:3
+							CASE 0
+								PRINTFORMW 쌀과자를 보여왔다
+								PRINTFORMW 조금 눅눅해졌지만 나름 맛이 있었다...
+								DOWNBASE:MASTER:체력 -= 50
+								DOWNBASE:체력 -= 50
+							CASE 1
+								PRINTFORMW 쿠키를 보여왔다
+								PRINTFORMW ...달콤하고 바삭한게 나름 맛이 있다...
+								DOWNBASE:MASTER:체력 -= 75
+								DOWNBASE:체력 -= 75
+							CASE 2
+								PRINTFORMW 양갱을 보여왔다
+								PRINTFORMW ...씁쓸한 차의 맛을 양갱이 덮어줘 한결 즐겁게 마실수 있었다
+								DOWNBASE:MASTER:체력 -= 100
+								DOWNBASE:MASTER:기력 -= 100
+								DOWNBASE:체력 -= 100
+								DOWNBASE:기력 -= 100
+						ENDSELECT
+					ELSE
+						PRINTFORMW 사토리는 조용히 차를 들이키고 있다...
+					ENDIF
+				CASE 5
+					PRINTFORMW 「차라...」
+					IF MARK:반발각인 == 3&&!TALENT:연인
+						PRINTFORMW 「...사실 커피가 더 좋은데 말이죠」
+						PRINTFORMW 사토리는 공연히 투덜거려왔다...
+					ELSEIF TALENT:연인
+						PRINTFORMW 「...갑자기 전에 오쿠가 물을 데우겠다고 사고치던게 생각나네요...」
+						PRINTFORMW 「그 아이, 의욕넘치는건 보기 좋지만 그러다 다치기라도 하면 어쩔려고 그러는지 참」
+					ELSEIF TALENT:연모||TALENT:사모||TALENT:애욕
+						PRINTFORMW 「솔직히 홍차가 더 좋긴 하지만」
+						PRINTFORMW 「가끔은 이렇게 말차도 괜찮은거 같기도 하네요...」
+					ELSE
+						PRINTFORMW 「...그러고보니 녹찻잎은 지령전에 별로 없었죠」
+						PRINTFORMW 「이참에 채워둘까...」
+					ENDIF
+			ENDSELECT
+		ENDIF
+	ENDIF
 ENDIF
 RETURN 1
 ;==================================================
