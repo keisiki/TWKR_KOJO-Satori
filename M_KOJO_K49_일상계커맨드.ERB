@@ -77,7 +77,7 @@ RETURN RESULT
 @M_KOJO_MESSAGE_COM_K49_301_1
 #DIM 이전대화, 2
 #DIM DYNAMIC 대화선택
-#DIM CONST 대화개수 = 11
+#DIM CONST 대화개수 = 15
 ;이 패턴에서는 마스터와 차를 마실때 대사를 합니다
 ;목표치는 13~15개쯤
 ;차마시기 커맨드로 발동함
@@ -94,7 +94,7 @@ IF LOCAL
 	ELSE
 		IF TFLAG:193 == -1
 			;실패시, 마시고는 입맛에 맞지 않다는것
-			SELECTCASE RAND:4 ; 늘려야할거 같기도 하다
+			SELECTCASE RAND:5 ; 늘려야할거 같기도 하다
 				CASE 0
 					PRINTFORMW 「...별로 생각 없네요」
 					PRINTFORMW 입을 뗀 사토리는 슬며시 찻잔을 밀었다...
@@ -112,6 +112,14 @@ IF LOCAL
 						PRINTFORMW 「...아하하...그다지 차를 마시고 싶은 기분은 아니어서...」
 					ELSE
 						PRINTFORMW 「...이건 조금 별론데...」
+					ENDIF
+				CASE 4
+					IF TCVAR:MASTER:특별한차
+						PRINTFORMW 「...차라리 우유랑 설탕이라도 잔뜩 넣어보지 그랬어요...?」
+						PRINTFORMW 사토리는 떨떠름한 표정이다...
+					ELSE
+						PRINTFORMW 「...녹차는 조금 더 낮은 온도로, 펄펄 끓는 물은 홍차에나 쓰는거예요」
+						PRINTFORMW 「반대로 하면 맛이 안 나는 법이라고요?」
 					ENDIF
 			ENDSELECT
 		ELSE
@@ -212,18 +220,23 @@ IF LOCAL
 					ENDIF
 				CASE 5
 					PRINTFORMW 「차라...」
-					IF MARK:반발각인 == 3&&!TALENT:연인
-						PRINTFORMW 「...사실 커피가 더 좋은데 말이죠」
-						PRINTFORMW 사토리는 공연히 투덜거려왔다...
-					ELSEIF TALENT:연인
-						PRINTFORMW 「...갑자기 전에 오쿠가 물을 데우겠다고 사고치던게 생각나네요...」
-						PRINTFORMW 「그 아이, 의욕넘치는건 보기 좋지만 그러다 다치기라도 하면 어쩔려고 그러는지 참」
-					ELSEIF TALENT:연모||TALENT:사모||TALENT:애욕
-						PRINTFORMW 「...솔직히 홍차가 더 좋긴 하지만」
-						PRINTFORMW 「가끔은 이렇게 말차도 괜찮은거 같기도 하네요...」
+					IF !TCVAR:MASTER:특별한차
+						IF MARK:반발각인 == 3&&!TALENT:연인
+							PRINTFORMW 「...사실 커피가 더 좋은데 말이죠」
+							PRINTFORMW 사토리는 공연히 투덜거려왔다...
+						ELSEIF TALENT:연인
+							PRINTFORMW 「...갑자기 전에 오쿠가 물을 데우겠다고 사고치던게 생각나네요...」
+							PRINTFORMW 「그 아이, 의욕넘치는건 보기 좋지만 그러다 다치기라도 하면 어쩔려고 그러는지 참」
+						ELSEIF TALENT:연모||TALENT:사모||TALENT:애욕
+							PRINTFORMW 「...솔직히 홍차가 더 좋긴 하지만」
+							PRINTFORMW 「가끔은 이렇게 말차도 괜찮은거 같기도 하네요...」
+						ELSE
+							PRINTFORMW 「...그러고보니 녹찻잎은 지령전에 별로 없었죠」
+							PRINTFORMW 「이참에 채워둘까...」
+						ENDIF
 					ELSE
-						PRINTFORMW 「...그러고보니 녹찻잎은 지령전에 별로 없었죠」
-						PRINTFORMW 「이참에 채워둘까...」
+						PRINTFORMW 「건강과 미용을 위해서 식후엔 한 잔의 홍차, 랬던가요...」
+						PRINTFORMW 「사실 식후에 바로 마시는 차는 건강에 나쁘다고도 하지만요」
 					ENDIF
 				CASE 6
 					PRINTFORMW 「...아, 차인가요...」
@@ -295,6 +308,37 @@ IF LOCAL
 					ELSE
 						PRINTFORMW 「후우...역시 녹차는 마시면 마음이 편해지는 기분이네요...」
 						PRINTFORMW 「커피나 홍차라는 확연히 다른 느낌으로다가 말이죠」
+					ENDIF
+				CASE 11
+					PRINTFORMW 「...읏...뜨거...」
+					PRINTFORMW 「예상보다 훨씬 뜨겁네요...혀를 데어버렸어...」
+					PRINTFORMW 사토리는 울상이 되었다...
+				CASE 12
+					IF TALENT:연모 || TALENT:애욕
+						PRINTFORMW 「...역시 차는 찻잎으로 우린게 근본이죠」
+						PRINTFORMW 「다시마차니, 현미차니...그런건 다 사파에 불과해」
+					ELSE
+						PRINTFORMW 「찻잎을 들고 다니시는 건가요, 아니면 티백인가요?」
+						PRINTFORMW 「...그리고 뜨거운물은 어디서 그렇게 휙휙 잘 꺼내는건가요...?」
+						PRINTFORMW 「...으으음...읽어봐도 안 보여...도대체 뭐야...」
+						PRINTFORMW 사토리는 인상을 쓰며 %마스터를% 연신 바라보고 있다...
+					ENDIF
+				CASE 13
+					IF TCVAR:MASTER:특별한차
+						PRINTFORMW 「홍차라, 가끔은 이런것도 좋죠」
+						PRINTFORMW 「...약간의 우유와 설탕이 있으면 더 좋겠지만, 쇼트 케이크 한 조각도 말이죠」
+					ELSE
+						PRINTFORMW 「찻잎은 어떤걸 쓰는건가요?」
+						PRINTFORMW 「기왕이면 집에 좀 챙겨두려고요」
+					ENDIF
+				CASE 14
+					IF TCVAR:MASTER:특별한차
+						PRINTFORMW 「홍차인가요...?」
+						PRINTFORMW 「잼 한 숟가락만 있으면 먹기 좋을거 같은데...그런것까지 가지고 계실리는 없겠죠...」
+					ELSE
+						PRINTFORMW 「차인가요...」
+						PRINTFORMW 「가끔은 차 한잔의 여유도 좋지요...」
+						PRINTFORMW 「그치만 곁들일 과자가 있었다면 좀 더 좋았을 것을」
 					ENDIF
 			ENDSELECT
 		ENDIF
