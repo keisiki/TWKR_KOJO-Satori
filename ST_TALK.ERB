@@ -152,6 +152,8 @@ IF 대화선택 == 이전대화:3
         ENDIF
     ENDIF
 ENDIF
+이전대화:3 = 이전대화:2
+이전대화:2 = 이전대화:1
 이전대화:1 = 이전대화:0
 이전대화:0 = 대화선택
 SELECTCASE 대화선택
@@ -572,6 +574,8 @@ IF 대화선택 == 이전대화:0
         대화선택 = RAND:대화개수
     ENDIF
 ENDIF
+이전대화:1 = 이전대화:0
+이전대화:0 = 대화선택
 
 SELECTCASE 대화선택
     CASE 0
@@ -660,3 +664,86 @@ SELECTCASE 대화선택
         PRINTFORMW 「굳이 힘들게 말하려고 하지 않아도 좋아요」
         PRINTFORMW 「생각이 안 나면 안 나는대로, 그냥 가만히 있어도 괜찮으니까요」
 ENDSELECT
+
+
+@ST_차타주기
+#DIM 이전대화, 2
+#DIM DYNAMIC 대화선택
+#DIM CONST 대화개수 = 3
+;이 패턴에서는 사토리가 차를 타 주는 구상이 나옵니다
+;함락계마다 변화 있음
+
+;PRINTFORMW 「」
+대화선택 = RAND:대화개수
+IF 대화선택 == 이전대화:0
+    ;같은 대사가 나올확률을 줄인다
+    대화선택 = RAND:대화개수
+    IF 대화선택 == 이전대화:1
+        ;같은 대사가 나올확률을 줄인다
+        대화선택 = RAND:대화개수
+    ENDIF
+ENDIF
+
+이전대화:1 = 이전대화:0
+이전대화:0 = 대화선택
+
+SELECTCASE 대화선택
+    CASE 0
+        PRINTFORMW 「녹차라도 한 잔 하실래요?」
+        IF ABL:기교 > ABL:MASTER:기교
+            IF MARK:반발각인 == 3&&!TALENT:연인
+                PRINTFORMW 「뭐어, 어디의 누구씨보다는 맛있게 탈 수 있을거 같다는 생각이 들어서요」
+            ELSE
+                PRINTFORMW 「후후, 맛있게 타는법 알려드릴게요」
+            ENDIF
+        ELSE
+            IF MARK:반발각인 == 3&&!TALENT:연인
+                PRINTFORMW 「계속 재잘거리는건 목이 아플테니깐 말이죠」
+            ELSE
+                PRINTFORMW 「다과는 별로 없지만...」
+            ENDIF
+        ENDIF
+        PRINTFORMW 사토리는 찻 주전자를 들이밀어 왔다
+        PRINTFORMW 둘이서 조용히 차를 음미할 수 있었다...
+        DOWNBASE:MASTER:기력 -= 125
+        DOWNBASE:기력 -= 125
+    CASE 1
+        PRINTFORMW 「커피 한 잔, 어떤가요?」
+        PRINTFORMW 사토리는 대뜸 커피 한 잔을 들이밀어 왔다...
+        IF MARK:반발각인 == 3 && !TALENT:연인
+            PRINTFORMW 「...아아, 독 같은건 아까워서라도 못 넣으니까, 걱정마세요」
+            PRINTFORMW 「대신에 설탕이라면 얼마든지 넣어도 신경 안 쓰니」
+        ELSE
+            PRINTFORMW 「설탕이나 프림은 취향껏 알아서 넣어주세요」
+            PRINTFORMW 사토리는 자리에 앉아 편안한 미소를 띈 채로 커피를 음미하기 시작했다...
+        ENDIF
+        PRINTFORMW ...둘이서 묵묵히 커피를 마셨다...
+        DOWNBASE:MASTER:기력 -= 125
+        DOWNBASE:기력 -= 125
+    CASE 2
+        PRINTFORMW 「흠흠...목이 조금 마를지도...」
+        PRINTFORML 「...커피 한잔 마실 생각인데, %사마스터는% 어때요?」
+        PRINTFORML [0] 마신다
+        PRINTFORML [1] 마시지 않는다
+        INPUT
+        IF RESULT
+            PRINTFORMW 「...뭐어, 그럼 어쩔수 없죠」
+            PRINTFORMW 사토리는 잔에 진한 블랙 커피를 따라내곤 자리에 앉아 조용히 마시기 시작했다...
+            DOWNBASE:기력 -= 150
+        ELSE
+            PRINTFORMW 사토리는 잔 두개를 꺼내 진한 블랙 커피를 따라냈다...
+            PRINTFORMW 그리고는 집게로 각설탕 다섯개를 각각의 잔에 퐁당퐁당 빠뜨린 뒤 휘휘 저어내 %마스터의% 앞에 대령했다
+            PRINTFORMW 「...아차, 무심코 코이시 기준으로 타버렸네요...」
+            PRINTFORMW 「그 아이는 달달하게 해주지 않으면 잘 못 마시니까, 매번 습관적으로 잔뜩 타버리거든요...」
+            PRINTFORMW 사토리는 멋쩍게 웃으며 자리에 앉았다...
+            PRINTFORMW ...한동안 둘이서 느긋하게 커피를 즐길수 있었다...
+            DOWNBASE:MASTER:기력 -= 150
+            DOWNBASE:기력 -= 150
+        ENDIF
+    CASE 3
+
+    CASE 4
+
+ENDSELECT
+;차 일시 기입
+TCVAR:300 = 1440 * DAY + TIME
