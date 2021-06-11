@@ -164,7 +164,7 @@ IF MAIN_MAP == 9&&CFLAG:초기위치 == 919&&CFLAG:MASTER:초기위치 == 919
 ELSEIF MAIN_MAP == 9&&CFLAG:초기위치 == 919&&(CFLAG:MASTER:초기위치 >= 901 && CFLAG:MASTER:초기위치 >= 930)
     ;지령전에 산다
     RETURNF 2
-ELSEIF (MAIN_MAP == 13 || MAIN_MAP == 14) &&CFLAG:저택에거주
+ELSEIF (MAIN_MAP == 13 || MAIN_MAP == 14) &&저택거주:[[사토리]]:0
     ;주택, 저택에서 같이 산다
     RETURNF 3
 ELSEIF FLAG:더부살이캐릭터 == [[사토리]]

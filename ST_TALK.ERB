@@ -93,7 +93,7 @@ SELECTCASE MAIN_MAP
         ENDIF
     CASEELSE
         ;아마도 주택
-        IF !CFLAG:저택에거주&&FLAG:더부살이캐릭터 != 49
+        IF !(저택거주:[[사토리]]:0)&&FLAG:더부살이캐릭터 != 49
 
         ELSE
             
@@ -158,7 +158,7 @@ ENDIF
 이전대화:0 = 대화선택
 SELECTCASE 대화선택
     CASE 0
-        IF !CFLAG:저택에거주&&FLAG:더부살이캐릭터 != 49
+        IF !(저택거주:[[사토리]]:0)&&FLAG:더부살이캐릭터 != 49
             PRINTFORMW 「가끔 살다보면 지저 밖에서 살고 싶다는 생각도 들어요」
             PRINTFORMW 「...주로 오니들이 문 앞에 토해놨을때 말이죠」
         ELSE
@@ -287,7 +287,7 @@ SELECTCASE 대화선택
                 ENDIF
             CASEELSE
                 ;아마도 주택
-                IF !CFLAG:저택에거주&&FLAG:더부살이캐릭터 != 49
+                IF !(저택거주:[[사토리]]:0)&&FLAG:더부살이캐릭터 != 49
                     PRINTFORMW 「요즘 어떻게 지내시나요?」
                     PRINTFORMW 「멋진 저택에서 사는데, 재밌는 이야기라도 없나요?」
                     PRINTFORMW 사토리는 호기심 가득한 눈으로 바라보고 있다...
@@ -385,7 +385,7 @@ SELECTCASE 대화선택
     CASE 14
         PRINTFORMW 「지상에선 사념들이 많아서 머리가 지끈지끈거려요」
         PRINTFORMW 「지저에선 술취한 오니 무리가 난동부리는 소리에 지끈거리지만...」
-        IF !CFLAG:저택에거주&&FLAG:더부살이캐릭터 != 49
+        IF !(저택거주:[[사토리]]:0)&&FLAG:더부살이캐릭터 != 49
             PRINTFORMW 「그래서 지령전이 좋은거예요, 조용하니까」
         ELSE
             ;아마도 연모일테니까
@@ -669,7 +669,7 @@ ENDSELECT
 @ST_차타주기
 #DIM 이전대화, 2
 #DIM DYNAMIC 대화선택
-#DIM CONST 대화개수 = 3
+#DIM CONST 대화개수 = 5
 ;이 패턴에서는 사토리가 차를 타 주는 구상이 나옵니다
 ;함락계마다 변화 있음
 
@@ -741,9 +741,118 @@ SELECTCASE 대화선택
             DOWNBASE:기력 -= 150
         ENDIF
     CASE 3
-
+        PRINTFORMW 「차라도 한 잔 할까...하는데, 어떤거로 드릴까요?」
+        PRINTFORMW 「만들수 있는거라면 내오도록 할게요」
+        CALL ST_차본체()
     CASE 4
-
+        PRINTFORMW 「음...마실거라도 내 올까요?」
+        PRINTFORMW 사토리는 %마스터의% 눈치를 살피고 있다...
+        CALL ST_차본체()
 ENDSELECT
 ;차 일시 기입
 TCVAR:300 = 1440 * DAY + TIME
+
+@ST_차본체
+#DIM DYNAMIC 차종류
+;위의 함수에서 고른 것을 바탕으로 각 음료마다 다른 대사가 나옴
+;만들다 애매하게 될거 같긴 하지만...
+PRINTFORML 어떤 차를 마실까?
+PRINTFORML [0] 블랙 커피
+PRINTFORML [1] 홍차
+;PRINTFORML [2] 녹차
+;PRINTFORML [3] 아이스 티
+PRINTFORML [99] 그만둔다
+INPUT
+차종류 = RESULT
+SELECTCASE 차종류
+    CASE 0 ; 블랙 커피
+        SELECTCASE RAND:3
+            CASE 0
+                PRINTFORMW 「심플한 선택이시네요」
+                PRINTFORMW 「후후, 그럼 잠시만 기다려 주시겠어요?」
+                PRINTFORMW 사토리는 달그락달그락 잔을 꺼내와 뜨거운 커피 두 잔을 따라냈다
+            CASE 1
+                PRINTFORMW 「네에, 잠시만 기다려 주세요」
+                PRINTFORMW 사토리는 찬장에서 분쇄된 원두를 찾아와 커피를 내리기 시작했다...
+                PRINTFORMW 향긋한 커피 내음이 방안 가득히 퍼진다...
+            CASE 2
+                PRINTFORMW 「그 편이 무난하긴 하죠」
+                PRINTFORMW 사토리는 찬장에서 인스턴트 커피를 꺼내왔다
+                PRINTFORMW 「간단하게 이걸로 괜찮겠죠 뭐...」
+                PRINTFORMW 갓 끓인 뜨거운 물을 잔에 부으니 금새 스르르 녹은 커피 알맹이들은 방 안 가득히 커피 향을 풍기기 시작했다
+        ENDSELECT
+        PRINTFORMW ...
+        PRINTFORMW ..
+        PRINTFORMW .
+        SELECTCASE RAND:3
+            CASE 0
+                PRINTFORMW 「...으음~ 조금 진하게 타버렸나...」
+                PRINTFORMW 「...어쩔수 없죠, 설탕을 좀 더 많이 넣는 수밖엔...」
+                PRINTFORMW 사토리는 은근슬쩍 각설탕 뭉치를 자신의 잔에 털어넣었다...
+            CASE 1
+                PRINTFORMW 「후우...」
+                PRINTFORMW 「가끔은 이런 여유도 좋은거 같네요, 후훗」
+            CASE 2
+                PRINTFORMW 「...비스킷이라도 드실래요?」
+                PRINTFORMW 사토리는 어디선가 가져온 비스킷도 옆에 내 놓았다
+        ENDSELECT
+        PRINTFORMW 둘이서 느긋히 커피를 마시며 시간을 보냈다...
+    CASE 1 ; 홍차
+        SELECTCASE RAND:3
+            CASE 0
+                PRINTFORMW 「...홍차라, 그럼 잠시만 기다려 주세요」
+            CASE 1
+                PRINTFORMW 「홍차...있기야 하겠지만 그리 다양하게 있을거 같진 않네요」
+                PRINTFORMW 「적당히 아무거나 괜찮겠죠?」
+            CASE 2
+                PRINTFORMW 「홍차라, 그것도 괜찮겠네요」
+                PRINTFORMW 「금방 끓여 올테니 잠시 기다려주세요?」
+        ENDSELECT
+        SELECTCASE RAND:3
+            CASE 0
+                PRINTFORMW 자리를 떠난 사토리는 잠시후 찻 주전자와 컵 두개를 들고 돌아왔다
+                PRINTFORMW 「죄송해요, 곁들여 먹을만한 과자가 그닥 없네요」
+                PRINTFORMW 「그래도 뭐, 차만으로 괜찮겠죠?」
+                PRINTFORMW 사토리는 홍차를 따라 %마스터의% 손에 건내주었다
+            CASE 1
+                PRINTFORMW 사토리는 이내 찻 주전자와 과자접시를 들고 돌아왔다
+                PRINTFORMW 「마침 쿠키가 조금 남아 있었거든요, 같이 하면 좋겠지요」
+            CASE 2
+                PRINTFORMW 사토리는 달그락거리며 차를 준비해왔다...
+                PRINTFORMW 「티 푸드는 변변찮지만 뭐...그런대로 괜찮겠죠」
+        ENDSELECT
+        PRINTFORM .
+        WAIT
+        PRINTFORM .
+        WAIT
+        PRINTFORM .
+        WAIT
+        PRINTL
+        SELECTCASE RAND:3
+            CASE 0
+                PRINTFORMW 둘이서 느긋하게 티타임을 즐길수 있었다...
+            CASE 1
+                PRINTFORMW 「가끔은 이런 여유도 좋은거 같네요, 후후...」
+            CASE 2
+                PRINTFORMW 묵묵히 둘만의 다과회를 즐겼다...
+        ENDSELECT
+    ;CASE 2
+    ;CASE 3
+    ;CASE 4
+    CASE 99
+        PRINTFORMW 역시 그만두자
+    CASEELSE
+        SELECTCASE RAND:4
+            CASE 0
+                PRINTFORMW 「으~음...그런건 만들줄 모르는걸요」
+                PRINTFORMW 「다른건 안되나요?」
+            CASE 1
+                PRINTFORMW 「에-...그거, 만들줄 모르는데...」
+                PRINTFORMW 「...다른거로 해 주시면 안될까요?」
+            CASE 2
+                PRINTFORMW 「...음...그건 좀...」
+            CASE 3
+                PRINTFORMW 「...죄송하지만, 그건 만들줄 모르거든요...」
+                PRINTFORMW 「다른거로 해 주시면 안될까요?」
+        ENDSELECT
+ENDSELECT

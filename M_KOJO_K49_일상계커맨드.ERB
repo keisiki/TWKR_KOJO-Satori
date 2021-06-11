@@ -87,12 +87,12 @@ RETURN RESULT
 LOCAL = 1
 ;-------------------------------------------------
 IF LOCAL
-	IF FIRSTTIME(SELECTCOM)
+	IF FIRSTTIME(SELECTCOM)&&TFLAG:193 != -1
 		;처음 차를 마신다
 		PRINTFORMW 「...차인가요? 아아, 감사합니다」
 		PRINTFORMW 사토리는 희미한 웃음을 띄며 차를 받았다...
 	ELSE
-		IF TFLAG:193 == -1
+		IF TFLAG:193 == -1||TCVAR:154 ; 텍붕이모드 차 거절
 			;실패시, 마시고는 입맛에 맞지 않다는것
 			SELECTCASE RAND:5 ; 늘려야할거 같기도 하다
 				CASE 0
@@ -134,17 +134,8 @@ IF LOCAL
 					대화선택 = RAND:대화개수
 				ENDIF
 			ENDIF
-			[SKIPSTART]
-				IF MARK:반발각인 == 3&&!TALENT:연인
-						
-				ELSEIF TALENT:연인
-					
-				ELSEIF TALENT:연모||TALENT:사모||TALENT:애욕
-					
-				ELSE
-					
-				ENDIF
-			[SKIPEND]
+			이전대화:1 = 이전대화:0
+			이전대화:0 = 대화선택
 			SELECTCASE 대화선택
 				CASE 0
 					PRINTFORMW 「차? 흐으음...네, 좋아요」
@@ -360,12 +351,197 @@ CALL M_KOJO_MESSAGE_COM_K49_302_1
 RETURN RESULT
 
 @M_KOJO_MESSAGE_COM_K49_302_1
+#DIM 이전대화, 2
+#DIM DYNAMIC 대화선택
+#DIM CONST 대화개수 = 2
 ;-------------------------------------------------
 ;記入チェック（=0, 非表示、1, 表示）
-LOCAL = 0
+LOCAL = 1
 ;-------------------------------------------------
 IF LOCAL
+	;PRINTFORMW 「」
+	IF TFLAG:193 == -1
+		;실패
+		SELECTCASE RAND:2 ; 더 늘려야한다
+			CASE 0
+				IF MARK:반발각인 == 3
+					IF TALENT:연인
+						PRINTFORMW 「잠...너무 달라붙는데...」
+						PRINTFORMW 「아무때나 그런다고 기쁘진 않다구요?」
+						PRINTFORMW 사토리는 떨떠름한 표정이다...
+					ELSE
+						IF CFLAG:3000 == 0
+							PRINTFORMW 「...너무 달라붙는다곤 생각 안하나...?」
+							PRINTFORMW 사토리는 차가운 시선으로 %마스터를% 바라보고 있다
+						ELSE
+							PRINTFORMW 「...손 떼요」
+							PRINTFORMW 사토리는 나지막하게 말해왔다
+						ENDIF
+					ENDIF
+				ELSEIF TALENT:연인
+					PRINTFORMW 「...잠깐...너무 달라붙는거 같은데...」
+					PRINTFORMW 「아무리 우리 사이라 해도, 아무때나 그러는건 조금...」
+				ELSEIF TALENT:연모||TALENT:사모||TALENT:애욕
+					PRINTFORMW 「...그만 하세요...」
+					IF EYEWITNESS()
+						PRINTFORMW 「보는 눈도 있는데 그러면 곤란하다구요?」
+						PRINTFORMW 사토리는 %마스터의% 손을 뿌리쳤다...
+					ELSE
+						PRINTFORMW 「그런다고 하나도 기쁘지 않으니까」
+						PRINTFORMW 사토리는 %마스터의% 손을 떨쳐냈다...
+					ENDIF
+				ELSEIF TALENT:섹프
+					PRINTFORMW 「...재미없으니까 그만 두세요」
+				ELSE
+					IF CFLAG:3000 == 0
+						PRINTFORMW 「...너무 달라붙진 말았음 하는데...」
+						PRINTFORMW 사토리는 %마스터의% 손을 쳐냈다...
+					ELSE
+						PRINTFORMW 「...뭘 그리 달라붙어 오는건가요...?」
+						PRINTFORMW 사토리는 몸을 떼어놓았다...
+					ENDIF
+				ENDIF
+			CASE 1
+				IF MARK:반발각인 == 3
+					IF TALENT:연인
+						PRINTFORMW 「...연인끼리라 해도 그렇게 허물없이 만져대는건 조금 그렇지 않나요?」
+						PRINTFORMW 사토리는 슬며시 %마스터의% 손을 떼어냈다
+					ELSE
+						PRINTFORMW 「...뭘 잘했다고 들러붙는건가요...?」
+						PRINTFORMW 사토리는 %마스터와% 거리를 두었다...
+					ENDIF
+				ELSE
+					IF TALENT:연인
+						PRINTFORMW 「...너무 달라붙는거 아닌가요...?」
+						IF EYEWITNESS()
+							PRINTFORMW 「남들도 있는데서 그러는건 좀 아닌거 같은데...」
+							PRINTFORMW 사토리는 %마스터의% 손길을 슬며시 밀어냈다
+						ELSE
+							PRINTFORMW 「...오늘은 그런 장난에 어울릴 기분 아니니까요」
+							PRINTFORMW 사토리는 살짝 삐친 모양이다...
+						ENDIF
+					ELSEIF TALENT:연모||TALENT:사모||TALENT:애욕
+						PRINTFORMW 「...너무 달라붙는건 싫어요」
+						PRINTFORMW 사토리는 %마스터의% 손길을 떨쳐냈다...
+					ELSE
+						PRINTFORMW 「...어딜 만져요?」
+						PRINTFORMW 사토리는 %마스터의% 손등을 때려왔다...
+					ENDIF
+				ENDIF
+			CASE 2
 
+			CASE 3
+		ENDSELECT
+	ELSE
+		대화선택 = RAND:대화개수
+		IF 대화선택 == 이전대화:0
+			;같은 대사가 나올확률을 줄인다
+			대화선택 = RAND:대화개수
+			IF 대화선택 == 이전대화:1
+				;같은 대사가 나올확률을 줄인다
+				대화선택 = RAND:대화개수
+			ENDIF
+		ENDIF
+		이전대화:1 = 이전대화:0
+		이전대화:0 = 대화선택
+		SELECTCASE 대화선택
+			CASE 0
+				IF MARK:반발각인 == 3
+					IF TALENT:연인
+						PRINTFORMW 「으으응...잠까안...너무 달라붙잖아요...」
+						IF EYEWITNESS()
+							PRINTFORMW 「...보는 눈도 있는데, 참...」
+							PRINTFORMW 사토리는 싫은 소리를 하면서도 손을 떨쳐내진 않고 있다...
+						ELSE
+							PRINTFORMW 「...응큼해, 진짜」
+							PRINTFORMW 그렇게 말하면서도 사토리는 어쩐지 헤실헤실 웃고 있다...
+						ENDIF
+					ELSE
+						IF CFLAG:3000 == 0
+							PRINTFORMW 「...그렇게 가까이 달라붙어서 좋은건가요?」
+							PRINTFORMW 「정말이지...호색한이라고 밖엔 해 줄 말이 없네요...」
+							PRINTFORMW 사토리는 틱틱거리곤 있지만 저항의 의사는 보이지 않았다...
+						ELSE
+							PRINTFORMW 「...이런게 좋다니, 참...」
+							PRINTFORMW 「그렇게나 좋으면 맘대로 하시던가요...」
+						ENDIF
+					ENDIF
+				ELSEIF TALENT:연인
+					PRINTFORMW 「...♥」
+					PRINTFORMW 사토리는 %마스터의% 손길을 기쁜듯이 받아들이고 있다...
+				ELSEIF TALENT:연모||TALENT:사모||TALENT:애욕
+					IF CFLAG:3000 == 0
+						PRINTFORMW 「...으응...」
+						PRINTFORMW 사토리는 %마스터의% 손길을 받아들이며 이따금 묘한 소리를 내 왔다...
+					ELSE
+						PRINTFORMW 「...」
+						PRINTFORMW 사토리는 살짝 경직된채 %마스터의% 손길을 즐기고 있다...
+					ENDIF
+				ELSEIF TALENT:섹프
+					IF EYEWITNESS()
+						PRINTFORMW 「...보는 눈도 있는데, 참...」
+						PRINTFORMW 사토리는 %마스터의% 손등을 가볍게 때려왔다
+					ELSE
+						PRINTFORMW 「후후, 간지러워요♥」
+						PRINTFORMW 사토리는 헤실헤실 웃고 있다...
+					ENDIF
+				ELSE
+					IF CFLAG:3000 == 0
+						PRINTFORMW 「...저기, 너무 달라붙는거 아닌가요...?」
+						PRINTFORMW 「으음...」
+						PRINTFORMW 사토리는 떨떠름한 표정을 지어왔지만, 그 이상의 저항은 없었다
+					ELSE
+						PRINTFORMW 「...조금은 떨어져 줬음 하는데...하아...」
+						PRINTFORMW 사토리는 싫은 소리를 해 왔지만 별다른 저항은 보이지 않았다
+					ENDIF
+				ENDIF
+			CASE 1
+				IF MARK:반발각인 == 3
+					IF TALENT:연인
+						IF EYEWITNESS()
+							PRINTFORMW 「남들 앞에서 대담하시네요...」
+							PRINTFORMW 「...뭐어, 싫은건 아니지만...」
+							PRINTFORMW 사토리는 얼굴을 붉혔다
+						ELSE
+							PRINTFORMW 「정말...간지러워요」
+							PRINTFORMW 사토리는 히죽히죽 웃으며 %마스터의% 손길을 받아들이고 있다
+						ENDIF
+					ELSE
+						PRINTFORMW 「...이게 그리 좋은가요?」
+						PRINTFORMW 「하아...좋을대로 하시던가요...」
+						PRINTFORMW 사토리는 체념한듯 몸을 맡기고 있다...
+					ENDIF
+				ELSEIF TALENT:연인
+					PRINTFORMW 「후후, 그렇게 만지면 간지러워요♥」
+					IF EYEWITNESS()
+						PRINTFORMW 사토리는 주위에 일부로 과시하듯이 %마스터의% 손길을 즐기고 있다...
+					ELSE
+						PRINTFORMW 사토리는 %마스터의% 팔에 살며시 안겨왔다...
+					ENDIF
+				ELSEIF TALENT:연모||TALENT:사모||TALENT:애욕
+					PRINTFORMW 「...좀 더 해주세요...」
+					PRINTFORMW 사토리는 손을 떼려는 %마스터를% 향해 나지막히 부탁해왔다...
+				ELSEIF TALENT:섹프
+					IF EYEWITNESS()
+						PRINTFORMW 「남들 앞에서 부끄럽게시리...」
+						PRINTFORMW 「이런건 좀 더 은밀한 곳에서 하는거라구요?」
+					ELSE
+						PRINTFORMW 「후후♥ 손 움직이는게 간지러워요♥」
+						PRINTFORMW 사토리는 느슨한 얼굴로 %마스터의% 손길을 받아들이고 있다...
+					ENDIF
+				ELSE
+					IF CFLAG:3000 == 0
+						PRINTFORMW 「너무 가까운데...」
+						PRINTFORMW 「숨소리도 들린다고요...?」
+					ELSE
+						PRINTFORMW 「으음...」
+						PRINTFORMW 사토리는 약간 불편해 보이는 표정으로 %마스터를% 응시하고 있다...
+					ENDIF
+				ENDIF
+			CASE 2
+
+		ENDSELECT
+	ENDIF
 ENDIF
 RETURN 1
 ;==================================================
