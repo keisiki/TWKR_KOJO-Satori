@@ -759,7 +759,7 @@ TCVAR:300 = 1440 * DAY + TIME
 PRINTFORML 어떤 차를 마실까?
 PRINTFORML [0] 블랙 커피
 PRINTFORML [1] 홍차
-;PRINTFORML [2] 녹차
+PRINTFORML [2] 녹차
 ;PRINTFORML [3] 아이스 티
 PRINTFORML [99] 그만둔다
 INPUT
@@ -797,6 +797,8 @@ SELECTCASE 차종류
                 PRINTFORMW 사토리는 어디선가 가져온 비스킷도 옆에 내 놓았다
         ENDSELECT
         PRINTFORMW 둘이서 느긋히 커피를 마시며 시간을 보냈다...
+        DOWNBASE:MASTER:기력 -= 90
+        DOWNBASE:기력 -= 90
     CASE 1 ; 홍차
         SELECTCASE RAND:3
             CASE 0
@@ -836,7 +838,47 @@ SELECTCASE 차종류
             CASE 2
                 PRINTFORMW 묵묵히 둘만의 다과회를 즐겼다...
         ENDSELECT
-    ;CASE 2
+        DOWNBASE:MASTER:기력 -= 120
+        DOWNBASE:기력 -= 120
+    CASE 2
+        SELECTCASE RAND:3
+            CASE 0
+                PRINTFORMW 「녹차라, 그러면 다기를 찾아볼까요」
+            CASE 1
+                PRINTFORMW 「녹차라...엽차로 괜찮겠지요?」
+            CASE 2
+                PRINTFORMW 「으음~ 그러면 찻잎을 찾아올게요」
+        ENDSELECT
+        SELECTCASE RAND:3
+            CASE 0
+                PRINTFORMW 사토리는 종종걸음으로 떠나, 한참뒤에 돌아왔다...
+                PRINTFORMW 「...으으, 먹던게 다 떨어져서 새 찻잎을 찾는데 조금 시간이 걸려버렸네요...」
+                PRINTFORMW 사토리는 멋쩍어 하며 따뜻한 김이 모락모락 피어오르는 잔을 내려놓았다
+            CASE 1
+                PRINTFORMW 사토리는 어디선가 김이 모락모락 나는 찻주전자를 들고 왔다
+            CASE 2
+                PRINTFORMW 「조금만 기다려 주세요?」
+                PRINTFORMW 사토리는 종종걸음으로 떠나, 쟁반에 주전자와 잔을 들고 돌아왔다
+        ENDSELECT
+        SELECTCASE RAND:4
+            CASE 0
+                PRINTFORMW 「가끔은 엽차도 말차랑은 다른 풍취가 있는법이죠」
+                PRINTFORMW 「만들기는 조금 더 복잡하지만...」
+            CASE 1
+                PRINTFORMW 「낮은 온도에서, 물 붓고 2분에서 3분, 이렇게 하면 적당하다고 하죠」
+                PRINTFORMW 「...티백보단 불편하지만, 그 불편함이 맛의 차이를 만드는 법이겠죠, 아마도」
+            CASE 2
+                PRINTFORMW 「...생각해보니 쌀과자라도 들고 올걸 그랬나요?」
+            CASE 3
+                PRINTFORMW 「생각보다 물이 뜨겁게 되버렸네요, 쓴 맛이 조금 강할지도 모르겠지만...」
+                PRINTFORMW 「...뭐어, 감안해주세요」
+        ENDSELECT
+        PRINTFORMW .
+        PRINTFORMW .
+        PRINTFORMW .
+        PRINTFORMW 둘이서 한동안 느긋하게 차를 마셨다...
+        DOWNBASE:MASTER:기력 -= 100
+        DOWNBASE:기력 -= 100
     ;CASE 3
     ;CASE 4
     CASE 99
