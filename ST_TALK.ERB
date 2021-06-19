@@ -104,8 +104,7 @@ ENDSELECT
 @ST_통상회화
 #DIM 이전대화, 4
 #DIM DYNAMIC 대화선택
-#DIM CONST 대화개수 = 40
-;다만들면 40개가 되겠지...
+#DIM CONST 대화개수 = 44
 ;이 패턴에서는 통상적인 대화를 합니다
 ;함락계마다 변화 없음, 넣으려면 넣을수도 있긴 하지만 뭐...
 
@@ -553,6 +552,21 @@ SELECTCASE 대화선택
             PRINTFORMW 「제 아무리 뛰어난 요괴니 뭐니 해도, 결국 점 하나보다도 자그마한 존재...」
             PRINTFORMW 「약간은...소름조차 느껴질 정도로요」
         ENDIF
+    CASE 40
+        PRINTFORMW 「서드아이는 제 자랑이지만, 가끔은 떼어버리고 싶을 때도 많지요」
+        PRINTFORMW 「가끔 갈고리 같은데에 걸려버리면 굉장히 아프거든요...」
+        PRINTFORMW 「문고리나 팔걸이, 그런데에 몇번 걸려보면...하아...정말이지...」
+    CASE 41
+        PRINTFORMW 「가끔 코이시는 신발도 안 신고 외출을 나가곤 하는데...왜 그러는걸까요?」
+        PRINTFORMW 「...어짜피 집 더러워지는건 애완동물 탓이니 상관없지만...조금 걱정이 드네요」
+        PRINTFORMW 「그러면서도 발을 다쳐온건 본 적이 없긴하지만, 흐으음...」
+    CASE 42
+        PRINTFORMW 「그런데 요정들은 아직도 좀비놀이를 하고 있네요」
+        PRINTFORMW 「보통은 쉽게 질리던데, 상당히 마음에 들었던 모양이에요...」
+    CASE 43
+        PRINTFORMW 「가끔 오린이 복도에서 희한한 춤을 추는걸 보실수도 있는데...그때엔 그만두라고 해주세요」
+        PRINTFORMW 「정말이지, 그만 하라고 해도 말도 안 듣고...」
+        PRINTFORMW 「게다가 오쿠나 코이시도 따라하는탓에 보고있으면 머리가 아파질정도란 말예요」
 ENDSELECT
 
 
@@ -760,7 +774,11 @@ PRINTFORML 어떤 차를 마실까?
 PRINTFORML [0] 블랙 커피
 PRINTFORML [1] 홍차
 PRINTFORML [2] 녹차
-;PRINTFORML [3] 아이스 티
+;PRINTFORML [3] 말차
+;PRINTFORML [4] 아이스 티
+;PRINTFORML [5] 밀크티
+;PRINTFORML [6] '우유를 넣은 커피'
+;PRINTFORML [7] 아무거나
 PRINTFORML [99] 그만둔다
 INPUT
 차종류 = RESULT
@@ -840,7 +858,7 @@ SELECTCASE 차종류
         ENDSELECT
         DOWNBASE:MASTER:기력 -= 120
         DOWNBASE:기력 -= 120
-    CASE 2
+    CASE 2 ; 녹차
         SELECTCASE RAND:3
             CASE 0
                 PRINTFORMW 「녹차라, 그러면 다기를 찾아볼까요」

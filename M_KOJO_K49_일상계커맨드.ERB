@@ -353,7 +353,7 @@ RETURN RESULT
 @M_KOJO_MESSAGE_COM_K49_302_1
 #DIM 이전대화, 2
 #DIM DYNAMIC 대화선택
-#DIM CONST 대화개수 = 2
+#DIM CONST 대화개수 = 4
 ;-------------------------------------------------
 ;記入チェック（=0, 非表示、1, 表示）
 LOCAL = 1
@@ -621,7 +621,87 @@ IF LOCAL
 					ENDIF
 				ENDIF
 			CASE 2
-
+			 	;손 깍지
+				IF MARK:반발각인 == 3
+					IF TALENT:연인
+						PRINTFORMW 「으응...」
+						PRINTFORMW 사토리는 %마스터의% 손길에 흠칫흠칫 떨고 있다...
+					ELSE
+						PRINTFORMW 「...뭘 그리 들러붙어 오는건가요, 진짜...」
+						PRINTFORMW 떨떠름한 표정을 하곤 있지만 그 이상의 저항은 없었다
+					ENDIF
+				ELSEIF TALENT:연인
+					PRINTFORMW 사토리에게 손을 뻗은 찰나, 사토리가 먼저 %마스터를% 끌어 안았다
+					PRINTFORMW 「후후, 잠시 이러고 있죠...♥」
+					PRINTFORMW 사토리는 무척이나 즐거워 보이는 표정이다...
+				ELSEIF TALENT:연모||TALENT:사모||TALENT:애욕
+					PRINTFORMW 부드럽게 사토리의 손을 잡자, 얼굴이 살며시 붉어지는게 보였다
+					PRINTFORMW 「......」
+					PRINTFORMW 그렇게 생각할수록 사토리의 얼굴이 더더욱 발갛게 물들어 갔다...
+				ELSEIF TALENT:섹프
+					PRINTFORMW 부드럽게 사토리의 손을 잡자, 사토리는 의아해했다
+					PRINTFORMW 「갑자기 이건 또 무슨...단순한 스킨십일뿐이라고요?」
+					PRINTFORMW 「...기왕 할거면 좀 더 이렇게...응...」
+					PRINTFORMW 사토리는 %마스터를% 잡아끌어 자신의 옆에 밀착시켰다
+					PRINTFORMW 「서로 할거 다 한 사인데, 이정도는 해야 스킨십이라 할 수 있지 않을까요?」
+					PRINTFORMW 사토리는 히죽히죽 웃으며 %마스터의% 옆구리에 팔을 둘러왔다...
+				ELSE
+					IF CFLAG:3000 == 0
+						PRINTFORMW 사토리의 손을 부드럽게 잡아올리자, 사토리는 의아해하는 표정으로 %마스터를% 바라보고 있다...
+						PRINTFORMW 「저기, 이건 또 무슨...?」
+						PRINTFORMW 「...별 의미 없는 스킨십이라...그런가요...」
+						PRINTFORMW 「닳는것도 아니니 별 신경은 안 쓰겠지만...」
+					ELSE
+						PRINTFORMW 사토리의 손을 부드럽게 잡아올리자, 사토리는 떨떠름한 표정을 지어왔다...
+						PRINTFORMW 「...저기, 갑자기 이게 뭐 하는건가요,,,?」
+						PRINTFORMW 「그만해 주셨으면 좋겠는데...」
+						PRINTFORMW 그러나 그 이상의 저항은 없었다
+					ENDIF
+				ENDIF
+			CASE 3
+				;팔짱
+				PRINTFORM 사토리의 팔을 부드럽게 껴안
+				IF MARK:반발각인 == 3
+					IF TALENT:연인
+						PRINTFORMW 자 사토리는 얼굴을 붉히며 %마스터의% 몸에 기대왔다
+						PRINTFORMW 「...에헤헤...이거 좋네요...」
+						PRINTFORMW 「연인같다는 기분이 물씬 들어서 좋아」
+						PRINTFORMW ...사토리가 팔을 놓으려 하지 않아 한동안 팔을 붙잡혀 있어야 했다...
+					ELSE
+						PRINTFORMW 자 사토리는 언짢아 보이는 표정을 지어왔다
+						PRINTFORMW 「...이게 지금 뭐하는건가요?」
+						PRINTFORMW 「스킨십...? 장난치지 말고 빨리 떨어...하아...」
+						PRINTFORMW 「제가 뭐라 한다고 들을 사람이 아니긴 했죠, 맘대로 하던가요 진짜...」
+					ENDIF
+				ELSEIF TALENT:연인
+					PRINTFORMW 자 사토리에게 끌어당겨져 옆에 밀착하게 되었다
+					PRINTFORMW 「이러고 있으면 연인같다는 기분이 물씬 들어서 좋아요」
+					IF EYEWITNESS()
+						PRINTFORMW 「남들에게 과시하는거 같기도 하고?」
+						PRINTFORMW 사토리는 히죽거리며 주위를 바라보고 있다...
+					ELSE
+						PRINTFORMW 「그러니까- 안 놔줄거예요?」
+						PRINTFORMW 「후후후...조금만 더 이러고 있어요, 자꾸 도망가려 하지 말구」
+						PRINTFORMW 사토리는 한참동안이나 %마스터를% 붙잡은채 놓아주지 않았다...
+					ENDIF
+				ELSEIF TALENT:연모||TALENT:사모||TALENT:애욕
+					PRINTFORMW 자 사토리는 얼굴을 붉혔다...
+					PRINTFORMW 「...조금 부끄러워요」
+					PRINTFORMW 「...하지만 싫지는 않으니까, 계속 해주세요」
+					PRINTFORMW 사토리는 양 팔로 %마스터의% 팔을 끌어안듯 붙잡아왔다
+				ELSEIF TALENT:섹프
+					PRINTFORMW 았지만 사토리는 시큰둥했다... 
+					PRINTFORMW 「으음- 우리 사이에 이런거로 그닥 두근거리진 않네요...」
+					PRINTFORMW 「...정말이에요? 자, 만져봐요, 평소랑 똑같이 뛰잖아요? 오히려 이렇게 하는게...」
+					PRINTFORMW 사토리는 다짜고짜 팔을 잡아당겨 자신의 가슴에 얹었다...
+					PRINTFORMW ...정말로 평온한 심박을 느낄수 있었다
+				ELSE
+					PRINTFORMW 자 사토리는 의아해 하는 표정을 지어왔다
+					PRINTFORMW 「...팔짱...?」
+					PRINTFORMW 「저기, 이건 무슨 의미...별 의민 없다고요? 하아...」
+					PRINTFORMW 「...너무 달라붙지는 말아줬음 하지만...」
+					PRINTFORMW 약간 떨떠름해 보였지만, 순순히 팔을 내 주는 사토리였다
+				ENDIF
 		ENDSELECT
 	ENDIF
 ENDIF
