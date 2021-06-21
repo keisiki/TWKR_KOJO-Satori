@@ -659,3 +659,35 @@ ELSEIF ARGS == "오랜만에외출처에서마주침"
         ENDSELECT
     ENDIF
 ENDIF
+
+
+
+@ST_대사섞기( 대사량 , 기출0 = -1 , 기출1 = -1 , 기출2 = -1 , 기출3 = -1 , 기출4 = -1 , 기출5 = -1)
+#FUNCTION
+#DIM DYNAMIC 대사량
+#DIM DYNAMIC 기출0
+#DIM DYNAMIC 기출1
+#DIM DYNAMIC 기출2
+#DIM DYNAMIC 기출3
+#DIM DYNAMIC 기출4
+#DIM DYNAMIC 기출5
+#DIM DYNAMIC 대사배열, 1000 ;설마 이거보다 많겠어
+FOR LOCAL, 0 , 대사량
+    IF !GROUPMATCH(LOCAL,기출0,기출1,기출2,기출3,기출4,기출5)
+        대사배열:(LOCAL:1) = LOCAL
+        LOCAL:1++
+    ENDIF
+NEXT
+LOCAL:1-- ;포인터는 항상 이번에 숫자가 찍힐곳을 가리키므로, 배열의 끝자리를 나타내기 위해 -1 해준다
+
+IF LOCAL:1 <= 0
+    ;대사가 하나보다 적었다면 첫번째 대사가 되도록
+    RETURNF 0
+ENDIF
+
+FOR LOCAL,0,LOCAL:1
+    LOCAL:2 = RAND:(LOCAL:1 + 1)
+    SWAP 대사배열:LOCAL , 대사배열:(LOCAL:2)
+NEXT
+
+RETURNF 대사배열:0
