@@ -514,10 +514,11 @@ IF LOCAL
 		ENDSELECT
 	ELSE
 		;일단은 하나
-		CALL ST_통상스킨십()
 		IF GROUPMATCH(CFLAG:현재위치 , 225 , 935 , 260 , 950)
 			;혼숙여관, 혹은 러브호텔에 있다
 			CALL ST_우후후분위기스킨십()
+		ELSE
+			CALL ST_통상스킨십()
 		ENDIF
 	ENDIF
 ENDIF
