@@ -104,7 +104,7 @@ ENDSELECT
 @ST_통상회화
 #DIM 이전대화, 5
 #DIM DYNAMIC 대화선택
-#DIM CONST 대화개수 = 44
+#DIM CONST 대화개수 = 45
 ;이 패턴에서는 통상적인 대화를 합니다
 ;함락계마다 변화 없음, 넣으려면 넣을수도 있긴 하지만 뭐...
 
@@ -528,6 +528,10 @@ SELECTCASE 대화선택
         PRINTFORMW 「가끔 오린이 복도에서 희한한 춤을 추는걸 보실수도 있는데...그때엔 그만두라고 해주세요」
         PRINTFORMW 「정말이지, 그만 하라고 해도 말도 안 듣고...」
         PRINTFORMW 「게다가 오쿠나 코이시도 따라하는탓에 보고있으면 머리가 아파질정도란 말예요」
+    CASE 44
+        PRINTFORMW 「생각해보면, 요 근래 지진이 일어난적은 없네요」
+        PRINTFORMW 「...가끔, 아주 가끔 오쿠가 난동을 부리면 땅이 흔들리는 경우도 있지만」
+        PRINTFORMW 「반응로에 벌레같은게 나타나지만 않으면 안전할거예요, 아마도...」
 ENDSELECT
 
 
@@ -1152,11 +1156,11 @@ IF MARK:반발각인 == 3
 ELSEIF TALENT:연인
 	CALL ST_우후후분위기스킨십_연인(대화선택)
 ELSEIF TALENT:연모||TALENT:사모||TALENT:애욕
-	
+	CALL ST_우후후분위기스킨십_연사애(대화선택)
 ELSEIF TALENT:섹프
-	
+	CALL ST_우후후분위기스킨십_섹프(대화선택)
 ELSE
-	
+    CALL ST_우후후분위기스킨십_일반(대화선택)
 ENDIF
 
 
@@ -1284,4 +1288,177 @@ SELECTCASE ARG
         PRINTFORMW %마스터는% 사토리를 뒤에서부터 부드럽게 껴안았다
         PRINTFORMW 「...포근하네, 평소에도 이만큼만 해주면 얼마나 좋아」
         PRINTFORMW 사토리는 빈정거리면서도 편안히 몸을 맡기고 있다...
+ENDSELECT
+
+@ST_우후후분위기스킨십_연사애(ARG)
+SELECTCASE ARG
+    CASE 0
+        PRINTFORMW 「으읏...♥ 자, 잠까안...♥」
+        PRINTFORMW 사토리는 %마스터의% 손길에 온 몸을 파르르 떨고 있다
+    CASE 1
+        PRINTFORMW 「후아아...♥ 거기 기분 좋아... 좀 더...」
+        PRINTFORMW 사토리는 녹아내린 표정으로 %마스터의% 몸에 기대오고 있다
+    CASE 2
+        PRINTFORMW 「으응...간지러워요...♥」
+        PRINTFORMW 「앗♥ 거긴 안돼♥ 그마안...♥」
+        PRINTFORMW 사토리는 %마스터의% 손길에 허덕이고 있다...
+    CASE 3
+        ;무릎에 앉힌다
+        PRINTFORMW 사토리를 무릎에 앉혔다
+        PRINTFORMW 「으으...어쩐지 부끄러운 자세인데...」
+        PRINTFORMW 「저기, 언제까지 할건가요...?」
+        PRINTFORMW 얼굴을 붉히며 다리를 꼼지락거리고 있다...
+    CASE 4
+        ;무릎에 앉힌다
+        PRINTFORMW 사토리를 붙잡아 무릎 위에 앉혔다
+        PRINTFORMW 「어쩐지 어린아이 같다는 기분이 드네요...」
+        PRINTFORMW 「그치만 어린애는 이런곳 못오겠죠...후후...♥」
+    CASE 5
+        ;무릎에 앉힌다
+        PRINTFORMW 사토리를 무릎에 앉혔다
+        PRINTFORMW 「...얼굴이 안 보이니까 쓸쓸한걸요」
+        PRINTFORMW 「모처럼 이런데 왔는데, 벽만 보고 있는건 싫어요」
+        PRINTFORMW 사토리는 그대로 180도 돌아, 두 다리로 %마스터의% 허리를 끌어안았다
+        PRINTFORMW 「후후, 역시 이게 더 좋은거 같네요..♥」
+    CASE 6
+        ;귀를 핥는다
+        PRINTFORMW 사토리의 귀를 부드럽게 핥았다
+        PRINTFORMW 「그, 그런데 핥는거 아녜요...」
+        PRINTFORMW 「...더럽다구요? 으...그..그만...」
+        PRINTFORMW 사토리는 얼굴을 새빨갛게 물들이고 있다...
+    CASE 7
+        ;귀를 핥는다
+        PRINTFORMW 사토리의 귀를 가볍게 물었다
+        PRINTFORMW 「읏...물지 마요...이..입안에서 핥지도 마요...!」
+        PRINTFORMW 「으으...이런게 뭐가 좋은건지...」
+        PRINTFORMW 사토리는 눈을 질끈 감은채 %마스터의% 행위를 받아들이고 있다...
+    CASE 8
+        ;귀를 핥는다
+        PRINTFORMW 사토리의 귀를 핥았다
+        PRINTFORMW 「으으...♥ 낼름거리는 소리가 생생히 들려...」
+        PRINTFORMW 「기분이 이상해...읏...♥」
+    CASE 9
+        ;백허그
+        PRINTFORMW 뒤에서부터 부드럽게 사토리를 안아주었다
+        PRINTFORMW 「왜...왠지 이러니까 연인...같네요?」
+        PRINTFORMW 「어쩐지 묘한 기분이 드네요...」
+        PRINTFORMW 사토리는 얼굴을 붉히고 있다...
+ENDSELECT
+
+@ST_우후후분위기스킨십_섹프(ARG)
+SELECTCASE ARG
+    CASE 0
+        PRINTFORMW 「아하하, 간지러워요♥」
+        PRINTFORMW 사토리는 꺄르르 웃으며 %마스터의% 손길을 즐기고 있다
+    CASE 1
+        PRINTFORMW 「후아아♥」
+        PRINTFORMW 사토리는 녹아내린 표정으로 %마스터의% 손길을 받아들이고 있다
+    CASE 2
+        PRINTFORMW 「으응...♥ 이런것도 좋지만, 모처럼 온건데...얼른 해버리는건 어떤가요?」
+        PRINTFORMW 「더는 못참겠단 말이죠...네?」
+        PRINTFORMW 사토리는 녹아내린 표정으로 달라붙어왔다...
+        CALL ST_야스준비
+    CASE 3
+        ;무릎에 앉힌다
+        PRINTFORMW 사토리를 무릎에 앉혔다
+        PRINTFORMW 「이거, 왠지 야한기분이 드는걸요」
+        PRINTFORMW 「저만 그런가요?」
+        IF HAS_PENIS(MASTER)
+            PRINTFORMW 사토리는 슬그머니 뒤로 뺀 엉덩이로 %마스터의% 자지를 꾹꾹 눌러왔다...
+        ELSE
+            PRINTFORMW 사토리는 능글맞게 웃고 있다...
+        ENDIF
+    CASE 4
+        ;무릎에 앉힌다
+        PRINTFORMW 사토리를 무릎에 앉혔다
+        PRINTFORMW 「으음...이게 전부...?」
+        PRINTFORMW 「너무 밋밋해서 재미없으니 가슴이라도 만져보는건 어떤가요...」
+        PRINTFORMW 사토리는 불만스런 모양이다
+    CASE 5
+        ;무릎에 앉힌다
+        PRINTFORMW 사토리를 무릎 위에 앉게 했다
+        PRINTFORMW 「이제 뭘 할건가요?」
+        PRINTFORMW 「...이게 전부? 에에...그러언...」
+        PRINTFORMW 사토리는 약간 토라진 모양이다
+        IF HAS_PENIS(49)
+            PRINTFORMW 「모처럼 둘만 있는건데, 얼른 기분 좋은거 해요, 네?」
+        ELSE
+            PRINTFORMW 「하는수 없죠, 저 혼자서라도...」
+            PRINTFORMW 사토리는 %마스터의% 무릎에 스스로의 고간을 대고 왕복운동을 시작했다
+            PRINTFORMW 「%사마스터가% 기분 좋게 해줄 떄까지 계속할거예요?」
+            PALAM:윤활 += 200
+            PALAM:쾌C+= 150
+            PALAM:욕정 += 150
+        ENDIF
+    CASE 6
+        ;귀를 핥는다
+        PRINTFORMW 사토리의 귀를 살짝 핥았다
+        PRINTFORMW 「으읏...♥ 이상한 기분...」
+        PRINTFORMW 「...그치만 싫지는 않아...」
+    CASE 7
+        ;귀를 핥는다
+        PRINTFORMW 사토리의 귀를 살짝 꺠물었다
+        PRINTFORMW 「읏...그런데 깨물지 마요...」
+        PRINTFORMW 「아픈거보다...으...더럽잖아요? 그런데 입에 넣는거 아녜요...」
+    CASE 8
+        ;귀를 핥는다
+        PRINTFORMW 사토리의 귀를 부드럽게 핥았다
+        PRINTFORMW 「가..간지러...그마안...」
+        PRINTFORMW 「안대에♥ 핥지 말아줫, 그만해에♥」
+        PRINTFORMW 사토리는 온 몸을 파르르 떨고 있다...
+    CASE 9
+        ;백허그
+        PRINTFORMW 사토리를 뒤에서부터 부드럽게 안아주었다
+        PRINTFORMW 「...으음, 별 느낌 없는걸요...조금 따스한거만 빼면」
+        PRINTFORMW 「그래도 싫지는 않네요, 다음엔 이렇게 안으면서 해볼까요?」
+ENDSELECT
+
+@ST_우후후분위기스킨십_일반(ARG)
+SELECTCASE ARG
+    CASE 0
+        PRINTFORMW 「으읏...가...간지러워요...」
+        PRINTFORMW 사토리는 파르르 몸을 떨고 있다...
+    CASE 1
+        PRINTFORMW 「읏...이..이런게 좋은건가요...?」
+        PRINTFORMW 「낯간지럽기만 한데...」
+    CASE 2
+        PRINTFORMW 「그만...그렇게 더듬지 마세요...」
+        PRINTFORMW 「...하나도 기분 좋지 않으니까」
+    CASE 3
+        ;무릎에 앉힌다
+        PRINTFORMW 사토리를 무릎에 앉혔다
+        PRINTFORMW 「...생각만큼 편하지는 않네요」
+        PRINTFORMW 「으음, 그냥 침대에 앉게 해 주시는건 어떨까 싶은데...」
+    CASE 4
+        ;무릎에 앉힌다
+        PRINTFORMW 사토리를 무릎에 앉게했다
+        PRINTFORMW 「...왠지 어린아이 취급받는 기분인걸요」
+        PRINTFORMW 그다지 마음에 들진 않는 모양이다
+    CASE 5
+        ;무릎에 앉힌다
+        PRINTFORMW 사토리를 무릎에 앉게했다
+        PRINTFORMW 「...이런게 뭐가 좋은건가요...?」
+        PRINTFORMW 그다지 마음에 들진 않는 모양이다...
+    CASE 6
+        ;귀를 핥는다
+        PRINTFORMW 사토리의 귀를 가볍게 핥아주었다
+        PRINTFORMW 「더...더러울텐데...」
+        PRINTFORMW 「저기...괜찮은건가요...?」
+    CASE 7
+        ;귀를 핥는다
+        PRINTFORMW 사토리의 귀를 부드럽게 물었다
+        PRINTFORMW 「읏...! 무..물지마세요...」
+        PRINTFORMW 「안 아프긴 하지만...으으...더럽다구요...」
+        PRINTFORMW 사토리는 귀에 묻은 침을 닦아냈다        
+    CASE 8
+        ;귀를 핥는다
+        PRINTFORMW 사토리의 귀를 부드럽게 핥았다
+        PRINTFORMW 「에...그...그런곳을...핥아...?」
+        PRINTFORMW 「...저기, 괜찮으신거 맞죠?」
+    CASE 9
+        ;백허그
+        PRINTFORMW 사토리를 뒤에서부터 부드럽게 안았다
+        PRINTFORMW 「...저기, 놔주세요...」
+        PRINTFORMW 「아니, 포근하긴 하지만...좀 놔주시면 안될까요...?」
+        PRINTFORMW 별로 마음에 들진 않는 모양이다
 ENDSELECT
