@@ -125,15 +125,7 @@ IF LOCAL
 		ELSE
 			;성공/대성공
 			;PRINTFORMW 「」
-			대화선택 = RAND:대화개수
-			IF 대화선택 == 이전대화:0
-				;같은 대사가 나올확률을 줄인다
-				대화선택 = RAND:대화개수
-				IF 대화선택 == 이전대화:1
-					;같은 대사가 나올확률을 줄인다
-					대화선택 = RAND:대화개수
-				ENDIF
-			ENDIF
+			대화선택 = ST_대사섞기(대화개수, 이전대화:0 , 이전대화:1)
 			이전대화:1 = 이전대화:0
 			이전대화:0 = 대화선택
 			SELECTCASE 대화선택
@@ -538,12 +530,159 @@ CALL M_KOJO_MESSAGE_COM_K49_303_1
 RETURN RESULT
 
 @M_KOJO_MESSAGE_COM_K49_303_1
+#DIM 이전대화, 2
+#DIM DYNAMIC 대화선택
+#DIM DYNAMIC 대화개수
 ;-------------------------------------------------
 ;記入チェック（=0, 非表示、1, 表示）
-LOCAL = 0
+LOCAL = 1
 ;-------------------------------------------------
 IF LOCAL
+	;PRINTFORML 「」
+	IF TFLAG:193 == -2
+		;과자상자 실패
+		대화개수 = 6
+		대화선택 = ST_대사섞기(대화개수, 이전대화:0 , 이전대화:1)
+		이전대화:1 = 이전대화:0
+		이전대화:0 = 대화선택
+		SELECTCASE 대화선택
+			CASE 0
+				;말없이 거절
+				IF MARK:반발각인 == 3
+					IF TALENT:연인
+						PRINTFORMW 「......」
+						PRINTFORMW 사토리는 말없이 과자상자를 밀어냈다...
+					ELSE
+						PRINTFORMW 「...」
+						PRINTFORMW 사토리는 싸늘한 눈빛으로 %마스터를% 바라보며 과자상자를 밀어냈다...
+					ENDIF
+				ELSEIF TALENT:연인
+					PRINTFORMW 「......」
+					PRINTFORMW 사토리는 조용히 과자상자를 밀어냈다...
+				ELSEIF TALENT:연모||TALENT:사모||TALENT:애욕
+					PRINTFORMW 「......」
+					PRINTFORMW 사토리는 과자상자를 힐끗 보곤 그대로 %CALLNAME:MASTER%에게 되밀었다...
+				ELSE
+					PRINTFORMW 「......」
+					PRINTFORMW 사토리는 과자상자에 눈길조차 주지 않고 있다...
+				ENDIF
+			CASE 1
+				;성질
+				IF MARK:반발각인 == 3
+					IF TALENT:연인
+						PRINTFORMW 「...그런걸 선물한다고 화가 풀릴거 같나요?」
+						PRINTFORMW 「아무리 잘못해도, 선물 한번이면 끝난다고 생각하는 건가요?」
+						PRINTFORMW 사토리는 차가운 시선으로 %마스터를% 바라보고 있다...	
+					ELSE
+						PRINTFORMW 「과자...그거면 전부 해결될거라 생각하는걸까?」
+						PRINTFORMW 「...글쎄요, 과연 그럴까나...적어도 저는 아니라고 생각하는데」
+						PRINTFORMW 사토리는 과자상자를 도로 밀어냈다...
+					ENDIF
+				ELSEIF TALENT:연인
+					PRINTFORMW 「됐어요」
+					PRINTFORMW 사토리는 단호하게 말해왔다
+					PRINTFORMW 「그런거 받는다고 기쁘지도 않고...」
+					PRINTFORMW 「...이번에 넘어가주면, 다음번에도 또 이럴테고, 그때마다 과자상자로 퉁칠거잖아」
+					PRINTFORMW 「.....그러니까 이건 도로 가져가요」
+					PRINTFORMW 사토리는 과자상자를 도로 밀어냈다...
+				ELSEIF TALENT:연모||TALENT:사모||TALENT:애욕
+					PRINTFORMW 「그런거 받는다고 용서해줄 생각은 없는데」
+					PRINTFORMW 「...선물이 있다고 무조건 용서해줄리가 없잖아요?」
+					PRINTFORMW 사토리는 쌀쌀맞게 쏘아붙이며 과자상자를 되밀어왔다
+				ELSE
+					PRINTFORMW 「필요 없어요」
+					PRINTFORMW 「그리고...그런거로 대충 얼버무릴 생각이었다면 포기하는게 좋아요」
+					PRINTFORMW 「뻔히 속셈이 보이는데 받아줄리가 없잖아」
+				ENDIF
+			CASE 3
+				PRINTFORMW 「...이런거 전혀 안 기쁘니까, 도로 가져가세요」
+				PRINTFORMW 「선물로 얼버무리려 하는게 훤히 보이니까, 더 싫어」
+				PRINTFORMW 사토리는 언짢아 보이는 표정으로 쏘아붙여왔다
+			CASE 4
+				PRINTFORMW 「......」
+				PRINTFORMW 사토리는 말없이 과자상자와 %마스터를% 번갈아보며 바라보고 있다...
+				PRINTFORMW 「저기, 그런 일을 해 놓고서 이거 하나로 퉁치자니...」
+				PRINTFORMW 「조금 무성의하지 않나요?」
+				PRINTFORMW 「...과자같은걸 바라는게 아니라, 좀 더 진심어린 사과였다면 못 받아줄것도 없었어」
+				PRINTFORMW 「...이건 도로 가져가세요」
+				PRINTFORMW 사토리는 쌀쌀맞게 쏘아붙였다...
+			CASE 5
+				IF TALENT:연인
+					PRINTFORMW 「...과자 몇 개로 풀릴 거였으면, 애초부터 이럴 일도 없었죠...」
+					PRINTFORMW 「좀 더 성의있는 사과라는걸 해 주시면 안될까요?」
+					PRINTFORMW 사토리는 입술을 삐죽이고 있다...
+				ELSE
+					PRINTFORMW 「...굳이 이런거까지 준비해주신 와중에 죄송하지만...」
+					PRINTFORMW 「이런거, 필요 없어요」
+					PRINTFORMW 「사과하실 생각이었다면...하아...좀 더 성의있게 해주세요」
+					PRINTFORMW 「선물같은거 말고, 진심으로 하는 사과정도면 충분하니까」
+					PRINTFORMW 「...그게 어렵나요?」			
+				ENDIF
+		ENDSELECT
+	ELSEIF TFLAG:193 == -1
+		;실패
+		대화개수 = 6
+		대화선택 = ST_대사섞기(대화개수, 이전대화:0 , 이전대화:1)
+		이전대화:1 = 이전대화:0
+		이전대화:0 = 대화선택
+		SELECTCASE 대화선택
+			CASE 0
+				PRINTFORML 「......」
+				PRINTFORML 사토리는 %마스터의% 사과를 들은채도 안 해주고 있다...
+			CASE 1
 
+			CASE 2
+
+			CASE 3
+
+			CASE 4
+
+			CASE 5
+
+		ENDSELECT
+	ELSE
+		;성공
+		IF TFLAG:193 == 2
+			;과자상자 성공
+			대화개수 = 6
+			대화선택 = ST_대사섞기(대화개수, 이전대화:0 , 이전대화:1)
+			이전대화:1 = 이전대화:0
+			이전대화:0 = 대화선택
+			SELECTCASE 대화선택
+				CASE 0
+
+				CASE 1
+
+				CASE 2
+
+				CASE 3
+
+				CASE 4
+
+				CASE 5
+				
+			ENDSELECT
+		ELSE
+			대화개수 = 6
+			대화선택 = ST_대사섞기(대화개수, 이전대화:0 , 이전대화:1)
+			이전대화:1 = 이전대화:0
+			이전대화:0 = 대화선택
+			SELECTCASE 대화선택
+				CASE 0
+
+				CASE 1
+
+				CASE 2
+
+				CASE 3
+
+				CASE 4
+
+				CASE 5
+				
+			ENDSELECT
+		ENDIF
+	ENDIF
 ENDIF
 RETURN 1
 ;==================================================
