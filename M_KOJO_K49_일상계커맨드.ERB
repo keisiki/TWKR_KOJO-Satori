@@ -621,65 +621,160 @@ IF LOCAL
 		ENDSELECT
 	ELSEIF TFLAG:193 == -1
 		;실패
-		대화개수 = 6
+		대화개수 = 5
 		대화선택 = ST_대사섞기(대화개수, 이전대화:0 , 이전대화:1)
 		이전대화:1 = 이전대화:0
 		이전대화:0 = 대화선택
 		SELECTCASE 대화선택
 			CASE 0
-				PRINTFORML 「......」
-				PRINTFORML 사토리는 %마스터의% 사과를 들은채도 안 해주고 있다...
+				PRINTFORMW 「......」
+				PRINTFORMW 사토리는 %마스터의% 사과를 들은채도 안 해주고 있다...
 			CASE 1
-
+				PRINTFORMW 「...네, 그래서요?」
+				PRINTFORMW 사토리는 여전히 냉담한 표정으로 %마스터를% 바라보고 있다
 			CASE 2
-
+				IF TALENT:연인
+					PRINTFORMW 「...흥」
+					PRINTFORMW 사토리는 아직 화가 안 풀린 모양이다...
+				ELSE
+					PRINTFORMW 「...지금은 그다지 들어주고 싶지 않은걸」
+					PRINTFORMW 「하아...그냥 나중에 이야기합시다, 괜히 서로 기분 상하지 말고」
+				ENDIF
 			CASE 3
-
+				PRINTFORMW 「그렇게 말해도 말이죠...」
+				PRINTFORMW 「기분을 풀려해도 안 풀리는걸 어떻게 해」
+				IF TALENT:연인||TALENT:연모||TALENT:애욕
+					PRINTFORMW 「...죄송하지만 조금 내버려둬 주시겠어요?」
+					BASE:분노 = MAX(BASE:분노 - 250, 0)
+				ELSE
+					PRINTFORMW 「...하아...조금 더 진정할 시간을 주세요」
+					PRINTFORMW 사토리는 언짢은듯 고개를 돌렸다
+				ENDIF
 			CASE 4
-
-			CASE 5
-
+				IF TALENT:연인
+					PRINTFORMW 「...미안하지만, 아직은 진정되지가 않네요」
+					PRINTFORMW 사토리는 여전히 불만스러워 보이는 표정이다...
+				ELSE
+					PRINTFORMW 「그런다고 화나는게 사라지나요...」
+					PRINTFORMW 「...할 거라면 조금 더 진정성있게 해주세요」
+				ENDIF
 		ENDSELECT
+		;반발각인 감소 플래그를 +1
+		CFLAG:5001++
 	ELSE
 		;성공
 		IF TFLAG:193 == 2
 			;과자상자 성공
-			대화개수 = 6
+			대화개수 = 5
 			대화선택 = ST_대사섞기(대화개수, 이전대화:0 , 이전대화:1)
 			이전대화:1 = 이전대화:0
 			이전대화:0 = 대화선택
 			SELECTCASE 대화선택
 				CASE 0
-
+					PRINTFORMW 「후우...이번만 이니까요」
+					PRINTFORMW 「...절대로 과자때문에 용서하는건 아니라구요?」
+					PRINTFORMW 사토리의 입꼬리가 슬쩍 올라가있다는건 본인은 모르는 눈치였다
 				CASE 1
-
+					PRINTFORMW 「윽...하...하는수 없네요, 그런거까지 들고 올 줄이야」
+					PRINTFORMW 「...그래도 이번만이에요? 다음엔 이런거로 안 넘어갈거니까」
 				CASE 2
-
+					PRINTFORMW 「이런거로 용서받을수 있을거라 생각한건가요...?」
+					PRINTFORMW 「...이런말 해봐야 나만 손해겠지...제대로 들어줄거 같지도 않구」
+					PRINTFORMW 「알았어요, 이번엔 넘어가드릴테니까...」
+					PRINTFORMW 「...다음은 없어요?」
+					PRINTFORMW 사토리는 과자를 우물거리며 쏘아붙였다...
 				CASE 3
-
+					PRINTFORMW 「...뭐어...이렇게 선물까지 들이미는데, 계속 성내기도 그렇고...」
+					PRINTFORMW 「알았어요...그 일은 없던걸로 합시다, 됐죠?」
+					PRINTFORMW 사토리는 냉큼 과자상자를 빼앗았다...
 				CASE 4
-
-				CASE 5
-				
+					PRINTFORMW 「...과자상자?」
+					PRINTFORMW 「...이걸로 어떻게든 안되겠냐고요?」
+					PRINTFORMW 「하아...좀 더 진정성있는 사과를 바랬건만..」
+					PRINTFORMW 「그렇긴해도 계속 성내고 있긴 좀 그렇죠...」
+					PRINTFORMW 「...알았어요, 이번엔 이거로 끝냅시다, 괜히 서로 꿍해있지 말고」
 			ENDSELECT
 		ELSE
-			대화개수 = 6
+			대화개수 = 5
 			대화선택 = ST_대사섞기(대화개수, 이전대화:0 , 이전대화:1)
 			이전대화:1 = 이전대화:0
 			이전대화:0 = 대화선택
 			SELECTCASE 대화선택
 				CASE 0
-
+					PRINTFORMW 「......」
+					PRINTFORMW %마스터의% 사과를 듣는 동안, 사토리는 묵묵히 듣고만 있었다
+					PRINTFORMW 「...뭐, 그렇게 화낼 일도 아니었긴 하죠...」
+					PRINTFORMW 「다음번에 안 하면 되는거니까, 이번엔 없던 일로 합시다」
+					PRINTFORMW 「...또 이러면 그냥 안 넘어갈거니까」
 				CASE 1
-
+					IF MARK:반발각인 == 3
+						IF TALENT:연인
+							PRINTFORMW 「...요근래, 심한일만 하시는거 같네요」
+							PRINTFORMW 「다른 사이도 아니고 저와 %MASTERNAME:49%인데...」
+							PRINTFORMW 「...좀 더 제 생각도 해 주세요, 이번처럼 또 이러지 말고」
+							PRINTFORMW 사토리는 약간 슬픈듯이 말해왔다
+						ELSE
+							PRINTFORMW 「...그래요, 이번건 화낼일도 아니죠」
+							PRINTFORMW 「그동안 한 걸 생각하면 말예요」
+							PRINTFORMW 「...이번 일로 더 이상 화내진 않을거지만, 그 전의 일들은 아니니까」
+							PRINTFORMW 사토리는 냉담하게 말해왔다
+						ENDIF
+					ELSEIF TALENT:연인
+						PRINTFORMW 「후우...우리 사이에 이런 일로 계속 꽁해있는것도 나쁘니까, 이번은 넘어가겠는데...」
+						PRINTFORMW 「다음에 또 이럼 진짜로 화낼거예요?」
+					ELSEIF TALENT:연모||TALENT:사모||TALENT:애욕
+						PRINTFORMW 「...하아아...그러게 애초부터 화낼만한 일을 하지 말았음 좋았을것을...」
+						PRINTFORMW 「다음부턴 이러지 마세요, 아시겠어요?」
+					ELSE
+						PRINTFORMW 「...다음엔 이런 일 없도록 해 주세요」
+						PRINTFORMW 「피차 얼굴 붉히고 성내는건 귀찮으니까」
+					ENDIF
 				CASE 2
-
+					IF MARK:반발각인 == 3
+						IF TALENT:연인
+							PRINTFORMW 「...저기, 다음번에도 또 이럴건가요?」
+							PRINTFORMW 「...안 그럴거죠? 이젠 심한 일 안 할거죠?」
+							PRINTFORMW 「요근래 계속...하아...아녜요, 이 얘긴 그만 합시다」
+							PRINTFORMW 「괜히 또 복잡해지는건 싫으니까...」
+							CFLAG:5001++
+						ELSE
+							PRINTFORMW 「...다음에도 또 이런일...하겠죠, 분명히 할거예요」
+							PRINTFORMW 「그렇긴해도 이걸로 화내고 있으면 나만 지치니까...」
+							PRINTFORMW 「...이번일은 서로 좋게좋게 넘어가는거로, 그거면 되겠죠」
+							PRINTFORMW 「그거 말고도 성낼일이 하나 둘이 아니긴 하지만...」
+						ENDIF
+					ELSEIF TALENT:연인
+						PRINTFORMW 「다음번에도 또...이런일 할 건가요?」
+						PRINTFORMW 「...안 할거라고 믿으니까, 이번은 없던일로 합시다」
+						PRINTFORMW 「...그러니까 이제는 이렇게 서로 얼굴 붉힐일 만들지 말아요」
+					ELSEIF TALENT:연모||TALENT:사모||TALENT:애욕
+						PRINTFORMW 「...다음번엔 이런일 없게 해주세요」
+						PRINTFORMW 사토리는 약간 슬픈듯이 말해왔다...
+					ELSE
+						PRINTFORMW 「...네네, 알겠습니다...」
+						PRINTFORMW 「다음에는 이런일 없길 바래요」
+						PRINTFORMW 「...이번 일은 이정도로 됐으니까」
+					ENDIF
 				CASE 3
-
+					PRINTFORMW 「미안하다는 마음, 실은 조금도 없죠?」
+					PRINTFORMW 「...찔렸나요? 사실 그냥 던져본 말이에요, 제대로 읽어보지도 않았으니 걱정 마시길」
+					PRINTFORMW 「뭐어어...이번엔 이걸로 넘어가 드리겠지만...다음번에도 이러리란 보장은 없어요」
+					PRINTFORMW 사토리는 냉담하게 말해왔다...
 				CASE 4
-
-				CASE 5
-				
+					PRINTFORMW 「...또 이러진 않을거죠?」
+					IF TALENT:연인
+						PRINTFORMW 「%사마스터와% 싸우는건 싫으니까, 이런일 없도록 서로 조심합시다?」
+					ELSEIF TALENT:연모||TALENT:애욕||TALENT:사모
+						PRINTFORMW 「...믿고 있을게요」
+					ELSEIF TALENT:섹프
+						PRINTFORMW 「그동안 기분좋게 해준것도 있으니까, 이번건 넘어가드릴게요」
+						PRINTFORMW 「그러니까 기분좋은거 보충해주세요?」
+					ELSEIF MARK:반발각인 == 3
+						PRINTFORMW 「...그럴리야 없겠지만, 한번만 더 속아보죠」
+						PRINTFORMW 사토리는 냉담하게 쏘아붙였다
+					ELSE
+						PRINTFORMW 「...그럼 됐어요, 그렇게 화낼 일도 아니고 뭐...」
+					ENDIF
 			ENDSELECT
 		ENDIF
 	ENDIF
