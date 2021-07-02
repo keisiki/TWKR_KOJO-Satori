@@ -52,6 +52,8 @@ IF LOCAL
 		ELSE
 			IF TIME_PROGRESS(TCVAR:300) >= 120 && CFLAG:초기위치 == CFLAG:현재위치 && RAND:3 == 0
 				CALL ST_차타주기
+			ELSEIF TALENT:사모&&RAND:4 == 0
+				CALL ST_사모회화
 			ELSE
 				CALL ST_통상회화
 			ENDIF
@@ -781,7 +783,7 @@ IF LOCAL
 ENDIF
 RETURN 1
 ;==================================================
-;304,일을 돕는다
+;304,일을 돕는다 < 사토리는 일 안하니까 안 쓸거야-
 ;TFLAG:193(1=大成功 0=成功 -1=失敗)
 ;CFLAG:350(仕事内容(JOB_仕事内容.ERB参照のこと
 ;TCVAR:도울수없다(=2 손伝っても早くは終わらない、시간정지中不可 永琳の診察等)

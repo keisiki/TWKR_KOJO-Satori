@@ -1462,3 +1462,103 @@ SELECTCASE ARG
         PRINTFORMW 「아니, 포근하긴 하지만...좀 놔주시면 안될까요...?」
         PRINTFORMW 별로 마음에 들진 않는 모양이다
 ENDSELECT
+
+
+
+@ST_사모회화
+#DIM 이전대화, 3
+#DIM DYNAMIC 대화선택
+#DIM CONST 대화개수 = 5 ;20
+;목표수는 15개~20개
+대화선택 = ST_대사섞기(대화개수, 이전대화:0 , 이전대화:1, 이전대화:2)
+이전대화:2 = 이전대화:1
+이전대화:1 = 이전대화:0
+이전대화:0 = 대화선택
+
+SELECTCASE 대화선택
+    CASE 0
+        PRINTFORMW 「질리지도 않나보네요...」
+        PRINTFORMW 「저랑 대화하는걸 즐기는 사람은 별로 없는데」
+        PRINTFORMW 「...희한한 사람이야, 정말」
+    CASE 1
+        PRINTFORMW 「...다른 사람이랑 대화하면 금방 질려버리는데」
+        PRINTFORMW 「%사마스터랑%은 그러지가 않네요」
+        PRINTFORMW 사토리는 희미하게 웃어보이며 말해왔다
+    CASE 2
+        ;사실은 그렇게까지 예상하고 대사를 만들수가 없어서 그런거지만
+        PRINTFORMW 「실은, %사마스터의% 마음은 제대로 읽을수가 없어요」
+        PRINTFORMW 「못 읽을 정도는 아니지만...읽으려 해도 희미한 부분이 많아서 피곤해져」
+        PRINTFORMW 「...뭔가 하고 있는건 아니겠죠?」
+    CASE 3
+        IF CHK_DATENOW(CFLAG:TARGET:데이트중)
+            PRINTFORMW 「나가는건 그다지 좋아하지 않았는데」
+            PRINTFORMW 「막상 나와보니 그럭저럭 괜찮은거 같네요...」
+            PRINTFORMW 「그치만 계속 걷다가 지쳐서 집에 못 돌아갈지도 모르겠네요」
+        ELSE
+            PRINTFORMW 「...어딘가 좋아하시는 곳, 있나요?」
+            PRINTFORMW 「아뇨...나중에 한번 지상으로 나갔을때 들려보려고요」
+            PRINTFORMW 「가끔 코이시를 찾으려 나가니까, 그때 즐길수 있지 않을까- 해서...」
+            PRINTFORMW 사토리는 옆머리를 베베꼬며 말하고 있다...
+        ENDIF
+    CASE 4
+        IF TALENT:38:연인
+            PRINTFORMW 「저기, 코이시랑은 잘 되고 있나요?」
+            PRINTFORMW 「그게...아무래도 그 아이는 조금 걱정되니까 말이죠」
+            IF MARK:38:반발각인 == 3
+                PRINTFORMW 「...조금 험악해 보이긴 하던데...」
+                PRINTFORMW 「둘이 싸운건가요?」
+            ELSE
+                PRINTFORMW 「...뭐, 잘 지내고 있으면 상관 없어요」
+            ENDIF
+            PRINTFORMW 「...코이시가 이상한 짓도 할 수 있고, 서로 의견이 안 맞을수도 있지만...」
+            PRINTFORMW 「그래도 일부러 그러는건 아니니까...잘 보듬어 주세요, 부탁드립니다」
+            IF CFLAG:38:현재위치 == CFLAG:현재위치
+                CALL ST_KS대사W("『저기, 언니- 둘이서 뭔 얘기를 그렇게 속닥속닥 하는거야』")
+                CALL ST_KS대사W("코이시는 약간 불만스러워 보이는 표정으로 사토리를 떼어냈다")
+            ENDIF
+        ELSEIF TALENT:38:연모||TALENT:38:사모
+            PRINTFORMW 「제 동생...코이시에 대해서, 어떻게 생각하시나요?」
+            PRINTFORMW 「왠지 둘이 친해보이길래 궁금해서 말이죠」
+            PRINTFORML [0] 그냥 그렇다
+            PRINTFORML [1] 귀엽다
+            PRINTFORML [2] 좋아한다
+            PRINTFORML [3] 귀찮다
+            PRINTFORML [4] 싫다
+            INPUT
+            SELECTCASE RESULT
+                CASE 0
+                    PRINTFORMW 「...흐으음...그런가요」
+                    PRINTFORMW 「그 애는 아닌거 같지만...」
+                    PRINTFORMW 사토리는 흥미롭다는듯이 바라보고 있다...
+                CASE 1
+                    PRINTFORMW 「그런가요」
+                    PRINTFORMW 「귀여운 편이 좀 더 좋은거구나...」
+                    PRINTFORMW 사토리는 고개를 끄덕이고 있다
+                CASE 2
+                    PRINTFORMW 「...좋아, 한다라...」
+                    PRINTFORMW 「...잘 됐네요, 서로 죽이 잘 맞는 사람끼리 만나서」
+                    PRINTFORMW 어째서인지 사토리는 입술을 삐죽이고 있다...
+                CASE 3
+                    PRINTFORMW 「...귀찮다니...」
+                    PRINTFORMW 「그래도 그 애는 나름대로 %사마스터가% 좋아서 그러는거니까, 너무 그러진 말아줘요」
+                    PRINTFORMW 「제대로 사랑하는법을 모르는 아이니까, 어쩔수 없는거예요...」
+                CASE 4
+                    PRINTFORMW 「...싫은건가요...역시 그렇겠죠...」
+                    PRINTFORMW 「저나 동생을 좋아해주는 사람은 그다지 없으니까요」
+                    PRINTFORMW 「그래도 너무 미워하진 말아주세요, 그 애는 나름대로 잘 보이려고 하고 있으니까...」
+                CASEELSE
+                    PRINTFORMW 「...대답하기 싫은건가요」
+                    PRINTFORMW 「상관없어요, 별로 중요한것도 아닌걸요」
+            ENDSELECT
+        ELSE
+            PRINTFORMW 「코이시한테도 잘 대해주세요」
+            PRINTFORMW 「가끔 이상한 짓을 하긴 하지만...너무 미워하진 말아줘요」
+            PRINTFORMW 「그 애가 나쁜 마음으로 한 건 아닐...아마도 아닐거예요...」
+            PRINTFORMW 「...아마도...」
+        ENDIF
+    CASE 5
+
+        PRINTFORMW 「」
+    CASE 6
+
+ENDSELECT
