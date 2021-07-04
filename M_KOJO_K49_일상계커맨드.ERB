@@ -830,9 +830,141 @@ RETURN RESULT
 @M_KOJO_MESSAGE_COM_K49_305_1
 ;-------------------------------------------------
 ;記入チェック（=0, 非表示、1, 表示）
-LOCAL = 0
+LOCAL = 1
 ;-------------------------------------------------
 IF LOCAL
+	;PRINTFORMW 「」
+	IF MARK:반발각인 == 3
+		IF TALENT:연인
+			SELECTCASE RAND:5
+				CASE 0
+					PRINTFORML 「...은근히 다리가 저린걸」
+					PRINTFORML 「저기, 슬슬 그만하면 안 될까요...」
+				CASE 1
+					PRINTFORMW 「왠지 연인같다는 느낌이 물씬 드네요」
+					PRINTFORMW 「보통 연인이라면 꼭 하는 여러개중에 하나잖아요」
+					PRINTFORMW 「...좀 더 사이좋은 상태면 좋겠지만」
+				CASE 2
+					PRINTFORMW 「어때요, 편한가요?」
+					PRINTFORMW 살집이 없는 얇다란 다리탓에 단단한 목침을 벤 것 같은 기분이었다
+					PRINTFORMW 「...칭찬인지 욕인지 모를말은 그만둬요」
+				CASE 3
+					PRINTFORMW 「뭣하면 조금 자고 일어나도 좋아요」
+					PRINTFORMW 「...그러기엔 조금 불편한가?」
+				CASE 4
+					PRINTFORMW 「...평화롭네요, 이러고 있으면」
+					PRINTFORMW 사토리는 조용히 %마스터의% 머리를 쓰다듬어 주고 있다
+			ENDSELECT
+		ELSE
+			SELECTCASE RAND:5
+				CASE 0
+					PRINTFORMW 「왜 내가 이런걸 해 줘야 하는건데...」
+					PRINTFORMW 「하아...적당히 만족하고 놔줬으면 좋겠네...」
+				CASE 1
+					PRINTFORMW 「...자, 이거면 됐죠?」
+					PRINTFORMW 「불편하니 뭐니 하지마요, 어쩔수 없는거니까...」
+				CASE 2
+					PRINTFORMW 「...그런건 연인한테나 부탁하는거라고요?」
+					PRINTFORMW 「우리 사이에 그런걸 할...하아...들어줄리가 없지...」
+					PRINTFORMW 사토리는 투덜거리며 무릎을 내 줬다
+				CASE 3
+					PRINTFORMW 「...얌전히만 있어준다면야, 못해줄것도 없지만」
+					PRINTFORMW 「...기왕 그럴거 평소에도 조금만 더 잘했음 참 좋겠는데」
+				CASE 4
+					PRINTFORMW 「이상한짓 하면 그대로 떨어뜨려 버릴거니까」
+					PRINTFORMW 「다리사이로 고래 돌린다던가, 머리로 꿈틀거린다던가 그러지 마세요」
+			ENDSELECT
+		ENDIF
+	ELSEIF TALENT:연인
+		SELECTCASE RAND:5
+			CASE 0
+				PRINTFORMW 「...잠깐, 이쪽으로 고개 돌리면 안돼요」
+				PRINTFORMW 「아무리 그래도 부끄러우니까...」
+				PRINTFORMW 사토리는 얼굴을 붉혔다
+			CASE 1
+				PRINTFORMW 「왠지 연인같다는 느낌이 물씬 드네요」
+				PRINTFORMW 「보통 연인이라면 꼭 하는 여러개중에 하나잖아요」
+				PRINTFORMW 「...뭐어, 벌써 연인이지만♥」
+			CASE 2
+				PRINTFORMW 「어때요, 편한가요?」
+				PRINTFORMW 살집이 없는 얇다란 다리탓에 단단한 목침을 벤 것 같은 기분이었다
+				PRINTFORMW 「...칭찬인지 욕인지 모를말은 그만둬요」
+			CASE 3
+				PRINTFORMW 「뭣하면 조금 자고 일어나도 좋아요」
+				PRINTFORMW 「...그러기엔 조금 불편한가?」
+			CASE 4
+				PRINTFORMW 「...♥」
+				PRINTFORMW 사토리는 조용히 %마스터의% 머리를 쓰다듬어 주고 있다
+		ENDSELECT
+	ELSEIF TALENT:연모||TALENT:사모||TALENT:애욕
+		SELECTCASE RAND:5
+			CASE 0
+				PRINTFORMW 사토리는 말없이 %마스터의% 머리를 쓰다듬어 주고 있다...
+			CASE 1
+				PRINTFORMW 「...잠깐, 돌아눕지 마세요...」
+				PRINTFORMW 「왜냐니...거, 거긴...으으...아무리 %사마스터라% 해도 부끄러우니까 반대로 누우세요, 얼른」
+			CASE 2
+				PRINTFORMW 「...왠지 기분이 묘한걸, 이러고 있으면...」
+				PRINTFORMW 「...아, 아녜요...아무것도 아냐」
+			CASE 3
+				PRINTFORMW 「어때요, 편안한가요?」
+				PRINTFORMW 「불편하다고 해도 딱히 해드릴수 있는건 없지만」
+			CASE 4
+				PRINTFORMW 「이런건 좋아하는 사람한테나 부탁하는거예요」
+				PRINTFORMW 「...일단 해드리긴 하겠지만」
+				PRINTFORMW 사토리는 살며시 얼굴을 붉혔다
+		ENDSELECT
+	ELSEIF TALENT:섹프
+		SELECTCASE RAND:5
+			CASE 0
+				PRINTFORMW 「왜 내가 이런 일을...」
+				PRINTFORMW 「이런건 연인한테나 해 달라고 하는걸텐데」
+				IF !TALENT:MASTER:연인
+					PRINTFORMW 「...아, 없지 참, 미안하게 됐네요」
+				ENDIF
+			CASE 1
+				PRINTFORMW 「이런게 뭐가 좋다고...」
+				PRINTFORMW 「해달라니 해드리긴 하지만, 도저히 이해할수가 없네요」
+			CASE 2
+				PRINTFORMW 「무거워...」
+				PRINTFORMW 「저기, 슬슬 그만하고 일어나주시면 안될까요?」
+				PRINTFORMW 「...좀 더? 하아...다리가 저린데...」
+				PRINTFORMW 사토리는 별로 마음에 안 드는지 연신 투덜거리고 있다
+			CASE 3
+				PRINTFORMW 「...그냥 누워만 있는건 재미없잖아요?」
+				IF !EYEWITNESS()
+					PRINTFORMW 「하다못해 그 입으로 핥기라도 하는게 더 즐거울텐데...」
+				ELSE
+					PRINTFORMW 「언제까지 할 건가요...?」
+				ENDIF
+				PRINTFORMW 사토리는 불만스러워 보이는 표정이다...
+			CASE 4
+				PRINTFORMW 「무릎 베개 같은게 뭐가 재미있나요?」
+				PRINTFORMW 「무겁기만 하고, 불편하고 지루해」
+				PRINTFORMW 「...그러니까, 만족했으면 얼른 놔주세요」
+		ENDSELECT
+	ELSE
+		SELECTCASE RAND:5
+			CASE 0
+				PRINTFORML 「왜 내가 이런 일을...」
+				PRINTFORMW 「...잠깐, 움직이면 떨어져요?」
+			CASE 1
+				PRINTFORML 「솔직히 이거 불편하기만 한데, 그래도 하고 싶은건가요」
+				PRINTFORML 「...나는 무거워서 싫은데」
+				PRINTFORMW 사토리는 투덜투덜거리고 있다
+			CASE 2
+				PRINTFORML 「이런건 연인한테나 부탁하는거 아닌가요?」
+				PRINTFORML 「...누구던지 상관없다, 라는건가요...」
+				PRINTFORMW 「개방적이라고 해야할지 호색한이라고 해야할지 모르겠는 사람이네요...」
+			CASE 3
+				PRINTFORML 「...슬슬 다리가 아파지는데...언제까지 해야하나요?」
+				PRINTFORMW 사토리는 무릎베개 하는게 그다지 마음에 안 드는 모양이다 
+			CASE 4
+				PRINTFORML 「이런게 뭐가 좋은건지...」
+				PRINTFORML 「하고 싶다고 계속 옆에서 신경쓰이게 하니까 해드리긴 하지만...」
+				PRINTFORMW 사토리는 입술을 삐죽이고 있다
+		ENDSELECT
+	ENDIF
 ENDIF
 RETURN 1
 ;==================================================
