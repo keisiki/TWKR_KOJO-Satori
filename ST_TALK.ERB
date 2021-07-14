@@ -1565,7 +1565,7 @@ SELECTCASE 대화선택
             PRINTFORMW 「그나저나, \@ ST_HOW_연인() > 1 ? 연인이랑은# 연인들이랑은\@ 어떻게 지내시나요?」
             PRINTFORMW 「사이가 안 좋다던가...뭐 그런일, 없나요?」
             PRINTFORMW 사토리는 호기심에 찬 눈으로 바라보고 있다
-        ELSE !ST_HOW_연인()
+        ELSEIF !ST_HOW_연인()
             ;연인 없다
             PRINTFORMW 「%사마스터의% 이상형은 어떤가요?」
             PRINTFORMW 「...벼...별다른 뜻은 아니고, 그냥 궁금해서요, 대답하기 싫음 말고요」
