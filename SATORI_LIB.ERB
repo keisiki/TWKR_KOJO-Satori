@@ -583,18 +583,18 @@ ELSEIF ARGS == "팬티어디에쓰려고"
                     PRINTFORMW 사토리는 입술을 삐죽였다...
                 ELSE
                     PRINTFORMW 「...왠지 주기 싫어지는걸요」
-                    PRINTFORMW 사토리는 떨떠름한 표정으로 %마스터를% 바라보고 있다...
+                    PRINTFORMW 사토리는 떨떠름한 표정으로 %마스터를% 바라보고 있다
                 ENDIF
             ELSE
                 PRINTFORMW 「......」
-                PRINTFORMW 사토리의 얼굴이 새빨게졌다...
+                PRINTFORMW 사토리의 얼굴이 새빨게졌다
             ENDIF
         CASE 3
             
             IF MARK:반발각인 == 3
                 IF TALENT:연인
                     PRINTFORMW 「...팔다니, 제 팬티를...그런...」
-                    PRINTFORMW 사토리는 얼굴을 붉혔다...
+                    PRINTFORMW 사토리는 얼굴을 붉혔다
                 ELSE
                     PRINTFORMW 「...하아...추잡해...」
                     PRINTFORMW 「그런걸 팔 생각을 하는 %MASTERNAME:49%도, 그걸 사가는 사람도...」
@@ -602,10 +602,10 @@ ELSEIF ARGS == "팬티어디에쓰려고"
                 ENDIF
             ELSE
                 PRINTFORMW 「...판다니...으으...그런걸 사가는 사람이 있다는건가요?」
-                PRINTFORMW 사토리의 얼굴이 새빨게졌다...
+                PRINTFORMW 사토리의 얼굴이 새빨게졌다
             ENDIF
         CASE 6974
-            PRINTFORMW 머릿속으로 팬티를 으적으적 씹어먹는 상상을 하자, 사토리가 질겁했다...
+            PRINTFORMW 머릿속으로 팬티를 으적으적 씹어먹는 상상을 하자, 사토리가 질겁했다
         CASEELSE
             PRINTFORMW 「대답 안 한다는건...별 생각없이 그냥 가지고 싶어서, 라는건가요」
             PRINTFORMW 「굳이 읽진 않을게요, 읽고 싶진 않아...」
@@ -617,11 +617,11 @@ ELSEIF ARGS == "오랜만에외출처에서마주침"
                 IF CFLAG:MASTER:현재위치 / 100 == 9
                     PRINTFORMW 「...오랜만이에요」
                     PRINTFORMW 「그동안 바빴나요? 한번쯤은 얼굴 비춰줘도 좋았을텐데」
-                    PRINTFORMW 사토리는 굉장히 삐친것 같은 표정으로 말해왔다...
+                    PRINTFORMW 사토리는 굉장히 삐친것 같은 표정으로 말해왔다
                 ELSE
                     PRINTFORMW 「...이런데서 다 보네요」
                     PRINTFORMW 「오랜만이에요, 요 근래 얼굴도 못 봤는데」
-                    PRINTFORMW 사토리는 굉장히 삐친것 같은 말투다...
+                    PRINTFORMW 사토리는 굉장히 삐친것 같은 말투다
                 ENDIF
             CASE 1
                 IF CFLAG:MASTER:현재위치 / 100 == 9
@@ -632,7 +632,7 @@ ELSEIF ARGS == "오랜만에외출처에서마주침"
                 ELSE
                     PRINTFORMW 「어라, 여기서 뵐 줄은 몰랐는데」
                     PRINTFORMW 「그동안 코빼기도 안 보이더니 이런데 있을줄이야」
-                    PRINTFORMW 사토리는 냉담한 표정으로 말해왔다...
+                    PRINTFORMW 사토리는 냉담한 표정으로 말해왔다
                 ENDIF
         ENDSELECT
     ELSEIF TALENT:연모||TALENT:애욕
@@ -642,16 +642,16 @@ ELSEIF ARGS == "오랜만에외출처에서마주침"
                     PRINTFORMW 「앗...」
                     PRINTFORMW %마스터를% 발견한 사토리는 일순간 굉장히 기뻐보이는 표정을 지어보였다
                     PRINTFORMW 「아, 안녕하세요, 오랜만이에요?」
-                    PRINTFORMW 그러나 이내 평소의 표정으로 되돌아갔다...
+                    PRINTFORMW 그러나 이내 평소의 표정으로 되돌아갔다
                 ELSE
                     PRINTFORMW 「어라, 이런데서 뵐줄은 몰랐는데」
                     PRINTFORMW 「오랜만이에요, 그동안 잘 지냈나요?」
-                    PRINTFORMW 사토리는 묘하게 밝아보이는 표정으로 말을 건내왔다...
+                    PRINTFORMW 사토리는 묘하게 밝아보이는 표정으로 말을 건내왔다
                 ENDIF
             CASE 1
                 IF CFLAG:MASTER:현재위치 / 100 == 9
                     PRINTFORMW 「오랜만이에요 %MASTERNAME:49%, 잘 지내셨나요?」
-                    PRINTFORMW 사토리는 %마스터를% 발견하곤 종종걸음으로 다가와 말을 걸어왔다...
+                    PRINTFORMW 사토리는 %마스터를% 발견하곤 종종걸음으로 다가와 말을 걸어왔다
                 ELSE
                     PRINTFORMW 「희한한 데서 만났네요, 잘 지냈나요?」
                     PRINTFORMW 「요새 잘 안보이길래 무슨 일이라도 있었나 해서요」
@@ -709,4 +709,20 @@ SIF FLAG:대사색깔
     CALL M_KOJO_COLOR_K38
 PRINTFORML %ARGS%
 SIF FLAG:대사색깔
-    RESETCOLOR
+    CALL M_KOJO_COLOR_K49
+
+
+;연인플래그에 있던 함수를 파쿠리, 적당히 개조한다
+@ST_HOW_연인()
+#FUNCTION
+VARSET LOCAL
+FOR LOCAL, 1, CHARANUM
+	IF LOCAL == FLAG:역극
+		CONTINUE
+	ELSEIF IS_연인(LOCAL) || IS_아내(LOCAL)
+		LOCAL:1 ++
+	ENDIF
+NEXT
+;스침상대 연인 스텍기능이 남아있을 때 // 솔직히 모브코 연인이 몇이나 있을까 싶지마는
+LOCAL:1 += 스친연인수
+RETURNF LOCAL:1
