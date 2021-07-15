@@ -672,6 +672,7 @@ ENDIF
 #DIM DYNAMIC 기출4
 #DIM DYNAMIC 기출5
 #DIM DYNAMIC 대사배열, 1000 ;설마 이거보다 많겠어
+VARSET LOCAL
 FOR LOCAL, 0 , 대사량
     IF !GROUPMATCH(LOCAL,기출0,기출1,기출2,기출3,기출4,기출5)
         대사배열:(LOCAL:1) = LOCAL
