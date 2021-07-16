@@ -979,13 +979,246 @@ RETURN RESULT
 @M_KOJO_MESSAGE_COM_K49_306_1
 ;-------------------------------------------------
 ;記入チェック（=0, 非表示、1, 表示）
-LOCAL = 0
+LOCAL = 1
 ;-------------------------------------------------
 IF LOCAL
 	;시간정지中
 	IF FLAG:70
+		IF TALENT:임신
+			PRINTFORMW %마스터는% 사토리의 배를 조심스레 만져보았다
+			PRINTFORMW ...멈춘 시간속에서는 태내의 아이도 움직이지 않았다
+			PRINTFORMW 부풀어오른 배를 하염없이 만지작 거릴 뿐이었다
+		ELSE
+			SELECTCASE RAND:4
+				CASE 0
+					PRINTFORMW 사토리의 배를 양 손으로 조물딱거렸다
+					PRINTFORMW 약간 말캉한 감촉이 중독성 있었다
+				CASE 1
+					PRINTFORMW 등 뒤에서부터 부드럽게 배를 쓰다듬었다
+					PRINTFORMW 매끈한 살결을 마음껏 즐겼다
+				CASE 2
+					PRINTFORMW 움직이지 못하는 사토리의 배를 마음껏 주물주물거렸다
+					PRINTFORMW 약간 찹쌀떡 같은 감촉이 들었다
+				CASE 3
+					PRINTFORMW 사토리의 배를 맘껏 주물주물 거렸다
+					PRINTFORMW 손에서 느껴지는 찹쌀떡 같은 감촉을 만끽하던 찰나, 어째서인지 사토리가 노려보는것만 같은 오싹한 기분이 들었다...
+					PRINTFORMW ...아마도 기분탓일것이다
+			ENDSELECT
+		ENDIF
 	;通常
+	ELSEIF TFLAG:193 != -1
+		IF TALENT:임신
+			;PRINTFORMW 「」
+			IF MARK:반발각인 == 3
+				IF TALENT:연인
+					SELECTCASE RAND:4
+						CASE 0
+							PRINTFORMW 「조심히 만져주세요」
+							PRINTFORMW 「민감하니까 아프기도 아프고, 위험하기도 하니까」
+						CASE 1
+							PRINTFORMW 「...묘한 기분이네요」
+							PRINTFORMW 「그 안에 아이가 있다고 생각하면 복잡한 기분이 들어」
+							PRINTFORMW 「좀 더 기뻐해야 할 거 같지만서도...그럴수가 없네요」
+						CASE 2
+							PRINTFORMW 「사, 살살 만져주세요...」
+							PRINTFORMW 「...조금 아프단 말야」
+						CASE 3
+							PRINTFORMW 「그 안에 새 생명이 들어 있다, 라고 생각하면 이상한 기분이 들어요」
+							PRINTFORMW 「...조금 무섭기도 하고?」
+							PRINTFORMW 「나중에 낳을땐 제대로 손 잡아주셔야해요? 다른데 가지 마요?」
+					ENDSELECT
+				ELSE
+					IF CFLAG:3000 == 0
+						SELECTCASE RAND:3
+							CASE 0
+								PRINTFORMW 「...이런게 뭐가 좋은건지 모르겠네」
+								PRINTFORMW 「안 그래도 부풀어오르는게 신경쓰이는데, 그렇게 조물딱거리면 더더욱 신경쓰이잖아...」
+								PRINTFORMW 사토리는 투덜거리고 있다
+							CASE 1
+								PRINTFORMW 「...살살 만져주세요」
+								PRINTFORMW 「그정도라면 괜찮으니까」
+								PRINTFORMW 「...애까지 만든 사이에 그정도는 뭐, 닳는것도 아니고...」
+							CASE 2
+								PRINTFORMW 「얼른 나와버렸음 좋겠네」
+								PRINTFORMW 「몸이 무겁고 지친단 말야, 빨리 낳고 끝내버리고 싶어」
+						ENDSELECT
+					ELSE
+						SELECTCASE RAND:3
+							CASE 0
+								PRINTFORMW 「그래, 재밌나요?」
+								PRINTFORMW 「내키는대로 하던가요, 그만두라 해도 안 그만둘거 같으니까」
+							CASE 1
+								PRINTFORMW 「이런게 뭐가 재밌는지 참...」
+								PRINTFORMW 사토리는 어이없다는 표정이다
+							CASE 2
+								PRINTFORMW 「...주물거리지 마, 아프단 말야」
+						ENDSELECT
+					ENDIF
+				ENDIF
+			ELSEIF TALENT:연인
+				SELECTCASE RAND:4
+					CASE 0
+						PRINTFORMW 「이 안에 저희 아이가 있는거네요」
+						PRINTFORMW 「언제쯤 볼 수 있을까나, 조금 두근거리네」
+						IF CFLAG:생해금 != 2
+							PRINTFORMW 「...덜컥 생겨버린 애긴 해도, 솔직히 싫지만은 않으니까」
+							PRINTFORMW 「건강하게 볼 수 있음 좋겠다」
+						ENDIF
+					CASE 1
+						PRINTFORMW 「솔직히 아직 안 믿겨요」
+						PRINTFORMW 「이런데에서 생명이 자라난다는게...」
+					CASE 2
+						PRINTFORMW 「잠깐, 그렇게 세게 만지지 마세요」
+						PRINTFORMW 「...혹시라도 잘못되면 안되잖아요?」
+					CASE 3
+						PRINTFORMW 「무언가 느껴지나요?」
+						PRINTFORMW 「...얼른 볼 수 있음 좋겠네요」
+				ENDSELECT
+			ELSEIF TALENT:연모||TALENT:사모||TALENT:애욕
+				SELECTCASE RAND:3
+					CASE 0
+						PRINTFORMW 「이 안에 아이가 있다 생각하니 이상한 기분이 드네요」
+						PRINTFORMW 「뭐...연인도 아닌데 애가 생긴건 둘째 치고?」
+					CASE 1
+						PRINTFORMW 「그렇게 쓰다듬으면 재미 있나요?」
+						PRINTFORMW 「그래도 조금은 부드럽게 만져주세요」
+					CASE 2
+						PRINTFORMW 「솔직히, 아이때문이라곤 해도 배가 커다래지니 기분이 이상해요」
+						PRINTFORMW 「...몸도 무겁고, 피곤하고, 좋은 일은 하나도 없는거 같아」
+						PRINTFORMW 「얼른 끝나버리면 좋을거 같은데...」
+				ENDSELECT
+			ELSEIF TALENT:섹프
+				SELECTCASE RAND:3
+					CASE 0
+						PRINTFORMW 「으음...이게 그렇게 좋아요?」
+						PRINTFORMW 「희한하네...」
+					CASE 1
+						PRINTFORMW 「저기, 배만 주물거리는게 뭐가 그리 재밌는건가요?」
+						PRINTFORMW 사토리는 지루하다는 표정이다
+					CASE 2
+						PRINTFORMW 「배가 이렇게 되버려서는 즐기기도 어렵겠죠...」
+						PRINTFORMW 「얼른 낳아버리면 좋겠네, 몸도 찌뿌둥해서 불편하단 말야」
+				ENDSELECT
+			ELSE
+				SELECTCASE RAND:2
+					CASE 0
+						PRINTFORMW 「...이게 뭐가 그리 즐거운지 모르겠네」
+						PRINTFORMW 「뭐, 배도 살짝 부풀었으니 만질곳은 많아졌겠네요」
+					CASE 1
+						PRINTFORMW 「...조금만 살살, 아프단 말야」
+						PRINTFORMW 「어쩔수 없잖아요...홀몸도 아닌데」
+				ENDSELECT
+			ENDIF
+		ELSE
+			;임신 없음
+			;PRINTFORMW 「」
+			IF MARK:반발각인 == 3
+				IF TALENT:연인
+					
+				ELSE
+					IF CFLAG:3000 == 0
+
+					ELSE
+
+					ENDIF
+				ENDIF
+			ELSEIF TALENT:연인
+				
+			ELSEIF TALENT:연모||TALENT:사모||TALENT:애욕
+				
+			ELSEIF TALENT:섹프
+				
+			ELSE
+				IF CFLAG:3000 == 0
+
+				ELSE
+
+				ENDIF
+			ENDIF
+		ENDIF
 	ELSE
+		;실패
+		IF MARK:반발각인 == 3
+			IF TALENT:연인
+				SELECTCASE RAND:3
+					CASE 0
+						PRINTFORMW 「저기, 그만...」
+						PRINTFORMW 「아무리 %사마스터라% 해도 그런데 만지는건 기분 나빠요」
+					CASE 1
+						PRINTFORMW 「...그런데 만지지 말아줘」
+						PRINTFORMW 「부끄럽다고요? 우리 사이라 해도 안되는건 안돼요」
+					CASE 2
+						PRINTFORMW 「...그만해주세요...」
+						PRINTFORMW 사토리는 언짢아 보이는 표정이다
+				ENDSELECT
+			ELSE
+				IF CFLAG:3000 == 0
+					SELECTCASE RAND:4
+						CASE 0
+							PRINTFORMW 「...뭘 그리 더듬더듬 만지는건가요?」
+							IF TALENT:임신
+								PRINTFORMW 「임신한게 그렇게 신기한가요?」
+							ENDIF
+							PRINTFORMW 사토리는 퉁명스레 쏘아붙였다...
+						CASE 1
+							PRINTFORMW 「그렇게 만져보지 않아도 되잖아요」
+							PRINTFORMW 「좀 내버려두면 안되나요?」
+							PRINTFORMW 사토리는 떨떠름한 표정으로 %마스터를% 바라보고 있다
+						CASE 2
+							PRINTFORMW 「...기분 나쁜 손놀림이야」
+							PRINTFORMW 「평소보다도 훨씬 더」
+							PRINTFORMW 「만족했으면 얼른 손 뗐으면 좋겠는데」
+						CASE 3
+							IF TALENT:임신
+								PRINTFORMW 「이런게 뭐가 그리 좋다는건지」
+								PRINTFORMW 「남을 임신시킨게 그렇게 즐거운건가요?」
+								PRINTFORMW 「...그냥 해본 소리에요, 이젠 화나지도 않아」
+							ELSE
+								PRINTFORMW 「이런게 뭐가 그리 좋다는건지」
+								PRINTFORMW 「이상한 사람이야」
+							ENDIF
+					ENDSELECT
+				ELSE
+					SELECTCASE RAND:3
+						CASE 0
+							PRINTFORMW 「...손 떼요」
+							PRINTFORMW 「기분 나빠, 안 그래도 짜증나는데 더 귀찮게 하지마」
+							PRINTFORMW 사토리는 무척 기분이 나쁜 모양이다
+							TALENT:기분 = -1
+						CASE 1
+							PRINTFORMW 「이딴게 뭐가 즐거운건지」
+							PRINTFORMW 「하아...만족했으면 얼른 손 떼고 가버렸음 좋겠네」
+						CASE 2
+							IF TALENT:임신
+								PRINTFORMW 「남이 임신한게 상당히 즐거워 보이시네요」
+								PRINTFORMW 「누구때문에 이 고생인데, 나는」
+							ELSE
+								PRINTFORMW 「...어딜 만지는거야」
+								PRINTFORMW 사토리는 %마스터의% 손을 잡아 땠다
+							ENDIF
+					ENDSELECT
+				ENDIF
+			ENDIF
+		ELSEIF TALENT:연인
+			
+		ELSEIF TALENT:연모||TALENT:사모||TALENT:애욕
+			
+		ELSEIF TALENT:섹프
+			
+		ELSE
+			SELECTCASE RAND:3
+				CASE 0
+					PRINTFORMW 「어딜 만지는거야」
+					PRINTFORMW 「...얼른 손 떼요, 얼른」
+					PRINTFORMW 사토리는 얼굴을 붉히며 손을 떼어놓았다
+				CASE 1
+					PRINTFORMW 「잠, 그만...그런데 만지지 마!」
+					PRINTFORMW 사토리는 당황하며 손을 떼어놓았다
+				CASE 2
+					PRINTFORMW 「...!」
+					PRINTFORMW 사토리는 황급히 몸을 떼어 거리를 두었다
+			ENDSELECT
+		ENDIF
 	ENDIF
 ENDIF
 RETURN 1

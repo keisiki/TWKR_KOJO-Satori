@@ -104,7 +104,7 @@ ENDSELECT
 @ST_통상회화
 #DIM 이전대화, 5
 #DIM DYNAMIC 대화선택
-#DIM CONST 대화개수 = 46
+#DIM CONST 대화개수 = 47
 ;이 패턴에서는 통상적인 대화를 합니다
 ;함락계마다 변화 없음, 넣으려면 넣을수도 있긴 하지만 뭐...
 
@@ -536,6 +536,10 @@ SELECTCASE 대화선택
         PRINTFORMW 「가끔 저한테 팔이 짧다고 놀리는 사람들이 간혹 있단 말이죠」
         PRINTFORMW 「...그렇게 짧지는 않은데, 아닌가...」
         PRINTFORMW 사토리는 불만스러워 보이는 표정으로 팔을 뻗어보이고 있다
+    CASE 46
+        PRINTFORMW 「가끔 코이시가 오린을 길게 늘리고 있을때가 있어요」
+        PRINTFORMW 「혹시라도 보시면 못하게 막아주세요」
+        PRINTFORMW 「안 그러면 밤 새 오린이 옆에서 칭얼거리니까...곤란하거든요」
 ENDSELECT
 
 
@@ -1472,7 +1476,7 @@ ENDSELECT
 @ST_사모회화
 #DIM 이전대화, 3
 #DIM DYNAMIC 대화선택
-#DIM CONST 대화개수 = 9 
+#DIM CONST 대화개수 = 11 
 ;20
 ;목표수는 15개~20개
 대화선택 = ST_대사섞기(대화개수, 이전대화:0 , 이전대화:1, 이전대화:2)
@@ -1619,5 +1623,35 @@ SELECTCASE 대화선택
             IF TALENT:기분
                 TALENT:기분 = 0
             ENDIF
+        ENDIF
+    CASE 9
+        IF FLAG:데이트상대 == 49
+            PRINTFORMW 「누군가와 함께 어딘가로 간다는거, 영 익숙치 않아요」
+            PRINTFORMW 「애시당초 나갈 일이 별로 없긴 했지만」
+            PRINTFORMW 「기껏해야 애완동물들을 데리고 나서는게 전부였으니깐」
+            PRINTFORMW 「...그래서 조금은 기뻐요」
+        ELSEIF CHK_DATENOW(CFLAG:MASTER:데이트중)
+            PRINTFORMW 「나중에 말하면 안되나요?」
+            PRINTFORMW 「그 옆에서 무시무시한 질투심이 느껴져서 조금 무서울 지경이라」
+            PRINTFORMW 「...그리고 어쩐지 가슴이 답답해서요」
+            PRINTFORMW 사토리는 고개를 돌렸다
+        ELSE
+            PRINTFORMW 「요즘들어 밖에 나가고 싶다는 생각이 부쩍 드네요」
+            PRINTFORMW 「...늘 집에만 있는다고 오린이 뭐라 하니까....가끔씩은 나가줘야겠죠」
+            PRINTFORMW 「그래도 혼자 나가긴 또 싫고, 어쩌면 좋을까나」
+            PRINTFORMW 사토리는 %마스터를% 흘끔흘끔 바라보고 있다
+        ENDIF
+    CASE 10
+        IF ST_HUMI()
+            PRINTFORMW 「어쩐지 습한 날씨네...」
+            PRINTFORMW 「이런 날엔 머리카락이 더 곱슬거려서 짜증나」
+            PRINTFORMW 「...공들여 빗어놓은게 다 소용없게 된단 말예요, 그게 얼마나 오래 걸리는데」
+            PRINTFORMW 「이제와서 다시 빗을수도 없고...」
+            PRINTFORMW 사토리는 투덜거렸다
+        ELSE
+            PRINTFORML 「머리가 이렇게 곱슬거리는거, 참 불편하기 짝이 없어요」
+            PRINTFORMW 「예쁘게 세팅해봐도 금새 망가져서 평소처럼 돼버리고」
+            PRINTFORMW 「밖에 비라도 오면...아아, 상상한것 만으로도 끔찍해」
+            PRINTFORMW 사토리는 앞머리를 매만지며 투덜거렸다
         ENDIF
 ENDSELECT

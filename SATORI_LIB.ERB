@@ -727,3 +727,10 @@ NEXT
 ;스침상대 연인 스텍기능이 남아있을 때 // 솔직히 모브코 연인이 몇이나 있을까 싶지마는
 LOCAL:1 += 스친연인수
 RETURNF LOCAL:1
+
+
+@ST_HUMI()
+#FUNCTION
+IF GROUPMATCH(TIME:5,4,5,6,7,8)
+    RETURNF 1
+ENDIF
