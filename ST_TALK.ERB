@@ -104,7 +104,7 @@ ENDSELECT
 @ST_통상회화
 #DIM 이전대화, 5
 #DIM DYNAMIC 대화선택
-#DIM CONST 대화개수 = 47
+#DIM CONST 대화개수 = 50
 ;이 패턴에서는 통상적인 대화를 합니다
 ;함락계마다 변화 없음, 넣으려면 넣을수도 있긴 하지만 뭐...
 
@@ -501,7 +501,7 @@ SELECTCASE 대화선택
             VARSET ST_식사이름
         ELSE
             PRINTFORMW 「...입이 심심해지네요, 과자라도 먹을까나」
-            PRINTFORMW 「...라고 해도 딱히 집히는건 없고...흐으음...」
+            PRINTFORMW 「라고 해도 딱히 집히는건 없고, 흐으음...」
         ENDIF
     CASE 39
         IF FLAG:더부살이캐릭터 != 49 || MAIN_MAP != 10
@@ -516,16 +516,16 @@ SELECTCASE 대화선택
     CASE 40
         PRINTFORMW 「서드아이는 제 자랑이지만, 가끔은 떼어버리고 싶을 때도 많지요」
         PRINTFORMW 「가끔 갈고리 같은데에 걸려버리면 굉장히 아프거든요...」
-        PRINTFORMW 「문고리나 팔걸이, 그런데에 몇번 걸려보면...하아...정말이지...」
+        PRINTFORMW 「문고리나 팔걸이, 그런데에 몇번 걸려보면...하아, 정말이지...」
     CASE 41
         PRINTFORMW 「가끔 코이시는 신발도 안 신고 외출을 나가곤 하는데...왜 그러는걸까요?」
         PRINTFORMW 「...어짜피 집 더러워지는건 애완동물 탓이니 상관없지만...조금 걱정이 드네요」
-        PRINTFORMW 「그러면서도 발을 다쳐온건 본 적이 없긴하지만, 흐으음...」
+        PRINTFORMW 「그러면서도 발을 다쳐온건 본 적이 없긴하지만」
     CASE 42
         PRINTFORMW 「그런데 요정들은 아직도 좀비놀이를 하고 있네요」
         PRINTFORMW 「보통은 쉽게 질리던데, 상당히 마음에 들었던 모양이에요...」
     CASE 43
-        PRINTFORMW 「가끔 오린이 복도에서 희한한 춤을 추는걸 보실수도 있는데...그때엔 그만두라고 해주세요」
+        PRINTFORMW 「가끔 오린이 복도에서 희한한 춤을 추는걸 보실수도 있는데, 그때엔 그만두라고 해주세요」
         PRINTFORMW 「정말이지, 그만 하라고 해도 말도 안 듣고...」
         PRINTFORMW 「게다가 오쿠나 코이시도 따라하는탓에 보고있으면 머리가 아파질정도란 말예요」
     CASE 44
@@ -534,12 +534,24 @@ SELECTCASE 대화선택
         PRINTFORMW 「반응로에 벌레같은게 나타나지만 않으면 안전할거예요, 아마도...」
     CASE 45
         PRINTFORMW 「가끔 저한테 팔이 짧다고 놀리는 사람들이 간혹 있단 말이죠」
-        PRINTFORMW 「...그렇게 짧지는 않은데, 아닌가...」
+        PRINTFORMW 「...그렇게 짧지는 않은데, 아닌가」
         PRINTFORMW 사토리는 불만스러워 보이는 표정으로 팔을 뻗어보이고 있다
     CASE 46
         PRINTFORMW 「가끔 코이시가 오린을 길게 늘리고 있을때가 있어요」
         PRINTFORMW 「혹시라도 보시면 못하게 막아주세요」
         PRINTFORMW 「안 그러면 밤 새 오린이 옆에서 칭얼거리니까...곤란하거든요」
+    CASE 47
+        PRINTFORMW 「지저의 밤에는 방문을 꼭 닫고 있어야 해요」
+        PRINTFORMW 「그냥도 아니고 자물쇠 여러개에 가구까지 막아놓는게 더 좋고」
+        PRINTFORMW 「안 그러면 무서운 오니들이 쳐들어와서 술잔치를 벌이니까요」
+        PRINTFORMW 「...사실 막아도 들어오니까 소용은 없지만」
+    CASE 48
+        PRINTFORMW 「가끔 꿈에 가슴 취향을 묻는 신이 나오는데」
+        PRINTFORMW 「과연 무슨 신이길래 그런걸 묻는걸까요...」
+    CASE 49
+        PRINTFORMW 「텐구들은 왜 항상 신문을 난폭하게 전해주는 걸까요?」
+        PRINTFORMW 「그러면서도 오니들에겐 얌전히 전해주고」
+        PRINTFORMW 「...볼거라고는 카리스마 가격뿐이면서 말이죠」
 ENDSELECT
 
 
