@@ -1114,26 +1114,86 @@ IF LOCAL
 			;PRINTFORMW 「」
 			IF MARK:반발각인 == 3
 				IF TALENT:연인
-					
+					SELECTCASE RAND:3
+						CASE 0
+							PRINTFORMW 「사, 살살 만져주세요...」
+							PRINTFORMW 「...조금 아프단 말야」
+						CASE 1
+							PRINTFORMW 「...저기, 혹시 저 살쪘나요?」
+							PRINTFORMW 「오린이 밖에 좀 나가라고 닦달할때 나갈걸 그랬나...」
+						CASE 2
+							PRINTFORMW 「...내가 당하니까 막상 싫어지네」
+							PRINTFORMW 「부끄러워...」
+					ENDSELECT
 				ELSE
 					IF CFLAG:3000 == 0
-
+						SELECTCASE RAND:3
+							CASE 0
+								PRINTFORMW 「그래, 재밌나요?」
+								PRINTFORMW 「내키는대로 하던가요, 그만두라 해도 안 그만둘거 같으니까」
+							CASE 1
+								PRINTFORMW 「이런게 뭐가 재밌는지 모르겠네...」
+								PRINTFORMW 「...오린마냥 털로 복슬복슬하면 몰라도 이런게 어디가 좋은건지 참」
+								PRINTFORMW 사토리는 어이없다는 표정이다
+							CASE 2
+								PRINTFORMW 「...살살좀 만져요」
+								PRINTFORMW 「아프단 말야」
+						ENDSELECT
 					ELSE
-
+						SELECTCASE RAND:3
+							CASE 0
+								PRINTFORMW 「그래, 재밌나요?」
+								PRINTFORMW 「내키는대로 하던가요, 그만두라 해도 안 그만둘거 같으니까」
+							CASE 1
+								PRINTFORMW 「이런게 뭐가 재밌는지 참...」
+								PRINTFORMW 사토리는 어이없다는 표정이다
+							CASE 2
+								PRINTFORMW 「...주물거리지 마, 아프단 말야」
+						ENDSELECT
 					ENDIF
 				ENDIF
 			ELSEIF TALENT:연인
-				
+				SELECTCASE RAND:5
+					CASE 0
+						PRINTFORMW 「이런게 좋은건가요? 뭐, 그러시다면야...」
+						PRINTFORMW 「내키시는대로 만져도 좋지만, 이상한 소리하면 화낼거니까 명심해두세요」
+					CASE 1
+						PRINTFORMW 「...저기, 혹시 저 살쪘나요?」
+						PRINTFORMW 「오린이 밖에 좀 나가라고 닦달할때 나갈걸 그랬나...」
+					CASE 2
+						PRINTFORMW 「...내가 당하니까 막상 싫어지네」
+						PRINTFORMW 「부끄러워...」
+					CASE 3
+						PRINTFORMW 「...나중에 오린이라도 빌려드릴까요?」
+						PRINTFORMW 「그 아이를 만지는 편이 더 나을텐데」
+					CASE 4
+						PRINTFORMW 「...어쩐지 간지러운걸」
+				ENDSELECT
 			ELSEIF TALENT:연모||TALENT:사모||TALENT:애욕
-				
-			ELSEIF TALENT:섹프
-				
+				SELECTCASE RAND:3
+					CASE 0
+						PRINTFORMW 「혹시...이상하다거나 그렇지는...않겠죠?」
+						PRINTFORMW 사토리는 얼굴을 붉히고 있다
+					CASE 1
+						PRINTFORMW 「...으으...부끄러워...」
+						PRINTFORMW 「...오린도 이런 기분이었을까, 조금 자제해봐야겠네...」
+					CASE 2
+						PRINTFORMW 「배를 만지고 싶다니, 이상해...」
+						PRINTFORMW 「부드럽지도 않고 폭신하지도 않고 따뜻하지도 않은데 뭐가 좋은 건가요?」
+				ENDSELECT
 			ELSE
-				IF CFLAG:3000 == 0
-
-				ELSE
-
-				ENDIF
+				SELECTCASE RAND:3
+					CASE 0
+						PRINTFORMW 「배를 만지고 싶다니...」
+						PRINTFORMW 「닳는것도 아니니 상관은 없는데, 굳이...?」
+					CASE 1
+						PRINTFORMW 「...굳이 만지고 싶다면 오린이나 더 좋은게 있을텐데...」
+						PRINTFORMW 「저로 좋은건가요? 흐으음...별난 사람이야」
+						PRINTFORMW 사토리는 희한하다는듯이 바라보고 있다
+					CASE 2
+						PRINTFORMW 「뭐, 만지고 싶다면야...」
+						PRINTFORMW 「그래도 나중가서 이상하다느니 그런 생각 하기라도 하면 화낼거니까」
+				ENDSELECT
 			ENDIF
 		ENDIF
 	ELSE
@@ -1155,11 +1215,8 @@ IF LOCAL
 				IF CFLAG:3000 == 0
 					SELECTCASE RAND:4
 						CASE 0
-							PRINTFORMW 「...뭘 그리 더듬더듬 만지는건가요?」
-							IF TALENT:임신
-								PRINTFORMW 「임신한게 그렇게 신기한가요?」
-							ENDIF
-							PRINTFORMW 사토리는 퉁명스레 쏘아붙였다...
+							PRINTFORMW 「...손 떼요」
+							PRINTFORMW 사토리는 냉담하게 쏘아붙였다
 						CASE 1
 							PRINTFORMW 「그렇게 만져보지 않아도 되잖아요」
 							PRINTFORMW 「좀 내버려두면 안되나요?」
@@ -1181,13 +1238,14 @@ IF LOCAL
 				ELSE
 					SELECTCASE RAND:3
 						CASE 0
-							PRINTFORMW 「...손 떼요」
+							PRINTFORMW 「...손 떼」
 							PRINTFORMW 「기분 나빠, 안 그래도 짜증나는데 더 귀찮게 하지마」
 							PRINTFORMW 사토리는 무척 기분이 나쁜 모양이다
 							TALENT:기분 = -1
 						CASE 1
 							PRINTFORMW 「이딴게 뭐가 즐거운건지」
 							PRINTFORMW 「하아...만족했으면 얼른 손 떼고 가버렸음 좋겠네」
+							PRINTFORMW 사토리는 싸늘한 표정으로 %마스터를% 바라보고 있다
 						CASE 2
 							IF TALENT:임신
 								PRINTFORMW 「남이 임신한게 상당히 즐거워 보이시네요」
@@ -1200,11 +1258,30 @@ IF LOCAL
 				ENDIF
 			ENDIF
 		ELSEIF TALENT:연인
-			
+			SELECTCASE RAND:3
+				CASE 0
+					PRINTFORMW 「...만지지 마세요」
+					PRINTFORMW 「아무리 %사마스터라% 해도 부끄러워」
+					PRINTFORMW 사토리는 %마스터의% 손을 쳐냈다
+				CASE 1
+					PRINTFORMW 「잠깐, 만지지 마요...!」
+					PRINTFORMW 사토리는 얼굴을 붉히며 손을 떼어냈다
+					PRINTFORMW 무언가 부끄러운걸까
+				CASE 2
+					PRINTFORMW 「...그만해줘요」
+					PRINTFORMW 「그런곳 함부로 만지는건 누구라도 싫어한다고요?」
+			ENDSELECT
 		ELSEIF TALENT:연모||TALENT:사모||TALENT:애욕
-			
-		ELSEIF TALENT:섹프
-			
+			SELECTCASE RAND:2
+				CASE 0
+					PRINTFORMW 「자...잠깐! 어딜 만지는거예요...!」
+					PRINTFORMW 사토리는 화들짝 놀라 손을 쳐냈다
+					PRINTFORMW 「그런곳...함부로 만지지 마세요...」
+					PRINTFORMW 무언가 부끄러운건지 얼굴이 새빨갛다
+				CASE 1
+					PRINTFORMW 「......」
+					PRINTFORMW 사토리는 조용히 거리를 두었다
+			ENDSELECT
 		ELSE
 			SELECTCASE RAND:3
 				CASE 0
