@@ -1318,17 +1318,207 @@ CALL M_KOJO_MESSAGE_COM_K49_307_1
 RETURN RESULT
 
 @M_KOJO_MESSAGE_COM_K49_307_1
+#DIM 이전대화, 2
+#DIM DYNAMIC 대화선택
+#DIM CONST 대화개수 = 7
 ;-------------------------------------------------
 ;記入チェック（=0, 非表示、1, 表示）
-LOCAL = 0
+LOCAL = 1
 ;-------------------------------------------------
 IF LOCAL
+	;PRINTFORMW 「」
 	;시간정지中
 	IF FLAG:70
+		PRINTDATAL
+		 	DATAFORM 사토리의 볼을 아무리 잡아 늘려도 전혀 반응이 없다
+			DATAFORM 부드러운 뺨을 쭈욱 늘리며 놀았다
+			DATAFORM 양 볼을 쭈욱 늘렸다 놓으며 즐겨도 사토리는 아무런 대꾸도 없다
+			DATAFORM 말랑말랑한 볼을 쭉쭉 늘려보며 그 감촉을 즐겼다
+		ENDLIST
 	;수면中
 	ELSEIF CFLAG:수면
+		대화선택 = ST_대사섞기(대화개수, 이전대화:0 , 이전대화:1)
+		이전대화:1 = 이전대화:0
+		이전대화:0 = 대화선택
+		SELECTCASE 대화선택
+			CASE 0
+				PRINTFORMW 「...아파아아...」
+				PRINTFORMW 사토리는 %마스터의% 손을 투닥투닥 때려왔다
+			CASE 1
+				PRINTFORMW 「이거 노아아...으에에...」
+				PRINTFORMW 사토리는 웅얼거리고 있다
+			CASE 2
+				PRINTFORMW 「으에에...」
+				PRINTFORMW 「커...이시...그마..후렴...」
+				PRINTFORMW 벌려진 입에선 제대로된 말이 나오지 않았다
+			CASE 3
+				PRINTFORMW 「아파파파....으에...」
+				PRINTFORMW 사토리는 고통에 허우적대고 있다
+			CASE 4
+				PRINTFORMW 「으므므므...」
+				PRINTFORMW 사토리는 인상을 쓰고 있다
+			CASE 5
+				PRINTFORMW 「므으으...아파아...」
+				PRINTFORMW 고통에 인상을 쓰는 사토리를 무시한채 볼의 말랑함을 즐겼다
+			CASE 6
+				PRINTFORMW 「흐에에...누구...으으응...」
+				PRINTFORMW 사토리는 무어라 웅얼거리곤 있지만 일어나진 않았다
+		ENDSELECT
 	;通常
+	ELSEIF TFLAG:193 != -1
+		IF MARK:반발각인 == 3
+			IF TALENT:연인
+				SELECTCASE RAND:4
+					CASE 0
+						PRINTFORMW 「...하디마여어어...」
+						PRINTFORMW 늘려진 입으로 투덜거리는 사토리였다
+					CASE 1
+						PRINTFORMW 「...으에에...머하는거야아아...이거 놔여어어...」
+						PRINTFORMW 양 볼을 늘려주자 사토리는 바둥바둥거리며 항의해왔다
+					CASE 2
+						PRINTFORMW 「으에...?」
+						PRINTFORMW 사토리는 의아해 보이는 표정이다
+					CASE 3
+						PRINTFORMW 「...보를 자바당기느게 그러케 하고 시펏나여?」
+						PRINTFORMW 사토리는 무어라 중얼거렸지만 제대로 들리는건 하나도 없었다
+				ENDSELECT
+			ELSE
+				SELECTCASE RAND:4
+					CASE 0
+						PRINTFORMW 「...이런거로 만족한다면야」
+						PRINTFORMW 「딱히 손해보는것도 없고」
+					CASE 1
+						PRINTFORMW 「...흐헤...?」
+						PRINTFORMW 사토리는 어리둥절한 표정이다
+					CASE 2
+						PRINTFORMW 「...?」
+						PRINTFORMW 사토리는 이상하다는듯이 %마스터를% 바라보고 있다
+					CASE 3
+						PRINTFORMW 「이런게 좋아?」
+						PRINTFORMW 사토리는 이해할수 없다는듯이 %마스터를% 바라보았다
+				ENDSELECT
+			ENDIF
+		ELSEIF TALENT:연인
+			SELECTCASE RAND:3
+				CASE 0
+					PRINTFORMW 「...므으으...」
+					PRINTFORMW 「혼자만 만지는건 치사해...나도 만질거야」
+					PRINTFORMW 그렇게 한동안 서로 볼을 늘리고 있었다
+				CASE 1
+					PRINTFORMW 「...만지는거 재밌어요?」
+					PRINTFORMW 사토리의 볼은 상당히 말랑말랑했다
+					PRINTFORMW 「만족했으면 다해...아파팟?!」
+					PRINTFORMW 그리고 굉장히 잘 늘어난다
+				CASE 2
+					PRINTFORMW 「이런거로 만족하신다면야, 마음껏 만져도 좋아요」
+					PRINTFORMW 사토리는 무덤덤하게 볼을 내놓았다
+			ENDSELECT
+		ELSEIF TALENT:연모||TALENT:사모||TALENT:애욕
+			SELECTCASE RAND:3
+				CASE 0
+					PRINTFORMW 「므으으...이런게 좋아...?」
+					PRINTFORMW 「...이상한 느낌이야」
+				CASE 1
+					PRINTFORMW 「......」
+					PRINTFORMW 사토리는 조용히 얼굴을 붉히며 %마스터의% 손길을 받아들이고 있다
+				CASE 2
+					PRINTFORMW 「이런게 뭐가 좋은건진 모르겠지만...하고 싶다니깐」
+					PRINTFORMW 「내키는대로 해도 좋아요」
+					PRINTFORMW 사토리는 순순히 볼을 내 주었다
+			ENDSELECT
+		ELSEIF TALENT:섹프
+			SELECTCASE RAND:3
+				CASE 0
+					PRINTFORMW 「이런게 재밌어요?」
+					PRINTFORMW 「...그러면 나도 할래」
+					PRINTFORMW 한동안 서로 뺨을 잡아당기며 놀았다
+				CASE 1
+					PRINTFORMW 「닳는것도 아니니 상관은 없지만...」
+					PRINTFORMW 사토리는 순순히 볼을 내 주었다
+				CASE 2
+					PRINTFORMW 「...이거로 만족한다면야 상관 없는데, 대체 뭐가 좋은건진 모르겠네」
+					PRINTFORMW 사토리는 이상하다는듯이 바라보고 있다
+			ENDSELECT
+		ELSE
+			SELECTCASE RAND:3
+				CASE 0
+					PRINTFORMW 「...놔줘요...」
+					PRINTFORMW 사토리는 그다지 재미있어 보이지 않는 표정이다
+				CASE 1
+					PRINTFORMW 「갑자기 이게 무슨...이런게 재밌어요?」
+					PRINTFORMW 「...희한한 사람」
+				CASE 2
+					PRINTFORMW 「...?」
+					PRINTFORMW 사토리는 의아해 보이는 표정이다
+			ENDSELECT
+		ENDIF
 	ELSE
+		;실패
+		IF MARK:반발각인 == 3
+			IF TALENT:연인
+				SELECTCASE RAND:3
+					CASE 0
+						PRINTFORMW 「...이거놔여...」
+						PRINTFORMW 사토리는 영 마음에 안 드는 모양이다
+					CASE 1
+						PRINTFORMW 「아파...놔주세여어어...」
+						PRINTFORMW 사토리는 %마스터의% 손을 떼어내려 바둥바둥 거렸다
+					CASE 2
+						PRINTFORMW 「므으으으....」
+						PRINTFORMW 사토리는 영 불만스러워 보이는 표정이다
+				ENDSELECT
+			ELSE
+				SELECTCASE RAND:3
+					CASE 0
+						PRINTFORMW 「...손 떼에...」
+						PRINTFORMW 사토리는 %마스터를% 노려보고 있지만, 이런 상황에서는 전혀 무서워 보이지 않는다
+					CASE 1
+						PRINTFORMW 「으그그그....」
+						PRINTFORMW 사토리는 불만이 가득해 보이는 표정이다...
+					CASE 2
+						PRINTFORMW 「...아파아아...」
+						PRINTFORMW 「이거 놔...므으...」
+						PRINTFORMW 사토리는 뚱한 표정으로 %마스터를% 바라보고 있다
+				ENDSELECT
+			ENDIF
+		ELSEIF TALENT:연인
+			SELECTCASE RAND:3
+				CASE 0
+					PRINTFORMW 「놔줘요...」
+					PRINTFORMW 사토리는 그닥 마음에 안 드는 모양이다
+				CASE 1
+					PRINTFORMW 「으에에...싫어...놔줘요...」
+					PRINTFORMW 사토리는 바둥바둥거리고 있다
+				CASE 2
+					PRINTFORMW 「시럿, 잡아당기지 마...!」
+					PRINTFORMW 사토리는 %마스터의% 손을 떼어냈다
+					PRINTFORMW 「...아프다고요...!」
+			ENDSELECT
+		ELSEIF TALENT:연모||TALENT:사모||TALENT:애욕
+			SELECTCASE RAND:3
+				CASE 0
+					PRINTFORMW 「...놔주세요...」
+					PRINTFORMW 사토리는 언짢은듯한 표정이다...
+				CASE 1
+					PRINTFORMW 「아팟...이거 놔...!」
+					PRINTFORMW 사토리는 %마스터의% 손을 뿌리쳤다
+				CASE 2
+					PRINTFORMW 「......」
+					PRINTFORMW 볼을 주무르는 내내 영 불만스러워 보이는 사토리였다
+			ENDSELECT
+		ELSE
+			SELECTCASE RAND:3
+				CASE 0
+					PRINTFORMW 「...갑자기 뭘 하려는건가 했더니, 볼을...」
+					PRINTFORMW 「당연히 만지게 해 줄리 없잖아요?」
+				CASE 1
+					PRINTFORMW 「볼이 만지고 싶다니, 무슨...」
+					PRINTFORMW 「다른 사람한테 부탁하세요...저는 해주고 싶지가 않으니까」
+				CASE 2
+					PRINTFORMW 「아팟...뭐하는거야, 볼을 꼬집다니...」
+					PRINTFORMW 사토리는 눈물을 살짝 보였다
+			ENDSELECT
+		ENDIF
 	ENDIF
 
 ENDIF
