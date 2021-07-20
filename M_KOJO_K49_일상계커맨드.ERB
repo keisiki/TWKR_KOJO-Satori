@@ -1329,12 +1329,16 @@ IF LOCAL
 	;PRINTFORMW 「」
 	;시간정지中
 	IF FLAG:70
-		PRINTDATAL
-		 	DATAFORM 사토리의 볼을 아무리 잡아 늘려도 전혀 반응이 없다
-			DATAFORM 부드러운 뺨을 쭈욱 늘리며 놀았다
-			DATAFORM 양 볼을 쭈욱 늘렸다 놓으며 즐겨도 사토리는 아무런 대꾸도 없다
-			DATAFORM 말랑말랑한 볼을 쭉쭉 늘려보며 그 감촉을 즐겼다
-		ENDLIST
+		SELECTCASE RAND:4
+		 	CASE 0
+				PRINTFORML 사토리의 볼을 아무리 잡아 늘려도 전혀 반응이 없다
+			CASE 1
+				PRINTFORML  부드러운 뺨을 쭈욱 늘리며 놀았다
+			CASE 2
+				PRINTFORML  양 볼을 쭈욱 늘렸다 놓으며 즐겨도 사토리는 아무런 대꾸도 없다
+			CASE 3
+				PRINTFORML  말랑말랑한 볼을 쭉쭉 늘려보며 그 감촉을 즐겼다
+		ENDSELECT
 	;수면中
 	ELSEIF CFLAG:수면
 		대화선택 = ST_대사섞기(대화개수, 이전대화:0 , 이전대화:1)
