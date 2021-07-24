@@ -264,7 +264,7 @@ SELECTCASE 대화선택
             PRINTFORMW 「나중에라도 코이시가 이상한데 돌아다니고 있는걸 보신다면 꼭 데려와 주세요」
             PRINTFORMW 「이리저리 돌아다니면서 사고치고 다니면 머리가 지끈거리거든요」
             IF CFLAG:38:현재위치 == CFLAG:현재위치
-                PRINTFORMW 『그 정도는 아니다 뭐』
+                 CALL ST_KS대사W ("『그 정도는 아니다 뭐』")
                 PRINTFORMW 코이시는 볼을 부풀렸다
             ENDIF
         ENDIF
@@ -291,9 +291,9 @@ SELECTCASE 대화선택
         PRINTFORMW 「...원고나 그런건 상관 없으니까 혹시라도, 회계장부를 들고 다니는걸 보시면 저한테 갖다주세요」
         PRINTFORMW 「한번 잃어버리면 다시쓰는게 상당히 귀찮아지니까...으으...」
         IF CFLAG:38:현재위치 == CFLAG:현재위치
-            PRINTFORMW 『그러면 원고는 맘대로 훔쳐도 되는거야?』
+            CALL ST_KS대사W ("『그러면 원고는 맘대로 훔쳐도 되는거야?』")
             PRINTFORMW 「안되는거 알잖니?」
-            PRINTFORMW 『에- 야박해라』
+             CALL ST_KS대사W ("『에- 야박해라』")
         ENDIF
     CASE 8
         PRINTFORMW 「제 애완동물들도 저를 그닥 좋아하진 않는거 같아요」

@@ -1803,15 +1803,169 @@ RETURN RESULT
 @M_KOJO_MESSAGE_COM_K49_309_1
 ;-------------------------------------------------
 ;記入チェック（=0, 非表示、1, 表示）
-LOCAL = 0
+LOCAL = 1
 ;-------------------------------------------------
 IF LOCAL
 	;시간정지中
+	;PRINTFORMW 「」
 	IF FLAG:70
+		PRINTDATA
+			DATAFORM 사토리의 머리를 마구 쓰다듬었지만, 사토리는 일말의 반응조차 보이지 않는다
+			DATAFORM 사토리는 웃지도 화내지도 않은채 머리를 쓰다듬어지고 있다
+			DATAFORM 무저항인 사토리의 머리를 마구 쓰다듬으며 즐겼다
+		ENDDATA
 	;수면中
 	ELSEIF CFLAG:수면
+		IF MARK:반발각인 == 3 && !TALENT:연인
+			SELECTCASE RAND:3
+				CASE 0
+					PRINTFORMW 「응...하지마...간지러워...」
+					PRINTFORMW 사토리는 웅얼웅얼 말하고는 도로 새근새근 잠들어버렸다
+				CASE 1
+					PRINTFORMW 「흐에에...」
+					PRINTFORMW 사토리는 간지러운지 연신 몸을 뒤척이고 있다
+				CASE 2
+					PRINTFORMW 「...」
+					PRINTFORMW 사토리는 아무것도 모른채 쿨쿨 자고 있다
+			ENDSELECT
+		ELSEIF TALENT:연인
+			SELECTCASE RAND:3
+				CASE 0
+					PRINTFORMW 「으응...에헤헤...♥」
+					PRINTFORMW 사토리는 어쩐지 기뻐보인다
+				CASE 1
+					PRINTFORMW 「...♥」
+					PRINTFORMW 사토리의 입꼬리가 조용히 올라갔다
+				CASE 2
+					PRINTFORMW 「에헤헤...좀 더 %TEXTR("칭찬해 주세요/쓰다듬어 줘요/해 줘요/, 좀 더요")%...♥」
+					PRINTFORMW 사토리는 기분좋은 꿈이라도 꾸는지 실실 웃고 있다
+			ENDSELECT
+		ELSEIF TALENT:연모||TALENT:사모||TALENT:애욕
+			SELECTCASE RAND:3
+				CASE 0
+					PRINTFORMW 「...에헤헤...♥」
+					PRINTFORMW 사토리는 황홀해하는 표정을 지어보이고 있다
+					PRINTFORMW 무언가 좋은 꿈이라도 꾸는 모양이다
+				CASE 1
+					PRINTFORMW 「...으응...좀 더...」
+				CASE 2
+					PRINTFORMW 「...조아해...에...으으음...음냐..」
+					PRINTFORMW 사토리는 헤실헤실 웃으며 자고 있다
+			ENDSELECT
+		ELSE
+			SELECTCASE RAND:3
+				CASE 0
+					PRINTFORMW 「...간지...러...음냐...」
+				CASE 1
+					PRINTFORMW 「...으으응...오쿠니..?」
+				CASE 2
+					PRINTFORMW 「...」
+					PRINTFORMW 사토리는 미동도 없이 새근새근 자고 있다
+			ENDSELECT
+		ENDIF
 	;通常
+	ELSEIF TFLAG:193 != -1
+		IF MARK:반발각인 == 3 && !TALENT:연인
+			SELECTCASE RAND:3
+				CASE 0
+				
+				CASE 1
+
+				CASE 2
+
+			ENDSELECT
+		ELSEIF TALENT:연인
+			SELECTCASE RAND:3
+				CASE 0
+				
+				CASE 1
+
+				CASE 2
+
+			ENDSELECT
+		ELSEIF TALENT:연모||TALENT:사모||TALENT:애욕
+			SELECTCASE RAND:3
+				CASE 0
+				
+				CASE 1
+
+				CASE 2
+
+			ENDSELECT
+		ELSEIF TALENT:섹프
+			SELECTCASE RAND:3
+				CASE 0
+				
+				CASE 1
+
+				CASE 2
+
+			ENDSELECT
+		ELSE
+			SELECTCASE RAND:3
+				CASE 0
+				
+				CASE 1
+
+				CASE 2
+
+			ENDSELECT
+		ENDIF
 	ELSE
+		;실패
+		IF MARK:반발각인 == 3 && !TALENT:연인
+			SELECTCASE RAND:3
+				CASE 0
+					PRINTFORMW 「그렇게 들러붙지 마」
+					PRINTFORMW 사토리는 %마스터를% 째려봤다
+				CASE 1
+					PRINTFORMW 「건들지 마」
+					PRINTFORMW 「뭘 그리 서슴없이 만져대는거야」
+					PRINTFORMW 사토리는 언짢은 모양이다...
+				CASE 2
+					PRINTFORMW 사토리는 말없이 %마스터의% 손을 쳐냈다
+			ENDSELECT
+		ELSEIF TALENT:연인
+			SELECTCASE RAND:3
+				CASE 0
+					PRINTFORMW 「그렇게 만져대지 마세요...」
+					PRINTFORMW 「머리 헝클어진단 말야」
+				CASE 1
+					PRINTFORMW 「너무 만지면 싫어요...」
+				CASE 2
+					PRINTFORMW 「...전 애가 아니거든요...」
+					PRINTFORMW 사토리는 약간 삐진것 같다
+			ENDSELECT
+		ELSEIF TALENT:연모||TALENT:사모||TALENT:애욕
+			SELECTCASE RAND:3
+				CASE 0
+					PRINTFORMW 「으...그렇게 만져대는건 싫은데...」
+				CASE 1
+					PRINTFORMW 「...너무 만지면 머리 헝클어진다고요?」
+					PRINTFORMW 「쓰다듬어 주는건 좋지만 그렇게 하는건 아무도 안 좋아할걸요」
+				CASE 2
+					PRINTFORMW 「...전 애가 아닌걸요」
+					PRINTFORMW 사토리는 약간 토라진 모양이다
+			ENDSELECT
+		ELSEIF TALENT:섹프
+			SELECTCASE RAND:3
+				CASE 0
+				
+				CASE 1
+
+				CASE 2
+
+			ENDSELECT
+		ELSE
+			SELECTCASE RAND:3
+				CASE 0
+				
+				CASE 1
+
+				CASE 2
+
+			ENDSELECT
+		ENDIF
 	ENDIF
 
 ENDIF
