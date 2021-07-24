@@ -1868,47 +1868,68 @@ IF LOCAL
 		IF MARK:반발각인 == 3 && !TALENT:연인
 			SELECTCASE RAND:3
 				CASE 0
-				
+					PRINTFORMW 「...나는 애가 아닌데..」
+					PRINTFORMW 「...하아, 됐어, 적당히만 해줬음 좋겠네」
+					PRINTFORMW 사토리는 질렸다는듯한 표정이다
 				CASE 1
-
+					PRINTFORMW 「......」
+					PRINTFORMW 사토리는 뚱한 표정으로 행위를 받아들이고 있다
 				CASE 2
-
+					PRINTFORMW 「뭘 그리 치근덕대는건지...」
+					PRINTFORMW 「...우리 사이가 지금 그럴 때는 아니라고 보는데」
+					PRINTFORMW 사토리는 입술을 삐죽였지만 그 이상의 저항은 없었다
 			ENDSELECT
 		ELSEIF TALENT:연인
 			SELECTCASE RAND:3
 				CASE 0
-				
+					PRINTFORMW 「에헤헤...이거 왠지 기분 좋네요...」
+					PRINTFORMW 사토리는 멋쩍어하면서도 기쁜듯한 미소를 지어보이고 있다
 				CASE 1
-
+					PRINTFORMW 「앗...좀 더, 더 쓰다듬어도 되는데...」
+					PRINTFORMW 사토리는 어쩐지 기뻐보인다
 				CASE 2
-
+					PRINTFORMW 「...어쩐지 둥실둥실한 기분」
+					PRINTFORMW 「%사마스터가% 해주기 전에는 남한테 쓰다듬어질 일이 없었거든요」
+					PRINTFORMW 「그래서 쓰다듬어 줄때마다 기뻐요」
 			ENDSELECT
 		ELSEIF TALENT:연모||TALENT:사모||TALENT:애욕
 			SELECTCASE RAND:3
 				CASE 0
-				
+					PRINTFORMW 「아...♥」
+					PRINTFORMW 사토리는 매우 행복해 보이는 표정을 지어보이고 있다
 				CASE 1
-
+					PRINTFORMW 「좋은 느낌...♥ 좀 더 해주실래요?」
+					PRINTFORMW 사토리는 %마스터의% 몸에 살짝 기대왔다
 				CASE 2
-
+					PRINTFORMW 「...에헤헤...기분 좋다...」
+					PRINTFORMW 사토리의 입꼬리가 부드럽게 올라가 헤실거리고 있다
 			ENDSELECT
 		ELSEIF TALENT:섹프
 			SELECTCASE RAND:3
 				CASE 0
-				
+					PRINTFORMW 「이건 이거 나름대로 좋네요...」
+					PRINTFORMW 「...좀체 이런걸 받을 일이 없었으니까요」
 				CASE 1
-
+					PRINTFORMW 「가끔은 야한짓 말고 이런일 하는것도 즐거운거 같아요」
+					PRINTFORMW 「...제대로된 연인이 있었음 매일 받을수 있었을텐데」
+					PRINTFORMW 「조금은 아쉽네요」
 				CASE 2
-
+					PRINTFORMW 「...어린애 같다는 생각이 조금 드네요」
+					PRINTFORMW 「그치만 싫진 않아」
+					PRINTFORMW 사토리는 가볍게 웃어보였다
 			ENDSELECT
 		ELSE
 			SELECTCASE RAND:3
 				CASE 0
-				
+					PRINTFORMW 「...?」
+					PRINTFORMW 사토리는 의아해 하고 있다
 				CASE 1
-
+					PRINTFORMW 「갑자기 머리는 왜...」
+					PRINTFORMW 「별로 상관은 없지만」
 				CASE 2
-
+					PRINTFORMW 「...전 어린 애가 아닌걸요?」
+					PRINTFORMW 「...어른한테도 할 때가 있어? 그렇긴 하지만...」
+					PRINTFORMW 사토리는 고개를 갸웃거리고 있다
 			ENDSELECT
 		ENDIF
 	ELSE
@@ -1950,20 +1971,25 @@ IF LOCAL
 		ELSEIF TALENT:섹프
 			SELECTCASE RAND:3
 				CASE 0
-				
+					PRINTFORMW 「머리가 헝클어지니까 그만해줬음 하는데...」
+					PRINTFORMW 「...저도 신경은 쓴다구요? 그렇게 안 보일지도 모르겠지만」
 				CASE 1
-
+					PRINTFORMW 「나는 애가 아닌데...」
+					PRINTFORMW 사토리는 약간 뾰루퉁해졌다...
 				CASE 2
-
+					PRINTFORMW 「...너무 만져대는거 아닌가?」
 			ENDSELECT
 		ELSE
 			SELECTCASE RAND:3
 				CASE 0
-				
+					PRINTFORMW 「...머리가 헝클어지니까 그만해줬음 하는데」
+					PRINTFORMW 사토리는 머리를 쓰다듬어지는게 별로 마음에 안 드는 모양이다
 				CASE 1
-
+					PRINTFORMW 「...어린 애한테나 할 짓을...」
+					PRINTFORMW 사토리는 투덜거리며 손을 쳐냈다
 				CASE 2
-
+					PRINTFORMW 「잠깐, 하지마, 하지마세요...」
+					PRINTFORMW 사토리는 짜증난다는 표정으로 손을 치워냈다
 			ENDSELECT
 		ENDIF
 	ENDIF
