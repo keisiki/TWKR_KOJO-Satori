@@ -2004,6 +2004,18 @@ RETURN 1
 ;成否判定
 ;TFLAG:192(-2=強制失敗(注、非コマンド終了）、-1＝強制失敗、0=COM依存、1=強制成功or大成功(注、수면제아이스크림ティーは眠気を感じていると飲まない)
 TFLAG:192 =0
+IF MARK:반발각인 == 3 && !TALENT:연인
+	TFLAG:192 = -1
+	SIF FIRSTTIME(SELECTCOM)
+		ST_대사플래그:3 = 1
+ELSEIF MARK:반발각인 != 3 && !TALENT:연인 && !TALENT:연모 && !TALENT:사모 && !TALENT:섹프 && !TALENT:애욕
+	TFLAG:192 = -1
+	SIF FIRSTTIME(SELECTCOM)
+		ST_대사플래그:3 = 1
+ELSEIF FIRSTTIME(SELECTCOM)
+	TFLAG:192 = 1
+	ST_대사플래그:3 = 1
+ENDIF
 
 @M_KOJO_MESSAGE_COM_K49_331
 CALL TRAIN_MESSAGE
@@ -2013,9 +2025,103 @@ RETURN RESULT
 @M_KOJO_MESSAGE_COM_K49_331_1
 ;-------------------------------------------------
 ;記入チェック（=0, 非表示、1, 表示）
-LOCAL = 0
+LOCAL = 1
 ;-------------------------------------------------
 IF LOCAL
+	IF ST_대사플래그:3
+		ST_대사플래그:3 = 0
+		;처음
+		IF MARK:반발각인 == 3 && !TALENT:연인
+			PRINTFORMW 「......」
+			PRINTFORMW 사토리는 싸늘한 표정으로 찻잔을 바라보고 있다
+			PRINTFORMW 「이런걸 먹여서 도대체 뭘 어쩌려는걸까」
+			PRINTFORMW 「다른 사람들한테도 이런 짓을 하는거야?」
+			PRINTFORMW 「...이렇게까지 글러먹은 사람이라곤 생각 안했는데」
+			PRINTFORMW 사토리는 경멸스러워 하며 찻잔을 치웠다
+			CFLAG:3101++
+		ELSEIF TALENT:연인 || TALENT:연모 || TALENT:사모 || TALENT:애욕
+			PRINTFORMW 「...저가, 이걸 마셔야 하는 건가요?」
+			PRINTFORMW 「...마셔야 하는거겠죠, 굳이 비싼 돈 들여 탄 걸 테니까」
+			PRINTFORMW 「아무리 그래도 %사마스터가% 못 먹을걸 주진 않을테니」
+			PRINTFORMW 사토리는 %마스터를% 바라보며 잠시 싱긋 웃어보이더니 단숨에 약 들은 차를 들이켰다
+			PRINTFORMW 「...별로 좋은 맛은 아니네...」
+			PRINTFORMW 「그래도 힘내서 마셨다고요?」
+			PRINTFORMW 사토리는 애써 웃어보이고 있다
+		ELSEIF TALENT:섹프
+			PRINTFORMW 「이런 약을 굳이 써야 하나요?」
+			PRINTFORMW 「...그럴거면 직접 말해도 될것을」
+			PRINTFORMW 사토리는 물끄러미 차를 바라보고 있다
+			PRINTFORMW 「버리기도 아까우니 한번 해 볼까...」
+			PRINTFORMW 사토리는 한참 고민하더니 이내 단숨에 약 들은 차를 들이켰다
+			PRINTFORMW 「...으엑, 맛없어...차랑 섞이니까 이상한 맛...」
+			PRINTFORMW 「...그래서, 이제 뭘 할건가요?」
+			BASE:무드 = MIN(9000,BASE:무드 + 2000)
+		ELSE
+			PRINTFORMW 「저기...이상한게 섞였는데...」
+			PRINTFORMW 「이런걸 어떻게 먹으란 건가요?」
+			PRINTFORMW 사토리는 떨떠름한 표정으로 차를 거절했다
+			CFLAG:3101++
+		ENDIF
+	ELSE
+		IF MARK:반발각인 == 3
+			IF TALENT:연인
+				SELECTCASE RAND:3
+					CASE 0
+						PRINTFORMW 「...또 약 탄걸...」
+						PRINTFORMW 「왜 자꾸 이런걸 주는건가요?」
+						IF TFLAG:193 == -1
+							PRINTFORMW 사토리는 떨떠름한 표정으로 차를 거절했다
+						ELSE
+							PRINTFORMW 「...그렇게 마시게 하고 싶다니 마시긴 하겠지만...」
+						ENDIF
+					CASE 1
+						PRINTFORMW 「약 탄 차라니...이런걸 먹게 하고 뭘 하려고...」
+						IF TFLAG:193 == -1
+							PRINTFORMW 사토리는 싫은듯한 표정을 지어보이며 차를 거절했다
+						ELSE
+							PRINTFORMW 「...버리긴 아까우니 마시긴 하겠지만, 다음번엔 그냥 직접 말하세요」
+							PRINTFORMW 「굳이 이렇게 차에 타서 주는 짓 하지 말고」
+						ENDIF
+					CASE 2
+						PRINTFORMW 「약을 먹이고 싶었던 건가요?」
+						PRINTFORMW 「그런거라면 차라리 직접 말하는건 어떨까 싶은데」
+						IF TFLAG:193 == -1
+							PRINTFORMW 「...물론 그런다고 먹을거 같진 않지만」
+						ELSE
+							PRINTFORMW 「그랬어도 순순히 먹을 텐데」
+							PRINTFORMW 사토리는 투덜거리면서도 얌전히 차를 마셨다
+						ENDIF
+				ENDSELECT
+			ELSE
+				;무조건 거절
+				SELECTCASE RAND:3
+					CASE 0
+						PRINTFORMW 「...그런걸 뻔뻔하게도 먹으라 하다니, 철면피도 정도가 있지」
+						PRINTFORMW 사토리는 싸늘한 표정으로 쏘아붙였다
+					CASE 1
+						PRINTFORMW 「누굴 상대로 속이려 하는거야」
+						PRINTFORMW 「남이라면 몰라도 나는 안 속아」
+					CASE 2
+						PRINTFORMW 「...몰래 약을 타서 먹이려 들다니, 비열해」
+						PRINTFORMW 「...양심이란건 없는건가요?」
+						PRINTFORMW 사토리는 경멸하는 표정으로 %마스터를% 바라보고 있다
+				ENDSELECT
+				CFLAG:3101 ++
+			ENDIF
+		ELSEIF TALENT:연인
+			
+		ELSEIF TALENT:연모||TALENT:사모||TALENT:애욕
+			
+		ELSEIF TALENT:섹프
+			
+		ELSE
+			IF CFLAG:3000 == 0
+
+			ELSE
+
+			ENDIF
+		ENDIF
+	ENDIF
 
 ENDIF
 RETURN 1
