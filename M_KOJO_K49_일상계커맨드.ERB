@@ -2109,16 +2109,121 @@ IF LOCAL
 				CFLAG:3101 ++
 			ENDIF
 		ELSEIF TALENT:연인
-			
+			SELECTCASE RAND:3
+				CASE 0
+					PRINTFORMW 「이상한걸 탔어...이런걸 마셔도 되는건가?」
+					IF TFLAG:193 == -1
+						PRINTFORMW 「...물론 못 먹을걸 줄거라곤 생각 안 하지만」
+						PRINTFORMW 「그래도 이런 이상한 약, 별로 마시고 싶지 않아요」
+						PRINTFORMW 사토리는 조용히 차를 되밀었다
+					ELSE
+						PRINTFORMW 「...뭐, 못 먹을걸 주진 않겠죠...」
+						PRINTFORMW 사토리는 눈을 질끈 감고 차를 들이켰다
+					ENDIF
+				CASE 1
+					PRINTFORMW 「이, 이거 마셔도 되는거 맞나요...?」
+					PRINTFORMW 「...이상한 약을 타 놨어...으...」
+					IF TFLAG:193 == -1
+						PRINTFORMW 사토리는 질색하며 차를 거절했다
+					ELSE
+						PRINTFORMW 「...그렇게 먹이고 싶어 하니 마시긴 하겠지만...」
+						PRINTFORMW 사토리는 질색하면서도 차를 마셨다
+					ENDIF
+				CASE 2
+					PRINTFORMW 「차를 주는건지 약을 주는건지...」
+					IF TFLAG:193 == -1
+						PRINTFORMW 사토리는 조용히 차를 되밀었다
+					ELSE
+						PRINTFORMW 「먹기야 하겠다만...」
+					ENDIF
+			ENDSELECT
 		ELSEIF TALENT:연모||TALENT:사모||TALENT:애욕
-			
+			SELECTCASE RAND:3
+				CASE 0
+					PRINTFORMW 「너무 대놓고 약이잖아요 이건」
+					PRINTFORMW 사토리는 투덜거렸다
+					IF TFLAG:193 == -1
+						PRINTFORMW 「이런건 못 마셔요」
+					ELSE
+						PRINTFORMW 「...마시긴 할거지만」
+						PRINTFORMW 사토리는 떨떠름한 표정을 지으면서도 차를 들이켰다
+					ENDIF	
+				CASE 1
+					IF TFLAG:193 == -1
+						PRINTFORMW 「차라면 감사히 마시겠지만...」
+						PRINTFORMW 「약은 사양하고 싶네요」
+					ELSE
+						PRINTFORMW 「...약을 먹이고 싶었던 건가요?」
+						PRINTFORMW 「그렇게 원한다면야 마시겠지만...」
+						PRINTFORMW 사토리는 떨떠름한 표정으로 차를 들이켰다
+					ENDIF
+				CASE 2
+					PRINTFORMW 「...꼭 마셔야 하는건가요...?」
+					IF TFLAG:193 == -1
+						PRINTFORMW 「그래도 이 약은...으...」
+						PRINTFORMW 「역시 무리가 아닐까요...」
+					ELSE
+						PRINTFORMW 「...으...별로 마시고 싶지 않은데..」
+						PRINTFORMW 사토리는 눈을 질끈 감고 약 탄 차를 들이켰다
+					ENDIF
+			ENDSELECT
 		ELSEIF TALENT:섹프
-			
+			SELECTCASE RAND:2
+				CASE 0
+					PRINTFORMW 「이 약을 먹었음 하는건가요?」
+					IF TFLAG:차 == 41
+						PRINTFORMW 「미약이라...먹으면 분명히 기분 좋겠죠」
+						IF TFLAG:193 == -1
+							PRINTFORMW 「그래도 먹고 싶진 않지만」
+							PRINTFORMW 사토리는 차를 되돌려 왔다
+						ELSE
+							PRINTFORMW 사토리는 단숨에 차를 들이켰다
+						ENDIF
+					ELSE
+						PRINTFORMW 「별로 맛있어보이진 않네요...」
+						IF TFLAG:193 == -1
+							PRINTFORMW 「재밌어보이지도 않고, 마시고 싶지가 않은걸」
+							PRINTFORMW 사토리는 차를 되돌려왔다
+						ELSE
+							PRINTFORMW 「그래도 한번 먹어볼까」
+							PRINTFORMW 사토리는 얌전히 차를 들이켰다
+						ENDIF
+					ENDIF
+				CASE 1
+					PRINTFORMW 「이럴거면 차라리 당당히 먹으라 해도 되는거 아닌가요?」
+					IF TFLAG:193 == -1
+						PRINTFORMW 「그래도 먹진 않겠지만」
+						PRINTFORMW 사토리는 기가막혀했다
+					ELSE
+						PRINTFORMW 사토리는 고개를 갸웃거리며 차를 들이켰다
+					ENDIF
+			ENDSELECT
 		ELSE
 			IF CFLAG:3000 == 0
-
+				SELECTCASE RAND:3
+					CASE 0
+						PRINTFORMW 「...약 탄거잖아요, 이걸 어떻게 먹으라고」	
+					CASE 1
+						PRINTFORMW 「이상한 약을 타 놓곤 먹으라고 하는건 조금 아니라고 생각하는데」
+						PRINTFORMW 「...남들한테도 이렇게 마시라고 하는건가요?」
+					CASE 2
+						PRINTFORMW 「도대체 무슨 생각으로 저한테 약 탄 차를 주는 건가요?」
+						PRINTFORMW 「...정체를 알면 당연히 마실리가 없잖아요」
+						PRINTFORMW 사토리는 기가 막혀 하며 차를 버렸다
+				ENDSELECT
+				CFLAG:3101++
 			ELSE
-
+				SELECTCASE RAND:3
+					CASE 0
+						PRINTFORMW 「...약 탄거잖아, 이걸 어떻게 먹으라고」	
+					CASE 1
+						PRINTFORMW 「이상한 약을 타 놓곤 먹으라고 하는건 조금 아니라고 생각하는데」
+						PRINTFORMW 「...남들한테도 이렇게 마시라고 하는건 아니겠지」
+					CASE 2
+						PRINTFORMW 「...이 차의 정체를 알면 당연히 마실리가 없잖아」
+						PRINTFORMW 사토리는 기가 막혀 하며 차를 버렸다
+				ENDSELECT
+				CFLAG:3101++
 			ENDIF
 		ENDIF
 	ENDIF
