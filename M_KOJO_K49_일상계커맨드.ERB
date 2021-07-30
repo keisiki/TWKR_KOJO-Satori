@@ -2233,6 +2233,7 @@ RETURN 1
 ;==================================================
 ;332,술을 대접한다
 ;TFLAG:193(0=술을못함成功 -1=술을못함失敗 -2=술을못함大失敗 -5=술을못함あきらめ)
+;사토리는 술을 못함이 없다, 즉 이 값은 무효
 ;TFLAG:194(51=탁주 52=청주 53=오니고로시)
 ;ALCOHOL_TASTE(TFLAG:194)(15以上=気に入る 9以下=구に合わない)
 ;==================================================
@@ -2244,10 +2245,125 @@ RETURN RESULT
 @M_KOJO_MESSAGE_COM_K49_332_1
 ;-------------------------------------------------
 ;記入チェック（=0, 非表示、1, 表示）
-LOCAL = 0
+LOCAL = 1
 ;-------------------------------------------------
 IF LOCAL
+	;PRINTFORMW 「」
+	IF FIRSTTIME(SELECTCOM)
+		IF MARK:반발각인 == 3 && !TALENT:연인
+			PRINTFORMW 「술이라...」
+			PRINTFORMW 「이상한걸 탄 것 같진 않긴 한데...갑자기 무슨 바람이 분 걸까?」
+			PRINTFORMW 사토리는 희한하다는듯이 바라보고 있다
+			PRINTFORMW 「취하게 한뒤에 이상한 짓 할 생각이라면...아아 몰라, 조금만 이라면 괜찮겠지」
+			PRINTFORMW 「얼른 따르기나 해 보세요」
+			PRINTFORMW 사토리는 벌써부터 한가득 기대한 것 같다...
+			IF TALENT:기분 == -1
+				TALENT:기분 = 0
+			ENDIF
+		ELSEIF TALENT:연인
+			PRINTFORMW 「술..? 네, 좋아요」
+			PRINTFORMW 「후후, 둘이서 이리 마시는건 처음이던가요, 두근두근하네요」
+			PRINTFORMW 사토리는 무척이나 기뻐하고 있다
+			TALENT:기분 = 1
+		ELSEIF TALENT:연모||TALENT:사모||TALENT:애욕
+			PRINTFORMW 「술? 같이 마시자고요?」
+			PRINTFORMW 「...네, 좋아요」
+			PRINTFORMW 사토리는 어쩐지 기뻐보이는 표정이다
+			PRINTFORMW 「그야 좋아하니까요, 기쁜게 당연하죠」
+			PRINTFORMW 「...아, 그...그게...술이 좋으니까요」
+			PRINTFORMW 사토리는 황급히 놀란듯이 덧붙였다
+		ELSEIF TALENT:섹프
+			PRINTFORMW 「술? 좋죠, 얼른 따라보세요」
+			PRINTFORMW 사토리는 굉장히 기뻐보이는 표정이다
+			PRINTFORMW 「연회가 아니고서야 남이랑 마실 기회는 적으니까요」
+			PRINTFORMW 「모처럼 자작하지 않아도 되니 좋고 말고요」
+		ELSE
+			IF CFLAG:3000 == 0
+				PRINTFORMW 「술? 주시는건가요?」
+				PRINTFORMW 「그럼 감사히...」
+				PRINTFORMW 사토리는 입을 가리고 천천히 술을 들이켰다
+				PRINTFORMW 「역시 혼자서 따르는것보다 훨씬 낫네요」
+				PRINTFORMW 「...나중에 또, 같이 마실수 있을까요?」
+			ELSE
+				PRINTFORMW 「술...? 무슨 꿍꿍이라도 있는걸까?」
+				PRINTFORMW 「그런거 없다고요? 뭐, 그렇다면야 감사히...」
+				PRINTFORMW 사토리는 반신반의 하면서도 천천히 술을 들이켰다
+				PRINTFORMW 「으음...괜찮은 맛이네요...」
+				PRINTFORMW 「늘상 혼자서 마시던것보다 훨씬 나아」
+				PRINTFORMW 「...나중에 또 마시게 해줬음 좋겠는데...」
+			ENDIF
+		ENDIF
+	ELSE
+		IF MARK:반발각인 == 3 && !TALENT:연인
+			IF CFLAG:3000 == 0
+				SELECTCASE RAND:3
+					CASE 0
+						PRINTFORMW 「혼자서 마시지 않으니 기분이 훨씬 낫네요」
+						PRINTFORMW 「...상대가 좀 더 좋은 사람이었다면 더 기뻤겠지만」
+						PRINTFORMW 「하기사 이런게 제 팔자겠죠...」
+					CASE 1
+						PRINTFORMW 「건배」
+						PRINTFORMW 「마실때 만큼은 서로 기분 나쁜말 하지 맙시다」
+						PRINTFORMW 사토리는 조용히 술을 홀짝였다
+					CASE 2
+						PRINTFORMW 「술 맛 좋네요」
+						PRINTFORMW 「아무리 상대가 이래도, 혼자 마시는거보단 둘이서 마시는게 백배 낫긴 한가봐요」
+						PRINTFORMW 「그래도 좀 더 멋진 사람이 상대면 좋겠지만...」
+				ENDSELECT
+			ELSE
+				SELECTCASE RAND:3
+					CASE 0
+						PRINTFORMW 「...혼자서 마시지 않는건 좋지만」
+						PRINTFORMW 「이렇게 술을 주는 이유는 뭘까나」
+						PRINTFORMW 사토리는 능글맞게 웃으며 말했다
+					CASE 1
+						PRINTFORMW 「마실때만큼은 서로 건들지 맙시다」
+						PRINTFORMW 「기분 좋게 마시자구요?」
+					CASE 2
+						PRINTFORMW 「맛있네」
+						PRINTFORMW 「혼자서 마시는것보다 훨씬 맛있어」
+						PRINTFORMW 「지금만큼은 상당히 괜찮은 사람처럼도 보이네」
+						PRINTFORMW 사토리는 피식 웃으며 술을 들이켰다
+				ENDSELECT
+			ENDIF
+		ELSEIF TALENT:연인
+			SELECTCASE RAND:3
+				CASE 0
+					
+				CASE 1
 
+				CASE 2
+
+			ENDSELECT
+		ELSEIF TALENT:연모||TALENT:사모||TALENT:애욕
+			SELECTCASE RAND:3
+				CASE 0
+					
+				CASE 1
+
+				CASE 2
+
+			ENDSELECT
+		ELSEIF TALENT:섹프
+			SELECTCASE RAND:3
+				CASE 0
+					
+				CASE 1
+
+				CASE 2
+
+			ENDSELECT
+		ELSE
+			SELECTCASE RAND:3
+				CASE 0
+					
+				CASE 1
+
+				CASE 2
+
+			ENDSELECT
+		ENDIF
+	ENDIF
 ENDIF
 RETURN 1
 ;==================================================
