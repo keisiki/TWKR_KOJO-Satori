@@ -2345,7 +2345,7 @@ IF LOCAL
 				CASE 3
 					PRINTFORMW 「에헤헤...한 잔 더 주세요...♥」
 					PRINTFORMW 상당히 기분 좋은지 히히덕거리며 잔을 들이밀고 있다
-					SIF TALENT:기분 = -1
+					SIF TALENT:기분 == -1
 						TALENT:기분 = 0
 			ENDSELECT
 		ELSEIF TALENT:연모||TALENT:사모||TALENT:애욕
