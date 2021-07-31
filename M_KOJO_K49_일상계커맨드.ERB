@@ -2315,6 +2315,7 @@ IF LOCAL
 					CASE 0
 						PRINTFORMW 「...혼자서 마시지 않는건 좋지만」
 						PRINTFORMW 「이렇게 술을 주는 이유는 뭘까나」
+						PRINTFORMW 「혹시라도 이상한 생각하는건 아니겠죠?」
 						PRINTFORMW 사토리는 능글맞게 웃으며 말했다
 					CASE 1
 						PRINTFORMW 「마실때만큼은 서로 건들지 맙시다」
@@ -2327,40 +2328,67 @@ IF LOCAL
 				ENDSELECT
 			ENDIF
 		ELSEIF TALENT:연인
-			SELECTCASE RAND:3
+			SELECTCASE RAND:4
 				CASE 0
-					
+					PRINTFORMW 「술맛 좋네요...」
+					PRINTFORMW 「헤헤...이번엔 제가 따라드릴까요?」
+					PRINTFORMW 사토리는 기분이 좋은듯 하다
+					TALENT:기분 = 1
 				CASE 1
-
+					PRINTFORMW 「네에 건배」
+					PRINTFORMW 「후후, 같이 마시니까 기분 좋네요」
 				CASE 2
-
+					PRINTFORMW 「그거 해보고 싶어요, 연인들끼리 하는 그거」
+					PRINTFORMW 눈을 빛내며 달라붙은 사토리와 함께 팔을 걸고 러브샷을 했다
+					PRINTFORMW 사토리는 상당히 기쁜듯한 모양이다
+					TALENT:기분 = 1
+				CASE 3
+					PRINTFORMW 「에헤헤...한 잔 더 주세요...♥」
+					PRINTFORMW 상당히 기분 좋은지 히히덕거리며 잔을 들이밀고 있다
+					SIF TALENT:기분 = -1
+						TALENT:기분 = 0
 			ENDSELECT
 		ELSEIF TALENT:연모||TALENT:사모||TALENT:애욕
 			SELECTCASE RAND:3
 				CASE 0
-					
+					PRINTFORMW 「......」
+					PRINTFORMW 사토리는 말없이 술을 들이키고 있다
 				CASE 1
-
+					PRINTFORMW 「아, 감사합니다...」
+					PRINTFORMW 사토리는 조용히 술을 홀짝이고 있다
 				CASE 2
-
+					PRINTFORMW 「건배-」
+					PRINTFORMW 「...그런데 %사마스터는% 몇 잔까지 마실수 있나요?」
+					PRINTFORMW 「아뇨, 그게...나중에 그거에 맞춰서 구비해두려고요, 매번 얻어마시기만 하면 뭐하니까」
+					PRINTFORMW 「다른사람이랑은 하고 싶어도 안 오니...」
+					;술파티 이벤트를 만들고 싶다는 강한 의지
+					;라기엔 먹이고 따먹으려는 의지가 가득한걸 생각하며 쓰고 있다
 			ENDSELECT
 		ELSEIF TALENT:섹프
 			SELECTCASE RAND:3
 				CASE 0
-					
+					PRINTFORMW 「그런데 이렇게 마시게 해놓고 뭘 하려고 그러는걸까요?」
+					PRINTFORMW 「...그치만 보통은 %사마스터가% 먼저 취할텐데~」
+					PRINTFORMW 사토리는 히죽거리며 술을 들이켰다
 				CASE 1
-
+					PRINTFORMW 「후아...맛있다...」
+					PRINTFORMW 사토리는 한껏 풀어진 표정으로 술을 홀짝이고 있다
 				CASE 2
-
+					PRINTFORMW 「...술 맛 좋네요...」
+					PRINTFORMW 사토리는 슬며시 몸을 밀착해왔다
+					PRINTFORMW 어쩐지 %마스터의% 허벅지를 만지고 있는건 기분탓일 것이다
+					BASE:무드 = MIN(BASE:무드 + 1000, 9000)
 			ENDSELECT
 		ELSE
 			SELECTCASE RAND:3
 				CASE 0
-					
+					PRINTFORMW 「네, 건배-」
+					PRINTFORMW 가볍게 잔을 부딪히고 말없이 술을 들이켰다
 				CASE 1
-
+					PRINTFORMW 「...맛있네요」
+					PRINTFORMW 조용히 서로 술을 홀짝였다
 				CASE 2
-
+					PRINTFORMW 「안주가 없는거만 빼면 상당히 만족스럽네요...」
 			ENDSELECT
 		ENDIF
 	ENDIF
