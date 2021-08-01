@@ -52,6 +52,8 @@ IF LOCAL
 		ELSE
 			IF TIME_PROGRESS(TCVAR:300) >= 120 && CFLAG:초기위치 == CFLAG:현재위치 && RAND:3 == 0
 				CALL ST_차타주기
+			ELSEIF TALENT:섹프&&RAND:4 == 0
+				CALL ST_섹프회화
 			ELSEIF TALENT:사모&&RAND:4 == 0
 				CALL ST_사모회화
 			ELSE

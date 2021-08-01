@@ -1683,10 +1683,81 @@ ENDSELECT
 @ST_섹프회화
 #DIM 이전대화, 3
 #DIM DYNAMIC 대화선택
-#DIM CONST 대화개수 = 11 
-;20
-;목표수는 15개~20개
+#DIM CONST 대화개수 = 9
 대화선택 = ST_대사섞기(대화개수, 이전대화:0 , 이전대화:1, 이전대화:2)
 이전대화:2 = 이전대화:1
 이전대화:1 = 이전대화:0
 이전대화:0 = 대화선택
+
+SELECTCASE 대화선택
+    CASE 0
+        PRINTFORMW 「부끄럽지만, 요즘엔 혼자서는 영 만족할수가 없네요...」
+        PRINTFORMW 「%사마스터가% 해주는게 상당히 마음에 들었으니까」
+        PRINTFORMW 「...그러니까 이젠 %사마스터가% 해줄때 빼곤 만족스레 가버릴수가 없다구요?」
+        PRINTFORMW 사토리는 얼굴을 붉히며 말했다
+    CASE 1
+        PRINTFORMW 「예전에는 매일같이 호텔방으로 들어가는 사람들을 이해할수 없었어요」
+        PRINTFORMW 「근데...이제는 조금 알 것 같아, 이런 기분좋은거 매일매일 하고 싶단 말야」
+    CASE 2
+        PRINTFORMW 「솔직히 제대로된 연인이 있었음 좋겠어요」
+        PRINTFORMW 「연인이라면 같은 방에서 살 수도 있고...그럼 매일매일 기분 좋은거 할 테니까」
+        PRINTFORMW 「...그치만 그런걸 좋아하는 사람을 만날 확률이 그다지 높진 않겠죠」
+    CASE 3
+        PRINTFORMW 「요즘엔 호텔 근처를 서성이는 버릇이 들어버렸어요」
+        PRINTFORMW 「방방마다 들려오는 야릇한 사념들에 몸이 떨리는게 좋아」
+        PRINTFORMW 「어쩔땐 근처 사람들이 걱정할 정도로 벌벌 떨고 있었다니깐요」
+    CASE 4
+        PRINTFORMW 「하루 종일 방에서 야한짓만 하면서 보내고 싶네...」
+        PRINTFORMW 「분명히 기분 좋을텐데...」
+        PRINTFORMW 사토리는 멍하니 %마스터를% 바라보며 되뇌이고 있다
+    CASE 5
+        PRINTFORMW 「야한 속옷 입으면 좋을것 같나요?」
+        PRINTFORMW 「좋아한다면 나중에 한번 입고 해볼려 했는데」
+        PRINTFORMW 「...안 어울리려나」
+    CASE 6
+        IF TALENT:38:섹프
+            PRINTFORMW 「어쩌다가 자매 둘이 한 사람의 섹프가 된걸까...」
+            PRINTFORMW 「그런건 관능 소설에서나 나올법한 이야기잖아」
+            PRINTFORMW 「...뭐어, 그런데 나오는거 만큼 %사마스터가% 능숙하니까 그런거겠죠?」
+        ELSEIF TALENT:38:연인 && CFLAG:38:현재위치 != CFLAG:현재위치
+            PRINTFORMW 「코이시랑 사귀어 놓고, 저랑 즐기다니...생각해보면 참 못된 분이시네요」
+            PRINTFORMW 「...그걸 즐기고 있는 저도 똑같지만...」
+        ELSE
+            PRINTFORMW 「야한짓은 하고 싶은데, 혼자서는 만족스럽게 할 수도 없고...」
+            PRINTFORMW 「다른 사람한테 부탁하자니 그것대로 곤란하고」
+            PRINTFORMW 「결국은 %사마스터랑% 하는거 밖엔 방법이 없네요」
+            PRINTFORMW 「이렇게 만든건 %MASTERNAME:49%니까 책임지고 계속 기분좋게 해줬으면 좋겠네」
+            PRINTFORMW 사토리는 음흉한 미소를 지어보였다
+        ENDIF
+    CASE 7
+        PRINTFORMW 「야한짓한 경험이 있으니까, 글을 읽어주는 사람들이 늘어나는거 같아요」
+        PRINTFORMW 「전보다 표현력이 더 올랐다니 뭐니...조금 기뻐요」
+        PRINTFORMW 「...좀 더 잔뜩 하면, 더 늘겠죠?」
+    CASE 8
+        IF EQUIP:하반신속옷2 && !EYEWITNESS()
+            PRINTFORMW 「혹시- 팬티같은거 필요한가요?」
+            PRINTFORMW 「필요하다고 말하면 줄 수도 있는데」
+            PRINTFORMW 사토리는 히죽히죽 웃으며 달라붙고 있다
+            PRINTFORML [0] 받는다
+            PRINTFORML [1] 필요 없다
+            INPUT
+            IF RESULT
+                PRINTFORMW 「그런가요? 뭐, 그럼 어쩔수 없죠」
+                PRINTFORMW 사토리는 희한하다는듯이 바라보고 있다
+            ELSE
+                PRINTFORMW 「...후후, 네, 좋아요」
+                PRINTFORMW 사토리는 그 자리에서 팬티를 벗어 %마스터의% 손에 들려주었다
+                PRINTFORMW 「다리 사이로 바람이 들어오는 이 감각...어쩐지 두근두근해」
+                PRINTFORMW 「...맞다, 그거, 남한테 들키지 않게 조심하세요?」
+                CALL PANTS_GET(49,"받는다")
+            ENDIF
+        ELSE
+            PRINTFORMW 「요근래 팬티신 신앙이 간간히 퍼지고 있나 보네요...」
+            PRINTFORMW 「...믿는건 상관없지만 그거로 이상한 짓을 하는게 문제라나봐요」
+            PRINTFORMW 「요컨데 다른 사람들을 발정나게 한다던지...」
+            PRINTFORMW 「...%MASTERNAME:49%도 그런걸 빌 건가요?」
+            PRINTFORMW 사토리는 %마스터를% 빤히 바라보고 있다
+        ENDIF
+    CASE 9
+        
+ENDSELECT
