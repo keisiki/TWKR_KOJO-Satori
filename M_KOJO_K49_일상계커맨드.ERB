@@ -2500,68 +2500,78 @@ IF LOCAL
 				IF TALENT:연인
 					SELECTCASE RAND:3
 						CASE 0
-							
+							PRINTFORMW 「후우...털어놓고 나니 한결 편하네요...」
+							PRINTFORMW 「...고마워요」
 						CASE 1
-
+							PRINTFORMW 「하아아...한결 낫네요...」
+							PRINTFORMW 사토리는 후련해 보이는 표정이다
 						CASE 2
-						
+							PRINTFORMW 「아아...개운하다......지루했을텐데, 고마워요」
+							PRINTFORMW 사토리는 약간 미안해 했다
 					ENDSELECT
 				ELSE
-					IF CFLAG:3000 == 0
-						SELECTCASE RAND:3
-							CASE 0
-								
-							CASE 1
-
-							CASE 2
-							
-						ENDSELECT
-					ELSE
-						SELECTCASE RAND:3
-							CASE 0
-								
-							CASE 1
-
-							CASE 2
-							
-						ENDSELECT
-					ENDIF
+					SELECTCASE RAND:3
+						CASE 0
+							PRINTFORMW 「...후우...이렇게라도 털어놓으니 한결 낫네」
+							PRINTFORMW 사토리는 개운해진 모양이다
+						CASE 1
+							PRINTFORMW 「아아...개운해라...」
+							PRINTFORMW 한참동안 하소연한 덕인지 사토리는 상당히 개운해 보이는 표정이다
+						CASE 2
+							PRINTFORMW 「후우...후련하다...」
+							PRINTFORMW 사토리는 한결 편안해 보이는 표정이다
+					ENDSELECT
 				ENDIF
 			ELSEIF TALENT:연인
 				SELECTCASE RAND:3
 					CASE 0
-						
+						PRINTFORMW 「후...이제야 좀 진정되네...」
+						PRINTFORMW 「...듣기 지루했을텐데, 미안해요...」
 					CASE 1
-
+						PRINTFORMW 「하아...그래도 털어놓고 나니 한결 낫네...」
+						PRINTFORMW 「...고마워요, 들어줘서」
+						PRINTFORMW 사토리는 약간 개운해 보이는 표정으로 %마스터를% 바라보고 있다
 					CASE 2
-					
+						PRINTFORMW 「아아...개운하다」
+						PRINTFORMW 「역시 혼자 끙끙거리는거보단 훨씬 낫네요」
+						PRINTFORMW 「...고마워요」
 				ENDSELECT
 			ELSEIF TALENT:연모||TALENT:사모||TALENT:애욕
 				SELECTCASE RAND:3
 					CASE 0
-						
+						PRINTFORMW 「후...」
+						PRINTFORMW 한껏 쏟아낸 사토리는 조금 진정된 모양이다
 					CASE 1
-
+						PRINTFORMW 「...후우...이제야 좀 낫네...」
+						PRINTFORMW 사토리는 개운한 표정이다
 					CASE 2
-					
+						PRINTFORMW 「하아...들어줘서 고마워요」
+						PRINTFORMW 「털어놓을만한 상대가 영 없어서 곤란했는데...」
 				ENDSELECT
 			ELSEIF TALENT:섹프
 				SELECTCASE RAND:3
 					CASE 0
-						
+						PRINTFORMW 「하아...이제야 좀 후련하네...」
+						PRINTFORMW 사토리는 개운해 보이는 표정이다
 					CASE 1
-
+						PRINTFORMW 「후...」
+						PRINTFORMW 한참동안 하소연해댄 사토리는 이제야 좀 진정된 모양이다
 					CASE 2
-					
+						PRINTFORMW 「...하아...들어줘서 고마워요」
+						PRINTFORMW 「솔직히 이런걸 말할만한 상대가 별로 없으니까...혼자서 끙끙 앓는 때가 더 많거든요」
 				ENDSELECT
 			ELSE
 				SELECTCASE RAND:3
 					CASE 0
-						
+						PRINTFORMW 「하아...조금은 속이 편해졌어」
+						PRINTFORMW 「고마워요, 지루했을텐데...」
 					CASE 1
-
+						PRINTFORMW 「후우...」
+						PRINTFORMW 사토리는 한결 개운해 보이는 표정이다
 					CASE 2
-					
+						PRINTFORMW 「후...조금 개운해졌어...」
+						PRINTFORMW 「들어줘서 고마워요, 지루했을텐데」
+						PRINTFORMW 사토리는 누그러진 표정으로 %마스터를% 바라보고 있다
 				ENDSELECT
 			ENDIF
 		CASE 1
