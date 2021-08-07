@@ -2610,17 +2610,164 @@ RETURN RESULT
 @M_KOJO_MESSAGE_COM_K49_334_1
 ;-------------------------------------------------
 ;記入チェック（=0, 非表示、1, 表示）
-LOCAL = 0
+LOCAL = 1
 ;-------------------------------------------------
 IF LOCAL
-	SELECTCASE TFLAG:193
-		CASE 1
-		;大成功
-		CASE 0
-		;成功
-		CASE -1
-		;失敗
-	ENDSELECT
+	IF FIRSTTIME(SELECTCOM)
+		IF MARK:반발각인 == 3 && !TALENT:연인
+			PRINTFORMW 「따라주겠다고요? 그러시던가요」
+			PRINTFORMW 사토리는 영 시큰둥한 모양이다
+			PRINTFORMW 「가라고 해도 안 갈것 같으니까, 그냥 내버려 두는 거 뿐인걸」
+			PRINTFORMW 「...같이 마셔준다고 해도 누가 기뻐할거 같아요?」
+			PRINTFORMW 사토리는 투덜거리면서도 얌전히 술을 홀짝이기 시작했다
+			PRINTFORMW 둘이서 나란히 앉아 무슨맛인지도 모를 술을 연신 넘겨댈 뿐이었다
+		ELSEIF TALENT:연인||TALENT:연모||TALENT:사모||TALENT:애욕||TALENT:섹프
+			PRINTFORMW 「같이 마시자구요?」
+			PRINTFORMW 「안하던 짓을 하시네요...」
+			PRINTFORMW 사토리는 의아해 했지만 내심 기뻐하고 있는게 얼굴에 드러나고 있었다
+			PRINTFORMW 그걸 눈치챈 사토리는 얼굴을 새빨갛게 물들이고 묵묵히 술잔을 들이킬 뿐이었다
+		ELSE
+			PRINTFORMW 「같이 마시고 싶다고요?」
+			PRINTFORMW 「싫은건 아니지만...」
+			PRINTFORMW 사토리는 의아해하면서도 술을 홀짝이고 있다
+		ENDIF
+	ELSE
+		SELECTCASE TFLAG:193
+			CASE 0, 1
+			;成功 성공
+				IF MARK:반발각인 == 3
+					IF TALENT:연인
+						SELECTCASE RAND:3
+							CASE 0
+								PRINTFORMW 「자, 이번엔 제가」
+								PRINTFORMW 사토리는 %마스터의% 옆에 붙어 잔을 채워주고 있다
+							CASE 1
+								PRINTFORMW 「후으...집에서 혼자 마시는거랑은 또 다른 느낌」
+								PRINTFORMW 「이런 떠들썩한 분위기도 운치있죠」
+								PRINTFORMW 사토리는 상당히 즐거운 모양이다
+							CASE 2
+								PRINTFORMW 「이런 술이라면 오니만큼도 마실수 있겠네요」
+								PRINTFORMW 「...후후, 먼저 쓰러지진 마세요?」
+						ENDSELECT
+					ELSE
+						SELECTCASE RAND:3
+							CASE 0
+								PRINTFORMW 「하-...술 맛은 좋네...」
+								PRINTFORMW 사토리는 %마스터가% 따라주는 술을 연거푸 들이키고 있다
+							CASE 1
+								PRINTFORMW 「자, 따라드릴게요」
+								PRINTFORMW 사토리는 %마스터의% 잔에 한가득 술을 부어주었다
+								PRINTFORMW 「기껏 따라드렸으니 한번에 다 마시세요?」
+								PRINTFORMW 「물론 다 마시면 또 그만큼 채울거지만♪」
+							CASE 2
+								PRINTFORMW 「...뭐, 조용히 마시기만 하는거라면 마다할 이유는 없겠죠」
+								PRINTFORMW 「이상한짓 하려고 한다면 얘기가 달라지겠지만」
+								PRINTFORMW 「...후후후, 설마 그런 마음은 안 품겠죠?」
+						ENDSELECT
+					ENDIF
+				ELSEIF TALENT:연인
+					SELECTCASE RAND:3
+						CASE 0
+							PRINTFORMW 「건배-」
+							PRINTFORMW 사토리는 살짝 들뜬것 같은 표정으로 잔을 부딪혀왔다
+						CASE 1
+							PRINTFORMW 「에헤헤...이번에는 제가...」
+							PRINTFORMW 사토리는 %마스터의% 잔에 한가득 술을 부어주고 있다
+							PRINTFORMW 「모처럼 따라드린거니까, 한번에 쭈-욱 들이켜야해요?」
+							PRINTFORMW 「못 마시면...후후, 기대하시길」
+							PRINTFORMW 사토리는 능글맞게 웃고 있다
+						CASE 2
+							PRINTFORMW 「둘 중 하나가 취할때까지, 계속 마실거예요」
+							PRINTFORMW 「에헤헤...먼저 쓰러지면 섭섭해요?」
+							PRINTFORMW 사토리는 기분이 좋은지 계속 헤헤거리고 있다
+					ENDSELECT
+				ELSEIF TALENT:연모||TALENT:사모||TALENT:애욕
+					SELECTCASE RAND:3
+						CASE 0
+							PRINTFORMW 사토리는 조용히 술을 들이키고 있다
+							PRINTFORMW 몇번 %마스터를% 바라보곤 얼굴이 빨갛게 되어버려 또다시 술을 들이키는것의 연속이었다 
+						CASE 1
+							PRINTFORMW 「마시는건 좋지만, 너무 마시진 마세요?」
+							PRINTFORMW 사토리는 살짝 웃어보이며 이쪽에 술을 따라주고 있다
+						CASE 2
+							PRINTFORMW 「따라드릴게요」
+							PRINTFORMW 사토리는 %마스터의% 옆에 앉아 술을 따라주고 있다
+							PRINTFORMW ...어째선지 거리가 상당히 가깝다
+					ENDSELECT
+				ELSEIF TALENT:섹프
+					SELECTCASE RAND:3
+						CASE 0
+							PRINTFORMW 「이렇게 자꾸 따라줘서 어떻게 하려는걸까-」
+							PRINTFORMW 「혹시 끝나고 이상한짓이라도 하려는건가?」
+							PRINTFORMW 「후후후...그치만 그것대로 좋을지도」
+							PRINTFORMW 사토리는 히죽히죽거리며 잔을 받아들었다
+						CASE 1
+							PRINTFORMW 「너무 취하면, 나중에 제대로 못 즐겨요?」
+							PRINTFORMW 「...후후, 적당히 마시는게 좋을거예요」
+							PRINTFORMW 기분이 좋은건지 사토리는 연신 헤실거리고 있다
+						CASE 2
+							PRINTFORMW 「이렇게 가득 따르는건 무슨 의미일까나」
+							PRINTFORMW 「너무 흑심 가득한거 아닌가요?」
+							PRINTFORMW 사토리는 %마스터의% 옆에 밀착해 능글맞게 웃고 있다						
+					ENDSELECT
+				ELSE
+					SELECTCASE RAND:3
+						CASE 0
+							PRINTFORMW 「자아, 따라드릴게요」
+							PRINTFORMW 사토리는 %마스터의% 잔에 넘칠만큼 술을 따라주었다
+							PRINTFORMW 「...조금 과한가요? 이정도는 마실수 있죠?」
+						CASE 1
+							PRINTFORMW 「후우...술 맛 좋네...」
+							PRINTFORMW 「...어라? 아직 다 못 마신 건가요?」
+							PRINTFORMW 사토리는 한가득 채워진 잔을 단숨에 비워내고는 이쪽에 내밀고 있다
+						CASE 2
+							PRINTFORMW 「적적하지 않으니 마실맛 나네요」
+							PRINTFORMW 「아, 이번엔 제가 따라드릴까요?」
+							PRINTFORMW 사토리는 즐거운 모양이다
+					ENDSELECT
+				ENDIF
+			CASE -1
+			;失敗 실패
+				IF MARK:반발각인 == 3 && !TALENT:연인
+					SELECTCASE RAND:3
+						CASE 0
+							PRINTFORMW 사토리는 떨떠름한 표정이다...
+						CASE 1
+							PRINTFORMW 「...다 마셨으면 얼른 다른곳으로 가 줬음 좋겠네」
+						CASE 2
+							PRINTFORMW 「나 말고도 사람은 많을텐데...」
+							PRINTFORMW 사토리는 영 언짢은 모양이다
+					ENDSELECT
+				ELSEIF TALENT:연인
+					SELECTCASE RAND:2
+						CASE 0
+							PRINTFORMW 「......」
+							PRINTFORMW 사토리와 %마스터는% 대화거리를 찾지 못하고 어색하게 술만 들이키고 있다
+						CASE 1
+							PRINTFORMW 몇번 대화가 오갔지만 이내 화제가 떨어져버렸다
+							PRINTFORMW 어색한 분위기 속에서 마신 술은 맛조차 느껴지지 않았다
+					ENDSELECT
+				ELSEIF TALENT:연모||TALENT:사모||TALENT:애욕||TALENT:섹프
+					SELECTCASE RAND:2
+						CASE 0
+							PRINTFORMW 몇번 대화가 오갔지만 이내 화제가 떨어져버렸다
+							PRINTFORMW 어색한 분위기 속에서 마신 술은 맛조차 느껴지지 않았다
+						CASE 1
+							PRINTFORMW 「어어...으음...」
+							PRINTFORMW 대화가 끊긴 술자리는 무척이나 어색해 술이 넘어가질 않을 수준이었다
+					ENDSELECT
+				ELSE
+					SELECTCASE RAND:2
+						CASE 0
+							PRINTFORMW 몇번 대화가 오갔지만 이내 화제가 떨어져버렸다
+							PRINTFORMW 어색한 분위기 속에서 마신 술은 맛조차 느껴지지 않았다
+						CASE 1
+							PRINTFORMW 「......」
+							PRINTFORMW 말 한마디 없는 어색한 상황에 사토리는 이쪽을 힐끗힐끗 바라보며 술을 들이키고 있다
+					ENDSELECT
+				ENDIF
+		ENDSELECT
+	ENDIF
 ENDIF
 RETURN 1
 ;==================================================
