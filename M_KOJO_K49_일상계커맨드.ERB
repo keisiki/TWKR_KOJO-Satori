@@ -2787,16 +2787,85 @@ RETURN RESULT
 @M_KOJO_MESSAGE_COM_K49_335_1
 ;-------------------------------------------------
 ;記入チェック（=0, 非表示、1, 表示）
-LOCAL = 0
+LOCAL = 1
 ;-------------------------------------------------
 IF LOCAL
+	;PRINTFORMW 「」
 	SELECTCASE TFLAG:193
-		CASE 1
-		;大成功
-		CASE 0
+		CASE 0, 1
 		;成功
+			IF MARK:반발각인 == 3 && !TALENT:연인
+				SELECTCASE RAND:3
+					CASE 0
+						PRINTFORMW 「으...속이 울렁거려...」
+						PRINTFORMW 숙취에 괴로워 하는 사토리의 등을 몇번 쓸어주자 약간 헛구역질을 하기 시작했다
+					CASE 1
+						PRINTFORMW 「머리 아파...너무 마셨나...」
+						PRINTFORMW 사토리는 %마스터가% 건낸 물을 하염없이 들이키고 있다
+					CASE 2
+						PRINTFORMW 「어지러워...으으...」
+						PRINTFORMW 사토리는 %마스터가% 건낸 차를 하염없이 들이키고 있다
+				ENDSELECT
+			ELSEIF TALENT:연인
+				SELECTCASE RAND:3
+					CASE 0
+						PRINTFORMW 「머리야...」
+						PRINTFORMW 숙취에 괴로워 하는 사토리의 등을 계속 쓸어주자 조금 호전된 모양이다
+					CASE 1
+						PRINTFORMW 「으으...너무 마셨나...」
+						PRINTFORMW 사토리는 %마스터가% 건낸 물을 하염없이 들이키고 있다
+					CASE 2
+						PRINTFORMW 「으으...어지러워...」
+						PRINTFORMW 사토리는 %마스터의% 몸에 기대 쉬고 있다
+				ENDSELECT
+			ELSEIF TALENT:연모||TALENT:애욕||TALENT:사모
+				SELECTCASE RAND:3
+					CASE 0
+						PRINTFORMW 「머리가 깨질거 같아...」
+						PRINTFORMW 사토리는 %마스터가% 건낸 물을 하염없이 들이켰다
+					CASE 1
+						PRINTFORMW 「으...좀 무리였나」
+						PRINTFORMW 「다음부턴 조금 덜 마셔야겠네...」
+						PRINTFORMW 사토리는 %마스터의% 몸에 기댄채 쉬고 있다
+					CASE 2
+						PRINTFORMW 「후으...」
+						PRINTFORMW 몰려오는 숙취에 괴로워 하던 사토리를 %마스터의% 몸에 기대 쉬게 했다
+				ENDSELECT
+			ELSE
+				SELECTCASE RAND:2
+					CASE 0
+						PRINTFORMW 「으...머리 아파...」
+						PRINTFORMW 사토리는 %마스터가% 건내준 물을 연신 들이키고 있다
+					CASE 1
+						PRINTFORMW 「속 쓰려...」
+						PRINTFORMW 숙취에 괴로워 하는 사토리의 등을 한참 쓸어주자 몇번 헛구역질을 해댔다
+				ENDSELECT
+			ENDIF
 		CASE -1
 		;失敗
+			IF MARK:반발각인 == 3 && !TALENT:연인
+				SELECTCASE RAND:3
+					CASE 0
+						PRINTFORMW 「으...됐으니까 저리 가기나 해...」
+						PRINTFORMW 사토리는 머리를 짚은채 손사래를 쳤다
+					CASE 1
+						PRINTFORMW 「그럴거면 그냥 내버려둬...」
+						PRINTFORMW 「으...머리야...」
+					CASE 2
+						PRINTFORMW 「으읏...머리 아파...」
+				ENDSELECT
+			ELSE
+				SELECTCASE RAND:4
+					CASE 0
+						PRINTFORMW 「으으...머리 아파...」
+					CASE 1
+						PRINTFORMW 「머리가 깨질거 같아...」
+					CASE 2
+						PRINTFORMW 「속이 울렁거려...」
+					CASE 3
+						PRINTFORMW 「어지러우니까 그냥 내버려둬...」
+				ENDSELECT
+			ENDIF
 	ENDSELECT
 ENDIF
 RETURN 1
