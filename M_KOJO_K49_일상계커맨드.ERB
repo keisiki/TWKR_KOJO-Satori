@@ -2887,13 +2887,180 @@ RETURN RESULT
 @M_KOJO_MESSAGE_COM_K49_336_1
 ;-------------------------------------------------
 ;記入チェック（=0, 非表示、1, 表示）
-LOCAL = 0
+LOCAL = 1
 ;-------------------------------------------------
 IF LOCAL
 	IF TFLAG:193 > 0
-	;寝ちゃった
+	;寝ちゃった 잠들었다
+		IF MARK:반발각인 == 3 && !TALENT:연인
+			SELECTCASE RAND:3
+				CASE 0
+					PRINTFORMW 「...아, 아아...잠깐 잠들어버렸네...」
+					PRINTFORMW 사토리는 눈을 비비며 일어났다
+				CASE 1
+					PRINTFORMW 「하아암...자는동안 이상한건 안 했겠지...?」
+					PRINTFORMW 「...농담이에요, 그 정도로 글러먹은 인간은 아닐테니」
+				CASE 2
+					PRINTFORMW 「...하암...」
+					PRINTFORMW 사토리는 상당히 편했던 모양이다
+	 			ENDSELECT
+		ELSEIF TALENT:연인
+			SELECTCASE RAND:3
+				CASE 0
+					PRINTFORMW 「음냐...」
+					PRINTFORMW 사토리는 %마스터의% 무릎 위에서 꼼지락 거리며 졸고 있다
+				CASE 1
+					PRINTFORMW 「..으응...아, 잠깐 졸아버렸네...후후」
+					PRINTFORMW 사토리는 상당히 편했던 모양이다
+				CASE 2
+					PRINTFORMW 「하아암...」
+					PRINTFORMW 사토리는 늘어지게 하품을 하며 일어났다
+			ENDSELECT
+		ELSEIF TALENT:연모||TALENT:사모||TALENT:애욕
+			SELECTCASE RAND:3
+				CASE 0
+					PRINTFORMW 「음냐...어라...나 잠들었었나...」
+					PRINTFORMW 사토리는 늘어지게 기지개를 펴며 몸을 일으켰다
+				CASE 1
+					PRINTFORMW 「...에헤헤...음냐...」
+					PRINTFORMW 굉장히 기분좋아 보이는 표정으로 잠들어있다
+				CASE 2
+					PRINTFORMW 「후아암...」
+					PRINTFORMW 사토리는 늘어지게 하품을 하며 몸을 일으켰다
+			ENDSELECT
+		ELSEIF TALENT:섹프
+			SELECTCASE RAND:3
+				CASE 0
+					PRINTFORMW 「음냐아...」
+					PRINTFORMW 사토리는 침까지 흘리며 자고 있다
+				CASE 1
+					PRINTFORMW 「...쿠우...」
+					PRINTFORMW 사토리는 굉장히 편해보이는 표정으로 자고 있다
+					PRINTFORMW ...어째선지 %마스터의% 다리 사이에 얼굴을 파묻고
+				CASE 2
+					PRINTFORMW 「..하아암...잘 잤다」
+					PRINTFORMW 사토리는 늘어지게 기지개를 펴며 몸을 일으켰다
+			ENDSELECT
+		ELSE
+			;혹시나
+			PRINTFORMW 「으응...? 나, 졸았었나...」
+		ENDIF
 	ELSE
-	;それ以外
+	;それ以外 그이외
+		IF MARK:반발각인 == 3 && !TALENT:연인
+			IF CFLAG:3000 == 0
+				SELECTCASE RAND:3
+					CASE 0
+						PRINTFORMW 「...조금 딱딱해」
+						PRINTFORMW 「그래도 싫지는 않아」
+					CASE 1
+						PRINTFORMW 「...이렇게만 있으면 되게 사이좋아 보이는데 말이죠」
+					CASE 2
+						PRINTFORMW 「무겁진...않겠죠?」
+				ENDSELECT
+			ELSE
+				SELECTCASE RAND:3
+					CASE 0
+						IF ABL:친밀 < 5
+							PRINTFORMW 「내가 왜 이런 짓을...」
+						ELSE
+							PRINTFORMW 「그럭저럭 편하네...」
+						ENDIF
+					CASE 1
+						IF ABL:친밀 < 5
+							PRINTFORMW 「...딱딱해서 별론걸」
+						ELSE
+							PRINTFORMW 「나름대로 편하네」
+							PRINTFORMW 「허벅지 살이 두툼한걸까?」
+							PRINTFORMW 사토리는 편히 누워있으면서 빈정거리고 있다
+						ENDIF
+					CASE 2
+						IF ABL:친밀 < 5
+							PRINTFORMW 「하아...냄새나」
+							PRINTFORMW 「고개를 돌려봐도 참을수가 없는걸, 제대로 씻고는 있는건지」
+						ELSE
+							PRINTFORMW 「못 누울 정도는 아니긴 한데...」
+							PRINTFORMW 「굳이 이런일을 해야할 이유가?」
+						ENDIF
+				ENDSELECT
+			ENDIF
+		ELSEIF TALENT:연인
+			;아마 친밀 5 이상
+			SELECTCASE RAND:3
+				CASE 0
+					PRINTFORMW 「편하네...」
+					PRINTFORMW 「후후, 이래서야 잠들어버릴지도」
+				CASE 1
+					PRINTFORMW 「다음번엔 제가 해 드릴까요?」
+					PRINTFORMW 사토리는 상당히 즐거운 모양이다
+				CASE 2
+					PRINTFORMW 「가끔은 이렇게 어리광 부리는것도 좋을지도...」
+					PRINTFORMW 사토리는 즐거운지 입꼬리가 잔뜩 올라가 있다
+			ENDSELECT
+		ELSEIF TALENT:연모||TALENT:사모||TALENT:애욕
+			;친밀 5 이상
+			SELECTCASE RAND:3
+				CASE 0
+					PRINTFORMW 「조금은 부끄럽네요...」
+					PRINTFORMW 「그래도 뭔가 기분 좋아」
+				CASE 1
+					PRINTFORMW 「좋은 느낌...이대로 잠들어버릴지도 모르겠네」
+					PRINTFORMW 사토리는 꽤 즐거운 모양이다
+				CASE 2
+					PRINTFORMW 「다음번엔 제가 해 드릴까요?」
+					PRINTFORMW 「저만 받는건 뭐하니까요」
+					PRINTFORMW 사토리는 살짝 웃어보였다
+			ENDSELECT
+		ELSEIF TALENT:섹프
+			SELECTCASE RAND:3
+				CASE 0
+					PRINTFORMW 「이런건 연인한테나 해주는게 아닌가요?」
+					PRINTFORMW 사토리는 의아해 하고 있다
+				CASE 1
+					IF ABL:친밀 < 5
+						PRINTFORMW 「으, 가까이서 있자니 그닥 좋은 체취는 아닌걸...」
+						PRINTFORMW 「다른땐 몰랐는데 지금은 영 아냐...」
+					ELSE
+						PRINTFORMW 「%사마스터의% 냄새가 진하게 나...」
+						PRINTFORMW 「이래서야 편히 쉴수가 없잖아, 후후...♥」
+						PRINTFORMW 사토리는 음흉한 미소를 띄고 있다
+					ENDIF
+				CASE 2
+					IF ABL:친밀 < 5
+						PRINTFORMW 「이런건 연인한테나 해주는게 어떤가요?」
+						PRINTFORMW 「저는 딱히...」
+					ELSE
+						PRINTFORMW 「하아아...편하다」
+						PRINTFORMW 「이대로 고개만 돌리면 야한짓도 할 수 있겠네, 후후...좋은 자세야」
+					ENDIF
+			ENDSELECT
+		ELSE
+			SELECTCASE RAND:3
+				CASE 0
+					IF ABL:친밀 < 5
+						PRINTFORMW 「...딱딱해서 별로야」
+						PRINTFORMW 사토리는 별로 마음에 들지 않는 모양이다
+					ELSE
+						PRINTFORMW 「편하긴 하네...」
+						PRINTFORMW 「그런데 왜 제가 이런걸 하고 있어야 하는거죠?」
+					ENDIF
+				CASE 1
+					IF ABL:친밀 < 5
+						PRINTFORMW 「저기...이제 일어나도 되나요?」
+						PRINTFORMW 사토리의 표정이 영 시원찮다
+					ELSE
+						PRINTFORMW 「나쁘진 않지만...이런건 연인끼리나 하는거 아닌가요?」
+					ENDIF
+				CASE 2
+					IF ABL:친밀 < 5
+						PRINTFORMW 「왜 하필 저한테...」
+						PRINTFORMW 사토리는 불만 가득한 표정이다
+					ELSE
+						PRINTFORMW 「그럭저럭 괜찮긴 한데...」
+						PRINTFORMW 「굳이 왜 저한테...?」
+					ENDIF
+			ENDSELECT
+		ENDIF
 	ENDIF
 ENDIF
 RETURN 1
