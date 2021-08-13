@@ -1767,7 +1767,7 @@ ENDSELECT
 @ST_연모회화
 #DIM 이전대화, 3
 #DIM DYNAMIC 대화선택
-#DIM CONST 대화개수 = 6
+#DIM CONST 대화개수 = 10
 대화선택 = ST_대사섞기(대화개수, 이전대화:0 , 이전대화:1, 이전대화:2)
 이전대화:2 = 이전대화:1
 이전대화:1 = 이전대화:0
@@ -1844,5 +1844,34 @@ SELECTCASE 대화선택
             PRINTFORMW 「정말이지...쓰는데 한참걸렸는데...」
         ENDIF
     CASE 6
-        PRINTFORMW 「」
+        PRINTFORMW 「옛날엔 길가에 돌아다니는 연인들을 이해할 수 없었어요」
+        PRINTFORMW 「뭐가 그리 좋아서 붙어다니고...뭐가 좋아서 히히덕대는지...」
+        PRINTFORMW 「이제서야 조금 이해가 되네요」
+        PRINTFORMW 「평생 모르는채 지내는게 차라리 나았을지도 모르겠지만」
+    CASE 7
+        PRINTFORMW 「저는 제 능력이 좋지만」
+        PRINTFORMW 「남들은 그걸 이해해 주지 않아요」
+        PRINTFORMW 「...그걸 가지고 남한테 험한 말만 하니까 그런거겠지만」
+        PRINTFORMW 「이제와서 고쳐질 성격도 아니고, 그냥 그려려니 할 수 밖에 없겠죠...」
+        PRINTFORMW 사토리는 약간 쓸쓸해 보인다
+    CASE 8
+        PRINTFORMW 「읽어버린 마음을 무심코 내뱉어버리는건, 정말로 나쁜 습관인데...」
+        PRINTFORMW 「그게...참을수가 없단 말이죠」
+        PRINTFORMW 「요즘엔 그래서 %사마스터의% 생각만은 최대한 안 읽고, 안 말하려 노력은 해봤는데」
+        PRINTFORMW 「그게 그리 쉽지가 않네요...입이 간질거려서 참을수가 없어」
+    CASE 9
+        IF FLAG:데이트상대 == 49
+            PRINTFORMW 「애완동물들과 산책은 몇번 나왔지만」
+            PRINTFORMW 「다른 사람과의 산책은 그다지 할 기회가 없었어요」
+            PRINTFORMW 「...그래서 조금은 기뻐요」
+        ELSEIF CHK_DATENOW(CFLAG:MASTER:데이트중)
+            PRINTFORMW 「나중에 말하면 안되나요?」
+            PRINTFORMW 「옆에 계신 분이, 상당히 불편해 하는거 같아보입니다만...」
+            PRINTFORMW 「후후후...조금, 괘씸하네요...어째설까」
+        ELSE
+            PRINTFORMW 「요즘들어 밖에 나가고 싶다는 생각이 부쩍 드네요」
+            PRINTFORMW 「...늘 집에만 있는다고 오린이 뭐라 하니까....가끔씩은 나가줘야겠죠」
+            PRINTFORMW 「그래서 말인데...어딘가 데려다 주실래요? 혼자 나가기는 조금 쓸쓸해서」
+            PRINTFORMW 사토리는 %마스터를% 흘끔흘끔 바라보고 있다
+        ENDIF
 ENDSELECT
