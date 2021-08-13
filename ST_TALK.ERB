@@ -1683,7 +1683,7 @@ ENDSELECT
 @ST_섹프회화
 #DIM 이전대화, 3
 #DIM DYNAMIC 대화선택
-#DIM CONST 대화개수 = 9
+#DIM CONST 대화개수 = 10
 대화선택 = ST_대사섞기(대화개수, 이전대화:0 , 이전대화:1, 이전대화:2)
 이전대화:2 = 이전대화:1
 이전대화:1 = 이전대화:0
@@ -1759,5 +1759,90 @@ SELECTCASE 대화선택
             PRINTFORMW 사토리는 %마스터를% 빤히 바라보고 있다
         ENDIF
     CASE 9
-        
+        PRINTFORMW 「쌓일때는 많은데, %사마스터가% 늘 처리 해줄수도 없고」
+        PRINTFORMW 「...다른사람이라도 만날까- 싶다가도...그건 조금 꺼려지고」
+        PRINTFORMW 「고민이네요, 어쩌는게 좋을까」
+ENDSELECT
+
+@ST_연모회화
+#DIM 이전대화, 3
+#DIM DYNAMIC 대화선택
+#DIM CONST 대화개수 = 6
+대화선택 = ST_대사섞기(대화개수, 이전대화:0 , 이전대화:1, 이전대화:2)
+이전대화:2 = 이전대화:1
+이전대화:1 = 이전대화:0
+이전대화:0 = 대화선택
+;PRINTFORMW 「」
+SELECTCASE 대화선택
+    CASE 0
+        PRINTFORMW 「요즘들어 자도자도 영 피곤한데...」
+        PRINTFORMW 「꿈자리가 나쁜걸까나?」
+    CASE 1
+        PRINTFORMW 「요근래 만사가 귀찮단 말이죠...」
+        PRINTFORMW 「뭐, 애시당초 할 일이 별로 없기야 하지만」
+        PRINTFORMW 「...그래도 뭔갈 하려 해도 집중이 안된단 말야, 정말이지...」
+    CASE 2
+        PRINTFORMW 「아...」
+        PRINTFORMW 사토리는 멍하니 %마스터를% 바라보고 있다
+    CASE 3
+        PRINTFORMW 「%사마스터는%, 동물...좋아하나요?」
+        PRINTFORML [0] 좋아한다
+        PRINTFORML [1] 좋아하지 않는다
+        IF RESULT == 0
+            PRINTFORMW 「그런가요? 후후, 저랑 비슷하네요」
+            PRINTFORMW 사토리는 묘하게 기뻐하는 눈치다
+        ELSE
+            PRINTFORMW 「그런가요...」
+            PRINTFORMW 사토리는 약간 시무룩해진 모양이다
+        ENDIF
+    CASE 4
+        SELECTCASE DAY:2
+            CASE 1
+                IF CFLAG:현재위치 / 100 == 9
+                    PRINTFORMW 「꽃놀이라도 갈까나」
+                    PRINTFORMW 「나가는건 그리 좋아하진 않지만...가끔씩은 변덕을 부리고도 싶어지네」
+                    PRINTFORMW 사토리는 피식 웃어보였다
+                ELSE
+                    PRINTFORMW 「봄 기분이 물씬 나는게 좋네요」
+                    PRINTFORMW 사토리는 기분이 좋은 모양이다
+                ENDIF
+            CASE 2
+                PRINTFORMW 「지저에도 운 좋게 외래본이 흘러들어오는 경우도 있어요」
+                PRINTFORMW 「가끔 볼때마다 재미는 있답니다」
+                PRINTFORMW 「...그러고보니 그 책에선 이 맘때쯤엔...바다에서 수영하는 모습이 더러 있었네요」
+                PRINTFORMW 「그렇게 재밌는걸까요, 바다에서의 데이트는...」
+                PRINTFORMW 「환상향엔 바다가 없으니 호수로 만족할 수밖엔 없겠지만」
+            CASE 3
+                PRINTFORMW 「단풍이 예쁘게 물들었다곤 하던데」
+                IF CFLAG:현재위치 / 100 == 9
+                    PRINTFORMW 「구경이라도 갈까나, 후후」
+                ELSE
+                    PRINTFORMW 「실제로 보니 훨씬 더 예쁘네요」
+                    PRINTFORMW 사토리는 즐거운 모양이다
+                ENDIF
+            CASE 4
+                PRINTFORMW 「겨울...이 맘때는 연인들이 즐거워 하는 시기죠」
+                PRINTFORMW 「얼마나 기쁜건지는 잘 모르겠지만, 조금은 부러워지네」
+                IF CHK_DATENOW(CFLAG:TARGET:데이트중)
+                    PRINTFORMW 「...뭐어, 지금은 아니에요, 지금 당장은, 후후♥」
+                    PRINTFORMW 「그치만 헤어지면 또 다시 샘나질지도 모르겠네」
+                ENDIF
+        ENDSELECT
+    CASE 5
+        IF TALENT:38:연인
+            PRINTFORMW 「나름 전 좋은 언니라고 생각했는데」
+            PRINTFORMW 「이젠 그것도 아닌가봐요」
+            PRINTFORMW 「욕심에 못 이겨 동생걸 탐내고 있다니...조금 부끄러워질 정도야」
+        ELSEIF TALENT:38:연모||TALENT:38:애욕
+            PRINTFORMW 「이 나이 먹고도 동생이랑 서로 가지겠다고 싸우려 들다니...」
+            PRINTFORMW 「나름대로 좋은 언니라고 생각했는데, 아니었나봐요」
+            PRINTFORMW 사토리는 살짝 울적해 보인다
+            PRINTFORMW 「...그래도, 양보하고 싶지는 않은걸요」
+        ELSE
+            PRINTFORMW 「...가끔 코이시가 제 원고나 장부를 훔쳐가긴 하는데」
+            PRINTFORMW 「요근래엔 편지지까지 훔쳐가버리지 뭐예요」
+            PRINTFORMW 「정말이지...쓰는데 한참걸렸는데...」
+        ENDIF
+    CASE 6
+        PRINTFORMW 「」
 ENDSELECT
