@@ -3079,10 +3079,179 @@ RETURN RESULT
 @M_KOJO_MESSAGE_COM_K49_350_1
 ;-------------------------------------------------
 ;記入チェック（=0, 非表示、1, 表示）
-LOCAL = 0
+LOCAL = 1
 ;-------------------------------------------------
 IF LOCAL
+	;PRINTFORMW 「」
+	IF CFLAG:수면
 
+		RETURN 1
+	ENDIF
+	IF TCVAR:껴안고첫회
+		SELECTCASE TCVAR:껴안고첫회
+			CASE 1 ;
+				IF MARK:반발각인 == 3
+					IF TALENT:연인
+						PRINTFORMW 「하고 싶다고요?」
+						PRINTFORMW 「...네, 좋아요, 여태껏 안한것도 이상하니까」
+						PRINTFORMW 「대신에 부드럽게 해줘야해요?」
+						PRINTFORMW 사토리는 얌전히 %마스터의% 손길을 받아들였다
+					ELSE
+						PRINTFORMW 「하고 싶다고?」
+						PRINTFORMW 「...그래, 맘대로 해...어짜피 계속 귀찮게 굴테니까」
+						PRINTFORMW 「기분 좋게나 해줬음 좋겠네」
+						PRINTFORMW 사토리는 별다른 저항없이 %마스터를% 받아들였다
+					ENDIF
+				ELSEIF TALENT:연인
+					PRINTFORMW 「네, 좋아요」
+					PRINTFORMW 사토리는 %마스터가% 말을 꺼내기도 전에 선수를 쳐왔다
+					PRINTFORMW 「사실 예전부터 하고 싶었는데...」
+					PRINTFORMW 「말을 꺼내기도 뭣하고, 될거라고 상상도 안 했었어요」
+					PRINTFORMW 「그런데 정말로 %사마스터와% 이어질수 있다니...상당히 기쁘네요」
+					PRINTFORMW 「에헤헤...아무튼간에, 기분 좋게 해주세요?」
+					PRINTFORMW 사토리는 상당히 기쁜 모양이다
+				ELSEIF TALENT:연모||TALENT:사모
+					PRINTFORMW 「하고 싶다고요?」
+					PRINTFORMW %마스터의% 말을 들은 사토리는 잠시 고민하더니 이내 수줍게 고개를 끄덕였다
+					PRINTFORMW 「말은 못했지만...실은, 저도 하고 싶었어요」
+					PRINTFORMW 「정말로 %사마스터랑% 할 수 있다니...기쁘네요」
+					PRINTFORMW 사토리는 빙그레 웃어보이고 있다
+				ELSEIF TALENT:섹프||TALENT:애욕
+					PRINTFORMW 「하고 싶다고요? 그러고보니 본방은 아직이었나」
+					PRINTFORMW 「좋아요...그러면 기분좋게 해주세요?」
+					PRINTFORMW 사토리는 요염하게 웃어보이고 있다
+				ELSE
+					;된다고?
+					PRINTFORMW 「하고 싶다라...뭐, 그러시던가요」
+					PRINTFORMW 사토리는 아무런 저항없이 %마스터를% 받아들였다
+				ENDIF
+			CASE 2 ;…그러고 보니 키스도 아직이었다
+				IF MARK:반발각인 == 3
+					IF TALENT:연인
+						
+					ELSE
+						
+					ENDIF
+				ELSEIF TALENT:연인
+					
+				ELSEIF TALENT:연모||TALENT:사모
+					
+				ELSEIF TALENT:섹프||TALENT:애욕
+					
+				ELSE
+					;된다고?
+					PRINTFORMW 「하고 싶다라...뭐, 그러시던가요」
+					PRINTFORMW 사토리는 아무런 저항없이 %마스터를% 받아들였다
+				ENDIF
+			CASE 3 ;%타겟은% 몸의 욱신거림을 억제하지 못하고, %CALLNAME:MASTER%에 몸을 허락해 버렸다…
+				IF MARK:반발각인 == 3
+					IF TALENT:연인
+						
+					ELSE
+						
+					ENDIF
+				ELSEIF TALENT:연인
+					
+				ELSEIF TALENT:연모||TALENT:사모
+					
+				ELSEIF TALENT:섹프||TALENT:애욕
+					
+				ELSE
+					;된다고?
+					PRINTFORMW 「하고 싶다라...뭐, 그러시던가요」
+					PRINTFORMW 사토리는 아무런 저항없이 %마스터를% 받아들였다
+				ENDIF
+			CASE 4 ;%타겟은% 의미도 알지 못한 채, %마스터를% 받아들여 버렸다…
+				IF MARK:반발각인 == 3
+					IF TALENT:연인
+						
+					ELSE
+						
+					ENDIF
+				ELSEIF TALENT:연인
+					
+				ELSEIF TALENT:연모||TALENT:사모
+					
+				ELSEIF TALENT:섹프||TALENT:애욕
+					
+				ELSE
+					;된다고?
+					PRINTFORMW 「하고 싶다라...뭐, 그러시던가요」
+					PRINTFORMW 사토리는 아무런 저항없이 %마스터를% 받아들였다
+				ENDIF
+			CASE 5 ;밀어붙이는 데에 약한 %타겟은% %마스터를% 거절할 수가 없었다…
+				IF MARK:반발각인 == 3
+					IF TALENT:연인
+						
+					ELSE
+						
+					ENDIF
+				ELSEIF TALENT:연인
+					
+				ELSEIF TALENT:연모||TALENT:사모
+					
+				ELSEIF TALENT:섹프||TALENT:애욕
+					
+				ELSE
+					;된다고?
+					PRINTFORMW 「하고 싶다라...뭐, 그러시던가요」
+					PRINTFORMW 사토리는 아무런 저항없이 %마스터를% 받아들였다
+				ENDIF
+			CASE 6 ;그러나 %타겟은% 아주 싫지만은 않은 것 같다
+				IF MARK:반발각인 == 3
+					IF TALENT:연인
+						
+					ELSE
+						
+					ENDIF
+				ELSEIF TALENT:연인
+					
+				ELSEIF TALENT:연모||TALENT:사모
+					
+				ELSEIF TALENT:섹프||TALENT:애욕
+					
+				ELSE
+					;된다고?
+					PRINTFORMW 「하고 싶다라...뭐, 그러시던가요」
+					PRINTFORMW 사토리는 아무런 저항없이 %마스터를% 받아들였다
+				ENDIF
+			CASE 7 ;%CALLNAME:TARGET%에게 거절당하고 말았다…
+				IF MARK:반발각인 == 3
+					IF TALENT:연인
+						
+					ELSE
+						
+					ENDIF
+				ELSEIF TALENT:연인
+					
+				ELSEIF TALENT:연모||TALENT:사모
+					
+				ELSEIF TALENT:섹프||TALENT:애욕
+					
+				ELSE
+					;된다고?
+					PRINTFORMW 「하고 싶다라...뭐, 그러시던가요」
+					PRINTFORMW 사토리는 아무런 저항없이 %마스터를% 받아들였다
+				ENDIF
+			CASE 8 ;%타겟은% %CALLNAME:MASTER%에게 쌀쌀맞게 퇴짜 놓았다
+				IF MARK:반발각인 == 3 && !TALENT:연인
+					PRINTFORMW 「...하?」
+					PRINTFORMW 사토리는 별 이상한걸 다 본다는 얼굴로 %마스터를% 바라보고 있다
+					PRINTFORMW 그 얼음장같은 표정과 목소리에 %마스터는% 무심코 움츠러들고 말았다
+				ELSEIF TALENT:연인||TALENT:연모||TALENT:사모||TALENT:애욕
+					PRINTFORMW 「...네?」
+					PRINTFORMW 평소와는 확연히 다른 싸늘한 목소리로 되물어왔다
+					PRINTFORMW 그 탓에 %마스터는% 무심코 움츠러들고 말았다
+				ELSE
+					PRINTFORMW 「하?」
+					PRINTFORMW 사토리는 별 이상한걸 다 본다는 얼굴이다
+					PRINTFORMW 그 냉혹한 목소리와 표정에 %마스터는% 무심코 움츠러들고 말았다
+				ENDIF
+		ENDSELECT
+	ELSE
+		;한번 하고 난 뒤
+
+	ENDIF
 ENDIF
 RETURN 1
 ;==================================================
