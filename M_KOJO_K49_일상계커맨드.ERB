@@ -3128,38 +3128,113 @@ IF LOCAL
 			CASE 2 ;…그러고 보니 키스도 아직이었다
 				IF MARK:반발각인 == 3
 					IF TALENT:연인
-						
+						PRINTFORMW 「하고 싶다니...상관은 없지만」
+						PRINTFORMW 「지금껏 키스 한번도 안 했는데 갑자기 진도를 빼다니, 조금 당황스러울 정도인걸」
+						PRINTFORMW 사토리는 살짝 불만스러워 보인다
+						PRINTFORMW 「싫은건 아니지만 조금 섭섭할 뿐이에요」
+						PRINTFORMW 「...여차하면 지금 당장 해 주시던가」
 					ELSE
-						
+						PRINTFORMW 「하고 싶다라...」
+						PRINTFORMW 「상관은 없지만...키스조차 안 해봤는데 몸부터 노리다니, 순서가 잘못되도 한참 잘못된거 같은데」
+						PRINTFORMW 「...뭐 됐어, 나도 키스같은건 사절이니까...」
+						PRINTFORMW 사토리는 어쩐지 토라진 모양이다
 					ENDIF
 				ELSEIF TALENT:연인
-					
+					PRINTFORMW 「지금껏 키스 한번도 안 해봤는데, 갑자기...」
+					PRINTFORMW 「싫은건 아니지만 이런 일에도 순서란게 있는거 아닌가요?」
+					PRINTFORMW 사토리는 토라진듯 하다
+					PRINTFORMW 「...기분 좋게 안 해주면 더 삐질거니까, 제대로 해 주세요」
 				ELSEIF TALENT:연모||TALENT:사모
-					
+					PRINTFORMW 「에...? 하...하자고요?」
+					PRINTFORMW 「그치만 아직 키스조차 안 해봤는데 너무 빠른거 아닌가...」
+					PRINTFORMW 사토리는 얼굴을 새빨갛게 물들이고 있다
+					PRINTFORMW 「으으...조, 좋아요, 저도 하고는 싶으니까...」
+					PRINTFORMW 「대신에 부드럽게 해주세요..?」
 				ELSEIF TALENT:섹프||TALENT:애욕
-					
+					PRINTFORMW 「그러고보니 이상하네, 지금껏 한번도 야한짓 한 적 없고, 하다못해 키스도 안했는데」
+					PRINTFORMW 「어쩌다 이런 관계가 된건지...후후」
 				ELSE
 					;된다고?
 					PRINTFORMW 「하고 싶다라...뭐, 그러시던가요」
 					PRINTFORMW 사토리는 아무런 저항없이 %마스터를% 받아들였다
 				ENDIF
 			CASE 3 ;%타겟은% 몸의 욱신거림을 억제하지 못하고, %CALLNAME:MASTER%에 몸을 허락해 버렸다…
-				IF MARK:반발각인 == 3
-					IF TALENT:연인
-						
+				IF TCVAR:미약
+					IF MARK:반발각인 == 3
+						IF TALENT:연인
+							PRINTFORMW 「야...약 때문에 몸이 너무 쑤셔...」
+							PRINTFORMW 「이 정도로 강할줄은 몰랐는데...」
+							PRINTFORMW 사토리는 달아오른 몸 탓에 눈물까지 살짝 보이고 있다
+							PRINTFORMW 「아, 알았어요...합시다, 해요!」
+							PRINTFORMW 「얼른 기분 좋게 만들어 주세요...더이상은 못 버티니까...!」
+						ELSE
+							PRINTFORMW 「...야..약 때문에 몸이 뜨거워」
+							PRINTFORMW 사토리는 온 몸을 움켜쥐고 정욕을 견뎌내려 하고 있지만, 그정도로 약의 효능이 사라지진 않았다
+							PRINTFORMW 점차 눈이 촉촉해지기 시작하더니, 이내 살짝 눈물까지 고일 정도였다
+							PRINTFORMW 「하아...하아...이, 이젠 몰라...」
+							PRINTFORMW 「부탁이야, 이 쑤심을 어떻게든...!」
+							PRINTFORMW 사토리는 거칠게 숨을 쉬며 %마스터의% 팔을 잡아끌고 있다
+							PRINTFORMW 이제는 상대가 누구라도 상관 없는 모양이다
+						ENDIF
+					ELSEIF TALENT:연인
+						PRINTFORMW 「야...약 때문에 몸이 너무 쑤셔...」
+						PRINTFORMW 「이정도로 강할줄은 몰랐는데...」
+						PRINTFORMW 사토리는 온 몸을 부여잡고 파르르 떨고 있다
+						PRINTFORMW 「이...이젠 못참겠어...뭐라도 해줘요, 얼른...!」
+					ELSEIF TALENT:연모||TALENT:사모
+						PRINTFORMW 「약 기운이 너무 세...몸이 욱신거려...」
+						PRINTFORMW 사토리는 거친숨을 몰아쉬고 있다
+						PRINTFORMW 「하고 싶다 그랬죠? 그래요, 그러면 얼른 기분좋게 해주세요」
+						PRINTFORMW 「이 이상은 못 참으니까, 얼른...」
+						PRINTFORMW 사토리는 %마스터를% 붙잡은채 촉촉해진 눈으로 애원해 오고 있다
+					ELSEIF TALENT:섹프||TALENT:애욕
+						;된다고?
+						PRINTFORMW 「후우...이젠 몸이 욱신거리는걸 견딜수 없어」
+						PRINTFORMW 「어짜피 %사마스터의% 손에 몇번이고 농락당했기도 하니까...이제와서 해버린다고 해도 별 차이는 없겠지」
+						PRINTFORMW 「그러니까 얼른, 얼른 기분좋게 해주세요」
 					ELSE
-						
+						PRINTFORMW 「으...약 때문에 몸이 쑤셔...」
+						PRINTFORMW 사토리는 온 몸을 파르르 떨며 %마스터를% 노려보고 있다
+						PRINTFORMW 「하아...이젠 나도 몰라」
+						PRINTFORMW 「하면 되잖아, 하면...으으」
 					ENDIF
-				ELSEIF TALENT:연인
-					
-				ELSEIF TALENT:연모||TALENT:사모
-					
-				ELSEIF TALENT:섹프||TALENT:애욕
-					
 				ELSE
-					;된다고?
-					PRINTFORMW 「하고 싶다라...뭐, 그러시던가요」
-					PRINTFORMW 사토리는 아무런 저항없이 %마스터를% 받아들였다
+					IF MARK:반발각인 == 3
+						IF TALENT:연인
+							PRINTFORMW 「몸이 쑤셔...더는...」
+							PRINTFORMW 「그, 그래요...야한짓, 하고 싶다고 하셨죠?」
+							PRINTFORMW 「해도 좋으니까...야한짓 잔뜩 해도 좋으니깐, 이 쑤심을 어떻게든 해줘...」
+							PRINTFORMW 사토리는 눈가를 촉촉하게 한채 애원해 오고 있다...
+						ELSE
+							PRINTFORMW 「온 몸이 욱신거려...더는 못 참겠는걸」
+							PRINTFORMW 「그래, 저와 하고 싶다고 했죠? 그러면 얼른 해주세요」
+							PRINTFORMW 「이 욱신거림을 멎게 해 줄수 있다면 누구라도 상관없어, 그러니까...」
+							PRINTFORMW 사토리는 %마스터의% 몸에 밀착해 번들거리는 눈으로 바라보고 있다
+							PRINTFORMW 「기분 좋게 해줘요」
+						ENDIF
+					ELSEIF TALENT:연인
+						PRINTFORMW 「하아...처, 처음이 이런 상황인건 조금 부끄러운데...」
+						PRINTFORMW 「그치만 더는 못 참겠어요, 얼른 기분좋은거 하고 싶어...♥」
+						PRINTFORMW 사토리는 %마스터의% 팔을 자신의 다리 사이로 이끌고 있다
+						PRINTFORMW 「얼른 기분좋은거 해주세요...♥ 저, 더이상은 못 참겠어요♥」
+						PRINTFORMW 정욕에 물들어 촉촉해진 눈빛이 %마스터를% 지그시 올려다보고 있다
+					ELSEIF TALENT:연모||TALENT:사모
+						PRINTFORMW 「하아...처, 처음이 이런 상황인건 조금 부끄러운데...」
+						PRINTFORMW 「좀 더 로맨틱하게...아아...그치만...」
+						PRINTFORMW 「그치만 더는 못 참겠어요, 얼른 기분좋은거 하고 싶어...♥」
+						PRINTFORMW 사토리는 %마스터의% 팔을 자신의 다리 사이로 이끌고 있다
+						PRINTFORMW 「얼른 기분좋은거 해주세요...♥ 저, 더이상은 못 참겠어요♥」
+						PRINTFORMW 정욕에 물들어 촉촉해진 눈빛이 %마스터를% 지그시 올려다보고 있다
+					ELSEIF TALENT:섹프||TALENT:애욕
+						;된다고?
+						PRINTFORMW 「후우...이젠 몸이 욱신거리는걸 견딜수 없어」
+						PRINTFORMW 「어짜피 %사마스터의% 손에 몇번이고 농락당했기도 하니까...이제와서 해버린다고 해도 별 차이는 없겠지」
+						PRINTFORMW 「그러니까 얼른, 얼른 기분좋게 해주세요」
+					ELSE
+						PRINTFORMW 「몸이 후끈후끈해...더 이상은 못 참겠어」
+						PRINTFORMW 「하고 싶다고 하셨죠? 그렇담 얼른 와주세요, 기분좋은거 빨리 해주세요」
+						PRINTFORMW 사토리는 달아오른 몸을 주체하지 못하고 %마스터의% 팔을 잡아끌며 보채고 있다
+					ENDIF
 				ENDIF
 			CASE 4 ;%타겟은% 의미도 알지 못한 채, %마스터를% 받아들여 버렸다…
 				IF MARK:반발각인 == 3
