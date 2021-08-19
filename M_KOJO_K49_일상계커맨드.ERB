@@ -3236,42 +3236,98 @@ IF LOCAL
 						PRINTFORMW 사토리는 달아오른 몸을 주체하지 못하고 %마스터의% 팔을 잡아끌며 보채고 있다
 					ENDIF
 				ENDIF
-			CASE 4 ;%타겟은% 의미도 알지 못한 채, %마스터를% 받아들여 버렸다…
+			CASE 4 ;%타겟은% 의미도 알지 못한 채, %마스터를% 받아들여 버렸다… < 미라다의 돌 || 시간각인
 				IF MARK:반발각인 == 3
 					IF TALENT:연인
-						
+						IF CFLAG:몸목적
+							PRINTFORMW 「어라...어쩐지 몸이 욱신거려...」
+							PRINTFORMW 「뭐...뭔가 한거죠 이거, 몸이 뜨거워...」
+							PRINTFORMW 사토리는 새빨게진 얼굴로 거칠게 숨을 몰아쉬고 있다
+							PRINTFORMW 「'미라다의 돌'...? 그, 그런걸 쓰면서까지 하고 싶단 건가요...?」
+							PRINTFORMW 사토리는 어이없어 했지만, 이미 늦어버린일이다
+							PRINTFORMW 「윽...아, 알았어요...그렇게 하고 싶다면야」
+							PRINTFORMW 「해도...상관 없어요」
+							PRINTFORMW 사토리는 얼굴을 붉혔다
+						ELSE
+							PRINTFORMW 「으...아직은 마음의 준비가 안 됐는데...」
+							PRINTFORMW 「그치만 여태껏 제 허락도 안 맞고 잔뜩 만져댄 사람한테는 소용없는 말이겠죠」
+							PRINTFORMW 「그 탓에 지금도 왠지 몸이 뜨거워, 주체할수가 없단 말야」
+							PRINTFORMW 사토리는 투덜거리며 %마스터에게% 안겨왔다
+							PRINTFORMW 「그러니까 얼른 이 욱신거림을 해결해 주세요」
+						ENDIF
 					ELSE
-						
+						PRINTFORMW 「읏...몸이 욱신거려...」
+						IF CFLAG:몸목적
+							PRINTFORMW 「'미라다의 돌'...? 그, 그거때문에 몸이 이렇게 된거라고...?」
+							PRINTFORMW 「큭...비겁하게...」
+							PRINTFORMW 사토리는 %마스터를% 노려봤다
+							PRINTFORMW 그러나 몸은 그 주인과는 달리 쾌락을 요구하며 사토리를 충동질해댔다
+							PRINTFORMW 한참 %마스터를% 노려보던 그 독기어린 눈도 점차 촉촉히 젖어들어가 번들거리고 있다
+							PRINTFORMW 「하아...어쩔수 없네, 그렇게 하고 싶어서 준비까지 철저히 했는데...조금쯤은 어울려 줘도 되겠지」
+							CFLAG:3101 += 5
+						ELSE
+							PRINTFORMW 「...전에 당한게 생각나서, 몸이 멋대로...」
+							PRINTFORMW 사토리는 거친 숨을 몰아쉬고 있다
+							PRINTFORMW 일전에 멈춰진 상태로 당한 몸의 기억이 사토리를 충동질하고 있었다
+							PRINTFORMW 「어...어쩔수 없네, 맘대로 해도 좋으니까...기분좋게 해줘...」
+						ENDIF
 					ENDIF
 				ELSEIF TALENT:연인
-					
-				ELSEIF TALENT:연모||TALENT:사모
-					
-				ELSEIF TALENT:섹프||TALENT:애욕
-					
-				ELSE
-					;된다고?
-					PRINTFORMW 「하고 싶다라...뭐, 그러시던가요」
-					PRINTFORMW 사토리는 아무런 저항없이 %마스터를% 받아들였다
-				ENDIF
-			CASE 5 ;밀어붙이는 데에 약한 %타겟은% %마스터를% 거절할 수가 없었다…
-				IF MARK:반발각인 == 3
-					IF TALENT:연인
-						
+					IF CFLAG:몸목적
+						PRINTFORMW 「아직 마음의 준비가 안됐는데...」
+						PRINTFORMW 「그치만 어째서 몸이...」
+						PRINTFORMW 사토리는 새빨게진 얼굴로 갈등하고 있다
+						PRINTFORMW 「...그런 이상한 돌같은걸 쓰니까 이렇게 된 거잖아요」
+						PRINTFORMW 「야한짓 한번 하려고 그런거나 쓰고...」
+						PRINTFORMW 「...하아, 이렇게 화내봤자 바뀌는건 없겠지」
+						PRINTFORMW 「그렇게 하고 싶으면 해도 좋아요」
+						PRINTFORMW 「...저도 싫지만은 않으니까」
 					ELSE
-						
+						PRINTFORMW 「마음의 준비가 안됐다고 해도, 또 시간 멈추고 장난질 할 거잖아요?」
+						PRINTFORMW 「그럴거라면 차라리 의식이 있는 상태로 당하는게 낫지...」
+						PRINTFORMW 「...저도 하고 싶기도 하고」
+						PRINTFORMW 사토리는 얼굴을 붉히며 %마스터를% 받아들였다
 					ENDIF
-				ELSEIF TALENT:연인
-					
 				ELSEIF TALENT:연모||TALENT:사모
-					
+					IF CFLAG:몸목적
+						PRINTFORMW 「별로 하고 싶지 않은데...갑자기 몸이...」
+						PRINTFORMW 「뭔가 한건가요...?」
+						PRINTFORMW 사토리는 거친숨을 몰아쉬고 있다
+						PRINTFORMW 「...'미라다의 돌'을 썼다...그런거까지 써가면서 하고 싶었던 건가요?」
+						PRINTFORMW 「...으, 됐어, 그런게 이제사 뭐가 중요해」
+						PRINTFORMW 「얼른 기분좋게나 해주세요, 욱신거리는걸 참을수가 없어」
+						PRINTFORMW 사토리는 새빨게진 얼굴로 %마스터를% 바라보고 있다
+					ELSE
+						PRINTFORMW 「...하기 싫다고 말해도, 어짜피 시간 멈추고 해버릴거죠?」
+						PRINTFORMW 「그럴바엔 차라리 의식이 있는 상태로 당하는게 나을테니...」
+						PRINTFORMW 「...조금 흥미 있기도 하니까」
+						PRINTFORMW 사토리는 얼굴을 붉히며 %마스터를% 받아들였다
+					ENDIF
 				ELSEIF TALENT:섹프||TALENT:애욕
-					
+					;설마
+					PRINTFORMW 「으으음...갑자기 몸이 뜨거워지는 느낌...」
+					PRINTFORMW 「뭔가 한 걸까나?」
+					PRINTFORMW 사토리는 능글맞게 웃으며 %마스터를% 바라보았다
+					PRINTFORMW 「뭐, 이제껏 한것도 있으니 허락해도 상관은 없겠지...」
 				ELSE
 					;된다고?
-					PRINTFORMW 「하고 싶다라...뭐, 그러시던가요」
-					PRINTFORMW 사토리는 아무런 저항없이 %마스터를% 받아들였다
+					PRINTFORMW 「읏...몸이 욱신거려...」
+					IF CFLAG:몸목적
+						PRINTFORMW 「'미라다의 돌'...? 그, 그거때문에 몸이 이렇게 된거라고...?」
+						PRINTFORMW 「큭...비겁하게...」
+						PRINTFORMW 사토리는 %마스터를% 노려봤다
+						PRINTFORMW 그러나 몸은 그 주인과는 달리 쾌락을 요구하며 사토리를 충동질해댔다
+						PRINTFORMW 한참 %마스터를% 노려보던 그 독기어린 눈도 점차 촉촉히 젖어들어가 번들거리고 있다
+						PRINTFORMW 「하아...어쩔수 없네, 그렇게 하고 싶어서 준비까지 철저히 했는데...조금쯤은 어울려 줘도 되겠지」
+						CFLAG:3101 += 5
+					ELSE
+						PRINTFORMW 「...전에 당한게 생각나서, 몸이 멋대로...」
+						PRINTFORMW 사토리는 거친 숨을 몰아쉬고 있다
+						PRINTFORMW 일전에 멈춰진 상태로 당한 몸의 기억이 사토리를 충동질하고 있었다
+						PRINTFORMW 「어...어쩔수 없네, 맘대로 해도 좋으니까...기분좋게 해줘요...」
+					ENDIF
 				ENDIF
+			;5번은 담력 약함 소질 전용
 			CASE 6 ;그러나 %타겟은% 아주 싫지만은 않은 것 같다
 				IF MARK:반발각인 == 3
 					IF TALENT:연인
@@ -3305,8 +3361,8 @@ IF LOCAL
 					
 				ELSE
 					;된다고?
-					PRINTFORMW 「하고 싶다라...뭐, 그러시던가요」
-					PRINTFORMW 사토리는 아무런 저항없이 %마스터를% 받아들였다
+					PRINTFORMW 「...그런건 아직 이르다고 생각하는데요」
+					PRINTFORMW 사토리는 선을 그었다
 				ENDIF
 			CASE 8 ;%타겟은% %CALLNAME:MASTER%에게 쌀쌀맞게 퇴짜 놓았다
 				IF MARK:반발각인 == 3 && !TALENT:연인
