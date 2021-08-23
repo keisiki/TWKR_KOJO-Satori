@@ -3077,6 +3077,9 @@ CALL M_KOJO_MESSAGE_COM_K49_350_1
 RETURN RESULT
 
 @M_KOJO_MESSAGE_COM_K49_350_1
+#DIM 이전대화, 3
+#DIM DYNAMIC 대화선택
+#DIM DYNAMIC 대화개수
 ;-------------------------------------------------
 ;記入チェック（=0, 非表示、1, 表示）
 LOCAL = 1
@@ -3084,7 +3087,8 @@ LOCAL = 1
 IF LOCAL
 	;PRINTFORMW 「」
 	IF CFLAG:수면
-
+		PRINTFORMW 「...」
+		PRINTFORMW 곤히 잠든 사토리에게 손을 뻗었다
 		RETURN 1
 	ENDIF
 	IF TCVAR:껴안고첫회
@@ -3394,9 +3398,351 @@ IF LOCAL
 					PRINTFORMW 그 냉혹한 목소리와 표정에 %마스터는% 무심코 움츠러들고 말았다
 				ENDIF
 		ENDSELECT
+	ELSEIF TFLAG:194 != 0
+		;성공하지 못했을때
+		SELECTCASE TFLAG:194
+			;PRINTFORMW 「」
+			CASE 1 ;보는 눈이 있다
+				IF MARK:반발각인 == 3 && !TALENT:연인
+					SELECTCASE RAND:3
+						CASE 0
+							PRINTFORMW 「여긴 보는눈도 많은데 어떻게 하겠다는 거야」
+							PRINTFORMW 「%사마스터가% 변태라고 남도 그렇진 않은걸 모르는걸까」
+							PRINTFORMW 사토리는 어이없어 하고 있다
+						CASE 1
+							PRINTFORMW 「여기서? 보는 눈도 있는데 무슨 베짱인걸까」
+							PRINTFORMW 사토리는 이상하다는듯이 바라보고 있다
+						CASE 2
+							PRINTFORMW 「남한테 보여지며 흥분하는 취향은 아닌지라」
+							PRINTFORMW 「정 하고 싶으면 어디 조용한곳이라도 찾으면 생각정도는 해보겠지만」
+					ENDSELECT
+				ELSEIF TALENT:연인||TALENT:연모||TALENT:사모||TALENT:애욕
+					SELECTCASE RAND:2
+						CASE 0
+							PRINTFORMW 「여긴 보는 눈도 있는걸요」
+							PRINTFORMW 「이런데서 하면 변태라고 놀림받아버려요?」	
+						CASE 1
+							PRINTFORMW 「사람들 앞에서 하는건 조금...」
+							PRINTFORMW 「아무리 제가 남 평판에 신경 안쓴다곤 해도, 그런 부끄러운 짓을 어떻게 해요」
+					ENDSELECT
+				ELSEIF TALENT:섹프
+					SELECTCASE RAND:3
+						CASE 0
+							PRINTFORMW 「분명히 기분좋은건 좋아하지만」
+							PRINTFORMW 「그렇다고 이렇게 남들 앞에서 하고 싶지는 않은걸요」
+							PRINTFORMW 「이런건 남들 눈에 안 띄는 조용한 곳에서 하는게 좋아요」
+						CASE 1
+							PRINTFORMW 「아무리 그래도 그렇지, 남들 눈 앞에서 대놓고 하는건 좀...」
+							PRINTFORMW 사토리는 떨떠름한 표정이다
+						CASE 2
+							PRINTFORMW 「...나중에 둘 끼리 있을때 얘기하세요」
+							PRINTFORMW 「남 앞에서 그런거 어떻게 해」
+					ENDSELECT
+				ELSE
+					PRINTFORMW 「남들 눈 앞에서 하는 취미는 없어서...」
+				ENDIF
+			CASE 2 ;야외 플레이는 무리
+				IF MARK:반발각인 == 3 && !TALENT:연인
+					SELECTCASE RAND:3
+						CASE 0
+							PRINTFORMW 「...밖에서라니, 남들에게 보이면 어쩌려고 그런 생각을 하는건지」
+							PRINTFORMW 사토리는 황당하다는듯이 바라보고 있다	
+						CASE 1
+							PRINTFORMW 「밖에서 한다니, 제정신인가?」
+							PRINTFORMW 「남한테 보일게 뻔한데 그런짓을 어떻게 해」
+						CASE 2
+							PRINTFORMW 「여기서 해버린다면 온 세상에 변태라고 소문 날텐데」
+							PRINTFORMW 「%사마스터는% 몰라도 전 싫거든요」
+					ENDSELECT
+				ELSEIF TALENT:연인 || TALENT:연모||TALENT:사모||TALENT:애욕
+					SELECTCASE RAND:3
+						CASE 0
+							PRINTFORMW 「밖에서 하는건 조금 그런데...」
+							PRINTFORMW 「누군가한테 보여지고 싶은 장면은 아니잖아요?」
+						CASE 1
+							PRINTFORMW 「여긴 밖인데...」
+							PRINTFORMW 「그, 하고 싶으면 방으로 가서 하면 안될까요?」
+						CASE 2
+							PRINTFORMW 「이런곳에서 하고 싶진 않은데...」
+							PRINTFORMW 사토리는 떨떠름한 표정으로 %마스터를% 바라보고 있다
+					ENDSELECT
+				ELSEIF TALENT:섹프
+					SELECTCASE RAND:3
+						CASE 0
+							PRINTFORMW 「하는건 좋은데...방으로 가서 하면 안되나?」
+							PRINTFORMW 「밖에선 남들 오나 안오나 신경쓰느라 기분좋지 않을거 같단 말야」
+						CASE 1
+							PRINTFORMW 「아무리 변태같아도 그렇지, 밖에서 하는건 아직 싫은걸」
+						CASE 2
+							PRINTFORMW 「밖에서 어떻게 그런 짓을...」
+							PRINTFORMW 「남한테 보이기라도 했다간 부끄러워서 죽어버릴걸」
+					ENDSELECT
+				ELSE
+					PRINTFORMW 「...남들한테 보일까 안 보일까 걱정하면서까지 하고 싶진 않아요」
+					PRINTFORMW 「정 하고 싶으면 방에 가서 하면 안되나요?」
+				ENDIF
+			CASE 3 ;다인 플레이는 무리
+				IF MARK:반발각인 == 3
+					IF TALENT:연인
+						SELECTCASE RAND:2
+							CASE 0
+								PRINTFORMW 「...다른 사람이 하는걸 보고 싶진 않은걸」
+								PRINTFORMW 사토리는 약간 서운해보인다
+							CASE 1
+								PRINTFORMW 「꼭 같이 해야하나요...?」
+								PRINTFORMW 사토리는 떨떠름해 보이는 표정이다
+						ENDSELECT
+					ELSE
+						SELECTCASE RAND:3
+							CASE 0
+								PRINTFORMW 「...나랑도 할 필욘 없잖아」
+								PRINTFORMW 「나 빼고 하던가, 맘대로 해」
+							CASE 1
+								PRINTFORMW 「굳이 나까지 낄 필욘 없어 보이네...」
+							CASE 2
+								PRINTFORMW 「제가 왜 %사마스터랑% 그런 일을 해야 하죠?」
+								PRINTFORMW 다른 사람 앞이라 그런지, 사토리는 일부러 틱틱거리는듯 하다...
+						ENDSELECT
+					ENDIF
+				ELSEIF TALENT:연인 || TALENT:연모||TALENT:사모||TALENT:애욕
+					SELECTCASE RAND:3
+						CASE 0
+							PRINTFORMW 「어...저는 그냥 다음번에...」
+							PRINTFORMW 사토리는 %마스터를% 흘끗흘끗 바라보며 거리를 두었다	
+						CASE 1
+							PRINTFORMW 「...그냥 나중에 할래요」
+							PRINTFORMW 사토리는 어쩐지 불만이 가득한 표정이다
+						CASE 2
+							PRINTFORMW 「...전 딱히」
+							PRINTFORMW 사토리는 어쩐지 못마땅한 표정이다
+					ENDSELECT
+				ELSEIF TALENT:섹프
+					SELECTCASE RAND:3
+						CASE 0
+							PRINTFORMW 「하는건 좋긴한데...여럿이서 하는건 좀...」
+						CASE 1
+							PRINTFORMW 「...난 둘이서 하는게 제일 좋은데」
+							PRINTFORMW 사토리는 떨떠름해 보이는 표정이다
+						CASE 2
+							PRINTFORMW 「여럿이서...? 그건 좀...」
+							PRINTFORMW 「%MASTERNAME:49% 이외에 이런 모습 보이고 싶진 않아」
+					ENDSELECT
+				ELSE
+					PRINTFORMW 「...저는 별로...」
+					PRINTFORMW 사토리는 거리를 두었다
+				ENDIF
+			CASE 4 ;합의는 있지만 무드가 부족
+				IF MARK:반발각인 == 3
+					IF TALENT:연인
+						PRINTFORMW 「하고 싶다곤 해도 이렇게 갑자기 하면...」
+						PRINTFORMW 「솔직히 조금 당황스러워요...」
+					ELSE
+						PRINTFORMW 「그, 무드란걸 조금은 신경 써 주면 안되려나?」
+						PRINTFORMW 「하고싶다고 그리 달려들어도 할 맘이 안 들게 만들면 어쩌자는거야」
+					ENDIF
+				ELSEIF TALENT:연인 || TALENT:연모||TALENT:사모||TALENT:애욕
+					PRINTFORMW 「아니...하고 싶은건 알겠는데...」
+					PRINTFORMW 「그, 무드란게 있잖아요?」
+					PRINTFORMW 「그렇게 갑자기 달려들면 조금...」
+					PRINTFORMW 사토리는 떨떠름한 표정이다
+				ELSEIF TALENT:섹프
+					PRINTFORMW 「아무리 가벼운 관계라곤 해도...이렇게 갑자기 하자고 하면 당황스러운걸」
+				ELSE
+					PRINTFORMW 「...갑자기? 아니, 그게...이 분위기에서 할 말은...」
+					PRINTFORMW 사토리는 당황한듯한 표정이다
+				ENDIF
+		ENDSELECT
 	ELSE
 		;한번 하고 난 뒤
+		IF MARK:반발각인 == 3
+			IF TALENT:연인
+				대화개수 = 5
+			ELSE
+				IF CFLAG:3000 == 0
+					대화개수 = 5
+				ELSE
+					대화개수 = 5
+				ENDIF
+			ENDIF
+		ELSEIF TALENT:연인
+			대화개수 = 5
+		ELSEIF TALENT:연모||TALENT:사모||TALENT:애욕
+			대화개수 = 5
+		ELSEIF TALENT:섹프
+			대화개수 = 5
+		ELSE
+			IF CFLAG:3000 == 0
+				대화개수 = 5
+			ELSE
+				대화개수 = 5
+			ENDIF
+		ENDIF
+		대화선택 = ST_대사섞기(대화개수, 이전대화:0 , 이전대화:1, 이전대화:2)
+		이전대화:2 = 이전대화:1
+		이전대화:1 = 이전대화:0
+		이전대화:0 = 대화선택
+		IF MARK:반발각인 == 3
+			IF TALENT:연인
+				SELECTCASE 대화선택
+					CASE 0
+						PRINTFORMW 「하고 싶다고요? 네, 좋아요」
+						PRINTFORMW 「...기분좋게 해주세요?」
+						PRINTFORMW 사토리는 희미하게 웃으며 %마스터를% 받아들였다
+					CASE 1
+						PRINTFORMW %마스터가% 말을 꺼내기도 전에, 사토리는 눈웃음을 지으며 먼저 안겨들어왔다
+						PRINTFORMW 「아까부터 하고 싶어 하시던거 같았더니, 참을수 없게 됐나보네요」
+						PRINTFORMW 「물론 저도 똑같이 참을수 없게 되버렸지만...후후♥」
+					CASE 2
+						PRINTFORMW 「...♥」
+						PRINTFORMW 사토리는 어쩐지 기뻐보인다
+					CASE 3
+						PRINTFORMW 「기쁘네요, 다른 사람한테 안 가고 저랑 한다니」
+						PRINTFORMW 「솔직히, 한동안 삐쳐서 안 해줄거라고 생각했는데」
+						PRINTFORMW 사토리는 희미하게 웃어보이고 있다
+						CFLAG:5000 += 2
+					CASE 4
+						PRINTFORMW 「야한짓 하고 싶다고요? 네에, 내키는대로 해도 좋아요」
+						PRINTFORMW 「그치만 조금만 더 다정하게 해줬음 좋겠네」
+				ENDSELECT
+			ELSE
+				;그냥 반발각인 3
+				IF CFLAG:3000 == 0
+					SELECTCASE 대화선택
+						CASE 0
+							PRINTFORMW 「하고 싶은거죠? 그러면 얼른 해버리세요」
+							PRINTFORMW 「괜시리 발정난 머릿속을 계속 보이지 말고」
+							PRINTFORMW 사토리는 틱틱거리는 목소리로 말해왔지만 내심 기대하고 있는것 같은 표정이다
+						CASE 1
+							PRINTFORMW 「그렇게 하고 싶다고 마음속으로 되뇌이지 마세요...하게 해 줄테니까」
+							PRINTFORMW 「정말이지, 귀찮게 군다니깐」
+							PRINTFORMW 말과는 달리 사토리는 상당히 즐거운듯한 표정이다
+						CASE 2
+							PRINTFORMW 「하아...어쩔수 없죠, 어울려 드릴게요」
+							PRINTFORMW 「이번만이니깐...응, 더이상은 안 할거야」
+							PRINTFORMW 스스로가 배시시 웃으며 받아들이고 있는걸 알아차리지 못한 모양이다
+						CASE 3
+							PRINTFORMW 「기분 좋게 될 뿐이니까...그냥 자위나 마찬가지니깐...」
+							PRINTFORMW 사토리는 연신 되뇌이며 %마스터의% 품에 안겨들었다
+						CASE 4
+							PRINTFORMW 「뭐어...딱히 상관없겠죠, 처음 하는것도 아닌데」
+							PRINTFORMW 「이제와서 싫다 해봤자 무슨 의미겠어...」
+							PRINTFORMW 투덜거리는것 치곤 상당히 즐거워 보이는 표정이었다
+					ENDSELECT
+				ELSE
+					SELECTCASE 대화선택
+						CASE 0
+							PRINTFORMW 「난폭하게만 안 한다면야...마다할 이유는 없겠지」
+							PRINTFORMW 「혹시라도 이상한짓 하면 가만 안 둘거지만」
+						CASE 1
+							PRINTFORMW 「그렇게 하고 싶다고 마음속으로 되뇌이지 마...하게 해 줄테니까」
+							PRINTFORMW 「정말이지, 귀찮게 군다니깐」
+							PRINTFORMW 말과는 달리 사토리는 상당히 즐거운듯한 표정이다
+						CASE 2
+							PRINTFORMW 「하아...어쩔수 없네, 다른 사람한테 보내기도 그러니까」
+							PRINTFORMW 「한동안 꼼짝도 못하게 잔뜩 보내버리면 좀 얌전해 지려나?」
+						CASE 3
+							PRINTFORMW 「기분 좋게 될 뿐이니까...그냥 자위나 마찬가지니깐...」
+							PRINTFORMW 사토리는 연신 되뇌이며 %마스터의% 품에 안겨들었다
+						CASE 4
+							PRINTFORMW 「...딱히 상관없겠지, 처음 하는것도 아닌데」
+							PRINTFORMW 「이제와서 싫다 해봤자 무슨 의미겠어...」
+							PRINTFORMW 투덜거리는것 치곤 상당히 즐거워 보이는 표정이었다
+					ENDSELECT
+				ENDIF
+			ENDIF
+		ELSEIF TALENT:연인
+			SELECTCASE 대화선택
+				CASE 0
+					PRINTFORMW 「하고 싶다고요? 네, 좋아요」
+					PRINTFORMW 「...기분좋게 해주세요?」
+					PRINTFORMW 사토리는 환하게 웃으며 %마스터를% 받아들였다
+				CASE 1
+					PRINTFORMW %마스터가% 말을 꺼내기도 전에, 사토리는 눈웃음을 지으며 먼저 안겨들어왔다
+					PRINTFORMW 「아까부터 하고 싶어 하시던거 같았더니, 더 이상 참을수 없게 됐나보네요」
+					PRINTFORMW 「물론 저도 똑같지만...후후♥」
+					PRINTFORMW %마스터를% 끌어안은채 올려다보는 그 눈은 정욕으로 가득 차 있었다
+				CASE 2
+					PRINTFORMW 「...♥」
+					PRINTFORMW 사토리는 무척이나 기뻐하며 %마스터의% 손길을 받아들였다
+				CASE 3
+					PRINTFORMW 「기쁘네요, 다른 사람한테 안 가고 저랑 한다니」
+					PRINTFORMW 「솔직히, 한동안 삐쳐서 안 해줄거라고 생각했는데」
+					PRINTFORMW 사토리는 희미하게 웃어보이고 있다
+					CFLAG:5000 += 2
+				CASE 4
+					PRINTFORMW 「야한짓 하고 싶다고요? 네에, 내키는대로 해도 좋아요」
+					PRINTFORMW 「그치만 조금만 더 다정하게 해줬음 좋겠네」
+			ENDSELECT
+		ELSEIF TALENT:연모||TALENT:사모
+			SELECTCASE 대화선택
+				CASE 0
+					PRINTFORMW 「...♥」
+					PRINTFORMW 사토리는 상당히 기뻐보이는 표정으로 %마스터의% 손길을 받아들이고 있다 
+				CASE 1
+					PRINTFORMW 「아까부터 하고 싶다고 하는 생각은 들었는데...막상 당하니 조금 부끄러울지도」
+					PRINTFORMW 「...부드럽게 해주세요?」
+					PRINTFORMW 사토리는 얼굴을 붉히고 있다
+				CASE 2
+					PRINTFORMW 「'슬슬 할까'...네, 와주세요」
+					PRINTFORMW 사토리는 얌전히 %마스터의% 손길을 받아들였다
+				CASE 3
+					PRINTFORMW 「......」
+					PRINTFORMW 사토리는 새빨개진 얼굴을 두 손으로 가린채 얌전히 %마스터의% 손길을 받아들였다
+				CASE 4
+					PRINTFORMW 「네, 와주세요...저도 참기 힘드니까」
+					PRINTFORMW 사토리는 발그레해진 얼굴로 %마스터에게% 안겨졌다
+			ENDSELECT
+		ELSEIF TALENT:섹프||TALENT:애욕
+			SELECTCASE 대화선택
+				CASE 0
+					PRINTFORMW 「'슬슬 할까'라...후후, 언제쯤 말해주나 기다리고 있었어요」
+					PRINTFORMW 「조금만 더 있었음 먼저 덮쳐버렸을지도 모를정도로...」
+				CASE 1
+					PRINTFORMW 「후후♥ 좋아요, 얼른 와주세요」
+					PRINTFORMW 사토리는 배시시 웃으며 %마스터를% 받아들였다
+				CASE 2
+					PRINTFORMW 「빨리 해주세요, 아까부터 계속 참느라 힘들었다고요?」
+					PRINTFORMW 「둘 중 하나가 기절할때까지 계-속 할거니까, 각오해 주세요?」
+					PRINTFORMW 사토리는 음란한 미소를 지으며 다가왔다
+				CASE 3
+					PRINTFORMW 「후후...드디어 하는거네...」
+					PRINTFORMW 「너무 오래걸려서 중간에 못 참고 덮칠뻔 했잖아요」
+					PRINTFORMW 「그만큼 잔뜩 쥐여짜낼거니까, 각오해 주세요?」
+					PRINTFORMW 사토리는 혀를 낼름거리며 천천히 다가왔다
+				CASE 4
+					PRINTFORMW 「얼른, 얼르은」
+					PRINTFORMW 「더는 참기 힘드니까 기분 좋은거 빨리, 응?」
+					PRINTFORMW 사토리는 상당히 참았었는지 평소에 하지도 않던 앙탈까지 부리며 보채왔다
+			ENDSELECT
+		ELSE
+			IF CFLAG:3000 == 0
+				SELECTCASE 대화선택
+					CASE 0
+						
+					CASE 1
 
+					CASE 2
+
+					CASE 3
+
+					CASE 4
+
+				ENDSELECT
+			ELSE
+				SELECTCASE 대화선택
+					CASE 0
+						
+					CASE 1
+
+					CASE 2
+
+					CASE 3
+
+					CASE 4
+
+				ENDSELECT
+			ENDIF
+		ENDIF
 	ENDIF
 ENDIF
 RETURN 1
