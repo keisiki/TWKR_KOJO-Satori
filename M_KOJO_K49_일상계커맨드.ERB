@@ -3571,11 +3571,7 @@ IF LOCAL
 		ELSEIF TALENT:섹프
 			대화개수 = 5
 		ELSE
-			IF CFLAG:3000 == 0
-				대화개수 = 5
-			ELSE
-				대화개수 = 5
-			ENDIF
+			대화개수 = 2
 		ENDIF
 		대화선택 = ST_대사섞기(대화개수, 이전대화:0 , 이전대화:1, 이전대화:2)
 		이전대화:2 = 이전대화:1
@@ -3715,33 +3711,15 @@ IF LOCAL
 					PRINTFORMW 사토리는 상당히 참았었는지 평소에 하지도 않던 앙탈까지 부리며 보채왔다
 			ENDSELECT
 		ELSE
-			IF CFLAG:3000 == 0
-				SELECTCASE 대화선택
-					CASE 0
-						
-					CASE 1
-
-					CASE 2
-
-					CASE 3
-
-					CASE 4
-
-				ENDSELECT
-			ELSE
-				SELECTCASE 대화선택
-					CASE 0
-						
-					CASE 1
-
-					CASE 2
-
-					CASE 3
-
-					CASE 4
-
-				ENDSELECT
-			ENDIF
+			SELECTCASE 대화선택
+				CASE 0
+					PRINTFORMW 「하려고요?」
+					PRINTFORMW 「...딱히 상관은 없어요」
+					PRINTFORMW 사토리는 무어라 말하기도 전에 눈치채곤 실실 웃으며 다가왔다
+				CASE 1
+					PRINTFORMW 「...네, 알았어요」
+					PRINTFORMW 무어라 말하기도 전에 슬며시 몸을 밀착해온 사토리는, 살짝 웃어보이고 있다
+			ENDSELECT
 		ENDIF
 	ENDIF
 ENDIF
