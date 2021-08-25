@@ -3735,12 +3735,86 @@ RETURN RESULT
 @M_KOJO_MESSAGE_COM_K49_351_1
 ;-------------------------------------------------
 ;記入チェック（=0, 非表示、1, 表示）
-LOCAL = 0
+LOCAL = 1
 ;-------------------------------------------------
 IF LOCAL
-	;TARGET連れ出し
+	;TARGET을 데리고 나간다
 	IF CFLAG:동행 == 60
-	;TARGET以外連れ出し(TARGET동행中のみ
+		IF MARK:반발각인 == 3
+			IF TALENT:연인
+				SELECTCASE RAND:3
+					CASE 0
+						PRINTFORMW 「...」
+						PRINTFORMW 사토리는 말없이 %마스터를% 따라나섰다
+					CASE 1
+						PRINTFORMW 「어디로 데려가려는 걸까나...」
+						PRINTFORMW 사토리는 얌전히 %마스터의% 손에 이끌려왔다
+					CASE 2
+						PRINTFORMW 「따라오라고요?」
+						PRINTFORMW 사토리는 순순히 %마스터를% 따라나섰다
+				ENDSELECT
+			ELSE
+				SELECTCASE RAND:3
+					CASE 0
+						PRINTFORMW 「어디로 데려가는 걸까나」
+						PRINTFORMW 사토리는 얌전히 %마스터를% 따라나섰다
+					CASE 1
+						PRINTFORMW 「뭐, 따라가는것 뿐이라면야...」
+					CASE 2
+						PRINTFORMW 「따라나오라고? 그것뿐이라면야...」
+						PRINTFORMW 사토리는 순순히 %마스터의% 뒤를 따라 걷기 시작했다
+				ENDSELECT
+			ENDIF
+		ELSEIF TALENT:연인
+			SELECTCASE RAND:3
+				CASE 0
+					PRINTFORMW 「어디로 데려가시려는걸까나~」
+					PRINTFORMW 사토리는 약간 신난듯 하다
+				CASE 1
+					PRINTFORMW 사토리는 말할것도 없이 알아서 졸졸 따라오기 시작했다
+				CASE 2
+					PRINTFORMW 「멀리 나갈건가요?」
+					PRINTFORMW 「멀리 나가면 집에 올때 힘든데...」
+			ENDSELECT
+		ELSEIF TALENT:연모||TALENT:사모||TALENT:애욕
+			SELECTCASE RAND:3
+				CASE 0
+					PRINTFORMW 「외출? 어디로 갈건가요?」
+					PRINTFORMW 「...멀리만 안 갔음 좋겠는데」
+				CASE 1
+					PRINTFORMW 「데려가 주시는건가요?」
+					PRINTFORMW 「어디로 가는걸까나...」
+					PRINTFORMW 사토리는 무언가 기대하는듯한 표정이다
+				CASE 2
+					;사실 선택지를 예측 불가능하니 어쩔수 없는거지만
+					PRINTFORMW 「으음...어디로 가려는건지 모르겠네...」
+					PRINTFORMW 「딱히 갈 곳을 정하지 않은걸까나, 잘 읽히질 않아...」
+					PRINTFORMW 사토리는 고개를 갸웃거리면서도 순순히 쫓아오고 있다
+			ENDSELECT
+		ELSEIF TALENT:섹프
+			SELECTCASE RAND:3
+				CASE 0
+					PRINTFORMW 「따라오라고요?」
+					PRINTFORMW 「어딜 가려고...」
+					PRINTFORMW 사토리는 고개를 갸웃거리면서도 순순히 따라오고 있다
+				CASE 1
+					PRINTFORMW 「어디로 데려가는걸까나~」
+					PRINTFORMW 「그래도 멀리 가는건 지쳐서 싫은데...」
+					PRINTFORMW 「...뭐, 돌아올땐 업어주시겠죠, 그쵸?」
+				CASE 2
+					PRINTFORMW 「으음, 이건 데이트 신청? 후후, 농담이에요」
+					PRINTFORMW 「그래도 서로 볼거 못볼거 다 봤고, 같이 돌아다니기도 하면 연인이랑 차이가 없으려나」
+			ENDSELECT
+		ELSE
+			SELECTCASE RAND:2
+				CASE 0
+					PRINTFORMW 「어라, 따라오라고요?」
+					PRINTFORMW 사토리는 의아해 하면서도 순순히 따라오고 있다
+				CASE 1
+					PRINTFORMW 「멀리 가는건 아니겠죠...?」
+			ENDSELECT
+		ENDIF
+	;TARGET이외에 데리고 나간다(TARGET동행중에만
 	ELSE
 	ENDIF
 ENDIF
