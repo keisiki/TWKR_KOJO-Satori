@@ -3837,10 +3837,113 @@ RETURN RESULT
 @M_KOJO_MESSAGE_COM_K49_352_1
 ;-------------------------------------------------
 ;記入チェック（=0, 非表示、1, 表示）
-LOCAL = 0
+LOCAL = 1
 ;-------------------------------------------------
 IF LOCAL
-
+	;PRINTFORMW 「」
+	IF FLAG:생활능력무
+		IF !ST_대사플래그:5
+			IF MARK:반발각인 == 3
+				PRINTFORMW 「이런때에도 부끄럼타서 말도 못하네, 굉장히 한심해보여」
+				PRINTFORMW 「그런 한심한 모습으로는 고백해도 받아줄 사람이 없을거 같네요...」
+			ELSEIF TALENT:연모||TALENT:사모||TALENT:애욕
+				PRINTFORMW 「...말이 안 나오면 나중에 해도 좋아요」
+				PRINTFORMW 「그 마음만큼은 전해졌으니깐요」
+				PRINTFORMW 사토리는 멋쩍게 웃어보이고 있다
+			ELSE
+				PRINTFORMW 「...마음속 생각으로만 들어도 상당히 충격적이네」
+				PRINTFORMW 「딱히 이상하다기 보단 조금 당황스러워서...그런 고백 받을 사이는 아니라고 생각했는데」
+			ENDIF
+		ELSE
+			IF MARK:반발각인 == 3
+				PRINTFORMW 「또야? 전혀 나아진게 없잖아」
+				PRINTFORMW 「조금은 용기가 생겼나 했더니만...」
+				PRINTFORMW 사토리는 한숨을 쉬었다
+			ELSEIF TALENT:연모||TALENT:사모||TALENT:애욕
+				PRINTFORMW 「...아직도 용기가 안 나? 그래도 괜찮아요」
+				PRINTFORMW 「언제까지라도 기다려 줄게요」
+				PRINTFORMW 사토리는 멋쩍게 웃어보이고 있다
+			ELSE
+				PRINTFORMW 「...그렇게 말해도 이걸 받아들이기가 조금...」
+				PRINTFORMW 「아직 그렇게까지 잘 아는것도 아니고, 너무 이르다고 생각하는데...」
+			ENDIF
+		ENDIF
+		ST_대사플래그:5 ++
+	ELSE
+		IF ST_대사플래그:5
+			;무능력자로 인한 고백 거절 경험 있음
+			IF MARK:반발각인 == 3
+				PRINTFORMW 「이제야 고백할 용기가 생긴거야?」
+				PRINTFORMW 「그렇게 한심한 모습으로 실패해놓고선 아직도 도전하다니, 상당한 철면피네」
+				PRINTFORMW 사토리는 퉁명스레 쏘아붙였다
+				IF TFLAG:193
+					PRINTFORMW 「-그래도, 그런 모습이 싫지만은 않아」
+					PRINTFORMW 「지금껏 이런 저런 일을 다 겪어봤고, 안 좋았던 일도 많았지만...」
+					PRINTFORMW 「...아니 지금껏 안 풀린것도 있지만 말야?」
+					PRINTFORMW 「어쨌든 좋았던 일도 많았고, 나름대로 잘 해주긴 했지」
+					PRINTFORMW 「...나도, %사마스터가% 좋아」
+					PRINTFORMW 「제대로 말 할 때를 못 잡아서 못 말했지만...」
+					PRINTFORMW 사토리는 볼을 붉게 물들인 채 말해왔다
+					PRINTFORMW 「대신에 이거 하나만 약속해줘」
+					PRINTFORMW 「...앞으로는, 심한일 안 할거지?」
+					PRINTFORMW 「...아니, 대답할 필욘 없어, 그렇게 믿고 있을거니까...」
+					PRINTFORMW 사토리는 %마스터의% 손을 부드럽게 잡아왔다
+					PRINTFORMW 그리고 요근래 보기 힘들었던 환한 미소로 %마스터를% 바라보았다
+					PRINTFORMW 「좋아해요, %MASTERNAME:49」
+					PRINTFORML
+					PRINTFORMW 사토리의 %마스터에% 대한 반감이 씻은듯이 사라졌다
+					PRINTFORMW 반발각인이 0 LV이 되었다
+					MARK:반발각인 = 0
+				ELSE
+					PRINTFORMW 「게다가 기껏 용기낸게 이거라면, 상당히 실망스러운데...」
+					PRINTFORMW 「아무리 그래도 최소한 분위기라도 좋게 만들수는 없었던 걸까?」
+					PRINTFORMW 「이런 어색한 분위기 속에서는 그 누구라도 거절하고 말거야, 분명히」
+					PRINTFORMW 한심하다는듯이 바라보는 그 눈길에 저절로 어깨가 움츠러들 정도였다
+					PRINTFORMW 아무래도 다음번을 노리는게 나을것 같다
+				ENDIF
+			ELSEIF TALENT:연모||TALENT:사모||TALENT:애욕
+				PRINTFORMW 「이제 고백할 용기가 생긴건가요?」
+				IF TFLAG:193
+					PRINTFORMW 「정말, 기다린다곤 했지만...너무 애태운다니깐요」
+					PRINTFORMW 「사실 그렇게 말한거 때문에 아예 포기해버리는건 아닌가 하고 걱정했는데」
+					PRINTFORMW 「...그래도 이번에는 확실히 멋진 고백이었어요, 응, 11점 드릴게요」
+					PRINTFORMW 쪼르르 달려와 %마스터를% 안은 사토리는 상당히 기뻐보이는 표정이었다
+					PRINTFORMW 「헤헤...그야, 늘 이렇게 하고 싶었던거 뿐이니까요」
+					PRINTFORMW 「이제는 연인이니까...매일밤 다른 사람에게 가버리지 않을까 걱정하지 않아도 되니까」
+					PRINTFORMW 「늘상 바라만 보던 %사마스터와% 이렇게 이어졌으니까...그게 너무 기뻐서...」
+					PRINTFORMW %마스터의% 어깨의 눈물이 한방울 떨어진다
+					PRINTFORMW 「저도, 사랑해요, %MASTERNAME:49%...」
+				ELSE
+					PRINTFORMW 「...그치만 아직 떨고 있는걸」
+					PRINTFORMW 「좀 더 자신감을 갖고 말해줬음 좋았겠는데」
+					PRINTFORMW 「...고백 받는 일은 일생에 한두번도 겪기 힘든일이니까, 되도록이면 가장 최고의 순간으로 기억하고 싶어요」
+					PRINTFORMW 「그러니까, 이번엔 마음만 받아둘게요」
+					PRINTFORMW 「다음번에 좀 더 멋지게, 자신있는 모습으로 다시 해주세요?」
+					PRINTFORMW 사토리는 싱긋 웃어보였다
+				ENDIF
+			ELSE
+				PRINTFORMW 「으음...또 고백? 그래도 이번엔 좀 더 자신있는 모습이 보기 좋긴 하네요」
+				PRINTFORMW 「그래도 당황스러운건 마찬가지긴 한데...」
+				IF TFLAG:193
+					PRINTFORMW 「...딱히 상관은 없겠죠, 어짜피 만나는 사람도 없고」
+					PRINTFORMW 「그럭저럭...괜찮은 사람이고」
+					IF TALENT:섹프
+						PRINTFORMW 「밤일도 잘하고...」
+					ENDIF
+					PRINTFORMW 「좋아요, 그럼 사귈까요? 그런데 사귀고 나선 뭘 해야 하더라...」
+					PRINTFORMW 「으음...하여튼간에, 잘 부탁드려요?」
+					PRINTFORMW 사토리는 멋쩍게 웃어보였다
+				ELSE
+					PRINTFORMW 「...애초에 연애감정이 들지도 않았는데 대뜸 고백받는다고 사귈리가 없잖아...」
+					PRINTFORMW 사토리는 곤란하다는듯 말해왔다
+				ENDIF
+			ENDIF
+		ELSEIF CFLAG:6000
+			; 전 회차에서 연인 이상이었다
+		ELSE
+			
+		ENDIF
+	ENDIF
 ENDIF
 RETURN 1
 ;==================================================
@@ -3934,66 +4037,6 @@ IF LOCAL
 ENDIF
 RETURN 1
 
-;==================================================
-;363,읽어준다（[유치]持ち専用）
-;TFLAG:193(1=大成功 0=成功 -1=失敗)(地の文分岐無し
-;CFLAG:동침중(1=布団orベッドの中で本を読む
-;MASTERがTARGETより大柄の場合、膝の上にTARGETを乗せる
-;==================================================
-@M_KOJO_SUCCESS_COM_K49_363
-;成否判定
-;TFLAG:192(-2=コマンド終了、-1＝強制失敗、0=COM依存、1=強制成功or大成功
-TFLAG:192 =0
-
-@M_KOJO_MESSAGE_COM_K49_363
-CALL TRAIN_MESSAGE
-CALL M_KOJO_MESSAGE_COM_K49_363_1
-RETURN RESULT
-
-@M_KOJO_MESSAGE_COM_K49_363_1
-;-------------------------------------------------
-;記入チェック（=0, 非表示、1, 表示）
-LOCAL = 0
-;-------------------------------------------------
-IF LOCAL
-
-ENDIF
-RETURN 1
-;==================================================
-;364,콩뿌리기(萃香、勇儀、スカーレット姉妹用
-;TFLAG:193(콩뿌리기に参加してる人数
-;==================================================
-@M_KOJO_MESSAGE_COM_K49_364
-CALL TRAIN_MESSAGE
-CALL M_KOJO_MESSAGE_COM_K49_364_1
-RETURN RESULT
-
-@M_KOJO_MESSAGE_COM_K49_364_1
-;-------------------------------------------------
-;記入チェック（=0, 非表示、1, 表示）
-LOCAL = 0
-;-------------------------------------------------
-IF LOCAL
-
-ENDIF
-RETURN 1
-;==================================================
-;365,守矢神社へ이동(早苗、神奈子、諏訪子用
-;==================================================
-@M_KOJO_MESSAGE_COM_K49_365
-CALL TRAIN_MESSAGE
-CALL M_KOJO_MESSAGE_COM_K49_365_1
-RETURN RESULT
-
-@M_KOJO_MESSAGE_COM_K49_365_1
-;-------------------------------------------------
-;記入チェック（=0, 非表示、1, 表示）
-LOCAL = 0
-;-------------------------------------------------
-IF LOCAL
-
-ENDIF
-RETURN 1
 ;==================================================
 ;402,취침
 ;TFLAG:193(0=通常 1=子供と一緒に川の字で寝る)
