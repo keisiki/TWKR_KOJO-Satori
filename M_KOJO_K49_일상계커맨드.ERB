@@ -4082,15 +4082,46 @@ IF LOCAL
 				ENDIF
 			ELSE
 				IF MARK:반발각인 == 3
-					IF CFLAG:3000 == 0
-
+					PRINTFORMW 「...고백이라, 이렇게 험악해진 사이에서 꺼내긴 어려운 이야기일텐데...」
+					PRINTFORMW 「대담한 점은 인정해줘야겠네요」
+					IF TFLAG:193
+						PRINTFORMW 「...실은 속마음이야 다 알고 있었지만, 직접 듣는건 또 다른 이야기니까」
+						PRINTFORMW 「먼저 말해버릴까도 했지만, 요근래 말 꺼낼 분위기가 아니어서 가만히 있었는데」
+						PRINTFORMW 「그래서 조금은 기뻐요」
+						PRINTFORMW 「...저기, 앞으로는 이렇게 또 안 싸울거죠?」
+						PRINTFORMW 「또 이렇게 험악해지는건 싫으니깐...이번에도 많이 힘들었다고요」
+						PRINTFORMW 「...약속해 주실수 있죠?」
+						PRINTFORMW %마스터가% 고개를 끄덕이자 사토리는 희미하게 웃어보였다
+						PRINTFORMW 「좋아합니다, %MASTERNAME:49%」
+						PRINTFORML
+						PRINTFORMW 사토리의 %마스터에% 대한 반감이 씻은듯이 사라졌다
+						PRINTFORMW 반발각인이 0 LV이 되었다
+						MARK:반발각인 = 0
 					ELSE
-
+						PRINTFORMW 「그렇다고 사귀겠단건 아니지만」
+						PRINTFORMW 사토리는 단호히 선을 그었다
 					ENDIF
 				ELSEIF TALENT:연모||TALENT:사모||TALENT:애욕
-					
+					IF TFLAG:193
+						;아마도 가장 많이 보일 지문
+						PRINTFORMW 「좋아, 한다라...」
+						PRINTFORMW 사토리는 묘한 표정을 지어보였다
+						PRINTFORMW 「사실 얼마 전부터 알고는 있었지만...직접 들으니 기분이 묘해지네요...」
+						PRINTFORMW 「먼저 말해버릴까 생각하기도 했는데, 도저히 말할수가 없었거든요」
+						PRINTFORMW 「...미안해요, 오래 준비했을텐데 별로 놀라주지도 못해서」
+						PRINTFORMW 「이런 재미없는 여자가 세상 어디에 또 있을까요」
+						PRINTFORMW 사토리는 살짝 쓸쓸해 보이는 목소리로 말해왔다
+						PRINTFORMW 「그런 저라도 상관없으시다면...」
+						PRINTL
+						PRINTFORMW 「저도... 좋아합니다...」
+						PRINTFORMW 사토리는 %마스터의% 품에 살며시 안겨왔다
+					ELSE
+						PRINTFORMW 「그...그런건 아직...마음의 준비가...」
+						PRINTFORMW 「...죄송해요, 나중에 이야기 해주세요」
+						PRINTFORMW 사토리는 새빨게진 얼굴을 가리며 말해왔다
+					ENDIF
 				ELSEIF TALENT:섹프
-					
+					;PRINTFORMW 「」
 				ELSE
 					IF CFLAG:3000 == 0
 
