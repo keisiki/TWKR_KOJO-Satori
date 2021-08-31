@@ -4013,6 +4013,92 @@ IF LOCAL
 			ENDIF
 		ELSE
 			;통상
+			ST_고백정보:0 = CFLAG:MASTER:현재위치
+			ST_고백정보:1 = DAY:2 
+			ST_고백정보:2 = DAY:3
+			ST_고백정보:3 = DAY:5
+			IF IN_TOILET(ST_고백정보:0)  ;GROUPMATCH(ST_고백정보,250,260,950,225,236,935)
+				;화장실에서 고백
+				IF MARK:반발각인 == 3
+					PRINTFORMW 「...놀리는걸까? 아니, 읽어보면 진심인거 같은데...」
+					PRINTFORMW 「하고 많은 곳 중에서 왜 하필 화장실에서 그런 말을...?」
+					PRINTFORMW 「...도저히 이해할 수가 없네, 살면서 몇번 받을 일도 없는 고백이 이런거라니...」
+					PRINTFORMW 사토리는 어이없어 하고 있다
+					IF TFLAG:193
+						PRINTFORMW 「...하, 됐어, 다른곳에서 한다고 정상적일거 같진 않아」
+						PRINTFORMW 「이런데에서 고백받는 사람이 세상에 몇이나 될까 싶긴 하지만...」
+						PRINTFORMW 「말해봐야 들을 사람도 없는데 별 상관이야 없겠지」
+						PRINTFORMW 사토리는 토라진듯한 표정이다
+						PRINTFORMW 「이렇게 이상한데서 고백한 만큼 나중에 받아낼거니까 쌤쌤인거로 해둬요」
+						PRINTFORMW ...데이트는 좋은곳으로 데려가지 않으면 화낼지도 모르겠다 
+					ELSE
+						PRINTFORMW 아무래도 정상적인 곳에서 하는게 나을 것 같다
+					ENDIF
+				ELSEIF TALENT:연모||TALENT:사모||TALENT:애욕
+					PRINTFORMW 「...어, 그, 그게...」
+					PRINTFORMW 사토리는 당황한듯한 표정이었다
+					IF TFLAG:193
+						PRINTFORMW 「%사마스터가% 싫은건 아니지만...여긴 화장실인데」
+						PRINTFORMW 「굳이 이런데에서 고백했어야 했나요?」
+						PRINTFORMW 「경치 좋고 분위기 좋은곳이 한 두곳 있는것도 아닌데, 왜 하필...」
+						PRINTFORMW 「...하아, 이런식으로 고백받을 줄은 상상도 못했는데...」
+						PRINTFORMW 사토리는 토라진듯하다
+						PRINTFORMW 「뭐 됐나, 어디서 고백받는다고 달라지는건 없겠지」
+						PRINTFORMW 「...그치만 이런데에서 고백한 만큼 나중에 더 좋은데로 데려가 주셔야 해요?」
+						PRINTFORMW ...데이트는 좋은곳으로 데려가 줘야겠다
+					ELSE
+						PRINTFORMW 「...이런데에서 그런 말을 듣는건 조금...」
+						PRINTFORMW 「여긴 화장실이라고요...?」
+					ENDIF
+				ELSEIF TALENT:섹프
+					PRINTFORMW 「...화장실에서 한다는게, 고백일줄이야」
+					PRINTFORMW 「좀 많이 당황스러운걸...」
+					IF TFLAG:193
+						PRINTFORMW 「분명히 남들이 알면 비웃을거야」
+						PRINTFORMW 사토리는 피식거리며 %마스터의% 손을 잡았다
+						PRINTFORMW 「그래도... %사마스터가% 그렇게 말해주니까 너무 기쁜걸」
+						PRINTFORMW 「이런 이상한 장소에서 했다는걸 잊어버릴정도로 기뻐」
+						PRINTFORMW 「가벼운 관계로만 끝내지 않는다는게 행복해, 그 말을 직접 %사마스터의% 목소리로 들었으니까」
+						PRINTFORMW 사토리는 상당히 행복해 보이는 표정이다
+						PRINTFORMW 「...그래도 앞으로는 이런데에서 뭔갈 하는건 그만뒀음 좋겠네」
+						PRINTFORMW 「다음 데이트는 좀 더 멋진곳으로 가는걸 기대해도 괜찮겠죠?」
+						PRINTFORMW ...좀 더 좋은 장소를 선정해 놓아야 할 것 같다
+					ELSE
+						PRINTFORMW 「그러니까- 으으음...뭐라고 말을 해야할지도 모르겠네」
+						PRINTFORMW 「장소도 그렇고 뜬금없는 고백도 그렇고...」
+						PRINTFORMW 사토리는 곤란해보이는 표정이다
+					ENDIF
+				ELSE
+					PRINTFORMW 「당황스럽네...이런데에서 고백받을줄이야」
+					IF TFLAG:193
+						PRINTFORMW 「...상관은 없지만, 조금 섭섭해지는걸」
+						PRINTFORMW 사토리는 약간 시무룩해진 모양이다
+						PRINTFORMW 「뭐어...나쁠건 없겠지, 장소같은게 무슨 상관이람」
+						PRINTFORMW 「서로 좋아하면...되는거겠지?」
+					ELSE
+						PRINTFORMW 「게다가 이렇게 뜬금없이 고백받는것도 그렇고」
+						PRINTFORMW 사토리는 곤란하다는듯한 표정이다
+					ENDIF
+				ENDIF
+			ELSE
+				IF MARK:반발각인 == 3
+					IF CFLAG:3000 == 0
+
+					ELSE
+
+					ENDIF
+				ELSEIF TALENT:연모||TALENT:사모||TALENT:애욕
+					
+				ELSEIF TALENT:섹프
+					
+				ELSE
+					IF CFLAG:3000 == 0
+
+					ELSE
+
+					ENDIF
+				ENDIF
+			ENDIF
 		ENDIF
 	ENDIF
 ENDIF
