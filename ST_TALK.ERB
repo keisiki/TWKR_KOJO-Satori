@@ -104,7 +104,7 @@ ENDSELECT
 @ST_통상회화
 #DIM 이전대화, 5
 #DIM DYNAMIC 대화선택
-#DIM CONST 대화개수 = 53
+#DIM CONST 대화개수 = 55
 ;이 패턴에서는 통상적인 대화를 합니다
 ;함락계마다 변화 없음, 넣으려면 넣을수도 있긴 하지만 뭐...
 
@@ -542,7 +542,7 @@ SELECTCASE 대화선택
         PRINTFORMW 「안 그러면 밤 새 오린이 옆에서 칭얼거리니까...곤란하거든요」
     CASE 47
         PRINTFORMW 「지저의 밤에는 방문을 꼭 닫고 있어야 해요」
-        PRINTFORMW 「그냥도 아니고 자물쇠 여러개에 가구까지 막아놓는게 더 좋고」
+        PRINTFORMW 「그냥도 아니고 자물쇠 여러개에 가구까지 동원해 막아놓으면 더 좋고」
         PRINTFORMW 「안 그러면 무서운 오니들이 쳐들어와서 술잔치를 벌이니까요」
         PRINTFORMW 「...사실 막아도 들어오니까 소용은 없지만」
     CASE 48
@@ -564,6 +564,15 @@ SELECTCASE 대화선택
         PRINTFORMW 「뜨겁게 집을 데워서 습기를 날리지 않으면 곰팡이가 슬어버리거든요」
         PRINTFORMW 「그런면에서 지령전은, 상당히 위생적인 공간이기도 하고요」
         PRINTFORMW 「...대신에 동물 털은 좀 많지만」
+    CASE 53
+        PRINTFORMW 「지저의 온천은 그다지 가지 않고 싶네요」
+        PRINTFORMW 「거기 주인은 수전노면서 호색한이라 무슨 짓을 저지를지 모를 사람이니까」
+    CASE 54
+        PRINTFORMW 「가끔씩 바닥에서 석유가 스며 올라오곤 하는데」
+        PRINTFORMW 「그게 작열지옥의 열기를 만나면 간간히 불타오르곤 하더군요」
+        PRINTFORMW 「한번 타기 시작하면 잘 꺼지지도 않는데, 끈적거려서 치우기도 곤란한 물건이라 정말...」
+    ;CASE 55
+
 ENDSELECT
 
 
@@ -1767,7 +1776,7 @@ ENDSELECT
 @ST_연모회화
 #DIM 이전대화, 3
 #DIM DYNAMIC 대화선택
-#DIM CONST 대화개수 = 10
+#DIM CONST 대화개수 = 11
 대화선택 = ST_대사섞기(대화개수, 이전대화:0 , 이전대화:1, 이전대화:2)
 이전대화:2 = 이전대화:1
 이전대화:1 = 이전대화:0
@@ -1874,4 +1883,8 @@ SELECTCASE 대화선택
             PRINTFORMW 「그래서 말인데...어딘가 데려다 주실래요? 혼자 나가기는 조금 쓸쓸해서」
             PRINTFORMW 사토리는 %마스터를% 흘끔흘끔 바라보고 있다
         ENDIF
+    CASE 10
+        PRINTFORMW 「나름대로 남을 위해서 배려도 해보고 했지만」
+        PRINTFORMW 「마음을 읽어도 다른 사람을 만족시키는 일은 어렵더군요」
+        PRINTFORMW 「어쩌면 제가 도와주는거 자체를 싫어하는거 일려나」
 ENDSELECT
