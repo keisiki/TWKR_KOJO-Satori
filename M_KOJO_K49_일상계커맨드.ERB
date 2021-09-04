@@ -4189,16 +4189,53 @@ CALL M_KOJO_MESSAGE_COM_K49_353_1
 RETURN RESULT
 
 @M_KOJO_MESSAGE_COM_K49_353_1
+#DIM 이전대화, 3
+#DIM DYNAMIC 대화선택
+#DIM CONST 대화개수 = 7
+
 ;-------------------------------------------------
 ;記入チェック（=0, 非表示、1, 表示）
-LOCAL = 0
+LOCAL = 1
 ;-------------------------------------------------
 IF LOCAL
-
+	IF FLAG:생활능력무
+		RETURN 1
+	ENDIF
+	대화선택 = ST_대사섞기(대화개수, 이전대화:0 , 이전대화:1, 이전대화:2)
+	이전대화:2 = 이전대화:1
+	이전대화:1 = 이전대화:0
+	이전대화:0 = 대화선택
+	SELECTCASE 대화선택
+		CASE 0
+			PRINTFORMW 「우으응...」
+			PRINTFORMW 사토리는 잠시 뒤척였을뿐 일어날 기미는 없어보인다
+		CASE 1
+			PRINTFORMW 「응...」
+			PRINTFORMW 볼을 살짝 찔러보아도 아무런 반응이 없다
+			PRINTFORMW 몸을 더듬어도 새근새근 잘 자는걸 보면 깰 것같진 않다
+		CASE 2
+			PRINTFORMW 「응...누구...」
+			PRINTFORMW 「...오린이니...? 응...」
+			PRINTFORMW 사토리는 몇번 중얼거리더니 도로 잠들어버렸다
+			PRINTFORMW 깰 것 같진 않다
+		CASE 3
+			PRINTFORMW 「...」
+			PRINTFORMW 일어날 기미는 없어보인다
+		CASE 4
+			PRINTFORMW 사토리는 이불을 걷어찬채 새근새근 잠들어 있다
+			PRINTFORMW 아마 일어나진 않을것 같다
+		CASE 5
+			PRINTFORMW 「...흐흥」
+			PRINTFORMW 좋은 꿈이라도 꾸는건지 입꼬리가 씰룩거리고 있다
+		CASE 6
+			PRINTFORMW 「...흐흥...에헤헤...」
+			PRINTFORMW 기분 좋은 꿈이라도 꾸는지 연신 뒤척이고 있다
+			PRINTFORMW 그래도 깰 것같은 느낌은 없다
+	ENDSELECT
 ENDIF
 RETURN 1
 ;==================================================
-;354,동침한다（相손は起きて布団に招く感じ）
+;354,동침한다（상대는起きて이불に招く感じ）
 ;CFLAG:쇠약(1以上=起きない
 ;CFLAG:초대(0以外=起きない
 ;==================================================
@@ -4217,7 +4254,7 @@ IF LOCAL
 ENDIF
 RETURN 1
 ;==================================================
-;355,時止め（地の文の改変程度に留めるべき
+;355,시간정지（地の文の改変程度に留めるべき
 ;==================================================
 @M_KOJO_MESSAGE_COM_K49_355
 CALL TRAIN_MESSAGE
