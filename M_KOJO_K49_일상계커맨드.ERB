@@ -4236,8 +4236,9 @@ ENDIF
 RETURN 1
 ;==================================================
 ;354,동침한다（상대는起きて이불に招く感じ）
-;CFLAG:쇠약(1以上=起きない
-;CFLAG:초대(0以外=起きない
+;CFLAG:쇠약(1이상=일어나지 않는다
+;CFLAG:초대(0이하=일어나지 않는다
+;연모없으면 시전 불가능
 ;==================================================
 @M_KOJO_MESSAGE_COM_K49_354
 CALL TRAIN_MESSAGE
@@ -4247,10 +4248,103 @@ RETURN RESULT
 @M_KOJO_MESSAGE_COM_K49_354_1
 ;-------------------------------------------------
 ;記入チェック（=0, 非表示、1, 表示）
-LOCAL = 0
+LOCAL = 1
 ;-------------------------------------------------
 IF LOCAL
-
+	;PRINTFORMW 「」
+	IF CFLAG:쇠약
+		SELECTCASE RAND:3
+			CASE 0
+				PRINTFORMW 「...」
+				PRINTFORMW 사토리는 쥐죽은듯이 자고 있다
+				PRINTFORMW 건드려봐도 깰 기미도 없다...	
+			CASE 1
+				PRINTFORMW 「으으...」
+				PRINTFORMW 많이 지친건지 끙끙거리고 있다
+				PRINTFORMW %마스터가% 옆에 누워도 눈치채지 못한 모양이다
+			CASE 2
+				PRINTFORMW 「......」
+				PRINTFORMW 상당히 지쳤던건지 미동조차 없이 잠들어 있다
+				PRINTFORMW 옆에 누워도 조금도 반응해주지 않았다
+		ENDSELECT
+	ELSEIF CFLAG:초대
+		PRINTFORMW 「...」
+		PRINTFORMW 사토리는 얌전히 누워 잠들어있다
+	ELSE
+		IF MARK:반발각인 == 3
+			IF TALENT:연인
+				SELECTCASE RAND:3
+					CASE 0
+						PRINTFORMW 「...으응...%MASTERNAME:49%...?」
+						PRINTFORMW 「...후아암...」
+						PRINTFORMW 사토리는 잠시 눈을 떠 인사를 하고는 도로 꾸벅꾸벅 졸기 시작했다
+					CASE 1
+						PRINTFORMW 「...응, 왔어요...?」
+						PRINTFORMW 「하아암...그치만 졸려서...」
+						PRINTFORMW 사토리는 피곤해 보이는 눈으로 %마스터를% 응시해오고 있다
+					CASE 2
+						PRINTFORMW 「...어라, 언제 왔어요?」
+						PRINTFORMW 사토리는 졸린듯한 눈으로 %마스터를% 바라보고 있다
+				ENDSELECT
+			ELSE
+				SELECTCASE RAND:3
+					CASE 0
+						PRINTFORMW 「...하아암...응...? 언제 왔어요?」
+						PRINTFORMW 사토리는 졸린눈을 부비며 아는채 해 왔지만, 이내 쏟아지는 잠에 꾸벅꾸벅 졸기 시작했다
+					CASE 1
+						PRINTFORMW 「...응?」
+						PRINTFORMW 사토리는 잠시 눈을 떴지만, 이내 %CALLNAME:MASTER%인것을 확인하곤 도로 졸기 시작했다
+					CASE 2
+						PRINTFORMW 「......」
+						PRINTFORMW 사토리는 게슴츠레 눈을 떴지만, 별로 할 말은 없는 모양이다
+				ENDSELECT
+			ENDIF
+		ELSEIF TALENT:연인
+			SELECTCASE RAND:3
+				CASE 0
+					PRINTFORMW 「...하암...언제 왔어요?」
+					PRINTFORMW 사토리는 졸린듯한 눈으로 물어왔다
+				CASE 1
+					PRINTFORMW 「응...왔어요...?」
+					PRINTFORMW 「하아암...그런데 졸려...」
+					PRINTFORMW 사토리는 살짝 굴러 %마스터에게% 다가왔다
+				CASE 2
+					PRINTFORMW 「어라, 언제부터 왔어요...?」
+					PRINTFORMW 사토리는 옆에 누운 %마스터에게% 이불을 덮어주었다
+			ENDSELECT
+		ELSEIF TALENT:연모||TALENT:애욕
+			SELECTCASE RAND:3
+				CASE 0
+					PRINTFORMW 「음냐...응...?」
+					PRINTFORMW 「어, 언제부터?」
+					PRINTFORMW 사토리는 황급히 볼에 흐른 침을 닦아냈다
+				CASE 1
+					IF !GROUPMATCH(ST_LIVETOGETHER(),1,3)
+						PRINTFORMW 「음...? 같이 자려고요?」
+						PRINTFORMW 「...그러면 이쪽으로...」
+						PRINTFORMW 사토리는 덮고있던 이불속으로 %마스터를% 끌어당겼다 
+					ELSE
+						PRINTFORMW 「응...왔어요?」
+						PRINTFORMW 「늦었으니까 얼른 자요...」
+						PRINTFORMW 사토리는 이불속으로 %마스터를% 끌어들였다
+					ENDIF
+				CASE 2
+					PRINTFORMW 「하아암...늦었으니까 얼른 자야지...」
+					PRINTFORMW 사토리는 %마스터를% 껴안곤 조용히 토닥여주고 있다
+					PRINTFORMW 반쯤 잠꼬대인것같다
+			ENDSELECT
+		ELSE
+			;설마
+			SELECTCASE RAND:3
+				CASE 0
+					PRINTFORMW 「...응...누구?」
+				CASE 1
+					PRINTFORMW 「하아암...누구야...?」
+				CASE 2
+					PRINTFORMW 「...하암, 잘 자고 있었는데...」
+			ENDSELECT
+		ENDIF
+	ENDIF
 ENDIF
 RETURN 1
 ;==================================================
