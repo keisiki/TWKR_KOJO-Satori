@@ -50,7 +50,9 @@ IF LOCAL
 		IF TCVAR:302
 			CALL ST_마스터회화불능
 		ELSE
-			IF TIME_PROGRESS(TCVAR:300) >= 120 && CFLAG:초기위치 == CFLAG:현재위치 && RAND:3 == 0
+			IF ST_시간정지
+				CALL ST_시간정지후
+			ELSEIF TIME_PROGRESS(TCVAR:300) >= 120 && CFLAG:초기위치 == CFLAG:현재위치 && RAND:3 == 0
 				CALL ST_차타주기
 			ELSEIF TALENT:섹프&&RAND:4 == 0
 				CALL ST_섹프회화
@@ -4358,10 +4360,10 @@ RETURN RESULT
 @M_KOJO_MESSAGE_COM_K49_355_1
 ;-------------------------------------------------
 ;記入チェック（=0, 非表示、1, 表示）
-LOCAL = 0
+LOCAL = 1
 ;-------------------------------------------------
 IF LOCAL
-
+	ST_시간정지 = CFLAG:현재위치
 ENDIF
 RETURN 1
 ;==================================================
@@ -5455,40 +5457,6 @@ CALL M_KOJO_MESSAGE_COM_K49_440_1
 RETURN RESULT
 
 @M_KOJO_MESSAGE_COM_K49_440_1
-;-------------------------------------------------
-;記入チェック（=0, 非表示、1, 表示）
-LOCAL = 0
-;-------------------------------------------------
-IF LOCAL
-
-ENDIF
-RETURN 1
-;==================================================
-;441,수업을 받는다(慧音専用
-;==================================================
-@M_KOJO_MESSAGE_COM_K49_441
-CALL TRAIN_MESSAGE
-CALL M_KOJO_MESSAGE_COM_K49_441_1
-RETURN RESULT
-
-@M_KOJO_MESSAGE_COM_K49_441_1
-;-------------------------------------------------
-;記入チェック（=0, 非表示、1, 表示）
-LOCAL = 0
-;-------------------------------------------------
-IF LOCAL
-
-ENDIF
-RETURN 1
-;==================================================
-;442,伐採する（未実装
-;==================================================
-@M_KOJO_MESSAGE_COM_K49_442
-CALL TRAIN_MESSAGE
-CALL M_KOJO_MESSAGE_COM_K49_442_1
-RETURN RESULT
-
-@M_KOJO_MESSAGE_COM_K49_442_1
 ;-------------------------------------------------
 ;記入チェック（=0, 非表示、1, 表示）
 LOCAL = 0

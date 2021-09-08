@@ -553,7 +553,7 @@ SELECTCASE 대화선택
         PRINTFORMW 「그러면서도 오니들에겐 얌전히 전해주고」
         PRINTFORMW 「...볼거라고는 카리스마 가격뿐이면서 말이죠」
     CASE 50
-        PRINTFORMW 「온천계란...관광객들이 무척이나 좋아하는것중 하나죠」
+        PRINTFORMW 「온천 계란...관광객들이 무척이나 좋아하는것중 하나죠」
         PRINTFORMW 「사실 지저에 널린 지옥 까마귀 알을 쓰는곳이 더 많지만, 별로 신경쓰는 사람은 없겠죠」
     CASE 51
         PRINTFORMW 「흔히 고양이는 물을 싫어한다고 생각하는데..」
@@ -677,6 +677,57 @@ SELECTCASE 대화선택
         PRINTFORMW 「생각이 안 나면 안 나는대로, 그냥 가만히 있어도 괜찮으니까요」
 ENDSELECT
 
+@ST_시간정지후
+#DIM 이전대화, 2
+#DIM DYNAMIC 대화선택
+#DIM CONST 대화개수 = 3
+;이 패턴에서는 사토리가 차를 타 주는 구상이 나옵니다
+;함락계마다 변화 있음
+
+;PRINTFORMW 「」
+대화선택 = ST_대사섞기(대화개수, 이전대화:0 , 이전대화:1)
+
+이전대화:1 = 이전대화:0
+이전대화:0 = 대화선택
+
+SELECTCASE 대화선택
+    CASE 0
+        IF MARK:반발각인 == 3 && TALENT:연인
+            PRINTFORMW 「시간정지로 돌아다니면서 뭘 하고 다니는건가요?」
+            PRINTFORMW 「...이상한짓은 하지 않으면 좋겠네」
+        ELSEIF TALENT:연인
+            PRINTFORMW 「제 앞에서 시간정지 해놓곤, 어디갔다 온건가요?」
+            PRINTFORMW 「다른데 가버리면 싫어요...」
+        ELSEIF TALENT:연모||TALENT:사모||TALENT:애욕
+            PRINTFORMW 「...급한일이라도 있었던 건가요?」
+            PRINTFORMW 「그렇게 시간정지까지 써가면서...」
+            PRINTFORMW 사토리는 고개를 갸웃거리고 있다
+        ELSE
+            PRINTFORMW 「뭐 급한일이라도 있었나요?」
+            PRINTFORMW 사토리는 의아해 하고 있다
+        ENDIF
+    CASE 1
+        IF MARK:반발각인 == 3 && TALENT:연인
+            PRINTFORMW 「멀리 가버렸길래 안 올줄 알았는데 말이죠」
+            PRINTFORMW 「그나저나 그렇게 바삐 가서 뭘 한걸까나」
+        ELSEIF TALENT:연인
+            PRINTFORMW 「늘 생각해본건데 말이죠」
+            PRINTFORMW 「시간정지 하고 돌아다니면 더 피곤할거 같은데, 괜찮은 건가요?」
+            PRINTFORMW 「지쳐보이는 기색은 없는거 같은데...」
+        ELSE
+            PRINTFORMW 「그래서 시간정지까지 써서 처리한 일은 뭐였나요?」
+            PRINTFORMW 「...딱히 별 일 없었다, 이런건 아니겠죠?」
+        ENDIF
+    CASE 2
+        IF MARK:반발각인 == 3 && TALENT:연인
+            PRINTFORMW 「어딜 그렇게 바쁘게 다니는건가요?」
+            PRINTFORMW 「시간정지까지 해 가면서...」
+        ELSE
+            PRINTFORMW 「시간까지 멈춰가면서 뭘 하고 온건가요?」
+            PRINTFORMW 사토리는 의아해 하고 있다
+        ENDIF
+ENDSELECT
+ST_시간정지 = 0
 
 @ST_차타주기
 #DIM 이전대화, 2
