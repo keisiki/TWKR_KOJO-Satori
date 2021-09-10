@@ -4366,6 +4366,31 @@ IF LOCAL
 	ST_시간정지 = CFLAG:현재위치
 ENDIF
 RETURN 1
+
+;==================================================
+;356,그늘로 꾀다
+;ABL:露出癖 + TALENT:羞恥心で判定
+;==================================================
+@M_KOJO_SUCCESS_COM_K49_356
+;成否判定
+;TFLAG:192(-1＝強制失敗、0=COM依存、1=強制成功
+TFLAG:192 = 0
+
+
+@M_KOJO_MESSAGE_COM_K49_356
+CALL TRAIN_MESSAGE
+CALL M_KOJO_MESSAGE_COM_K49_356_1
+RETURN RESULT
+
+@M_KOJO_MESSAGE_COM_K49_356_1
+;-------------------------------------------------
+;記入チェック（=0, 非表示、1, 表示）
+LOCAL = 0
+;-------------------------------------------------
+IF LOCAL
+
+ENDIF
+
 ;==================================================
 ;360,몸을 맡긴다
 ;TCVAR:20(27=谷間を見せる 32=前から抱きつく 35=치마の中を見せる 53=파이즈리 73=ぱふぱふ 77=乳を吸わせる 85=V挿入する 86=だいしゅきホールド 87=A挿入する 88=허리振りV 89=허리振りA
@@ -4378,10 +4403,70 @@ RETURN RESULT
 @M_KOJO_MESSAGE_COM_K49_360_1
 ;-------------------------------------------------
 ;記入チェック（=0, 非表示、1, 表示）
-LOCAL = 0
+LOCAL = 1
 ;-------------------------------------------------
 IF LOCAL
-
+	SELECTCASE TCVAR:20
+		CASE 27
+			IF MARK:반발각인 == 3
+				IF TALENT:연인
+					SELECTCASE RAND:3
+						CASE 0
+							PRINTFORMW 「그래도 이렇게 하면 못봐줄만한 사이즈는 아니지 않나요?」
+							PRINTFORMW 사토리는 애써 가슴을 모으고 있다
+						CASE 1
+							PRINTFORMW 「조금만 더 커졌음 좋겠는데-」
+							PRINTFORMW 「그래, 한 이정도만 되도...」
+							PRINTFORMW 사토리는 두 손으로 가슴을 모아 들이대고 있다
+						CASE 2
+							PRINTFORMW 「흐흥...어떤가요?」
+							PRINTFORMW 사토리는 가슴을 모아 겨우 만든 골짜기를 과시해오고 있다
+							PRINTFORMW 「...겨, 겨우라니...그래도 이정도면...」
+							PRINTFORMW 토라진 모양이다
+					ENDSELECT
+				ELSE
+					SELECTCASE RAND:2
+						CASE 0
+							PRINTFORMW 「이런 가슴이라도 보면 흥분하는걸까-」
+							PRINTFORMW 사토리는 희미하게 있는 가슴골을 드러내고 있다
+						CASE 1
+							PRINTFORMW 「그래, 그렇게 얌전하게만 있으면 좋은거 해줄테니깐」
+							PRINTFORMW 「후후후...이런거라던가?」
+							PRINTFORMW 사토리는 가슴을 모아 간신히 만든 가슴골을 보여주고 있다
+							PRINTFORMW 「읏...그런거 생각하면 앞으로 서비스같은거 안 해줄거예요?」
+					ENDSELECT
+				ENDIF
+			ELSEIF TALENT:연인||TALENT:연모||TALENT:사모||TALENT:애욕
+				SELECTCASE RAND:3
+					CASE 0
+						PRINTFORMW 「그래도 이렇게 하면 못봐줄만한 사이즈는 아니지 않나요?」
+						PRINTFORMW 사토리는 애써 가슴을 모으고 있다
+					CASE 1
+						PRINTFORMW 「조금만 더 커졌음 좋겠는데-」
+						PRINTFORMW 「그래, 한 이정도만 되도...」
+						PRINTFORMW 사토리는 두 손으로 가슴을 모아 들이대고 있다
+					CASE 2
+						PRINTFORMW 「흐흥...어떤가요?」
+						PRINTFORMW 사토리는 가슴을 모아 겨우 만든 골짜기를 과시해오고 있다
+						PRINTFORMW 「...겨, 겨우라니...그래도 이정도면...」
+						PRINTFORMW 토라진 모양이다
+				ENDSELECT
+			ELSEIF TALENT:섹프
+				SELECTCASE RAND:2
+					CASE 0
+						PRINTFORMW 「이런거 해주면 좋아한다던데...」
+						PRINTFORMW 사토리는 가슴을 모아 만든 골짜기를 과시하듯 들이밀어왔다
+					CASE 1
+						PRINTFORMW 「이러면 흥분하는걸까나」
+						PRINTFORMW 「...소용없나?」
+						PRINTFORMW 사토리는 두 손으로 최대한 모은 가슴을 %마스터의% 눈 앞에 들이대고 있다
+				ENDSELECT
+			ELSE
+				PRINTFORMW 「음...이런건 어떠려나?」
+				PRINTFORMW 사토리는 아담한 가슴을 들이밀고 있다
+			ENDIF
+		;..나머지는 생략, 카운터 구상에서 쓰도록 하자
+	ENDSELECT
 ENDIF
 RETURN 1
 ;==================================================
