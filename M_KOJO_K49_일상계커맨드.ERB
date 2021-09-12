@@ -4484,7 +4484,7 @@ RETURN RESULT
 LOCAL = 0
 ;-------------------------------------------------
 IF LOCAL
-
+	;위와 같은 논리로 생략
 ENDIF
 RETURN 1
 
@@ -4504,7 +4504,66 @@ LOCAL = 1
 IF LOCAL
 ;PRINTFORMW 「」
 ;PRINTL
+;연인한테만 가능하다 = 다른 케이스는 신경 쓸 필요 없다
+	IF !TFLAG:193
+		;실패
+		IF MARK:반발각인 == 3
+			PRINTFORMW ...사토리한테 반지를 건내려곤 했지만
+			PRINTFORMW 그렇지만, 아직 받아줄것 같지 않다
+			PRINTFORMW 적어도 이렇게 서먹한 분위기 속에서 프러포즈하는것은 좋지 않을터
+			PRINTFORMW ...사토리가 이 마음까지 읽기 전에, %마스터는% 반지를 다시 주머니 속으로 집어넣어버렸다
+		ELSE
+			PRINTFORMW 스스로가 답답하게 느껴지지만, 그런다고 달라지는건 없다
+			PRINTFORMW 아직은 눈치채지 못한거 같으니, 혹여 이 생각조차 읽히기 전에 반지를 숨겨야 한다
+			PRINTFORMW ...청혼하기엔, 좀 더 좋은 상황이 올 것이다, 언젠가는
+		ENDIF
+	ELSE
+		;성공
+		ST_고백정보:0 = CFLAG:MASTER:현재위치
+		ST_고백정보:1 = DAY:2 
+		ST_고백정보:2 = DAY:3
+		ST_고백정보:3 = DAY:5
 
+		IF CFLAG:6000 == 2
+			; 전 회차에서 연인 이상이었다
+			PRINTFORMW 「...또, 여기까지 왔네요」
+			PRINTFORMW 「세계가 일순하고, 또다시 저를 만나서, 다시 한번 사랑을 하고, 종국엔 다시 반지를 끼워준다...」
+			PRINTFORMW 「기분이 이상하네요, 뭐랄까...데자뷰라고 해야 할까나」
+			PRINTFORMW 「...제발, 이 이야기의 마지막만은...반복되지 않았으면 좋겠어요」
+			PRINTFORMW 「그러니, 이번만은 이 약속, 반드시 지켜주세요」
+			PRINTFORMW 사토리는 %마스터의% 손을 붙잡았다
+			PRINTFORMW 「...죽음이 우릴 갈라놓기 전까지, 끝까지 함께 해 주세요」
+		ELSE
+			PRINTFORMW 사토리, 이쪽으로 와줄래?
+			PRINTFORMW 「...네?」
+			PRINTFORMW 의아해 하며 다가온 사토리의 손을 붙잡았다
+			PRINTFORML
+			PRINTFORMW 그리고 말 없이 그 손에 반지를 끼워주었다
+			PRINTFORMW 「저기, 이건...?」
+			PRINTFORMW 사토리는 얼떨떨한 표정으로 반지와 %마스터를% 번갈아 바라보고 있다
+			PRINTFORMW 「...이거, 제가 생각하는 그거가...맞는건가요?」
+			PRINTFORMW %마스터는% 고개를 끄덕였다
+			PRINTFORML
+			PRINTFORMW 사토리는 멍하니 자기 손을 바라보고 있다
+			PRINTFORMW 「정말로 결혼 반지...」
+			PRINTFORMW 「어쩐지 기분이 이상하네요, 제가 이런것도 다 받아보는 날이 오게 될 줄이야」
+			PRINTFORMW 「...아시다시피 다른 사람들은 저를 그리 좋아하지 않으니까요」
+			PRINTFORMW 「저야 신경 안 썼지만, 모두들 저를 두려워 하고 미워하는건 알고 있었죠」
+			PRINTFORMW 「...실상은 제가 모두를 꺼려서 모두를 떠나 보낸걸지도 모르겠지만」
+			PRINTFORMW 「몇번 그렇게 사람들을 떠나게 만들고 나니, 어느새 아무도 찾아오지 않게 되버렸고요」
+			PRINTFORML
+			PRINTFORMW 「그런데도 %사마스터는% 아무런 거리낌 없이 다가와 주셨죠」
+			PRINTFORMW 「처음엔 금방 가버릴줄 알았는데...어쩌다보니 여기까지 오게 됐네요」
+			PRINTFORMW 사토리는 말끝을 흐렸다
+			PRINTFORMW 그 눈엔 눈물이 살짝 고여있었다
+			PRINTFORML
+			PRINTFORMW 「...죄송해요, 뭔가 더 멋진 말을 하고 싶었는데, 영 생각이 안 나는걸요」
+			PRINTFORMW 「좋은 글귀는 많이 봤어도 정작 이런 상황에서 한번도 써먹지 못하다니...」
+			PRINTFORMW 「그러니까...하고 싶은 말은...」
+			PRINTFORML
+			PRINTFORMW 「...부족한 몸이지만...앞으로, 삶이 허락하는 순간까지, 잘 부탁드립니다」
+		ENDIF
+	ENDIF
 ENDIF
 
 ;==================================================

@@ -53,27 +53,6 @@
 ; 2.전회 연인이었다
 ; 3.전회 부부였다
 ;
-[SKIPSTART]
-;복붙용 내용들
-;PRINTFORMW 「」
-;PRINTFORMW 『』
-		IF MARK:반발각인 == 3
-
-		ELSEIF TALENT:연인
-			
-		ELSEIF TALENT:사모||TALENT:연모
-			
-		ELSE
-			SELECTCASE RAND:3
-				CASE 0
-					
-				CASE 1
-					
-				CASE 2
-					
-			ENDSELECT
-		ENDIF
-[SKIPEND]
 ;### 口上存在判定 ###################################
 @M_KOJO_K49(ARG)
 ;ここでRESULTSを設定すると他の同キャラ口上を突っ込まれても正常動作する。
@@ -131,7 +110,7 @@ RETURN 1
 ;※※※※※※※※※※※※※※※※※※※※※※※※※※
 @M_KOJO_ENCOUNTER_K49
 #DIM 폭로개수
-
+CFLAG:시간정지들킴 = 1
 IF CALLNAME:MASTER == "당신"
 	MASTERNAME:49 = %CALLNAME:MASTER%
 ELSE
