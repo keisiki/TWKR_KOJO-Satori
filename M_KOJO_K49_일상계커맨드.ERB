@@ -4578,10 +4578,96 @@ RETURN RESULT
 @M_KOJO_MESSAGE_COM_K49_402_1
 ;-------------------------------------------------
 ;記入チェック（=0, 非表示、1, 表示）
-LOCAL = 0
+LOCAL = 1
 ;-------------------------------------------------
 IF LOCAL
-
+	IF CFLAG:수면
+		IF RAND:3 == 0
+			IF MARK:반발각인 == 3 && !TALENT:연인
+				PRINTFORMW 「...」
+				PRINTFORM 사토리는
+				SIF TFLAG:193
+					PRINTFORM 아이를 안은채 
+				PRINTFORMW 조용히 잠들어 있다
+			ELSEIF TALENT:연인
+				PRINTFORMW 「음냐...」
+				PRINTFORMW 사토리는 침까지 흘리며 자고 있다
+			ELSEIF TALENT:연모||TALENT:사모||TALENT:애욕
+				PRINTFORMW 「...으음~...에헤헤...」
+				PRINTFORMW 좋은 꿈이라도 꾸는건지 기분이 좋아보인다
+			ELSEIF TALENT:섹프
+				PRINTFORMW 「흐응...응...으으으응...」
+				PRINTFORMW 야한꿈이라도 꾸는건지 묘한 숨소리를 내며 자고 있다
+			ELSE
+				PRINTFORMW 「흠냐...응...」
+				PRINTFORMW 사토리는 기분 좋게 잠들어 있다
+			ENDIF
+			PRINTFORMW 깨우지 않도록 조심히 옆에 누워 잠을 청하기로 했다
+		ELSE
+			SELECTCASE RAND:2
+				CASE 0
+					PRINTFORMW 「......」
+					PRINTFORMW 사토리는 얌전하게 잠들어 있다
+					PRINTFORMW %마스터가% 옆에 눕자 잠시 눈을 떴지만, 이내 도로 새근새근 잠들어버렸다	
+				CASE 1
+					PRINTFORMW 「으응...?」
+					PRINTFORMW 사토리는 실눈으로 %마스터를% 바라봤지만 얼마 안 있어 도로 잠들어버렸다
+			ENDSELECT
+		ENDIF
+	ELSE
+		;PRINTFORMW 「」
+		IF MARK:반발각인 == 3
+			SELECTCASE RAND:2
+				CASE 0
+					PRINTFORMW 「...그렇게 무방비하게 자다가 무슨 꼴을 당하려고 그러는지」
+					PRINTFORMW 나지막히 말하는 소리가 들렸지만, 가볍게 무시하고 잠을 청했다
+				CASE 1
+					PRINTFORMW 「...」
+					PRINTFORMW 사토리는 %마스터가% 자던 말던 관심 없는 모양이다
+			ENDSELECT
+		ELSEIF TALENT:연인
+			SELECTCASE RAND:3
+				CASE 0
+					PRINTFORMW 「...나도 자버릴까나」
+					PRINTFORMW 사토리는 %마스터의% 옆에 슬며시 누웠다
+					PRINTFORMW 무어라 중얼거리던건 같지만 쏟아지는 졸음에 더이상 듣진 못했다
+				CASE 1
+					PRINTFORMW 「벌써 자게요?」
+					PRINTFORMW 「...조금만 더 있다 자면 안돼요?」
+					PRINTFORMW 사토리는 %마스터의% 옆에 누워 졸라오고 있지만
+					PRINTFORMW 더 이상은 참기 힘들만큼 졸렸기에 어쩔수 없이 잠들어버렸다
+				CASE 2
+					PRINTFORMW 「벌써 졸린건가요?」
+					PRINTFORMW 「좀 더 이따가 자도...하아, 어쩔수 없네요」
+					PRINTFORMW 사토리는 약간 실망한듯한 표정이었다
+			ENDSELECT
+		ELSEIF TALENT:연모||TALENT:사모||TALENT:애욕
+			SELECTCASE RAND:3
+				CASE 0
+					PRINTFORMW 「벌써 주무시게요?」
+					PRINTFORMW 「...칫」
+					PRINTFORMW 어쩐지 혀를 차는 소리가 들린것 같다...	
+				CASE 1
+					PRINTFORMW 어쩐지 사토리의 표정이 영 불만스러워 보였지만, 개의치 않고 잠을 청하기로 했다
+				CASE 2
+					IF !CFLAG:5005
+						PRINTFORMW 「엣, 잠깐, 오늘은 아직 한마디도 못했는데...!」
+						PRINTFORMW 왜인지 토라진것 같은 사토리를 마지막으로, %마스터의% 눈꺼풀은 졸음을 견뎌내지 못했다
+					ELSE
+						PRINTFORMW 「......」
+						PRINTFORMW 사토리는 얌전히 이불을 덮어주었다
+					ENDIF
+			ENDSELECT
+		ELSE
+			SELECTCASE RAND:2
+				CASE 0
+					PRINTFORMW 사토리는 %마스터가% 잠들던 말던 신경도 안쓰는 모양이다
+				CASE 1
+					PRINTFORMW 「...잘 자라는 말이라도 해야 할까요?」
+					PRINTFORMW 「그러면 잘 자요」
+			ENDSELECT
+		ENDIF
+	ENDIF
 ENDIF
 RETURN 1
 ;==================================================
