@@ -4680,12 +4680,135 @@ CALL M_KOJO_MESSAGE_COM_K49_403_1
 RETURN RESULT
 
 @M_KOJO_MESSAGE_COM_K49_403_1
+#DIM 연속횟수
+#DIM 연속날
 ;-------------------------------------------------
 ;記入チェック（=0, 非表示、1, 表示）
-LOCAL = 0
+LOCAL = 1
 ;-------------------------------------------------
 IF LOCAL
-
+	IF PREVCOM == 403 && 연속날 == DAY
+		연속횟수++
+	ELSE
+		연속횟수 = 0
+	ENDIF
+	연속날 = DAY
+	IF 연속횟수 >= 3
+		;3번 이상 연속으로 휴식중
+		;PRINTFORMW 「」
+		IF MARK:반발각인 == 3
+			IF TALENT:연인
+				SELECTCASE RAND:3
+					CASE 0
+						PRINTFORMW 「...저기, 뭐라도 좀 해봐요」
+					CASE 1
+						PRINTFORMW 「...자는건가요?」
+					CASE 2
+						PRINTFORMW 「...저기, 왜 그러는건가요? 혹시 화난건...」
+				ENDSELECT
+			ELSE
+				SELECTCASE RAND:3
+					CASE 0
+						PRINTFORMW 「...저기, 살아 있는건 맞는거야?」
+						PRINTFORMW 「아무런 생각없이 얼마를 앉아있는거야」
+					CASE 1
+						PRINTFORMW 「그렇게 멍하니 앉아있을거면 차라리 자버리는게 나을텐데...」
+					CASE 2
+						PRINTFORMW 「아무 생각없이 이렇게 오래 멍때리는것도 어찌보면 재능이겠네...」
+				ENDSELECT
+			ENDIF
+		ELSEIF TALENT:연인
+			SELECTCASE RAND:3
+				CASE 0
+					PRINTFORMW 「...혹시 자는건가요?」
+				CASE 1
+					PRINTFORMW 「...말이라도 좀 해주시면 안 되나요?」
+					PRINTFORMW 「계속 멍때리고만 있는데...」
+				CASE 2
+					PRINTFORMW 「저...괜찮은건가요?」
+					PRINTFORMW 「아까부터 미동조차 없는데...」
+			ENDSELECT
+		ELSEIF TALENT:연모||TALENT:사모||TALENT:애욕
+			SELECTCASE RAND:3
+				CASE 0
+					PRINTFORMW 「...저기-? 설마, 자요?」
+					PRINTFORMW 「...안 자면 뭐라도 좀 말해봐요...걱정되게...」
+				CASE 1
+					PRINTFORMW 「아까부터 꼼짝도 안하고...괜찮은거 맞죠?」
+				CASE 2
+					PRINTFORMW 「...머릿속이 텅 비었어...」
+					PRINTFORMW 「아무런 생각도 안 하고 몇분째 이러고 있는거람...」
+			ENDSELECT
+		ELSE
+			SELECTCASE RAND:3
+				CASE 0
+					PRINTFORMW 「...혹시 이대로 자는건가?」
+				CASE 1
+					PRINTFORMW 「한참동안 봐도 아무런 생각도 없어...죽은건가...?」
+				CASE 2
+					PRINTFORMW 「...이렇게 오랫동안 멍때리는게 가능한 건가...?」
+			ENDSELECT
+		ENDIF
+	ELSE
+		IF MARK:반발각인 == 3 && !TALENT:연인
+			SELECTCASE RAND:2
+				CASE 0
+					IF (CFLAG:현재위치 == CFLAG:자택위치 || CFLAG:현재위치 == CFLAG:초기위치)&& !CFLAG:MASTER:초기위치
+						PRINTFORMW 「힘들면 슬슬 돌아가면 되잖아요」
+						PRINTFORMW 사토리는 쌀쌀맞게 말해왔다
+					ELSE
+						PRINTFORMW 「피곤한거면 차라리 잠시 잠이라도 자는건 어떨지」
+						PRINTFORMW 「물론 그 사이에 제가 얌전히 있는단 보장은 없지만」
+						PRINTFORMW 「...살벌한 짓은 안해도 한동안 괴롭게 만드는 정도는 할 수 있다구요?」
+					ENDIF
+				CASE 1
+					PRINTFORMW 「...」
+					PRINTFORMW 사토리도 옆에서 말 없이 쉬고 있다
+			ENDSELECT
+		ELSEIF TALENT:연인
+			SELECTCASE RAND:3
+				CASE 0
+					PRINTFORMW 「...느긋하네요」
+				CASE 1
+					PRINTFORMW 「피곤한건가요?」
+					PRINTFORMW 「...그럼 저도」
+					PRINTFORMW 둘이서 멍하니 시간을 때웠다
+				CASE 2
+					IF (CFLAG:현재위치 == CFLAG:자택위치 || CFLAG:현재위치 == CFLAG:초기위치)&& !CFLAG:MASTER:초기위치
+						PRINTFORMW 「할 것도 없는데 차라도 할까나...」
+					ELSE
+						PRINTFORMW 「...」
+						PRINTFORMW 둘이서 한동안 멍하니 허공을 응시하고 있었다
+					ENDIF
+			ENDSELECT
+		ELSEIF TALENT:연모||TALENT:사모||TALENT:애욕
+			SELECTCASE RAND:3
+				CASE 0
+					PRINTFORMW 「...」
+					PRINTFORMW 사토리는 조용히 앉아있는척을 하며 %마스터를% 흘끔흘끔 바라보고 있다
+				CASE 1
+					IF (CFLAG:현재위치 == CFLAG:자택위치 || CFLAG:현재위치 == CFLAG:초기위치)&& !CFLAG:MASTER:초기위치
+						PRINTFORMW 「피곤하면 누워있어도 되는데」
+						PRINTFORMW 「아예 자버려도 되고」
+					ELSE
+						PRINTFORMW 「...무료하네요」
+					ENDIF
+				CASE 2
+					PRINTFORMW 「한가해 보이네요...」
+					PRINTFORMW 「딱히 저도 할 건 없지만」
+			ENDSELECT
+		ELSE
+			SELECTCASE RAND:3
+				CASE 0
+					PRINTFORMW 사토리는 %마스터를% 거들떠도 안 보고 있다
+				CASE 1
+					PRINTFORMW 「한가한가 보네요...」
+				CASE 2
+					PRINTFORMW 「...」
+					PRINTFORMW 사토리도 옆에서 멍때리고 있다
+			ENDSELECT
+		ENDIF
+	ENDIF
 ENDIF
 RETURN 1
 ;==================================================
