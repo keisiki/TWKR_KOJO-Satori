@@ -4823,15 +4823,260 @@ RETURN RESULT
 @M_KOJO_MESSAGE_COM_K49_405_1
 ;-------------------------------------------------
 ;記入チェック（=0, 非表示、1, 表示）
-LOCAL = 0
+LOCAL = 1
 ;-------------------------------------------------
 IF LOCAL
-	;TARGETとデート
+	;TARGET과 데이트
 	IF CFLAG:동행
-	;TARGET以外とデート
+		IF FIRSTTIME(SELECTCOM)
+			;데이트 처음
+			IF MARK:반발각인 == 3 && !TALENT:연인
+				PRINTFORMW 「나가기 귀찮은데...」
+				PRINTFORMW 사토리는 입술을 삐죽이면서도 순순히 따라오고 있다
+			ELSEIF TALENT:연인
+				PRINTFORMW 「그러고보니 데이트는 처음이었나」
+				PRINTFORMW 「어디로 갈건가요? %ST_DATEPLACE(DATENAME_PLACE())%?」
+				IF ST_DATEPLACE(DATENAME_PLACE()) == "지저"
+					PRINTFORMW 「...좋네요, 지저에도 명소는 여러곳 있으니」
+					PRINTFORMW 「지상에는 그닥 유명하진 않지만...현지인만 아는 그런 곳도 많으니깐요」
+					PRINTFORMW 「도착하면 안내해 드릴게요」
+				ELSE
+					PRINTFORMW 「...좋네요, 가볼까요 그럼」
+					PRINTFORMW 사토리는 즐거워 보이는 표정이다
+				ENDIF
+			ELSEIF TALENT:연모||TALENT:사모||TALENT:애욕
+				PRINTFORMW 「이렇게 나가는건 흔치 않으니까, 왠지 두근거리네요...」
+				PRINTFORMW 「그래서 어디로 가는거죠? %ST_DATEPLACE(DATENAME_PLACE())%?」
+				SELECTCASE DATENAME_PLACE()
+					CASE "하쿠레이 신사"
+						PRINTFORMW 「...참배라도 하려는 건가요?」
+						PRINTFORMW 「그나저나 하쿠레이 신사의 효험은 뭐였더라...가난...은 아닐테고」
+						PRINTFORMW 「...아니 애초에 무슨 신이 있는건지도 모르겠지만요」
+					CASE "인간마을"
+						PRINTFORMW 「그냥 들어가면 그러니까 변장이라도 해야 할까나...」
+					CASE "삼도천~명계"
+						PRINTFORMW 「중유의 길이라도 가려는 건가요?」
+					CASE "지저"
+						PRINTFORMW 「...지저라, 번화하고 좋죠, 바가지만 안 쓴다면야」
+						PRINTFORMW 「물론 저랑 같이 다닌다면 그럴 일은 없을거예요...아마도」
+					CASE "꿈의 세계~달"
+						PRINTFORMW 「...뭔가 굉장히 낭만적이네요, 첫 데이트가 비유가 아니라 진짜 달이라니」
+				ENDSELECT
+			ELSEIF TALENT:섹프
+				PRINTFORMW 「데이트라...그러고보니 이런건 처음이었나」
+				PRINTFORMW 「가끔은 이런것도 재미있겠죠, 이럴때 아니고서야 해볼일 없을테니깐...」
+				PRINTFORMW 사토리는 상당히 즐거워보이는 표정으로 %마스터를% 따라오고 있다
+			ELSE
+				PRINTFORMW 「데이트라...한번은 해보고 싶다는 생각은 있었긴 한데」
+				PRINTFORMW 「뭐, 저라면 이때 아니고선 해볼일 없겠죠...」
+			ENDIF
+		ELSE
+			;데이트 경험 있음
+			IF MARK:반발각인 == 3
+				IF TALENT:연인
+					
+				ELSE
+					
+				ENDIF
+			ELSEIF TALENT:연인
+				
+			ELSEIF TALENT:연모||TALENT:사모||TALENT:애욕
+				
+			ELSEIF TALENT:섹프
+				
+			ELSE
+				
+			ENDIF
+		ENDIF
+	;코이시랑 데이트
+	;PRINTFORMW 「」
+	;CALL ST_KS대사W("")
+	ELSEIF CFLAG:[[코이시]]:동행
+		IF MARK:반발각인 == 3
+			IF TALENT:연인
+				SELECTCASE RAND:3
+					CASE 0
+						PRINTFORMW 「둘이 데이트 간다고요...흠...」
+						PRINTFORMW 「...조심해서 다녀오세요」
+						IF TALENT:38:연인
+							IF MARK:38:반발각인 == 3
+								CALL ST_KS대사W("「...갔다 올게」")
+								PRINTFORMW 두 자매의 표정은 그리 밝지 못했다
+							ELSE
+								CALL ST_KS대사W("「...삐졌어?」")
+								PRINTFORMW 「그런건 아닌데...」
+								CALL ST_KS대사W("「...있지, 다음번엔 언니를 좀 챙겨줘」")
+							ENDIF
+						ELSE
+							CALL ST_KS대사W("「으응, 갔다올게」")
+						ENDIF
+					CASE 1
+						PRINTFORMW 「...」
+						PRINTFORMW 사토리는 코이시와 %마스터를% 지그시 바라보고 있다
+					CASE 2
+						PRINTFORMW 「너무 늦게까지 놀다 오면 안돼」
+						IF MARK:38:반발각인 == 3
+							CALL ST_KS대사W("「금방 올거야」")
+						ELSE
+							CALL ST_KS대사W("「네에-」")
+							CALL ST_KS대사W("코이시는 건성으로 대답하고 있다")
+						ENDIF
+				ENDSELECT
+			ELSE
+				SELECTCASE RAND:2
+					CASE 0
+						PRINTFORMW 「...안 가면 안되는거니?」
+						IF MARK:38:반발각인 == 3
+							IF TALENT:38:연인
+								PRINTFORMW 「연인끼리 라곤 해도...」
+								CALL ST_KS대사W("「...」")
+								CALL ST_KS대사W("코이시는 복잡한 표정이다")
+							ELSE
+								CALL ST_KS대사W("「그냥 나갔다만 오는건데 뭐...」")
+								PRINTFORMW 「...그런거 치곤 표정이 굳어있잖니」
+								CALL ST_KS대사W("「......」")
+							ENDIF
+						ELSEIF TALENT:38:연인
+							CALL ST_KS대사W("「언니가 생각하는거보다 좋은 사람이라구? 너무 뭐라 하진 마」")
+							PRINTFORMW 「...」
+						ELSEIF TALENT:38:연모||TALENT:38:사모||TALENT:38:애욕
+							CALL ST_KS대사W("「응? 어째서?」")
+							PRINTFORMW 「그 사람...하아, 됐어...맘대로 하렴」
+						ELSEIF TALENT:38:섹프
+							CALL ST_KS대사W("「싫은걸, 데이트도 하고 기분 좋은일 잔뜩 하고 올거지롱~」")
+							PRINTFORMW 「......」
+							PRINTFORMW 사토리는 착잡해 보이는 표정으로 %마스터를% 바라보고 있다
+						ELSE
+							PRINTFORMW 사토리는 불만스러워 보이는 표정이다
+						ENDIF
+					CASE 1
+						PRINTFORMW 「...조심해서 다녀오렴」
+						CALL ST_KS대사W("「...?」")
+				ENDSELECT
+			ENDIF
+		ELSEIF TALENT:연인
+			SELECTCASE RAND:3
+				CASE 0
+					PRINTFORMW 「...질투나」
+					PRINTFORMW 「어딘가의 하시히메씨마냥 질투나, 분해...」
+					PRINTFORMW 사토리는 입술을 삐죽인채 중얼거리고 있다
+					CALL ST_KS대사W("「...얼른 가자, 언니 화낼라」")
+					CALL ST_KS대사W("코이시는 옷깃을 잡아끌었다")
+				CASE 1
+					PRINTFORMW 「...잘 놀다 오세요」
+					PRINTFORMW 사토리는 살짝 삐진모양이다
+				CASE 2
+					PRINTFORMW 「...둘이서만 가다니, 치사해」
+					CALL ST_KS대사W("「다, 다음번엔 언니도 데려갈테니까」")
+					PRINTFORMW 사토리는 토라진 얼굴로 멀어져 가는 %마스터를% 바라보고 있다
+			ENDSELECT
+		ELSEIF TALENT:연모||TALENT:사모||TALENT:애욕
+			SELECTCASE RAND:2
+				CASE 0
+					PRINTFORMW 「...」
+					PRINTFORMW 사토리는 어쩐지 입술을 삐죽이고 있다
+				CASE 1
+					PRINTFORMW 「...재밌겠네」
+					CALL ST_KS대사W("「언니도 갈래?」")
+					PRINTFORMW 「딱히...」
+			ENDSELECT
+		ELSEIF TALENT:섹프
+			SELECTCASE RAND:2
+				CASE 0
+					PRINTFORMW 「오늘은 코이시랑 놀아주시는 건가요?」
+					PRINTFORMW 「저기...갔다오면, 밤에...응?」
+					PRINTFORMW 사토리는 코이시 몰래 조용히 속삭여왔다
+				CASE 1
+					PRINTFORMW 「둘이서 어디로 가려는 걸까나~」
+					PRINTFORMW 「혹시, 저만 빼놓고 즐기려는건 아니겠죠?」
+					PRINTFORMW 사토리는 능글맞게 웃고 있다
+			ENDSELECT
+		ELSE
+			SELECTCASE RAND:2
+				CASE 0
+					PRINTFORMW 「어라...코이시, 어디가니?」
+					CALL ST_KS대사W("「비-밀~」")
+					PRINTFORMW 「...그래, 너무 늦게 들어오지나 마렴」	
+				CASE 1
+					PRINTFORMW 「저녁 먹기 전엔 돌아오렴」
+					CALL ST_KS대사W("「응~」")
+			ENDSELECT
+		ENDIF
+	;TARGET이외에 데이트
 	ELSEIF CFLAG:MASTER:동행
-	;お出かけお見送り
+		IF MARK:반발각인 == 3
+			IF TALENT:연인
+				PRINTFORMW 「...왠지 가슴이 답답해 지는걸」
+			ELSE
+				PRINTFORMW 「...」
+				PRINTFORMW 사토리는 싸늘한 눈빛으로 %마스터를% 바라보고 있다
+			ENDIF
+		ELSEIF TALENT:연인
+			PRINTFORMW 「...」
+			PRINTFORMW 사토리는 입술을 삐죽이고 있다
+		ELSEIF TALENT:연모||TALENT:사모||TALENT:애욕
+			PRINTFORMW 「...」
+			PRINTFORMW 사토리는 입술을 잘근잘근 씹고있다
+		ELSEIF TALENT:섹프
+			PRINTFORMW 「좋은 시간 보내세요」
+			PRINTFORMW 「끝나고 나면 와줬음 좋겠네」
+			PRINTFORMW 사토리는 나지막히 속삭여왔다
+		ELSE
+			;표시없음
+		ENDIF
+	;혼자 나감
 	ELSE
+		IF MARK:반발각인 == 3&& !TALENT:연인
+			SELECTCASE RAND:2
+				CASE 0
+					PRINTFORMW 사토리는 시큰둥한 표정으로 이쪽을 바라보고 있다
+				CASE 1
+					PRINTFORMW 「...흥」
+					PRINTFORMW 사토리는 고개를 돌려버렸다
+			ENDSELECT
+		ELSEIF TALENT:연인
+			SELECTCASE RAND:3
+				CASE 0
+					PRINTFORMW 「나도 따라갈까...」
+				CASE 1
+					PRINTFORMW 「조심해서 갔다 와요」
+				CASE 2
+					IF ST_내방중()
+						PRINTFORMW 「기껏 만나러 와줬더니만...」
+						PRINTFORMW 사토리는 삐진 모양이다
+					ELSE
+						PRINTFORMW 「너무 늦게 돌아오진 마세요」
+					ENDIF
+			ENDSELECT
+		ELSEIF TALENT:연모||TALENT:사모||TALENT:애욕
+			SELECTCASE RAND:3
+				CASE 0
+					PRINTFORMW 「아...」
+					PRINTFORMW 사토리는 어쩐지 아쉬워 보이는 표정이다
+				CASE 1
+					PRINTFORMW 「...조심히 다녀오세요」
+				CASE 2
+					PRINTFORMW 「...」
+					PRINTFORMW 사토리는 형용하기 어려운 표정으로 %마스터를% 바라보고 있다
+			ENDSELECT
+		ELSEIF TALENT:섹프
+			SELECTCASE RAND:3
+				CASE 0
+					PRINTFORMW 「이번엔 또 어디의 누구랑 하려고 가는걸까나?」
+					PRINTFORMW 「...장난이에요, 조심해서 가시길」
+				CASE 1
+					IF ST_내방중()
+						PRINTFORMW 「...아쉽네, 다른데로 가버리다니...」
+						PRINTFORMW 「오늘은 잔뜩 야한짓 하고 싶었는데...」
+					ELSE
+						PRINTFORMW 「잘 다녀와요」
+					ENDIF
+				CASE 2
+					;표시 없음
+			ENDSELECT
+		ELSE
+			;표시없음
+		ENDIF
 	ENDIF
 ENDIF
 RETURN 1

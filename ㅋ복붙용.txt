@@ -167,3 +167,20 @@ ELSE
 		
 	ENDSELECT
 ENDIF
+
+;-----------------------
+IF MARK:38:반발각인 == 3
+	IF TALENT:38:연인
+		
+	ELSE
+		
+	ENDIF
+ELSEIF TALENT:38:연인
+	
+ELSEIF TALENT:38:연모||TALENT:38:사모||TALENT:38:애욕
+	
+ELSEIF TALENT:38:섹프
+	
+ELSE
+	
+ENDIF
