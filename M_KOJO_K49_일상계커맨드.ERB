@@ -4874,23 +4874,45 @@ IF LOCAL
 			;데이트 경험 있음
 			IF MARK:반발각인 == 3
 				IF TALENT:연인
-					
+					PRINTFORMW 「...」
+					PRINTFORMW 사토리는 조용히 %마스터의% 뒤를 종종걸음으로 따라오고 있다
 				ELSE
-					
+					SELECTCASE RAND:2
+						CASE 0
+							PRINTFORMW 「너무 멀리가면 다리 아픈데」
+							PRINTFORMW 사토리는 볼멘소리를 하면서도 순순히 따라오고 있다
+						CASE 1
+							PRINTFORMW 「굳이 같이 데려다 준다면야...」
+					ENDSELECT
 				ENDIF
 			ELSEIF TALENT:연인
-				
+				SELECTCASE RAND:3
+					CASE 0
+						PRINTFORMW 「...♥」
+						PRINTFORMW 사토리는 기분이 좋은지 %마스터의% 뒤를 바짝 붙어 따라오고 있다
+						TALENT:기분 = 1
+					CASE 1
+						PRINTFORMW 「어디로 가는걸까나~」
+						PRINTFORMW 어디로 갈지 뻔히 알고 있으면서도 즐겁게 쫓아와 주고 있다
+					CASE 2
+						PRINTFORMW 「예전에는 데이트 같은건 꿈도 못 꿨는데」
+						PRINTFORMW 「...%사마스터를% 만난건 정말 행운이었던거 같네요」
+				ENDSELECT
 			ELSEIF TALENT:연모||TALENT:사모||TALENT:애욕
-				
-			ELSEIF TALENT:섹프
-				
+				SELECTCASE RAND:2
+					CASE 0
+						PRINTFORMW 「어디로 가는건가요? %ST_DATEPLACE(DATENAME_PLACE())%?」
+					CASE 1
+						PRINTFORMW 「너무 멀리가진 않았음 좋겠는데...」
+				ENDSELECT
 			ELSE
-				
+				;별로 볼일 없겠지
+				PRINTFORMW 「데이트? 그러죠 뭐」
+				PRINTFORMW 사토리는 순순히 따라나섰다
 			ENDIF
 		ENDIF
 	;코이시랑 데이트
 	;PRINTFORMW 「」
-	;CALL ST_KS대사W("")
 	ELSEIF CFLAG:[[코이시]]:동행
 		IF MARK:반발각인 == 3
 			IF TALENT:연인
