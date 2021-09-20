@@ -1939,3 +1939,109 @@ SELECTCASE 대화선택
         PRINTFORMW 「마음을 읽어도 다른 사람을 만족시키는 일은 어렵더군요」
         PRINTFORMW 「어쩌면 제가 도와주는거 자체를 싫어하는거 일려나」
 ENDSELECT
+
+
+
+
+@ST_통상청소
+#DIM 이전대화, 2
+#DIM DYNAMIC 대화선택
+#DIM CONST 대화개수 = 11
+대화선택 = ST_대사섞기(대화개수, 이전대화:0 , 이전대화:1, 이전대화:2)
+이전대화:1 = 이전대화:0
+이전대화:0 = 대화선택
+;PRINTFORMW 「」
+IF ST_NEARBYHOME() == 1 && CFLAG:초기위치 == 919
+    CALL ST_지령전청소
+    RETURN
+ENDIF
+SELECTCASE 대화선택
+    CASE 0
+        PRINTFORMW 「열심히 하시네요...」
+    CASE 1
+        PRINTFORMW 「」
+    CASE 2
+
+    CASE 3
+
+    CASE 4
+
+    CASE 5
+
+    CASE 6
+
+    CASE 7
+
+    CASE 8
+
+    CASE 9
+
+    CASE 10
+
+ENDSELECT
+
+@ST_통상방청소
+#DIM 이전대화, 2
+#DIM DYNAMIC 대화선택
+#DIM CONST 대화개수 = 11
+대화선택 = ST_대사섞기(대화개수, 이전대화:0 , 이전대화:1, 이전대화:2)
+이전대화:1 = 이전대화:0
+이전대화:0 = 대화선택
+;PRINTFORMW 「」
+SELECTCASE 대화선택
+    CASE 0
+        PRINTFORMW 「」
+    CASE 1
+
+    CASE 2
+
+    CASE 3
+
+    CASE 4
+
+    CASE 5
+
+    CASE 6
+
+    CASE 7
+
+    CASE 8
+
+    CASE 9
+
+    CASE 10
+    
+ENDSELECT
+
+@ST_지령전청소
+#DIM 이전대화, 2
+#DIM DYNAMIC 대화선택
+#DIM CONST 대화개수 = 11
+대화선택 = ST_대사섞기(대화개수, 이전대화:0 , 이전대화:1, 이전대화:2)
+이전대화:1 = 이전대화:0
+이전대화:0 = 대화선택
+;PRINTFORMW 「」
+SELECTCASE 대화선택
+    CASE 0
+
+    CASE 1
+
+    CASE 2
+
+    CASE 3
+
+    CASE 4
+
+    CASE 5
+
+    CASE 6
+
+    CASE 7
+
+    CASE 8
+
+    CASE 9
+
+    CASE 10
+    
+ENDSELECT

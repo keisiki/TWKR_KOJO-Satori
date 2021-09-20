@@ -4912,7 +4912,6 @@ IF LOCAL
 			ENDIF
 		ENDIF
 	;코이시랑 데이트
-	;PRINTFORMW 「」
 	ELSEIF CFLAG:[[코이시]]:동행
 		IF MARK:반발각인 == 3
 			IF TALENT:연인
@@ -5117,11 +5116,143 @@ RETURN RESULT
 @M_KOJO_MESSAGE_COM_K49_410_1
 ;-------------------------------------------------
 ;記入チェック（=0, 非表示、1, 表示）
-LOCAL = 0
+LOCAL = 1
 ;-------------------------------------------------
 IF LOCAL
+	;PRINTFORMW 「」
 	IF FLAG:70
+		;표시 없음
 	ELSE
+		IF CFLAG:우후후
+			;야스중에, 사토리는 안 도와줌
+
+		ELSEIF TFLAG:193 == 0
+			;마스터 혼자, 사토리는 청소기능 1이고 지위가 1000이라 친밀 1개, 혹은 순종 1개 이상이면 무조건 도와준다
+			SELECTCASE TFLAG:194
+				CASE 3
+					;많이 더럽다
+					IF MARK:반발각인 == 3 && !TALENT:연인
+						SELECTCASE RAND:2
+							CASE 0
+								IF CFLAG:초기위치 == CFLAG:현재위치 && CFLAG:MASTER:현재위치 != CFLAG:현재위치
+									PRINTFORMW 「...방 더러운건 저도 알아요, 치울 겨를이 없었을 뿐이니깐」
+									PRINTFORMW 사토리는 얼굴을 붉힌채 둘러대고 있다
+								ELSE
+									PRINTFORMW 「...확실히 더럽긴 하네」
+									IF ST_NEARBYHOME() == 2
+										PRINTFORMW 「하여간 지저 사람들은 무언갈 치우고 다니질 않는다니깐」
+									ELSE
+										PRINTFORMW 「치우느라 고생좀 하겠어」
+										PRINTFORMW 그렇게 말은 하면서도 도와주진 않고 있다
+									ENDIF
+								ENDIF
+							CASE 1
+								IF CFLAG:초기위치 == CFLAG:현재위치 && CFLAG:MASTER:현재위치 != CFLAG:현재위치
+									PRINTFORMW 「...요근래 바빠서 치우지 못한거 뿐이에요」
+									PRINTFORMW 「평소에 이러고 살진 않아」
+									PRINTFORMW 열심히 변명하고 있지만 사토리가 바쁠 일이 있었나 싶은 생각이 든다
+								ELSE
+									PRINTFORMW 「...힘내라는 말이라도 해 드려요?」
+									PRINTFORMW 사토리는 태연히 %마스터를% 바라볼 뿐, 도와주려는 기색도 없다
+								ENDIF
+						ENDSELECT
+					ELSE
+						IF CFLAG:초기위치 == CFLAG:현재위치 && CFLAG:MASTER:현재위치 != CFLAG:현재위치
+							SELECTCASE RAND:3
+								CASE 0
+									PRINTFORMW 「음...치워주신다니 감사하긴 한데...」
+									PRINTFORMW 「이렇게 더러워서야 조금 부끄럽네요」
+								CASE 1
+									PRINTFORMW 「치워주시는건가요?」
+									PRINTFORMW 「...이렇게 더러운 방이라면 조금 힘들어 보이는데...」
+								CASE 2
+									PRINTFORMW 「치워주신다고요?」
+									PRINTFORMW 「하기사 조금 더러워졌긴 한데...」
+									PRINTFORMW ...조금 더러워졌다는 방은, 그야말로 돼지 우리 수준이었다
+									PRINTFORMW 「...윽, 요근래 바빠서 못 치웠을 뿐이에요」
+									PRINTFORMW 「평소에는 이렇게까지 더럽진 않아」
+							ENDSELECT
+						ELSEIF 지령전안()
+							SELECTCASE RAND:3
+								CASE 0
+									PRINTFORMW 「...동물들이 많다보니 좀 더럽죠?」
+									PRINTFORMW 사토리는 미안해했다
+								CASE 1
+									PRINTFORMW 「...오늘은 왠지 잔뜩 쌓여있네요, 힘내주세요」
+									PRINTFORMW 「치운 만큼은 제대로 쳐 드릴테니」
+								CASE 2
+									PRINTFORMW 「오늘따라 더 더러운거 같네...청소 담당을 더 늘려야 할까」
+									PRINTFORMW 「...그 청소 담당이 흘리고 다니는 털도 만만치 않겠지만」
+							ENDSELECT
+						ELSE
+							SELECTCASE RAND:2
+								CASE 0
+									PRINTFORMW 「여긴...상당히 더럽네」
+									PRINTFORMW 「청소를 얼마나 안한건지 참...」 
+								CASE 1
+									PRINTFORMW 「청소 하시는건가요? 열심히...으음...여긴 열심히 한다고 안될거 같은데...」
+									PRINTFORMW 사토리는 주위의 쓰레기를 보곤 뜨악한 표정을 지어보이고 있다
+							ENDSELECT
+						ENDIF
+					ENDIF
+				CASE 1,2
+					;조금 더럽
+					IF MARK:반발각인 == 3
+						IF CFLAG:초기위치 == CFLAG:현재위치 && CFLAG:MASTER:현재위치 != CFLAG:현재위치
+							
+						ELSE
+							
+						ENDIF
+					ELSE
+						IF CFLAG:초기위치 == CFLAG:현재위치 && CFLAG:MASTER:현재위치 != CFLAG:현재위치
+							
+						ELSE
+							
+						ENDIF
+					ENDIF
+				CASE 0
+					;거의 깨끗
+					IF MARK:반발각인 == 3&& !TALENT:연인
+						SELECTCASE RAND:5
+							CASE 0
+								PRINTFORMW 「이 정도면 충분히 깨끗한거 같은데...」
+								PRINTFORMW 「뭘 그리 열심히 하는건지」
+							CASE 1
+								PRINTFORMW 「얼마나 더 닦아대야 만족하는거람」
+							CASE 2
+								PRINTFORMW 「...결벽증?」
+								PRINTFORMW 「그런게 아니고서야 이렇게 광낼 필요까진...」
+							CASE 3
+								PRINTFORMW 「먼지 조금 정도면 나중에 치워도 될텐데」
+							CASE 4
+								PRINTFORMW 사토리는 %마스터를% 거들떠도 안 보고 있다
+						ENDSELECT
+					ELSE
+						SELECTCASE RAND:3
+							CASE 0
+								PRINTFORMW 「그렇게 열심히까진 안 해도 될텐데...」
+								IF OUTROOF(CFLAG:현재위치)
+									PRINTFORMW 「어짜피 돌아다니는 사람들 때문에 금방 더러워질거라고요?」
+									PRINTFORMW 「그러니까 그렇게 힘쓰지 않아도...」
+								ELSE
+									PRINTFORMW 「나중에 한번에 치우는게 낫지 않나요?」
+								ENDIF
+							CASE 1
+								PRINTFORMW 「별로 더럽지도 않은거 같은데, 더 청소할게 있는건가요?」
+								PRINTFORMW 「...그정도 먼지는 내버려둬도 될거 같은데」
+							CASE 2
+								PRINTFORMW 「...조금은 설렁설렁 하세요, 그렇게 열심히 안 해도 괜찮은걸」
+								IF TALENT:MASTER:청소중독
+									PRINTFORMW 「하아...청소하는거로 흥분을 느끼는 삶은 참 힘들어 보이네요」
+									PRINTFORMW 사토리는 어이없다는 듯이 바라보고 있다
+								ENDIF
+						ENDSELECT
+					ENDIF
+			ENDSELECT
+		ELSE
+			;사토리도 함께
+
+		ENDIF
 	ENDIF
 ENDIF
 RETURN 1
