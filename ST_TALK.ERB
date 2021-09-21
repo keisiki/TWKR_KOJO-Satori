@@ -1947,6 +1947,10 @@ ENDSELECT
 #DIM 이전대화, 2
 #DIM DYNAMIC 대화선택
 #DIM DYNAMIC 대화개수
+IF ST_NEARBYHOME() == 1 && CFLAG:초기위치 == 919
+    CALL ST_지령전청소
+    RETURN
+ENDIF
 SELECTCASE TFLAG:194
     CASE 3
         대화개수 = 5    
