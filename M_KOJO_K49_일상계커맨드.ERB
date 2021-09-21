@@ -5125,133 +5125,379 @@ IF LOCAL
 	ELSE
 		IF CFLAG:우후후
 			;야스중에, 사토리는 안 도와줌
-
+			IF MARK:반발각인 == 3
+				IF TALENT:연인
+					SELECTCASE RAND:3
+						CASE 0
+							PRINTFORMW 「저...저기...?」
+							PRINTFORMW 사토리는 당황한듯 %마스터를% 불러봤지만, %마스터는% 아랑곳 않고 쓰레기를 치웠다
+						CASE 1
+							PRINTFORMW 「...그런건 이따해도 되잖아요...」
+						CASE 2
+							IF TALENT:MASTER:청소중독
+								PRINTFORMW 「...저기, 내일이라도 병원에 가보지 않을래요?」
+							ELSE
+								PRINTFORMW 「...」
+								PRINTFORMW 사토리는 할말을 잃은듯 하다
+							ENDIF
+					ENDSELECT
+				ELSE
+					SELECTCASE RAND:3
+						CASE 0
+							PRINTFORMW 「...처, 청소?」
+							PRINTFORMW 「지금 상황에서 그런걸 할 생각을 하다니...」
+							PRINTFORMW 사토리는 어이없다는듯이 바라보고 있다
+						CASE 1
+							IF TALENT:MASTER:청소중독
+								PRINTFORMW 「...그정도면 병원에 가보는건 어떤가요?」
+								PRINTFORMW 사토리는 기가막혀 하고 있다
+							ELSE
+								PRINTFORMW 「...?」
+								PRINTFORMW 사토리는 어안이 벙벙한 모양이다
+							ENDIF
+						CASE 2
+							PRINTFORMW 「...뭐하자는거야 이건」
+					ENDSELECT
+				ENDIF
+			ELSEIF TALENT:연인
+				SELECTCASE RAND:3
+					CASE 0
+						PRINTFORMW 「...저보다 청소가 중요해요?」
+						PRINTFORMW 사토리는 토라진 모양이다
+					CASE 1
+						PRINTFORMW 「그런건 이따 해도 상관없잖아요?!」
+					CASE 2
+						PRINTFORMW 「어짜피 하면서 또 더러워질텐데, 이따 한꺼번에 치우면 안되나요?」
+				ENDSELECT
+			ELSEIF TALENT:연모||TALENT:사모||TALENT:애욕
+				SELECTCASE RAND:2
+					CASE 0
+						PRINTFORMW 「...저, 저기...」
+						PRINTFORMW 사토리는 %마스터를% 불러봤지만 %마스터의% 귀에 들리진 않았다
+					CASE 1
+						PRINTFORMW 「그...좀 이따 하면 안되나요?」
+						PRINTFORMW 사토리는 황당해 하고 있다
+				ENDSELECT
+			ELSEIF TALENT:섹프
+				SELECTCASE RAND:2
+					CASE 0
+						PRINTFORMW 「...가, 갑자기 청소? 어째서...?」
+						PRINTFORMW 사토리는 당황한 모양이다
+					CASE 1
+						PRINTFORMW 「야한짓보다 청소가 즐거운걸까」
+						PRINTFORMW 「...그래도 조금만 이따 해도 되잖아」
+						PRINTFORMW 사토리는 토라진 모양이다
+				ENDSELECT
+			ELSE
+				PRINTFORMW 「...」
+				PRINTFORMW 사토리는 황당해서 할말을 잃은 모양이다
+			ENDIF
 		ELSEIF TFLAG:193 == 0
 			;마스터 혼자, 사토리는 청소기능 1이고 지위가 1000이라 친밀 1개, 혹은 순종 1개 이상이면 무조건 도와준다
-			SELECTCASE TFLAG:194
-				CASE 3
-					;많이 더럽다
-					IF MARK:반발각인 == 3 && !TALENT:연인
-						SELECTCASE RAND:2
-							CASE 0
-								IF CFLAG:초기위치 == CFLAG:현재위치 && CFLAG:MASTER:현재위치 != CFLAG:현재위치
-									PRINTFORMW 「...방 더러운건 저도 알아요, 치울 겨를이 없었을 뿐이니깐」
-									PRINTFORMW 사토리는 얼굴을 붉힌채 둘러대고 있다
-								ELSE
-									PRINTFORMW 「...확실히 더럽긴 하네」
-									IF ST_NEARBYHOME() == 2
-										PRINTFORMW 「하여간 지저 사람들은 무언갈 치우고 다니질 않는다니깐」
+			IF CFLAG:초기위치 == CFLAG:MASTER:초기위치 && CFLAG:현재위치 == CFLAG:초기위치
+				CALL ST_동거방청소
+			ELSE
+				SELECTCASE TFLAG:194
+					CASE 3
+						;많이 더럽다
+						IF MARK:반발각인 == 3 && !TALENT:연인
+							SELECTCASE RAND:2
+								CASE 0
+									IF CFLAG:초기위치 == CFLAG:현재위치 && CFLAG:MASTER:현재위치 != CFLAG:현재위치
+										PRINTFORMW 「...방 더러운건 저도 알아요, 치울 겨를이 없었을 뿐이니깐」
+										PRINTFORMW 사토리는 얼굴을 붉힌채 둘러대고 있다
 									ELSE
-										PRINTFORMW 「치우느라 고생좀 하겠어」
-										PRINTFORMW 그렇게 말은 하면서도 도와주진 않고 있다
+										PRINTFORMW 「...확실히 더럽긴 하네」
+										IF ST_NEARBYHOME() == 2
+											PRINTFORMW 「하여간 지저 사람들은 무언갈 치우고 다니질 않는다니깐」
+										ELSE
+											PRINTFORMW 「치우느라 고생좀 하겠어」
+											PRINTFORMW 그렇게 말은 하면서도 도와주진 않고 있다
+										ENDIF
 									ENDIF
-								ENDIF
-							CASE 1
-								IF CFLAG:초기위치 == CFLAG:현재위치 && CFLAG:MASTER:현재위치 != CFLAG:현재위치
-									PRINTFORMW 「...요근래 바빠서 치우지 못한거 뿐이에요」
-									PRINTFORMW 「평소에 이러고 살진 않아」
-									PRINTFORMW 열심히 변명하고 있지만 사토리가 바쁠 일이 있었나 싶은 생각이 든다
-								ELSE
-									PRINTFORMW 「...힘내라는 말이라도 해 드려요?」
-									PRINTFORMW 사토리는 태연히 %마스터를% 바라볼 뿐, 도와주려는 기색도 없다
-								ENDIF
-						ENDSELECT
-					ELSE
+								CASE 1
+									IF CFLAG:초기위치 == CFLAG:현재위치 && CFLAG:MASTER:현재위치 != CFLAG:현재위치
+										PRINTFORMW 「...요근래 바빠서 치우지 못한거 뿐이에요」
+										PRINTFORMW 「평소에 이러고 살진 않아」
+										PRINTFORMW 열심히 변명하고 있지만 사토리가 바쁠 일이 있었나 싶은 생각이 든다
+									ELSE
+										PRINTFORMW 「...힘내라는 말이라도 해 드려요?」
+										PRINTFORMW 사토리는 태연히 %마스터를% 바라볼 뿐, 도와주려는 기색도 없다
+									ENDIF
+							ENDSELECT
+						ELSE
+							IF CFLAG:초기위치 == CFLAG:현재위치 && CFLAG:MASTER:현재위치 != CFLAG:현재위치
+								SELECTCASE RAND:3
+									CASE 0
+										PRINTFORMW 「음...치워주신다니 감사하긴 한데...」
+										PRINTFORMW 「이렇게 더러워서야 조금 부끄럽네요」
+									CASE 1
+										PRINTFORMW 「치워주시는건가요?」
+										PRINTFORMW 「...이렇게 더러운 방이라면 조금 힘들어 보이는데...」
+									CASE 2
+										PRINTFORMW 「치워주신다고요?」
+										PRINTFORMW 「하기사 조금 더러워졌긴 한데...」
+										PRINTFORMW ...조금 더러워졌다는 방은, 그야말로 돼지 우리 수준이었다
+										PRINTFORMW 「...윽, 요근래 바빠서 못 치웠을 뿐이에요」
+										PRINTFORMW 「평소에는 이렇게까지 더럽진 않아」
+								ENDSELECT
+							ELSEIF 지령전안()
+								SELECTCASE RAND:3
+									CASE 0
+										PRINTFORMW 「...동물들이 많다보니 좀 더럽죠?」
+										PRINTFORMW 사토리는 미안해했다
+									CASE 1
+										PRINTFORMW 「...오늘은 왠지 잔뜩 쌓여있네요, 힘내주세요」
+										PRINTFORMW 「치운 만큼은 제대로 쳐 드릴테니」
+									CASE 2
+										PRINTFORMW 「오늘따라 더 더러운거 같네...청소 담당을 더 늘려야 할까」
+										PRINTFORMW 「...그 청소 담당이 흘리고 다니는 털도 만만치 않겠지만」
+								ENDSELECT
+							ELSE
+								SELECTCASE RAND:2
+									CASE 0
+										PRINTFORMW 「여긴...상당히 더럽네」
+										PRINTFORMW 「청소를 얼마나 안한건지 참...」 
+									CASE 1
+										PRINTFORMW 「청소 하시는건가요? 열심히...으음...여긴 열심히 한다고 안될거 같은데...」
+										PRINTFORMW 사토리는 주위의 쓰레기를 보곤 뜨악한 표정을 지어보이고 있다
+								ENDSELECT
+							ENDIF
+						ENDIF
+					CASE 1,2
+						;조금 더럽
+						IF MARK:반발각인 == 3
+							IF CFLAG:초기위치 == CFLAG:현재위치 && CFLAG:MASTER:현재위치 != CFLAG:현재위치
+								SELECTCASE RAND:3
+									CASE 0
+										PRINTFORMW 사토리는 시큰둥하게 %마스터의% 청소를 관람하고 있다
+									CASE 1
+										PRINTFORMW 「뭐, 직접 청소 안하니 편하네」
+										PRINTFORMW 「엄청 귀찮았는데」
+									CASE 2
+										PRINTFORMW 「...이렇게 매일 조용히 청소만 하다 얌전히 가줬으면 좋겠네」
+										PRINTFORMW 「그랬음 싸울일도 없잖아」
+								ENDSELECT
+							ELSE
+								SELECTCASE RAND:3
+									CASE 0
+										PRINTFORMW 「하는김에 이쪽도 하시지 그런가요?」
+										PRINTFORMW 사토리는 약올리는듯한 목소리로 바닥의 쓰레기를 가리켰다
+									CASE 1
+										PRINTFORMW 「음, 그럭저럭 괜찮네...」
+										PRINTFORMW 「그치만 좀 더 닦아야겠는걸」
+									CASE 2
+										PRINTFORMW 「매일 얌전히 청소만 해줬다면 참 좋을텐데」
+								ENDSELECT
+							ENDIF
+						ELSE
+							IF CFLAG:초기위치 == CFLAG:현재위치 && CFLAG:MASTER:현재위치 != CFLAG:현재위치
+								SELECTCASE RAND:3
+									CASE 0
+										PRINTFORMW 「아, 거기 종이뭉치는 쓸거니까 치우지 마세요」
+									CASE 1
+										PRINTFORMW 「하시는김에 저쪽 쓰레기통도 좀 비워 주실래요?」
+										PRINTFORMW 구겨진 종이가 한가득 들은 쓰레기통을 넘겨받았다
+									CASE 2
+										PRINTFORMW 「마침 좀 더러워서 치우려 했는데, 잘됐네」
+										PRINTFORMW 사토리는 태연하게 자기 할 일을 하고 있다
+								ENDSELECT
+							ELSEIF 지령전안()
+								SELECTCASE RAND:3
+									CASE 0
+										PRINTFORMW 「...동물들이 많다보니 청소가 끝나질 않네요」
+										PRINTFORMW 사토리는 미안해했다
+									CASE 1
+										PRINTFORMW 「수고하십니다」
+									CASE 2
+										PRINTFORMW 「털이나 분변은 한쪽 벽에 쌓아두시면 청소 담당들이 모아서 가져갈 거예요」
+										PRINTFORMW 「...물론 그 아이들이 오고 가며 또 털이 떨어지겠지만」
+								ENDSELECT
+							ELSE
+								SELECTCASE RAND:3
+									CASE 0
+										PRINTFORMW 「열심히시네요」
+										PRINTFORMW 사토리는 가볍게 웃어보였다
+									CASE 1
+										PRINTFORMW 「수고하십니다」
+									CASE 2
+										PRINTFORMW 「청소인가요? 성실하시네요」
+								ENDSELECT
+							ENDIF
+						ENDIF
+					CASE 0
+						;거의 깨끗
+						IF MARK:반발각인 == 3&& !TALENT:연인
+							SELECTCASE RAND:5
+								CASE 0
+									PRINTFORMW 「이 정도면 충분히 깨끗한거 같은데...」
+									PRINTFORMW 「뭘 그리 열심히 하는건지」
+								CASE 1
+									PRINTFORMW 「얼마나 더 닦아대야 만족하는거람」
+								CASE 2
+									PRINTFORMW 「...결벽증?」
+									PRINTFORMW 「그런게 아니고서야 이렇게 광낼 필요까진...」
+								CASE 3
+									PRINTFORMW 「먼지 조금 정도면 나중에 치워도 될텐데」
+								CASE 4
+									PRINTFORMW 사토리는 %마스터를% 거들떠도 안 보고 있다
+							ENDSELECT
+						ELSE
+							SELECTCASE RAND:3
+								CASE 0
+									PRINTFORMW 「그렇게 열심히까진 안 해도 될텐데...」
+									IF OUTROOF(CFLAG:현재위치)
+										PRINTFORMW 「어짜피 돌아다니는 사람들 때문에 금방 더러워질거라고요?」
+										PRINTFORMW 「그러니까 그렇게 힘쓰지 않아도...」
+									ELSE
+										PRINTFORMW 「나중에 한번에 치우는게 낫지 않나요?」
+									ENDIF
+								CASE 1
+									PRINTFORMW 「별로 더럽지도 않은거 같은데, 더 청소할게 있는건가요?」
+									PRINTFORMW 「...그정도 먼지는 내버려둬도 될거 같은데」
+								CASE 2
+									PRINTFORMW 「...조금은 설렁설렁 하세요, 그렇게 열심히 안 해도 괜찮은걸」
+									IF TALENT:MASTER:청소중독
+										PRINTFORMW 「하아...청소하는거로 흥분을 느끼는 삶은 참 힘들어 보이네요」
+										PRINTFORMW 사토리는 어이없다는 듯이 바라보고 있다
+									ENDIF
+							ENDSELECT
+						ENDIF
+				ENDSELECT
+			ENDIF
+		ELSE
+			;사토리도 함께
+			IF CFLAG:초기위치 == CFLAG:MASTER:초기위치 && CFLAG:현재위치 == CFLAG:초기위치
+				CALL ST_동거방청소
+			ELSEIF MARK:반발각인 == 3 && !TALENT:연인
+				SELECTCASE TFLAG:194
+					CASE 3
 						IF CFLAG:초기위치 == CFLAG:현재위치 && CFLAG:MASTER:현재위치 != CFLAG:현재위치
 							SELECTCASE RAND:3
 								CASE 0
-									PRINTFORMW 「음...치워주신다니 감사하긴 한데...」
-									PRINTFORMW 「이렇게 더러워서야 조금 부끄럽네요」
+									PRINTFORMW 「...이, 이렇게 더러운건 이번만 이니깐」
+									PRINTFORMW 「늘상 이러고 살진 않는다고」
+									PRINTFORMW 사토리는 얼굴을 붉힌채 %마스터를% 도와 쓰레기를 치우고 있다
+									PRINTFORMW ...아직도 산더미라는게 문제지만
 								CASE 1
-									PRINTFORMW 「치워주시는건가요?」
-									PRINTFORMW 「...이렇게 더러운 방이라면 조금 힘들어 보이는데...」
+									PRINTFORMW 「하아...언제 치운담」
+									PRINTFORMW 사토리는 큼직한 쓰레기를 한쪽으로 던져놓으며 건성건성 방을 치우고 있다
 								CASE 2
-									PRINTFORMW 「치워주신다고요?」
-									PRINTFORMW 「하기사 조금 더러워졌긴 한데...」
-									PRINTFORMW ...조금 더러워졌다는 방은, 그야말로 돼지 우리 수준이었다
-									PRINTFORMW 「...윽, 요근래 바빠서 못 치웠을 뿐이에요」
-									PRINTFORMW 「평소에는 이렇게까지 더럽진 않아」
+									PRINTFORMW 「...요근래 바빴을 뿐이니까, 평소에는 이렇게까지 더럽히진 않아」
+									PRINTFORMW 아무 말도 안했는데도 변명을 늘어놓고 있다
 							ENDSELECT
 						ELSEIF 지령전안()
 							SELECTCASE RAND:3
 								CASE 0
-									PRINTFORMW 「...동물들이 많다보니 좀 더럽죠?」
-									PRINTFORMW 사토리는 미안해했다
+									PRINTFORMW 「아아 진짜...잠깐 안 봐줬다고 이렇게 더러워지다니...」
+									PRINTFORMW 「홍마관의 홉고블린들이라도 빌려야 하는걸까」
 								CASE 1
-									PRINTFORMW 「...오늘은 왠지 잔뜩 쌓여있네요, 힘내주세요」
-									PRINTFORMW 「치운 만큼은 제대로 쳐 드릴테니」
+									PRINTFORMW 「이렇게 털이 풀풀 날리도록 청소 한번 안하고 뭐한거람」
+									PRINTFORMW 「나만 청소하는것도 아니고...」
+									PRINTFORMW 사토리는 투덜거리며 바닥의 분뇨와 털을 긁어냈다
 								CASE 2
-									PRINTFORMW 「오늘따라 더 더러운거 같네...청소 담당을 더 늘려야 할까」
-									PRINTFORMW 「...그 청소 담당이 흘리고 다니는 털도 만만치 않겠지만」
+									PRINTFORMW 「이게 집이야 쓰레기 장이야...하아...」
+									PRINTFORMW 사토리는 거대한 마대자루를 들고 바닥의 쓰레기를 우겨넣고 있다
+									PRINTFORMW ...그럼에도 바닥의 쓰레기와 털들은 전혀 줄어들지 않은 기분이다
 							ENDSELECT
 						ELSE
 							SELECTCASE RAND:2
 								CASE 0
-									PRINTFORMW 「여긴...상당히 더럽네」
-									PRINTFORMW 「청소를 얼마나 안한건지 참...」 
+									PRINTFORMW 「...정말이지, 쓰레기가 산더미잖아」
+									PRINTFORMW 「어느 세월에 이걸 다 치운담」
+									PRINTFORMW 사토리는 투덜대면서도 빗자루를 들었다
 								CASE 1
-									PRINTFORMW 「청소 하시는건가요? 열심히...으음...여긴 열심히 한다고 안될거 같은데...」
-									PRINTFORMW 사토리는 주위의 쓰레기를 보곤 뜨악한 표정을 지어보이고 있다
+									PRINTFORMW 「...」
+									PRINTFORMW 사토리는 말없이 쓰레기를 치우고 있다
 							ENDSELECT
 						ENDIF
-					ENDIF
-				CASE 1,2
-					;조금 더럽
-					IF MARK:반발각인 == 3
+					CASE 1,2
 						IF CFLAG:초기위치 == CFLAG:현재위치 && CFLAG:MASTER:현재위치 != CFLAG:현재위치
-							
+							SELECTCASE RAND:3
+								CASE 0
+									PRINTFORMW 「굳이 안 도와줘도 되는데...」
+								CASE 1
+									PRINTFORMW 「...냅둬도 이따 치울 생각이었어요」
+									PRINTFORMW 사토리는 투덜거리며 빗자루를 들었다
+								CASE 2
+									PRINTFORMW 「하아...지저분한건 나도 알아요」
+									PRINTFORMW 「치우면 되잖아, 치우면...」
+									PRINTFORMW 사토리는 투덜거리며 바닥의 쓰레기를 치우기 시작했다
+							ENDSELECT
+						ELSEIF 지령전안()
+							SELECTCASE RAND:3
+								CASE 0
+									PRINTFORMW 「미리미리 치워놔야지 원...」
+									PRINTFORMW 「조금만 안 보고 있으면 난장판이 된다니깐」
+								CASE 1
+									PRINTFORMW 「청소해주는건 조금 고맙네」
+									PRINTFORMW 「조용히 청소만 하는거라면 나도 환영이야」
+								CASE 2
+									PRINTFORMW 「...」
+									PRINTFORMW 사토리는 저 멀리 떨어져서 청소를 하고 있다
+							ENDSELECT
 						ELSE
-							
+							SELECTCASE RAND:3
+								CASE 0
+									PRINTFORMW 「...어휴, 청승맞게 혼자 청소하는거 진짜 못봐주겠네」
+									PRINTFORMW 사토리는 투덜거리며 빗자루를 들었다
+								CASE 1
+									PRINTFORMW 「큰 쓰레기만 치워놓아도 훨씬 깨끗해지는데 말이지」
+									PRINTFORMW 사토리는 바닥의 쓰레기를 줍고 있다
+								CASE 2
+									PRINTFORMW 「...」
+									PRINTFORMW 사토리는 말없이 쓰레기를 치우고 있다
+							ENDSELECT
 						ENDIF
-					ELSE
+					CASE 0
 						IF CFLAG:초기위치 == CFLAG:현재위치 && CFLAG:MASTER:현재위치 != CFLAG:현재위치
-							
+							SELECTCASE RAND:3
+								CASE 0
+									PRINTFORMW 「이정도면 깔끔한거 같은데 뭘 또...」
+									PRINTFORMW 사토리는 불평하면서도 얌전히 %마스터를% 따라 바닥을 닦고 있다
+								CASE 1
+									PRINTFORMW 「어짜피 좀 지나면 더러워질텐데, 한꺼번에 치우는게 낫지 않나?」
+									PRINTFORMW 「...지금 깨끗하게 안하면 죽는것도 아니고」
+									PRINTFORMW 투덜투덜거리는 사토리에게 걸레를 던져주자 순순히 바닥과 가구를 닦아내기 시작했다
+								CASE 2
+									PRINTFORMW 「이정도 먼지는 내버려 둬도 상관없는데」
+									PRINTFORMW 「...아니, 애초에 내 방인데 왜 그렇게 참견하는거야」
+									PRINTFORMW 「......아아, 진짜, 한번 시작하니까 신경쓰여서 계속하게 되버렸잖아」
+									PRINTFORMW 사토리는 불만스러운 얼굴로 바닥에 광을 내고 있다
+							ENDSELECT
+						ELSEIF 지령전안()
+							SELECTCASE RAND:3
+								CASE 0
+									PRINTFORMW 「으음...이렇게까지 꼼꼼히 해봤자 금방 털로 뒤덮힐텐데」
+									PRINTFORMW 「그게 아니라도 코이시가 맨발로 나갔다 돌아오면...」
+									PRINTFORMW 사토리는 연신 중얼거리면서 바닥을 닦고 있다
+								CASE 1
+									PRINTFORMW 「아아 진짜, 이렇게까지 할 필욘 없는데」
+									PRINTFORMW 「한 군데만 번들거리게 닦아놓으니까 신경쓰이잖아...」
+									PRINTFORMW 사토리는 투덜거리면서 대걸레로 바닥을 닦고 있다
+								CASE 2
+									PRINTFORMW 「좀 더 똑똑한 애완동물을 하나 더 구비해야겠어」
+									PRINTFORMW 「이런 세심한 청소까지 할 만한 아이는 별로 없으니까」
+							ENDSELECT
 						ELSE
-							
+							SELECTCASE RAND:2
+								CASE 0
+									PRINTFORMW 「이렇게까지 청소할 필욘 없을텐데」
+									PRINTFORMW 「너무 깔끔떨며 살려 하면 피곤하지 않나요?」
+								CASE 1
+									PRINTFORMW 「대충 보이는 쓰레기는 다 치웠나...」
+									PRINTFORMW 「한동안은 괜찮겠지」
+							ENDSELECT
 						ENDIF
-					ENDIF
-				CASE 0
-					;거의 깨끗
-					IF MARK:반발각인 == 3&& !TALENT:연인
-						SELECTCASE RAND:5
-							CASE 0
-								PRINTFORMW 「이 정도면 충분히 깨끗한거 같은데...」
-								PRINTFORMW 「뭘 그리 열심히 하는건지」
-							CASE 1
-								PRINTFORMW 「얼마나 더 닦아대야 만족하는거람」
-							CASE 2
-								PRINTFORMW 「...결벽증?」
-								PRINTFORMW 「그런게 아니고서야 이렇게 광낼 필요까진...」
-							CASE 3
-								PRINTFORMW 「먼지 조금 정도면 나중에 치워도 될텐데」
-							CASE 4
-								PRINTFORMW 사토리는 %마스터를% 거들떠도 안 보고 있다
-						ENDSELECT
-					ELSE
-						SELECTCASE RAND:3
-							CASE 0
-								PRINTFORMW 「그렇게 열심히까진 안 해도 될텐데...」
-								IF OUTROOF(CFLAG:현재위치)
-									PRINTFORMW 「어짜피 돌아다니는 사람들 때문에 금방 더러워질거라고요?」
-									PRINTFORMW 「그러니까 그렇게 힘쓰지 않아도...」
-								ELSE
-									PRINTFORMW 「나중에 한번에 치우는게 낫지 않나요?」
-								ENDIF
-							CASE 1
-								PRINTFORMW 「별로 더럽지도 않은거 같은데, 더 청소할게 있는건가요?」
-								PRINTFORMW 「...그정도 먼지는 내버려둬도 될거 같은데」
-							CASE 2
-								PRINTFORMW 「...조금은 설렁설렁 하세요, 그렇게 열심히 안 해도 괜찮은걸」
-								IF TALENT:MASTER:청소중독
-									PRINTFORMW 「하아...청소하는거로 흥분을 느끼는 삶은 참 힘들어 보이네요」
-									PRINTFORMW 사토리는 어이없다는 듯이 바라보고 있다
-								ENDIF
-						ENDSELECT
-					ENDIF
-			ENDSELECT
-		ELSE
-			;사토리도 함께
-
+				ENDSELECT
+			ELSE
+				;대부분의 케이스
+				IF CFLAG:초기위치 == CFLAG:현재위치 && CFLAG:MASTER:현재위치 != CFLAG:현재위치
+					CALL ST_통상방청소
+				ELSE
+					CALL ST_통상청소
+				ENDIF
+			ENDIF
 		ENDIF
 	ENDIF
 ENDIF

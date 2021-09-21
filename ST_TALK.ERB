@@ -137,7 +137,7 @@ SELECTCASE 대화선택
     CASE 2
         PRINTFORMW 「솔직히 지령전은 조금 지저분 하죠...」
         PRINTFORMW 「충동적으로 애완동물을 늘려버려서 그런걸까나」
-        PRINTFORMW 「치워도치워도 금새 털투성이에, 먼지가 풀풀...」
+        PRINTFORMW 「치워도치워도 금세 털투성이에, 먼지가 풀풀...」
         PRINTFORMW 사토리는 투덜거려왔다
     CASE 3
         SELECTCASE MAIN_MAP
@@ -839,7 +839,7 @@ SELECTCASE 차종류
                 PRINTFORMW 「그 편이 무난하긴 하죠」
                 PRINTFORMW 사토리는 찬장에서 인스턴트 커피를 꺼내왔다
                 PRINTFORMW 「간단하게 이걸로 괜찮겠죠 뭐...」
-                PRINTFORMW 갓 끓인 뜨거운 물을 잔에 부으니 금새 스르르 녹은 커피 알맹이들은 방 안 가득히 커피 향을 풍기기 시작했다
+                PRINTFORMW 갓 끓인 뜨거운 물을 잔에 부으니 금세 스르르 녹은 커피 알맹이들은 방 안 가득히 커피 향을 풍기기 시작했다
         ENDSELECT
         PRINTFORMW ...
         PRINTFORMW ..
@@ -1734,7 +1734,7 @@ SELECTCASE 대화선택
             PRINTFORMW 사토리는 투덜거렸다
         ELSE
             PRINTFORML 「머리가 이렇게 곱슬거리는거, 참 불편하기 짝이 없어요」
-            PRINTFORMW 「예쁘게 세팅해봐도 금새 망가져서 평소처럼 돼버리고」
+            PRINTFORMW 「예쁘게 세팅해봐도 금세 망가져서 평소처럼 돼버리고」
             PRINTFORMW 「밖에 비라도 오면...아아, 상상한것 만으로도 끔찍해」
             PRINTFORMW 사토리는 앞머리를 매만지며 투덜거렸다
         ENDIF
@@ -1946,102 +1946,208 @@ ENDSELECT
 @ST_통상청소
 #DIM 이전대화, 2
 #DIM DYNAMIC 대화선택
-#DIM CONST 대화개수 = 11
+#DIM DYNAMIC 대화개수
+SELECTCASE TFLAG:194
+    CASE 3
+        대화개수 = 5    
+    CASE 1,2
+        대화개수 = 5
+    CASE 0
+        대화개수 = 5
+ENDSELECT
 대화선택 = ST_대사섞기(대화개수, 이전대화:0 , 이전대화:1, 이전대화:2)
 이전대화:1 = 이전대화:0
 이전대화:0 = 대화선택
 ;PRINTFORMW 「」
-IF ST_NEARBYHOME() == 1 && CFLAG:초기위치 == 919
-    CALL ST_지령전청소
-    RETURN
-ENDIF
-SELECTCASE 대화선택
-    CASE 0
-        PRINTFORMW 「열심히 하시네요...」
-    CASE 1
-        PRINTFORMW 「」
-    CASE 2
-
+SELECTCASE TFLAG:194
     CASE 3
+        SELECTCASE 대화선택
+            CASE 0
+                
+            CASE 1
+                
+            CASE 2
+                
+            CASE 3
 
-    CASE 4
+            CASE 4
 
-    CASE 5
+        ENDSELECT
+    CASE 1,2
+        SELECTCASE 대화선택
+            CASE 0
+                
+            CASE 1
+                
+            CASE 2
+                
+            CASE 3
 
-    CASE 6
+            CASE 4
 
-    CASE 7
+        ENDSELECT
+    CASE 0
+        SELECTCASE 대화선택
+            CASE 0
+                
+            CASE 1
+                
+            CASE 2
+                
+            CASE 3
 
-    CASE 8
+            CASE 4
 
-    CASE 9
-
-    CASE 10
-
+        ENDSELECT
 ENDSELECT
 
 @ST_통상방청소
 #DIM 이전대화, 2
 #DIM DYNAMIC 대화선택
-#DIM CONST 대화개수 = 11
+#DIM DYNAMIC 대화개수
+SELECTCASE TFLAG:194
+    CASE 3
+        대화개수 = 4
+    CASE 1,2
+        대화개수 = 5
+    CASE 0
+        대화개수 = 4
+ENDSELECT
 대화선택 = ST_대사섞기(대화개수, 이전대화:0 , 이전대화:1, 이전대화:2)
 이전대화:1 = 이전대화:0
 이전대화:0 = 대화선택
 ;PRINTFORMW 「」
-SELECTCASE 대화선택
-    CASE 0
-        PRINTFORMW 「」
-    CASE 1
-
-    CASE 2
-
+SELECTCASE TFLAG:194
     CASE 3
-
-    CASE 4
-
-    CASE 5
-
-    CASE 6
-
-    CASE 7
-
-    CASE 8
-
-    CASE 9
-
-    CASE 10
-    
+        SELECTCASE 대화선택
+            CASE 0
+                PRINTFORMW 「음...요근래 청소를 좀 게을리 했던가...」
+                PRINTFORMW 사토리는 머쓱해하며 방정리를 시작했다
+            CASE 1
+                PRINTFORMW 「요즘 좀 바빠서 청소를 안했더니 금세 이렇게 되버렸네...」
+                PRINTFORMW 사토리는 멋쩍어 하며 쓰레기를 치우기 시작했다
+            CASE 2
+                PRINTFORMW 「청소라...마침 하려고 했었긴 한데...」
+                PRINTFORMW 「이거, 전부 치울순...있겠죠?」
+                PRINTFORMW 사토리는 한숨을 쉬며 바닥의 쓰레기들을 주웠다
+                PRINTFORMW 방 한가득 쌓인 쓰레기는 전혀 줄 기세가 없어보인다
+            CASE 3
+                PRINTFORMW 「...잠깐 신경 안썼다고 이렇게 쓰레기 밭이 될 줄은 몰랐는데 말이죠」
+                PRINTFORMW 「별로 버린것도 없는데 왜 이렇게 된걸까나」
+                PRINTFORMW 사토리는 투덜거리며 쓰레기를 줍고 있다
+        ENDSELECT
+    CASE 1,2
+        SELECTCASE 대화선택
+            CASE 0
+                PRINTFORMW 「읏차...여기, 쓰레기통 좀 비워주실래요?」
+                PRINTFORMW 사토리는 책상에서 치워낸 종이뭉치가 한가득 들은 쓰레기통을 내밀었다
+            CASE 1
+                PRINTFORMW 「도와주시는건가요? 감사합니다」
+                PRINTFORMW 사토리는 조금 기뻐보이는 얼굴로 빗자루를 들었다
+            CASE 2
+                PRINTFORMW 「%사마스터는% 저쪽을 청소해 주세요」
+                PRINTFORMW 사토리와 구역을 나누어 방을 청소해 나갔다
+            CASE 3
+                PRINTFORMW 「음...먼지가 좀 많네...」
+                PRINTFORMW 사토리는 쓰레받기에 한가득 먼지를 담아내고 있다
+            CASE 4
+                PRINTFORMW 「청소를 안 하는건 아닌데, 왜 맨날 이렇게 더러워지는 걸까요」
+                PRINTFORMW 「...물론 가끔 까먹는 날이 있기도 하지만」
+        ENDSELECT
+    CASE 0
+        SELECTCASE 대화선택
+            CASE 0
+                PRINTFORMW 「조금 설렁설렁 해도 괜찮아요」
+                PRINTFORMW 「먼지 조금 안 치운다고 큰일 나는것도 아닌데」
+                PRINTFORMW 사토리는 %마스터의% 걸레를 뺏어 가구를 닦고 있다
+            CASE 1
+                PRINTFORMW 「이제 먼지만 털어내면 되겠다」
+                PRINTFORMW 사토리는 먼지털이로 마무리 청소를 시작했다
+            CASE 2
+                PRINTFORMW 「반들반들해 지니까 보기 좋네」
+                PRINTFORMW 사토리는 먼지 한톨 없이 깨끗해진 가구들을 보며 뿌듯해 하고 있다
+            CASE 3
+                PRINTFORMW 「휴...이제 완전 깨끗해진거 같네」
+                PRINTFORMW 「수고하셨어요」
+        ENDSELECT
 ENDSELECT
+
 
 @ST_지령전청소
 #DIM 이전대화, 2
 #DIM DYNAMIC 대화선택
-#DIM CONST 대화개수 = 11
+#DIM DYNAMIC 대화개수
+SELECTCASE TFLAG:194
+    CASE 3
+        대화개수 = 6
+    CASE 1,2
+        대화개수 = 5
+    CASE 0
+        대화개수 = 4
+ENDSELECT
 대화선택 = ST_대사섞기(대화개수, 이전대화:0 , 이전대화:1, 이전대화:2)
 이전대화:1 = 이전대화:0
 이전대화:0 = 대화선택
 ;PRINTFORMW 「」
-SELECTCASE 대화선택
-    CASE 0
-
-    CASE 1
-
-    CASE 2
-
+SELECTCASE TFLAG:194
     CASE 3
-
-    CASE 4
-
-    CASE 5
-
-    CASE 6
-
-    CASE 7
-
-    CASE 8
-
-    CASE 9
-
-    CASE 10
-    
+        SELECTCASE 대화선택
+            CASE 0
+                PRINTFORMW 「애완동물이 너무 많은걸까나...」
+                PRINTFORMW 「치워도치워도 계속 더러워지는걸」
+                PRINTFORMW 사토리는 한숨을 쉬며 빗자루질을 하고 있다
+            CASE 1
+                PRINTFORMW 「...이 정도면 홍마관에 문의를 해보는게 나을려나?」
+            CASE 2
+                PRINTFORMW 「...청소를 맡은 아이가 분명히 있었죠」
+                PRINTFORMW 「그런데도 이렇게 더러워 지는건, 농땡이일까요, 아니면 치워도치워도 끝이 안 나는 걸까요」
+                PRINTFORMW 「어쩌면 둘 다 일려나」
+                PRINTFORMW 사토리는 중얼중얼거리며 빗자루질을 하고 있다
+            CASE 3
+                PRINTFORMW 「...이 집에서 청소를 하는 사람은 별로 없죠」
+                PRINTFORMW 「다들 조금이나마 거들어주면 좋을텐데...」
+                PRINTFORMW 「...하기사 이렇게 금세 더러워지는데 의욕이 안 나겠죠」
+            CASE 4
+                PRINTFORMW 「치워도 치워도 변하는게 없어보이는건 제 착각인가요?」
+                PRINTFORMW 「갑자기 의욕이 사라졌어...」
+            CASE 5
+                PRINTFORMW 「...배변 훈련도 충분히 시켰고, 털도 잘 빗어서 안 흘리게 주의하고 있는데」
+                PRINTFORMW 「어째서 이렇게 더러워 지는걸까요」
+        ENDSELECT
+    CASE 1,2
+        SELECTCASE 대화선택
+            CASE 0
+                PRINTFORMW 「지령전은 수시로 청소해줘야 해요」
+                PRINTFORMW 「안 그러면 금세 축사나 다름없어지니깐」
+            CASE 1
+                PRINTFORMW 「오쿠나 오린이 청소를 거들어 줬음 좋겠네...」
+                PRINTFORMW 「...코이시야 뭐, 흙묻은 신발이나 털고 들어오기나 해줬음 좋겠어」
+            CASE 2
+                PRINTFORMW 「동물을 기르는건 이런걸 치울 각오를 하고 해야한다지만...」
+                PRINTFORMW 「...그래도 치우는게 즐겁진 않네요」
+                PRINTFORMW 사토리는 한숨을 쉬었다
+            CASE 3
+                PRINTFORMW 「후우...그래도 %사마스터가% 도와주니 금방 끝나겠네요」
+                PRINTFORMW 사토리는 옅게 웃어보였다
+            CASE 4
+                PRINTFORMW 「복도의 쓰레기는 모아뒀다가 작열지옥에 던져버리면 간편하죠」
+                PRINTFORMW 「어짜피 전부 타는 쓰레기니깐, 구분할 필요가 없어요」
+        ENDSELECT
+    CASE 0
+        SELECTCASE 대화선택
+            CASE 0
+                PRINTFORMW 「이렇게 세심하게 청소할 필요가 있나 싶네요」
+                PRINTFORMW 「그래도 잠깐동안은 깔끔하겠죠...아주 잠깐 동안...」
+            CASE 1
+                PRINTFORMW 「음~ 깔끔해라, 늘 이랬음 좋겠네」
+                PRINTFORMW 「금세 더러워지겠지만」
+            CASE 2
+                PRINTFORMW 「깔끔한게 보기 좋네요」
+                PRINTFORMW 「할땐 피곤해도 결과물을 보고 나면 기분이 좋아진다니까요」
+            CASE 3
+                PRINTFORMW 「후우...오린한테 요정들을 가르쳐서 청소나 하라고 시켜야 하나...」
+                PRINTFORMW 「매번 이렇게 청소해도 금세 더러워지니 의욕이 안 나...」
+        ENDSELECT
 ENDSELECT
+
+@ST_동거방청소
