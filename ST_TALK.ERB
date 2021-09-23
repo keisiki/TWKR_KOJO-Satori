@@ -2016,8 +2016,58 @@ IF OUTROOF(CFLAG:현재위치)
     ENDSELECT
 ELSE
     ;실내, 지령전도 아니고 사토리의 방도 아님
-
-
+    SELECTCASE TFLAG:194
+        CASE 3
+            SELECTCASE 대화선택
+                CASE 0
+                    PRINTFORMW 「...어쩌다 이렇게 더러워 진거람」
+                    PRINTFORMW 사토리는 한숨을 쉬며 빗자루를 들었다
+                CASE 1
+                    PRINTFORMW 「...치울 자신이 없어지네」
+                    PRINTFORMW 「이렇게 더러워지도록 아무도 치울 생각을 안 한걸까?」
+                CASE 2
+                    PRINTFORMW 「...쓰레기가 산더미네」
+                    PRINTFORMW 「오늘 안에 다 치울수 있긴 할까요?」
+                    PRINTFORMW 사토리는 한숨을 쉬며 쓰레가를 줍고 있다
+                CASE 3
+                    PRINTFORMW 「치울수...있겠죠?」
+                    PRINTFORMW 「...힘내봅시다」
+                    PRINTFORMW 사토리는 힘없이 말하며 빗자루를 들었다
+            ENDSELECT
+        CASE 1,2
+            SELECTCASE 대화선택
+                CASE 0
+                    PRINTFORMW 「읏차...대걸레 좀 가져다가 바닥좀 밀어보세요」
+                CASE 1
+                    PRINTFORMW 「...한번 쓰레기가 쌓인 곳은, 마음놓고 쓰레기를 버리게 되기 십상이라죠」
+                    PRINTFORMW 「그러기 전에 깔끔히 치워버리지 않으면 겉잡을수 없게 되버릴 거예요」
+                    PRINTFORMW 「...그게 집 안이라 해도 말이죠」
+                CASE 2
+                    PRINTFORMW 「이건...타는 쓰레기, 저거는...」
+                    PRINTFORMW 「...음, 모르겠네, 작열지옥에 넣으면 타려나」
+                CASE 3
+                    PRINTFORMW 「버릴거면 쓰레기통에 버리면 어디 덧나나...」
+                    PRINTFORMW 사토리는 투덜거리며 쓰레기를 줍고 있다
+                CASE 4
+                    PRINTFORMW 「저쪽을 치워주세요, 저는 이쪽을 치울테니」
+                    PRINTFORMW 사토리와 구역을 나누어 쓰레기를 치워나갔다
+            ENDSELECT
+        CASE 0
+            SELECTCASE 대화선택
+                CASE 0
+                    PRINTFORMW 「이 정도면 한동안은 괜찮겠지」
+                    PRINTFORMW 사토리는 말끔해진 주변을 뿌듯한 표정으로 바라보고 있다
+                CASE 1
+                    PRINTFORMW 「후우...」
+                    PRINTFORMW 사토리는 뿌듯한 표정으로 주위를 바라보고 있다
+                CASE 2
+                    PRINTFORMW 「후-...이렇게 치워도, 금세 또 어지럽혀 지겠지만」
+                    PRINTFORMW 「적어도 오늘은 이렇게 깔끔한 채면 좋겠네요」
+                CASE 3
+                    PRINTFORMW 「깔끔해졌네요」
+                    PRINTFORMW 「아아, 이제야 좀 마음이 편해지네」
+            ENDSELECT
+    ENDSELECT
 ENDIF
 
 @ST_통상방청소
