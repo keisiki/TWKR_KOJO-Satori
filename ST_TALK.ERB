@@ -1965,55 +1965,59 @@ ENDSELECT
 ;PRINTFORMW 「」
 IF OUTROOF(CFLAG:현재위치)
     ;바깥
-    SELECTCASE TFLAG:194
-        CASE 3
-            SELECTCASE 대화선택
-                CASE 0
-                    PRINTFORMW 「여긴...으으...치울수 있긴 한걸까」
-                    PRINTFORMW 사토리는 한숨을 쉬며 쓰레기들을 치워내고 있다
-                CASE 1
-                    PRINTFORMW 「...치울 자신이 없어지네」
-                    PRINTFORMW 「이렇게 더러워지도록 아무도 치울 생각을 안 한걸까?」
-                CASE 2
-                    PRINTFORMW 「...쓰레기가 산더미네」
-                    PRINTFORMW 「어째서 치우는 사람은 없고 어지르는 사람만 가득한걸까」
-                    PRINTFORMW 사토리는 한숨을 쉬며 쓰레가를 줍고 있다
-                CASE 3
-                    PRINTFORMW 「치울수...있겠죠?」
-                    PRINTFORMW 「...힘내봅시다」
-            ENDSELECT
-        CASE 1,2
-            SELECTCASE 대화선택
-                CASE 0
-                    PRINTFORMW 「이런곳도 치워주지 않으면 계속 더러워지니깐...」
-                CASE 1
-                    PRINTFORMW 「...한번 쓰레기가 쌓인 곳은, 마음놓고 쓰레기를 버리게 되기 십상이라죠」
-                    PRINTFORMW 「그러기 전에 깔끔히 치워버리지 않으면 겉잡을수 없게 되버릴 거예요」
-                CASE 2
-                    PRINTFORMW 「이건...타는 쓰레기, 저거는...」
-                CASE 3
-                    PRINTFORMW 「애초부터 길바닥에 쓰레기를 버리는 이유가 뭘까요...」
-                    PRINTFORMW 사토리는 투덜거리며 쓰레기를 줍고 있다
-                CASE 4
-                    PRINTFORMW 「저쪽을 치워주세요, 저는 이쪽을 치울테니」
-                    PRINTFORMW 사토리와 구역을 나누어 쓰레기를 치워나갔다
-            ENDSELECT
-        CASE 0
-            SELECTCASE 대화선택
-                CASE 0
-                    PRINTFORMW 「이 정도면 한동안은 깔끔하겠지」
-                    PRINTFORMW 사토리는 말끔해진 거리를 뿌듯한 표정으로 바라보고 있다
-                CASE 1
-                    PRINTFORMW 「흠흠...보이는 덴 전부 깔끔해졌네요」
-                    PRINTFORMW 「한동안은 깔끔하겠죠, 한동안은」
-                CASE 2
-                    PRINTFORMW 「후-...이렇게 치워도, 금세 또 쓰레기 밭이 되겠지만」
-                    PRINTFORMW 「적어도 오늘은 이렇게 깔끔한 채면 좋겠네요」
-                CASE 3
-                    PRINTFORMW 「깔끔해졌네요」
-                    PRINTFORMW 「아아, 이제야 좀 마음이 편해지네」
-            ENDSELECT
-    ENDSELECT
+    IF DAY:2 == 4
+        CALL ST_제설()
+    ELSE
+        SELECTCASE TFLAG:194
+            CASE 3
+                SELECTCASE 대화선택
+                    CASE 0
+                        PRINTFORMW 「여긴...으으...치울수 있긴 한걸까」
+                        PRINTFORMW 사토리는 한숨을 쉬며 쓰레기들을 치워내고 있다
+                    CASE 1
+                        PRINTFORMW 「...치울 자신이 없어지네」
+                        PRINTFORMW 「이렇게 더러워지도록 아무도 치울 생각을 안 한걸까?」
+                    CASE 2
+                        PRINTFORMW 「...쓰레기가 산더미네」
+                        PRINTFORMW 「어째서 치우는 사람은 없고 어지르는 사람만 가득한걸까」
+                        PRINTFORMW 사토리는 한숨을 쉬며 쓰레가를 줍고 있다
+                    CASE 3
+                        PRINTFORMW 「치울수...있겠죠?」
+                        PRINTFORMW 「...힘내봅시다」
+                ENDSELECT
+            CASE 1,2
+                SELECTCASE 대화선택
+                    CASE 0
+                        PRINTFORMW 「이런곳도 치워주지 않으면 계속 더러워지니깐...」
+                    CASE 1
+                        PRINTFORMW 「...한번 쓰레기가 쌓인 곳은, 마음놓고 쓰레기를 버리게 되기 십상이라죠」
+                        PRINTFORMW 「그러기 전에 깔끔히 치워버리지 않으면 겉잡을수 없게 되버릴 거예요」
+                    CASE 2
+                        PRINTFORMW 「이건...타는 쓰레기, 저거는...」
+                    CASE 3
+                        PRINTFORMW 「애초부터 길바닥에 쓰레기를 버리는 이유가 뭘까요...」
+                        PRINTFORMW 사토리는 투덜거리며 쓰레기를 줍고 있다
+                    CASE 4
+                        PRINTFORMW 「저쪽을 치워주세요, 저는 이쪽을 치울테니」
+                        PRINTFORMW 사토리와 구역을 나누어 쓰레기를 치워나갔다
+                ENDSELECT
+            CASE 0
+                SELECTCASE 대화선택
+                    CASE 0
+                        PRINTFORMW 「이 정도면 한동안은 깔끔하겠지」
+                        PRINTFORMW 사토리는 말끔해진 거리를 뿌듯한 표정으로 바라보고 있다
+                    CASE 1
+                        PRINTFORMW 「흠흠...보이는 덴 전부 깔끔해졌네요」
+                        PRINTFORMW 「한동안은 깔끔하겠죠, 한동안은」
+                    CASE 2
+                        PRINTFORMW 「후-...이렇게 치워도, 금세 또 쓰레기 밭이 되겠지만」
+                        PRINTFORMW 「적어도 오늘은 이렇게 깔끔한 채면 좋겠네요」
+                    CASE 3
+                        PRINTFORMW 「깔끔해졌네요」
+                        PRINTFORMW 「아아, 이제야 좀 마음이 편해지네」
+                ENDSELECT
+        ENDSELECT
+    ENDIF
 ELSE
     ;실내, 지령전도 아니고 사토리의 방도 아님
     SELECTCASE TFLAG:194
@@ -2220,3 +2224,129 @@ SELECTCASE TFLAG:194
 ENDSELECT
 
 @ST_동거방청소
+#DIM 이전대화, 2
+#DIM DYNAMIC 대화선택
+#DIM DYNAMIC 대화개수
+SELECTCASE TFLAG:194
+    CASE 3
+        대화개수 = 6
+    CASE 1,2
+        대화개수 = 5
+    CASE 0
+        대화개수 = 3
+ENDSELECT
+대화선택 = ST_대사섞기(대화개수, 이전대화:0 , 이전대화:1, 이전대화:2)
+이전대화:1 = 이전대화:0
+이전대화:0 = 대화선택
+대화선택 = ST_대사섞기(대화개수, 이전대화:0 , 이전대화:1, 이전대화:2)
+이전대화:1 = 이전대화:0
+이전대화:0 = 대화선택
+;PRINTFORMW 「」
+SELECTCASE TFLAG:194
+    CASE 3
+        SELECTCASE 대화선택
+            CASE 0
+                PRINTFORMW 「...어...그러니까 이건...」
+                PRINTFORMW 「...미안해요, 치우는걸 까먹어서...」
+            CASE 1
+                PRINTFORMW 「...치울수 있을까」
+            CASE 2
+                PRINTFORMW 「...이게 방이야 돼지우리야...」
+            CASE 3
+                PRINTFORMW 「......」
+                PRINTFORMW 사토리는 할말을 잃은듯 하다
+            CASE 4
+                PRINTFORMW 「...다음부터 청소는, 제깍제깍 하도록 합시다」
+                PRINTFORMW 「잠깐 미뤘다고 이렇게나...」
+            CASE 5
+                PRINTFORMW 「...미치겠네」
+                PRINTFORMW 사토리는 머리를 짚었다
+        ENDSELECT
+    CASE 1,2
+        SELECTCASE 대화선택
+            CASE 0
+                PRINTFORMW 「같이 사는곳이니 치우는건 도와야죠」
+                PRINTFORMW 사토리는 포댓자루 한가득 쓰레기를 담고 있다
+            CASE 1
+                PRINTFORMW 「하는김에 이불도 좀 털고...」
+            CASE 2
+                PRINTFORMW 「으에...한번 쓸었는데 이 만큼이나...」
+                PRINTFORMW 사토리는 빗자루에 한가득 묻어 나오는 먼지에 경악하고 있다
+            CASE 3
+                PRINTFORMW 「바닥좀 닦을게요」
+                PRINTFORMW 「미끄러지지 않게 조심하세요」
+            CASE 4
+                PRINTFORMW 「먼지떨이 드릴테니 구석진데 좀 털고 와주세요」
+        ENDSELECT
+    CASE 0
+        SELECTCASE 대화선택
+            CASE 0
+                PRINTFORMW 「흐음...이쯤이면 됐나」
+                PRINTFORMW 사토리는 반들반들 윤이 나는 바닥을 뿌듯한 얼굴로 바라보고 있다
+            CASE 1
+                PRINTFORMW 「그래, 사람 사는데가 이래야지」
+                PRINTFORMW 사토리는 만족스러운 미소를 지어보이고 있다
+            CASE 2
+                PRINTFORMW 「후우...힘들었지만, 기분 좋네」
+                PRINTFORMW 정갈하게 놓인 가구, 먼지 한톨없는 바닥...새로 지은 방이라 해도 믿을 정도의 청결함에 뿌듯함이 느껴지고 있다
+        ENDSELECT
+ENDSELECT
+
+@ST_제설
+#DIM 이전대화, 2
+#DIM DYNAMIC 대화선택
+#DIM DYNAMIC 대화개수
+SELECTCASE TFLAG:194
+    CASE 3
+        대화개수 = 4
+    CASE 1,2
+        대화개수 = 3
+    CASE 0
+        대화개수 = 3
+ENDSELECT
+대화선택 = ST_대사섞기(대화개수, 이전대화:0 , 이전대화:1, 이전대화:2)
+이전대화:1 = 이전대화:0
+이전대화:0 = 대화선택
+대화선택 = ST_대사섞기(대화개수, 이전대화:0 , 이전대화:1, 이전대화:2)
+이전대화:1 = 이전대화:0
+이전대화:0 = 대화선택
+;PRINTFORMW 「」
+SELECTCASE TFLAG:194
+    CASE 3
+        SELECTCASE 대화선택
+            CASE 0
+                PRINTFORMW 「우와, 온 세상이 눈밭이야」
+                PRINTFORMW 「...미치겠네, 녹기전에 치워야하는데」
+                PRINTFORMW 사토리는 망연자실한 눈으로 허공을 바라보고 있다
+            CASE 1
+                PRINTFORMW 「...엄청 쌓였네, 얼지나 않았음 좋겠는데」
+            CASE 2
+                PRINTFORMW 「...치워도 금방 쌓일거라는게 무섭네...」
+                PRINTFORMW 「어느세월에 다 치우지...」
+            CASE 3
+                PRINTFORMW 「...무릎, 아니, 허리 밑...?」
+                PRINTFORMW 「이거 치울순 있나요?」
+        ENDSELECT
+    CASE 1,2
+        SELECTCASE 대화선택
+            CASE 0
+                PRINTFORMW 「볼땐 즐거운데」
+                PRINTFORMW 「치울땐 왜 이리 화가 나는걸까요」
+            CASE 1
+                PRINTFORMW 「...추워...」
+            CASE 2
+               PRINTFORMW 「그래도 몇번 삽질하니까 길이 보이긴 하네」
+               PRINTFORMW 「...근데 등 뒤가 다시 눈밭이 되고 있잖아...」
+        ENDSELECT
+    CASE 0
+        SELECTCASE 대화선택
+            CASE 0
+                PRINTFORMW 「하아, 쌓인 눈은 다 치웠네」
+                PRINTFORMW 「...또 쌓이겠지만」
+            CASE 1
+                PRINTFORMW 「방금 치운데 위로 또 눈이 쌓이려 해...으으...」
+            CASE 2
+                PRINTFORMW 「...이렇게 치워도, 몇시간 뒤면 다시 눈밭이 되겠죠」
+                PRINTFORMW 사토리는 멍한 표정으로 삽질을 계속하고 있다
+        ENDSELECT
+ENDSELECT
