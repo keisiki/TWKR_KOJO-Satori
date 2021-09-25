@@ -5514,10 +5514,93 @@ RETURN RESULT
 @M_KOJO_MESSAGE_COM_K49_411_1
 ;-------------------------------------------------
 ;記入チェック（=0, 非表示、1, 表示）
-LOCAL = 0
+LOCAL = 1
 ;-------------------------------------------------
 IF LOCAL
-
+	;PRINTFORMW 「」
+	IF FIRSTTIME(SELECTCOM)
+		;첫회
+		IF MARK:반발각인 == 3
+			IF TALENT:연인
+				PRINTFORMW 「탄막 놀이의 훈련을 도와달라고요?」
+				SELECTCASE ABL:MASTER:전투능력 - ABL:전투능력
+					CASE IS < 0
+						PRINTFORMW 「...후회, 안 할거죠?」
+						PRINTFORMW 사토리는 음흉하게 웃어보이고 있다
+					CASE 0
+						PRINTFORMW 「...그럼 간만에 몸 좀 풀어볼까나」
+					CASE IS > 0
+						PRINTFORMW 「...왠지 험한 꼴 당할거 같은 기분인데」
+				ENDSELECT
+			ELSE
+				PRINTFORMW 「탄막 놀이의 연습?」
+				SELECTCASE ABL:MASTER:전투능력 - ABL:전투능력
+					CASE IS < 0
+						PRINTFORMW 「...손대중같은건 필요 없겠죠?」
+					CASE 0
+						PRINTFORMW 「왠지 귀찮을것 같네...」
+					CASE IS > 0
+						PRINTFORMW 「...왠지 얻어 맞다 끝날거 같은데, 내쪽이」
+				ENDSELECT
+			ENDIF
+		ELSEIF TALENT:연인||TALENT:연모||TALENT:사모||TALENT:애욕||TALENT:섹프
+			PRINTFORMW 「탄막 놀이의 훈련? 으음~」
+			SELECTCASE ABL:MASTER:전투능력 - ABL:전투능력
+				CASE IS < 0
+					PRINTFORMW 「좋아요 간만에 몸도 풀겸」
+					PRINTFORMW 「정신 똑바로 차리고 피해 주세요?」
+				CASE 0
+					PRINTFORMW 「재미있겠네요, 그러면 제대로 피해주세요?」
+				CASE IS > 0
+					PRINTFORMW 「솔직히 공격을 읽는건 자신 있지만, 피하는건 조금...」
+					PRINTFORMW 「이 기회에 연습해보는게 좋으려나」
+			ENDSELECT
+		ELSE
+			PRINTFORMW 「탄막의 훈련을 도와달라?」
+			SELECTCASE ABL:MASTER:전투능력 - ABL:전투능력
+				CASE IS < 0
+					PRINTFORMW 「...손대중 잘 못하는데 괜찮겠어요?」
+					PRINTFORMW 「그렇다면야 뭐」
+				CASE 0
+					PRINTFORMW 「음...조금만 이라면야」
+				CASE IS > 0
+					PRINTFORMW 「어...제가 딱히 도움될거 같진 않은데」
+					PRINTFORMW 「아, 저를 훈련시키는건가요...?」
+					PRINTFORMW 「...굳이 왜...?」
+					PRINTFORMW 사토리는 고개를 갸웃거리고 있다
+			ENDSELECT
+		ENDIF
+	ELSE
+		IF MARK:반발각인 == 3 && !TALENT:연인
+			PRINTFORMW 「또 탄막 훈련?」
+			SELECTCASE ABL:MASTER:전투능력 - ABL:전투능력
+				CASE IS < 0
+					PRINTFORMW 「...손 대중 못해도 몰라요?」
+				CASE 0
+					PRINTFORMW 「좋아요, 대신에 제대로 못 피하면...후후후...」
+					PRINTFORMW 사토리는 음흉한 미소를 짓고 있다
+				CASE IS > 0
+					PRINTFORMW 「...으, 결국 또 과녁판인가...」
+			ENDSELECT
+		ELSEIF TALENT:연인||TALENT:연모||TALENT:사모||TALENT:애욕||TALENT:섹프
+			PRINTFORMW 「또 탄막 놀이 연습?」
+			SELECTCASE ABL:MASTER:전투능력 - ABL:전투능력
+				CASE IS <= 0
+					PRINTFORMW 「굉장히 열심히시네요...」
+				CASE IS > 0
+					PRINTFORMW 「으으...힘든데...」
+			ENDSELECT
+		ELSE
+			PRINTFORMW 「...또 탄막놀이 연습을 하자고요?」
+			SELECTCASE ABL:MASTER:전투능력 - ABL:전투능력
+				CASE IS <= 0
+					PRINTFORMW 「해드리긴 하겠지만...」
+				CASE IS > 0
+					PRINTFORMW 「...피곤하게시리」
+			ENDSELECT
+		ENDIF
+	ENDIF
+	CALL ST_IKUSA
 ENDIF
 RETURN 1
 ;==================================================

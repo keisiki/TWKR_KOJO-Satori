@@ -2350,3 +2350,277 @@ SELECTCASE TFLAG:194
                 PRINTFORMW 사토리는 멍한 표정으로 삽질을 계속하고 있다
         ENDSELECT
 ENDSELECT
+
+@ST_IKUSA
+#DIM DYNAMIC 사토리체력
+#DIM DYNAMIC 당신체력
+#DIM DYNAMIC 위력,2
+#DIM DYNAMIC 승자
+
+위력:0 = 5 + (MAX(ABL:전투능력, 5))
+위력:1 = 3 + (MAX(ABL:MASTER:전투능력, 7))
+사토리체력 = 20
+당신체력 = 15 + (MAX((BASE:MASTER:체력/100), 20))
+
+PRINTFORML
+PRINTFORMW 사토리와 %마스터는% 거리를 벌리고 탄막놀이를 개시했다
+PRINTFORML
+IF MARK:반발각인 == 3 && !TALENT:연인
+	SELECTCASE RAND:3
+        CASE 0
+            PRINTFORMW 「평소에 당한 만큼 돌려주겠어...」
+        CASE 1
+            PRINTFORMW 「제대로 혼쭐을 내버릴테야...」
+        CASE 2
+            PRINTFORMW 「진심으로 해버릴거니까, 각오 하세요?」
+            PRINTFORMW ...연습이라는건 잊혀진것 같다
+    ENDSELECT
+ELSEIF TALENT:연인
+	SELECTCASE RAND:3
+        CASE 0
+            PRINTFORMW 「그래도 왠지 신나는걸, %사마스터와% 하는 탄막놀이는」
+            PRINTFORMW 「피곤하긴 해도 탄막놀이는 재밌으니깐요」
+        CASE 1
+            PRINTFORMW 「읏차...그러면 어디, 해 볼까요」
+        CASE 2
+            SELECTCASE ABL:MASTER:전투능력 - ABL:전투능력
+				CASE IS < 0
+					PRINTFORMW 「열심히 피해주세요?」
+				CASE 0
+					PRINTFORMW 「진 사람이...으음~ 뭘 하는거로 걸까나」
+				CASE IS > 0
+					PRINTFORMW 「으...살살...」
+			ENDSELECT
+    ENDSELECT
+ELSEIF TALENT:연모||TALENT:사모||TALENT:애욕
+	SELECTCASE RAND:2
+        CASE 0
+            PRINTFORMW 「연습이긴 해도, 진짜 탄막놀이처럼 갑시다?」
+        CASE 1
+            PRINTFORMW 「선공은 제가 먼저」
+    ENDSELECT
+ELSEIF TALENT:섹프
+	SELECTCASE RAND:2
+        CASE 0
+            PRINTFORMW 「가끔은 이런것도 재밌죠」
+        CASE 1
+            PRINTFORMW 「역시 탄막놀이도 야한짓 만큼이나 재밌죠」
+            PRINTFORMW 「그럼 야한짓 하면서 해보면...후후후♥」
+    ENDSELECT
+ELSE
+    PRINTFORMW 「읏챠...그럼 가볼까나」
+ENDIF
+PRINTFORML
+WHILE 1
+    ;SATORI
+    SELECTCASE RAND:6
+        CASE 0
+            PRINTFORMW 서드아이의 코드들이 일제히 뻗어나와 %마스터의% 몸을 찌르는 촉수가 되었다!
+            IF RAND:100 > 20
+                PRINTFORMW 온 몸 구석구석을 강하게 찔러왔다!
+                당신체력 -= 위력:0
+            ELSE
+                PRINTFORMW 그러나 재빨리 굴러서 피했다
+            ENDIF
+        CASE 1
+            PRINTFORMW 「이래뵈도 길가의 허접한 요괴는 아니라고요」
+            PRINTFORMW 빽빽한 하트 모양의 탄막이 %마스터를% 향해 쏟아진다!
+            IF RAND:100 > 35
+                PRINTFORMW 회피할 틈도 없이 탄막에 폭격당했다!
+                당신체력 -= 위력:0
+            ELSE
+                PRINTFORMW 재빠르게 옆으로 달려나가며 탄막 세레를 피했다!
+            ENDIF
+        CASE 2
+            PRINTFORMW 「이쪽은 취향이 아니지만」
+            PRINTFORMW 땅을 박차며 날아온 사토리의 주먹이 %마스터를% 강타했다!
+            IF RAND:100 > 10
+                PRINTFORMW 강렬한 충격이 전신에 느껴진다!
+                당신체력 -= 위력:0
+            ELSE
+                PRINTFORMW 그러나 옆으로 몸을 피한 덕에 피격은 면할수 있었다
+            ENDIF
+        CASE 3
+            PRINTFORMW 「자아 당신의 트라우마를 보여드리죠!」
+            PRINTFORMW 불길한 빛의 광선이 마구잡이로 쏘여지고 있다!
+            당신체력 -= 위력:0
+        CASE 4
+            PRINTFORMW 「제게서 피하는건 불가능하답니다」
+            PRINTFORMW %마스터가% 회피하려는 위치마다 무자비한 탄막 세례가 퍼부어지고 있다!
+            IF RAND:100 > 7
+                PRINTFORMW 결국 탄막에 적중당했다!
+                당신체력 -= 위력:0
+            ELSE
+                PRINTFORMW 그러나 재빨리 사토리를 공격해 탄막 세례를 멈추게 만들었다
+            ENDIF
+        CASE 5
+            PRINTFORMW %마스터의% 옆으로 촉수들이 스쳐지나가더니, 금세 %마스터를% 묶어버렸다!
+            IF RAND:100 > 25
+                PRINTFORMW 그대로 사토리의 앞으로 끌어당겨진뒤 근거리 탄막세례를 받았다!
+                당신체력 -= (위력:0) * 2
+            ELSE
+                PRINTFORMW 그러나 %마스터를% 끌어당기기엔 힘이 부족했다
+            ENDIF
+    ENDSELECT
+    IF 당신체력 <= 0
+        승자 = 0
+        BREAK
+    ENDIF
+    ;MASTER
+    SELECTCASE RAND:4
+        CASE 0
+            PRINTFORMW 사토리의 탄막 난사를 회피하며 눈 앞까지 다가간 %마스터는% 최대한 힘을 모아 춉을 날렸다!
+            IF RAND:100 > 20
+                PRINTFORMW 「읏!」
+                PRINTFORMW 사토리는 조금 뒤로 밀려졌지만, 이내 다시 자세를 고치고 다음 공격을 준비하고 있다!
+                사토리체력 -= 위력:1
+            ELSE
+                PRINTFORMW 「%사마스터의% 공격은 전부 읽혀진다고요!」
+                PRINTFORMW 사토리는 재빠르게 몸을 놀려 공격을 피해냈다
+            ENDIF
+        CASE 1
+            PRINTFORMW 가까이 다가온 사토리의 주먹을 옆으로 피해냈다!
+            PRINTFORML 「으긋...!」
+            PRINTFORMW 주춤거리는 사토리의 등 뒤를 가격했다!
+            사토리체력 -= 위력:1 
+        CASE 2
+            PRINTFORMW %마스터의% 주위로 날아오는 촉수를 낚아채 사토리를 끌어당겼다!
+            IF RAND:100 > 15
+                PRINTFORMW 「우왓?!」
+                PRINTFORMW 사토리는 가볍게 당겨져 버렸다!
+                사토리체력 -= 위력:1
+            ELSE
+                PRINTFORMW 그러나 사토리는 침착하게 촉수를 수축시켜 손에서 빼냈다!
+            ENDIF
+        CASE 3
+            PRINTFORMW 시간을 멈춘채 사토리의 등 뒤로 움직였다!
+            PRINTFORMW 「...핫!」
+            PRINTFORMW 눈치채기도 전에 재빨리 공격을 날렸다!
+            사토리체력 -= 위력:1
+    ENDSELECT
+    IF 사토리체력 <= 0
+        승자 = 1
+        BREAK
+    ENDIF
+WEND
+;PRINTFORMW 「」
+IF 승자 == 0
+    ;사토리 승
+    PRINTFORMW *피츙*
+    PRINTFORMW %마스터는% 쓰러지고 말았다!
+    IF MARK:반발각인 == 3 && !TALENT:연인
+        SELECTCASE RAND:3
+            CASE 0
+                PRINTFORMW 사토리는 해냈다는 표정이다
+            CASE 1
+                PRINTFORMW 「후우- 속이 다 시원하네」
+                PRINTFORMW 사토리는 즐거워 보인다
+            CASE 2
+                SELECTCASE ABL:MASTER:전투능력 - ABL:전투능력
+				CASE IS < 0
+					PRINTFORMW 「거봐, 내가 뭐랬어」
+                    PRINTFORMW 사토리는 으스대고 있다
+				CASE 0
+					PRINTFORMW 「푸흡」
+                    PRINTFORMW 사토리는 쓰러진 %마스터를% 비웃고 있다
+				CASE IS > 0
+					PRINTFORMW 「어라, 왠지 약해졌네」
+                    PRINTFORMW 「...그렇다면 이제...후후후...」
+                    PRINTFORMW 사토리는 의미심장한 웃음을 짓고 있다
+			ENDSELECT
+        ENDSELECT
+    ELSEIF TALENT:연인
+        SELECTCASE RAND:3
+            CASE 0
+                PRINTFORMW 「」
+            CASE 1
+
+            CASE 2
+            
+        ENDSELECT
+    ELSEIF TALENT:연모||TALENT:사모||TALENT:애욕
+        SELECTCASE RAND:3
+            CASE 0
+                
+            CASE 1
+
+            CASE 2
+            
+        ENDSELECT
+    ELSEIF TALENT:섹프
+        SELECTCASE RAND:3
+            CASE 0
+                
+            CASE 1
+
+            CASE 2
+            
+        ENDSELECT
+    ELSE
+        SELECTCASE RAND:3
+            CASE 0
+                
+            CASE 1
+
+            CASE 2
+            
+        ENDSELECT
+    ENDIF
+    DOWNBASE:MASTER:체력 += 500
+ELSE
+    ;당신 승
+    IF MARK:반발각인 == 3 && !TALENT:연인
+        SELECTCASE RAND:3
+            CASE 0
+                
+            CASE 1
+
+            CASE 2
+            
+        ENDSELECT
+    ELSEIF TALENT:연인
+        SELECTCASE RAND:3
+            CASE 0
+                
+            CASE 1
+
+            CASE 2
+            
+        ENDSELECT
+    ELSEIF TALENT:연모||TALENT:사모||TALENT:애욕
+        SELECTCASE RAND:3
+            CASE 0
+                
+            CASE 1
+
+            CASE 2
+            
+        ENDSELECT
+    ELSEIF TALENT:섹프
+        SELECTCASE RAND:3
+            CASE 0
+                
+            CASE 1
+
+            CASE 2
+            
+        ENDSELECT
+    ELSE
+        SELECTCASE RAND:3
+            CASE 0
+                
+            CASE 1
+
+            CASE 2
+            
+        ENDSELECT
+    ENDIF
+    EXP:MASTER:전투경험++
+ENDIF
+
+DOWNBASE:MASTER:체력 += 250
+DOWNBASE:MASTER:기력 += 250
+DOWNBASE:체력 += 250
+DOWNBASE:기력 += 250
+EXP:MASTER:전투경험 += 3
+EXP:전투경험 += 3
