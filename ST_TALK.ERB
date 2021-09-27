@@ -2517,102 +2517,98 @@ IF 승자 == 0
                 PRINTFORMW 사토리는 즐거워 보인다
             CASE 2
                 SELECTCASE ABL:MASTER:전투능력 - ABL:전투능력
-				CASE IS < 0
-					PRINTFORMW 「거봐, 내가 뭐랬어」
-                    PRINTFORMW 사토리는 으스대고 있다
-				CASE 0
-					PRINTFORMW 「푸흡」
-                    PRINTFORMW 사토리는 쓰러진 %마스터를% 비웃고 있다
-				CASE IS > 0
-					PRINTFORMW 「어라, 왠지 약해졌네」
-                    PRINTFORMW 「...그렇다면 이제...후후후...」
-                    PRINTFORMW 사토리는 의미심장한 웃음을 짓고 있다
-			ENDSELECT
+                    CASE IS < 0
+                        PRINTFORMW 「거봐, 내가 뭐랬어」
+                        PRINTFORMW 사토리는 으스대고 있다
+                    CASE 0
+                        PRINTFORMW 「푸흡」
+                        PRINTFORMW 사토리는 쓰러진 %마스터를% 비웃고 있다
+                    CASE IS > 0
+                        PRINTFORMW 「어라, 왠지 약해졌네」
+                        PRINTFORMW 「...그렇다면 이제...후후후...」
+                        PRINTFORMW 사토리는 의미심장한 웃음을 짓고 있다
+                ENDSELECT
         ENDSELECT
-    ELSEIF TALENT:연인
+    ELSEIF TALENT:연인||TALENT:연모||TALENT:사모||TALENT:애욕||TALENT:섹프
         SELECTCASE RAND:3
             CASE 0
-                PRINTFORMW 「」
+                PRINTFORMW 「어...괘, 괜찮아요?」
+                PRINTFORMW 「조금 세게 던진거 같네...」
             CASE 1
-
+                PRINTFORMW 사토리는 무안해 하며 %마스터를% 일으켜주고 있다
             CASE 2
-            
-        ENDSELECT
-    ELSEIF TALENT:연모||TALENT:사모||TALENT:애욕
-        SELECTCASE RAND:3
-            CASE 0
-                
-            CASE 1
-
-            CASE 2
-            
-        ENDSELECT
-    ELSEIF TALENT:섹프
-        SELECTCASE RAND:3
-            CASE 0
-                
-            CASE 1
-
-            CASE 2
-            
+                SELECTCASE ABL:MASTER:전투능력 - ABL:전투능력
+                    CASE IS < 0
+                        PRINTFORMW 「괘, 괜찮아요?」
+                        PRINTFORMW 「그러게 적당히 하다 그만하지...」
+                    CASE 0
+                        PRINTFORMW 「하아...하아...이겼긴 한데, 힘드네...」
+                    CASE IS > 0
+                        PRINTFORMW 「...어라? 이겼네」
+                        PRINTFORMW 사토리는 얼떨떨하게 %마스터를% 바라보고 있다
+                ENDSELECT
         ENDSELECT
     ELSE
         SELECTCASE RAND:3
             CASE 0
-                
+                PRINTFORMW 「어...조금 과했나?」
             CASE 1
-
+                PRINTFORMW 「저기, 괜찮아요?」
             CASE 2
-            
+                PRINTFORMW 「안 다쳤어요?」
         ENDSELECT
+        PRINTFORMW 사토리는 %마스터를% 걱정해주고 있다
     ENDIF
     DOWNBASE:MASTER:체력 += 500
 ELSE
     ;당신 승
+    PRINTFORMW *피츙*
+    PRINTFORMW 사토리는 쓰러지고 말았다!
     IF MARK:반발각인 == 3 && !TALENT:연인
         SELECTCASE RAND:3
             CASE 0
-                
+                PRINTFORMW 「으으으...」
+                PRINTFORMW 사토리는 분한듯이 %마스터를% 올려다보고 있다
             CASE 1
-
+                PRINTFORMW 「아파라...」
             CASE 2
-            
+                SELECTCASE ABL:MASTER:전투능력 - ABL:전투능력
+                    CASE IS < 0
+                        PRINTFORMW 「어, 어라...? 어째서...?」
+                        PRINTFORMW 사토리는 당황한 눈치다
+                    CASE 0
+                        PRINTFORMW 「으으...져버렸네...분해...」
+                    CASE IS > 0
+                        PRINTFORMW 「이, 이럴줄 알고 한거지...」
+                        PRINTFORMW 「아파...으...」
+                ENDSELECT
         ENDSELECT
-    ELSEIF TALENT:연인
+    ELSEIF TALENT:연인||TALENT:연모||TALENT:사모||TALENT:애욕||TALENT:섹프
         SELECTCASE RAND:3
             CASE 0
-                
+                PRINTFORMW 「...으에에...」
             CASE 1
-
+                PRINTFORMW 「져버렸네...으...」
             CASE 2
-            
-        ENDSELECT
-    ELSEIF TALENT:연모||TALENT:사모||TALENT:애욕
-        SELECTCASE RAND:3
-            CASE 0
-                
-            CASE 1
-
-            CASE 2
-            
-        ENDSELECT
-    ELSEIF TALENT:섹프
-        SELECTCASE RAND:3
-            CASE 0
-                
-            CASE 1
-
-            CASE 2
-            
+                PRINTFORMW 「...다음번엔 꼭 이길거니까요」
+            CASE 3
+                SELECTCASE ABL:MASTER:전투능력 - ABL:전투능력
+                    CASE IS < 0
+                        PRINTFORMW 「...많이 늘었네요, 이길줄은 몰랐는데」
+                    CASE 0
+                        PRINTFORMW 「후우...다음번엔 안 질거니까, 각오해 주세요?」
+                    CASE IS > 0
+                        PRINTFORMW 「으...역시 무리...」
+                ENDSELECT
         ENDSELECT
     ELSE
         SELECTCASE RAND:3
             CASE 0
-                
+                PRINTFORMW 「으으...」
             CASE 1
-
+                PRINTFORMW 「아파라...」
             CASE 2
-            
+                PRINTFORMW 「가, 강하네...으...」
         ENDSELECT
     ENDIF
     EXP:MASTER:전투경험++
