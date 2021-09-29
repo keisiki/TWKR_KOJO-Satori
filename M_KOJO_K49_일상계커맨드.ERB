@@ -25,6 +25,9 @@ RETURN RESULT
 ;-------------------------------------------------
 ;記入チェック（=0, 非表示、1, 表示）
 LOCAL = 1
+IF CFLAG:수면
+	RETURN 1
+ENDIF
 ;-------------------------------------------------
 IF LOCAL
 	;ここに구上書いて下さい
@@ -91,6 +94,9 @@ RETURN RESULT
 ;-------------------------------------------------
 ;記入チェック（=0, 非表示、1, 表示）
 LOCAL = 1
+IF CFLAG:수면
+	RETURN 1
+ENDIF
 ;-------------------------------------------------
 IF LOCAL
 	IF FIRSTTIME(SELECTCOM)&&TFLAG:193 != -1
@@ -353,6 +359,9 @@ RETURN RESULT
 ;-------------------------------------------------
 ;記入チェック（=0, 非表示、1, 表示）
 LOCAL = 1
+IF CFLAG:수면
+	RETURN 1
+ENDIF
 ;-------------------------------------------------
 IF LOCAL
 	;PRINTFORMW 「」
@@ -542,6 +551,9 @@ RETURN RESULT
 ;-------------------------------------------------
 ;記入チェック（=0, 非表示、1, 表示）
 LOCAL = 1
+IF CFLAG:수면
+	RETURN 1
+ENDIF
 ;-------------------------------------------------
 IF LOCAL
 	;PRINTFORML 「」
@@ -806,6 +818,9 @@ RETURN RESULT
 ;-------------------------------------------------
 ;記入チェック（=0, 非表示、1, 表示）
 LOCAL = 0
+IF CFLAG:수면
+	RETURN 1
+ENDIF
 ;-------------------------------------------------
 IF LOCAL
 	;시간정지中
@@ -835,6 +850,9 @@ RETURN RESULT
 ;-------------------------------------------------
 ;記入チェック（=0, 非表示、1, 表示）
 LOCAL = 1
+IF CFLAG:수면
+	RETURN 1
+ENDIF
 ;-------------------------------------------------
 IF LOCAL
 	;PRINTFORMW 「」
@@ -984,6 +1002,9 @@ RETURN RESULT
 ;-------------------------------------------------
 ;記入チェック（=0, 非表示、1, 表示）
 LOCAL = 1
+IF CFLAG:수면
+	RETURN 1
+ENDIF
 ;-------------------------------------------------
 IF LOCAL
 	;시간정지中
@@ -1328,6 +1349,9 @@ RETURN RESULT
 ;-------------------------------------------------
 ;記入チェック（=0, 非表示、1, 表示）
 LOCAL = 1
+IF CFLAG:수면
+	RETURN 1
+ENDIF
 ;-------------------------------------------------
 IF LOCAL
 	;PRINTFORMW 「」
@@ -1553,6 +1577,9 @@ RETURN RESULT
 ;-------------------------------------------------
 ;記入チェック（=0, 非表示、1, 表示）
 LOCAL = 1
+IF CFLAG:수면
+	RETURN 1
+ENDIF
 ;-------------------------------------------------
 IF LOCAL
 	;수면中
@@ -1808,6 +1835,9 @@ RETURN RESULT
 ;-------------------------------------------------
 ;記入チェック（=0, 非表示、1, 表示）
 LOCAL = 1
+IF CFLAG:수면
+	RETURN 1
+ENDIF
 ;-------------------------------------------------
 IF LOCAL
 	;시간정지中
@@ -2030,6 +2060,9 @@ RETURN RESULT
 ;-------------------------------------------------
 ;記入チェック（=0, 非表示、1, 表示）
 LOCAL = 1
+IF CFLAG:수면
+	RETURN 1
+ENDIF
 ;-------------------------------------------------
 IF LOCAL
 	IF ST_대사플래그:3
@@ -2250,6 +2283,9 @@ RETURN RESULT
 ;-------------------------------------------------
 ;記入チェック（=0, 非表示、1, 表示）
 LOCAL = 1
+IF CFLAG:수면
+	RETURN 1
+ENDIF
 ;-------------------------------------------------
 IF LOCAL
 	;PRINTFORMW 「」
@@ -2416,6 +2452,9 @@ RETURN RESULT
 ;-------------------------------------------------
 ;記入チェック（=0, 非表示、1, 表示）
 LOCAL = 1
+IF CFLAG:수면
+	RETURN 1
+ENDIF
 ;-------------------------------------------------
 IF LOCAL
 	;PRINTFORMW 「」
@@ -2613,6 +2652,9 @@ RETURN RESULT
 ;-------------------------------------------------
 ;記入チェック（=0, 非表示、1, 表示）
 LOCAL = 1
+IF CFLAG:수면
+	RETURN 1
+ENDIF
 ;-------------------------------------------------
 IF LOCAL
 	IF FIRSTTIME(SELECTCOM)
@@ -2790,6 +2832,9 @@ RETURN RESULT
 ;-------------------------------------------------
 ;記入チェック（=0, 非表示、1, 表示）
 LOCAL = 1
+IF CFLAG:수면
+	RETURN 1
+ENDIF
 ;-------------------------------------------------
 IF LOCAL
 	;PRINTFORMW 「」
@@ -2890,6 +2935,9 @@ RETURN RESULT
 ;-------------------------------------------------
 ;記入チェック（=0, 非表示、1, 表示）
 LOCAL = 1
+IF CFLAG:수면
+	RETURN 1
+ENDIF
 ;-------------------------------------------------
 IF LOCAL
 	IF TFLAG:193 > 0
@@ -3085,6 +3133,9 @@ RETURN RESULT
 ;-------------------------------------------------
 ;記入チェック（=0, 非表示、1, 表示）
 LOCAL = 1
+IF CFLAG:수면
+	RETURN 1
+ENDIF
 ;-------------------------------------------------
 IF LOCAL
 	;PRINTFORMW 「」
@@ -3738,6 +3789,9 @@ RETURN RESULT
 ;-------------------------------------------------
 ;記入チェック（=0, 非表示、1, 表示）
 LOCAL = 1
+IF CFLAG:수면
+	RETURN 1
+ENDIF
 ;-------------------------------------------------
 IF LOCAL
 	;TARGET을 데리고 나간다
@@ -3840,6 +3894,9 @@ RETURN RESULT
 ;-------------------------------------------------
 ;記入チェック（=0, 非表示、1, 表示）
 LOCAL = 1
+IF CFLAG:수면
+	RETURN 1
+ENDIF
 ;-------------------------------------------------
 IF LOCAL
 	;PRINTFORMW 「」
@@ -4198,6 +4255,9 @@ RETURN RESULT
 ;-------------------------------------------------
 ;記入チェック（=0, 非表示、1, 表示）
 LOCAL = 1
+IF CFLAG:수면
+	RETURN 1
+ENDIF
 ;-------------------------------------------------
 IF LOCAL
 	IF FLAG:생활능력무
@@ -4251,6 +4311,9 @@ RETURN RESULT
 ;-------------------------------------------------
 ;記入チェック（=0, 非表示、1, 表示）
 LOCAL = 1
+IF CFLAG:수면
+	RETURN 1
+ENDIF
 ;-------------------------------------------------
 IF LOCAL
 	;PRINTFORMW 「」
@@ -4361,6 +4424,9 @@ RETURN RESULT
 ;-------------------------------------------------
 ;記入チェック（=0, 非表示、1, 表示）
 LOCAL = 1
+IF CFLAG:수면
+	RETURN 1
+ENDIF
 ;-------------------------------------------------
 IF LOCAL
 	ST_시간정지 = CFLAG:현재위치
@@ -4386,6 +4452,9 @@ RETURN RESULT
 ;-------------------------------------------------
 ;記入チェック（=0, 非表示、1, 表示）
 LOCAL = 0
+IF CFLAG:수면
+	RETURN 1
+ENDIF
 ;-------------------------------------------------
 IF LOCAL
 
@@ -4404,6 +4473,9 @@ RETURN RESULT
 ;-------------------------------------------------
 ;記入チェック（=0, 非表示、1, 表示）
 LOCAL = 1
+IF CFLAG:수면
+	RETURN 1
+ENDIF
 ;-------------------------------------------------
 IF LOCAL
 	SELECTCASE TCVAR:20
@@ -4482,6 +4554,9 @@ RETURN RESULT
 ;-------------------------------------------------
 ;記入チェック（=0, 非表示、1, 表示）
 LOCAL = 0
+IF CFLAG:수면
+	RETURN 1
+ENDIF
 ;-------------------------------------------------
 IF LOCAL
 	;위와 같은 논리로 생략
@@ -4500,6 +4575,9 @@ RETURN RESULT
 ;-------------------------------------------------
 ;기입 체크(=0, 비표시, 1, 표시)
 LOCAL = 1
+IF CFLAG:수면
+	RETURN 1
+ENDIF
 ;-------------------------------------------------
 IF LOCAL
 ;PRINTFORMW 「」
@@ -4579,6 +4657,9 @@ RETURN RESULT
 ;-------------------------------------------------
 ;記入チェック（=0, 非表示、1, 表示）
 LOCAL = 1
+IF CFLAG:수면
+	RETURN 1
+ENDIF
 ;-------------------------------------------------
 IF LOCAL
 	IF CFLAG:수면
@@ -4685,6 +4766,9 @@ RETURN RESULT
 ;-------------------------------------------------
 ;記入チェック（=0, 非表示、1, 表示）
 LOCAL = 1
+IF CFLAG:수면
+	RETURN 1
+ENDIF
 ;-------------------------------------------------
 IF LOCAL
 	IF PREVCOM == 403 && 연속날 == DAY
@@ -4824,6 +4908,9 @@ RETURN RESULT
 ;-------------------------------------------------
 ;記入チェック（=0, 非表示、1, 表示）
 LOCAL = 1
+IF CFLAG:수면
+	RETURN 1
+ENDIF
 ;-------------------------------------------------
 IF LOCAL
 	;TARGET과 데이트
@@ -5117,6 +5204,9 @@ RETURN RESULT
 ;-------------------------------------------------
 ;記入チェック（=0, 非表示、1, 表示）
 LOCAL = 1
+IF CFLAG:수면
+	RETURN 1
+ENDIF
 ;-------------------------------------------------
 IF LOCAL
 	;PRINTFORMW 「」
@@ -5515,6 +5605,9 @@ RETURN RESULT
 ;-------------------------------------------------
 ;記入チェック（=0, 非表示、1, 表示）
 LOCAL = 1
+IF CFLAG:수면
+	RETURN 1
+ENDIF
 ;-------------------------------------------------
 IF LOCAL
 	;PRINTFORMW 「」
@@ -5617,9 +5710,11 @@ RETURN RESULT
 ;-------------------------------------------------
 ;記入チェック（=0, 非表示、1, 表示）
 LOCAL = 1
+IF CFLAG:수면
+	RETURN 1
+ENDIF
 ;-------------------------------------------------
 IF LOCAL
-	;PRINTFORMW 「」
 	IF FIRSTTIME(SELECTCOM)
 		SELECTCASE ABL:MASTER:교양
 			CASE 0,1,2
@@ -6354,9 +6449,243 @@ RETURN RESULT
 @M_KOJO_MESSAGE_COM_K49_413_1
 ;-------------------------------------------------
 ;記入チェック（=0, 非表示、1, 表示）
-LOCAL = 0
+LOCAL = 1
+IF CFLAG:수면
+	RETURN 1
+ENDIF
 ;-------------------------------------------------
 IF LOCAL
+	IF TFLAG:194 == 100
+		;금단의 요리
+		IF MARK:반발각인 == 3 && !TALENT:연인
+			PRINTFORMW 「...만드는걸 돕긴 했지만, 이건 대체 무슨 요릴까나」
+			PRINTFORMW 「애초에 먹어도 되는거긴 한거야...?」
+		ELSEIF TALENT:연인||TALENT:연모||TALENT:사모||TALENT:애욕
+			PRINTFORMW 「이거 참...상당히 외설적인 요리네요」
+			PRINTFORMW 「물론 돕긴 했지만...결과물이 이럴줄은...」
+		ELSEIF TALENT:섹프
+			PRINTFORMW 「으으음, 요리에 이런걸 쓰다니...」
+			PRINTFORMW 「게다가 은근히 떨고 있고...먹어도 되는걸까나」
+		ELSE
+			PRINTFORMW 「...돕긴 했지만 결과가 이럴줄은...」
+			PRINTFORMW 「애초에 먹을순 있는건가, 이거?」
+		ENDIF
+	ELSE
+		SELECTCASE ABL:MASTER:요리기능
+			CASE 0
+				IF MARK:반발각인 == 3 && !TALENT:연인
+					SELECTCASE RAND:2
+						CASE 0
+							PRINTFORMW 「...도와준게 이거라니, 처참하네」
+							PRINTFORMW 사토리도 크게 도와준건 없는거 같지만 말이다
+						CASE 1
+							PRINTFORMW 「...그냥 밥은 사먹는게 빠르겠어」
+					ENDSELECT
+				ELSEIF TALENT:연인
+					SELECTCASE RAND:2
+						CASE 0
+							PRINTFORMW 「으음...실패...라고 해야 하나?」
+							PRINTFORMW 사토리는 멋쩍게 웃어보이고 있다
+						CASE 1
+							PRINTFORMW 「...조금 탄 거 같기도...? 으음...괜찮나」
+					ENDSELECT
+				ELSEIF TALENT:연모||TALENT:사모||TALENT:애욕||TALENT:섹프
+					SELECTCASE RAND:2
+						CASE 0
+							PRINTFORMW 「...」
+							PRINTFORMW 사토리는 처참한 결과물을 보고 한숨을 쉬고 있다
+						CASE 1
+							IF ABL:요리기능 <= 1
+								PRINTFORMW 「...저희 둘 다 실력이 없는거 같네요」
+							ELSE
+								PRINTFORMW 「그, 괜찮아요, 조금만 손보면...으음...안되려나」
+							ENDIF
+					ENDSELECT
+				ELSE
+					SELECTCASE RAND:2
+						CASE 0
+							PRINTFORMW 「...그냥 사먹는게 나을거 같네」
+						CASE 1
+							PRINTFORMW 「...역시 손에 안맞아, 이런건」
+					ENDSELECT
+				ENDIF
+			CASE 1 TO 2
+				IF MARK:반발각인 == 3 && !TALENT:연인
+					SELECTCASE RAND:2
+						CASE 0
+							PRINTFORMW 「...음, 그럭저럭 괜찮게 된거 같네」
+						CASE 1
+							PRINTFORMW 「먹을만한게 나오긴 했네, 어떻게든...」
+					ENDSELECT
+				ELSEIF TALENT:연인
+					PRINTFORMW 「나름 괜찮게 된거 같네」
+				ELSEIF TALENT:연모||TALENT:사모||TALENT:애욕||TALENT:섹프
+					PRINTFORMW 「맛은 어떨련지 모르겠네」
+				ELSE
+					PRINTFORMW 「헤에...썩 괜찮아 보이네요」
+				ENDIF
+			CASE IS >= 3
+				;PRINTFORMW 「」
+				SELECTCASE ABL:요리기능
+					CASE 0
+						IF MARK:반발각인 == 3 && !TALENT:연인
+							SELECTCASE RAND:3
+								CASE 0
+									PRINTFORMW 「...맛있게 잘 된거 같아서 다행이네」
+								CASE 1
+									PRINTFORMW 「그래도 요리는 잘하네...」
+									PRINTFORMW 「하는짓은 그렇지만 잘하는것도 많다니깐」
+								CASE 2
+									PRINTFORMW 「맛있어 보이는 냄새네...」
+							ENDSELECT
+						ELSEIF TALENT:연인
+							SELECTCASE RAND:2
+								CASE 0
+									PRINTFORMW 「으음~ 맛있어 보이네요」
+									PRINTFORMW 「솔직히 전 요리같은거 잘 못해서...잘하는 사람보면 신기해보여요」
+								CASE 1
+									PRINTFORMW 「굉장히 맛있어 보이는 %DISHNAME%...」
+									PRINTFORMW 「앞으로 밥은 %사마스터가% 하는게 좋을거 같네요」
+									PRINTFORMW 사토리는 가볍게 눈웃음을 지어보였다
+							ENDSELECT
+						ELSEIF TALENT:연모||TALENT:사모||TALENT:애욕||TALENT:섹프
+							SELECTCASE RAND:2
+								CASE 0
+									PRINTFORMW 「맛있는 냄새...후후」
+									PRINTFORMW 「지령전에 요리사로 들어와주면 좋을거 같네」
+								CASE 1
+									PRINTFORMW 「도와드리려 했는데 결국은 거의 %MASTERNAME:49% 혼자 하게 되버렸네요」
+									PRINTFORMW 사토리는 멋쩍게 웃어보이고 있다
+							ENDSELECT
+						ELSE
+							SELECTCASE RAND:2
+								CASE 0
+									PRINTFORMW 「상당한 실력...지령전에서 요리사라도 해줬음 좋을 정도야」
+									PRINTFORMW 「지령전에서 요리를 잘하는 아이는 별로 없거든요」
+								CASE 1
+									PRINTFORMW 「도와본다고 하긴 했지만, 이건 뭐 도울 필요도 없었네요」
+									PRINTFORMW 「오히려 방해나 안됐나 몰라」
+							ENDSELECT
+						ENDIF
+					CASE 1 TO 2
+						IF MARK:반발각인 == 3 && !TALENT:연인
+							SELECTCASE RAND:3
+								CASE 0
+									PRINTFORMW 「맛있게 잘 된거 같네」
+									PRINTFORMW 「인정하긴 싫지만 나보다 잘하는건 사실이니까」
+								CASE 1
+									PRINTFORMW 「...인정하긴 싫지만 나보다 요리 잘해」
+								CASE 2
+									PRINTFORMW 「...도울 필요가 있었나 싶을 정도네」
+									PRINTFORMW 사토리는 입술을 삐죽이고 있다
+							ENDSELECT
+						ELSEIF TALENT:연인
+							SELECTCASE RAND:3
+								CASE 0
+									PRINTFORMW 「만들면서 뼈저리게 느낀게, 실력 차이가 상당히 난다는 점이에요」
+									PRINTFORMW 「아무래도 매일 아침 된장국은 제가 아니라 %사마스터가% 끓이게 될지도」
+								CASE 1
+									PRINTFORMW 「으음- 나중에 제대로 배워봐야 할까나...」
+									PRINTFORMW 「언젠간 저도 맛있는 아침을 차려드리고 싶으니까, 연습해 두는게 좋겠죠」
+								CASE 2
+									PRINTFORMW 「음- 맛있는 냄새...」
+							ENDSELECT
+						ELSEIF TALENT:연모||TALENT:사모||TALENT:애욕||TALENT:섹프
+							SELECTCASE RAND:2
+								CASE 0
+									PRINTFORMW 「상당한 솜씨네요...저랑은 다르게」
+								CASE 1
+									PRINTFORMW 「...돕는다고 도왔는데, 필요가 있었나 싶을 정도네요」
+							ENDSELECT
+						ELSE
+							SELECTCASE RAND:2
+								CASE 0
+									PRINTFORMW 「어머나, 맛있어 보이는 %DISHNAME%」
+									PRINTFORMW 「역시 솜씨 좋네요」
+								CASE 1
+									PRINTFORMW 「돕는다고 도왔는데, 그럴 필요가 있을까 싶은 솜씨네요...」
+									PRINTFORMW 사토리는 멋쩍게 웃으며 조리대를 정리했다
+							ENDSELECT
+						ENDIF
+					CASE 3 TO 5
+						IF MARK:반발각인 == 3 && !TALENT:연인
+							SELECTCASE RAND:3
+								CASE 0
+									
+								CASE 1
+
+								CASE 2
+
+							ENDSELECT
+						ELSEIF TALENT:연인
+							SELECTCASE RAND:3
+								CASE 0
+									
+								CASE 1
+
+								CASE 2
+								
+							ENDSELECT
+						ELSEIF TALENT:연모||TALENT:사모||TALENT:애욕||TALENT:섹프
+							SELECTCASE RAND:3
+								CASE 0
+									
+								CASE 1
+
+								CASE 2
+								
+							ENDSELECT
+						ELSE
+							SELECTCASE RAND:3
+								CASE 0
+									
+								CASE 1
+
+								CASE 2
+								
+							ENDSELECT
+						ENDIF
+					CASE IS > 5
+						IF MARK:반발각인 == 3 && !TALENT:연인
+							SELECTCASE RAND:3
+								CASE 0
+									
+								CASE 1
+
+								CASE 2
+
+							ENDSELECT
+						ELSEIF TALENT:연인
+							SELECTCASE RAND:3
+								CASE 0
+									
+								CASE 1
+
+								CASE 2
+								
+							ENDSELECT
+						ELSEIF TALENT:연모||TALENT:사모||TALENT:애욕||TALENT:섹프
+							SELECTCASE RAND:3
+								CASE 0
+									
+								CASE 1
+
+								CASE 2
+								
+							ENDSELECT
+						ELSE
+							SELECTCASE RAND:3
+								CASE 0
+									
+								CASE 1
+
+								CASE 2
+								
+							ENDSELECT
+						ENDIF
+				ENDSELECT
+		ENDSELECT
+	ENDIF
 ENDIF
 RETURN 1
 ;==================================================
@@ -6379,6 +6708,9 @@ RETURN RESULT
 ;-------------------------------------------------
 ;記入チェック（=0, 非表示、1, 表示）
 LOCAL = 1
+IF CFLAG:수면
+	RETURN 1
+ENDIF
 ;-------------------------------------------------
 IF LOCAL
 	ST_식사이름 = %DISHNAME%
@@ -6405,6 +6737,9 @@ RETURN RESULT
 ;-------------------------------------------------
 ;記入チェック（=0, 非表示、1, 表示）
 LOCAL = 1
+IF CFLAG:수면
+	RETURN 1
+ENDIF
 ;-------------------------------------------------
 IF LOCAL
 	ST_식사이름 = %DISHNAME%
@@ -6431,6 +6766,9 @@ RETURN RESULT
 ;-------------------------------------------------
 ;記入チェック（=0, 非表示、1, 表示）
 LOCAL = 0
+IF CFLAG:수면
+	RETURN 1
+ENDIF
 ;-------------------------------------------------
 IF LOCAL
 
@@ -6450,6 +6788,9 @@ RETURN RESULT
 ;-------------------------------------------------
 ;記入チェック（=0, 非表示、1, 表示）
 LOCAL = 0
+IF CFLAG:수면
+	RETURN 1
+ENDIF
 ;-------------------------------------------------
 IF LOCAL
 
@@ -6468,6 +6809,9 @@ RETURN RESULT
 ;-------------------------------------------------
 ;記入チェック（=0, 非表示、1, 表示）
 LOCAL = 0
+IF CFLAG:수면
+	RETURN 1
+ENDIF
 ;-------------------------------------------------
 IF LOCAL
 
@@ -6493,6 +6837,9 @@ RETURN RESULT
 ;-------------------------------------------------
 ;記入チェック（=0, 非表示、1, 表示）
 LOCAL = 0
+IF CFLAG:수면
+	RETURN 1
+ENDIF
 ;-------------------------------------------------
 IF LOCAL
 
@@ -6513,6 +6860,9 @@ RETURN RESULT
 ;-------------------------------------------------
 ;記入チェック（=0, 非表示、1, 表示）
 LOCAL = 0
+IF CFLAG:수면
+	RETURN 1
+ENDIF
 ;-------------------------------------------------
 IF LOCAL
 
@@ -6540,6 +6890,9 @@ RETURN RESULT
 ;-------------------------------------------------
 ;記入チェック（=0, 非表示、1, 表示）
 LOCAL = 0
+IF CFLAG:수면
+	RETURN 1
+ENDIF
 ;-------------------------------------------------
 IF LOCAL
 
@@ -6560,6 +6913,9 @@ RETURN RESULT
 ;-------------------------------------------------
 ;記入チェック（=0, 非表示、1, 表示）
 LOCAL = 0
+IF CFLAG:수면
+	RETURN 1
+ENDIF
 ;-------------------------------------------------
 IF LOCAL
 
@@ -6585,6 +6941,9 @@ RETURN RESULT
 ;-------------------------------------------------
 ;記入チェック（=0, 非表示、1, 表示）
 LOCAL = 0
+IF CFLAG:수면
+	RETURN 1
+ENDIF
 ;-------------------------------------------------
 IF LOCAL
 
@@ -6603,6 +6962,9 @@ RETURN RESULT
 ;-------------------------------------------------
 ;記入チェック（=0, 非表示、1, 表示）
 LOCAL = 0
+IF CFLAG:수면
+	RETURN 1
+ENDIF
 ;-------------------------------------------------
 IF LOCAL
 
@@ -6621,6 +6983,9 @@ RETURN RESULT
 ;-------------------------------------------------
 ;記入チェック（=0, 非表示、1, 表示）
 LOCAL = 0
+IF CFLAG:수면
+	RETURN 1
+ENDIF
 ;-------------------------------------------------
 IF LOCAL
 
@@ -6645,6 +7010,9 @@ RETURN RESULT
 ;-------------------------------------------------
 ;記入チェック（=0, 非表示、1, 表示）
 LOCAL = 0
+IF CFLAG:수면
+	RETURN 1
+ENDIF
 ;-------------------------------------------------
 IF LOCAL
 
@@ -6664,6 +7032,9 @@ RETURN RESULT
 ;-------------------------------------------------
 ;記入チェック（=0, 非表示、1, 表示）
 LOCAL = 0
+IF CFLAG:수면
+	RETURN 1
+ENDIF
 ;-------------------------------------------------
 IF LOCAL
 
@@ -6687,6 +7058,9 @@ RETURN RESULT
 ;-------------------------------------------------
 ;記入チェック（=0, 非表示、1, 表示）
 LOCAL = 0
+IF CFLAG:수면
+	RETURN 1
+ENDIF
 ;-------------------------------------------------
 IF LOCAL
 
@@ -6711,6 +7085,9 @@ RETURN RESULT
 ;-------------------------------------------------
 ;記入チェック（=0, 非表示、1, 表示）
 LOCAL = 0
+IF CFLAG:수면
+	RETURN 1
+ENDIF
 ;-------------------------------------------------
 IF LOCAL
 
@@ -6734,6 +7111,9 @@ RETURN RESULT
 ;-------------------------------------------------
 ;記入チェック（=0, 非表示、1, 表示）
 LOCAL = 0
+IF CFLAG:수면
+	RETURN 1
+ENDIF
 ;-------------------------------------------------
 IF LOCAL
 
@@ -6752,6 +7132,9 @@ RETURN RESULT
 ;-------------------------------------------------
 ;記入チェック（=0, 非表示、1, 表示）
 LOCAL = 0
+IF CFLAG:수면
+	RETURN 1
+ENDIF
 ;-------------------------------------------------
 IF LOCAL
 
@@ -6772,6 +7155,9 @@ RETURN RESULT
 ;-------------------------------------------------
 ;記入チェック（=0, 非表示、1, 表示）
 LOCAL = 0
+IF CFLAG:수면
+	RETURN 1
+ENDIF
 ;-------------------------------------------------
 IF LOCAL
 
@@ -6795,6 +7181,9 @@ RETURN RESULT
 ;-------------------------------------------------
 ;記入チェック（=0, 非表示、1, 表示）
 LOCAL = 0
+IF CFLAG:수면
+	RETURN 1
+ENDIF
 ;-------------------------------------------------
 IF LOCAL
 
@@ -6812,6 +7201,9 @@ RETURN RESULT
 ;-------------------------------------------------
 ;記入チェック（=0, 非表示、1, 表示）
 LOCAL = 0
+IF CFLAG:수면
+	RETURN 1
+ENDIF
 ;-------------------------------------------------
 IF LOCAL
 
@@ -6831,6 +7223,9 @@ RETURN RESULT
 ;-------------------------------------------------
 ;記入チェック（=0, 非表示、1, 表示）
 LOCAL = 0
+IF CFLAG:수면
+	RETURN 1
+ENDIF
 ;-------------------------------------------------
 IF LOCAL
 
@@ -6850,6 +7245,9 @@ RETURN RESULT
 ;-------------------------------------------------
 ;記入チェック（=0, 非表示、1, 表示）
 LOCAL = 0
+IF CFLAG:수면
+	RETURN 1
+ENDIF
 ;-------------------------------------------------
 IF LOCAL
 
@@ -6869,6 +7267,9 @@ RETURN RESULT
 ;-------------------------------------------------
 ;記入チェック（=0, 非表示、1, 表示）
 LOCAL = 0
+IF CFLAG:수면
+	RETURN 1
+ENDIF
 ;-------------------------------------------------
 IF LOCAL
 	SELECTCASE TFLAG:194
@@ -6903,6 +7304,9 @@ RETURN RESULT
 ;-------------------------------------------------
 ;記入チェック（=0, 非表示、1, 表示）
 LOCAL = 0
+IF CFLAG:수면
+	RETURN 1
+ENDIF
 ;-------------------------------------------------
 IF LOCAL
 
@@ -6921,6 +7325,9 @@ RETURN RESULT
 ;-------------------------------------------------
 ;記入チェック（=0, 非表示、1, 表示）
 LOCAL = 0
+IF CFLAG:수면
+	RETURN 1
+ENDIF
 ;-------------------------------------------------
 IF LOCAL
 
@@ -6938,6 +7345,9 @@ RETURN RESULT
 ;-------------------------------------------------
 ;記入チェック（=0, 非表示、1, 表示）
 LOCAL = 0
+IF CFLAG:수면
+	RETURN 1
+ENDIF
 ;-------------------------------------------------
 IF LOCAL
 
@@ -6965,6 +7375,9 @@ RETURN RESULT
 ;-------------------------------------------------
 ;記入チェック（=0, 非表示、1, 表示）
 LOCAL = 0
+IF CFLAG:수면
+	RETURN 1
+ENDIF
 ;-------------------------------------------------
 IF LOCAL
 
@@ -6983,6 +7396,9 @@ RETURN RESULT
 ;-------------------------------------------------
 ;記入チェック（=0, 非表示、1, 表示）
 LOCAL = 0
+IF CFLAG:수면
+	RETURN 1
+ENDIF
 ;-------------------------------------------------
 IF LOCAL
 
@@ -7008,6 +7424,9 @@ RETURN RESULT
 ;-------------------------------------------------
 ;記入チェック（=0, 非表示、1, 表示）
 LOCAL = 0
+IF CFLAG:수면
+	RETURN 1
+ENDIF
 ;-------------------------------------------------
 IF LOCAL
 
@@ -7031,6 +7450,9 @@ RETURN RESULT
 ;-------------------------------------------------
 ;記入チェック（=0, 非表示、1, 表示）
 LOCAL = 0
+IF CFLAG:수면
+	RETURN 1
+ENDIF
 ;-------------------------------------------------
 IF LOCAL
 	IF FLAG:70
@@ -7056,6 +7478,9 @@ RETURN RESULT
 ;-------------------------------------------------
 ;記入チェック（=0, 非表示、1, 表示）
 LOCAL = 0
+IF CFLAG:수면
+	RETURN 1
+ENDIF
 ;-------------------------------------------------
 IF LOCAL
 
