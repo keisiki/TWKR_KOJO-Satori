@@ -6525,7 +6525,6 @@ IF LOCAL
 					PRINTFORMW 「헤에...썩 괜찮아 보이네요」
 				ENDIF
 			CASE IS >= 3
-				;PRINTFORMW 「」
 				SELECTCASE ABL:요리기능
 					CASE 0
 						IF MARK:반발각인 == 3 && !TALENT:연인
@@ -6713,11 +6712,241 @@ IF CFLAG:수면
 ENDIF
 ;-------------------------------------------------
 IF LOCAL
+	;PRINTFORMW 「」
 	ST_식사이름 = %DISHNAME%
 	ST_대사플래그:1 = TIME
 	ST_대사플래그:2 = TFLAG:193
+	IF TASTE_REACTION("매운")
+		SELECTCASE RAND:2
+			CASE 0
+				PRINTFORMW 「알고는 있었지만...이건」
+				PRINTFORMW 「으...혀가 얼얼해...」
+			CASE 1
+				PRINTFORMW 「윽...상상한것보다 더 매운걸...」
+				PRINTFORMW 사토리는 인상을 쓰고 있다
+		ENDSELECT
+	ELSEIF TASTE_REACTION("단")
+		SELECTCASE RAND:2
+			CASE 0
+				PRINTFORMW 「...새...생각보단 괜찮...으윽」
+				PRINTFORMW 「달다 못해 쓴맛이...」
+				PRINTFORMW 사토리는 인상을 쓰고 있다
+			CASE 1
+				PRINTFORMW 「...입 안이 들쩍지근해지는걸」
+		ENDSELECT
+	ELSEIF TASTE_REACTION("고추냉이")
+		IF MARK:반발각인 == 3
+			SELECTCASE RAND:2
+				CASE 0
+					PRINTFORMW 「...와사비를 이렇게 많이...큿...」
+					PRINTFORMW 「입에 넣지 않아도 아플정도로 올라오는 냄새가...」
+				CASE 1
+					PRINTFORMW 「...치졸하게 복수하네요...」
+			ENDSELECT
+		ELSE
+			SELECTCASE RAND:2
+				CASE 0
+					PRINTFORMW 「윽...코..코가...」
+				CASE 1
+					PRINTFORMW 「...이런걸 어떻게 먹으란 거야...」
+			ENDSELECT
+		ENDIF
+	ELSEIF TASTE_REACTION("시큼한")
+		SELECTCASE RAND:2
+			CASE 0
+				PRINTFORMW 「...혀가 얼얼해 지는걸」
+			CASE 1
+				PRINTFORMW 「...건강엔 좋을거 같네, 혀가 녹아내릴것 같지만」
+		ENDSELECT
+	ELSEIF TFLAG:193 == -1
+		;실패
+		PRINTFORMW ...별로 맛있진 않다
+		IF DISH_ASSI == 49
+			;사토리랑 만듬
+			IF MARK:반발각인 == 3
+				SELECTCASE RAND:2
+					CASE 0
+						PRINTFORMW 「......」
+						PRINTFORMW 사토리는 묵묵히 입안에 음식을 밀어넣고 있다
+					CASE 1
+						PRINTFORMW 「...밥은 그냥 사먹고 마는게 나을지도?」
+						PRINTFORMW 「소질이 없는건 어쩔수 없으니깐...」
+						PRINTFORMW 사토리는 한숨을 쉬고 있다
+				ENDSELECT
+			ELSEIF TALENT:연인
+				SELECTCASE RAND:2
+					CASE 0
+						PRINTFORMW 「...음, 역시 실패인가...」
+					CASE 1
+						IF ABL:MASTER:요리기능 < ABL:요리기능
+							PRINTFORMW 「...괜찮아요, 다음번에 잘 하면 되지」
+						ELSE
+							PRINTFORMW 「...다음번엔 잘 해볼게요...」
+							PRINTFORMW 사토리는 살짝 풀 죽은듯한 목소리다
+						ENDIF
+				ENDSELECT
+			ELSEIF TALENT:연모||TALENT:사모||TALENT:애욕
+				SELECTCASE RAND:2
+					CASE 0
+						PRINTFORMW 「뭐가 부족했던 걸까나...」
+					CASE 1
+						PRINTFORMW 「...다음번엔 맛있게 되겠죠, 아마도...」
+				ENDSELECT
+			ELSE
+				SELECTCASE RAND:2
+					CASE 0
+						IF ABL:MASTER:요리기능 < ABL:요리기능
+							PRINTFORMW 「...못 먹을 정도는...으...」
+							PRINTFORMW 「그래서 개선할 여지가...」
+							PRINTFORMW 사토리는 무어라 할 말을 못찾고 있다
+						ELSE
+							PRINTFORMW 「역시 손에 안맞아 이런건...」
+							PRINTFORMW 사토리는 풀죽은 표정이었다
+						ENDIF
+					CASE 1
+						IF ABL:MASTER:요리기능 < ABL:요리기능
+							PRINTFORMW 「...뭐, 다음번엔 잘 되겠죠...」
+						ELSE
+							PRINTFORMW 「...다음번엔 잘 해볼게요...」
+							PRINTFORMW 사토리는 살짝 풀 죽은듯한 목소리다
+						ENDIF
+				ENDSELECT
+			ENDIF
+		ELSE
+			;사토리랑 만들지 않음
+			IF MARK:반발각인 == 3
+				SELECTCASE RAND:2
+					CASE 0
+						PRINTFORMW 「...맛없어」
+					CASE 1
+						CALL ST_반찬투정
+				ENDSELECT
+			ELSEIF TALENT:연인||TALENT:연모||TALENT:사모||TALENT:애욕
+				SELECTCASE RAND:2
+					CASE 0
+						CALL ST_반찬투정
+					CASE 1
+						PRINTFORMW 「...으으음...」
+						PRINTFORMW 사토리는 아무 말도 하지 않고 있다
+				ENDSELECT
+			ELSE
+				SELECTCASE RAND:2
+					CASE 0
+						CALL ST_반찬투정
+					CASE 1
+						PRINTFORMW 「...으음...」
+						PRINTFORMW 사토리는 말없이 입 안으로 %조사처리(DISHNAME,"을")% 밀어넣고 있다
+				ENDSELECT
+			ENDIF
+		ENDIF
+	ELSE
+		;성공
+		IF DISH_ASSI == 49
+			;사토리랑 만듬
+			IF MARK:반발각인 == 3
+				SELECTCASE RAND:2
+					CASE 0
+						PRINTFORMW 「...맛있어? 그야 당연하죠, 제가 만든거니까」
+						PRINTFORMW 사토리는 은근히 으스대고 있다
+						IF ABL:MASTER:요리기능 < ABL:요리기능
+						ELSE
+							PRINTFORMW 정작 %마스터가% 다 한것 같지만 말이다
+						ENDIF
+					CASE 1
+						PRINTFORMW 「뭐, 그럭저럭이네- 내가 만들었으니 당연한거지만」
+						IF ABL:MASTER:요리기능 < ABL:요리기능
+							PRINTFORMW 「뭣하면 더 만들수도 있다고요?」
+							PRINTFORMW 「누구씨랑은 다르게 잘하니까」
+							PRINTFORMW 사토리는 신나서 우쭐대고 있다
+						ELSE
+							PRINTFORMW 실상 %마스터가% 다 만든것 같지만 어째 사토리가 우쭐대고 있다
+						ENDIF
+				ENDSELECT
+			ELSEIF TALENT:연인||TALENT:연모||TALENT:사모||TALENT:애욕
+				SELECTCASE RAND:3
+					CASE 0
+						PRINTFORMW 「맛있나요? 후후, 다행이네」
+						IF ABL:MASTER:요리기능 < ABL:요리기능
+							PRINTFORMW 「다음번에도 또 만들어 드릴테니까요」
+						ELSE
+							PRINTFORMW 「솔직히 조금 자신 없었거든요...」
+						ENDIF
+					CASE 1
+						PRINTFORMW 「으음~ 이번건 괜찮게 된거 같네」
+					CASE 2
+						PRINTFORMW 「잘 먹겠습니다」
+				ENDSELECT
+			ELSE
+				SELECTCASE RAND:2
+					CASE 0
+						IF ABL:요리기능 > 3
+							PRINTFORMW 「잘 먹겠습니다」
+						ELSE
+							PRINTFORMW 「내가 만든거 치곤 괜찮은 맛이네」
+							PRINTFORMW 「...내가 한건 별로 없지만」
+						ENDIF
+					CASE 1
+						PRINTFORMW 「맛있나요? 다행이네요」
+						IF ABL:MASTER:요리기능 < ABL:요리기능
+							PRINTFORMW 「조금만 더 노력하면 금방 따라잡겠는걸요」
+						ELSE
+							PRINTFORMW 「좀 더 연습하면 혼자서도 할 수 있으려나...」
+						ENDIF
+				ENDSELECT
+			ENDIF
+		ELSE
+			;사토리랑 만들지 않음
+			IF MARK:반발각인 == 3
+				SELECTCASE RAND:3
+					CASE 0
+						PRINTFORMW 「뭐어 그럭저럭 괜찮네」
+						PRINTFORMW 「못 봐줄 정도는 아닌정도?」
+						PRINTFORMW ...'맛있다'라고 말하기엔 자존심이 허락 하지 않는 모양이다
+					CASE 1
+						PRINTFORMW 「...음- 맛있네」
+						PRINTFORMW 사토리는 무미건조한 표정으로 %조사처리(DISHNAME,"을")% 먹어치우고 있다
+					CASE 2
+						PRINTFORMW 「흐응...생각보단 괜찮네」
+						PRINTFORMW 맛있다고 하기엔 자존심이 허락 안하는 모양이다
+				ENDSELECT
+			ELSEIF TALENT:연인
+				SELECTCASE RAND:2
+					CASE 0
+						PRINTFORMW 「잘 먹겠습니다」
+					CASE 1
+						PRINTFORMW 「음...맛있네」
+						IF ABL:MASTER:요리기능 < ABL:요리기능
+							PRINTFORMW 「역시 남이 만들어 주는게 편하고 좋다니깐요」
+							PRINTFORMW 사토리는 눈웃음을 지어왔다
+						ELSE
+							PRINTFORMW 「역시 %사마스터가% 해 주는게 맛있는거 같네요」
+							PRINTFORMW 사토리는 헤실헤실 웃으며 %조사처리(DISHNAME,"을")% 먹고 있다
+						ENDIF
+				ENDSELECT
+			ELSEIF TALENT:연모||TALENT:사모||TALENT:애욕
+				SELECTCASE RAND:2
+					CASE 0
+						PRINTFORMW 「잘 먹겠습니다」
+						PRINTFORMW 사토리는 기뻐보이는 표정으로 %조사처리(DISHNAME,"을")% 먹고 있다
+					CASE 1
+						PRINTFORMW 「어라, 저한테...?」
+						PRINTFORMW 「후후, 그렇담 감사히」
+				ENDSELECT
+			ELSE
+				SELECTCASE RAND:2
+					CASE 0
+						PRINTFORMW 「흐응...맛있네에...」
+						PRINTFORMW 사토리는 희미한 미소를 띄며 %조사처리(DISHNAME,"을")% 먹고 있다
+					CASE 1
+						PRINTFORMW 「그럼, 잘 먹겠습니다」
+				ENDSELECT
+			ENDIF
+		ENDIF
+	ENDIF
 ENDIF
 RETURN 1
+
+
 ;==================================================
 ;415,식사를 대접한다
 ;TFLAG:193(1=大成功 0=成功 -1=失敗)
@@ -6730,23 +6959,26 @@ TFLAG:192 =0
 
 @M_KOJO_MESSAGE_COM_K49_415
 CALL TRAIN_MESSAGE
-CALL M_KOJO_MESSAGE_COM_K49_415_1
+;CALL M_KOJO_MESSAGE_COM_K49_415_1
+;여기서 함께 식사한다 쪽으로 이관시켜준다
+CALL M_KOJO_MESSAGE_COM_K49_414_1
 RETURN RESULT
 
-@M_KOJO_MESSAGE_COM_K49_415_1
-;-------------------------------------------------
-;記入チェック（=0, 非表示、1, 表示）
-LOCAL = 1
-IF CFLAG:수면
-	RETURN 1
-ENDIF
-;-------------------------------------------------
-IF LOCAL
-	ST_식사이름 = %DISHNAME%
-	ST_대사플래그:1 = TIME
-	ST_대사플래그:2 = TFLAG:193
-ENDIF
-RETURN 1
+;@M_KOJO_MESSAGE_COM_K49_415_1
+;;-------------------------------------------------
+;;記入チェック（=0, 非表示、1, 表示）
+;LOCAL = 1
+;IF CFLAG:수면
+;	RETURN 1
+;ENDIF
+;;-------------------------------------------------
+;IF LOCAL
+;	ST_식사이름 = %DISHNAME%
+;	ST_대사플래그:1 = TIME
+;	ST_대사플래그:2 = TFLAG:193
+;ENDIF
+;RETURN 1
+
 ;==================================================
 ;416,연주한다
 ;TFLAG:193(1=大成功 0=成功 -1=失敗)
