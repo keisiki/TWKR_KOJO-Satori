@@ -2618,7 +2618,144 @@ EXP:전투경험 += 3
 
 @ST_반찬투정
 
-SELECTCASE DISHNAME
+SELECTCASE DISH_NAME
+    CASE "주먹밥"
+        SELECTCASE RAND:2
+            CASE 0
+                PRINTFORMW 「...왠지 어석어석한걸, 설익은 걸까」
+            CASE 1
+                PRINTFORMW 「...어딘 싱겁고 어디는 짜, 소금이 덜 섞인건가?」
+        ENDSELECT
+    CASE "캇파마키"
+        SELECTCASE RAND:2
+            CASE 0
+                PRINTFORMW 「으음- 왜 이리 씁쓸할까...」
+                PRINTFORMW 「좋은 오이가 아니었던 걸까?」
+            CASE 1
+                PRINTFORMW 「...오이가 물렀어」
+        ENDSELECT
+    CASE "스콘"
+        SELECTCASE RAND:2
+            CASE 0
+                PRINTFORMW 「...아무맛도 안 나는걸요, 밀가루 맛 이외엔...」
+            CASE 1
+                PRINTFORMW 「음, 설탕이 뭉친것 같은 맛...」
+        ENDSELECT
+    CASE "샌드위치"
+        SELECTCASE RAND:2
+            CASE 0
+                PRINTFORMW 「어째 빵이 질겨...」
+            CASE 1
+                PRINTFORMW 「양상추 쓴 맛 밖에 안 나...」
+        ENDSELECT
+    CASE "햄버거"
+        SELECTCASE RAND:2
+            CASE 0
+                PRINTFORMW 「...패티가 좀 설익었나?」
+            CASE 1
+                PRINTFORMW 「...조금 느끼한걸」
+        ENDSELECT
+    CASE "핫도그"
+        SELECTCASE RAND:2
+            CASE 0
+                PRINTFORMW 「으음- 어째 너무 짠 걸...」
+            CASE 1
+                PRINTFORMW 「...빵이 질겨서 먹기 힘든걸」
+        ENDSELECT
+    CASE "라퓨타빵"
+        SELECTCASE RAND:2
+            CASE 0
+                PRINTFORMW 「...노른자가 비려」
+            CASE 1
+                PRINTFORMW 「빵이 조금 탄 것 같네...」
+        ENDSELECT
+    CASE "칼로리바"
+        SELECTCASE RAND:2
+            CASE 0
+                PRINTFORMW 「...텁텁해」
+            CASE 1
+                PRINTFORMW 「...밀가루 맛 밖에 안 나는걸」
+        ENDSELECT
+    CASE "팝콘"
+        SELECTCASE RAND:2
+            CASE 0
+                PRINTFORMW 「...느끼할 정도로 기름만 많은걸」
+            CASE 1
+                PRINTFORMW 「...밍밍해」
+        ENDSELECT
+    CASE "샐러드"
+        SELECTCASE RAND:2
+            CASE 0
+                PRINTFORMW 「...써-」
+                PRINTFORMW 드레싱이 별로 마음에 안 드는 모양이다
+            CASE 1
+                PRINTFORMW 「야채가 더 다양했으면 좋을것을...」
+                PRINTFORMW 「어째선지 있는게 죄다 쓴 맛만 나는것도 그렇고...」
+        ENDSELECT
+    CASE "산나물 샐러드"
+        SELECTCASE RAND:2
+            CASE 0
+                PRINTFORMW 「...윽, 쓰, 쓴 맛이...」
+            CASE 1
+                PRINTFORMW 「드레싱 맛이 연한걸까, 풀 맛이 너무...」
+        ENDSELECT
+    CASE "절임"
+        SELECTCASE RAND:2
+            CASE 0
+                PRINTFORMW 「...너무 짠 걸」
+                PRINTFORMW 「짠 맛을 싫어하는건 아니지만 이건 너무...」
+            CASE 1
+                PRINTFORMW 「...어째 군내가 나는걸」
+        ENDSELECT
+    CASE "모짜렐라 치즈와 토마토의 샐러드"
+        SELECTCASE RAND:2
+            CASE 0
+                PRINTFORMW 「...토마토가 덜 신선 했던걸까나」
+            CASE 1
+                PRINTFORMW 「...물컹하고 이상한 맛만 나는걸...」
+                PRINTFORMW 「발사믹 식초가 이상한건가?」
+        ENDSELECT
+    CASE "오믈렛"
+        SELECTCASE RAND:2
+            CASE 0
+                PRINTFORMW 「...어째 설 익은거 같은데」
+            CASE 1
+                PRINTFORMW 「...비려」
+        ENDSELECT
+
+
+    CASE "프라이드 치킨"
+        SELECTCASE RAND:2
+            CASE 0
+                PRINTFORMW 「...너무 기름진건 싫은데」
+            CASE 1
+                PRINTFORMW 「...조금 상큼한게 먹고 싶어졌어」
+        ENDSELECT
+    CASE "개구리 튀김"
+        SELECTCASE RAND:2
+            CASE 0
+                PRINTFORMW 「...으엑, 개구리...」
+                PRINTFORMW 「이상한 맛이야...」
+            CASE 1
+                PRINTFORMW 「...이상한 냄새...좋은 느낌은 아닌걸」
+        ENDSELECT
     CASE "채소절임 곱빼기밥"
-        
+        SELECTCASE RAND:2
+            CASE 0
+                PRINTFORMW 「...너무 양이 많은데다가, 채소가 너무 짜...」
+            CASE 1
+                PRINTFORMW 「...채소가 군내가 나는걸」
+        ENDSELECT
+
+    ;예비용
+    CASEELSE
+        SELECTCASE RAND:3
+            CASE 0
+                PRINTFORMW 「으음, 역시 내 입맛엔 조금...」    
+            CASE 1
+                PRINTFORMW 「으음...내 취향은 아닌걸...」
+            CASE 2
+                PRINTFORMW 「......」
+                PRINTFORMW 사토리는 인상을 쓰며 %조사처리(DISH_NAME,"을")% 깨작거리고 있다
+        ENDSELECT
 ENDSELECT
