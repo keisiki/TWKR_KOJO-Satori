@@ -7040,13 +7040,93 @@ RETURN RESULT
 @M_KOJO_MESSAGE_COM_K49_421_1
 ;-------------------------------------------------
 ;記入チェック（=0, 非表示、1, 表示）
-LOCAL = 0
+LOCAL = 1
 IF CFLAG:수면
 	RETURN 1
 ENDIF
 ;-------------------------------------------------
 IF LOCAL
-
+	;PRINTFORMW 「」
+	IF FLAG:발원내용 <= 10 || FLAG:발원내용 == 57 || FLAG:발원내용 == 71 || FLAG:발원내용 == FLAG:더부살이캐릭터 ;? 
+		;	
+	ELSEIF FLAG:발원내용 >= 11 && FLAG:발원내용 <= CHARANUM && FLAG:발원내용 != 57 && FLAG:발원내용 != 71 && FLAG:발원내용 != FLAG:더부살이캐릭터 ; 결연
+		PRINTFORMW 「...'사토리가 찾아오게' 해달라니」
+		IF MARK:반발각인 == 3 && !TALENT:연인
+			PRINTFORMW 「절대로 싫은데...」
+		ELSEIF TALENT:연인
+			PRINTFORMW 「그런거 없이도 찾아오라면 갈텐데」
+		ELSEIF TALENT:연모||TALENT:사모||TALENT:애욕 || TALENT:섹프
+			PRINTFORMW 「...앞으론 좀 더 자주 찾아와야겠네요」
+		ELSE
+			PRINTFORMW 「눈 앞에서 그렇게 비는건 무슨 의미인가요」
+		ENDIF
+	ELSEIF FLAG:발원내용 == 200 ; 정력 절륜
+		PRINTFORMW 「...뭘 빌나 봤더니만, 정력이 강해지게라니」
+		IF MARK:반발각인 == 3 && !TALENT:연인
+			PRINTFORMW 「상대해줄 사람이 불쌍하네, 그런거 없인 만족도 못 시켜 주는 걸까나」
+		ELSEIF TALENT:연모||TALENT:사모||TALENT:애욕||TALENT:연인
+			PRINTFORMW 「...왠지 남사스러운걸」
+			PRINTFORMW 사토리는 얼굴을 붉히고 있다
+		ELSEIF TALENT:섹프
+			PRINTFORMW 「헤에...그런것도 되는구나...」
+			PRINTFORMW 「그러면 테스트 해 볼겸 해버릴까요?」
+		ELSE
+			PRINTFORMW 「이상한 소원이야...」
+		ENDIF
+	ELSEIF FLAG:발원내용 == 201 ; 마음의 평안
+		PRINTFORMW 「'정욕이 사라지게'? 그런 소원도 들어주던가요...」
+		IF MARK:반발각인 == 3 && !TALENT:연인
+			PRINTFORMW 「어쩐지 안쓰러워 보이네」
+			PRINTFORMW 사토리는 피식하며 웃고 있다
+		ELSEIF TALENT:연인
+			PRINTFORMW 「그렇게 쌓인거라면 참지 말고 해버리면 될텐데」
+		ELSEIF TALENT:연모||TALENT:사모
+			PRINTFORMW 「...정 참기 힘들면 제가...으음」
+			PRINTFORMW 사토리는 작게 중얼거리고 있다
+		ELSEIF TALENT:섹프||TALENT:애욕
+			PRINTFORMW 「그렇게 쌓였으면 참지 말고 시원하게 싸버리면 좋을텐데」
+			PRINTFORMW 「원한다면 제가 상대해 드릴테니깐요」
+			PRINTFORMW 사토리는 요염한 포즈로 몸을 기대오고 있다
+		ELSE
+			PRINTFORMW 「그렇게 빌어도 머릿속은 여전히...그거 효과 있긴 한건가요?」
+		ENDIF
+	ELSEIF FLAG:발원내용 == 202 ; 팬티 줘
+		IF MARK:반발각인 == 3 && !TALENT:연인
+			PRINTFORMW 「...'팬티가 갖고 싶다'? 그런걸 소원으로 비는 바보가 있다니...」
+			PRINTFORMW 사토리는 어이없다는듯이 바라보고 있다
+		ELSEIF TALENT:연인||TALENT:연모||TALENT:사모||TALENT:애욕
+			PRINTFORMW 「...팬티가 그렇게 갖고 싶었어요?」
+			PRINTFORMW 사토리는 깬다는듯이 %마스터를% 바라보고 있다
+		ELSEIF TALENT:섹프
+			PRINTFORMW 「...팬티같은게 그렇게 중요한거예요? 소원까지 빌 정도로?」
+			PRINTFORMW 사토리는 어이없다는듯이 바라보고 있다
+		ELSE
+			PRINTFORMW 「...??」
+			PRINTFORMW 사토리의 서드아이가 동그래진 눈으로 %마스터를% 바라보고 있다
+		ENDIF
+		CFLAG:3101++
+	ELSEIF FLAG:발원내용 == 203 ; 분홍바람
+		IF MARK:반발각인 == 3 && !TALENT:연인
+			PRINTFORMW 「자, 잠깐, 뭘 비는거야」
+			PRINTFORMW 사토리는 저 멀리 불어오는 분홍빛 안개를 보며 경악하고 있다
+			CFLAG:3101++
+		ELSEIF TALENT:연인
+			PRINTFORMW 「...자, 잠깐? 뭘 빌고 있는...」
+			PRINTFORMW 사토리가 말리기도 전에 자욱한 분홍 안개가 주위에 한가득 깔렸다
+		ELSEIF TALENT:연모||TALENT:사모||TALENT:애욕
+			PRINTFORMW 「...'모두가 야한 기분이 들게'라니 무스...잠깐, 저게 뭐야」
+			PRINTFORMW 사토리는 저 멀리서부터 불어오는 분홍 안개를 보며 경악하고 있다
+		ELSEIF TALENT:섹프
+			PRINTFORMW 「...이상한 걸 빌다니, 악취미네요...」
+			PRINTFORMW 「...스읍- 아하...그치만 죄다 야한 기분이 되버린다면, 그것대로 재밌을지도」
+			PRINTFORMW 어쩐지 사토리의 눈빛이 무섭다
+			CFLAG:욕구불만도 = 1000
+		ELSE
+			PRINTFORMW 「...?」
+			PRINTFORMW 사토리는 %마스터를% 의아하게 바라보고 있다
+			PRINTFORMW 얼마 안 있어 그 모습은 주위에 한가득 퍼진 분홍 안개에 가려져 버렸다
+		ENDIF
+	ENDIF
 ENDIF
 RETURN 1
 
@@ -7159,71 +7239,6 @@ RETURN 1
 ;デート系コマンド
 ;デート系구上は文字通り外出先で発生
 ;※※※※※※※※※※※※※※※※※※※※※※※※※
-[SKIPSTART]
-;現状未実装
-;==================================================
-;600,デート회화
-;==================================================
-@M_KOJO_MESSAGE_COM_K49_600
-CALL TRAIN_MESSAGE
-CALL M_KOJO_MESSAGE_COM_K49_600_1
-RETURN RESULT
-
-@M_KOJO_MESSAGE_COM_K49_600_1
-;-------------------------------------------------
-;記入チェック（=0, 非表示、1, 表示）
-LOCAL = 0
-IF CFLAG:수면
-	RETURN 1
-ENDIF
-;-------------------------------------------------
-IF LOCAL
-
-ENDIF
-RETURN 1
-
-;==================================================
-;601,デート스킨십
-;==================================================
-@M_KOJO_MESSAGE_COM_K49_601
-CALL TRAIN_MESSAGE
-CALL M_KOJO_MESSAGE_COM_K49_601_1
-RETURN RESULT
-
-@M_KOJO_MESSAGE_COM_K49_601_1
-;-------------------------------------------------
-;記入チェック（=0, 非表示、1, 表示）
-LOCAL = 0
-IF CFLAG:수면
-	RETURN 1
-ENDIF
-;-------------------------------------------------
-IF LOCAL
-
-ENDIF
-RETURN 1
-
-;==================================================
-;602,デートキス
-;==================================================
-@M_KOJO_MESSAGE_COM_K49_602
-CALL TRAIN_MESSAGE
-CALL M_KOJO_MESSAGE_COM_K49_602_1
-RETURN RESULT
-
-@M_KOJO_MESSAGE_COM_K49_602_1
-;-------------------------------------------------
-;記入チェック（=0, 非表示、1, 表示）
-LOCAL = 0
-IF CFLAG:수면
-	RETURN 1
-ENDIF
-;-------------------------------------------------
-IF LOCAL
-
-ENDIF
-RETURN 1
-[SKIPEND]
 ;==================================================
 ;603,손을 잡는다
 ;TFLAG:193(1=大成功 0=成功 -1=失敗)(失敗でもふりほどかれたりはしません
@@ -7422,7 +7437,7 @@ IF LOCAL
 ENDIF
 RETURN 1
 ;==================================================
-;618,꽃집（구上は表示されない模様？
+;618,꽃집（표시되지 않는 모양?
 ;==================================================
 @M_KOJO_MESSAGE_COM_K49_618
 CALL TRAIN_MESSAGE
@@ -7433,13 +7448,10 @@ RETURN RESULT
 ;-------------------------------------------------
 ;記入チェック（=0, 非表示、1, 表示）
 LOCAL = 0
-IF CFLAG:수면
-	RETURN 1
-ENDIF
 ;-------------------------------------------------
-IF LOCAL
-
-ENDIF
+;IF LOCAL
+;
+;ENDIF
 RETURN 1
 ;==================================================
 ;620,스즈나안
