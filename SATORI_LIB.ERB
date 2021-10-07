@@ -274,16 +274,20 @@ FOR LOCAL,15,19
         RETURN LOCAL
     ENDIF
 NEXT
-FOR LOCAL,24,29
-    IF !저택방주인(LOCAL)
-        RETURN LOCAL
-    ENDIF
-NEXT
-FOR LOCAL,34,39
-    IF !저택방주인(LOCAL)
-        RETURN LOCAL
-    ENDIF
-NEXT
+IF ITEM:주택 >= 3
+    FOR LOCAL,24,29
+        IF !저택방주인(LOCAL)
+            RETURN LOCAL
+        ENDIF
+    NEXT
+ENDIF
+IF ITEM:주택 >= 4
+    FOR LOCAL,34,39
+        IF !저택방주인(LOCAL)
+            RETURN LOCAL
+        ENDIF
+    NEXT
+ENDIF
 RETURNF 0
 
 @ST_야스합의
