@@ -7148,17 +7148,62 @@ RETURN RESULT
 @M_KOJO_MESSAGE_COM_K49_431_1
 ;-------------------------------------------------
 ;記入チェック（=0, 非表示、1, 表示）
-LOCAL = 0
+LOCAL = 1
 IF CFLAG:수면
+	RETURN 1
+ENDIF
+IF TFLAG:194
 	RETURN 1
 ENDIF
 ;-------------------------------------------------
 IF LOCAL
-
+	IF MARK:반발각인 == 3 && !TALENT:연인
+		SELECTCASE RAND:3
+			CASE 0
+				PRINTFORMW 「...히- 편하긴 하네...」
+				PRINTFORMW 「혼자 쓰는것보단 덜하지만」
+			CASE 1
+				PRINTFORMW 「...후우-」
+				PRINTFORMW 사토리는 %마스터를% 거들떠도 안 본채 목욕을 즐기고 있다
+			CASE 2
+				PRINTFORMW 「......」
+				PRINTFORMW 사토리는 팔로 가슴을 가리고 있다
+		ENDSELECT
+	ELSEIF TALENT:연인
+		SELECTCASE RAND:2
+			CASE 0
+				PRINTFORMW 「느긋한게 좋네에...」
+				PRINTFORMW 어쩐지 흐물흐물해지고 있는 사토리였다
+			CASE 1
+				PRINTFORMW 「하아-...피로가 날아가는 기분이야」
+		ENDSELECT
+	ELSEIF TALENT:연모||TALENT:사모||TALENT:애욕
+		SELECTCASE RAND:3
+			CASE 0
+				PRINTFORMW 「후아...」
+				PRINTFORMW 사토리는 머리 위에 서드아이를 올려 둔 채로 목욕을 즐기고 있다
+				PRINTFORMW 아무래도 뜨거운것엔 약한 모양이다
+			CASE 1
+				PRINTFORML 「...아- 좋네에...읏?! 뜨거워...!」
+				PRINTFORMW 욕조 위에 올려두었던 서드아이가 미끄러져 탕 안으로 떨어지자 사토리가 펄쩍 뛰기 시작했다
+			CASE 2
+				PRINTFORMW 「...」
+				PRINTFORMW 사토리는 노곤한듯한 표정이다
+		ENDSELECT
+	ELSE
+		SELECTCASE RAND:2
+			CASE 0
+				PRINTFORMW 「후우...」
+				PRINTFORMW 사토리는 노곤해 보이는 표정이다
+			CASE 1
+				PRINTFORMW 「...」
+				PRINTFORMW 사토리는 조용히 목욕을 즐기고 있다
+		ENDSELECT
+	ENDIF
 ENDIF
 RETURN 1
 ;==================================================
-;432,욕탕에서 쉰다
+;432, 대중목욕탕
 ;表示タイミングは入浴後なので、お목욕탕上がりでの
 ;TFLAG:209(4=人里の목욕탕で番台ちゃんを怒らせている 1=목욕탕に入った
 ;TFLAG:211(4=地底の温泉で番台봉래인を怒らせている 1=温泉に入った
@@ -7171,7 +7216,7 @@ RETURN RESULT
 @M_KOJO_MESSAGE_COM_K49_432_1
 ;-------------------------------------------------
 ;記入チェック（=0, 非表示、1, 表示）
-LOCAL = 0
+LOCAL = 1
 IF CFLAG:수면
 	RETURN 1
 ENDIF
