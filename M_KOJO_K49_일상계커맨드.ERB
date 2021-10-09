@@ -7157,48 +7157,104 @@ IF TFLAG:194
 ENDIF
 ;-------------------------------------------------
 IF LOCAL
-	IF MARK:반발각인 == 3 && !TALENT:연인
-		SELECTCASE RAND:3
-			CASE 0
-				PRINTFORMW 「...히- 편하긴 하네...」
-				PRINTFORMW 「혼자 쓰는것보단 덜하지만」
-			CASE 1
-				PRINTFORMW 「...후우-」
-				PRINTFORMW 사토리는 %마스터를% 거들떠도 안 본채 목욕을 즐기고 있다
-			CASE 2
-				PRINTFORMW 「......」
-				PRINTFORMW 사토리는 팔로 가슴을 가리고 있다
-		ENDSELECT
-	ELSEIF TALENT:연인
-		SELECTCASE RAND:2
-			CASE 0
-				PRINTFORMW 「느긋한게 좋네에...」
-				PRINTFORMW 어쩐지 흐물흐물해지고 있는 사토리였다
-			CASE 1
-				PRINTFORMW 「하아-...피로가 날아가는 기분이야」
-		ENDSELECT
-	ELSEIF TALENT:연모||TALENT:사모||TALENT:애욕
-		SELECTCASE RAND:3
-			CASE 0
-				PRINTFORMW 「후아...」
-				PRINTFORMW 사토리는 머리 위에 서드아이를 올려 둔 채로 목욕을 즐기고 있다
-				PRINTFORMW 아무래도 뜨거운것엔 약한 모양이다
-			CASE 1
-				PRINTFORML 「...아- 좋네에...읏?! 뜨거워...!」
-				PRINTFORMW 욕조 위에 올려두었던 서드아이가 미끄러져 탕 안으로 떨어지자 사토리가 펄쩍 뛰기 시작했다
-			CASE 2
-				PRINTFORMW 「...」
-				PRINTFORMW 사토리는 노곤한듯한 표정이다
-		ENDSELECT
+	IF BATHCHECK(CFLAG:MASTER:현재위치)
+		$BYPASS
+		IF MARK:반발각인 == 3 && !TALENT:연인
+			SELECTCASE RAND:3
+				CASE 0
+					PRINTFORMW 「...하- 편하긴 하네...」
+					PRINTFORMW 「혼자 쓰는것보단 덜하지만」
+				CASE 1
+					PRINTFORMW 「...후우-」
+					PRINTFORMW 사토리는 %마스터를% 거들떠도 안 본채 목욕을 즐기고 있다
+				CASE 2
+					PRINTFORMW 「......」
+					PRINTFORMW 사토리는 팔로 가슴을 가리고 있다
+			ENDSELECT
+		ELSEIF TALENT:연인
+			SELECTCASE RAND:2
+				CASE 0
+					PRINTFORMW 「느긋한게 좋네에...」
+					PRINTFORMW 어쩐지 흐물흐물해지고 있는 사토리였다
+				CASE 1
+					PRINTFORMW 「하아-...피로가 날아가는 기분이야」
+			ENDSELECT
+		ELSEIF TALENT:연모||TALENT:사모||TALENT:애욕
+			SELECTCASE RAND:3
+				CASE 0
+					PRINTFORMW 「후아...」
+					PRINTFORMW 사토리는 머리 위에 서드아이를 올려 둔 채로 목욕을 즐기고 있다
+					PRINTFORMW 아무래도 뜨거운것엔 약한 모양이다
+				CASE 1
+					PRINTFORML 「...아- 좋네에...읏?! 뜨거워...!」
+					PRINTFORMW 욕조 위에 올려두었던 서드아이가 미끄러져 탕 안으로 떨어지자 사토리가 펄쩍 뛰기 시작했다
+				CASE 2
+					PRINTFORMW 「...」
+					PRINTFORMW 사토리는 노곤한듯한 표정이다
+			ENDSELECT
+		ELSE
+			SELECTCASE RAND:2
+				CASE 0
+					PRINTFORMW 「후우...」
+					PRINTFORMW 사토리는 노곤해 보이는 표정이다
+				CASE 1
+					PRINTFORMW 「...」
+					PRINTFORMW 사토리는 조용히 목욕을 즐기고 있다
+			ENDSELECT
+		ENDIF
 	ELSE
-		SELECTCASE RAND:2
-			CASE 0
-				PRINTFORMW 「후우...」
-				PRINTFORMW 사토리는 노곤해 보이는 표정이다
-			CASE 1
-				PRINTFORMW 「...」
-				PRINTFORMW 사토리는 조용히 목욕을 즐기고 있다
-		ENDSELECT
+		;간이 풀장
+		IF TFLAG:400 && DATE_HITOGOMI()
+			;보여졌다
+			IF CFLAG:태도 > 0
+				;같이
+				IF MARK:반발각인 == 3
+					PRINTFORMW 「...으...다 보이고 있어...」
+					PRINTFORMW 사토리는 얼굴을 붉히고 있다
+				ELSEIF TALENT:연인
+					PRINTFORMW 「어머나, 이쪽을 보고 있네」
+					PRINTFORMW 「별로 부끄럽다거나 하진 않지만- 좀 더 부끄러운 짓도 할 수 있는데 말이죠」
+					PRINTFORMW 사토리는 빙그레 웃어보이며 %마스터의% 몸에 기대왔다
+				ELSEIF TALENT:연모||TALENT:사모||TALENT:애욕
+					PRINTFORMW 「...보지 말아주세요」
+					PRINTFORMW 사토리는 새빨게진 얼굴을 겨우 가리고 있다
+				ELSEIF TALENT:섹프
+					PRINTFORMW 「어라라, 보고 있네...」
+					PRINTFORMW 「그렇게 신기한걸까- 더한것도 할 수 있는데 말이지」
+					PRINTFORMW 사토리는 야릇한 표정을 지어보이고 있다
+				ELSE
+					PRINTFORMW 「...일부러 보이는데에서 펼친거죠」
+					PRINTFORMW 사토리는 조금 언짢아 보이는 표정이다
+				ENDIF
+			ELSE
+				;마스터만
+				IF MARK:반발각인 == 3
+					PRINTFORMW 「...사람들 다 보는데에서 뭐하는거람」
+				ELSEIF TALENT:연인||TALENT:연모||TALENT:사모||TALENT:애욕
+					PRINTFORMW 「남들 다 보는데 이게 뭐하는건가요...」
+				ELSEIF TALENT:섹프
+					PRINTFORMW 「으음- 언제까지 그럴 생각인가요?」
+				ELSE
+					PRINTFORMW 「...밖에서 이게 뭐하는 짓이람」
+				ENDIF
+			ENDIF
+		ELSE
+			;프라이빗
+			IF CFLAG:태도 > 0
+				;같이
+				GOTO BYPASS
+			ELSE
+				;마스터만
+				IF MARK:반발각인 == 3
+					PRINTFORMW 「...대뜸 씻어버릴줄은 몰랐는데」
+				ELSEIF TALENT:연인||TALENT:연모||TALENT:사모||TALENT:애욕||TALENT:섹프
+					PRINTFORMW 「...그렇게 돌아다니면서 목욕하는 사람은 %MASTERNAME:49%뿐 일거예요」
+				ELSE
+					PRINTFORMW 「...?」
+					PRINTFORMW 사토리는 갑자기 자리를 잡고 목욕을 하는 %마스터를% 보며 의아해 하고 있다
+				ENDIF
+			ENDIF
+		ENDIF
 	ENDIF
 ENDIF
 RETURN 1
