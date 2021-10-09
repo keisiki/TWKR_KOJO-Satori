@@ -7222,7 +7222,21 @@ IF CFLAG:수면
 ENDIF
 ;-------------------------------------------------
 IF LOCAL
-
+	IF TFLAG:211 == 1
+		;옛 지옥 온천
+		PRINTFORMW 「...돌아가기 전에 잠시」
+		PRINTFORMW 사토리는 엿보기 구멍 옆에서 낄낄 대고 있던 접수대의 요괴를 향해 대야를 던졌다
+		SIF FLAG:대사색깔
+			RESETCOLOR
+		PRINTFORML 「우갹-?!」
+		SIF FLAG:대사색깔
+    		CALL M_KOJO_COLOR_K49
+		PRINTFORMW 접수대의 요괴는 이마에 대야를 얻어맞고는 그대로 기절해 버렸다
+		PRINTFORMW 「이 온천은 이래서 마음에 안 든다니깐...」
+	ELSE
+		PRINTFORMW 「후우...개운하네요」
+		PRINTFORMW 사토리는 만족스러운듯 하다
+	ENDIF
 ENDIF
 RETURN 1
 ;==================================================
