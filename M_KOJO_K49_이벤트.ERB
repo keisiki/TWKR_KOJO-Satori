@@ -778,7 +778,6 @@ LOCAL = 1
 ;-------------
 IF LOCAL
 	;PRINTFORMW 「」
-	CALL 불륜폭로이벤트
 	CALL 아나타평가
 	;-------------------------------------------------
 	;小分岐
@@ -788,6 +787,10 @@ IF LOCAL
 	LOCAL:1 = 1
 	;-------------------------------------------------
 	IF LOCAL:1 && ARG == 1
+		CALL 불륜폭로이벤트
+		IF RESULT
+			GOTO ENDPHASE
+		ENDIF
 		IF CFLAG:1600
 			IF TALENT:연인
 				SELECTCASE RAND:4
@@ -1028,6 +1031,10 @@ IF LOCAL
 	LOCAL:1 = 1
 	;-------------------------------------------------
 	IF LOCAL:1 && ARG == 2
+		CALL 불륜폭로이벤트
+		IF RESULT
+			GOTO ENDPHASE
+		ENDIF
 		IF CFLAG:1600
 			IF TALENT:연인
 				SELECTCASE RAND:4
@@ -2178,6 +2185,7 @@ IF LOCAL
 	;その他
 	PRINTFORML  
 ENDIF
+$ENDPHASE
 RETURN 1
 
 ;==================================================

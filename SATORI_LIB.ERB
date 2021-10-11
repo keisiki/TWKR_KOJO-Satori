@@ -121,6 +121,7 @@ CALL SATORI_DOWN(10,5)
 ;----------
 ;불륜 폭로 이벤트
 ;----------
+LOCAL = 0
 불륜아님계산 = 0
 불륜아님계산 += EXP:38:V성교경험 - 코이시V경험
 불륜아님계산 += EXP:38:A성교경험 - 코이시A경험
@@ -137,7 +138,7 @@ IF CFLAG:4000 == 0&&TALENT:연인&&RAND:3 == 0&&불륜아님계산
 		PRINTFORMW 「저로는 만족할수 없나요? 저는 안되나요?」
 		PRINTFORMW 「...앞으로는, 다른 사람이랑 야한짓 금지니까...쌓일때마다 저한테만, 네?」
 		CFLAG:4001++
-		RETURN 1
+		LOCAL = 1
 	ENDIF
 ENDIF
 CFLAG:4100 = EXP:MASTER:삽입경험
@@ -148,7 +149,7 @@ CFLAG:4100 = EXP:MASTER:삽입경험
 오린V경험 = EXP:36:V성교경험
 오린A경험 = EXP:36:A성교경험
 ;-----------------------
-
+RETURN LOCAL
 @ST_삽입경험증가(ARG)
 EXP:MASTER:삽입경험 += ARG
 EXP:V성교경험 += ARG
