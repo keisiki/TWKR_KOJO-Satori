@@ -7297,14 +7297,154 @@ ENDIF
 RETURN 1
 ;==================================================
 ;436,독서
-;TFLAG:193(選択肢文学(1=忍殺(文学？) 2=失敗 3=文学),選択肢実用書(4=失敗 5=実用書),選択肢エッチな本(6=薄い高い本 7=保健体育 8=カーマスートラ))
+;TFLAG:193(選択肢文学(1=忍殺(文学？) 2=失敗 3=文学),選択肢実用書(4=失敗 5=実用書),選択肢エッチな本(6=薄い高い本 7=보건체육 8=カーマスートラ))
 ;==================================================
 @M_KOJO_MESSAGE_COM_K49_436
 CALL TRAIN_MESSAGE
 CALL M_KOJO_MESSAGE_COM_K49_436_1
 RETURN RESULT
-
+;PRINTFORMW 「」
 @M_KOJO_MESSAGE_COM_K49_436_1
+SELECTCASE TFLAG:193
+	CASE 1
+		;인살
+		IF MARK:반발각인 == 3&&!TALENT:연인
+			PRINTFORMW 「...」
+			PRINTFORMW 사토리는 제 할일에 열중하고 있다
+		ELSEIF TALENT:연인
+			PRINTFORMW 「...흐응- 흐음흐음」
+			PRINTFORMW 사토리는 %마스터의% 뒤에서 흘끔흘끔 책을 훔쳐보고 있다
+		ELSEIF TALENT:연모||TALENT:사모||TALENT:애욕||TALENT:섹프
+			SELECTCASE RAND:2
+				CASE 0
+					PRINTFORMW 「...왠지 집중 안돼」
+					PRINTFORMW 사토리는 투덜거리더니 %마스터의% 옆에 와 앉았다
+					PRINTFORMW 「%사마스터가% 읽는 내용이 머릿속에 들어와서 헷갈린다고요」
+					PRINTFORMW 「...절대로 읽고 싶은건 아니니깐」
+					PRINTFORMW 그냥 읽고 싶다고 말하긴 싫은 모양이다
+				CASE 1
+					PRINTFORMW 「...갑자기 초밥이 먹고 싶어지는걸」
+			ENDSELECT
+		ELSE
+			PRINTFORMW 「...정신 사나워」
+			PRINTFORMW 사토리의 서드아이가 %마스터를% 째려봤다
+			PRINTFORMW 아무래도 책의 내용이 읽혀져서 귀찮은 모양이다
+		ENDIF
+	CASE 2
+		;실패, 무슨 재민지 모른다
+		;대사 없음
+	CASE 3
+		;문학
+		IF MARK:반발각인 == 3&&!TALENT:연인
+			PRINTFORMW 「...」
+			PRINTFORMW 사토리는 제 할일에 열중하고 있다
+		ELSEIF TALENT:연인
+			PRINTFORMW 「...흐응- 흐음흐음」
+			PRINTFORMW 사토리는 %마스터의% 뒤에서 흘끔흘끔 책을 훔쳐보고 있다
+		ELSEIF TALENT:연모||TALENT:사모||TALENT:애욕||TALENT:섹프
+			SELECTCASE RAND:2
+				CASE 0
+					PRINTFORMW 「...왠지 집중 안돼」
+					PRINTFORMW 사토리는 투덜거리더니 %마스터의% 옆에 와 앉았다
+					PRINTFORMW 「%사마스터가% 읽는 내용이 머릿속에 들어와서 다른게 손에 안 잡힌단 말야」
+					PRINTFORMW 「그러니까 다 읽을때까지 옆에 있는거 뿐」
+					PRINTFORMW 「...절대로 같이 읽고 싶은건 아니니깐」
+					PRINTFORMW 그냥 읽고 싶다고 말하긴 싫은 모양이다
+				CASE 1
+					PRINTFORMW 「...잠깐. 그 부분은 나중에 읽으려고 한건데...!」
+					PRINTFORMW %마스터가% 읽은 만큼 스포일러 당한 모양이다
+					PRINTFORMW 사토리는 토라져버렸다
+			ENDSELECT
+		ELSE
+			PRINTFORMW 「...정신 사나워」
+			PRINTFORMW 사토리의 서드아이가 %마스터를% 째려봤다
+			PRINTFORMW 아무래도 책의 내용이 읽혀져서 귀찮은 모양이다
+		ENDIF
+	CASE 4
+		;실패, 지식 얻기 실패
+		IF MARK:반발각인 == 3&&!TALENT:연인
+			SELECTCASE RAND:2
+				CASE 0
+					PRINTFORMW 「푸흐흐...그것도 모른데...」
+					PRINTFORMW 묘하게 비웃는 소리가 들렸다	
+				CASE 1
+					PRINTFORMW 어쩐지 사토리가 비웃고 있는거 같은 느낌이 든다
+			ENDSELECT
+		ENDIF
+	CASE 5
+		; 성공
+		SELECTCASE RAND:3
+			CASE 0
+				PRINTFORMW 「...아니, 별 쓸데 없는 지식이 자꾸만 들어와...」
+				PRINTFORMW 사토리는 입술을 삐죽이고 있다
+			CASE 1
+				PRINTFORMW 「...헤- 그게 그런거였구나...」
+				PRINTFORMW 사토리는 뭐라 중얼거리고 있다
+			CASE 2
+		ENDSELECT
+	CASE 6,7,8
+		;야한책
+		IF MARK:반발각인 == 3 && !TALENT:연인
+			SELECTCASE RAND:3
+				CASE 0
+					PRINTFORMW 「......」
+					PRINTFORMW 사토리가 날카로운 시선을 보내고 있다
+				CASE 1
+					PRINTFORMW 「...굳이 제 옆에서 그걸 읽는 이유가?」
+					PRINTFORMW 사토리는 언짢은 모양이다
+				CASE 2
+					PRINTFORMW 「일부러 읽는거죠?」
+					PRINTFORMW 사토리는 짐짓 화난듯한 표정으로 쏘아붙였다
+			ENDSELECT
+			SOURCE:반감 += 100
+		ELSEIF TALENT:연인
+			SELECTCASE RAND:2
+				CASE 0
+					PRINTFORMW 「......」
+					PRINTFORMW 사토리는 얼굴을 붉히고 있다
+				CASE 1
+					PRINTFORMW 「잠깐, 그런거 읽으면 안돼요」
+					PRINTFORMW 「...왜냐니, 그야...아무튼 안된다니깐」
+					PRINTFORMW 사토리는 새빨게진 얼굴로 투덜거려왔다
+			ENDSELECT
+		ELSEIF TALENT:연모||TALENT:사모||TALENT:애욕
+			SELECTCASE RAND:3
+				CASE 0
+					PRINTFORMW 「...변태」
+					PRINTFORMW 사토리는 얼굴을 붉혔다
+				CASE 1
+					PRINTFORMW 「......」
+					PRINTFORMW 사토리는 새빨게진 얼굴을 가리려 고개를 돌렸다
+				CASE 2
+					PRINTFORMW 「...일부러 제 옆에서 읽는거죠」
+					PRINTFORMW 사토리의 얼굴이 새빨게져 있다
+			ENDSELECT
+			BASE:무드 = MIN(50 + BASE:무드, 1000)
+		ELSEIF TALENT:섹프
+			SELECTCASE RAND:3
+				CASE 0
+					PRINTFORMW 「흐으응~」
+					PRINTFORMW 사토리는 묘한 콧소리를 내며 %마스터를% 바라보고 있다
+				CASE 1
+					PRINTFORMW 「보는거로 만족하는걸까나」
+					PRINTFORMW 「더 좋은것도 있을텐데-」
+				CASE 2
+					PRINTFORMW 「굳이 옆에서 그 책을 읽는건 무슨 의미일까나-」
+					PRINTFORMW 사토리는 묘하게 웃어보이고 있다
+			ENDSELECT
+			BASE:무드 = MIN(100 + BASE:무드, 1000)
+		ELSE
+			SELECTCASE RAND:2
+				CASE 0
+					PRINTFORMW 「그런 책은 저 없을때 읽으면 안될까요」
+					PRINTFORMW 「아니, 애초에 혼자 있을때 읽는 책이니까...」
+				CASE 1
+					PRINTFORMW 「...남들 앞에서 읽을만한 책은 아닌거 같은데」
+			ENDSELECT
+		ENDIF
+		SOURCE:욕정 += 500
+ENDSELECT
+
 ;==================================================
 ;440,기다린다
 ;==================================================
@@ -7314,15 +7454,68 @@ CALL M_KOJO_MESSAGE_COM_K49_440_1
 RETURN RESULT
 
 @M_KOJO_MESSAGE_COM_K49_440_1
+#DIM 연속횟수
+#DIM 연속날
 ;-------------------------------------------------
 ;記入チェック（=0, 非表示、1, 表示）
-LOCAL = 0
+LOCAL = 1
 IF CFLAG:수면
 	RETURN 1
 ENDIF
 ;-------------------------------------------------
 IF LOCAL
-
+	IF PREVCOM == 440 && 연속날 == DAY
+		연속횟수++
+	ELSE
+		연속횟수 = 0
+	ENDIF
+	연속날 = DAY
+	IF 연속횟수 >= 3
+		;연타중
+		IF MARK:반발각인 == 3 && !TALENT:연인
+			SELECTCASE RAND:3
+				CASE 0
+					PRINTFORMW 「...자는건가?」
+					PRINTFORMW 「머릿속도 텅 빈거 같네」
+				CASE 1
+					PRINTFORMW 「멍 때리는 동안엔 나도 할 수 있는게 없네..」
+					PRINTFORMW 「얼굴에 낙서라도 해버릴까보다」
+				CASE 2
+					PRINTFORMW 「...하아, 듣지도 않는데 계속 말해서 뭐해..」
+			ENDSELECT
+		ELSEIF TALENT:연인
+			SELECTCASE RAND:3
+				CASE 0
+					PRINTFORMW 「아무런 생각도 없어보이네...」
+				CASE 1
+					PRINTFORMW 「...그렇게 멍때리다가 무슨짓을 당하려고...」
+				CASE 2
+					PRINTFORMW 「......」
+					PRINTFORMW 사토리는 조금 삐친듯 하다
+			ENDSELECT
+		ELSEIF TALENT:연모||TALENT:사모||TALENT:애욕||TALENT:섹프
+			SELECTCASE RAND:3
+				CASE 0
+					PRINTFORML 「혹시 자요?」
+					PRINTFORML 「머릿속이 하얗네...」
+				CASE 1
+					PRINTFORML 「저-기?」
+					PRINTFORML 「...모처럼 옆에 있는데 뭐라도 말 좀 해봐요」
+				CASE 2
+					PRINTFORML 「...이쪽도 좀 봐 줬으면...」
+			ENDSELECT
+		ELSE
+			SELECTCASE RAND:2
+				CASE 0
+					PRINTFORMW 「...머리 속이 이렇게 하얗게 될 줄이야」
+				CASE 1
+					PRINTFORMW 「...아무런 생각도 없이 앉아있네, 이 말도 듣기나 하긴 할까」		
+			ENDSELECT
+		ENDIF
+	ELSE
+		; 연타 아님
+		;표시없음
+	ENDIF
 ENDIF
 RETURN 1
 
