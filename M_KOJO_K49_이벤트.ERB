@@ -1638,6 +1638,10 @@ IF LOCAL
 			CALL ST_중복대사("오랜만에외출처에서마주침")
 			RETURN 1
 		ENDIF
+		CALL 불륜폭로이벤트
+		IF RESULT
+			GOTO ENDPHASE
+		ENDIF
 		IF MARK:반발각인 == 3
 			IF TALENT:연인
 				SELECTCASE RAND:3
