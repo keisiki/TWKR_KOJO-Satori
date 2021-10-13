@@ -7549,7 +7549,7 @@ RETURN 1
 ;※※※※※※※※※※※※※※※※※※※※※※※※※
 ;==================================================
 ;603,손을 잡는다
-;TFLAG:193(1=大成功 0=成功 -1=失敗)(失敗でもふりほどかれたりはしません
+;TFLAG:193(1=大成功 0=成功 -1=失敗)(실패해도 뿌리치거나 하진 않음
 ;==================================================
 @M_KOJO_SUCCESS_COM_K49_603
 ;成否判定
@@ -7564,13 +7564,93 @@ RETURN RESULT
 @M_KOJO_MESSAGE_COM_K49_603_1
 ;-------------------------------------------------
 ;記入チェック（=0, 非表示、1, 表示）
-LOCAL = 0
+LOCAL = 1
 IF CFLAG:수면
 	RETURN 1
 ENDIF
 ;-------------------------------------------------
 IF LOCAL
-
+;PRINTFORMW 「」
+	IF TFLAG:193 != -1
+		;성공
+		IF MARK:반발각인 == 3
+			IF TALENT:연인
+				SELECTCASE RAND:2
+					CASE 0
+						PRINTFORMW 「...」
+						PRINTFORMW 사토리는 얼굴을 붉혔다
+					CASE 1
+						PRINTFORMW 「......」
+						PRINTFORMW 사토리는 조금 부끄러운듯이 얼굴을 붉혔다
+				ENDSELECT
+			ELSE
+				PRINTFORMW 「...」
+				PRINTFORMW 사토리는 아무런 말도 하지 않았다
+			ENDIF
+		ELSEIF TALENT:연인
+			SELECTCASE RAND:2
+				CASE 0
+					PRINTFORMW 「...♥」
+					PRINTFORMW 조금 기뻐보인다
+				CASE 1
+					PRINTFORMW 사토리는 손만으론 만족하지 않는지 양 팔로 %마스터의% 팔을 끌어안고 있다
+			ENDSELECT
+		ELSEIF TALENT:연모||TALENT:사모||TALENT:애욕
+			SELECTCASE RAND:2
+				CASE 0
+					PRINTFORMW 「...」
+					PRINTFORMW 부끄러운건지 얼굴이 새빨게진 사토리는 말없이 %마스터를% 따라 걸을 뿐이었다
+				CASE 1
+					PRINTFORMW 「이러고 있으니까 마치...」
+					PRINTFORMW 사토리는 기분이 좋은지 배시시 웃고 있었다
+			ENDSELECT
+		ELSE
+			SELECTCASE RAND:2
+				CASE 0
+					PRINTFORMW 사토리는 그닥 신경쓰지 않는 느낌이었다
+				CASE 1
+					PRINTFORMW 「?」
+					PRINTFORMW 사토리는 의아해 했으나 이내 신경쓰지 않는 모양이었다
+			ENDSELECT
+		ENDIF
+	ELSE
+		;실패
+		IF MARK:반발각인 == 3
+			IF TALENT:연인
+				SELECTCASE RAND:2
+					CASE 0
+						PRINTFORMW 「...」
+						PRINTFORMW 사토리는 언짢은 표정이다
+					CASE 1
+						PRINTFORMW 「......」
+						PRINTFORMW 사토리는 떨떠름한 표정이다
+				ENDSELECT
+			ELSE
+				SELECTCASE RAND:2
+					CASE 0
+						PRINTFORMW 「...굳이 손까지 잡아야 하나요?」
+					CASE 1
+						PRINTFORMW 사토리는 그닥 내키지 않는다는 표정이다
+				ENDSELECT
+			ENDIF
+		ELSEIF TALENT:연인||TALENT:연모||TALENT:사모||TALENT:애욕
+			SELECTCASE RAND:2
+				CASE 0
+					PRINTFORMW 「...그, 손까진 안 해도 되는데」
+				CASE 1
+					PRINTFORMW 「...」
+					PRINTFORMW 별로 내키지 않는 모양이다
+			ENDSELECT
+		ELSE
+			SELECTCASE RAND:2
+				CASE 0
+					PRINTFORMW 「...」
+					PRINTFORMW 사토리는 영 탐탁치 않은 모양이다 
+				CASE 1
+					PRINTFORMW 「잡으라고 하니까 잡긴 하지만...」
+			ENDSELECT
+		ENDIF
+	ENDIF
 ENDIF
 RETURN 1
 
@@ -7592,7 +7672,7 @@ IF CFLAG:수면
 ENDIF
 ;-------------------------------------------------
 IF LOCAL
-
+	;대사 없음
 ENDIF
 RETURN 1
 ;==================================================
@@ -7612,13 +7692,31 @@ RETURN RESULT
 @M_KOJO_MESSAGE_COM_K49_605_1
 ;-------------------------------------------------
 ;記入チェック（=0, 非表示、1, 表示）
-LOCAL = 0
+LOCAL = 1
 IF CFLAG:수면
 	RETURN 1
 ENDIF
 ;-------------------------------------------------
 IF LOCAL
-
+	IF TFLAG:193 == -1
+		IF MARK:반발각인 == 3 && !TALENT:연인
+			SELECTCASE RAND:3
+				CASE 0
+					PRINTFORMW 「잠깐, 여긴 길이 아닌데」
+					PRINTFORMW 「...또 뭘 하려는거야」	
+				CASE 1
+					PRINTFORMW 「...이럴시간에 그냥 얼른 가고 말지」
+					PRINTFORMW 사토리는 시간을 끄는게 싫었는지 연신 투덜거렸다
+				CASE 2
+					PRINTFORMW 「다리 아프게 또 어디로 새는거야...」
+					PRINTFORMW 사토리는 불만스러운 표정이었다
+			ENDSELECT
+		ELSE
+			
+		ENDIF
+	ELSE
+		
+	ENDIF
 ENDIF
 RETURN 1
 
