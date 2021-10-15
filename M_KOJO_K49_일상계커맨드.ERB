@@ -7698,6 +7698,7 @@ IF CFLAG:수면
 ENDIF
 ;-------------------------------------------------
 IF LOCAL
+	;PRINTFORMW 「」
 	IF TFLAG:193 == -1
 		IF MARK:반발각인 == 3 && !TALENT:연인
 			SELECTCASE RAND:3
@@ -7711,11 +7712,65 @@ IF LOCAL
 					PRINTFORMW 「다리 아프게 또 어디로 새는거야...」
 					PRINTFORMW 사토리는 불만스러운 표정이었다
 			ENDSELECT
+		ELSEIF TALENT:연인||TALENT:연모||TALENT:사모||TALENT:섹프||TALENT:애욕
+			SELECTCASE RAND:3
+				CASE 0
+					PRINTFORMW 「에...다리 아픈데...」
+					PRINTFORMW 사토리는 탐탁치 않은 표정이다		
+				CASE 1
+					PRINTFORMW 「저기, 그만 돌고 얼른 가죠?」
+					PRINTFORMW 사토리는 %마스터의% 팔을 잡아끌었다
+				CASE 2
+					IF TALENT:연인
+						PRINTFORMW 「이렇게 뱅뱅 돌면 다리 아픈데」
+						PRINTFORMW 「집에갈때 업어줘야 할지도 모르겠네-」
+					ELSE
+						PRINTFORMW 「정말, 어디로 또 새는거람...」
+						PRINTFORMW 「피곤하게시리...」
+					ENDIF
+			ENDSELECT
 		ELSE
-			
+			SELECTCASE RAND:2
+				CASE 0
+					PRINTFORMW 「여긴 길이 아닌데...」
+				CASE 1
+					PRINTFORMW 「갈거면 얼른 가야지, 이렇게 농땡이 피우면 안돼죠」
+			ENDSELECT
 		ENDIF
 	ELSE
-		
+		IF MARK:반발각인 == 3 && !TALENT:연인
+			SELECTCASE RAND:2
+				CASE 0
+					PRINTFORMW 「...」
+					PRINTFORMW 사토리는 군말없이 따라오고 있다
+				CASE 1
+					PRINTFORMW 「헤-...굳이 빙빙 돌아서 가다니, 무슨 꿍꿍이일까」
+					PRINTFORMW 「...싫지는 않지만」
+			ENDSELECT
+		ELSE
+			SELECTCASE RAND:3
+				CASE 0
+					PRINTFORMW 「조금 돌아서 간다라, 나쁘진 않겠죠」
+					IF EXP:데이트경험 < 5
+						PRINTFORMW 「모처럼 누군가와 나오는거니, 즐기다 돌아가는게 좋을테니깐」
+						PRINTFORMW 조금 신나보인다
+					ELSE
+						PRINTFORMW 사토리는 약간 기뻐보이는 표정이다
+					ENDIF
+				CASE 1
+					PRINTFORMW 「이쪽을 보고 가자고요? 네, 좋아요」
+					PRINTFORMW 사토리는 기쁜듯이 %마스터를% 따라오고 있다
+				CASE 2
+					PRINTFORMW 「어라라...저건...」
+					SELECTCASE RAND:2
+						CASE 0
+							PRINTFORMW 사토리는 길가의 고양이를 발견하곤 눈독을 들이고 있다	
+						CASE 1
+							PRINTFORMW 사토리는 길가의 비둘기를 발견하곤 눈독을 들이고 있다
+					ENDSELECT
+					PRINTFORMW 「...아, 아뇨...그냥 집에 한 마리 더 들일까나 해서...」
+			ENDSELECT
+		ENDIF
 	ENDIF
 ENDIF
 RETURN 1
