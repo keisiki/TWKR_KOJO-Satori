@@ -9140,6 +9140,7 @@ IF LOCAL
 				CFLAG:3101++
 			ENDIF
 		ENDIF
+		ST_전회시간정지 = TIME
 		RETURN 1
 	ENDIF
 	;-------------------------------------------------
@@ -9271,6 +9272,7 @@ IF LOCAL
 			ENDIF
 			CFLAG:3101++
 		ENDIF
+		ST_전회시간정지 = TIME
 		RETURN 1
 	ENDIF
 	;-------------------------------------------------
@@ -9625,6 +9627,7 @@ IF LOCAL
 				ENDIF
 			ENDIF
 		ENDIF
+		ST_전회시간정지 = TIME
 		RETURN 1
 	ENDIF
 	
@@ -10081,6 +10084,7 @@ IF LOCAL
 			ENDIF
 			BASE:무드 += 1500
 		ENDIF
+		ST_전회시간정지 = TIME
 		RETURN 1
 	ENDIF	
 	;-------------------------------------------------
@@ -10245,6 +10249,7 @@ IF LOCAL
 				ENDSELECT
 			ENDIF
 		ENDIF
+		ST_전회시간정지 = TIME
 		RETURN 1
 	ENDIF
 	;-------------------------------------------------
@@ -10450,6 +10455,7 @@ IF LOCAL
 				ENDSELECT
 			ENDIF
 		ENDIF
+		ST_전회시간정지 = TIME
 		RETURN 1
 	ENDIF
 	;-------------------------------------------------
@@ -10701,6 +10707,7 @@ IF LOCAL
 				ENDIF
 			ENDIF
 		ENDIF
+		ST_전회시간정지 = TIME
 		RETURN 1
 	ENDIF
 	;-------------------------------------------------
@@ -10928,8 +10935,9 @@ IF LOCAL
 				CFLAG:3101 += 10
 			ENDIF
 		ENDIF
-			RETURN 1
-		ENDIF
+		ST_전회시간정지 = TIME
+		RETURN 1
+	ENDIF
 	;-------------------------------------------------
 	;【無自覚膣内射精】
 	;記入チェック（=0, 非表示、1, 表示）
@@ -11399,6 +11407,7 @@ IF LOCAL
 				ENDIF
 			ENDIF
 		ENDIF
+		ST_전회시간정지 = TIME
 		RETURN 1
 	ENDIF
 	;-------------------------------------------------
@@ -11406,7 +11415,7 @@ IF LOCAL
 	;記入チェック（=0, 非表示、1, 表示）
 	LOCAL:1 = 1
 	;-------------------------------------------------
-	IF LOCAL:1 && ARG == 0
+	IF LOCAL:1 && ARG == 0 && ST_전회시간정지 == TIME
 		IF MARK:반발각인 == 3
 			IF TALENT:연인
 				SELECTCASE RAND:2
