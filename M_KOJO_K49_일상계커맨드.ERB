@@ -7792,13 +7792,67 @@ RETURN RESULT
 @M_KOJO_MESSAGE_COM_K49_610_1
 ;-------------------------------------------------
 ;記入チェック（=0, 非表示、1, 表示）
-LOCAL = 0
+LOCAL = 1
 IF CFLAG:수면
 	RETURN 1
 ENDIF
 ;-------------------------------------------------
 IF LOCAL
-
+	IF TFLAG:193 == -1
+		;대사없음
+	ELSE
+		IF MARK:반발각인 == 3
+			IF TALENT:연인
+				SELECTCASE RAND:2
+					CASE 0
+						PRINTFORMW 「......」
+						PRINTFORMW 아무런 대화 없는 식사가 계속되었다
+					CASE 1
+						PRINTFORMW 「음, 이거 맛있네」
+						PRINTFORMW 썩 마음에 드는 모양이다
+				ENDSELECT
+			ELSE
+				SELECTCASE RAND:2
+					CASE 0
+						PRINTFORMW 「그럭저럭 괜찮네...」
+					CASE 1
+						PRINTFORMW 「...」
+						PRINTFORMW 사토리는 아무 말 없이 제 접시를 비울 뿐이었다
+				ENDSELECT
+			ENDIF
+		ELSEIF TALENT:연인
+			SELECTCASE RAND:2
+				CASE 0
+					PRINTFORMW 「으음~」
+					PRINTFORMW 사토리는 상당히 입맛에 맞았던 모양이다
+				CASE 1
+					PRINTFORMW 「아, 입에 묻었어요」
+					PRINTFORMW 사토리는 %마스터의% 입가를 닦아주고 있다
+			ENDSELECT
+		ELSEIF TALENT:연모||TALENT:사모||TALENT:애욕
+			SELECTCASE RAND:2
+				CASE 0
+					PRINTFORMW 「헤에...상당히 괜찮은 곳이네요」
+					PRINTFORMW 「나중에 시간나면 다른 애들과도 와볼까나...」
+				CASE 1
+					PRINTFORMW 「분위기 좋네요...」
+			ENDSELECT
+		ELSEIF TALENT:섹프
+			SELECTCASE RAND:2
+				CASE 0
+					PRINTFORMW 「많이 먹어두세요」
+					PRINTFORMW 「체력을 보충해둬야 오래 즐길수 있을테니깐, 후후♥」
+					PRINTFORMW 사토리는 야릇한 웃음을 지어보였다
+				CASE 1
+					PRINTFORMW 「제대로 챙겨먹는건 중요하죠」
+					PRINTFORMW 「그래야 잔뜩 즐길수 있을테니, 후후후♥」
+					PRINTFORMW 사토리는 요염한 미소를 지으며 %마스터를% 바라보았다
+			ENDSELECT
+		ELSE
+			PRINTFORMW 「음, 맛있네요 이거」
+			PRINTFORMW 그 외의 반응은 없었다
+		ENDIF
+	ENDIF
 ENDIF
 RETURN 1
 
@@ -7824,7 +7878,7 @@ IF CFLAG:수면
 ENDIF
 ;-------------------------------------------------
 IF LOCAL
-
+	;대사 없음
 ENDIF
 RETURN 1
 ;==================================================
@@ -7997,12 +8051,14 @@ IF LOCAL
 ENDIF
 RETURN 1
 ;==================================================
-;660,독서
+;660,독서, 왜 두갤까?
 ;TFLAG:193(選択肢文学(1=忍殺(文学？) 2=失敗 3=文学),選択肢実用書(4=失敗 5=実用書),選択肢エッチな本(6=薄い高い本 7=保健体育 8=カーマスートラ))
 ;==================================================
 @M_KOJO_MESSAGE_COM_K49_660
 CALL TRAIN_MESSAGE
-CALL M_KOJO_MESSAGE_COM_K49_660_1
+;혹시 모르니 436으로 연결
+;CALL M_KOJO_MESSAGE_COM_K49_660_1
+CALL M_KOJO_MESSAGE_COM_K49_436_1
 RETURN RESULT
 
 @M_KOJO_MESSAGE_COM_K49_660_1
