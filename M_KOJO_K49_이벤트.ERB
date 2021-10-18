@@ -11415,7 +11415,7 @@ IF LOCAL
 	;記入チェック（=0, 非表示、1, 表示）
 	LOCAL:1 = 1
 	;-------------------------------------------------
-	IF LOCAL:1 && ARG == 0 && ST_전회시간정지 == TIME
+	IF LOCAL:1 && ARG == 0 && ST_전회시간정지 != TIME
 		IF MARK:반발각인 == 3
 			IF TALENT:연인
 				SELECTCASE RAND:2
