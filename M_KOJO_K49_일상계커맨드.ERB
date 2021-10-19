@@ -7899,7 +7899,79 @@ IF CFLAG:수면
 ENDIF
 ;-------------------------------------------------
 IF LOCAL
-
+	IF TFLAG:193 == -1
+		;사지 않았으면 리턴
+		RETURN 1
+	ENDIF
+	IF CHK_DATENOW(CFLAG:데이트중) && TFLAG:193
+		;데이트 나와서 구매
+		IF MARK:반발각인 == 3 && !TALENT:연인
+			SELECTCASE RAND:2
+				CASE 0
+					PRINTFORMW 「저녁은 뭐가 좋으려나-」
+				CASE 1
+					PRINTFORMW 「나온김에 잔뜩 사가야겠지...」
+			ENDSELECT
+		ELSEIF TALENT:연인
+			SELECTCASE RAND:2
+				CASE 0
+					PRINTFORMW 「오늘 저녁은 뭐가 좋을까요?」
+				CASE 1
+					PRINTFORMW 「뭐가 좋을까나-」
+			ENDSELECT
+		ELSEIF TALENT:연모||TALENT:사모||TALENT:애욕||TALENT:섹프
+			SELECTCASE RAND:2
+				CASE 0
+					PRINTFORMW 「저녁거리를 사가는게 좋겠지...뭐가 좋으려나」
+				CASE 1
+					PRINTFORMW 「어떤게 좋을까...」
+			ENDSELECT
+		ELSE
+			SELECTCASE RAND:2
+				CASE 0
+					PRINTFORMW 「그러고보니 저녁거리를 사가야겠네...뭐가 좋을까」
+				CASE 1
+					PRINTFORMW 「...가끔은 오쿠 알이 아닌것도 먹어볼까나」
+			ENDSELECT
+		ENDIF
+	ELSEIF TFLAG:193
+		;그런건 아닌데 구매
+		IF ST_LIVETOGETHER()
+			;동거중
+			IF MARK:반발각인 == 3 && !TALENT:연인
+				SELECTCASE RAND:2
+					CASE 0
+						PRINTFORMW 「음...저녁에 뭘 먹을까나」
+					CASE 1
+						PRINTFORMW 「뭐 먹고싶은거라도 있나요?」
+				ENDSELECT
+			ELSEIF TALENT:연인
+				SELECTCASE RAND:2
+					CASE 0
+						PRINTFORMW 「저녁거리론 뭐가 좋을까나...흐음」
+					CASE 1
+						PRINTFORMW 「집에 야채가 떨어졌었나...조금 보충해둬야겠네」
+				ENDSELECT
+			ELSE
+				SELECTCASE RAND:2
+					CASE 0
+						PRINTFORMW 「저녁거리를 사가야겠지...음...」
+					CASE 1
+						PRINTFORMW 「무랑...음, 파랑...그리고 또...」
+				ENDSELECT
+			ENDIF
+		ELSE
+			;동거중도 아님
+			SELECTCASE RAND:3
+				CASE 0
+					PRINTFORMW 「저녁은 뭐가 좋을까나...」	
+				CASE 1
+					PRINTFORMW 「내일치까지 사가면 들고 갈 수 있을까...」
+				CASE 2
+					PRINTFORMW 「으음...이정도는 가져갈수 있겠지, 나머지는 펫들이랑 왔을때 사야겠어」
+			ENDSELECT
+		ENDIF
+	ENDIF
 ENDIF
 RETURN 1
 ;==================================================
