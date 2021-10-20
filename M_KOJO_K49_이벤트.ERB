@@ -2218,7 +2218,7 @@ IF LOCAL
 		;-------------------------------------------------
 		IF LOCAL:1 && !ARG:1
 			;PRINTFORMW 「」
-			IF MARK:반발각인 == 3||!TALENT:연인
+			IF MARK:반발각인 == 3&&!TALENT:연인
 				SELECTCASE RAND:2
 					CASE 0
 						PRINTFORMW 「...어라, 일어나셨나요」
