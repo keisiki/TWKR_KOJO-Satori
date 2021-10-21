@@ -7698,7 +7698,6 @@ IF CFLAG:수면
 ENDIF
 ;-------------------------------------------------
 IF LOCAL
-	;PRINTFORMW 「」
 	IF TFLAG:193 == -1
 		IF MARK:반발각인 == 3 && !TALENT:연인
 			SELECTCASE RAND:3
@@ -7988,13 +7987,109 @@ RETURN RESULT
 @M_KOJO_MESSAGE_COM_K49_615_1
 ;-------------------------------------------------
 ;記入チェック（=0, 非表示、1, 表示）
-LOCAL = 0
+LOCAL = 1
 IF CFLAG:수면
 	RETURN 1
 ENDIF
 ;-------------------------------------------------
 IF LOCAL
-
+	;PRINTFORMW 「」
+	IF TFLAG:193 == -1
+		;실패
+		IF MARK:반발각인 == 3 && !TALENT:연인
+			SELECTCASE RAND:2
+				CASE 0
+					PRINTFORMW 「...윽, 이, 이건 식어서 맛없는거 뿐이니깐...」
+					PRINTFORMW 사토리는 새빨게진 얼굴을 애써 가리며 변명하고 있다
+				CASE 1
+					PRINTFORMW 「...밥에 초를 치는걸 까먹어서 그런가, 어째서 이런 맛이...」
+					PRINTFORMW 설마하니 상한걸까 하며 노심초사해 하는 사토리였다
+			ENDSELECT
+		ELSE
+			;실은 어투만 바뀐
+			SELECTCASE RAND:3
+				CASE 0
+					PRINTFORMW 「...윽, 이, 이건 식어서 맛없는거니까...」
+					PRINTFORMW 사토리는 새빨게진 얼굴을 애써 가리며 변명하고 있다
+				CASE 1
+					PRINTFORMW 「...밥에 초를 치는걸 까먹어서 그런가, 어째서 이런 맛이...」
+					PRINTFORMW 설마하니 상한걸까 하며 노심초사해 하는 사토리였다
+				CASE 2
+					PRINTFORMW 「너, 너무 흔들어서 다 섞여버린거 때문이려나」
+					PRINTFORMW 「다음부턴 조심히 들고 와야겠네...」
+			ENDSELECT
+		ENDIF
+	ELSEIF ABL:요리기능 < 2
+		;미묘한 맛
+		IF MARK:반발각인 == 3 && !TALENT:연인
+			SELECTCASE RAND:2
+				CASE 0
+					PRINTFORMW 「먹을만 하면 된거죠 뭐, 그렇게 투정부리지 마세요」
+					PRINTFORMW 사토리는 퉁명스럽게 말했다
+				CASE 1
+					PRINTFORMW 「해 줘도 불만이야...」
+					PRINTFORMW 마음을 읽은 사토리는 토라진 모양이다
+			ENDSELECT
+		ELSE
+			SELECTCASE RAND:3
+				CASE 0
+					PRINTFORMW 「...」
+					PRINTFORMW 마음을 읽혔는지 사토리는 뚱한 표정으로 %마스터를% 응시해 오고 있다
+				CASE 1
+					PRINTFORMW 「기껏 만들었더니 투정만 부리고...」
+					PRINTFORMW 조금 시무룩해진 모양이다
+				CASE 2
+					PRINTFORMW 「으음- 조금 짜게된건가, 식어버릴때 기준으로 간을 해야했는데」
+					PRINTFORMW 사토리는 중얼거리며 무언갈 적고 있다
+			ENDSELECT
+		ENDIF
+	ELSE
+		;성공
+		IF MARK:반발각인 == 3 && !TALENT:연인
+			SELECTCASE RAND:3
+				CASE 0
+					PRINTFORMW 「...맛있다? 당연한게 아니겠어요, 제가 만든건데」
+					PRINTFORMW 사토리는 어쩐지 우쭐해졌다
+				CASE 1
+					PRINTFORMW 「흥, 맛있는게 당연하잖아요, 준비하는데 얼마나 힘들었는데」
+				CASE 2
+					PRINTFORMW 「맛있다라...공들여 준비한 보람은 있네요」
+			ENDSELECT
+		ELSEIF TALENT:연인||TALENT:연모||TALENT:사모||TALENT:애욕
+			SELECTCASE RAND:3
+				CASE 0
+					PRINTFORMW 「...후후, 힘들게 준비한 보람이 있네」
+					PRINTFORMW 사토리는 기쁜듯 하다
+				CASE 1
+					PRINTFORMW 「적당히 싸봤는데, 좋아해 주실줄이야」
+					PRINTFORMW 분명히 마음을 읽어본 모양이다
+				CASE 2
+					PRINTFORMW 「'맛있다'? 헤, 다행이네요」
+					PRINTFORMW 「좋아하실만한 반찬 고르느라 고생좀 했거든요」
+			ENDSELECT
+		ELSEIF TALENT:섹프
+			;외출처 식사에서 파쿠리
+			SELECTCASE RAND:2
+				CASE 0
+					PRINTFORMW 「많이 먹어두세요」
+					PRINTFORMW 「체력을 보충해둬야 오래 즐길수 있을테니깐, 후후♥」
+					PRINTFORMW 사토리는 야릇한 웃음을 지어보였다
+				CASE 1
+					PRINTFORMW 「제대로 챙겨먹는건 중요하죠」
+					PRINTFORMW 「그래야 잔뜩 즐길수 있을테니, 후후후♥」
+					PRINTFORMW 사토리는 요염한 미소를 지으며 %마스터를% 바라보았다
+			ENDSELECT
+		ELSE
+			SELECTCASE RAND:2
+				CASE 0
+					PRINTFORMW 「입 맛에 맞다니 다행이네요」
+					PRINTFORMW 사토리는 기뻐보이는 표정이다
+				CASE 1
+					PRINTFORMW 「잘 됐나 안됐나 긴가민가했는데, 맛있다니 다행이네요」
+					PRINTFORMW 사토리는 기쁜듯해 보였다
+			ENDSELECT
+		ENDIF
+	ENDIF
 ENDIF
 RETURN 1
 ;==================================================
