@@ -8093,7 +8093,7 @@ IF LOCAL
 ENDIF
 RETURN 1
 ;==================================================
-;617,甘味処に誘う
+;617,甘味処に誘う 과자가게
 ;TFLAG:193(1=大成功 0=成功 -1=失敗)(地の文分岐は大成功のみ追加
 ;==================================================
 @M_KOJO_SUCCESS_COM_K49_617
@@ -8109,13 +8109,79 @@ RETURN RESULT
 @M_KOJO_MESSAGE_COM_K49_617_1
 ;-------------------------------------------------
 ;記入チェック（=0, 非表示、1, 表示）
-LOCAL = 0
+LOCAL = 1
 IF CFLAG:수면
 	RETURN 1
 ENDIF
 ;-------------------------------------------------
 IF LOCAL
-
+	;PRINTFORMW 「」
+	IF TFLAG:193 == -1
+		SELECTCASE RAND:3
+			CASE 0
+				PRINTFORMW 「...별로 생각 없는데」
+				PRINTFORMW 마음에 들진 않았던 모양이다
+			CASE 1
+				PRINTFORMW 「딱히 지금은 그럴 기분 아니었는데...」
+				PRINTFORMW 그닥 만족스럽진 않았던 모양이다
+			CASE 2
+				PRINTFORMW 「싫거나 한건 아니지만...」
+				PRINTFORMW 그렇다고 만족스럽지도 않다는듯한 표정이었다
+		ENDSELECT
+	ELSE
+		IF MARK:반발각인 == 3 && !TALENT:연인
+			SELECTCASE RAND:3
+				CASE 0
+					PRINTFORMW 「나쁘진 않네...」
+					PRINTFORMW 입에 팥앙금까지 묻혀가며 먹으면서도 그냥 좋다고 하긴 싫었던 모양이다
+				CASE 1
+					PRINTFORMW 「음-...생각보다 더 달아, 그게 좋지만」
+				CASE 2
+					PRINTFORMW 「괜찮은 곳이네...지저에도 이런 가게가 좀 더 생겼음 좋겠는데」
+					PRINTFORMW 「술과 온천만 보다보면 조금 질리니깐 말이지」
+			ENDSELECT
+		ELSEIF TALENT:연인
+			SELECTCASE RAND:3
+				CASE 0
+					PRINTFORMW 「음- 맛있네」
+					PRINTFORMW 「포장도 해 가야 하려나, 다른 애들도 좋아하니깐」
+				CASE 1
+					PRINTFORMW 「지저에도 이런 분위기 좋은 가게가 생기면 좋겠는데」
+					PRINTFORMW 「그런 목 좋은 자리는 죄다 술집으로 가득차 버린게 아쉽네」
+				CASE 2
+					PRINTFORMW 「지저에도 단 걸 좋아하는 사람은 차고 넘치는데, 이런 가게는 찾기 어려워요」
+					PRINTFORMW 「그래서 이런 과자는 상당히 귀하답니다, 구할수가 있어야지 원」
+					PRINTFORMW 그런 탓인지 사토리는 게눈 감추듯 과자를 먹어치워갔다
+					PRINTFORMW 「...못 구하는 거라 당기는것 뿐예요」
+					PRINTFORMW 얼굴을 붉히며 변명하기 급급한 사토리였다
+			ENDSELECT
+		ELSEIF TALENT:연모||TALENT:사모||TALENT:애욕
+			SELECTCASE RAND:3
+				CASE 0
+					PRINTFORMW 「집에 갈 때 선물용으로 포장해 가야겠네...」
+					PRINTFORMW 사토리는 썩 마음에 드는 모양이다
+				CASE 1
+					PRINTFORMW 「음- 달다, 이런게 좋다니깐」
+					PRINTFORMW 「가끔씩 이런 달달한 것도 먹어 줘야 한다니깐요」
+				CASE 2
+					PRINTFORMW 「지저에도 이런 분위기 좋은 가게가 생기면 좋겠는데」
+					PRINTFORMW 「그런 목 좋은 자리는 죄다 술집으로 가득차 버린게 아쉽네...」
+					PRINTFORMW 「하기사 그런데 쓸 재료가 있으면 죄다 술로 만들 사람들이니깐」
+			ENDSELECT
+		ELSE
+			SELECTCASE RAND:3
+				CASE 0
+					PRINTFORMW 「음...달달하니 맛있네」
+					PRINTFORMW 입맛에 맞는 모양이다
+				CASE 1
+					PRINTFORMW 「여기 과자 상당히 맛있네요...」
+					PRINTFORMW 사토리는 마음에 들은 모양이다
+				CASE 2
+					PRINTFORMW 「돌아갈때 %TEXTR("앙미츠/모나카/양갱/모찌")%나 포장해 가야겠네...」
+					PRINTFORMW 「저도 그렇지만 지령전의 모두가 달달한 간식을 좋아하거든요」
+			ENDSELECT
+		ENDIF
+	ENDIF
 ENDIF
 RETURN 1
 ;==================================================
@@ -8148,7 +8214,7 @@ RETURN RESULT
 @M_KOJO_MESSAGE_COM_K49_620_1
 ;-------------------------------------------------
 ;記入チェック（=0, 非表示、1, 表示）
-LOCAL = 0
+LOCAL = 1
 IF CFLAG:수면
 	RETURN 1
 ENDIF
