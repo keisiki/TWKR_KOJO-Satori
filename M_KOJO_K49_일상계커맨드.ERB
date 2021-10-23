@@ -8220,7 +8220,145 @@ IF CFLAG:수면
 ENDIF
 ;-------------------------------------------------
 IF LOCAL
+	IF !TFLAG:193
+		RETURN 1
+	ENDIF
+	IF ITEM:101
+		;전술 지도서
+		IF MARK:반발각인 == 3 && !TALENT:연인
+			SELECTCASE RAND:2
+				CASE 0
+					PRINTFORMW 「운동이라도 하려는걸까?」
+					PRINTFORMW 「...근데 어쩐지 등골이 오싹한걸」
+				CASE 1
+					PRINTFORMW 「탄막에 대한 지도서? 헤에...그런것도 보는군요...」
+					PRINTFORMW 「...어쩐지 느낌이 이상하지만」
+			ENDSELECT
+		ELSEIF TALENT:연인||TALENT:연모||TALENT:사모||TALENT:애욕||TALENT:섹프
+			SELECTCASE RAND:2
+				CASE 0
+					PRINTFORMW 「헤에...탄막이라」
+					IF ABL:MASTER:전투능력 >= ABL:전투능력
+						PRINTFORMW 「...지금보다 더 강해져서 누굴 이길려고...」
+					ELSE
+						PRINTFORMW 「뭣하면 제가 가르쳐 드릴까요?」
+						PRINTFORMW 「그래도 어느정도는 할 수 있으니깐」
+					ENDIF
+				CASE 1
+					PRINTFORMW 「탄막에 대한 훈련서? 흐으음...」
+					IF ABL:MASTER:전투능력 >= ABL:전투능력
+						PRINTFORMW 「%사마스터는% 필요 없을거 같은데...」
+					ELSE
+						PRINTFORMW 「훈련이라면 조금은 도와드릴수 있으니깐 언제든 말해두세요」
+						PRINTFORMW 「그래도 너무 많이는 지치니까 안되지만...」
+					ENDIF
+			ENDSELECT
+		ELSE
+			;대사없음
+		ENDIF
+	ELSEIF ITEM:102
+		;조리지도서
 
+		;일단 대사 없어
+	ELSEIF ITEM:103
+		;사전
+		
+		;일단 대사 없어
+	ELSEIF ITEM:104
+		;단편소설
+		IF RAND:5 == 0
+			;사토리의 책(중에서도 부끄러운것)
+			IF MARK:반발각인 == 3 && !TALENT:연인
+				SELECTCASE RAND:1
+					CASE 0
+						PRINTFORMW 「켁...그, 그 책은...!」
+						PRINTFORMW 사토리는 순간 당황한 표정을 지었다
+						PRINTFORMW ...작가명이 'S.K'? 누구일까...
+					CASE 1
+						PRINTFORMW 「...!」
+						PRINTFORMW 사토리는 %마스터가% 집어든 책을 보고 굳어버렸다
+						PRINTFORMW ...작가명에는 '지저의 K씨' 라고 적혀 있었다
+				ENDSELECT
+			ELSEIF TALENT:연인
+				SELECTCASE RAND:1
+					CASE 0
+						PRINTFORMW 「아...그건...」
+						PRINTFORMW 사토리는 %마스터가% 집어든 책을 보곤 화들짝 놀란 표정을 지었다
+						PRINTFORMW 작가명에 '사볶음'이라 써 있었다
+					CASE 1
+						PRINTFORMW 「엣...그 책은...하필이면...!」
+						PRINTFORMW 어째서인지 사토리는 얼굴을 붉혔다
+						PRINTFORMW 치정소설이란 분류에 놓여있던 그 책의 제목은 '%TEXTR("지저로 온 왕자님/이세게에서 온 그가 너무 신경쓰인다/지저 연애담")%'이라고 쓰여 있었다...
+				ENDSELECT
+			ELSEIF TALENT:연모||TALENT:사모||TALENT:애욕||TALENT:섹프
+				SELECTCASE RAND:1
+					CASE 0
+						PRINTFORMW 「...앗, 그 책은...」
+						PRINTFORMW 「옛날에 썼던 책인데, 이게 여기에 있다니...」
+						PRINTFORMW ...사토리가 아는 채를 하는 이 책은, 상당히 노골적인 표지가 그려져 있었다
+						PRINTFORMW 「어, 어쩔수 없어요...그래야 잘 나가니까...」
+					CASE 1
+						PRINTFORMW 「엣...그건...」
+						PRINTFORMW 사토리는 %마스터가% 집어든 책을 보며 딱딱히 굳어버렸다
+						PRINTFORMW 작가명엔 '지저의 K선생'이라 적혀 있었다
+				ENDSELECT
+			ELSE
+				PRINTFORMW 「...!」
+				PRINTFORMW 사토리는 %마스터가% 집어든 책을 보고 굳어버렸다
+				PRINTFORMW ...작가명에는 '%TEXTR("지저의 K씨/사볶음/S.K")%' 라고 적혀 있었다
+			ENDIF
+		ELSE
+			IF MARK:반발각인 == 3 && !TALENT:연인
+				SELECTCASE RAND:1
+					CASE 0
+						PRINTFORMW 「흐음- 그런쪽이 취향인걸까나」
+						PRINTFORMW 사토리는 %마스터가% 집어든 책을 유심히 보고 있다
+					CASE 1
+						PRINTFORMW 「흐음흐음...그런 책이 좋은거구나...참고해 둬야겠네」
+				ENDSELECT
+			ELSEIF TALENT:연인
+				SELECTCASE RAND:1
+					CASE 0
+						PRINTFORMW 「헤에...그런 책이 좋은거구나...」
+						PRINTFORMW 「다음부터 참고해야 겠네」
+					CASE 1
+						PRINTFORMW 「흐음흐음, 요즘은 그런 장르가 먹히는걸까」
+						PRINTFORMW 사토리는 %마스터가% 집어든 책을 유심히 보고 있다
+				ENDSELECT
+			ELSEIF TALENT:연모||TALENT:사모||TALENT:애욕||TALENT:섹프
+				SELECTCASE RAND:1
+					CASE 0
+						PRINTFORMW 「으음- 이 책은 잘 안 팔리네에...」
+						PRINTFORMW 사토리는 옆에서 몇몇개의 책을 보며 궁시렁거리고 있었다
+					CASE 1
+						PRINTFORMW 「요즘은 그런 책이 유행인걸까나...」
+						PRINTFORMW 「참고용으로 몇 권 빌려가야겠어」
+				ENDSELECT
+			ELSE
+				;대사없음
+			ENDIF
+		ENDIF
+	ELSEIF ITEM:912
+		;조교전(텍붕이 대응)
+		IF MARK:반발각인 == 3
+			IF TALENT:연인
+				PRINTFORMW 「...윽, 저, 저기...화 많이 났어요...?」
+				PRINTFORMW 사토리는 당황한듯한 표정이다
+			ELSE
+				PRINTFORMW 「...어...그, 저기...」
+				PRINTFORMW 사토리는 당황한 눈치다
+			ENDIF
+		ELSEIF TALENT:연인
+			PRINTFORMW 「무...무슨 책인진 알고 있는거죠...?」
+			PRINTFORMW 「그...그런거 하지 마세요?」
+		ELSEIF TALENT:연모||TALENT:사모||TALENT:애욕||TALENT:섹프
+			PRINTFORMW 「어...화...난건가요?」
+			PRINTFORMW 「저기, 화나게 했다면 사과할테니깐...」
+		ELSE
+			PRINTFORMW 「...!」
+			PRINTFORMW 사토리는 무엇을 읽은것인지 깜짝 놀란 눈치다
+		ENDIF
+	ENDIF
 ENDIF
 RETURN 1
 ;==================================================
