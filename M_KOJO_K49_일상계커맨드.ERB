@@ -8374,13 +8374,125 @@ RETURN RESULT
 @M_KOJO_MESSAGE_COM_K49_621_1
 ;-------------------------------------------------
 ;記入チェック（=0, 非表示、1, 表示）
-LOCAL = 0
+LOCAL = 1
 IF CFLAG:수면
 	RETURN 1
 ENDIF
 ;-------------------------------------------------
 IF LOCAL
-
+	IF TFLAG:194 > 1000
+		;사토리가 낚시
+	ELSE
+		;아나타가 낚시
+	ENDIF
+	; 위에껀 별 처리 없지만 일단 예시용
+	;PRINTFORMW 「」
+	SELECTCASE TFLAG:193
+		CASE 0
+			IF MARK:반발각인 == 3 && !TALENT:연인
+				SELECTCASE RAND:3
+					CASE 0
+						PRINTFORMW 「...허탕이네」
+						PRINTFORMW 사토리는 뾰루퉁한 표정이다
+					CASE 1
+						PRINTFORMW 「걸린것 같았는데...아니었나 보네」
+					CASE 2
+						PRINTFORMW 「아...없네」
+						PRINTFORMW 사토리는 실망한 눈치다
+				ENDSELECT
+			ELSEIF TALENT:연인||TALENT:연모||TALENT:사모||TALENT:애욕||TALENT:섹프
+				SELECTCASE RAND:3
+					CASE 0
+						PRINTFORMW 「걸린것 같았는데, 없네...」
+					CASE 1
+						PRINTFORMW 「잡았...아, 없네...」
+						PRINTFORMW 「분명히 걸렸던것 같은데...」
+					CASE 2
+						PRINTFORMW 「안 잡히네...」
+						PRINTFORMW 사토리는 실망한 눈치다
+				ENDSELECT
+			ELSE
+				SELECTCASE RAND:2
+					CASE 0
+						PRINTFORMW 「으음- 영 안 되는걸」
+						PRINTFORMW 사토리는 뾰루퉁한 표정으로 텅 빈 바늘을 노려보고 있다
+					CASE 1
+						PRINTFORMW 「잡히질 않네...」
+				ENDSELECT
+			ENDIF
+		CASE 1 TO 4, 11 TO 15
+			IF MARK:반발각인 == 3 && !TALENT:연인
+				SELECTCASE RAND:2
+					CASE 0
+						IF TFLAG:194 > 1000
+							;사토리가 낚시
+							PRINTFORMW 「뭐, 이쯤이야 쉽죠」
+							PRINTFORMW 사토리는 으스대고 있다
+						ELSE
+							;아나타가 낚시
+							PRINTFORMW 「헤- 잡히긴 하네...」
+						ENDIF
+					CASE 1
+						IF TFLAG:194 > 1000
+							;사토리가 낚시
+							PRINTFORMW 「후후, 어때요?」
+							PRINTFORMW 사토리는 의기양양한 표정으로 %마스터의% 눈 앞에 잡아올린 전리품을 들이밀고 있다
+						ELSE
+							;아나타가 낚시
+							PRINTFORMW 「흐음- 근데 이거 어떻게 먹을 생각인가요?」
+							PRINTFORMW 「역시 구이인가? 으음- 모르겠네」
+						ENDIF
+				ENDSELECT
+			ELSE
+				SELECTCASE RAND:2
+					CASE 0
+						PRINTFORMW 「헤에- 잡혔네요」
+						PRINTFORMW 사토리는 신기하다는듯이 바라보고 있다
+					CASE 1
+						PRINTFORMW 「아, 잡혔다」
+						PRINTFORMW 「역시 신기하네요, 이런거에 낚여 올려지는걸 보면」
+						PRINTFORMW 사토리는 낚여올려진 물고기를 보며 감탄하고 있다
+				ENDSELECT
+			ENDIF
+		CASE 610
+			SELECTCASE RAND:3
+				CASE 0
+					PRINTFORMW 「...뭔가 기분 나빠」
+				CASE 1
+					PRINTFORMW 「뭐야 이건...」
+					PRINTFORMW 사토리는 실망한 눈치다
+				CASE 2
+					PRINTFORMW 「무거워 보이더니만, 나무였어...」
+			ENDSELECT
+		CASE 131
+			SELECTCASE RAND:3
+				CASE 0
+					PRINTFORMW 「이게 왜 이런데에 있는걸까나...」	
+				CASE 1
+					PRINTFORMW 「이런 축축한 종이도 받을진 모르겠네」
+				CASE 2
+					PRINTFORMW 「이런 종이가 밑바닥에 가라 앉던가...?」
+			ENDSELECT
+		CASE 21
+			SELECTCASE RAND:3
+				CASE 0
+					PRINTFORMW 「...누가 이런걸 여기 버린걸까?」	
+				CASE 1
+					PRINTFORMW 「으엑...축축하고 더러워, 그런거 줍지 마요」
+				CASE 2
+					PRINTFORMW 「그런걸 썼다간 감전될것만 같은걸요」
+					PRINTFORMW 「...아니, 왜 챙겨요?」
+			ENDSELECT
+		CASE 609,606
+			SELECTCASE RAND:2
+				CASE 0
+					PRINTFORMW 「뭔가 귀해보이는 건데...이런게 왜 여기 있는걸까나」
+					PRINTFORMW 「누군가 흘린걸지도 모르겠네」	
+				CASE 1
+					PRINTFORMW 「낚시로 이런걸 건질수도 있다니, 신기하네요...」
+					PRINTFORMW 「...왜 여기에 있는진 모르겠지만」
+			ENDSELECT
+	ENDSELECT
 ENDIF
 RETURN 1
 ;==================================================
