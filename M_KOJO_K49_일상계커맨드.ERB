@@ -8380,13 +8380,12 @@ IF CFLAG:수면
 ENDIF
 ;-------------------------------------------------
 IF LOCAL
-	IF TFLAG:194 > 1000
+	;IF TFLAG:194 > 1000
 		;사토리가 낚시
-	ELSE
+	;ELSE
 		;아나타가 낚시
-	ENDIF
+	;ENDIF
 	; 위에껀 별 처리 없지만 일단 예시용
-	;PRINTFORMW 「」
 	SELECTCASE TFLAG:193
 		CASE 0
 			IF MARK:반발각인 == 3 && !TALENT:연인
@@ -8515,20 +8514,91 @@ ENDIF
 ;-------------------------------------------------
 IF LOCAL
 	SELECTCASE TFLAG:194
-		;ひやかし
+		;눈요기는 질색이야-!(8번 이상 새로고침)
 		CASE -2
-		
-		;やっぱりやめる（見送り）
+			IF MARK:반발각인 == 3 && !TALENT:연인
+				SELECTCASE RAND:2
+					CASE 0
+						PRINTFORMW 「이크, 화나게 해버렸네」
+						PRINTFORMW 「어쩐지 속으로 욕하더니만」
+					CASE 1
+						PRINTFORMW 「역시 너무 오래 보고 있었나- 그래도 마음에 드는건 별로 없었는걸」
+				ENDSELECT
+			ELSEIF TALENT:연인
+				SELECTCASE RAND:2
+					CASE 0
+						PRINTFORMW 「뭐, 딱히 마음에 드는것도 없었으니 괜찮아요」
+					CASE 1
+						PRINTFORMW 「화나게 해버렸네...적당히 하고 갔어야 했나」
+				ENDSELECT
+			ELSE
+				PRINTFORMW 「이크, 결국 못 참았네」
+				PRINTFORMW 「3번째부터 속으로 욕하더니만」
+			ENDIF
+		;아이쇼핑
 		CASE -1
-		
+			;대사없음
 		;400点未満（BAD）
 		CASE 1
-		
-		;400点～699点（NOMAL）
-		CASE 2
-		
+			IF MARK:반발각인 == 3 && !TALENT:연인
+				SELECTCASE RAND:2
+					CASE 0
+						PRINTFORMW 「...준다니 받긴 하겠지만...」
+					CASE 1
+						PRINTFORMW 「...일단은 고마워요」
+				ENDSELECT
+			ELSEIF TALENT:연인
+				SELECTCASE RAND:2
+					CASE 0
+						PRINTFORMW 「...어, 그, 그러니까...고마워요?」
+					CASE 1
+						PRINTFORMW 「으음...그, 감사합니다...?」
+				ENDSELECT
+				PRINTFORMW 별로 마음엔 안 드는 모양이다
+			ELSE
+				SELECTCASE RAND:2
+					CASE 0
+						PRINTFORMW 「...네, 고맙습니다」
+						PRINTFORMW 한순간 떨떠름해 보이는 표정을 지었던것 같지만 무시하기로 했다
+					CASE 1
+						PRINTFORMW 「...아, 가, 감사합니다...」
+						PRINTFORMW 별로 마음에 들어보이는 표정은 아니다
+				ENDSELECT
+			ENDIF
+		;400点～699点（NOMAL）, GOOD이랑 통합
+		CASE 2, 3
+			IF MARK:반발각인 == 3 && !TALENT:연인
+				SELECTCASE RAND:2
+					CASE 0
+						PRINTFORMW 「...선물? 준다니 감사히 받긴 하겠지만...」
+						PRINTFORMW 말은 저리 해도 상당히 기뻐하는 티가 나는 사토리였다
+					CASE 1
+						PRINTFORMW 「무, 뭐어, 사 주신다면야...」
+						PRINTFORMW 쑥쓰러운지 말은 안 하지만, 상당히 기쁜 모양이다
+				ENDSELECT
+			ELSEIF TALENT:연인
+				SELECTCASE RAND:2
+					CASE 0
+						PRINTFORMW 「저한테? 후후, 감사합니다」
+						PRINTFORMW 상당히 마음에 들었는지 표정이 밝다
+					CASE 1
+						PRINTFORMW 「사 주시는 건가요? 고맙습니다」
+						PRINTFORMW 사토리는 굉장히 즐거워 보이는 표정이다
+				ENDSELECT
+				TALENT:기분 = 1
+			ELSE
+				SELECTCASE RAND:2
+					CASE 0
+						PRINTFORMW 「저한테 주신다고요?」
+						PRINTFORMW 「...네, 감사합니다, 후후...♥」
+						PRINTFORMW 상당히 마음에 든 모양인지 얼굴이 밝다
+					CASE 1
+						PRINTFORMW 「사 주신다고요? 후후, 감사합니다」
+						PRINTFORMW 상당히 마음에 들었는지 표정이 밝다
+				ENDSELECT
+			ENDIF
 		;700点以上（GOOD）
-		CASE 3
+		;CASE 3
 		
 	ENDSELECT
 ENDIF
@@ -8568,13 +8638,42 @@ RETURN RESULT
 @M_KOJO_MESSAGE_COM_K49_698_1
 ;-------------------------------------------------
 ;記入チェック（=0, 非表示、1, 表示）
-LOCAL = 0
+LOCAL = 1
 IF CFLAG:수면
 	RETURN 1
 ENDIF
 ;-------------------------------------------------
 IF LOCAL
-
+	;PRINTFORMW 「」
+	;연모 없으면 실행 불가
+	IF MARK:반발각인 == 3 && !TALENT:연인 ; 반발3 연모
+		SELECTCASE RAND:2
+			CASE 0
+				PRINTFORMW 「뭐, 편히 쉬다 가던가요」
+			CASE 1
+				PRINTFORMW 「차라도 내올까요?」
+		ENDSELECT
+	ELSEIF TALENT:연인
+		SELECTCASE RAND:2
+			CASE 0
+				PRINTFORMW 방으로 들어서자, 사토리가 뒤에서부터 안아왔다
+				PRINTFORMW 「헤헤...여기라면, 보는 눈도 없으니깐...」
+				PRINTFORMW 「밖에선 못 하는거, 할 수 있겠네요...후후, 뭐 부터 할까나♥」
+				PRINTFORMW 상당히 즐거워 보인다
+			CASE 1
+				PRINTFORMW 「에헤헤...」
+				PRINTFORMW 사토리는 뭐가 그리 좋은지 헤실헤실 웃고 있다
+		ENDSELECT
+	ELSE
+		SELECTCASE RAND:2
+			CASE 0
+				PRINTFORMW 「이, 일단 차라도 내올까요...?」
+				PRINTFORMW 사토리는 얼굴을 붉히고 있다
+			CASE 1
+				PRINTFORMW 「에헤헤...」
+				PRINTFORMW 사토리는 뭐가 그리 좋은지 헤실헤실 웃고 있다
+		ENDSELECT
+	ENDIF
 ENDIF
 RETURN 1
 ;==================================================
@@ -8594,7 +8693,7 @@ IF CFLAG:수면
 ENDIF
 ;-------------------------------------------------
 IF LOCAL
-
+	;일단 대사 없음
 ENDIF
 RETURN 1
 
