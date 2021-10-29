@@ -8702,13 +8702,14 @@ RETURN 1
 ;※※※※※※※※※※※※※※※※※※※※※※※※※
 ;==================================================
 ;60,耳かき
-;前ターン膝枕後스킨십コマンド
+;前ターン무릎베게後스킨십コマンド
 ;TFLAG:193(1=大成功 0=成功 -1=失敗)(失敗するのはTARGET
 ;==================================================
 @M_KOJO_SUCCESS_SCOM_K49_60
 ;成否判定
 ;TFLAG:192(-2=コマンド終了、-1＝強制失敗、0=COM依存、1=強制成功or大成功
-TFLAG:192 =0
+TFLAG:192 =1
+;애완동물 귀 청소하는 것으로 수련한 귀파기 실력!
 
 @M_KOJO_MESSAGE_SCOM_K49_60
 CALL TRAIN_MESSAGE
@@ -8717,13 +8718,70 @@ RETURN RESULT
 @M_KOJO_MESSAGE_SCOM_K49_60_1
 ;-------------------------------------------------
 ;記入チェック（=0, 非表示、1, 表示）
-LOCAL = 0
+LOCAL = 1
 IF CFLAG:수면
 	RETURN 1
 ENDIF
 ;-------------------------------------------------
 IF LOCAL
-
+	IF MARK:반발각인 == 3
+		IF TALENT:연인
+			SELECTCASE RAND:3
+				CASE 0
+					PRINTFORMW 「으에...한가득 쌓였네」
+					PRINTFORMW 「이래서 그렇게 말을 안 듣나보네」
+				CASE 1
+					PRINTFORMW 「파도파도 끝이 없네, 정말이지...」
+				CASE 2
+					PRINTFORMW 「좋은가요?」
+					PRINTFORMW 「이렇게 잔뜩 쌓여있었으니 조금 답답했을거 같은데」
+			ENDSELECT
+		ELSE
+			SELECTCASE RAND:3
+				CASE 0
+					PRINTFORMW 「실수로 찔려도 전 몰라요?」
+				CASE 1
+					PRINTFORMW 「귀찮은데 그냥 세정제로 해버리면 안될까요?」
+					PRINTFORMW 「물론 고양이용 이지만」
+				CASE 2
+					PRINTFORMW 「뭐, 동물귀보단 청소하기 편하네요」
+					PRINTFORMW 「그래도 귀찮지만」
+			ENDSELECT
+		ENDIF
+	ELSEIF TALENT:연인
+		SELECTCASE RAND:3
+			CASE 0
+				PRINTFORMW 「이런 느낌으로 괜찮으려나」
+				PRINTFORMW 사각사각 귀를 파내는 소리가 기분좋게 들려왔다
+			CASE 1
+				PRINTFORMW 「상당히 쌓여있네에...이건 관리가 필요하겠는걸」
+				PRINTFORMW 어쩐지 고양이를 다루듯 %마스터의% 머리를 매만지며 귀를 파고 있는 사토리였다
+			CASE 2
+				PRINTFORMW 「귀는 특히 더러워지기 좋은 곳이니깐, 수시로 닦아주는게 좋아요」
+				PRINTFORMW 「그렇다고 물기가 남으면 더 안 좋지만...」
+		ENDSELECT
+	ELSEIF TALENT:연모||TALENT:사모||TALENT:애욕
+		SELECTCASE RAND:3
+			CASE 0
+				PRINTFORMW 「대충 이정도면 시원한가요?」
+				PRINTFORMW 「엄청 많이 파냈는데...」
+			CASE 1
+				PRINTFORMW 「상당히 답답했을거 같네...」
+				PRINTFORMW 사토리는 능숙한 솜씨로 %마스터의% 귀를 청소해내고 있다
+			CASE 2
+				PRINTFORMW 「아프진 않죠?」
+				PRINTFORMW 사각사각 귀를 파내는 소리가 기분 좋았다
+		ENDSELECT
+	ELSE
+		SELECTCASE RAND:3
+			CASE 0
+				PRINTFORMW 「대충 이정도면 시원한가요?」
+			CASE 1
+				PRINTFORMW 「...면봉이 더 필요할거 같네」
+			CASE 2
+				PRINTFORMW 「그냥 세정제로 씻어내도 되려나...역시 안되겠죠?」
+		ENDSELECT
+	ENDIF
 ENDIF
 RETURN 1
 ;==================================================
