@@ -4311,9 +4311,9 @@ RETURN RESULT
 ;-------------------------------------------------
 ;記入チェック（=0, 非表示、1, 表示）
 LOCAL = 1
-IF CFLAG:수면
-	RETURN 1
-ENDIF
+;IF CFLAG:수면
+;	RETURN 1
+;ENDIF
 ;-------------------------------------------------
 IF LOCAL
 	;PRINTFORMW 「」
@@ -8796,13 +8796,46 @@ RETURN RESULT
 @M_KOJO_MESSAGE_SCOM_K49_61_1
 ;-------------------------------------------------
 ;記入チェック（=0, 非表示、1, 表示）
-LOCAL = 0
-IF CFLAG:수면
-	RETURN 1
-ENDIF
+LOCAL = 1
 ;-------------------------------------------------
+;동침중 끌어안는다->취침
+;연모 필요, 대상 수면중 필요
 IF LOCAL
-
+	IF MARK:반발각인 == 3
+		IF TALENT:연인
+			SELECTCASE RAND:2
+				CASE 0
+					PRINTFORMW 사토리는 자면서도 얼굴을 붉히고 있다	
+				CASE 1
+					PRINTFORMW 「응...」
+					PRINTFORMW 사토리도 이쪽에 팔을 둘러왔다
+			ENDSELECT
+		ELSE
+			SELECTCASE RAND:2
+				CASE 0
+					PRINTFORMW 「으응...」
+					PRINTFORMW 사토리는 약간 인상을 썼다
+				CASE 1
+					PRINTFORMW 사토리는 자면서도 살짝 홍조를 띄웠다
+			ENDSELECT
+		ENDIF
+	ELSEIF TALENT:연인
+		SELECTCASE RAND:2
+			CASE 0
+				PRINTFORMW 사토리도 어쩐지 기뻐보이는 표정을 지으며 팔을 둘러왔다
+			CASE 1
+				PRINTFORMW 「음냐...」
+				PRINTFORMW 볼이 살짝 붉어진게 보인다
+		ENDSELECT
+	ELSE
+		SELECTCASE RAND:2
+			CASE 0
+				PRINTFORMW 잠든 사토리의 얼굴이 발그레해진것을 보며 잠에 들었다
+			CASE 1
+				PRINTFORMW 「...」
+				PRINTFORMW 사토리가 팔을 둘러오는걸 느끼며 스르르 잠에 빠져들었다
+		ENDSELECT
+	ENDIF
 ENDIF
 RETURN 1
 ;==================================================
@@ -8830,7 +8863,113 @@ IF CFLAG:수면
 ENDIF
 ;-------------------------------------------------
 IF LOCAL
-
+	;섹프는 무조건 욕망 5 이상(애욕은 10)
+	;사모/연모는 무조건 친밀 5 이상
+	;PRINTFORMW 「」
+	IF ABL:욕망 >= 5
+		IF MARK:반발각인 == 3 && !TALENT:연인
+			SELECTCASE RAND:2
+				CASE 0
+					PRINTFORMW 「아...」
+					PRINTFORMW 사토리는 어딘가 아쉬운듯한 표정을 지어보였다 
+				CASE 1
+					PRINTFORMW 「으음...그, 한번...으으응...」
+					PRINTFORMW 무언가 말하려는것 같았지만 이내 고개를 젓는 사토리였다
+			ENDSELECT
+		ELSEIF TALENT:연인
+			SELECTCASE RAND:2
+				CASE 0
+					PRINTFORMW 「저기, 한번만 더어...」
+				CASE 1
+					PRINTFORMW 「한번만으론 충분하지 않아」
+					PRINTFORMW 「...적어도 두번 세번은 해야 된다고요」
+			ENDSELECT
+		ELSEIF TALENT:연모||TALENT:사모||TALENT:애욕
+			SELECTCASE RAND:2
+				CASE 0
+					PRINTFORMW 「한번만 하는건 부족해요」
+					PRINTFORMW 「...그러니까 한번 더 해요」
+				CASE 1
+					PRINTFORMW 「에헤헤...그, 한번만 더...해주실수 있을까요?」
+			ENDSELECT
+		ELSEIF TALENT:섹프
+			SELECTCASE RAND:2
+				CASE 0
+					PRINTFORMW 「고작 이거로 끝? 좀 더 할 수 있잖아요?」
+					PRINTFORMW 「아니면...다음걸 하기 위해서일까...?」
+					PRINTFORMW 사토리는 요염한 미소를 지어보이고 있다
+				CASE 1
+					PRINTFORMW 「고작 이거만으로 만족하는건가요?」
+					PRINTFORMW 「좀 더 좋은거, 해야죠? 후후후...♥」
+			ENDSELECT
+		ELSE
+			SELECTCASE RAND:2
+				CASE 0
+					PRINTFORMW 「...한번만 더 해줄래요?」
+					PRINTFORMW 상당히 마음에 들었던 모양이다
+				CASE 1
+					PRINTFORMW 「...♥」
+			ENDSELECT
+		ENDIF
+	ELSEIF ABL:친밀 >= 5
+		IF MARK:반발각인 == 3 && !TALENT:연인
+			SELECTCASE RAND:2
+				CASE 0
+					PRINTFORMW 「...」
+				CASE 1
+					PRINTFORMW 「그, 좀 더....아, 아니 내가 뭐래니...」
+					PRINTFORMW 영 부끄러운 모양이다
+			ENDSELECT
+		ELSEIF TALENT:연인
+			SELECTCASE RAND:2
+				CASE 0
+					PRINTFORMW 「에헤헤...♥ 왠지 기분 좋네...」
+					PRINTFORMW 마음에 든 모양이다
+				CASE 1
+					PRINTFORMW 「...♥」
+					PRINTFORMW 사토리는 상당히 기쁜 모양이다
+			ENDSELECT
+		ELSEIF TALENT:연모||TALENT:사모
+			SELECTCASE RAND:2
+				CASE 0
+					PRINTFORMW 「...어쩐지 부끄럽네요」
+					PRINTFORMW 쑥쓰러운 모양이다
+				CASE 1
+					PRINTFORMW 「...♥」
+					PRINTFORMW 기분 좋아 보인다
+			ENDSELECT
+		ELSE
+			SELECTCASE RAND:2
+				CASE 0
+					PRINTFORMW 「아...?」
+					PRINTFORMW 조금 당황스러운 표정이었지만, 싫진 않은 모양이다
+				CASE 1
+					PRINTFORMW 「...」
+					PRINTFORMW 사토리는 새빨게진 얼굴이 부끄러운지 고개를 돌려버렸다
+			ENDSELECT
+		ENDIF
+	ELSE
+		IF MARK:반발각인 == 3 && !TALENT:연인
+			SELECTCASE RAND:2
+				CASE 0
+					PRINTFORMW 「...놀랐네, 갑자기 그러니깐...」
+				CASE 1
+					PRINTFORMW 「......」
+					PRINTFORMW 그다지 좋진 않았던 모양이다
+			ENDSELECT
+		ELSEIF TALENT:연인
+			;혹시나
+			PRINTFORMW 「...?」
+		ELSE
+			SELECTCASE RAND:2
+				CASE 0
+					PRINTFORMW 「...?」
+					PRINTFORMW 사토리는 이해하지 못하겠단 눈치다
+				CASE 1
+					PRINTFORMW 「이런게 뭐가 좋은거죠...?」
+			ENDSELECT
+		ENDIF
+	ENDIF
 ENDIF
 RETURN 1
 ;==================================================
