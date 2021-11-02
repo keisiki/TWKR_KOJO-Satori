@@ -8989,14 +8989,88 @@ RETURN RESULT
 @M_KOJO_MESSAGE_SCOM_K49_63_1
 ;-------------------------------------------------
 ;記入チェック（=0, 非表示、1, 表示）
-LOCAL = 0
+LOCAL = 1
 IF CFLAG:수면
 	RETURN 1
 ENDIF
 ;-------------------------------------------------
 IF LOCAL
 	IF FLAG:70
+		IF MARK:반발각인 == 3
+			PRINTFORMW 아무리 평소 틱틱거렸어도, 멈춘 시간속에선 싫은 소리 없이 묵묵히 받아들이는 것이다
+			PRINTFORMW 나중에 화낼지도 모르지만 지금은 이 순간을 즐기도록 하자
+		ELSE
+			PRINTFORMW 움직여주지 않는 입을 억지로 비집어 가며 키스를 하는건 조금 힘들었다
+		ENDIF
 	ELSE
+		;랜덤 키스 함수 만들면 이식할 것
+
+
+		IF MARK:반발각인 == 3 && !TALENT:연인
+			IF ABL:친밀 < 5
+				SELECTCASE RAND:2
+					CASE 0
+						PRINTFORMW 「푸하...갑자기 무슨 짓을...」
+					CASE 1
+						PRINTFORMW 「으...하지마...」
+						PRINTFORMW 사토리는 %마스터를% 밀어내고 있다
+				ENDSELECT
+			ELSE
+				SELECTCASE RAND:3
+					CASE 0
+						PRINTFORMW 「으응...그만...」
+						PRINTFORMW 말은 이렇게 해도 몸은 떼어놓지 않는 사토리였다
+					CASE 1
+						PRINTFORMW 「...하지 마요」
+						PRINTFORMW 끝까지 다 즐겨놓곤 끝내 부끄러웠던 모양인지 틱틱대고 있다
+					CASE 2
+						PRINTFORMW 「후아...」
+						PRINTFORMW 사토리는 잠시 애닳파 보이는 표정을 지어보였으나 이내 평소의 표정으로 되돌아갔다
+				ENDSELECT
+			ENDIF
+		ELSEIF TALENT:연인
+			SELECTCASE RAND:3
+				CASE 0
+					PRINTFORMW 「응...혀놀림, 야해」
+				CASE 1
+					PRINTFORMW 「푸하...응, 조금만 더...」
+				CASE 2
+					PRINTFORMW 사토리는 한참이 지나도 %마스터를% 놓지 않고 계속해서 입술을 탐해왔다
+			ENDSELECT
+		ELSEIF TALENT:연모||TALENT:사모||TALENT:애욕
+			SELECTCASE RAND:3
+				CASE 0
+					PRINTFORMW 「...혀놀림, 야해」
+					PRINTFORMW 사토리는 얼굴을 붉히고 있다
+				CASE 1
+					PRINTFORMW 「어쩐지 이상한 기분이 드는걸...」
+					PRINTFORMW 「...조금만 더 할래요?」
+				CASE 2
+					PRINTFORMW 「...♥」
+					PRINTFORMW 사토리는 기뻐보이는 표정으로 혀를 얽어왔다
+			ENDSELECT
+		ELSEIF TALENT:섹프
+			SELECTCASE RAND:3
+				CASE 0
+					PRINTFORMW 「후아...이렇게 진한 키스, 기분 이상해져버려」
+					PRINTFORMW 사토리는 정욕에 찬 눈으로 %마스터를% 바라보고 있다
+				CASE 1
+					PRINTFORMW 「푸아...이런거 당해버리면, 참기 힘든데」
+					PRINTFORMW 사토리는 묘한 눈빛으로 %마스터를% 바라보고 있다
+					BASE:무드 = MIN(BASE:무드 + 500, MAXBASE:무드 - 1)
+				CASE 2
+					PRINTFORMW 「응...」
+					PRINTFORMW 사토리는 애닳픈 눈빛으로 %마스터를% 바라보고 있다
+			ENDSELECT
+		ELSE
+			SELECTCASE RAND:2
+				CASE 0
+					PRINTFORMW 「흐으...」
+					PRINTFORMW 사토리의 얼굴이 새빨게지고 있다
+				CASE 1
+					PRINTFORMW 「...기분이 이상한걸」
+			ENDSELECT
+		ENDIF
 	ENDIF
 ENDIF
 RETURN 1
