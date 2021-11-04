@@ -9025,7 +9025,7 @@ IF LOCAL
 						PRINTFORMW 끝까지 다 즐겨놓곤 끝내 부끄러웠던 모양인지 틱틱대고 있다
 					CASE 2
 						PRINTFORMW 「후아...」
-						PRINTFORMW 사토리는 잠시 애닳파 보이는 표정을 지어보였으나 이내 평소의 표정으로 되돌아갔다
+						PRINTFORMW 사토리는 잠시 아쉬워 보이는 표정을 지어보였으나 이내 평소의 표정으로 되돌아갔다
 				ENDSELECT
 			ENDIF
 		ELSEIF TALENT:연인
@@ -9060,7 +9060,7 @@ IF LOCAL
 					BASE:무드 = MIN(BASE:무드 + 500, MAXBASE:무드 - 1)
 				CASE 2
 					PRINTFORMW 「응...」
-					PRINTFORMW 사토리는 애닳픈 눈빛으로 %마스터를% 바라보고 있다
+					PRINTFORMW 사토리는 애달픈 눈빛으로 %마스터를% 바라보고 있다
 			ENDSELECT
 		ELSE
 			SELECTCASE RAND:2
@@ -9091,12 +9091,83 @@ RETURN RESULT
 @M_KOJO_MESSAGE_SCOM_K49_80_1
 ;-------------------------------------------------
 ;記入チェック（=0, 非表示、1, 表示）
-LOCAL = 0
+LOCAL = 1
 IF CFLAG:수면
 	RETURN 1
 ENDIF
 ;-------------------------------------------------
 IF LOCAL
-
+	;PRINTFORMW 「」
+	IF MARK:반발각인 == 3
+		IF TALENT:연인
+			SELECTCASE RAND:3
+				CASE 0
+					PRINTFORMW 「...」
+					PRINTFORMW 사토리는 조용히 따라붙고 있다
+				CASE 1
+					PRINTFORMW 「그렇게 서둘러 가지 않아도 되는데」
+				CASE 2
+					PRINTFORMW 「...잠깐, 그렇게 잡아당기지 마요」
+					PRINTFORMW 「따라가기 조금 힘드니깐」
+			ENDSELECT
+		ELSE
+			SELECTCASE RAND:3
+				CASE 0
+					PRINTFORMW 「......」
+					PRINTFORMW 사토리는 말없이 %마스터의% 손에 이끌려지고 있다
+				CASE 1
+					PRINTFORMW 「그렇게 잡아당기진 마...」
+					IF TFLAG:193 == -1
+						PRINTFORMW 사토리는 탐탁치 않은 표정이다
+					ELSE
+						PRINTFORMW 사토리는 얼굴을 붉히고 있다
+					ENDIF
+				CASE 2
+					PRINTFORMW 「...그렇게 서둘러서 가야 하는걸까」
+					PRINTFORMW 「아니면 얼른 끝내고 다른데 가버리려는걸까?」
+				CASE 3
+					PRINTFORMW 「아아, 좋네, 얼른 가버리면 이것도 얼른 끝나겠지」
+					PRINTFORMW 「%MASTERNAME:49%도 그러고 싶은가봐, 이렇게 잡아 끄는걸 보면」
+					IF TFLAG:193 == -1
+						
+					ELSE
+						PRINTFORMW 사토리는 어쩐지 서운해 보이는 표정이다
+					ENDIF
+			ENDSELECT
+		ENDIF
+	ELSEIF TALENT:연인
+		SELECTCASE RAND:3
+			CASE 0
+				PRINTFORMW 「조금 천천히 가는것도 나쁘진 않을텐데」
+				PRINTFORMW 「모처럼 데이트이니깐 좀 더 즐기는게 좋을거 같은데...」
+			CASE 1
+				PRINTFORMW 「그, 그렇게 꽉 잡으면...」
+				PRINTFORMW 사토리는 얼굴을 붉혔다
+			CASE 2
+				PRINTFORMW 「...♥」
+				PRINTFORMW 사토리는 얼굴을 붉히며 따라오고 있다
+		ENDSELECT
+	ELSEIF TALENT:연모||TALENT:사모||TALENT:애욕
+		SELECTCASE RAND:3
+			CASE 0
+				PRINTFORMW 「...」
+				PRINTFORMW 사토리는 얼굴을 새빨갛게 물들이고 있다
+			CASE 1
+				PRINTFORMW 「...그, 서둘러야 하나요...?」
+				PRINTFORMW 「조금 더 느긋하게...즐기면서 가고 싶었는데」
+				PRINTFORMW 사토리는 약간 아쉬운듯이 말해왔다
+			CASE 2
+				PRINTFORMW 사토리는 얼굴을 붉히며 %마스터의% 뒤를 따라 걷고 있다
+		ENDSELECT
+	ELSE
+		SELECTCASE RAND:3
+			CASE 0
+				PRINTFORMW 「서둘러야 하나요...?」
+			CASE 1
+				PRINTFORMW 「모처럼 산책인데 조금 더 느긋히 가도 좋을텐데...」
+			CASE 2
+				PRINTFORMW 「그렇게 재촉하지 않아도 제대로 쫓아가고 있어요」
+		ENDSELECT
+	ENDIF
 ENDIF
 RETURN 1
