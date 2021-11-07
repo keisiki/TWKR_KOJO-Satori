@@ -1,5 +1,6 @@
 ﻿;-------------------------------------------------
 ;奴隷の絶頂時の구上
+;수면중일때 발동 X
 ;NOWEX:0～4 CVABM絶頂
 ;NOWEX:6 이중절정
 ;NOWEX:7 삼중절정
@@ -15,10 +16,54 @@ CALL PALAM_MESSAGE_B
 ;-------------------------------------------------
 ;분유
 ;記入チェック（=0, 非表示、1, 表示）
-LOCAL = 0
+LOCAL = 1
 ;-------------------------------------------------
 IF LOCAL && NOWEX:분유
-	PRINTFORMW 
+	;PRINTFORML 「」
+	SELECTCASE RAND:5
+		CASE 0
+			PRINTFORML 「가...가슴이 저려와...♥」
+			PRINTFORML 사토리는 흠칫흠칫 떨며 흐르는 모유를 바라보고 있다
+		CASE 1
+			PRINTFORML 「아아...새어나왓...」
+			PRINTFORML 사토리의 가슴이 파르르 떨리며 모유를 흘리고 있다
+		CASE 2
+			PRINTFORML 「가...가슴이 간지러...」
+		CASE 3
+			IF MARK:반발각인 == 3 && !TALENT:연인
+				PRINTFORML 「가..가슴이 찌릿해...읏...♥」
+			ELSEIF TALENT:연인
+				PRINTFORML 「나...나온다아...가슴...나와버려...♥」
+			ELSEIF TALENT:연모||TALENT:사모||TALENT:애욕
+				PRINTFORML 「아앗...가슴, 찌릿거려...♥」
+				PRINTFORML 사토리의 가슴이 바들바들 떨리며 모유가 흘러나오고 있다
+			ELSE
+				PRINTFORML 「아..아아...가슴, 흘러나왓...안대...♥」
+			ENDIF
+		CASE 4
+			IF CFLAG:우후후
+				IF MARK:반발각인 == 3 && !TALENT:연인
+					PRINTFORML 「아앗...새어나왓, 아아♥ 안대는데에♥ 기분 좋앗♥」
+					PRINTFORML 사토리는 황홀한 표정이다
+				ELSEIF TALENT:섹프
+					PRINTFORML 「가스음♥ 찌릿거렷, 기분조아아♥」
+					PRINTFORML 「유두에서 븃븃 나오는거 조아앗♥」
+				ELSE
+					PRINTFORML 「아앗♥ 가, 가슴이 욱신거려엇♥」
+				ENDIF
+			ELSE
+				IF MARK:반발각인 == 3 && !TALENT:연인
+					PRINTFORML 「힛...안대, 보지맛, 가슴 쳐다보면 안돼...」
+					PRINTFORML 사토리는 축축해지는 가슴을 애써 가리고 있다
+				ELSEIF TALENT:섹프
+					PRINTFORML 「아핫...가슴, 젖어버렸다아...♥」
+					PRINTFORML 「정마알, 어쩔거예요 이거♥」
+				ELSE
+					PRINTFORML 「힛...오, 옷 젖어버렸다...」
+					PRINTFORML 사토리의 가슴팍에 축축한 얼룩이 생겨버렸다
+				ENDIF
+			ENDIF
+	ENDSELECT
 ENDIF
 ;-------------------------------------------------
 ;사정
@@ -31,10 +76,85 @@ ENDIF
 ;-------------------------------------------------
 ;방뇨
 ;記入チェック（=0, 非表示、1, 表示）
-LOCAL = 0
+LOCAL = 1
 ;-------------------------------------------------
 IF LOCAL && NOWEX:방뇨
-	PRINTFORMW 
+	IF ABL:노출벽 < 3
+		SELECTCASE RAND:4
+			CASE 0
+				IF MARK:반발각인 == 3 && !TALENT:연인
+					PRINTFORML 「아...안돼, 참아야, 하는데...!」
+					PRINTFORML 사토리는 수치심에 얼굴을 붉히고 있다
+				ELSEIF TALENT:연인
+					PRINTFORML 「힛...안댓, 오줌...나와버려...!」
+				ELSEIF TALENT:섹프
+					PRINTFORML 「아..아아..더는, 무리...!」
+				ELSE
+					PRINTFORML 「아...」
+					PRINTFORML 참아왔던 오줌이 흘러나오는 감각에 사토리는 망연자실해 하고 있다
+				ENDIF
+			CASE 1
+				IF MARK:반발각인 == 3 && !TALENT:연인
+					PRINTFORML 「아, 아아...오줌, 지려버렸어...」
+				ELSEIF TALENT:연인
+					PRINTFORML 「아, 안돼에...보면 안됏, 부끄러워...」
+				ELSEIF TALENT:연모||TALENT:사모||TALENT:애욕
+					PRINTFORML 「힛...더는, 못 참...으읏...!」
+				ELSEIF TALENT:섹프
+					PRINTFORML 「아하...기, 기분 조아...좋은데에...」
+					PRINTFORML 「...부끄러워 죽을거 같아...」
+				ELSE
+					PRINTFORML 「안돼에..보지마, 보면 안돼에...」
+					PRINTFORML 사토리의 얼굴이 새빨갛게 물들었다
+				ENDIF
+			CASE 2
+				PRINTFORML 「아...안돼, 그만, 오줌 안돼에...」
+				PRINTFORML 필사적으로 막는게 무색하게 사토리의 허벅지를 따라 오줌이 주르륵 흘러내리고 있었다
+			CASE 3
+				PRINTFORML 「...아아, 오줌, 못 참아버렸다...」
+				PRINTFORML 사토리의 다리가 파르르 떨고 있다
+		ENDSELECT
+	ELSE
+		SELECTCASE RAND:4
+			CASE 0
+				IF MARK:반발각인 == 3 && !TALENT:연인
+					PRINTFORML 「아...지려버렸다...」
+					PRINTFORML 「...뭘 보는 건가요? 별로 신기할 것도 없으면서」
+				ELSEIF TALENT:연인
+					PRINTFORML 「아...오줌, 지려버렸다...」
+					PRINTFORML 「...부끄럽지만, 조금은 기분 좋네」
+				ELSEIF TALENT:섹프
+					PRINTFORML 「아...이거, 기분 좋아...」
+					PRINTFORML 「...중독돼 버릴지도」
+				ELSE
+					PRINTFORML 「아...♥」
+					PRINTFORML 참아왔던 오줌이 흘러나오는 감각에 사토리는 얼빠진 표정을 짓고 있다
+				ENDIF
+			CASE 1
+				IF MARK:반발각인 == 3 && !TALENT:연인
+					PRINTFORML 「아, 아아...오줌, 지려버렸어...」
+					PRINTFORML 「...그런데, 어째서 기분좋은거야...」
+				ELSEIF TALENT:연인
+					PRINTFORML 「...지려버렸네, 누가 봤으려나」
+					PRINTFORML 「...그래도 기분 좋았어」
+				ELSEIF TALENT:연모||TALENT:사모||TALENT:애욕
+					PRINTFORML 「아아...오줌, 싸버렸어...」
+					PRINTFORML 「...기분 좋아...♥」
+				ELSEIF TALENT:섹프
+					PRINTFORML 「아하...기, 기분 조아...」
+					PRINTFORML 「이런거 기분 좋으면 안되는데도...몸이 오싹오싹해져...♥」
+				ELSE
+					PRINTFORML 「아...아아아...♥」
+					PRINTFORML 사토리의 얼굴이 수치심과 쾌감에 물들어 갔다
+				ENDIF
+			CASE 2
+				PRINTFORML 「아...오줌, 참아야 하는데...」
+				PRINTFORML 「기분 좋아...」
+			CASE 3
+				PRINTFORML 「...아아, 오줌, 못 참아버렸다...」
+				PRINTFORML 사토리는 온 몸을 파르르 떨고 있다
+		ENDSELECT
+	ENDIF
 ENDIF
 ;-------------------------------------------------
 ;絶頂
