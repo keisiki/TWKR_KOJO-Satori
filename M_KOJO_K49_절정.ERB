@@ -191,11 +191,11 @@ IF LOCAL
 	;-------------------------------------------------
 	;사중절정
 	;記入チェック（=0, 非表示、1, 表示）
-	LOCAL:1 = 0
+	LOCAL:1 = 1
 	;-------------------------------------------------
 	IF NOWEX:사중절정
 		;部位を손가락定せず簡易的に書く場合、[SKIPSTART]&[SKIPEND]のコメントアウトを外して、[SKIPSTART]とこのコメントの間に書いてください
-		;[SKIPSTART]
+		[SKIPSTART]
 		SELECTCASE NOWEX:사중절정
 			;Ｃ＆V＆A＆B절정
 			CASE 1
@@ -218,7 +218,25 @@ IF LOCAL
 				PRINTFORMW 
 				RETURN 1
 		ENDSELECT
-		;[SKIPEND]
+		[SKIPEND]
+		PRINTFORM 「
+		CALL ST_CLIMAX(RAND:4 + 6)
+		SELECTCASE RAND:5
+			CASE 0
+				PRINTFORML 흐에에...♥」
+				PRINTFORML 사토리는 얼빠진 표정을 짓고 있었다
+			CASE 1
+				PRINTFORML 후아...머리가, 멍해져...♥」
+				PRINTFORML 사토리는 쾌락의 여운에 잠겨 있다
+			CASE 2
+				PRINTFORML ...♥」
+				PRINTFORML 사토리는 황홀해 보이는 표정을 짓고 있다
+			CASE 3
+				PRINTFORML 기분, 좋아아...♥」
+			CASE 4
+				PRINTFORML 」
+				PRINTFORML 사토리는 말도 제대로 못한채 그저 온 몸을 움찔움찔 떨 뿐이었다
+		ENDSELECT
 	ENDIF
 	;-------------------------------------------------
 	;삼중절정
