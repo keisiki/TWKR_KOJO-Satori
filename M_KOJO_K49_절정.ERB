@@ -170,20 +170,20 @@ IF LOCAL
 	IF NOWEX:오중절정
 		SELECTCASE RAND:5
 			CASE 0
-				PRINTFORML 「아앗♥ 안대♥ 이 이상 가버리면 이상해져어엇♥」
-				PRINTFORML 「아아아아앗♥」
+				PRINTFORML 「아앗!!♥ 안대에에!!♥ 이 이상 가버리면 이상해져어엇!!!♥」
+				PRINTFORML 「아아아아앗!!♥」
 				PRINTFORML 사토리는 전신을 팔딱거리며 쾌감에 떨고 있다
 			CASE 1
-				PRINTFORML 「시...시럿♥ 안대엣♥ 이 이상은 무리이이...!」
+				PRINTFORML 「시...시럿♥ 안대엣♥ 이 이상은 무,무리이이...!」
 				PRINTFORML 사토리는 전신에서 느껴지는 쾌감의 파도에 허덕이고 있다
 			CASE 2
 				PRINTFORML 「흐긋?!?! 아, 안돼, 이거 너무 쎄에...?!」
 				PRINTFORML 사토리는 지나친 쾌감에 경련하고 있다
 			CASE 3
-				PRINTFORML 「히깃?! 윽, 아아아앗?!!」
+				PRINTFORML 「히깃?!? 윽, 아아아앗?!!?!!」
 				PRINTFORML 사토리는 지나친 쾌감에 말조차 못하고 전신을 경련하고 있다
 			CASE 4
-				PRINTFORML 「힛, 잠깐, 안대엣, 지금 건드리면...!」
+				PRINTFORML 「힛, 잠깐, 안대엣, 지금 건드리면...!!」
 				PRINTFORML 이내 사토리는 비명조차 안 나올정도로 강렬한 절정에 이르러 말없이 파닥거릴 뿐이었다
 		ENDSELECT
 		RETURN 1
@@ -195,100 +195,40 @@ IF LOCAL
 	;-------------------------------------------------
 	IF NOWEX:사중절정
 		;部位を손가락定せず簡易的に書く場合、[SKIPSTART]&[SKIPEND]のコメントアウトを外して、[SKIPSTART]とこのコメントの間に書いてください
-		[SKIPSTART]
-		SELECTCASE NOWEX:사중절정
-			;Ｃ＆V＆A＆B절정
-			CASE 1
-				PRINTFORMW 
-				RETURN 1
-			;Ｃ＆V＆A＆M절정
+		SELECTCASE RAND:3
+			CASE 0,1
+				PRINTFORM 「
+				CALL ST_CLIMAX(RAND:4 + 6)
+				SELECTCASE RAND:5
+					CASE 0
+						PRINTFORML 흐에에...♥」
+						PRINTFORML 사토리는 얼빠진 표정을 짓고 있었다
+					CASE 1
+						PRINTFORML 후아...머리가, 멍해져...♥」
+						PRINTFORML 사토리는 쾌락의 여운에 잠겨 있다
+					CASE 2
+						PRINTFORML ...♥」
+						PRINTFORML 사토리는 황홀해 보이는 표정을 짓고 있다
+					CASE 3
+						PRINTFORML 기분, 좋아아...♥」
+					CASE 4
+						PRINTFORML 」
+						PRINTFORML 사토리는 말도 제대로 못한채 그저 온 몸을 움찔움찔 떨 뿐이었다
+				ENDSELECT
 			CASE 2
-				PRINTFORMW 
-				RETURN 1
-			;Ｃ＆V＆B＆M절정
-			CASE 3
-				PRINTFORMW 
-				RETURN 1
-			;Ｃ＆A＆B＆M절정
-			CASE 4
-				PRINTFORMW 
-				RETURN 1
-			;V＆A＆B＆M절정
-			CASE 5
-				PRINTFORMW 
-				RETURN 1
+				PRINTFORML 「안대엣, 이것, 너무 기분 좋아아아...!!」
+				PRINTFORML 사토리는 지나친 쾌감에 파르르 떨고 있었다
 		ENDSELECT
-		[SKIPEND]
-		PRINTFORM 「
-		CALL ST_CLIMAX(RAND:4 + 6)
-		SELECTCASE RAND:5
-			CASE 0
-				PRINTFORML 흐에에...♥」
-				PRINTFORML 사토리는 얼빠진 표정을 짓고 있었다
-			CASE 1
-				PRINTFORML 후아...머리가, 멍해져...♥」
-				PRINTFORML 사토리는 쾌락의 여운에 잠겨 있다
-			CASE 2
-				PRINTFORML ...♥」
-				PRINTFORML 사토리는 황홀해 보이는 표정을 짓고 있다
-			CASE 3
-				PRINTFORML 기분, 좋아아...♥」
-			CASE 4
-				PRINTFORML 」
-				PRINTFORML 사토리는 말도 제대로 못한채 그저 온 몸을 움찔움찔 떨 뿐이었다
-		ENDSELECT
+		RETURN 1
 	ENDIF
 	;-------------------------------------------------
 	;삼중절정
 	;記入チェック（=0, 非表示、1, 表示）
-	LOCAL:1 = 0
+	LOCAL:1 = 1
 	;-------------------------------------------------
 	IF NOWEX:삼중절정
 		;部位を손가락定せず簡易的に書く場合、[SKIPSTART]&[SKIPEND]のコメントアウトを外して、[SKIPSTART]とこのコメントの間に書いてください
-		;[SKIPSTART]
-		SELECTCASE NOWEX:삼중절정
-			;Ｃ＆V＆A절정
-			CASE 1
-				PRINTFORMW 
-				RETURN 1
-			;B＆V＆A절정
-			CASE 2
-				PRINTFORMW 
-				RETURN 1
-			;Ｃ＆B＆A절정
-			CASE 3
-				PRINTFORMW 
-				RETURN 1
-			;Ｃ＆V＆B절정
-			CASE 4
-				PRINTFORMW 
-				RETURN 1
-			;Ｃ＆V＆M절정
-			CASE 5
-				PRINTFORMW 
-				RETURN 1
-			;B＆V＆M절정
-			CASE 6
-				PRINTFORMW 
-				RETURN 1
-			;A＆V＆M절정
-			CASE 7
-				PRINTFORMW 
-				RETURN 1
-			;Ｃ＆B＆M절정
-			CASE 8
-				PRINTFORMW 
-				RETURN 1
-			;A＆B＆M절정
-			CASE 9
-				PRINTFORMW 
-				RETURN 1
-			;Ｃ＆A＆M절정
-			CASE 10
-				PRINTFORMW 
-				RETURN 1
-		ENDSELECT
-		;[SKIPEND]
+		RETURN 1
 	ENDIF
 	;-------------------------------------------------
 	;이중절정
@@ -297,97 +237,317 @@ IF LOCAL
 	;-------------------------------------------------
 	IF NOWEX:이중절정
 		;部位を손가락定せず簡易的に書く場合、[SKIPSTART]&[SKIPEND]のコメントアウトを外して、[SKIPSTART]とこのコメントの間に書いてください
-		;[SKIPSTART]
-		SELECTCASE NOWEX:이중절정
-			;Ｃ＆V절정
-			CASE 1
-				PRINTFORMW 
-				RETURN 1
-			;Ｃ＆A절정
-			CASE 2
-				PRINTFORMW 
-				RETURN 1
-			;V＆A절정
-			CASE 3
-				PRINTFORMW 
-				RETURN 1
-			;Ｃ＆B절정
-			CASE 4
-				PRINTFORMW 
-				RETURN 1
-			;V＆B절정
-			CASE 5
-				PRINTFORMW 
-				RETURN 1
-			;A＆B절정
-			CASE 6
-				PRINTFORMW 
-				RETURN 1
-			;A＆M절정
-			CASE 7
-				PRINTFORMW 
-				RETURN 1
-			;V＆M절정
-			CASE 8
-				PRINTFORMW 
-				RETURN 1
-			;Ｃ＆M절정
-			CASE 9
-				PRINTFORMW 
-				RETURN 1
-			;B＆M절정
-			CASE 10
-				PRINTFORMW 
-				RETURN 1
-		ENDSELECT
-		;[SKIPEND]
+		RETURN 1
 	ENDIF
 	IF NOWEX:C절정
+		;PRINTFORML 「」
 		;超強絶頂Ｃ
 		IF NOWEX:C절정 == 3
-			PRINTFORMW 
+			SELECTCASE RAND:5
+				CASE 0
+					PRINTFORML 「아아아앗!!!♥ 크, 클리이♥♥ 떨어, 떨어져버렷♥♥♥ 그마안♥♥」
+					PRINTFORML 지나친 쾌감에 허리를 팔딱거리고 있다
+				CASE 1
+					PRINTFORM 「크, 클리가...! 
+					CALL ST_CLIMAX(RAND:3 + 3)
+					PRINTFORML 」
+				CASE 2
+					PRINTFORML 「아읏...?! 읏, 아아아앗?!!」
+					PRINTFORML 사토리는 가볍게 조수를 뿜으며 잠시 기절해 버렸다
+				CASE 3
+					PRINTFORML 「아흣?! 응, 하아아앗?!!」
+					PRINTFORML 사토리의 클리토리스가 빳빳히 선 채로 파르르 떨고 있다
+				CASE 4
+					PRINTFORM 「
+					CALL ST_CLIMAX(RAND:5 + 7)
+					PRINTFORML 」
+			ENDSELECT
 		;強絶頂Ｃ
 		ELSEIF NOWEX:C절정 == 2
-			PRINTFORMW 
+			SELECTCASE RAND:4
+				CASE 0
+					PRINTFORM 「 
+					CALL ST_CLIMAX(RAND:3 + 1)
+					PRINTFORM 코, 콩알 그마안...♥
+					CALL ST_CLIMAX(RAND:3 + 3) 
+					PRINTFORML 」
+				CASE 1
+					PRINTFORML 「힛...♥ 클리, 뜨,뜨거워엇..♥ 기분 조아앗...!」
+					PRINTFORML 사토리의 다리가 파르르 떨고 있다
+				CASE 2
+					PRINTFORML 「으긋, 읏♥ 흣...♥」
+					PRINTFORML 앙다문 입에서 작은 신음소리가 새어나오고 있다
+				CASE 3
+					PRINTFORM 「
+					CALL ST_CLIMAX(RAND:4 + 5)
+					PRINTFORML 」
+			ENDSELECT
 		;絶頂Ｃ
 		ELSE
-			PRINTFORMW 
+			SELECTCASE RAND:5
+				CASE 0
+					IF MARK:반발각인 == 3 && !TALENT:연인
+						PRINTFORML 「읏...♥」
+						PRINTFORML 굳게 앙다문 입에서 조그마한 신음소리가 새어나오고 있다
+					ELSEIF TALENT:섹프
+						PRINTFORML 「아앗...♥」
+						PRINTFORML 사토리는 전신을 파르르 떨고 있다
+					ELSE
+						PRINTFORML 「읏...!」
+						PRINTFORML 사토리의 클리토리스가 잘게 떨고 있다
+					ENDIF
+				CASE 1
+					IF MARK:반발각인 == 3 && !TALENT:연인
+						PRINTFORML 「으읏...! 읏...흐읏...♥」
+						PRINTFORML 사토리의 클리가 잘게 떨고 있었다
+					ELSEIF TALENT:섹프
+						PRINTFORML 「아앗...거, 거기 조아아...♥」
+						PRINTFORML 사토리는 멍한 표정으로 절정의 쾌감을 즐기고 있다
+					ELSE
+						PRINTFORML 「흣, 거깃...으으응...!」
+						PRINTFORML 사토리는 파르르 떨며 절정에 이르렀다
+					ENDIF
+				CASE 2
+					IF MARK:반발각인 == 3 && !TALENT:연인
+						PRINTFORML 「아앗...♥ 그, 그거 조아아...♥」
+						PRINTFORML 사토리는 작게 중얼거리며 움찔움찔 떨고 있다
+					ELSEIF TALENT:섹프
+						PRINTFORML 「으읏...! 아아...기분 죠아아...하아아...♥」
+						PRINTFORML 사토리는 열띤 한숨을 쉬고 있다
+					ELSE
+						PRINTFORML 「읏...! 아...기분 좋아...♥」
+						PRINTFORML 사토리는 열띤 한숨을 쉬고 있다
+					ENDIF
+				CASE 3,4
+					PRINTFORM 「
+					CALL ST_CLIMAX(RAND:4 + 2)
+					PRINTFORML 」
+			ENDSELECT
 		ENDIF
 	ENDIF
 	IF NOWEX:V절정
 		;超強絶頂V
 		IF NOWEX:V절정 == 3
-			PRINTFORMW 
+			SELECTCASE RAND:5
+				CASE 0
+					
+				CASE 1
+
+				CASE 2
+
+				CASE 3
+
+				CASE 4
+
+			ENDSELECT
 		;強絶頂V
 		ELSEIF NOWEX:V절정 == 2
-			PRINTFORMW 
+			SELECTCASE RAND:5
+				CASE 0
+					
+				CASE 1
+
+				CASE 2
+
+				CASE 3
+
+				CASE 4
+
+			ENDSELECT
 		;絶頂V
 		ELSE
-			PRINTFORMW 
+			SELECTCASE RAND:5
+				CASE 0
+					IF MARK:반발각인 == 3 && !TALENT:연인
+
+					ELSEIF TALENT:섹프
+
+					ELSE
+						
+					ENDIF
+				CASE 1
+					IF MARK:반발각인 == 3 && !TALENT:연인
+
+					ELSEIF TALENT:섹프
+
+					ELSE
+						
+					ENDIF
+				CASE 2
+					IF MARK:반발각인 == 3 && !TALENT:연인
+
+					ELSEIF TALENT:섹프
+
+					ELSE
+						
+					ENDIF
+				CASE 3
+					IF MARK:반발각인 == 3 && !TALENT:연인
+
+					ELSEIF TALENT:섹프
+
+					ELSE
+						
+					ENDIF
+				CASE 4
+					IF MARK:반발각인 == 3 && !TALENT:연인
+
+					ELSEIF TALENT:섹프
+
+					ELSE
+						
+					ENDIF
+			ENDSELECT
 		ENDIF
 	ENDIF
 	IF NOWEX:A절정
 		;超強絶頂A
 		IF NOWEX:A절정 == 3
-			PRINTFORMW 
+			SELECTCASE RAND:5
+				CASE 0
+					
+				CASE 1
+
+				CASE 2
+
+				CASE 3
+
+				CASE 4
+
+			ENDSELECT
 		;強絶頂A
 		ELSEIF NOWEX:A절정 == 2
-			PRINTFORMW 
+			SELECTCASE RAND:5
+				CASE 0
+					
+				CASE 1
+
+				CASE 2
+
+				CASE 3
+
+				CASE 4
+
+			ENDSELECT
 		;絶頂A
 		ELSE
-			PRINTFORMW 
+			SELECTCASE RAND:5
+				CASE 0
+					IF MARK:반발각인 == 3 && !TALENT:연인
+
+					ELSEIF TALENT:섹프
+
+					ELSE
+						
+					ENDIF
+				CASE 1
+					IF MARK:반발각인 == 3 && !TALENT:연인
+
+					ELSEIF TALENT:섹프
+
+					ELSE
+						
+					ENDIF
+				CASE 2
+					IF MARK:반발각인 == 3 && !TALENT:연인
+
+					ELSEIF TALENT:섹프
+
+					ELSE
+						
+					ENDIF
+				CASE 3
+					IF MARK:반발각인 == 3 && !TALENT:연인
+
+					ELSEIF TALENT:섹프
+
+					ELSE
+						
+					ENDIF
+				CASE 4
+					IF MARK:반발각인 == 3 && !TALENT:연인
+
+					ELSEIF TALENT:섹프
+
+					ELSE
+						
+					ENDIF
+			ENDSELECT
 		ENDIF
 	ENDIF
 	IF NOWEX:B절정
 		;強絶頂B
 		IF NOWEX:B절정 == 3
-			PRINTFORMW 
+			SELECTCASE RAND:5
+				CASE 0
+					
+				CASE 1
+
+				CASE 2
+
+				CASE 3
+
+				CASE 4
+
+			ENDSELECT
 		;強絶頂B
 		ELSEIF NOWEX:B절정 == 2
-			PRINTFORMW 
+			SELECTCASE RAND:5
+				CASE 0
+					
+				CASE 1
+
+				CASE 2
+
+				CASE 3
+
+				CASE 4
+
+			ENDSELECT
 		;絶頂B
 		ELSE
-			PRINTFORMW 
+			SELECTCASE RAND:5
+				CASE 0
+					IF MARK:반발각인 == 3 && !TALENT:연인
+
+					ELSEIF TALENT:섹프
+
+					ELSE
+						
+					ENDIF
+				CASE 1
+					IF MARK:반발각인 == 3 && !TALENT:연인
+
+					ELSEIF TALENT:섹프
+
+					ELSE
+						
+					ENDIF
+				CASE 2
+					IF MARK:반발각인 == 3 && !TALENT:연인
+
+					ELSEIF TALENT:섹프
+
+					ELSE
+						
+					ENDIF
+				CASE 3
+					IF MARK:반발각인 == 3 && !TALENT:연인
+
+					ELSEIF TALENT:섹프
+
+					ELSE
+						
+					ENDIF
+				CASE 4
+					IF MARK:반발각인 == 3 && !TALENT:연인
+
+					ELSEIF TALENT:섹프
+
+					ELSE
+						
+					ENDIF
+			ENDSELECT
 		ENDIF
 	ENDIF
 	IF NOWEX:M절정
