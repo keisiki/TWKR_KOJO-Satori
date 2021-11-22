@@ -1,4 +1,5 @@
-﻿;-------------------------------------------------
+﻿;사토리는 조용하고 귀엽게 신음
+;-------------------------------------------------
 ;奴隷の絶頂時の구上
 ;수면중일때 발동 X
 ;NOWEX:0～4 CVABM絶頂
@@ -170,21 +171,30 @@ IF LOCAL
 	IF NOWEX:오중절정
 		SELECTCASE RAND:5
 			CASE 0
-				PRINTFORML 「아앗!!♥ 안대에에!!♥ 이 이상 가버리면 이상해져어엇!!!♥」
-				PRINTFORML 「아아아아앗!!♥」
-				PRINTFORML 사토리는 전신을 팔딱거리며 쾌감에 떨고 있다
+				PRINTFORML 「아앗!! 안대에엣!! 이, 이 이상 가버리면 나 이상해져어엇...!!!」
+				PRINTFORML 「아아아아앗!! 앗, 읏...아핫...♥」
+				PRINTFORML 경련할 정도로 기분 좋았던 모양인지 몸이 계속 움찔움찔 거리고 있다
 			CASE 1
 				PRINTFORML 「시...시럿♥ 안대엣♥ 이 이상은 무,무리이이...!」
+				PRINTFORM 「
+				CALL ST_CLIMAX_HARD(RAND:5 + 5)
+				PRINTFORML 」
 				PRINTFORML 사토리는 전신에서 느껴지는 쾌감의 파도에 허덕이고 있다
 			CASE 2
 				PRINTFORML 「흐긋?!?! 아, 안돼, 이거 너무 쎄에...?!」
+				PRINTFORM 「
+				CALL ST_CLIMAX_HARD(RAND:5 + 5)
+				PRINTFORML 」
 				PRINTFORML 사토리는 지나친 쾌감에 경련하고 있다
 			CASE 3
 				PRINTFORML 「히깃?!? 윽, 아아아앗?!!?!!」
 				PRINTFORML 사토리는 지나친 쾌감에 말조차 못하고 전신을 경련하고 있다
 			CASE 4
 				PRINTFORML 「힛, 잠깐, 안대엣, 지금 건드리면...!!」
-				PRINTFORML 이내 사토리는 비명조차 안 나올정도로 강렬한 절정에 이르러 말없이 파닥거릴 뿐이었다
+				PRINTFORM 「
+				CALL ST_CLIMAX_HARD(RAND:5 + 5)
+				PRINTFORML 」
+				PRINTFORML 이내 사토리는 비명조차 안 나올정도로 강렬한 절정에 이르러 계속 파닥거릴 뿐이었다
 		ENDSELECT
 		RETURN 1
 	ENDIF
@@ -198,7 +208,7 @@ IF LOCAL
 		SELECTCASE RAND:3
 			CASE 0,1
 				PRINTFORM 「
-				CALL ST_CLIMAX(RAND:4 + 6)
+				CALL ST_CLIMAX_HARD(RAND:4 + 6)
 				SELECTCASE RAND:5
 					CASE 0
 						PRINTFORML 흐에에...♥」
@@ -208,7 +218,7 @@ IF LOCAL
 						PRINTFORML 사토리는 쾌락의 여운에 잠겨 있다
 					CASE 2
 						PRINTFORML ...♥」
-						PRINTFORML 사토리는 황홀해 보이는 표정을 짓고 있다
+						PRINTFORML 사토리는 지나친 쾌감에 연신 헤실거리고만 있다
 					CASE 3
 						PRINTFORML 기분, 좋아아...♥」
 					CASE 4
@@ -228,15 +238,85 @@ IF LOCAL
 	;-------------------------------------------------
 	IF NOWEX:삼중절정
 		;部位を손가락定せず簡易的に書く場合、[SKIPSTART]&[SKIPEND]のコメントアウトを外して、[SKIPSTART]とこのコメントの間に書いてください
+		SELECTCASE RAND:4
+			CASE 0
+				PRINTFORM 「
+				CALL ST_CLIMAX(RAND:3 + 4)
+				PRINTFORML 」
+				PRINTFORML 사토리는 온 몸에서 퍼져오는 강렬한 쾌락에 파르르 떨고 있었다 
+			CASE 1
+				PRINTFORML 「힛♥ 안대에, 그렇게 마구 해버리며언♥」
+				PRINTFORM 「
+				CALL ST_CLIMAX(RAND:3 + 4)
+				PRINTFORML 」
+			CASE 2
+				PRINTFORML 「아아앗♥ 그거, 그거 너무...기분 좋아...!」
+				PRINTFORM 「
+				CALL ST_CLIMAX(RAND:3 + 4)
+				PRINTFORML 」
+			CASE 3
+				PRINTFORM 「히잇...♥ 
+				IF NOWEX:C절정
+					PRINT 클리랑 
+				ENDIF
+				IF NOWEX:V절정
+					PRINT 보지랑 
+				ENDIF
+				IF NOWEX:A절정
+					PRINT 엉덩이랑 
+				ENDIF
+				IF NOWEX:B절정
+					PRINT 가슴이랑 
+				ENDIF
+				IF NOWEX:M절정
+					PRINT 입술이 
+				ENDIF
+				PRINTFORML 녹아버릴것만 같아...♥」
+				PRINTFORML 사토리는 황홀해 보이는 표정이다
+		ENDSELECT
 		RETURN 1
 	ENDIF
 	;-------------------------------------------------
 	;이중절정
 	;記入チェック（=0, 非表示、1, 表示）
-	LOCAL:1 = 0
+	LOCAL:1 = 1
 	;-------------------------------------------------
 	IF NOWEX:이중절정
 		;部位を손가락定せず簡易的に書く場合、[SKIPSTART]&[SKIPEND]のコメントアウトを外して、[SKIPSTART]とこのコメントの間に書いてください
+		SELECTCASE RAND:4
+			CASE 0
+				PRINTFORM 「흣...♥ 
+				IF NOWEX:C절정
+					PRINT 클리랑 
+				ENDIF
+				IF NOWEX:V절정
+					PRINT 보지랑 
+				ENDIF
+				IF NOWEX:A절정
+					PRINT 엉덩이랑 
+				ENDIF
+				IF NOWEX:B절정
+					PRINT 가슴이랑 
+				ENDIF
+				IF NOWEX:M절정
+					PRINT 입술이 
+				ENDIF
+				PRINTFORML 찌릿찌릿 해...♥」
+				PRINTFORML 사토리는 황홀해 보이는 표정이다
+			CASE 1
+				PRINTFORML 「읏...! 그, 그렇게 동시에 해버리면...!」
+				PRINTFORM 「
+				CALL ST_CLIMAX(RAND:4 + 4)
+				PRINTFORML 」
+			CASE 2
+				PRINTFORM 「
+				CALL ST_CLIMAX(RAND:4 + 3)
+				PRINTFORML 」
+			CASE 3
+				PRINTFORM 「
+				CALL ST_CLIMAX(RAND:4 + 5)
+				PRINTFORML 기, 기분 좋아...♥」
+		ENDSELECT
 		RETURN 1
 	ENDIF
 	IF NOWEX:C절정
@@ -249,7 +329,7 @@ IF LOCAL
 					PRINTFORML 지나친 쾌감에 허리를 팔딱거리고 있다
 				CASE 1
 					PRINTFORM 「크, 클리가...! 
-					CALL ST_CLIMAX(RAND:3 + 3)
+					CALL ST_CLIMAX_HARD(RAND:3 + 3)
 					PRINTFORML 」
 				CASE 2
 					PRINTFORML 「아읏...?! 읏, 아아아앗?!!」
@@ -259,7 +339,7 @@ IF LOCAL
 					PRINTFORML 사토리의 클리토리스가 빳빳히 선 채로 파르르 떨고 있다
 				CASE 4
 					PRINTFORM 「
-					CALL ST_CLIMAX(RAND:5 + 7)
+					CALL ST_CLIMAX_HARD(RAND:5 + 7)
 					PRINTFORML 」
 			ENDSELECT
 		;強絶頂Ｃ
@@ -330,73 +410,88 @@ IF LOCAL
 		IF NOWEX:V절정 == 3
 			SELECTCASE RAND:5
 				CASE 0
-					
+					PRINTFORML 「히이잇...보, 보지가 녹아버릴거 가타아....♥ 그만, 용서해줘엇...♥」
 				CASE 1
-
+					PRINTFORML 「보, 보지 너무 기분 조아앗...! 망가져...! 기분 좋아서 망가져버려어...!」
+					IF TEQUIP:V섹스
+						PRINTFORML 이윽고 사토리는 엄청난 기세로 질내를 조인 후, 잠시 탈진해 축 늘어져버렸다
+					ELSE
+						PRINTFORML 이윽고 사토리는 엄청난 기세로 조수를 뿌린뒤, 잠시 탈진해 축 늘어져버렸다
+					ENDIF
 				CASE 2
-
-				CASE 3
-
-				CASE 4
-
+					PRINTFORML 「아아앗...! 보지 안돼엣...! 이 이상 기분 좋은거 안돼...!」
+					PRINTFORML 「읏...!!! 읏...으응...흐에에...♥」
+					PRINTFORML 사토리는 열락에 찬 눈으로 멍하니 허공을 바라보고 있다
+				CASE 3,4
+					PRINTFORM 「
+					CALL ST_CLIMAX_HARD(RAND:5 + 7)
+					PRINTFORML 」
 			ENDSELECT
 		;強絶頂V
 		ELSEIF NOWEX:V절정 == 2
 			SELECTCASE RAND:5
 				CASE 0
-					
+					PRINTFORML 「히잇...안댓, 그거 너무 기분 좋아서 안대에...!」
+					PRINTFORML 사토리의 애원은 이내 이루 형연하기 어려운 신음소리로 바뀌었다
 				CASE 1
-
+					PRINTFORML 「흐읏...보, 보지 너무 기분 좋아아...좀 더...읏, 아아아아...♥」
+					PRINTFORML 사토리는 흠칫흠칫 떨며 올라오는 쾌락에 빠져들고있다
 				CASE 2
-
-				CASE 3
-
-				CASE 4
-
+					PRINTFORML 「흣, 으으읏...이거, 기분 좋아...! 보지 기분 좋아...!」
+					PRINTFORM 「
+					CALL ST_CLIMAX_HARD(RAND:3 + 4)
+					PRINTFORML 」
+				CASE 3,4
+					PRINTFORM 「
+					CALL ST_CLIMAX(RAND:4 + 5)
+					PRINTFORML 」
 			ENDSELECT
 		;絶頂V
 		ELSE
 			SELECTCASE RAND:5
 				CASE 0
 					IF MARK:반발각인 == 3 && !TALENT:연인
-
+						PRINTFORML 「...읏?!」
+						IF TEQUIP:V섹스
+							PRINTFORML 사토리는 일순간 강하게 보지를 조여왔다
+						ELSE
+							PRINTFORML 사토리는 잠시 움찔했지만 이내 아무일 없었다는 듯이 %마스터를% 바라볼 뿐이었다
+						ENDIF
 					ELSEIF TALENT:섹프
-
+						PRINTFORML 「앗...기, 기분 조아아...♥ 거기 좀 더...읏...!」
 					ELSE
-						
+						PRINTFORML 「앗...♥ 아으으...♥ 응...♥」
+						PRINTFORML 나지막한 신음소리가 %마스터의% 귀를 간지럽혔다
 					ENDIF
 				CASE 1
 					IF MARK:반발각인 == 3 && !TALENT:연인
-
+						PRINTFORML 「흣...! 응...으응...♥」
+						PRINTFORML 굳게 앙다문 입에서 나지막한 신음소리가 조금씩 새어나오고 있다
 					ELSEIF TALENT:섹프
-
+						PRINTFORML 「앗...그거, 좋아아...좀 더...♥」
+						IF TEQUIP:V섹스
+							PRINTFORML 사토리의 보지가 꽈악 조여왔다
+						ELSE
+							PRINTFORML 사토리의 몸이 쾌감에 파르르 떨었다
+						ENDIF
 					ELSE
-						
+						PRINTFORML 「으응...♥ 거기, 좀 더...앗, 아흐으...♥」
 					ENDIF
 				CASE 2
 					IF MARK:반발각인 == 3 && !TALENT:연인
-
+						PRINTFORML 「응흣...응...! 아아...♥ 기분 좋아...♥」
 					ELSEIF TALENT:섹프
-
+						PRINTFORM 「
+						CALL ST_CLIMAX(RAND:3 + 3)
+						PRINTFORML 」
 					ELSE
-						
+						PRINTFORML 「아흣...거, 거기 좋아...♥ 간질간질한 기분이야...♥」
+						PRINTFORML 사토리는 멍한 표정으로 쾌감을 즐기고 있다
 					ENDIF
-				CASE 3
-					IF MARK:반발각인 == 3 && !TALENT:연인
-
-					ELSEIF TALENT:섹프
-
-					ELSE
-						
-					ENDIF
-				CASE 4
-					IF MARK:반발각인 == 3 && !TALENT:연인
-
-					ELSEIF TALENT:섹프
-
-					ELSE
-						
-					ENDIF
+				CASE 3,4
+					PRINTFORM 「
+					CALL ST_CLIMAX(RAND:4 + 2)
+					PRINTFORML 」
 			ENDSELECT
 		ENDIF
 	ENDIF

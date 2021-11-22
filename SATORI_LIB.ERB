@@ -903,3 +903,115 @@ SELECTCASE RAND:5
     CASE 4
         PRINT ! 
 ENDSELECT
+
+
+@ST_CLIMAX_HARD(ARG)
+;ARG = 길이
+#DIM POST_CURR
+#DIM NOW_CURR
+POST_CURR = -1
+REPEAT ARG
+    $절정리롤
+    NOW_CURR = RAND:17
+    IF NOW_CURR == POST_CURR
+        GOTO 절정리롤
+    ELSE
+        POST_CURR = NOW_CURR
+    ENDIF
+    SELECTCASE NOW_CURR
+        CASE 0
+            PRINT 앗
+        CASE 1
+            PRINT 아흣
+        CASE 2
+            PRINT 응긋
+        CASE 3
+            PRINT 응앗
+        CASE 4
+            PRINT 아앗
+        CASE 5
+            PRINT 아
+        CASE 6
+            PRINT 응읏
+        CASE 7
+            PRINT 흐으
+        CASE 8
+            PRINT 흐읏
+        CASE 9
+            PRINT 후으으
+        CASE 10
+            PRINT 아핫
+        CASE 11
+            PRINT 하아
+        CASE 12
+            PRINT 하앗
+        CASE 13
+            PRINT 하아앙
+        CASE 14
+            PRINT 흐앗
+        CASE 15
+            PRINT 읏
+        CASE 16
+            PRINT 흣
+    ENDSELECT
+    SELECTCASE RAND:5
+        CASE 1
+            PRINT ,
+        CASE 2
+            PRINT ...! 
+        CASE 3
+            PRINT ! 
+        CASEELSE
+            PRINT  
+    ENDSELECT
+REND
+SELECTCASE 18
+    CASE 0
+        PRINT 앗
+    CASE 1
+        PRINT 아흣
+    CASE 2
+        PRINT 응긋
+    CASE 3
+        PRINT 응앗
+    CASE 4
+        PRINT 아앗
+    CASE 5
+        PRINT 아
+    CASE 6
+        PRINT 응읏
+    CASE 7
+        PRINT 흐으
+    CASE 8
+        PRINT 흐읏
+    CASE 9
+        PRINT 후으으
+    CASE 10
+        PRINT 아핫
+    CASE 11
+        PRINT 하아
+    CASE 12
+        PRINT 하앗
+    CASE 13
+        PRINT 하아앙
+    CASE 14
+        PRINT 흐앗
+    CASE 15
+        PRINT 읏
+    CASE 16
+        PRINT 흣
+    CASE 17
+        PRINT 오곡
+ENDSELECT
+SELECTCASE RAND:5
+    CASE 0
+        PRINT ...
+    CASE 1
+        PRINT ♥ 
+    CASE 2
+        PRINT ...! 
+    CASE 3
+        PRINT ..
+    CASE 4
+        PRINT ! 
+ENDSELECT
