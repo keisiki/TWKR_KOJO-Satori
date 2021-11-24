@@ -495,79 +495,141 @@ IF LOCAL
 			ENDSELECT
 		ENDIF
 	ENDIF
-	IF NOWEX:A절정
-		;超強絶頂A
-		IF NOWEX:A절정 == 3
-			SELECTCASE RAND:5
-				CASE 0
-					
-				CASE 1
-
-				CASE 2
-
-				CASE 3
-
-				CASE 4
-
-			ENDSELECT
-		;強絶頂A
-		ELSEIF NOWEX:A절정 == 2
-			SELECTCASE RAND:5
-				CASE 0
-					
-				CASE 1
-
-				CASE 2
-
-				CASE 3
-
-				CASE 4
-
-			ENDSELECT
-		;絶頂A
+	IF NOWEX:A절정 
+		IF ABL:A감각 > 3
+			;A 익숙함
+			;超強絶頂A
+			IF NOWEX:A절정 == 3
+				SELECTCASE RAND:4
+					CASE 0
+						PRINTFORML 「히잇?!!」
+						IF TEQUIP:A섹스
+							PRINTFORML 사토리는 일순간 강하게 애널을 조여왔다
+						ELSE
+							PRINTFORML 사토리의 항문이 겉으로도 보일정도로 강하게 수축하는게 보였다
+						ENDIF
+					CASE 1
+						PRINTFORML 「아흣?! 아, 아아...엉덩이...아하아아...♥ 기분 죠아아...♥」
+						PRINTFORML 사토리는 일순간 애널을 꽉 조이더니, 이내 쾌감에 녹은 얼빠진 표정으로 허공을 응시하고 있었다
+					CASE 2
+						PRINTFORML 「아아아...! 좀 더...! 좀 더 엉덩이 기분좋게 해 줘어...!」
+						PRINTFORM 「
+						CALL ST_CLIMAX_HARD(RAND:3 + 5)
+						PRINTFORML 」
+					CASE 3
+						PRINTFORM 「
+						CALL ST_CLIMAX_HARD(RAND:4 + 6)
+						PRINTFORML 」
+				ENDSELECT
+			;強絶頂A
+			ELSEIF NOWEX:A절정 == 2
+				SELECTCASE RAND:4
+					CASE 0
+						PRINTFORML 「가, 간질간질한게 올라와...좀 더...♥」
+					CASE 1
+						PRINTFORML 「온다아♥ 오싹오싹 기분좋은거 올라와...!」
+					CASE 2
+						PRINTFORML 「아앗♥ 엉덩이 보지 좋아아♥ 기분 좋아아아♥」
+						PRINTFORML 사토리는 애널이 주는 쾌락에 푹 빠진 모양이다
+					CASE 3
+						PRINTFORM 「
+						CALL ST_CLIMAX(RAND:3 + 3)
+						PRINTFORML 」
+				ENDSELECT
+			;絶頂A
+			ELSE
+				SELECTCASE RAND:3
+					CASE 0
+						IF MARK:반발각인 == 3 && !TALENT:연인
+							PRINTFORML 「흣...! 응, 으으응...♥」
+							PRINTFORML 사토리의 앙다문 입술에서 신음소리가 새어나온다
+						ELSEIF TALENT:섹프
+							PRINTFORML 「아하...♥ 엉덩이가 오싹오싹해에...이거 좋아...♥」
+						ELSE
+							PRINTFORML 「어, 엉덩이 찌릿찌릿해에...♥」
+						ENDIF
+					CASE 1
+						IF MARK:반발각인 == 3 && !TALENT:연인
+							PRINTFORML 「히긋...!」
+							PRINTFORML 사토리는 애널로부터 느껴지는 쾌감에 새된 신음을 흘렸다
+						ELSEIF TALENT:섹프
+							PRINTFORML 「읏...! 후아아...♥ 이 오싹오싹한게 기분 좋아♥」
+						ELSE
+							PRINTFORML 「읏...♥ 찌릿찌릿한 감각, 기분 좋아아...♥」
+						ENDIF
+					CASE 3
+						PRINTFORM 「
+						CALL ST_CLIMAX(RAND:3 + 4)
+						PRINTFORML 」
+				ENDSELECT
+			ENDIF
 		ELSE
-			SELECTCASE RAND:5
-				CASE 0
-					IF MARK:반발각인 == 3 && !TALENT:연인
-
-					ELSEIF TALENT:섹프
-
-					ELSE
-						
-					ENDIF
-				CASE 1
-					IF MARK:반발각인 == 3 && !TALENT:연인
-
-					ELSEIF TALENT:섹프
-
-					ELSE
-						
-					ENDIF
-				CASE 2
-					IF MARK:반발각인 == 3 && !TALENT:연인
-
-					ELSEIF TALENT:섹프
-
-					ELSE
-						
-					ENDIF
-				CASE 3
-					IF MARK:반발각인 == 3 && !TALENT:연인
-
-					ELSEIF TALENT:섹프
-
-					ELSE
-						
-					ENDIF
-				CASE 4
-					IF MARK:반발각인 == 3 && !TALENT:연인
-
-					ELSEIF TALENT:섹프
-
-					ELSE
-						
-					ENDIF
-			ENDSELECT
+			;超強絶頂A
+			IF NOWEX:A절정 == 3
+				SELECTCASE RAND:4
+					CASE 0
+						PRINTFORML 「히기이이이잇?!! 어, 엉덩이가...!」
+						IF TEQUIP:A섹스
+							PRINTFORML 사토리는 일순간 강하게 애널을 조여왔다
+						ELSE
+							PRINTFORML 사토리의 항문이 겉으로도 보일정도로 강하게 수축하는게 보였다
+						ENDIF
+					CASE 1
+						PRINTFORML 「아흣?! 아, 아아...엉덩이...아하아아...♥ 안대는데에...♥」
+						PRINTFORML 사토리는 일순간 애널을 꽉 조이더니, 이내 쾌감에 녹은 얼빠진 표정으로 허공을 응시하고 있었다
+					CASE 2
+						PRINTFORML 「힛...?! 안대엣...! 엉덩이 망가져버려...!」
+						PRINTFORM 「
+						CALL ST_CLIMAX_HARD(RAND:3 + 5)
+						PRINTFORML 」
+					CASE 3
+						PRINTFORM 「
+						CALL ST_CLIMAX_HARD(RAND:4 + 6)
+						PRINTFORML 」
+				ENDSELECT
+			;強絶頂A
+			ELSEIF NOWEX:A절정 == 2
+				SELECTCASE RAND:4
+					CASE 0
+						PRINTFORML 「가, 간질간질한게 올라와...이상해...으읏♥」
+					CASE 1
+						PRINTFORML 「히이잇♥ 오싹오싹한거 올라와...!」
+					CASE 2
+						PRINTFORML 「안대엣♥ 어, 엉덩이가... 이상해져 버려어...!」
+					CASE 3
+						PRINTFORM 「
+						CALL ST_CLIMAX(RAND:3 + 3)
+						PRINTFORML 」
+				ENDSELECT
+			;絶頂A
+			ELSE
+				SELECTCASE RAND:3
+					CASE 0
+						IF MARK:반발각인 == 3 && !TALENT:연인
+							PRINTFORML 「흣...?! 등골이 오싹해...」
+						ELSEIF TALENT:섹프
+							PRINTFORML 「아하...♥ 엉덩이가 오싹오싹해에...조금은 마음에 들지도...♥」
+						ELSE
+							PRINTFORML 「어, 엉덩이가 이상해...으...♥」
+						ENDIF
+					CASE 1
+						IF MARK:반발각인 == 3 && !TALENT:연인
+							PRINTFORML 「아흣...응, 아아앗...!!」
+							PRINTFORML 「어, 엉덩이 구멍으로 가버렸어...기분이 이상해...」
+							PRINTFORML 사토리는 얼굴을 붉혔다
+						ELSEIF TALENT:섹프
+							PRINTFORML 「아흣...! 등골이 오싹오싹해...이상한 기분...」
+							PRINTFORML 「...그래도 싫지는 않네...♥」
+						ELSE
+							PRINTFORML 「으읏...♥ 이, 이상한 느낌이야...엉덩이가 오싹오싹...조금 무서울지도」
+							PRINTFORML 사토리는 복잡한 표정을 지어보이고 있다
+						ENDIF
+					CASE 2
+						PRINTFORM 「
+						CALL ST_CLIMAX(RAND:4 + 3)
+						PRINTFORML 」
+				ENDSELECT
+			ENDIF
 		ENDIF
 	ENDIF
 	IF NOWEX:B절정
