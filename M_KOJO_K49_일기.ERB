@@ -1,4 +1,5 @@
-﻿;일기구상
+﻿[SKIPSTART]
+;일기구상
 
 ;하루의 종료 시의 흐름
 ;@DIARY_TEXT_K49 (일기본문) → @DIARY_AFTER_CHECK_K49 (플래그의 처리)
@@ -15,13 +16,13 @@
 ;그렇지 않은 경우에는 연모가 아닌 인물이 그 자리에 없을 때, 혹은 시간정지함으로써 훔쳐 읽을 수 있다.
 ;거점 주민이 아닌 캐릭터는 연모라면 자택(초대방)에서 읽을 수 있다.
 
-;MAX_DIARY_PAGE:XX:0　캐릭터 번호 XX의 일기 최대 페이지 수　한도는 101 (1~100)
-;DIARY:XX:YY　　　　　캐릭터 번호 XX의 일기 번호 YY의 정보
+;MAX_DIARY_PAGE:49:0　캐릭터 번호 49의 일기 최대 페이지 수　한도는 101 (1~100)
+;DIARY:49:YY　　　　　캐릭터 번호 49의 일기 번호 YY의 정보
 ;　　 3=미독　　　　　데일리 이벤트로 읽히지 않는다. [일기를 읽는다]로 읽으면 기독이 된다.
 ;　　 2=미독　　　　　데일리 이벤트로 읽힌다. 읽히기 전까지는 [일기를 읽는다]로는 읽을 수 없다. 읽히면 기독이 된다.
 ;　　 1=기독　　　　　데일리 이벤트로 읽히지 않는다. [일기를 읽는다]로 읽을 수 있다.
 ;　　 0=읽지못함　　　미해금.
-;PAGESET:XX:YY　　　　캐릭터 번호 XX의 실제로 쓰여진 YY페이지째의 일기 번호.
+;PAGESET:49:YY　　　　캐릭터 번호 49의 실제로 쓰여진 YY페이지째의 일기 번호.
 ;=============================
 @DIARY_K49_EXIST
 ;존재판정
@@ -37,11 +38,11 @@ RETURN 1
 ;조건 플래그 리셋이나 판정 추가도 여기에 
 ;예를들어: 今日構ったフラグ
 ;今日構った일기가 표시된 후, 構ったフラグ를 리셋.
-; CFLAG:XX:今日構ったフラグ = 0
+; CFLAG:49:今日構ったフラグ = 0
 ;혹은 어떠한 상태가 계속되는 것의 플래그인 경우
 ;예: 호감도가 거의 변하지 않는 날이 이어지면
 ;「아나타」의 태도가 차갑구나~ 같은 일기를 쓴다
-; SIF CFLAG:XX:호감도 <= LAST_LP+3
+; SIF CFLAG:49:호감도 <= LAST_LP+3
 ;   NOTOUCH_DAY ++
 ;=============================
 
@@ -49,16 +50,16 @@ RETURN 1
 ;=============================
 @DIARY_BEFORE_CHECK_K49
 ;상시 체크되는 일기의 상태 정보.
-;여기서 DIARY:XX:YY의 갱신을 실시한다.
-;※DIARY:XX:0번은 사용할 수 없다.
+;여기서 DIARY:49:YY의 갱신을 실시한다.
+;※DIARY:49:0번은 사용할 수 없다.
 
 ;여기서 범용 발생 조건을 기입한다
 ;커맨드별 발생 조건은 M_KOJO의 각 파일 안에서 추가해 주세요.
 
-;기본적으로 발생조건에는 "DIARY:XX:YY == 0"를 기입할 것.
+;기본적으로 발생조건에는 "DIARY:49:YY == 0"를 기입할 것.
 ;그렇지 않으면 같은 일기가 쓰여지거나 해 버린다.
 
-;DIARY:XX:YY　　　　캐릭터 번호 XX의 일기 번호 YY의 정보
+;DIARY:49:YY　　　　캐릭터 번호 49의 일기 번호 YY의 정보
 ;　　 3=미독　　　　데일리 이벤트로 읽히지 않는다. [일기를 읽는다]로 읽으면 기독이 된다.
 ;　　 2=미독　　　　데일리 이벤트로 읽힌다. 읽히기 전까지는 [일기를 읽는다]로는 읽을 수 없다. 읽히면 기독이 된다.
 ;　　 1=기독　　　　데일리 이벤트로 읽히지 않는다. [일기를 읽는다]로 읽을 수 있다.
@@ -71,29 +72,29 @@ RETURN 1
 ;미독(2)로 하려면 단순히 플래그에 2를 넣기만 하면 된다.
 
 ;예1) 첫대면
-;SIF DIARY:XX:YY == 0 && CFLAG:XX:안면
-;	DIARY:XX:YY = 2
+;SIF DIARY:49:YY == 0 && CFLAG:49:안면
+;	DIARY:49:YY = 2
 
 ;○미독(3)으로 하는 경우 (응용)
 ;미독(3)으로 하면 데일리 이벤트로써 읽히지 않고, 쓰여진 시점에서[일기를 읽는다]에 의해서 읽을 수 있게 된다.
 ;플레이어가 자주적으로 읽지 않는 한 읽히지 않고, 하루에 여러 페이지 가필되는 경우도 있다.
-;미독(3)으로 하려면 플래그에 3을 넣은 다음、CALL CHARA_DIARY_PAGESETTING(XX, YY)를 할 필요가 있다.
+;미독(3)으로 하려면 플래그에 3을 넣은 다음、CALL CHARA_DIARY_PAGESETTING(49, YY)를 할 필요가 있다.
 
 ;예2) 호감도 100 이상
-;IF DIARY:XX:YY == 0 && CFLAG:XX:호감도 >= 100
-;	DIARY:XX:YY = 3
-;	CALL CHARA_DIARY_PAGESETTING(XX, YY)
+;IF DIARY:49:YY == 0 && CFLAG:49:호감도 >= 100
+;	DIARY:49:YY = 3
+;	CALL CHARA_DIARY_PAGESETTING(49, YY)
 ;ENDIF
 
 ;예3) 예2의 일기가 읽힌 후에 호감도 1000이상
 ;이것을 하면 YY를 읽은 직후 ZZ가 올라오는 일도 벌어진다.
-;IF DIARY:XX:ZZ == 0 && DIARY:XX:YY == 1 && CFLAG:XX:호감도 >= 1000
-;	DIARY:XX:ZZ = 3
-;	CALL CHARA_DIARY_PAGESETTING(XX, ZZ)
+;IF DIARY:49:ZZ == 0 && DIARY:49:YY == 1 && CFLAG:49:호감도 >= 1000
+;	DIARY:49:ZZ = 3
+;	CALL CHARA_DIARY_PAGESETTING(49, ZZ)
 ;ENDIF
 
 ;▽쓸데없는 참견의 주석
-;첫키스는 기본적으로 다 [키스미경험]을 소지하고 있으므로, "!TALENT:XX:키스미경험"으로 판정할 수 있습니다。
+;첫키스는 기본적으로 다 [키스미경험]을 소지하고 있으므로, "!TALENT:49:키스미경험"으로 판정할 수 있습니다。
 ;데이트에서 돌아올때 키스로 분기하고 싶다면 데이트에서 돌아올때 키스 구상에서 플래그를 세웁시다.
 ;이 경우, 일반적인 첫키스 상실과 중복되지 않도록 주의합시다.
 ;처녀상실은 초기설정에서 처녀상실인 경우도 있으므로, 처녀상실 구상쪽에서 플래그를 세우는 것이 좋습니다.
@@ -101,7 +102,7 @@ RETURN 1
 ;날짜를 정확히 세려면 별도의 플래그가 필요. 예를 들면 처음 만난 날이라든지.
 ;=============================
 ;MAXPAGE는 여기에 기입한다
-MAX_DIARY_PAGE:XX:0 = 1
+MAX_DIARY_PAGE:49:0 = 1
 
 ;=============================
 @DIARY_TEXT_K49, PAGENUM, MODE, PAGECOUNT
@@ -125,17 +126,17 @@ MAX_DIARY_PAGE:XX:0 = 1
 ;이하는 샘플
 IF MODE == "デイリー"
 	IF GROUPMATCH(PAGENUM, 1) 
-		CALL PRINT_FACE, XX, "発情", "裸", "_1"
+		CALL PRINT_FACE, 49, "発情", "裸", "_1"
 	ELSEIF GROUPMATCH(PAGENUM, 2)
-		CALL PRINT_FACE, XX, "笑顔", "服1"
+		CALL PRINT_FACE, 49, "笑顔", "服1"
 	ELSEIF GROUPMATCH(PAGENUM, 3)
-		CALL PRINT_FACE, XX, "怒り"
+		CALL PRINT_FACE, 49, "怒り"
 	ELSE
-		CALL PRINT_FACE, XX
+		CALL PRINT_FACE, 49
 	ENDIF
 ENDIF
 
-PRINTFORMDL - %CALLNAME:XX%の日記　PAGE.{PAGECOUNT} --------------------------------------------------------------------------------------
+PRINTFORMDL - %CALLNAME:49%の日記　PAGE.{PAGECOUNT} --------------------------------------------------------------------------------------
 PRINTL
 
 ;※PAGENUM:0은 사용할 수 없다
@@ -158,9 +159,9 @@ RETURN RESULT
 @M_KOJO_MESSAGE_COM_K49_406_1
 ;커맨드 구상
 ;TFLAG:194 (누구의 일기를 읽고있는지)
-;TFLAG:194가 XX가 아닌 경우는 타인의 일기이므로 주의.
+;TFLAG:194가 49가 아닌 경우는 타인의 일기이므로 주의.
 ;PAGE는 적혀있는 페이지 수.
-;SHIRAHU(XX)는 캐릭터 XX의 상태가 정상인지 아닌지.
+;SHIRAHU(49)는 캐릭터 49의 상태가 정상인지 아닌지.
 ;=============================
 #DIM PAGE
 
@@ -172,12 +173,13 @@ FOR LOCAL, 0, MAX_DIARY_PAGE:(TFLAG:194):0
 	ENDIF
 NEXT
 
-IF SHIRAHU(XX) && TFLAG:194 == XX
+IF SHIRAHU(49) && TFLAG:194 == 49
 ;일기를 다 읽고 난 후의 반응
 	IF PAGE > 2
-		CALL SPTALK, XX,"通常",0,@"「日記を見せるって…なんだか恥ずかしいな…」//%CALLNAME:XX%はまじまじとこちらを見つめている"
+		CALL SPTALK, 49,"通常",0,@"「日記を見せるって…なんだか恥ずかしいな…」//%CALLNAME:49%はまじまじとこちらを見つめている"
 		;화상포함 토크는 최대 6행까지.
 	ELSE
 		PRINTFORML 
 	ENDIF
 ENDIF
+[SKIPEND]

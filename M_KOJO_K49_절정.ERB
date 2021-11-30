@@ -990,7 +990,7 @@ LOCAL = 1
 IF LOCAL
 	;PRINTFORML 「」
 	IF ABL:기교 <= 3 || 1 ; 밑에거 만들기 시작하면 지우자
-		SELECTCASE RAND:2 ;RAND:10 ;일단은 2만
+		SELECTCASE RAND:5 ;RAND:6 ;일단은 2만
 			CASE 0
 				IF MARK:반발각인 == 3 && !TALENT:연인
 					CALL PALAM_MESSAGE_A
@@ -1076,7 +1076,7 @@ IF LOCAL
 					PRINTFORML 「자자, 시원하게 싸버립시다, 참지 않아도 좋으니깐」
 					PRINTFORM 이내 
 					CALL PALAM_MESSAGE_A
-					PRINTFORML 「...정말이지, 얼굴에 튀었잖아요」
+					PRINTFORML 「...정말이지, 많이도 나오네...얼굴에까지 튈 줄은 몰랐는데」
 					IF CFLAG:우후후 == 2
 						PRINTFORML 「벌로써 좀 더 괴롭혀 드려야겠는걸요...」
 						PRINTFORML 사토리는 생글생글 웃으며 부드럽게 자지를 훑었다
@@ -1084,43 +1084,75 @@ IF LOCAL
 				ENDIF
 			CASE 2
 				IF MARK:반발각인 == 3 && !TALENT:연인
-					
-				ELSEIF TALENT:연인
-					
-				ELSEIF TALENT:연모||TALENT:사모||TALENT:애욕
-					
+					CALL PALAM_MESSAGE_A
+					PRINTFORML 「아- 정말이지, 다 튀었잖아...」
+					PRINTFORML 사토리는 투덜거리며 정액을 닦아냈다
+				ELSEIF TALENT:연인||TALENT:연모||TALENT:사모||TALENT:애욕
+					CALL PALAM_MESSAGE_A
+					PRINTFORML 「손에서 팔딱거리는건 조금 귀여울지도...」
 				ELSEIF TALENT:섹프
-					
+					CALL PALAM_MESSAGE_A
+					PRINTFORML 「엄청 나오네...그래도 아직 더 할 수 있겠죠?」
 				ELSE
-					
+					CALL PALAM_MESSAGE_A
+					PRINTFORML 머리에 튄 정액을 눈치챈 사토리는 무심코 정액범벅인 손으로 머리를 닦아버렸다
+					PRINTFORML 여러모로 굉장한 머리가 되어버렸다...
 				ENDIF
 			CASE 3
 				IF MARK:반발각인 == 3 && !TALENT:연인
-					
-				ELSEIF TALENT:연인
-					
-				ELSEIF TALENT:연모||TALENT:사모||TALENT:애욕
-					
+					PRINTFORML 「이런 허술한 손놀림에도 기뻐서 사정해버리는 건가요?」
+					PRINTFORML 「이래서얀 굳이 내 손으로 해줘야 할 이유를 모르겠네, 자기 손이랑 차이가 뭐야」
+					PRINTFORML 사토리는 투덜거리면서도 열심히 자지를 문질러왔다...
+					IF CFLAG:우후후 == 2
+						PRINTFORML 이윽고 한계에 달한 %마스터의% 자지가  
+					ELSE
+						PRINTFORM 이윽고 한계에 달해 바들바들 떨리는 자지를 바라보던 
+					ENDIF
+					CALL PALAM_MESSAGE_A
+					PRINTFORML 「아아, 진짜, 튀었잖아...이렇게 매도 당하는게 좋았던거야?」
+					PRINTFORML 놀려먹는데 재미들렸는지 사토리는 연신 히죽이고 있다
+				ELSEIF TALENT:연인||TALENT:연모||TALENT:사모||TALENT:애욕
+					CALL PALAM_MESSAGE_A
+					PRINTFORML 「아, 잔뜩 나왔다」
+					PRINTFORML 「이렇게 만져주면 좋은거구나...다음번엔 여기 위주로 해 봐야지」
 				ELSEIF TALENT:섹프
-					
+					CALL PALAM_MESSAGE_A
+					PRINTFORML 「후후♥ 이렇게나 잔뜩 나오다니, 그렇게 기분 좋았나요?」
+					PRINTFORML 사토리는 즐거운듯이 손에 묻은 정액을 늘어뜨리고 있다
 				ELSE
-					
+					CALL PALAM_MESSAGE_A
+					IF CFLAG:우후후 == 2
+						PRINTFORML 「그렇게나 좋았던가요? 엄청 나오는걸...」
+						PRINTFORML 「아아, 아직도 조금 남았나...좀 더 괴롭혀 드릴까요?」
+					ELSE
+						CALL PALAM_MESSAGE_A
+						PRINTFORML 「기분...좋았나 보네요」
+						PRINTFORML 「막상 할때는 모자라다는 생각만 하시더니...」
+						SIF RAND:3 == 0
+							PRINTFORML 「...왠지 분하니까 한 번 더 할래요」
+					ENDIF
 				ENDIF
 			CASE 4
-
-			CASE 5
-
-			CASE 6
-
-			CASE 7
-
-			CASE 8
-
-			CASE 9
-
+				IF MARK:반발각인 == 3 && !TALENT:연인
+					CALL PALAM_MESSAGE_A
+					PRINTFORML 「...아아, 진짜, 이렇게 많이 싸면 곤란하잖아」
+					PRINTFORML 사토리는 투덜거리며 얼굴에 묻은 정액을 닦아냈다
+				ELSEIF TALENT:연인||TALENT:연모||TALENT:사모||TALENT:애욕
+					CALL PALAM_MESSAGE_A
+					PRINTFORML 「으음- 대충 감이 온 것 같기도...?」
+					PRINTFORML 「조금만 더 해보면 잘 할 수 있을거 같은데...」
+				ELSEIF TALENT:섹프
+					CALL PALAM_MESSAGE_A
+					PRINTFORML 「여기가 약점인걸까나...다음번에 써먹어야지」
+					PRINTFORML 사토리는 정액 범벅인채로 %마스터의% 자지를 유심히 바라보고 있다
+				ELSE
+					PRINTFORML 「이렇게? 이렇게...? 앗...'쌀거 같아'? 여긴가 보네」
+					CALL PALAM_MESSAGE_A
+					PRINTFORML 「음- 대충 감이 잡힐락 말락 하는걸...」
+				ENDIF
 		ENDSELECT
 	ELSE
-		SELECTCASE RAND:10
+		SELECTCASE RAND:6
 			CASE 0
 				IF MARK:반발각인 == 3
 					
@@ -1142,14 +1174,6 @@ IF LOCAL
 			CASE 4
 
 			CASE 5
-
-			CASE 6
-
-			CASE 7
-
-			CASE 8
-
-			CASE 9
 
 		ENDSELECT
 	ENDIF
