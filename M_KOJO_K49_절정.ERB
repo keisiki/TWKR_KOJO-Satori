@@ -990,7 +990,7 @@ LOCAL = 1
 IF LOCAL
 	;PRINTFORML 「」
 	IF ABL:기교 <= 3 || 1 ; 밑에거 만들기 시작하면 지우자
-		SELECTCASE RAND:5 ;RAND:6 ;일단은 2만
+		SELECTCASE RAND:5
 			CASE 0
 				IF MARK:반발각인 == 3 && !TALENT:연인
 					CALL PALAM_MESSAGE_A
@@ -1152,29 +1152,61 @@ IF LOCAL
 				ENDIF
 		ENDSELECT
 	ELSE
-		SELECTCASE RAND:6
+		SELECTCASE RAND:3
 			CASE 0
 				IF MARK:반발각인 == 3
-					
-				ELSEIF TALENT:연인
-					
-				ELSEIF TALENT:연모||TALENT:사모||TALENT:애욕
-					
-				ELSEIF TALENT:섹프
-					
+					CALL PALAM_MESSAGE_A
+					PRINTFORML 「...잔뜩 쌌네, 손만으로도 그렇게 기분 좋은거야?」
+					PRINTFORML 「이래서얀 손으로만 상대해줘도 되겠네...」
+				ELSEIF TALENT:연인||TALENT:연모||TALENT:사모||TALENT:애욕||TALENT:섹프
+					PRINTFORML 「후후...제 손, 기분 좋죠?」
+					PRINTFORML 「이렇게 귀두 끝을 살짝 괴롭히면...」
+					CALL PALAM_MESSAGE_A
+					PRINTFORML 「후후후후...저한테 숨길수 있는건 없다니깐요, 느끼는곳 마저도 말이죠」	
 				ELSE
-					
+					CALL PALAM_MESSAGE_A
+					PRINTFORML 「으에...쌀거 같으면 빨리 생각해주세요」
+					PRINTFORML 「이렇게 묻으면 닦기 곤란하단 말야」
 				ENDIF
 			CASE 1
-
+				IF MARK:반발각인 == 3
+					PRINTFORML 「아아, 진짜, 머릿속에 '쌀것 같다'는 생각만 가득 차 있어」
+					PRINTFORML 「이래서얀 성욕에 미친 원숭이 같은걸」
+					CALL PALAM_MESSAGE_A
+					PRINTFORML 「...그게 싫지는 않지만」
+				ELSEIF TALENT:연인
+					PRINTFORML 「여기랑 여기가 약점이었지...그러면 이렇게...」
+					PRINTFORM 기분좋은곳만 건드는 탓에 금세 한계에 달해버렸고 이내 
+					CALL PALAM_MESSAGE_A
+					PRINTFORML 「후후...이렇게나 느껴주시다니 조금 기뻐지는걸요」
+				ELSEIF TALENT:연모||TALENT:사모||TALENT:애욕||TALENT:섹프
+					PRINTFORML 「이렇게 자극해주면...아핫♥ 나왔다」
+					PRINTFORML 「엄청 잔뜩 나왔네, 그렇게나 제 손이 좋았나요? 후후후...♥」
+					PRINTFORML 사토리는 허공에 흩뿌려지는 정액을 손에 받아 %마스터에% 과시하고 있다
+				ELSE
+					PRINTFORML 「앗, 슬슬 쌀것 같아? 그러면 닦을게...없네」
+					PRINTFORML 사토리는 하는수 없이 다른편 손으로 정액을 받아냈다
+					PRINTFORML 찐득하고 탁한빛의 정액이 새하얀 손을 더럽혀갔다
+					PRINTFORML 「...기분이 묘해」
+				ENDIF
 			CASE 2
-
-			CASE 3
-
-			CASE 4
-
-			CASE 5
-
+				IF MARK:반발각인 == 3
+					CALL PALAM_MESSAGE_A
+					PRINTFORML 「아직도 자지가 부들부들 떨고 있어, 그렇게나 좋았던걸까나?」
+					PRINTFORML 「대답 안해줘도 이미 다 알고 있지만 말야」
+				ELSEIF TALENT:연인||TALENT:연모||TALENT:사모||TALENT:애욕
+					PRINTFORML 「%사마스터는% 여기를 문질러주면...이렇게♥」
+					CALL PALAM_MESSAGE_A
+					PRINTFORML 「%사마스터가% 좋아할만한 곳은 다 꿰고 있답니다♥」
+				ELSEIF TALENT:섹프
+					CALL PALAM_MESSAGE_A
+					PRINTFORML 「음...♥ 잔뜩 나왔네, 그렇게나 좋았던 걸까나」
+					PRINTFORML 「그래도 아직 더 할 수 있죠? 벌써 지치면 서운해요?」
+				ELSE
+					PRINTFORML 「'거기 기분좋아' '이제 나온다'...계속 듣기 부끄러운 생각만 하시네요...」
+					PRINTFORML 「...그러면서 조금 기쁜 내가 싫어」
+					CALL PALAM_MESSAGE_A
+				ENDIF
 		ENDSELECT
 	ENDIF
 	RETURN 1
