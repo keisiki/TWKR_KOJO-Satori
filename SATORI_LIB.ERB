@@ -1015,3 +1015,122 @@ SELECTCASE RAND:5
     CASE 4
         PRINT ! 
 ENDSELECT
+
+
+
+@ST_펠라치오()
+#DIM DYNAMIC 정음여부
+#DIM DYNAMIC 정액좋아하지않음
+;PRINTFORML 「」
+IF EXP_UP(15,TARGET) == NOWEX:PLAYER:사정 * 3
+    정음여부 = 1
+ENDIF
+IF EXP:정음경험 < 20
+    정액좋아하지않음 = 1
+ENDIF
+
+
+IF MARK:반발각인 == 3&&!TALENT:연인
+	SELECTCASE RAND:4
+        CASE 0
+            PRINTFORML 「읍?! 으븝...음...」
+            IF 정음여부
+                IF 정액좋아하지않음
+                    PRINTFORML 「놀라서 삼켜버렸잖아, 으...」
+                ELSE
+                    PRINTFORML 사토리는 조용히 입 안에 남은 정액을 음미하고 있는 모양이다
+                ENDIF
+            ELSE
+                PRINTFORML 「푸하...이렇게나 많이 싸다니, 입 안에서 정액냄새가 가시질 않는걸」
+                PRINTFORML 사토리는 투덜거리며 입 안의 정액을 뱉어냈다
+            ENDIF
+        CASE 1
+            
+        CASE 2
+
+        CASE 3
+
+    ENDSELECT
+ELSEIF TALENT:연인
+	SELECTCASE RAND:4
+        CASE 0
+            
+        CASE 1
+
+        CASE 2
+
+        CASE 3
+        
+    ENDSELECT
+ELSEIF TALENT:연모||TALENT:사모||TALENT:애욕
+	SELECTCASE RAND:4
+        CASE 0
+            
+        CASE 1
+
+        CASE 2
+
+        CASE 3
+        
+    ENDSELECT
+ELSEIF TALENT:섹프
+    ;여기선 보통 정액 좋아함인게 기본일것이라고 생각, 아니더라도 야한짓을 좋아하니 정액 싫어하는 티는 안 낼것
+	SELECTCASE RAND:4
+        CASE 0
+            IF 정음여부
+                PRINTFORML 「으음- 이 진한 냄새, 참을수가 없단 말이죠...」
+                PRINTFORML 「...아직 정액 많이 남았죠? 벌써 지치면 안돼요?」
+                PRINTFORML 사토리는 막 사정한 자지를 낼름낼름 핥아보이고 있다
+            ELSE
+                PRINTFORML 「헤헤...이러케나 많이 나왔네요...」
+                PRINTFORML 사토리는 조금 우쭐한듯한 표정을 지어보였다
+                PRINTFORML 아직도 입에서 정액이 조금씩 흘러 내려오고 있다
+            ENDIF
+        CASE 1
+            IF 정음여부
+                PRINTFORML 「츄르르릅...츕, 츄릅...」
+                PRINTFORML 사토리는 요도에 남은 정액까지 탐욕스럽게 빨아올리고 있다
+            ELSE
+                PRINTFORML 「입 안이 정액 냄새로 가득- 후후후, 기분 좋았나요?」
+                PRINTFORML 사토리는 요염한 시선으로 %마스터를% 올려다 보고 있다
+            ENDIF
+        CASE 2
+
+        CASE 3
+        
+    ENDSELECT
+ELSE
+	SELECTCASE RAND:3
+        CASE 0
+            PRINTFORML 「읍?! 으븝...으에에...」
+            IF 정음여부
+                PRINTFORML 「정액, 마셔버렸다...」
+            ELSE
+                IF 정액좋아하지않음
+                    PRINTFORML 「지독한 맛...적응이 안돼...」
+                ELSE
+                    PRINTFORML 「정액 흘려버렸다...」
+                ENDIF
+            ENDIF
+        CASE 1
+            IF 정액좋아하지않음
+                PRINTFORML 「읍...?! 케헥, 쿨럭...입 안이 이상해지는 기분인걸...」
+                PRINTFORML 「이런거 마실수 없어...」
+            ELSEIF 정음여부
+                PRINTFORML 「음...츄릅, 꿀꺽...」
+                PRINTFORML 사토리는 뿜어져나오는 백탁액을 낼름낼름 핥아 먹고 있다
+            ELSE
+                PRINTFORML 「아, 정액...흘려버렸다」
+                PRINTFORML 「...어째서 아깝다는 생각이 드는걸까, 나도 참 이상해진거 같네」
+            ENDIF
+        CASE 2
+            PRINTFORML 「으에...이상한 맛...」
+            IF 정음여부 && !정액좋아하지않음
+                PRINTFORML 「하지만 그게 좋단 말이지...희한해」
+            ELSEIF 정음여부
+                PRINTFORML 「...그래도 이젠 조금 적응된것도 같고?」
+            ELSE
+                PRINTFORML 「혀가 이상해지는 느낌인걸」
+            ENDIF
+    ENDSELECT
+ENDIF

@@ -988,7 +988,6 @@ ENDIF
 LOCAL = 1
 ;-------------------------------------------------
 IF LOCAL
-	;PRINTFORML 「」
 	IF ABL:기교 <= 3 || 1 ; 밑에거 만들기 시작하면 지우자
 		SELECTCASE RAND:5
 			CASE 0
@@ -1190,7 +1189,7 @@ IF LOCAL
 					PRINTFORML 「...기분이 묘해」
 				ENDIF
 			CASE 2
-				IF MARK:반발각인 == 3
+				IF MARK:반발각인 == 3 && !TALENT:연인
 					CALL PALAM_MESSAGE_A
 					PRINTFORML 「아직도 자지가 부들부들 떨고 있어, 그렇게나 좋았던걸까나?」
 					PRINTFORML 「대답 안해줘도 이미 다 알고 있지만 말야」
@@ -1216,7 +1215,7 @@ RETURN 1
 @M_KOJO_MESSAGE_PALAMCNG_A_K49_0(ARG)
 CALL PALAM_MESSAGE_A
 ;-------------------------------------------------
-;콘돔
+;콘돔, 생략
 ;記入チェック（=0, 非表示、1, 表示）
 LOCAL = 0
 ;-------------------------------------------------
@@ -1231,10 +1230,23 @@ CALL PALAM_MESSAGE_A
 ;-------------------------------------------------
 ;이라마치오
 ;記入チェック（=0, 非表示、1, 表示）
-LOCAL = 0
+LOCAL = 1
 ;-------------------------------------------------
 IF LOCAL
-	PRINTFORMW 
+	;이 커맨드의 경우 강제 정음이 된다
+	;솔직히 볼일이 그다지 많지 않은
+	;PRINTFORML 「」
+	SELECTCASE RAND:4
+		CASE 0
+			PRINTFORML 「으븝?!! 읏, 커헉...켁...숨 막혀...」
+		CASE 1
+			PRINTFORML 「읏?! 으븝?!! 쿨럭...으긋...」
+		CASE 2
+			PRINTFORML 「으븝?! 케헥, 쿨럭...숨 막혀...괴로워...」
+			PRINTFORML 사토리는 괴로운듯한 표정이다
+		CASE 3
+			PRINTFORML 「읍?! 으읍...으븝...커헉...하아...하아...」
+	ENDSELECT
 	RETURN 1
 ENDIF
 RETURN 1
@@ -1242,35 +1254,35 @@ RETURN 1
 @M_KOJO_MESSAGE_PALAMCNG_A_K49_22(ARG)
 CALL PALAM_MESSAGE_A
 ;-------------------------------------------------
-;식스나인
+;식스나인, 생략
 ;記入チェック（=0, 非表示、1, 表示）
-LOCAL = 0
+LOCAL = 1
 ;-------------------------------------------------
 IF LOCAL
 	;同時사정
 	IF NOWEX:사정 && NOWEX:MASTER:사정
-		PRINTFORMW
+		;PRINTFORMW
 		RETURN 1
 	;TARGETだけ사정
 	ELSEIF NOWEX:사정
 		;PLAYERについてる
 		IF GETBIT(TALENT:PLAYER:성별,1)
-			PRINTFORMW
+			;PRINTFORMW
 			RETURN 1
 		;付いてない
 		ELSE
-			PRINTFORMW
+			;PRINTFORMW
 			RETURN 1
 		ENDIF
 	;PLAYERだけ사정
 	ELSE
 		;TARGETについてる
 		IF GETBIT(TALENT:성별,1)
-			PRINTFORMW
+			;PRINTFORMW
 			RETURN 1
 		;付いてない
 		ELSE
-			PRINTFORMW
+			CALL ST_펠라치오()
 			RETURN 1
 		ENDIF
 	ENDIF
@@ -1282,10 +1294,10 @@ CALL PALAM_MESSAGE_A
 ;-------------------------------------------------
 ;파이즈리フェラ
 ;記入チェック（=0, 非表示、1, 表示）
-LOCAL = 0
+LOCAL = 1
 ;-------------------------------------------------
 IF LOCAL
-	PRINTFORMW 
+	CALL ST_펠라치오()
 	RETURN 1
 ENDIF
 RETURN 1
@@ -1295,10 +1307,10 @@ CALL PALAM_MESSAGE_A
 ;-------------------------------------------------
 ;수음フェラ
 ;記入チェック（=0, 非表示、1, 表示）
-LOCAL = 0
+LOCAL = 1
 ;-------------------------------------------------
 IF LOCAL
-	PRINTFORMW 
+	CALL ST_펠라치오()
 	RETURN 1
 ENDIF
 RETURN 1
@@ -1398,10 +1410,10 @@ CALL PALAM_MESSAGE_A
 ;-------------------------------------------------
 ;펠라치오
 ;記入チェック（=0, 非表示、1, 表示）
-LOCAL = 0
+LOCAL = 1
 ;-------------------------------------------------
 IF LOCAL
-	PRINTFORMW 
+	CALL ST_펠라치오()
 	RETURN 1
 ENDIF
 RETURN 1
@@ -1444,7 +1456,7 @@ IF LOCAL
 	RETURN 1
 ENDIF
 RETURN 1
-
+;---------------------------------------------------------------------------------------------------------------------------------------------------
 ;-------------------------------------------------
 ;眠姦사정に関する구上の表示
 ;一時的にTARGETを구上主に設定している
