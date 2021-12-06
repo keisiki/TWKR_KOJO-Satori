@@ -1031,7 +1031,7 @@ ENDIF
 
 
 IF MARK:반발각인 == 3&&!TALENT:연인
-	SELECTCASE RAND:4
+	SELECTCASE RAND:3
         CASE 0
             PRINTFORML 「읍?! 으븝...음...」
             IF 정음여부
@@ -1045,40 +1045,84 @@ IF MARK:반발각인 == 3&&!TALENT:연인
                 PRINTFORML 사토리는 투덜거리며 입 안의 정액을 뱉어냈다
             ENDIF
         CASE 1
-            
+            IF 정음여부
+                IF 정액좋아하지않음
+                    PRINTFORML 「으븝...코, 코에 정액이 넘어가서...이상한 냄새...」
+                ELSE
+                    PRINTFORML 「입안이 아직도 끈적한거 같아...냄새...」
+                    PRINTFORML 「...그거에 살짝 기쁜 이유는 도대체 뭘까」
+                ENDIF
+            ELSE
+                IF 정액좋아하지않음
+                    PRINTFORML 「으븝?!! 읏...으븝...푸하...수, 숨 막혀 죽는줄 알았네...」
+                ELSE
+                    PRINTFORML 「으엑...입 안에서 정액 냄새가 빠지질 않잖아...」
+                    PRINTFORML 사토리는 투덜거리며 입안의 정액을 뱉어냈다
+                ENDIF
+            ENDIF
         CASE 2
-
-        CASE 3
-
+            IF 정음여부
+                PRINTFORML 「응...♥」
+                PRINTFORML 한순간 굉장히 요염한듯한 미소를 띄워보인 사토리였다
+                PRINTFORML 「...뭐, 뭐예요, 치울 방법이 없으니 마신것 뿐인데요? 그런 표정 지을리가...으으...」
+                PRINTFORML 뒤늦게 툴툴거리지만, 그 모습은 선명히 기억되고 있었다
+            ELSE
+                PRINTFORML 「...조금은 시원해 졌으려나? 그러면 이번엔 어떤걸 할까...」
+            ENDIF
     ENDSELECT
 ELSEIF TALENT:연인
 	SELECTCASE RAND:4
         CASE 0
-            
+            PRINTFORML 「에헤헤...방금 막 사정한 자지, 입 안에서 꿈틀거리는게 귀여워♥」
+            PRINTFORML 사토리는 입 안에서 요도구를 낼름낼름 핥아 남은 정액을 긁어모으고 있다
         CASE 1
-
+            IF 정음여부
+                PRINTFORML 「...엄청 진해, 몸 속이 정액으로 가득차는 느낌이야...♥」
+                PRINTFORML 사토리는 황홀한 표정을 지으며 요도구에 남은 정액을 빨이들이고 있다
+            ELSE
+                PRINTFORML 「에헤헤...♥ 사정할때 귀두 괴롭히는거, 기분 좋아-♥ 기분 좋은게 계속 읽혀져서 좋아...♥」
+                PRINTFORML 사토리는 멍한 표정으로 계속 움찔거리고 있다
+            ENDIF
         CASE 2
-
+            IF 정음여부
+                PRINTFORML 「입 안에 이렇게나 가득 싸다니...후후, 기분이 이상해져 버리는걸요?」
+                PRINTFORML 사토리는 입 안 가득 들어찬 끈적한 정액을 과시하고는 그대로 꿀꺽 삼켜버렸다
+            ELSE
+                PRINTFORML 「이렇게나 많다니, 숨 막히는줄 알았잖아요」
+                PRINTFORML 「제 입이 그렇게나 좋던가요? 후후♥」
+            ENDIF
         CASE 3
-        
+            PRINTFORML 「...후후, 이렇게나 가득 싸시다니」
+            PRINTFORML 「제 입이 그렇게나 좋았나요?」
     ENDSELECT
 ELSEIF TALENT:연모||TALENT:사모||TALENT:애욕
-	SELECTCASE RAND:4
+	SELECTCASE RAND:3
         CASE 0
-            
+            IF 정음여부
+                PRINTFORML 「츄르릅...낼름...음...」
+                IF 정액좋아하지않음
+                    PRINTFORML 「역시 맛은 없네...그래도 기분 좋았어...」
+                ELSE
+                    PRINTFORML 「에헤헤...♥ 사정할때 귀두 괴롭히는거, 기분 좋아-♥ 기분 좋은게 계속 읽혀져서 좋아...♥」
+                    PRINTFORML 사토리는 멍한 표정으로 계속 움찔거리고 있다
+                ENDIF
+            ELSE
+                PRINTFORML 「...후후, 이렇게나 가득 싸시다니」
+                PRINTFORML 「제 입이 그렇게나 좋았나요?」
+            ENDIF
         CASE 1
-
+            PRINTFORML 「입 안이 정액으로 가득해...그렇게나 느껴주시다니, 조금은 기쁠지도」
+            PRINTFORML 사토리는 즐거운듯한 표정이다
         CASE 2
-
-        CASE 3
-        
+            PRINTFORML 「자지가 민감해진게 느껴져...이거, 엄청 기분 좋아...♥」
+            PRINTFORML 사토리는 막 사정한 자지를 낼름낼름 핥으며 황홀한 표정을 짓고 있다
     ENDSELECT
 ELSEIF TALENT:섹프
     ;여기선 보통 정액 좋아함인게 기본일것이라고 생각, 아니더라도 야한짓을 좋아하니 정액 싫어하는 티는 안 낼것
-	SELECTCASE RAND:4
+	SELECTCASE RAND:3
         CASE 0
             IF 정음여부
-                PRINTFORML 「으음- 이 진한 냄새, 참을수가 없단 말이죠...」
+                PRINTFORML 「으음- 이 진한 냄새, 참을수가 없다니깐...」
                 PRINTFORML 「...아직 정액 많이 남았죠? 벌써 지치면 안돼요?」
                 PRINTFORML 사토리는 막 사정한 자지를 낼름낼름 핥아보이고 있다
             ELSE
@@ -1095,9 +1139,13 @@ ELSEIF TALENT:섹프
                 PRINTFORML 사토리는 요염한 시선으로 %마스터를% 올려다 보고 있다
             ENDIF
         CASE 2
-
-        CASE 3
-        
+            IF 정음여부
+                PRINTFORML 「입 안에 이렇게나 가득 싸다니...후후, 기분이 이상해져 버리는걸요?」
+                PRINTFORML 사토리는 입 안 가득 들어찬 끈적한 정액을 과시하고는 그대로 꿀꺽 삼켜버렸다
+            ELSE
+                PRINTFORML 「이렇게나 많다니, 숨 막히는줄 알았잖아요」
+                PRINTFORML 「제 입이 그렇게나 좋던가요? 후후♥」
+            ENDIF
     ENDSELECT
 ELSE
 	SELECTCASE RAND:3
