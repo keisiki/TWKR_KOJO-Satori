@@ -1320,10 +1320,46 @@ CALL PALAM_MESSAGE_A
 ;-------------------------------------------------
 ;애널봉사
 ;記入チェック（=0, 非表示、1, 表示）
-LOCAL = 0
+LOCAL = 1
 ;-------------------------------------------------
 IF LOCAL
-	PRINTFORMW 
+	IF MARK:반발각인 == 3 && !TALENT:연인
+		SELECTCASE RAND:2
+			CASE 0
+				PRINTFORML 「엉덩이 핥아지는거로 싸버리다니...」
+				PRINTFORML 「한심해 보이는걸, 조금은 나라면 자괴감이 들거 같은데」
+			CASE 1
+				PRINTFORML 「자기 얼굴에 찍찍 싸댈정도라니, 엉덩이 핥아준게 그렇게나 좋았던거야?」
+				PRINTFORML 「...왠지 기분 나빠」
+		ENDSELECT
+	ELSEIF TALENT:연모||TALENT:사모||TALENT:애욕||TALENT:연인
+		SELECTCASE RAND:2
+			CASE 0
+				PRINTFORML 「우와아, 얼굴에까지 튀고 있어」
+				PRINTFORML 「여기가 그렇게나 약점인 걸까나...」
+			CASE 1
+				PRINTFORML 「엉덩이 핥는거로 이렇게나 가버리다니...」
+				PRINTFORML 「...조금 귀여울지도?」
+		ENDSELECT
+	ELSEIF TALENT:섹프
+		SELECTCASE RAND:2
+			CASE 0
+				PRINTFORML 「여길 핥은거로 싸버리다니, %MASTERNAME:49%, 어쩌면 암컷의 자질이...?」
+				PRINTFORML 「...후후후, 농담이에요-♥」
+			CASE 1
+				PRINTFORML 「여길 핥으면 못 참는거구나...흐으응~」
+				PRINTFORML 사토리는 흥미롭다는듯이 혀를 밀어넣고 있다
+		ENDSELECT
+	ELSE
+		SELECTCASE RAND:2
+			CASE 0
+				PRINTFORML 「으엣...정액 나왔다...」
+				PRINTFORML 「...기분이 묘한걸」
+			CASE 1
+				PRINTFORML 「얼굴에 튈 정도로 기분 좋았나보네...」
+				PRINTFORML 희한하다는 눈빛으로 %마스터를% 바라보고 있다
+		ENDSELECT
+	ENDIF
 	RETURN 1
 ENDIF
 RETURN 1
@@ -1331,7 +1367,7 @@ RETURN 1
 @M_KOJO_MESSAGE_PALAMCNG_A_K49_8(ARG)
 CALL PALAM_MESSAGE_A
 ;-------------------------------------------------
-;거품춤
+;거품춤, 생략 중점
 ;記入チェック（=0, 非表示、1, 表示）
 LOCAL = 0
 ;-------------------------------------------------
