@@ -1235,7 +1235,6 @@ LOCAL = 1
 IF LOCAL
 	;이 커맨드의 경우 강제 정음이 된다
 	;솔직히 볼일이 그다지 많지 않은
-	;PRINTFORML 「」
 	SELECTCASE RAND:4
 		CASE 0
 			PRINTFORML 「으븝?!! 읏, 커헉...켁...숨 막혀...」
@@ -1407,10 +1406,119 @@ CALL PALAM_MESSAGE_A
 ;-------------------------------------------------
 ;풋잡
 ;記入チェック（=0, 非表示、1, 表示）
-LOCAL = 0
+LOCAL = 1
 ;-------------------------------------------------
 IF LOCAL
-	PRINTFORMW 
+	;PRINTFORML 「」
+	IF ABL:새드끼 > 3
+		;사도링
+		IF MARK:반발각인 == 3 && !TALENT:연인
+			SELECTCASE RAND:3
+				CASE 0
+					PRINTFORML 「밟히는게 그렇게 좋아? 이렇게나 싸버리고 말야」
+					PRINTFORML 「그러면 앞으로는 밟아주기만 하면 되겠네- 이런 조루 자지에 더 해줄것도 없지」
+				CASE 1
+					PRINTFORML 「이런 상황에서도 느껴버리는거네...평소의 답례로 밟혀버려도 이상하지 않을 때에 말야」
+					PRINTFORML 「그러고보니 막 사정해서 부들거리는거 엄청 징그러운걸, 한번 밟아줄까나」
+					PRINTFORML 사토리는 발끝으로 %마스터의% 자지 끝을 꾸욱꾸욱 눌러대고 있다
+				CASE 2
+					PRINTFORML 「아아- 다리가 더러워졌잖아, 기분 나빠」
+					PRINTFORML 「밟히는것 만으로도 찍찍 싸버리는 변태의 정액이라니, 소름이 다 끼친단 말야」
+					PRINTFORML 「...그렇지, 핥아서 깨끗하게 해 준다면 조금은 기분이 풀릴지도 모르겠네」
+					PRINTFORML 사토리는 정액 투성이 발을 %마스터의% 입가에 갖다대었다
+					PRINTFORML 조금 핥아주니 사토리의 입꼬리가 올라가는게 보였다
+					TALENT:기분 = 1
+			ENDSELECT
+		ELSEIF TALENT:연인
+			SELECTCASE RAND:3
+				CASE 0
+					PRINTFORML 「발만으로도 이렇게나 좋아하다니, 다른건 필요없겠네?」
+					PRINTFORML 「앞으로 %사마스터의% 자지는 발로만 괴롭혀 드리는거로 할까나」
+					PRINTFORML 「...어머나, 그런 와중에도 자지가 반응하고 있어, 이거 참 곤란하네에」
+				CASE 1
+					PRINTFORML 「밟히는것만으로 싸버리다니, 뭐로든지 만져주기만 하면 싸버리는걸까?」
+					PRINTFORML 「절조없는 자지네에- 허공에 정액 퓻퓻 낭비해버렸는데 그래도 좋은거야?」
+				CASE 2
+					PRINTFORML 「조금은 참아보지 그랬어요? 발 만으로 싸버리는거, 분하지도 않나요?」
+					PRINTFORML 「뭐어- 어쩔수 없겠죠, %사마스터는% 답도없는 조루 자지니깐, 후후후후...」
+					PRINTFORML 「...그래도 괜찮아, 나는 그런 면도 좋아하니깐」
+			ENDSELECT
+		ELSEIF TALENT:연모||TALENT:사모
+			SELECTCASE RAND:3
+				CASE 0
+					
+				CASE 1
+
+				CASE 2
+				
+			ENDSELECT
+		ELSEIF TALENT:섹프||TALENT:애욕
+			SELECTCASE RAND:3
+				CASE 0
+					PRINTFORML 「아아- 싸버렸다, 발만으로 허무하게 싸버렸어」
+					PRINTFORML 「밟히는것만으로도 기뻐하는 조루 자지는 안에 넣자마자 싸버리겠네」
+					PRINTFORML 「역시 오늘은 발만으로 놀아줘야 하려나?」
+					PRINTFORML 「...어머, 조금 반응했어, 부끄럽지도 않은거야?」
+				CASE 1
+					PRINTFORML 「아- 진짜, 다리가 더러워졌잖아」
+					PRINTFORML 「밟히는거로 가버리는 조루면서 이렇게 폐만 끼치는 나쁜 자지는 어떻게 해야하나?」
+				CASE 2
+				
+			ENDSELECT
+		ELSE
+			SELECTCASE RAND:3
+				CASE 0
+					
+				CASE 1
+
+				CASE 2
+				
+			ENDSELECT
+		ENDIF
+	ELSE
+		IF MARK:반발각인 == 3 && !TALENT:연인
+			SELECTCASE RAND:3
+				CASE 0
+					PRINTFORML 「...아, 나왔다」
+					PRINTFORML 「밟히는게 그렇게나 좋았던 걸까나...」
+				CASE 1
+					PRINTFORML 「...아무리 봐도 이해 안돼」
+					PRINTFORML 「발만으로 사정하다니, 이상하잖아...」
+				CASE 2
+					PRINTFORML 「으...」
+					PRINTFORML 사토리는 다리에 묻은 정액을 떨떠름한 표정으로 바라보고 있다
+			ENDSELECT
+		ELSEIF TALENT:연인||TALENT:연모||TALENT:사모
+			SELECTCASE RAND:3
+				CASE 0
+					PRINTFORML 「아, 나왔다」
+					PRINTFORML 「봐도봐도 신기하단 말이죠, 발뿐인데 가버리다니」
+				CASE 1
+					PRINTFORML 「아- 힘들어...」
+					PRINTFORML 「마음을 읽어도 발로 힘조절하는건 힘들어요...」
+				CASE 2
+					PRINTFORML 「으음- 이게 좋았던 걸까...다음에 참고해야겠네」
+			ENDSELECT	
+		ELSEIF TALENT:섹프||TALENT:애욕
+			SELECTCASE RAND:3
+				CASE 0
+					PRINTFORML 「드디어 끝났네...힘들었어...」
+					PRINTFORML 「아무리 마음을 읽어도 힘조절은 어려운걸...」
+				CASE 1
+					PRINTFORML 「...별로 기분좋진 않은데, 뭔가 재밌긴 하네」
+					PRINTFORML 「다음엔 좀 더 세게 눌러볼까」
+				CASE 2
+					PRINTFORML 「이거, 왠지 나만 힘든거 같네...」
+			ENDSELECT
+		ELSE
+			SELECTCASE RAND:2
+				CASE 0
+					PRINTFORML 「으에...다리에 묻었어...이상한 감촉...」
+				CASE 1
+					PRINTFORML 「아아, 드디어 쌌다...힘들었어...」
+			ENDSELECT
+		ENDIF
+	ENDIF
 	RETURN 1
 ENDIF
 RETURN 1
