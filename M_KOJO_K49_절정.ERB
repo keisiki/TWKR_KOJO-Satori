@@ -1409,7 +1409,6 @@ CALL PALAM_MESSAGE_A
 LOCAL = 1
 ;-------------------------------------------------
 IF LOCAL
-	;PRINTFORML 「」
 	IF ABL:새드끼 > 3
 		;사도링
 		IF MARK:반발각인 == 3 && !TALENT:연인
@@ -1535,50 +1534,48 @@ CALL PALAM_MESSAGE_A
 LOCAL = 1
 ;-------------------------------------------------
 IF LOCAL
+	;PRINTFORML 「」
 	IF MARK:반발각인 == 3 && !TALENT:연인
-		SELECTCASE RAND:3
+		SELECTCASE RAND:2
 			CASE 0
-				
+				PRINTFORML 「이거...마치 내가 사정하는거 같네」
+				PRINTFORML 「더군다나 사정의 감각까지 읽혀져서...왠지 이상한 기분인걸」
 			CASE 1
-
-			CASE 2
-
+				PRINTFORML 「정액이 꿀렁꿀렁 올라와...기분 좋았나요?」
+				PRINTFORML 「...아니, 알고는 있지만 예의상 물어봐준 거예요」
 		ENDSELECT
-	ELSEIF TALENT:연인
+	ELSEIF TALENT:연모||TALENT:사모||TALENT:연인
 		SELECTCASE RAND:3
 			CASE 0
-				
+				PRINTFORML 「이거...마치 제가 사정하는거 같은데요」
+				PRINTFORML 「심지어 %사마스터가% 사정하는 느낌까지 전해져 오니까...뭔가 이상해질거 같은 기분이야...」
 			CASE 1
-
+				PRINTFORML 「정액이 저 멀리까지...엄청 기분 좋았나 보네...」
+				PRINTFORML 「왠지 기쁜걸요, 저로 이렇게나 느껴준다는게」
 			CASE 2
-			
+				PRINTFORML 「정액이 꿀렁꿀렁 올라와...」
+				PRINTFORML 「안에 넣으면 이렇게 나오는걸까, 조금 신기할지도...」
 		ENDSELECT
-	ELSEIF TALENT:연모||TALENT:사모||TALENT:애욕
+	ELSEIF TALENT:섹프||TALENT:애욕
 		SELECTCASE RAND:3
 			CASE 0
-				
+				PRINTFORML 「이거...마치 내가 사정하는거 같네」
+				PRINTFORML 「사정의 감각까지 읽혀지니 정말 내꺼 같다는 생각도 들고...」
 			CASE 1
-
+				PRINTFORML 「정액이 꿀렁꿀렁 올라와...」
+				PRINTFORML 「안에 넣으면 이렇게 나오는걸까, 조금 신기할지도」
 			CASE 2
-			
-		ENDSELECT
-	ELSEIF TALENT:섹프
-		SELECTCASE RAND:3
-			CASE 0
-				
-			CASE 1
-
-			CASE 2
-			
+				PRINTFORML 「아- 나왔다」
+				PRINTFORML 「...그치만 이런데에 낭비할 정력으로 본방을 해버렸음 더 좋을텐데, 아쉽네」
 		ENDSELECT
 	ELSE
-		SELECTCASE RAND:3
+		SELECTCASE RAND:2
 			CASE 0
-				
+				PRINTFORML 「이거...마치 제가 사정하는거 같네요」
+				PRINTFORML 「사정의 감각까지 읽혀져서...으응...뭔가 이상한 기분」
 			CASE 1
-
-			CASE 2
-			
+				PRINTFORML 「정액이 분수처럼...뭔가 재밌어 보일지도」
+				PRINTFORML 「...조금 더 해볼까」
 		ENDSELECT
 	ENDIF
 	RETURN 1
