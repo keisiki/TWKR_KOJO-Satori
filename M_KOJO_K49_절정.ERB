@@ -1432,7 +1432,7 @@ IF LOCAL
 		ELSEIF TALENT:연인
 			SELECTCASE RAND:3
 				CASE 0
-					PRINTFORML 「발만으로도 이렇게나 좋아하다니, 다른건 필요없겠네?」
+					PRINTFORML 「발만으로도 이렇게나 좋아하다니, 이제 다른건 필요없겠네?」
 					PRINTFORML 「앞으로 %사마스터의% 자지는 발로만 괴롭혀 드리는거로 할까나」
 					PRINTFORML 「...어머나, 그런 와중에도 자지가 반응하고 있어, 이거 참 곤란하네에」
 				CASE 1
@@ -1446,11 +1446,14 @@ IF LOCAL
 		ELSEIF TALENT:연모||TALENT:사모
 			SELECTCASE RAND:3
 				CASE 0
-					
+					PRINTFORML 「아- 싸버렸다 싸버렸어, 발로 밟힌거 가지고 허공에 퓻퓻~」
+					PRINTFORML 「밟히는게 좋은거야? 아니면 내 발이라서 그런걸까?」
 				CASE 1
-
+					PRINTFORML 「이렇게나 잔뜩 싸버리다니... 발로 밟히는게 그렇게 좋았던 걸까나~」
+					PRINTFORML 「앞으로는 발로만 상대해줘야 할지도 모르겠네」
 				CASE 2
-				
+					PRINTFORML 「아아- 안되잖아요, 이렇게 허공에 정액 낭비하곤, 그러라고 있는게 아닐텐데」
+					PRINTFORML 「뭐어, 상관없나, 어짜피 쓸 일없는 거니까 좀 더 낭비 해버릴까요? 기분좋게 정액 몽땅 써버립시다?」
 			ENDSELECT
 		ELSEIF TALENT:섹프||TALENT:애욕
 			SELECTCASE RAND:3
@@ -1463,16 +1466,17 @@ IF LOCAL
 					PRINTFORML 「아- 진짜, 다리가 더러워졌잖아」
 					PRINTFORML 「밟히는거로 가버리는 조루면서 이렇게 폐만 끼치는 나쁜 자지는 어떻게 해야하나?」
 				CASE 2
-				
+					PRINTFORML 「아- 싸버렸다 싸버렸어, 발로 밟힌거 가지고 허공에 퓻퓻~」
+					PRINTFORML 「밟히는게 좋은거야? 아니면 내 발이라서 그런걸까?」
 			ENDSELECT
 		ELSE
-			SELECTCASE RAND:3
+			SELECTCASE RAND:2
 				CASE 0
-					
+					PRINTFORML 「자지가 아직도 바들바들, 그렇게나 좋았던걸까?」
+					PRINTFORML 「하아...이런 마조 자지는 어떻게 해야 할까...밟히는것만으로 이렇게나 느껴버리는데 말야」
 				CASE 1
-
-				CASE 2
-				
+					PRINTFORML 「내 발이 그렇게나 기분 좋았던 걸까- 기분이 묘한걸」
+					PRINTFORML 「뭐, 밟아주기만 하면 되는거니 나는 편하지만...」
 			ENDSELECT
 		ENDIF
 	ELSE
@@ -1528,10 +1532,55 @@ CALL PALAM_MESSAGE_A
 ;-------------------------------------------------
 ;스마타
 ;記入チェック（=0, 非表示、1, 表示）
-LOCAL = 0
+LOCAL = 1
 ;-------------------------------------------------
 IF LOCAL
-	PRINTFORMW 
+	IF MARK:반발각인 == 3 && !TALENT:연인
+		SELECTCASE RAND:3
+			CASE 0
+				
+			CASE 1
+
+			CASE 2
+
+		ENDSELECT
+	ELSEIF TALENT:연인
+		SELECTCASE RAND:3
+			CASE 0
+				
+			CASE 1
+
+			CASE 2
+			
+		ENDSELECT
+	ELSEIF TALENT:연모||TALENT:사모||TALENT:애욕
+		SELECTCASE RAND:3
+			CASE 0
+				
+			CASE 1
+
+			CASE 2
+			
+		ENDSELECT
+	ELSEIF TALENT:섹프
+		SELECTCASE RAND:3
+			CASE 0
+				
+			CASE 1
+
+			CASE 2
+			
+		ENDSELECT
+	ELSE
+		SELECTCASE RAND:3
+			CASE 0
+				
+			CASE 1
+
+			CASE 2
+			
+		ENDSELECT
+	ENDIF
 	RETURN 1
 ENDIF
 RETURN 1
