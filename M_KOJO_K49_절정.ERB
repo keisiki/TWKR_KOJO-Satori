@@ -988,7 +988,7 @@ ENDIF
 LOCAL = 1
 ;-------------------------------------------------
 IF LOCAL
-	IF ABL:기교 <= 3 || 1 ; 밑에거 만들기 시작하면 지우자
+	IF ABL:기교 <= 3
 		SELECTCASE RAND:5
 			CASE 0
 				IF MARK:반발각인 == 3 && !TALENT:연인
@@ -1534,7 +1534,6 @@ CALL PALAM_MESSAGE_A
 LOCAL = 1
 ;-------------------------------------------------
 IF LOCAL
-	;PRINTFORML 「」
 	IF MARK:반발각인 == 3 && !TALENT:연인
 		SELECTCASE RAND:2
 			CASE 0
@@ -1587,10 +1586,113 @@ CALL PALAM_MESSAGE_A
 ;-------------------------------------------------
 ;파이즈리
 ;記入チェック（=0, 非表示、1, 表示）
-LOCAL = 0
+LOCAL = 1
 ;-------------------------------------------------
 IF LOCAL
-	PRINTFORMW 
+	;PRINTFORML 「」
+	IF TALENT:가슴사이즈 > 0
+		;왕가슴, 가슴신의 힘을 쓴것, 혹은 임신
+		IF MARK:반발각인 == 3 && !TALENT:연인
+			SELECTCASE RAND:2
+				CASE 0
+					PRINTFORML 「아- 쌌다 쌌어, 가슴이 뜨거운걸」
+					PRINTFORML 「왠지 보람 생기는걸, 조금 더 해볼까나?」
+				CASE 1
+					PRINTFORML 「정액이 가슴골을 따라 흘러내리고 있어...따뜻한게 뭔가 기분 좋은걸」
+			ENDSELECT
+		ELSEIF TALENT:연인||TALENT:연모||TALENT:사모||TALENT:섹프||TALENT:애욕
+			SELECTCASE RAND:2
+				CASE 0
+					PRINTFORML 「정액이 가슴에서 솟아오르고 있어...이거 재밌을지도」
+					PRINTFORML 「이걸 로션삼아서 한 번 더 해볼까나...후후후」
+				CASE 1
+					PRINTFORML 「가슴이 따뜻해...후후후, 그렇게나 좋았나요?」
+					PRINTFORML 사토리는 가슴골을 따라 흘러내리는 정액을 과시해 오고 있다
+				CASE 2
+					PRINTFORML 「후후...큰 가슴이란거, 재밌네요...」
+					PRINTFORML 「왠지 모르게 기분이 좋아...」
+					PRINTFORML 사토리는 배시시 웃으며 가슴에 묻은 정액을 바라보고 있다
+			ENDSELECT
+		ELSE
+			SELECTCASE RAND:2
+				CASE 0
+					PRINTFORML 「가슴이 크다보니까 부드러운게 잘 느껴지네요, 상당히 기분 좋았어요」
+					PRINTFORML 「......아아, 참, 내 가슴이지...너무 열중하시길래 저도 그만...」
+				CASE 1
+					PRINTFORML 「가슴골에서 정액이 흐르고 있어...기분이 묘해」
+			ENDSELECT
+		ENDIF
+	ELSE
+		;작은가슴, 기본 상태는 이쪽
+		IF MARK:반발각인 == 3 && !TALENT:연인
+			SELECTCASE RAND:3
+				CASE 0
+					PRINTFORML 「아...가슴에 싸버렸다」
+					PRINTFORML 「가슴에 정액 뿌리는게 그렇게 좋은거야?」
+				CASE 1
+					PRINTFORML 「으엣...얼굴에 튀었잖아...」
+					PRINTFORML 사토리는 툴툴거리며 얼굴을 닦아냈다
+				CASE 2
+					PRINTFORML 「흐응- 제 가슴, 그렇게 좋았던가요?」
+					PRINTFORML 「후후...왠지 즐거운걸, 조금만 더 해줄까나~」
+			ENDSELECT
+		ELSEIF TALENT:연인
+			SELECTCASE RAND:3
+				CASE 0
+					PRINTFORML 「가슴이 정액으로 질척질척해졌네- 그렇게나 좋았던 걸까나」
+					PRINTFORML 「...있죠, 한 번 더 할래요? 미끈미끈해져서 엄청 기분 좋을텐데」
+				CASE 1
+					PRINTFORML 사토리는 입가에 튄 정액을 낼름 핥아먹었다
+					IF EXP:정음경험 < 20
+						PRINTFORML 「...역시 조금 비려...하지만, 조금은 중독적인 맛...?」
+					ELSE
+						PRINTFORML 「헤헤...이렇게나 가득 싸주시다니, 조금 기뻐지는걸요」
+					ENDIF
+					EXP:정음경험++
+				CASE 2
+					PRINTFORML 「아아- 얼굴이 정액 투성이가 되버렸어...」
+					PRINTFORML 「이렇게나 잔뜩 싸버리다니, 그렇게 가슴이 좋은건가요?」
+					PRINTFORML 「...후후, 그렇다면 왠지 기쁜걸요」
+			ENDSELECT
+		ELSEIF TALENT:연모||TALENT:사모
+			SELECTCASE RAND:3
+				CASE 0
+					PRINTFORML 「아- 가슴 기분 좋았다...이거 최고...♥」
+					PRINTFORML 「...응? 아아, 엄청 느끼시길래 무심코 몰입해 버렸네요, 후훗...」
+				CASE 1
+					PRINTFORML 「정액이 꿀렁꿀렁 솟아오르고 있네요, 자지는 아직도 움찔움찔...」
+					PRINTFORML 「조금 귀여운거 같기도? 후후, 좀 더 안아드릴게요」
+					PRINTFORML 사토리는 아직 정액이 나오고 있는 자지를 양 가슴 사이에 파묻었다
+				CASE 2
+					PRINTFORML 「후후...가슴이 정액 범벅이 되버렸네요」
+					PRINTFORML 「왠지 기뻐졌으니까 좀 더 서비스 해드릴게요...」
+					PRINTFORML 사토리는 정액 범벅 가슴으로 방금 막 사정한 자지를 감싸 자극해오고 있다
+					BASE:MASTER:발기 += 100
+			ENDSELECT
+		ELSEIF TALENT:섹프||TALENT:애욕
+			SELECTCASE RAND:3
+				CASE 0
+					PRINTFORML 「우와아...가슴이 정액으로 질척질척」
+					PRINTFORML 「그렇게나 좋았던걸까나, 하기사 하는 내내 기분 좋다고 생각했었지」
+				CASE 1
+					PRINTFORML 「정액이 꿀렁꿀렁 솟아오르고 있어...왠지 재밌는걸」
+					PRINTFORML 「좀 더 괴롭혀주면 어떻게 되려나?」
+					PRINTFORML 사토리는 정액범벅인 가슴으로 %마스터의% 자지를 꾹꾹 눌러왔다
+				CASE 2
+					PRINTFORML 「흐응- 제 가슴, 그렇게 좋았던가요?」
+					PRINTFORML 「후후...왠지 즐거운걸, 조금 더 해줄까나~」
+			ENDSELECT
+		ELSE
+			SELECTCASE RAND:2
+				CASE 0
+					PRINTFORML 「으엣...얼굴까지 튀었어...」
+					PRINTFORML 「...이상한 냄새」
+				CASE 1
+					PRINTFORML 「가슴팍에서 발딱발딱 거리는거, 조금 귀엽네...」
+					PRINTFORML 사토리는 흥미롭다는듯이 자지를 바라보고 있다
+			ENDSELECT
+		ENDIF
+	ENDIF
 	RETURN 1
 ENDIF
 RETURN 1
@@ -1616,7 +1718,7 @@ CALL PALAM_MESSAGE_A
 LOCAL = 1
 ;-------------------------------------------------
 IF LOCAL
-	IF ABL:기교 <= 3 || 1 ; 밑에거 만들기 시작하면 지우자
+	IF ABL:기교 <= 3
 		SELECTCASE RAND:5
 			CASE 0
 				IF MARK:반발각인 == 3 && !TALENT:연인
