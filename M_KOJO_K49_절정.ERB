@@ -1947,10 +1947,91 @@ CALL PALAM_MESSAGE_A
 ;-------------------------------------------------
 ;애널
 ;記入チェック（=0, 非表示、1, 表示）
-LOCAL = 0
+LOCAL = 1
 ;-------------------------------------------------
 IF LOCAL
-	PRINTFORMW 
+	IF NOWEX:A절정
+		;A절정 대사가 같이 나올테니 조금만 쓰면 될듯
+		;동시절정
+		IF ABL:항내사정중독 > 3
+			SELECTCASE RAND:4
+				CASE 0
+					PRINTFORML 「아하아-...엉덩이에 정액이이...」
+					PRINTFORML 「기분 조아...머리가 이상해질거 가타...♥」
+				CASE 1
+					PRINTFORML 「엉덩이가 욱신거려어- 안에서 정액이 꿀렁거리고 이써어♥」
+				CASE 2
+					PRINTFORML 「후아아...♥ 엉덩이가 저릿저릿해에...♥」
+					PRINTFORML 엉덩이에서 정액이 주르륵 흘러나오자 사토리는 온 몸을 파르르 떨며 가볍게 절정했다
+				CASE 3
+					PRINTFORML 「배 안에 따뜻한게 출렁거려...♥」
+					PRINTFORML 장내에 정액이 들어찬 것 자체에서 쾌락을 느끼는 사토리는, 굉장히 기분 좋아 보이는 표정으로 잘게 경련하고 있었다
+			ENDSELECT
+		ELSE
+			IF MARK:반발각인 == 3 && !TALENT:연인
+				SELECTCASE RAND:3
+					CASE 0
+						PRINTFORML 「하아...하아...♥ 엉덩이가 찌릿찌릿해...」
+						PRINTFORML 「안에 싼거야...? 우으으...안에 싸버리면 처리하기 힘든데...」
+					CASE 1
+						PRINTFORML 「아...안에 싸버리다니...으으...」
+						PRINTFORML 「속에서 꿀렁거려서 기분 나빠...」
+					CASE 2
+						PRINTFORML 「으으...정액이 흘러나와서 기분 나빠...」
+						PRINTFORML 「...느꼈지 않냐고요? 그렇다고 안에 싸버리는건 싫거든요...」
+				ENDSELECT
+			ELSEIF TALENT:연인||TALENT:연모||TALENT:사모
+				SELECTCASE RAND:2
+					CASE 0
+						PRINTFORML 「하으으...♥ 안에 싸버리다니...」
+						PRINTFORML 「정액이 속에서 꿀렁거리고 있어...으으...」
+					CASE 1
+						PRINTFORML 「아아...정액이 빠져나가는 감촉만으로도 엉덩이가 찌릿찌릿해...」
+						PRINTFORML 「흐으으으♥ 정말, 다음엔 밖에 해주세요」
+						PRINTFORML 사토리의 몸은 연신 잘게 떨고 있었다
+				ENDSELECT
+			ELSE
+				SELECTCASE RAND:2
+					CASE 0
+						PRINTFORML 「아...안에서 정액이 꿀렁거려어...♥」
+						PRINTFORML 「그것만으로도 엉덩이가 찌릿찌릿하고...흐읏♥」
+					CASE 1
+						PRINTFORML 「아..아아...안에서 흘러나오고 있어...」
+						PRINTFORML 「엉덩이 민감해졌는데...흐으읏♥ 안대에♥ 이거 기분 좋아♥」
+				ENDSELECT
+			ENDIF
+		ENDIF
+	ELSE
+		IF MARK:반발각인 == 3 && !TALENT:연인
+			SELECTCASE RAND:2
+				CASE 0
+					
+				CASE 1
+				
+			ENDSELECT
+		ELSEIF TALENT:연인||TALENT:연모||TALENT:사모
+			SELECTCASE RAND:2
+				CASE 0
+					
+				CASE 1
+				
+			ENDSELECT
+		ELSEIF TALENT:섹프||TALENT:애욕
+			SELECTCASE RAND:2
+				CASE 0
+					
+				CASE 1
+				
+			ENDSELECT
+		ELSE
+			SELECTCASE RAND:2
+				CASE 0
+					
+				CASE 1
+				
+			ENDSELECT
+		ENDIF
+	ENDIF
 	RETURN 1
 ENDIF
 RETURN 1
