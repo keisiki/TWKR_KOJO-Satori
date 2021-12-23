@@ -1589,7 +1589,6 @@ CALL PALAM_MESSAGE_A
 LOCAL = 1
 ;-------------------------------------------------
 IF LOCAL
-	;PRINTFORML 「」
 	IF TALENT:가슴사이즈 > 0
 		;왕가슴, 가슴신의 힘을 쓴것, 혹은 임신
 		IF MARK:반발각인 == 3 && !TALENT:연인
@@ -2105,10 +2104,119 @@ CALL PALAM_MESSAGE_A
 ;-------------------------------------------------
 ;질내
 ;記入チェック（=0, 非表示、1, 表示）
-LOCAL = 0
+LOCAL = 1
 ;-------------------------------------------------
 IF LOCAL
-	PRINTFORMW 
+	;콘돔을 여기 안 걸린다
+	;PRINTFORML 「」
+	;이미 아이가 있지만 생해금 2가 아닌경우는? 설마 있을까나
+	IF (CFLAG:생리주기 == 7||CFLAG:생리주기 == 8||TCVAR:강제배란)&&!TCVAR:피임약&&!TALENT:임신&&CFLAG:생해금 != 2
+		;위험일
+		IF MARK:반발각인 == 3 && !TALENT:연인
+			SELECTCASE RAND:2
+				CASE 0
+					IF !EXP:출산경험
+						PRINTFORML 「정액이...아아...」
+						PRINTFORML 「임신, 하면 어쩌려고...」
+						PRINTFORML 사토리의 얼굴이 새파랗게 질렸다
+					ELSE
+						PRINTFORML 「...매 번 그렇게 멋대로 안에 싸버리다니, 너무하네」
+						PRINTFORML 「...또 임신해버리는 걸까, 하아...」
+						PRINTFORML 사토리는 약간 체념한듯한 표정이다
+					ENDIF
+				CASE 1
+					;PRINTFORML 「」
+			ENDSELECT
+		ELSEIF TALENT:연인
+			SELECTCASE RAND:3
+				CASE 0
+					
+				CASE 1
+
+				CASE 2
+				
+			ENDSELECT
+		ELSEIF TALENT:연모||TALENT:사모||TALENT:애욕
+			SELECTCASE RAND:3
+				CASE 0
+					
+				CASE 1
+
+				CASE 2
+				
+			ENDSELECT
+		ELSEIF TALENT:섹프
+			SELECTCASE RAND:3
+				CASE 0
+					
+				CASE 1
+
+				CASE 2
+				
+			ENDSELECT
+		ELSE
+			SELECTCASE RAND:3
+				CASE 0
+					
+				CASE 1
+
+				CASE 2
+				
+			ENDSELECT
+		ENDIF
+	ELSE
+		;위험일 아님
+		IF MARK:반발각인 == 3 && !TALENT:연인
+			SELECTCASE RAND:3
+				CASE 0
+					PRINTFORML 「...!」
+					PRINTFORML %마스터의% 사정과 함께 사토리의 몸이 파르르 떨렸다
+				CASE 1
+					PRINTFORML 「정액으로 배 안이 따스해...」
+					PRINTFORML 「...왠지 복잡한 기분이야」
+				CASE 2
+					PRINTFORML 「후아아...이거, 기분 좋아...」
+					PRINTFORML 「따스하고...뭔가 채워지는 느낌이 좋아...」
+			ENDSELECT
+		ELSEIF TALENT:연인
+			SELECTCASE RAND:3
+				CASE 0
+					PRINTFORML 「배 안이 따스해...기분 좋은 느낌인걸...」
+					;PRINTFORML 「」
+				CASE 1
+
+				CASE 2
+				
+			ENDSELECT
+		ELSEIF TALENT:연모||TALENT:사모||TALENT:애욕
+			SELECTCASE RAND:3
+				CASE 0
+					
+				CASE 1
+
+				CASE 2
+				
+			ENDSELECT
+		ELSEIF TALENT:섹프
+			SELECTCASE RAND:3
+				CASE 0
+					
+				CASE 1
+
+				CASE 2
+				
+			ENDSELECT
+		ELSE
+			SELECTCASE RAND:3
+				CASE 0
+					
+				CASE 1
+
+				CASE 2
+				
+			ENDSELECT
+		ENDIF
+	ENDIF
 	RETURN 1
 ENDIF
 RETURN 1
