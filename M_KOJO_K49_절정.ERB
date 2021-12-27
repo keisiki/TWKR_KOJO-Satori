@@ -2113,28 +2113,48 @@ IF LOCAL
 	IF (CFLAG:생리주기 == 7||CFLAG:생리주기 == 8||TCVAR:강제배란)&&!TCVAR:피임약&&!TALENT:임신&&CFLAG:생해금 != 2
 		;위험일
 		IF MARK:반발각인 == 3 && !TALENT:연인
-			SELECTCASE RAND:2
+			SELECTCASE RAND:3
 				CASE 0
 					IF !EXP:출산경험
 						PRINTFORML 「정액이...아아...」
 						PRINTFORML 「임신, 하면 어쩌려고...」
 						PRINTFORML 사토리의 얼굴이 새파랗게 질렸다
 					ELSE
-						PRINTFORML 「...매 번 그렇게 멋대로 안에 싸버리다니, 너무하네」
-						PRINTFORML 「...또 임신해버리는 걸까, 하아...」
+						PRINTFORML 「그렇게 또 멋대로 안에 싸버리다니, 너무하네」
+						PRINTFORML 「...하지 말라고 해도 소용 없는거겠지」
 						PRINTFORML 사토리는 약간 체념한듯한 표정이다
 					ENDIF
 				CASE 1
-					;PRINTFORML 「」
+					IF !EXP:출산경험
+						PRINTFORML 「아...안에...」
+						PRINTFORML 사토리의 얼굴이 새파랗게 질렸다
+					ELSE
+						PRINTFORML 「...도대체 어째서...한 번이면 됐잖아...」
+						PRINTFORML 사토리는 망연자실한 표정이다
+					ENDIF
+				CASE 2
+					PRINTFORML 「......」
+					PRINTFORML 사토리는 자신의 다리 사이에 흐르는 정액을 물끄러미 바라볼 뿐이었다
 			ENDSELECT
 		ELSEIF TALENT:연인
 			SELECTCASE RAND:3
 				CASE 0
-					
+					IF !EXP:출산경험
+						PRINTFORML 「...그렇게나 아이를 원했던 건가요...?」
+						PRINTFORML 「...아무리 그래도 저는...하아...」
+					ELSE
+						PRINTFORML 「...전에도 그랬지만, 아직 마음의 준비가 안됐는데...」
+						PRINTFORML 「...아이는, 나중에라도 잔뜩 만들 수 있는것을...」
+					ENDIF
 				CASE 1
-
+					PRINTFORML 「......」
+					PRINTFORML 사토리는 약간 원망섞인 시선을 보내고 있다
 				CASE 2
-				
+					IF !EXP:출산경험
+						;PRINTFORML 「」
+					ELSE
+						
+					ENDIF
 			ENDSELECT
 		ELSEIF TALENT:연모||TALENT:사모||TALENT:애욕
 			SELECTCASE RAND:3
