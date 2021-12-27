@@ -2151,37 +2151,58 @@ IF LOCAL
 					PRINTFORML 사토리는 약간 원망섞인 시선을 보내고 있다
 				CASE 2
 					IF !EXP:출산경험
-						;PRINTFORML 「」
+						PRINTFORML 「안에 싸버리다니...오늘 위험한 날인데」
+						PRINTFORML 「...싫은건 아니지만, 아직은 둘 만의 시간을 더 즐기고 싶은걸요」
 					ELSE
-						
+						PRINTFORML 「또 안에...하아, 정말이지...」
+						PRINTFORML 「좋은건 알겠지만 조금은 자중해야죠」
 					ENDIF
 			ENDSELECT
 		ELSEIF TALENT:연모||TALENT:사모||TALENT:애욕
 			SELECTCASE RAND:3
 				CASE 0
-					
+					PRINTFORML 「......」
+					PRINTFORML 사토리는 약간 원망섞인 시선을 보내고 있다
 				CASE 1
-
+					IF !EXP:출산경험
+						PRINTFORML 「아...안에...어째서...?」
+						PRINTFORML 「오늘 위험한 날인데...」
+					ELSE
+						PRINTFORML 「또...어째서 자꾸 이런 일을 하는거야」
+						PRINTFORML 「마음을 읽어도, 이해하지 못하겠어」
+					ENDIF
 				CASE 2
-				
+					IF !EXP:출산경험
+						PRINTFORML 「정액이...아아...」
+						PRINTFORML 「임신, 하면 어쩌려고...」
+						PRINTFORML 사토리의 얼굴이 새파랗게 질렸다
+					ELSE
+						PRINTFORML 「그렇게 또 멋대로 안에 싸버리다니, 너무하네요」
+						PRINTFORML 「...하지 말라고 해도 듣진 없겠지만」
+						PRINTFORML 사토리는 약간 체념한듯한 표정이다
+					ENDIF
 			ENDSELECT
 		ELSEIF TALENT:섹프
 			SELECTCASE RAND:3
 				CASE 0
-					
+					PRINTFORML 「아아...오늘은 안되는데..」
+					PRINTFORML 「생겨버리면 한동안 야한짓 못하잖아요...」
+					PRINTFORML 사토리는 투덜거렸다
 				CASE 1
-
+					PRINTFORML 「후아...뭔가 확실히 기분 좋긴 한데...」
+					PRINTFORML 「그래도 생기는건 곤란한데...어쩌지...」
 				CASE 2
-				
+					PRINTFORML 「아아...안에 싸버렸어...」
+					PRINTFORML 「생기면 어쩌지...으...」
 			ENDSELECT
 		ELSE
-			SELECTCASE RAND:3
+			SELECTCASE RAND:2
 				CASE 0
-					
+					PRINTFORML 「아...안에...아아...」
+					PRINTFORML 「오늘은 정말 안되는데...」
 				CASE 1
-
-				CASE 2
-				
+					PRINTFORML 「아, 안에 싸버리다니...」
+					PRINTFORML 사토리는 망연자실한 표정이다
 			ENDSELECT
 		ENDIF
 	ELSE
