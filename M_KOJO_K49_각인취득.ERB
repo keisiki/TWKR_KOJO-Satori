@@ -4,12 +4,53 @@
 @M_KOJO_MESSAGE_MARKCNG_K49
 ;이대로라면 지문이 표시되지 않습니다
 ;지문을 표시하고 싶으신 분은、아래의 주석처리를 삭제해 주세요
-;CALL MARK_MESSAGE
+CALL MARK_MESSAGE
 ;고통각인
+IF FLAG:70 || CFLAG:수면
+	;대사 무효 판정
+	RETURN
+ENDIF
+;PRINTFORMW 「」
 IF TFLAG:22 == 1
-	PRINTFORMW 
+	IF MARK:반발각인 == 3
+		IF TALENT:연인
+			PRINTFORMW 「으긋...아...아파...」
+			PRINTFORMW 사토리는 고통에 얼굴을 찡그리고 있다
+		ELSE
+			PRINTFORMW 「아...아프잖아...읏...」
+			PRINTFORMW 사토리는 %마스터를% 노려보고 있다
+		ENDIF
+	ELSEIF TALENT:연인||TALENT:연모||TALENT:사모||TALENT:애욕
+		PRINTFORMW 「아...아파요...이런건 싫어...」
+		PRINTFORMW 사토리는 고통에 인상을 쓰고 있다
+	ELSEIF TALENT:섹프
+		PRINTFORMW 「윽...아, 아픈걸 즐기는 취향은...없는걸...」
+		PRINTFORMW 사토리는 고통에 인상을 썼다
+	ELSE
+		PRINTFORMW 「아...아팟...그만둬...」
+	ENDIF
 ELSEIF TFLAG:22 == 2
-	PRINTFORMW 
+	IF MARK:반발각인 == 3
+		IF TALENT:연인
+			PRINTFORMW 「으긋...아파...그만해...제발...」
+			PRINTFORMW 사토리의 몸이 고통에 바들바들 떨리고 있다
+		ELSE
+			PRINTFORMW 「윽...아, 아파...그만...제발...」
+			PRINTFORMW 사토리의 몸이 고통에 바들바들 떨리고 있다
+		ENDIF
+	ELSEIF TALENT:연인
+		PRINTFORMW 「자...잠깐...이건 너무...으긋...」
+		PRINTFORMW 지나친 고통으로 사토리의 눈에 눈물이 고여갔다
+	ELSEIF TALENT:연모||TALENT:사모||TALENT:애욕
+		PRINTFORMW 「으깃...아, 아파...! 그만해...!」
+		PRINTFORMW 사토리는 울면서 호소했다
+	ELSEIF TALENT:섹프
+		PRINTFORMW 「그...그만...이거 너무 아파...그만해...」
+		PRINTFORMW 사토리는 울면서 호소했다
+	ELSE
+		PRINTFORMW 「그...그만...그만둬...아프다고...」
+		PRINTFORMW 사토리는 고통에 이를 딱딱 부딪히고 있다
+	ENDIF
 ELSEIF TFLAG:22 == 3
 	PRINTFORMW 
 ENDIF
