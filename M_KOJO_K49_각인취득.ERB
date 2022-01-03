@@ -52,16 +52,87 @@ ELSEIF TFLAG:22 == 2
 		PRINTFORMW 사토리는 고통에 이를 딱딱 부딪히고 있다
 	ENDIF
 ELSEIF TFLAG:22 == 3
-	PRINTFORMW 
+	IF MARK:반발각인 == 3
+		IF TALENT:연인
+			PRINTFORMW 「커헉...이...이건 너무...아팟...」
+			PRINTFORMW 「그마..그만해...더 이상은...」
+			PRINTFORMW 사토리는 지나친 고통에 전신을 경련하고 있다
+		ELSE
+			PRINTFORMW 「그, 그만...이 이상은...무리...」
+			PRINTFORMW 사토리는 전신을 경련하며 괴로워 하고 있다
+		ENDIF
+	ELSEIF TALENT:연인
+		PRINTFORMW 「아파...그마, 그만해...이런건...싫어...」
+		PRINTFORMW 사토리의 몸이 고통에 덜덜 떨리고 있다
+	ELSEIF TALENT:연모||TALENT:사모||TALENT:애욕
+		PRINTFORMW 「그, 그만...제발...이런거 싫어...」
+		PRINTFORMW 사토리는 지나친 고통에 경련하며 호소해왔다
+	ELSE
+		PRINTFORMW 「아파...아파...싫어...아픈건...그만...」
+		PRINTFORMW 사토리는 몸을 웅크린채 바들바들 떨고 있다
+	ENDIF
 ENDIF
 
 ;시간각인
 IF TFLAG:시간각인취득 == 1
-	PRINTFORMW 
+	IF MARK:반발각인 == 3
+		IF TALENT:연인
+			PRINTFORMW 「하아...하아...이거, 조금 중독될거 같네...」
+		ELSE
+			PRINTFORMW 「...으극...」
+			PRINTFORMW 사토리는 쾌락과 분노가 반반 섞인 묘한 표정으로 이쪽을 바라보고 있다
+		ENDIF
+	ELSEIF TALENT:연인
+		PRINTFORMW 「...하아아...♥ 이거, 왠지 중독될것만 같네...」
+		PRINTFORMW 「갑자기 기분 좋아지는거 너무 좋은걸...」
+		PRINTFORMW 사토리는 느슨해진 미소로 %마스터를% 바라보고 있다
+	ELSEIF TALENT:연모||TALENT:사모||TALENT:애욕
+		PRINTFORMW 「아아...진짜...어째서야」
+		PRINTFORMW 「이렇게 마구 당하는건데, 왜 기대가 되는거야...」
+	ELSEIF TALENT:섹프
+		PRINTFORMW 「으응...이렇게 자꾸 해버리면, 평범하게는 못 느껴버릴지도...」
+		PRINTFORMW 「...상관없나...이게 훨씬 기분 좋은걸...」
+	ELSE
+		PRINTFORMW 「으읏...」
+		PRINTFORMW 사토리는 잠시 부족하다는듯이 %마스터를% 응시했지만, 이내 고개를 돌려버렸다
+	ENDIF
 ELSEIF TFLAG:시간각인취득 == 2
-	PRINTFORMW 
+	IF MARK:반발각인 == 3
+		IF TALENT:연인
+			PRINTFORMW 「...아아, 이제는 이거 아니면 느끼기 힘든걸...」
+			PRINTFORMW 사토리는 살짝 풀어진 표정이다
+		ELSE
+			PRINTFORMW 「...싫을뿐일텐데...억지로 당하는것 뿐일텐데...왜...기분이 이렇게까지 좋은거야...」
+			PRINTFORMW 사토리는 갈등 가득한 표정으로 %마스터를% 바라보고 있다
+		ENDIF
+	ELSEIF TALENT:연인
+		PRINTFORMW 「으응...이제는 이거 말곤 기분좋게 되지 못할지도...」
+		PRINTFORMW 「정말, 어쩔거예요 이거」
+	ELSEIF TALENT:연모||TALENT:사모||TALENT:애욕
+		PRINTFORMW 「...진짜, 그렇게 자꾸 하니깐 점점 이상해지잖아요...」
+		PRINTFORMW 「...조금 두근거리기도 하고」
+	ELSEIF TALENT:섹프
+		PRINTFORMW 「후아...이거 너무 좋은걸...이제는 언제 해줄까 기다려질 정도야...」
+		PRINTFORMW 「...그런 김에, 한번만 더 해주실래요? 후후...」
+	ELSE
+		PRINTFORMW 「아아...그만...이 이상하면 이상해질거 같아...」
+		PRINTFORMW 사토리는 몸을 움츠린채 거리를 벌리고 있다
+	ENDIF
 ELSEIF TFLAG:시간각인취득 == 3
-	PRINTFORMW 
+	IF MARK:반발각인 == 3 && !TALENT:연인
+		PRINTFORMW 「...저항할수도 없고, 하지 말라 해도 안 들을테니...」
+		PRINTFORMW 「그렇담 즐겨버려도, 상관없는거겠지...」
+	ELSEIF TALENT:연인||TALENT:연모||TALENT:사모||TALENT:애욕||TALENT:섹프
+		PRINTFORMW 「하아...진짜, 이상한 버릇이 생겨버렸어」
+		PRINTFORMW 「계속 언제쯤 기분좋은게 느껴질까 두근두근하게 만들고...」
+		PRINTFORMW 「%마스터가% 옆에 있던 없던 기대하게 되버렸다고요」
+		PRINTFORMW 「...그러니까, 책임지고 더 기분 좋은거, 해줘야 해요? 이렇게 계속 달아오르게 만든 %마스터가% 나쁜거니까」
+	ELSE
+		PRINTFORMW 「이제는 못 참겠어...」
+		PRINTFORMW 「시간 멈추고 기분 좋은거 잔뜩 당해버리니까, 몸이 이상해지는거 같아...」
+		PRINTFORMW 「가만히 있어도 괜히 언제 당할까 기다리게 되고...괜히 몸이 달아올라버려...」
+		PRINTFORMW 「...어짜피 잔뜩 당해버린거, 그냥 놓아버리면 편하려나」
+	ENDIF
 ENDIF
 
 ;쾌락각인
