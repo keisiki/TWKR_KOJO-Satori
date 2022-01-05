@@ -137,11 +137,46 @@ ENDIF
 
 ;쾌락각인
 IF TFLAG:23 == 1
-	PRINTFORMW 
+	IF MARK:반발각인 == 3 && !TALENT:연인
+		PRINTFORMW 「아...♥ 이거 좋을...지도...?」
+		PRINTFORMW 「아, 아니...으으...아무것도 아녜요」
+	ELSEIF TALENT:연인||TALENT:연모||TALENT:사모
+		PRINTFORMW 「아아...♥ 뭔가 둥실둥실거리는 기분...」
+		PRINTFORMW 「...이거 조금 마음에 들지도」
+	ELSEIF TALENT:섹프||TALENT:애욕
+		PRINTFORMW 「아...♥ 이번건 평소보다 더 좋아...아아...♥」
+		PRINTFORMW 사토리는 쾌락에 취해 입가를 느슨하게 하고 있다
+	ELSE
+		PRINTFORMW 「아...♥」
+		PRINTFORMW 일순간 쾌락에 녹아내린 표정을 짓던 사토리는 이내 얼굴을 붉히며 고개를 돌렸다
+	ENDIF
 ELSEIF TFLAG:23 == 2
-	PRINTFORMW 
+	IF MARK:반발각인 == 3 && !TALENT:연인
+		PRINTFORMW 「아아...♥ 이번건...평소보다 센걸...♥」
+		PRINTFORMW 쾌락에 몸을 파르르 떠는 사토리의 얼굴은 열락에 녹아내린 여자의 표정 그 자체였다
+	ELSEIF TALENT:연인||TALENT:연모||TALENT:사모
+		PRINTFORMW 「...전신에 전기가 흐르는것만 같아...♥」
+		PRINTFORMW 사토리의 얼굴이 쾌락에 녹아내려가 완전한 '여자'의 얼굴이 되어있었다
+	ELSEIF TALENT:섹프||TALENT:애욕
+		PRINTFORMW 「아아♥ 이거♥ 이거 기분 좋아아...♥」
+		PRINTFORMW 「이런걸 바랬어, 좀 더♥ 기분 좋은거 더 해줘어♥」
+	ELSE
+		PRINTFORMW 「온 몸에...힘이 빠져...♥ 머야 이거...♥ 기분 좋아...♥」
+		PRINTFORMW 사토리는 멍한 눈빛으로 %마스터를% 올려다볼 뿐이었다
+	ENDIF 
 ELSEIF TFLAG:23 == 3
-	PRINTFORMW 
+	IF MARK:반발각인 == 3 && !TALENT:연인
+		PRINTFORMW 「아...이, 이젠 아무것도 모르겠어...너무 기분 좋아...♥」
+		PRINTFORMW 「기분 좋은거 더 해줘...♥」
+		PRINTFORMW 사토리는 상대가 누군지도 까먹고 달라붙어 애원해오고 있었다
+	ELSEIF TALENT:연인||TALENT:연모||TALENT:사모||TALENT:섹프||TALENT:애욕
+		PRINTFORMW 「아...아핫...♥ 기분 너무 좋아...♥」
+		PRINTFORMW 「아아...♥ 아무런 생각도 안 나...머리가 멍해...♥」
+		PRINTFORMW 사토리의 얼굴은 쾌락에 녹아내려 하나의 '암컷'이 되어 있었다
+	ELSE
+		PRINTFORMW 「아...아핫...아하핫...♥ 기분, 좋아...♥」
+		PRINTFORMW 지나친 쾌감에 잠시 사고가 멈춘듯한 표정이었다
+	ENDIF
 ENDIF
 
 ;괘씸각인
