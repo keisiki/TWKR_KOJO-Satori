@@ -255,9 +255,44 @@ ENDIF
 
 ;반발각인
 IF TFLAG:21 == 1
-	PRINTFORMW 
+	PRINTFORMW 「......」
+	PRINTFORMW 사토리는 약간 불편한듯한 표정을 지었다
 ELSEIF TFLAG:21 == 2
-	PRINTFORMW 
+	IF TALENT:연인
+		PRINTFORMW 「...%사마스터라%고 해도 안되는건 안되는거잖아요?」
+		PRINTFORMW 사토리는 짜증 섞인 목소리로 투덜거렸다
+	ELSEIF TALENT:연모||TALENT:사모||TALENT:애욕
+		PRINTFORMW 「...」
+		PRINTFORMW 사토리는 조금 슬픈듯이 고개를 돌렸다
+	ELSEIF TALENT:섹프
+		PRINTFORMW 「...몸을 섞는 사이라고 해서 허물없는 관계는 아닐텐데요」
+		PRINTFORMW 「조금은...자제라는걸 해줬음 하는데...」
+	ELSE
+		IF CFLAG:3000 == 0
+			PRINTFORMW 「조금은...자중해줬음 하는데 말이지」
+		ELSE
+			PRINTFORMW 「일부러 그러는 걸까?」
+			PRINTFORMW 「...계속 그렇게 나오면 나라도 화내는데 말이지」
+		ENDIF
+	ENDIF
 ELSEIF TFLAG:21 == 3
-	PRINTFORMW 
+	IF TALENT:연인
+		PRINTFORMW 「...도대체...왜...」
+		PRINTFORMW 「아무리 읽어봐도, %사마스터의% 마음을 이해하지 못하겠어요...」
+		PRINTFORMW 사토리는 슬픈듯이 말했다
+	ELSEIF TALENT:연모||TALENT:사모||TALENT:애욕||TALENT:섹프
+		PRINTFORMW 「...어느정도 하다 그만둬 줄거라 생각했는데」
+		PRINTFORMW 「끝까지 제 생각은 전혀 하지 않는군요」
+		PRINTFORMW 「...아무래도 %MASTERNAME:49%에 대해 잘못 생각하고 있었나 보네요」
+	ELSE
+		IF CFLAG:3000 == 0
+			PRINTFORMW 「...적당히 그만둬 줄거라 생각했는데」
+			PRINTFORMW 「그런걸 기대한 내가 바보였네」
+			PRINTFORMW 사토리는 경멸감이 가득한 표정으로 %마스터를% 노려보고 있다
+		ELSE
+			PRINTFORMW 「일부러 그렇게 남의 속을 긁고 다니면...」
+			PRINTFORMW 「그렇게 오래 살진 못할거예요」
+			PRINTFORMW 사토리는 싸늘하게 말했다
+		ENDIF
+	ENDIF
 ENDIF
