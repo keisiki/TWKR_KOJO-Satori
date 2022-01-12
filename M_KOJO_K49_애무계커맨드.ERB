@@ -1,6 +1,8 @@
 ﻿;※※※※※※※※※※※※※※※※※※※※※※※※※
 ;애무계 커맨드
 ;※※※※※※※※※※※※※※※※※※※※※※※※※
+
+;PRINTFORMW 「」
 ;==================================================
 ;0,애무
 ;==================================================
@@ -12,7 +14,7 @@ RETURN RESULT
 @M_KOJO_MESSAGE_COM_K49_0_1
 ;-------------------------------------------------
 ;기입체크 (=0, 비표시、1, 표시)
-LOCAL = 0
+LOCAL = 1
 ;-------------------------------------------------
 IF LOCAL
 	;-------------------------------------------------
@@ -20,10 +22,51 @@ IF LOCAL
 	;-------------------------------------------------
 	;처음
 	;기입체크
-	LOCAL:1 = 0
+	LOCAL:1 = 1
 	;-------------------------------------------------
 	IF LOCAL:1 && FIRSTTIME(SELECTCOM)
-		PRINTFORMW 
+		IF MARK:반발각인 == 3
+			IF TALENT:연인
+				PRINTFORMW 「......」
+				PRINTFORMW 사토리는 긴장으로 인해 살짝 굳은채로 %마스터의% 손길을 받아들이고 있다
+			ELSE
+				PRINTFORMW 「...더듬는 손길이 음란해」
+				PRINTFORMW 사토리는 짧게 쏘아붙일 뿐이었다
+			ENDIF
+		ELSEIF TALENT:연인
+			PRINTFORMW 「아...♥」
+			PRINTFORMW 사토리는 황홀한 표정으로 %마스터의% 손길을 받아들이고 있다
+		ELSEIF TALENT:연모||TALENT:사모
+			PRINTFORMW 「......」
+			PRINTFORMW 사토리는 얼굴을 붉힌채 말없이 %마스터의% 손길을 받아들이고 있다
+		ELSEIF TALENT:섹프||TALENT:애욕
+			IF ABL:MASTER:기교 > 2
+				PRINTFORMW 「흐으...♥ 손놀림 야해」
+				PRINTFORMW 「이런 평범한 애무도 능숙하시네요...」
+			ELSE
+				PRINTFORMW 「아하핫, 간지러워요」
+				PRINTFORMW 「그만그만 간지럽다니깐」
+				PRINTFORMW 사토리는 깔깔대며 웃을뿐 느끼진 않는 모양이었다
+			ENDIF
+		ELSE
+			IF CFLAG:3000 == 0
+				IF TCVAR:억지로
+					PRINTFORMW 「하...하지마...그렇게 만지지 마...!」
+				ELSE
+					PRINTFORMW 「으응...이게 애무구나...기분...좋을지도?」
+				ENDIF
+			ELSE
+				IF ABL:MASTER:기교 <= 2
+					PRINTFORMW 「허접하네」
+					PRINTFORMW 「머릿속 망상은 잔뜩이면서 실제로는 서툴잖아」
+					PRINTFORMW 「전부 허세였던 걸까나」
+					PRINTFORMW 사토리는 담담히 쏘아붙였다
+				ELSE
+					PRINTFORMW 「손놀림 야해」
+					PRINTFORMW 「누구한테 그렇게 연습한걸까나」
+				ENDIF
+			ENDIF
+		ENDIF
 		RETURN 1
 	ENDIF
 	;-------------------------------------------------
