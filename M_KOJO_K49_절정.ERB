@@ -2110,7 +2110,7 @@ IF LOCAL
 	;콘돔을 여기 안 걸린다
 	;PRINTFORML 「」
 	;이미 아이가 있지만 생해금 2가 아닌경우는? 설마 있을까나
-	IF (CFLAG:생리주기 == 7||CFLAG:생리주기 == 8||TCVAR:강제배란)&&!TCVAR:피임약&&!TALENT:임신&&CFLAG:생해금 != 2
+	IF ST_위험일()
 		;위험일
 		IF MARK:반발각인 == 3 && !TALENT:연인
 			SELECTCASE RAND:3

@@ -1182,3 +1182,11 @@ ELSE
             ENDIF
     ENDSELECT
 ENDIF
+
+@ST_위험일
+#FUNCTION
+IF (CFLAG:생리주기 == 7||CFLAG:생리주기 == 8||TCVAR:강제배란)&&!TCVAR:피임약&&!TALENT:임신&&CFLAG:생해금 != 2&&!TEQUIP:MASTER:콘돔
+    RETURNF 1
+ELSE
+    RETURNF 0
+ENDIF
