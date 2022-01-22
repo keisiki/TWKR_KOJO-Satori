@@ -225,7 +225,6 @@ IF LOCAL&&!FLAG:70
 	;수면중
 	;-------------------------------------------------
 	IF CFLAG:수면
-		;PRINTFORMW 「」
 		IF ABL:C감각 + ABL:B감각 + ABL:MASTER:기교 + ABL:MASTER:손가락 >= 4
 			;많이 느꼈다
 			IF MARK:반발각인 == 3 && !TALENT:연인
@@ -505,7 +504,7 @@ RETURN RESULT
 @M_KOJO_MESSAGE_COM_K49_1_1
 ;-------------------------------------------------
 ;기입체크 (=0, 비표시、1, 표시)
-LOCAL = 0
+LOCAL = 1
 ;-------------------------------------------------
 IF LOCAL
 	;-------------------------------------------------
@@ -513,20 +512,92 @@ IF LOCAL
 	;-------------------------------------------------
 	;처음
 	;기입체크
-	LOCAL:1 = 0
+	LOCAL:1 = 1
 	;-------------------------------------------------
+	;PRINTFORMW 「」
 	IF LOCAL:1 && FIRSTTIME(SELECTCOM)
-		PRINTFORMW 
+		IF MARK:반발각인 == 3 && !TALENT:연인
+			PRINTFORMW 「하으...생각보다, 이상한 느낌...」
+			PRINTFORMW 「뭔가가 거기를 기어다니는거 같아...근데...좋아...♥」
+		ELSEIF TALENT:연인
+			PRINTFORMW 「이, 이상한 느낌...뭔가가 거기에서 기어다니는거 같아...」
+			PRINTFORMW 「아...근데 싫지는...않을지도...?」
+		ELSEIF TALENT:연모||TALENT:사모||TALENT:애욕
+			PRINTFORMW 「거, 거기 더러워요...앗...♥」
+			PRINTFORMW 사토리의 얼굴이 새빨갛게 물들었다
+		ELSEIF TALENT:섹프
+			PRINTFORMW 「크, 클리 핥아지는거...이상한 느낌인데...좋아...♥」
+			PRINTFORMW 「이거, 마음에 들지도...♥」
+		ELSE
+			PRINTFORMW 「하...핥는다니...」
+			PRINTFORMW 「앗..잠깐...아직 해도 된다고...으으읏...」
+			PRINTFORMW 「이, 이상한 느낌...기분이 이상해...」
+		ENDIF
 		RETURN 1
 	ENDIF
 	;-------------------------------------------------
-	;질내사정직후
+	;질내사정직후   기승위 착정후 강제로 먹이는 시추에이션이 있을수도, 새드끼로 구별하자
 	;기입체크
-	LOCAL:1 = 0
+	LOCAL:1 = 1
 	;-------------------------------------------------
 	IF LOCAL:1 && TCVAR:100 == PLAYER
 		IF TCVAR:102
-			PRINTFORMW 
+			IF ABL:새드끼 > 3
+				IF MARK:반발각인 == 3 && !TALENT:연인
+					SELECTCASE RAND:3
+						CASE 0
+							PRINTFORMW 「빨리 닦아내, 자기가 더럽힌건 스스로 치워야지?」
+							PRINTFORMW 사토리는 즐거운듯이 웃으며 말해왔다
+						CASE 1
+							PRINTFORMW 「어머나 청소일까나? 이런면에선 눈치가 빠른걸」
+							PRINTFORMW 「다른때에 그만큼만 잘 해줬으면 얼마나 좋아」
+						CASE 2
+							PRINTFORMW 「아아- 훌륭한 펫의 자세야, 화장실에서 써먹기 좋겠는걸」
+					ENDSELECT
+				ELSEIF TALENT:연인||TALENT:연모||TALENT:사모||TALENT:애욕
+					SELECTCASE RAND:2
+						CASE 0
+							PRINTFORMW 「후후, 기특한걸♥ 더럽힌걸 스스로 청소하다니」
+							PRINTFORMW 「이대로 자위용 애완동물이 되는건 어떨까나~」
+						CASE 1
+							PRINTFORMW 「옳지옳지♥ 말끔하게 청소해주렴♥」
+							PRINTFORMW 「깨끗하게 못한다면...어떤 벌을 줄까나? 후후♥」
+					ENDSELECT
+				ELSEIF TALENT:섹프
+					PRINTFORMW 「아아, 이것 참 편리한걸, 뒷처리까지 해주는 자위용 펫이라니」
+					PRINTFORMW 「오린이나 오쿠만큼이나 우수한 애완동물이야♥」
+					PRINTFORMW 사토리는 즐거운듯이 말해왔다
+				ELSE
+					SELECTCASE RAND:2
+						CASE 0
+							PRINTFORMW 「청소해주는거야? 기특한걸, 스스로 치울줄도 알고」
+							PRINTFORMW 「그럼, 말끔하게 청소해두렴♥」
+						CASE 1
+							PRINTFORMW 「한방울도 남기지 말고 깔끔하게 해주렴」
+							PRINTFORMW 「그렇지 않으면...후후후, 어떻게 되려나♥」
+					ENDSELECT
+				ENDIF
+			ELSE
+				IF MARK:반발각인 == 3 && !TALENT:연인
+					PRINTFORMW 「자기 정액을...먹어...?」
+					PRINTFORMW 「...이해하질 못하겠네」
+				ELSEIF TALENT:연인||TALENT:연모||TALENT:사모||TALENT:애욕
+					PRINTFORMW 「그, 그걸 왜 먹어요...?!」
+					PRINTFORMW 사토리는 당혹한 표정으로 %마스터를% 바라보고 있다
+				ELSEIF TALENT:섹프
+					PRINTFORMW 「에에...」
+					PRINTFORMW 정액과 애액의 혼합물을 빨아들이는 %마스터를% 보며 사토리는 뜨악한 표정을 지어보이고 있다
+				ELSE
+					IF CFLAG:3000 == 0
+						PRINTFORMW 「엑...자기 정액을...」
+						PRINTFORMW 사토리는 뜨악한듯이 바라보고 있다
+					ELSE
+						PRINTFORMW 「...자기껄 먹는거야...?」
+						PRINTFORMW 「이상한 사람인건 진작에 알고 있었지만...」
+						PRINTFORMW 사토리는 조금 깬다는 듯이 바라보고 있다
+					ENDIF
+				ENDIF
+			ENDIF
 			RETURN 1
 		ENDIF
 	ENDIF
@@ -539,6 +610,7 @@ IF LOCAL
 		PRINTFORMW 
 		RETURN 1
 	ENDIF
+	;-------------------------------------------------
 	;기본세트
 	;시간(時姦)중
 	IF FLAG:70
@@ -561,7 +633,7 @@ ENDIF
 RETURN 1
 ;나머지는 적당한 분기를 추가해주세요
 ;==================================================
-;2,펠라한다
+;2,펠라한다(마스터가)    후타 사토리에 대한 구상까지 구현하기엔 너무나도 오래걸리므로 생략
 ;==================================================
 @M_KOJO_MESSAGE_COM_K49_2
 CALL TRAIN_MESSAGE
