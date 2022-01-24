@@ -604,30 +604,126 @@ IF LOCAL
 	;-------------------------------------------------
 	;절정했다
 	;기입체크
-	LOCAL:1 = 0
+	LOCAL:1 = 1
 	;-------------------------------------------------
 	IF LOCAL:1 && NOWEX:0
-		PRINTFORMW 
+		SELECTCASE RAND:3
+			CASE 0
+				PRINTFORMW 「앗♥ 잠깐♥ 이 이상 핥아대면...♥」
+			CASE 1
+				PRINTFORMW 「안대♥ 지금 건드리면 안돼에...!」
+			CASE 2
+				PRINTFORMW 「자♥ 잠깐♥ 그렇게 계속 핥으면...♥」
+		ENDSELECT
 		RETURN 1
 	ENDIF
 	;-------------------------------------------------
 	;기본세트
 	;시간(時姦)중
 	IF FLAG:70
-		PRINTFORMW 
 		RETURN 1
-	;연모
-	ELSEIF TALENT:연모
-		PRINTFORMW 
-		RETURN 1
-	;괘씸3
-	ELSEIF MARK:괘씸각인 == 3
-		PRINTFORMW 
-		RETURN 1
-	;그 이외
 	ELSE
-		PRINTFORMW 
-		RETURN 1
+		IF ABL:C감각 + ABL:MASTER:혀 >= 3
+			;많이 느낌
+			IF MARK:반발각인 == 3 && !TALENT:연인
+				SELECTCASE RAND:3
+					CASE 0
+						PRINTFORMW 「아...안대...혀 집어넣지마아...」
+						PRINTFORMW 보지 속을 얕게 파고든 혀의 감촉에 사토리의 몸이 파르르 떨렸다
+					CASE 1
+						PRINTFORMW 「하으...♥ 클리 그렇게 핥지마...」
+						PRINTFORMW 싫은소리를 하면서도 이미 목소리부터 쾌락에 녹아내린게 티가 난다
+					CASE 2
+						PRINTFORM 「
+						CALL ST_CLIMAX(RAND:4 + 3)
+						PRINTFORMW 」
+				ENDSELECT
+			ELSEIF TALENT:연인
+				SELECTCASE RAND:3
+					CASE 0
+
+					CASE 1
+
+					CASE 2
+						PRINTFORM 「
+						CALL ST_CLIMAX(RAND:4 + 3)
+						PRINTFORMW 」
+				ENDSELECT
+			ELSEIF TALENT:연모||TALENT:사모||TALENT:애욕
+				SELECTCASE RAND:3
+					CASE 0
+						PRINTFORMW 「아앗♥ 크, 클리 할짝할짝 하면 안대에♥」
+						;PRINTFORMW 「」
+					CASE 1
+
+					CASE 2
+						PRINTFORM 「
+						CALL ST_CLIMAX(RAND:4 + 3)
+						PRINTFORMW 」
+				ENDSELECT
+			ELSEIF TALENT:섹프
+				SELECTCASE RAND:3
+					CASE 0
+						PRINTFORMW 「아앗♥ 클리 빙글빙글 하면 안대에♥」
+						PRINTFORMW 사토리의 몸이 파르르 떨렸다
+					CASE 1
+						PRINTFORMW 「아♥ 거기♥ 거기 좋아♥」
+						PRINTFORMW 「좀 더 핥아줘, 기분좋게 해줘어♥」
+						PRINTFORMW %마스터의% 혀놀림에 따라 사토리의 허리가 팔딱팔딱 뛰었다
+					CASE 2
+						PRINTFORM 「
+						CALL ST_CLIMAX(RAND:4 + 3)
+						PRINTFORMW 」
+				ENDSELECT
+			ELSE
+				SELECTCASE RAND:2
+					CASE 0
+						PRINTFORMW 「아♥ 거기 안돼♥ 콩알 핥지마아♥」
+					CASE 1
+						PRINTFORM 「
+						CALL ST_CLIMAX(RAND:4 + 3)
+						PRINTFORMW 」
+				ENDSELECT
+			ENDIF
+		ELSE
+			IF MARK:반발각인 == 3 && !TALENT:연인
+				SELECTCASE RAND:2
+					CASE 0
+						PRINTFORMW 「...미끈거리는게 기어다니는 느낌이야」
+						PRINTFORMW 「상당히 징그러운...그런 느낌」
+					CASE 1
+						PRINTFORMW 「...이런게 좋은걸까나, 완전히 버터견이네」
+						PRINTFORMW 「그렇게보면 조금은 귀여울지도?」
+				ENDSELECT
+			ELSEIF TALENT:연인||TALENT:연모||TALENT:사모||TALENT:애욕
+				SELECTCASE RAND:2
+					CASE 0
+						PRINTFORMW 「아하하...간지러워요♥」
+						PRINTFORMW 「강아지가 핥는거 같아...♥」
+					CASE 1
+						PRINTFORMW 「따뜻하고 축축한게...거기를 기어다니고 있어...」
+						PRINTFORMW 「이상하고 묘한 느낌...조금은 기분 좋을지도...?」
+				ENDSELECT
+			ELSEIF TALENT:섹프
+				SELECTCASE RAND:2
+					CASE 0
+						PRINTFORMW 「간지러워요...」
+						PRINTFORMW 「응...클리쪽 건드리는건 조금 기분 좋을지도...?」
+					CASE 1
+						PRINTFORMW 「으응......」
+						PRINTFORMW 사토리는 약간 심드렁한 표정이다
+				ENDSELECT
+			ELSE
+				SELECTCASE RAND:2
+					CASE 0
+						PRINTFORMW 「이거...그거같아...버터견」
+						PRINTFORMW 「들은거 만큼 좋지는 않네...」
+					CASE 1
+						PRINTFORMW 「뜨겁고...축축해...이상한 느낌...」
+						PRINTFORMW 「기분좋은건...잘 모르겠는걸」
+				ENDSELECT
+			ENDIF
+		ENDIF
 	ENDIF
 ENDIF
 RETURN 1
