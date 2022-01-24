@@ -638,25 +638,19 @@ IF LOCAL
 						CALL ST_CLIMAX(RAND:4 + 3)
 						PRINTFORMW 」
 				ENDSELECT
-			ELSEIF TALENT:연인
-				SELECTCASE RAND:3
+			ELSEIF TALENT:연모||TALENT:사모||TALENT:애욕||TALENT:연인
+				SELECTCASE RAND:4
 					CASE 0
-
+						PRINTFORMW 「아앗♥ 거, 거기 오줌구멍... 할짝할짝 하면 안대에♥」
+						PRINTFORMW 사토리는 %마스터의% 혀놀림에 따라 온 몸을 파르르 떨었다
 					CASE 1
-
+						PRINTFORMW 「아아아아♥ 좋아♥ 기분 좋아아♥」
+						PRINTFORMW 「클리 핥는거 너무 좋아아♥」
+						PRINTFORMW 사토리의 다리 사이는 침과 애액의 구별이 불가능한 혼합물이 한가득 흘러넘쳐 흥건해 지고 있었다
 					CASE 2
-						PRINTFORM 「
-						CALL ST_CLIMAX(RAND:4 + 3)
-						PRINTFORMW 」
-				ENDSELECT
-			ELSEIF TALENT:연모||TALENT:사모||TALENT:애욕
-				SELECTCASE RAND:3
-					CASE 0
-						PRINTFORMW 「아앗♥ 크, 클리 할짝할짝 하면 안대에♥」
-						;PRINTFORMW 「」
-					CASE 1
-
-					CASE 2
+						PRINTFORMW 「아♥ 안에 혀 집어넣지마아♥」
+						PRINTFORMW 얕게 파고든 혀를 움직이자 질척한 액이 %마스터의% 혀를 가득 적셔갔다
+					CASE 3
 						PRINTFORM 「
 						CALL ST_CLIMAX(RAND:4 + 3)
 						PRINTFORMW 」
