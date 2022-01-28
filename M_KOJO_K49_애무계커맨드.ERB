@@ -814,24 +814,22 @@ IF LOCAL
 						CALL ST_CLIMAX(RAND:4 + 4)
 						PRINTFORMW 」
 				ENDSELECT
-			ELSEIF TALENT:연인
-				SELECTCASE RAND:3
+			ELSEIF TALENT:연인||TALENT:연모||TALENT:사모
+				SELECTCASE RAND:4
 					CASE 0
-
+						PRINTFORMW 「히이...♥ 그렇게 마구 쑤시면...♥」
+						PRINTFORMW 사토리의 질 내를 왕복하는 손가락에 끈적한 액체가 휘감겨 들기 시작했다
 					CASE 1
-
-					CASE 2
-						PRINTFORM 「
-						CALL ST_CLIMAX(RAND:4 + 4)
-						PRINTFORMW 」
-				ENDSELECT
-			ELSEIF TALENT:연모||TALENT:사모
-				SELECTCASE RAND:3
-					CASE 0
-
-					CASE 1
-
-					CASE 2
+						IF HAS_PENIS(MASTER)
+							PRINTFORMW 「아아♥ 기, 기분좋아아♥」
+							PRINTFORMW 「그치만, 그치만 이런거 말고오♥ 그거♥ 그거 원해에♥」
+							PRINTFORMW 사토리는 애타는 눈길로 %마스터의% 고간을 응시하고 있다
+						ELSE
+							PRINTFORMW 「아아♥ 이거 너무 기분좋아♥」
+							PRINTFORMW 사토리는 쾌락에 녹은 표정으로 %마스터를% 응시해오고 있다
+						ENDIF
+					CASE 2,3
+						;확률이 높다
 						PRINTFORM 「
 						CALL ST_CLIMAX(RAND:4 + 4)
 						PRINTFORMW 」
