@@ -903,7 +903,7 @@ RETURN RESULT
 @M_KOJO_MESSAGE_COM_K49_4_1
 ;-------------------------------------------------
 ;기입체크 (=0, 비표시、1, 표시)
-LOCAL = 0
+LOCAL = 1
 ;-------------------------------------------------
 IF LOCAL
 	;-------------------------------------------------
@@ -911,16 +911,60 @@ IF LOCAL
 	;-------------------------------------------------
 	;처음
 	;기입체크
-	LOCAL:1 = 0
+	LOCAL:1 = 1
 	;-------------------------------------------------
 	IF LOCAL:1 && FIRSTTIME(SELECTCOM)
-		PRINTFORMW 
+		IF EXP:A경험 >= 30
+			IF MARK:반발각인 == 3 && !TALENT:연인
+				PRINTFORMW 「거, 거기 핥으면 안...하으읏♥」
+				PRINTFORMW 「허리에 힘이이...」
+				PRINTFORMW 사토리는 흠칫흠칫 떨며 항문으로부터의 쾌감을 견디고 있다
+			ELSEIF TALENT:연인||TALENT:연모||TALENT:사모
+				PRINTFORMW 「아흣♥ 거기 안..으으읏♥ 시러어♥ 오싹오싹한거 올라와앗♥」
+				PRINTFORMW %마스터의% 혀가 움직일때마다 사토리는 쏟아지는 쾌감에 물고기처럼 튀어올랐다
+			ELSEIF TALENT:섹프||TALENT:애욕
+				PRINTFORMW 「아♥ 거, 거기느은♥♥ 핥으면 안대에♥ 이상해져 버려♥」
+				PRINTFORMW 척추를 타고 오르는 오싹한 쾌감에 사토리의 몸이 파르르 떨렸다
+			ELSE
+				PRINTFORMW 「아, 안대에♥ 그거 이상해져♥ 오싹오싹한거 올라와아♥」
+				PRINTFORMW 사토리는 흠칫흠칫 떨며 말해왔다
+			ENDIF
+		ELSEIF ABL:새드끼 >= 3
+			IF MARK:반발각인 == 3 && !TALENT:연인
+				PRINTFORMW 「어머나...이래서얀 마치 비데 같은걸」
+				PRINTFORMW 「그런 취급이 좋은걸까나?」
+				PRINTFORMW 사토리는 키득키득 웃으며 말했다
+			ELSEIF TALENT:연인||TALENT:연모||TALENT:사모||TALENT:섹프||TALENT:애욕
+				PRINTFORMW 「%마스터의% 혀는 비데인건가요?」
+				PRINTFORMW 「후후♥ 이렇게 기분 좋은 비데라니, 정말 마음에 드는걸요」
+			ELSE
+				PRINTFORMW 「어라...혀로 청소해주는 걸까?」
+				PRINTFORMW 「뭐어, 나쁘진 않지만」
+			ENDIF
+		ELSE
+			IF MARK:반발각인 == 3 && !TALENT:연인
+				PRINTFORMW 「자...잠깐, 거길 왜 핥아...하, 하지마...!」
+				PRINTFORMW 사토리는 소름끼친다는듯한 표정으로 도망가려 했지만 이내 붙잡혀 애널을 핥아졌다
+				PRINTFORMW 「더, 더러워...! 하지마...! 그만...!」
+				PRINTFORMW 사토리는 이해할수 없는 행위에 무서워 하고 있다...
+				SOURCE:공포 += 500
+			ELSEIF TALENT:연인||TALENT:연모||TALENT:사모
+				PRINTFORMW 「...네? 잠깐, 뭘 한다는 거...아, 아니 그만...! 오지 마...!」
+				PRINTFORMW 도망치려는 사토리를 붙잡고 굳게 앙다문 애널을 마구 핥아주었다
+				PRINTFORMW 「싫어어어...하지마, 엉덩이 핥으면 안돼...더럽단 말야...」
+				PRINTFORMW 사토리는 이해할수 없는 행위에 공포를 느끼고 있다...
+				SOURCE:공포 += 300
+			ELSE
+				PRINTFORMW 「여...여길 핥아...? 기분 좋은거...맞아요?」
+				PRINTFORMW 「앗, 잠깐 아직 해도 된다곤...으으읏♥」
+			ENDIF
+		ENDIF
 		RETURN 1
 	ENDIF
 	;기본세트
 	;시간(時姦)중
 	IF FLAG:70
-		PRINTFORMW 
+		;PRINTFORMW 
 		RETURN 1
 	;연모
 	ELSEIF TALENT:연모
