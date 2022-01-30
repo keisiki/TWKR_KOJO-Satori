@@ -1016,26 +1016,37 @@ IF LOCAL
 			IF MARK:반발각인 == 3 && !TALENT:연인
 				SELECTCASE RAND:2
 					CASE 0
-
+						PRINTFORMW 「깔끔하게 핥아줘」
+						PRINTFORMW 「뭐, 그래도 %사마스터의% 더러운 침이 남는다 생각하니 거기서 거기겠지만」
 					CASE 1
-					
+						PRINTFORMW 「정말이지, 길거리의 똥개처럼 열심히네」
+						PRINTFORMW 「그런대로 어울리긴 한다만」
+						PRINTFORMW 사토리는 약간의 경멸을 담아 쏘아붙였다
 				ENDSELECT
 			ELSEIF TALENT:연인||TALENT:연모||TALENT:사모
 				SELECTCASE RAND:2
 					CASE 0
-
+						PRINTFORMW 「필사적으로 핥고 있는 모습이 왜이리 귀여운지...♥」
+						PRINTFORMW 「아아, 거기♥ 안쪽으로 혀 넣어줘♥ 응♥ 옳지옳지♥」
+						PRINTFORMW 사토리는 사랑스럽다는듯이 %마스터를% 바라보고 있다
+						PRINTFORMW ...왠지 자기 애완동물을 바라보는듯 하지만
 					CASE 1
-					
+						PRINTFORMW 「좀 더 핥아줘, 그래 거기♥ 말끔하게 닦아주렴♥」
+						PRINTFORMW 「안쪽까지 깨끗하게 해준다면 칭찬해줄게♥」
+						PRINTFORMW 사토리는 %마스터의% 얼굴에 엉덩이를 눌러왔다
 				ENDSELECT
 			ELSEIF TALENT:섹프||TALENT:애욕
 				SELECTCASE RAND:2
 					CASE 0
-
+						PRINTFORMW 「청소해주는거야? 기특한걸♥」
+						PRINTFORMW 사토리는 마치 애완동물을 다루듯이 %마스터를% 쓰다듬어주었다
 					CASE 1
-					
+						PRINTFORMW 「깔끔하게 청소해두렴」
+						PRINTFORMW 「조금이라도 더러운게 남았다간, 혼낼거니깐...응♥ 옳지옳지, 그렇게♥」
 				ENDSELECT
 			ELSE
-				
+				PRINTFORMW 「엉덩이를 핥는게 그렇게나 기쁜걸까?」
+				PRINTFORMW 「마음속 깊이서부터 기쁨이 느껴지는걸, 후후♥ 마치 강아지 같아」
 			ENDIF
 		ELSE
 			IF MARK:반발각인 == 3 && !TALENT:연인
