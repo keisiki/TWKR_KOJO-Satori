@@ -914,7 +914,7 @@ IF LOCAL
 	LOCAL:1 = 1
 	;-------------------------------------------------
 	IF LOCAL:1 && FIRSTTIME(SELECTCOM)
-		IF EXP:A경험 >= 30
+		IF ABL:A감각 * (EXP:A경험/2) > 50
 			IF MARK:반발각인 == 3 && !TALENT:연인
 				PRINTFORMW 「거, 거기 핥으면 안...하으읏♥」
 				PRINTFORMW 「허리에 힘이이...」
@@ -972,9 +972,12 @@ IF LOCAL
 			IF MARK:반발각인 == 3 && !TALENT:연인
 				SELECTCASE RAND:3
 					CASE 0
-
+						PRINTFORMW 「혀♥ 혀 넣으면 안대에♥」
+						PRINTFORMW 「아흣♥ 시러♥ 등골이 오싹해에♥」
+						PRINTFORMW 애널에서 느껴지는 오싹한 쾌감에 사토리는 어쩔줄 몰라 하고 있다
 					CASE 1
-
+						PRINTFORMW 「하으...♥ 엉덩이, 이상해...♥ 닿을때마다 온 몸이 찌릿찌릿해...♥」
+						PRINTFORMW %마스터의% 혀 움직임에 따라 사토리의 몸이 움찔움찔 떨렸다
 					CASE 2
 						PRINTFORM 「
 						CALL ST_CLIMAX(RAND:4 + 4)
@@ -983,9 +986,12 @@ IF LOCAL
 			ELSEIF TALENT:연인||TALENT:연모||TALENT:사모
 				SELECTCASE RAND:3
 					CASE 0
-
+						PRINTFORMW 「엉덩이에서 오싹한게 올라와...♥」
+						PRINTFORMW 「머리가 이상해질거 같아...♥ 이거 너무 좋아...♥」
+						PRINTFORMW 사토리의 애널이 %마스터의% 혀 놀림에 따라 움찔거린다
 					CASE 1
-
+						PRINTFORMW 「엉덩이 낼름낼름 기분 좋아...♥」
+						PRINTFORMW 사토리는 황홀한 표정이다
 					CASE 2
 						PRINTFORM 「
 						CALL ST_CLIMAX(RAND:4 + 4)
@@ -994,9 +1000,12 @@ IF LOCAL
 			ELSEIF TALENT:섹프||TALENT:애욕
 				SELECTCASE RAND:3
 					CASE 0
-
+						PRINTFORMW 「아♥ 엉덩이♥ 오싹오싹한거 올라와♥」
+						PRINTFORMW 「기분 좋아♥ 기분 좋아아♥ 거기 좀 더 해줘♥」
+						PRINTFORMW 애널의 쾌락에 푹 빠진 사토리는 %마스터의% 입에 애널을 꾹 눌러왔다
 					CASE 1
-
+						PRINTFORMW 「엉덩이 낼름낼름 기분 좋아...♥」
+						PRINTFORMW 사토리는 황홀한 표정이다
 					CASE 2
 						PRINTFORM 「
 						CALL ST_CLIMAX(RAND:4 + 4)
@@ -1005,7 +1014,8 @@ IF LOCAL
 			ELSE
 				SELECTCASE RAND:2
 					CASE 0
-
+						PRINTFORMW 「흐읏♥ 안돼♥ 엉덩이 낼름낼름 하지마...!」
+						PRINTFORMW 사토리는 등골을 타고 오르는 오싹한 쾌감에 전신을 떨고 있었다
 					CASE 1
 						PRINTFORM 「
 						CALL ST_CLIMAX(RAND:4 + 4)
