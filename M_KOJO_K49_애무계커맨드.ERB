@@ -1166,27 +1166,91 @@ IF LOCAL
 	ELSE
 		IF ABL:A감각 * (EXP:A경험/2) > 50
 			IF MARK:반발각인 == 3 && !TALENT:연인
-				
-			ELSEIF TALENT:연인
-				
-			ELSEIF TALENT:연모||TALENT:사모||TALENT:애욕
-				
-			ELSEIF TALENT:섹프
-				
+				SELECTCASE RAND:3
+					CASE 0
+						PRINTFORMW 「아, 안대♥ 지금 엉덩이 괴롭히며언♥」
+						PRINTFORMW 사토리는 쾌락을 참지 못하고 바들바들 떨었다
+					CASE 1
+						PRINTFORMW 「시럿♥ 그거 너무 좋아서 이상해져어♥」
+						PRINTFORMW 사토리의 애널이 %마스터의% 손가락을 꾸욱 조여왔다
+					CASE 2
+						PRINTFORM 「
+						CALL ST_CLIMAX(RAND:4 + 4)
+						PRINTFORMW 」
+				ENDSELECT
+			ELSEIF TALENT:연모||TALENT:사모||TALENT:연인
+				SELECTCASE RAND:3
+					CASE 0
+						PRINTFORMW 「아♥ 문질문질 하면 안대에♥ 그거 너무 좋아서 이상해져 버려♥」
+						PRINTFORMW 「그, 그마안♥ 안댄다니까한♥」
+					CASE 1
+						PRINTFORMW 「어, 엉덩이인데도♥ 기분 좋은거 참을수가 없어♥」
+						PRINTFORMW 사토리의 애널이 %마스터의% 손가락을 꾹꾹 조여왔다
+					CASE 2
+						PRINTFORM 「
+						CALL ST_CLIMAX(RAND:4 + 4)
+						PRINTFORMW 」
+				ENDSELECT
+			ELSEIF TALENT:섹프||TALENT:애욕
+				SELECTCASE RAND:3
+					CASE 0
+						PRINTFORMW 「아흣♥ 거, 거기 기분 좋아아...♥」
+						PRINTFORMW 「엉덩이 너무 좋아...더 만져줘...기분 좋은거 좀 더 원해...♥」
+					CASE 1
+						PRINTFORMW 「아♥ 이거 너무 좋아아♥ 너무 기분 좋아♥♥」
+						PRINTFORMW %마스터의% 손가락 움직임에 따라 사토리의 애널이 연신 움찔거렸다
+					CASE 2
+						PRINTFORM 「
+						CALL ST_CLIMAX(RAND:4 + 4)
+						PRINTFORMW 」
+				ENDSELECT
 			ELSE
-				
+				SELECTCASE RAND:2
+					CASE 0
+						PRINTFORMW 「어♥ 엉덩이 찌르면 안돼에♥」
+						PRINTFORMW 급작스런 자극에 사토리의 애널이 %마스터의% 손가락을 강하게 조여왔다
+					CASE 1
+						PRINTFORM 「
+						CALL ST_CLIMAX(RAND:4 + 4)
+						PRINTFORMW 」
+				ENDSELECT
 			ENDIF
 		ELSE
 			IF MARK:반발각인 == 3 && !TALENT:연인
-				
-			ELSEIF TALENT:연인
-				
-			ELSEIF TALENT:연모||TALENT:사모||TALENT:애욕
-				
-			ELSEIF TALENT:섹프
-				
+				SELECTCASE RAND:3
+					CASE 0
+						PRINTFORMW 「그, 그런데 만지지 마아...」
+					CASE 1
+						PRINTFORMW 「아...아팟...!」
+						PRINTFORMW 아직은 고통이 앞선 모양인지 사토리의 얼굴이 잔뜩 구겨졌다
+					CASE 2
+						PRINTFORMW 「거, 거긴 엉덩이...윽...아파...」
+						PRINTFORMW 여기로 느끼려면 조금 더 개발해줘야 할 것 같다
+						PRINTFORMW 「개발은 무슨...!」
+				ENDSELECT
+			ELSEIF TALENT:연모||TALENT:사모||TALENT:연인
+				SELECTCASE RAND:2
+					CASE 0
+						PRINTFORMW 「아팟...거긴 아냐...!」
+					CASE 1
+						PRINTFORMW 「으긋...」
+						PRINTFORMW 아직은 고통이 앞서는지 사토리는 인상을 쓰며 행위를 견딜 뿐이었다
+				ENDSELECT
+			ELSEIF TALENT:섹프||TALENT:애욕
+				SELECTCASE RAND:2
+					CASE 0
+						PRINTFORMW 「흣...거, 거긴 엉덩이...」
+					CASE 1
+						PRINTFORMW 「아팟...이건...영 익숙해지질 않아...」
+				ENDSELECT
 			ELSE
-				
+				SELECTCASE RAND:2
+					CASE 0
+						PRINTFORMW 「아읏...거, 거긴 아니라니깐...」
+						PRINTFORMW 아직 익숙하진 않은 모양이다
+					CASE 1
+						PRINTFORMW 「흐잇?! 엉덩이 찌르면 안돼...!」
+				ENDSELECT
 			ENDIF
 		ENDIF
 		RETURN 1
