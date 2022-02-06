@@ -1401,37 +1401,58 @@ IF LOCAL
 			IF MARK:반발각인 == 3 && !TALENT:연인
 				SELECTCASE RAND:2
 					CASE 0
-
+						PRINTFORMW 「가슴이 그렇게 좋은걸까나...」
+						PRINTFORMW 사토리는 무덤덤하게 %마스터의% 손길을 받아들이고 있다
 					CASE 1
-
+						PRINTFORMW 「으응...그렇게 만져도, 별로 기분 좋진 않으니깐...」
+						IF ABL:MASTER:기교 > 3
+							PRINTFORMW 말은 그리 해도 사토리의 유두는 빳빳히 발기해 있었다
+							PRINTFORMW 「아니...이건...단순한 생리작용...」
+						ENDIF
 				ENDSELECT
 			ELSEIF TALENT:연인
-				SELECTCASE RAND:2
+				SELECTCASE RAND:3
 					CASE 0
-
+						PRINTFORMW 「...♥」
+						PRINTFORMW 사토리는 조금 기뻐보이는 표정으로 %마스터의% 손길을 받아들이고 있었다
 					CASE 1
-					
+						PRINTFORMW 「아...♥ 이거, 조금씩 기분 좋은거 올라와...♥」
+					CASE 2
+						PRINTFORMW 「...이렇게 가슴 만져지는거, 어쩐지 조금 기쁜걸요」
+						PRINTFORMW 「뭐랄까...잔뜩 사랑받는 느낌이야」
+						PRINTFORMW 사토리는 얼굴을 살짝 붉혔다
 				ENDSELECT
 			ELSEIF TALENT:연모||TALENT:사모
-				SELECTCASE RAND:2
+				SELECTCASE RAND:3
 					CASE 0
-
+						PRINTFORMW 「제 가슴, 만지면 기분 좋은가요?」
+						PRINTFORMW 「...뭐, 그렇다면야...원하는 대로 만져도...좋아요」
+						PRINTFORMW 「...이런건 %MASTERNAME:49%한테만 시켜주는 거니까요」
 					CASE 1
-					
+						PRINTFORMW 「아...가슴...」
+						PRINTFORMW 사토리는 어쩐지 기뻐보이는 표정을 지으며 %마스터의% 애무를 받아들이고 있다
+					CASE 2
+						PRINTFORMW 「...가슴 만져지는거, 어쩐지 조금 기쁜걸요」
+						PRINTFORMW 「뭐랄까...잔뜩 요구받는 느낌이야」
 				ENDSELECT
 			ELSEIF TALENT:섹프||TALENT:애욕
-				SELECTCASE RAND:2
+				SELECTCASE RAND:3
 					CASE 0
-
+						PRINTFORMW 「내 가슴 만지는게 그렇게 좋은걸까?」
+						PRINTFORMW 「...뭔가, 부끄러운게 더 심한걸」
 					CASE 1
-					
+						PRINTFORMW 「응...끝부분 쥐어짜는건 조금 기분 좋을지도...」
+					CASE 2
+						PRINTFORMW 「아...♥ 이거, 조금씩 기분 좋은거 올라온다...」
 				ENDSELECT
 			ELSE
 				SELECTCASE RAND:2
 					CASE 0
-
+						PRINTFORMW 「으음...말랑한 느낌이 전해져 와...기분 좋긴 하네...」
+						PRINTFORMW 「...이걸로 느끼는지는 잘 모르겠지만」
 					CASE 1
-					
+						PRINTFORMW 「응읏...」
+						PRINTFORMW 사토리는 별다른 반응 없이 애무를 받아들이고 있다
 				ENDSELECT
 			ENDIF
 		ENDIF
