@@ -967,7 +967,6 @@ IF LOCAL
 		;PRINTFORMW 
 		RETURN 1
 	ELSE
-		;PRINTFORMW 「」
 		IF ABL:A감각 * (EXP:A경험/2) > 50
 			IF MARK:반발각인 == 3 && !TALENT:연인
 				SELECTCASE RAND:3
@@ -1345,35 +1344,30 @@ IF LOCAL
 		RETURN 1
 	;그 이외
 	ELSE
+		;PRINTFORMW 「」
 		IF ABL:B감각 > 3
 			IF MARK:반발각인 == 3 && !TALENT:연인
 				SELECTCASE RAND:3
 					CASE 0
-
+						PRINTFORMW 「응흐읏...응...」
+						PRINTFORMW 사토리는 말없이 애무를 받아들이고 있을 뿐이었다
 					CASE 1
-
+						PRINTFORMW 「아으으...가슴 그렇게 쥐어짜면 안대에...♥」
+						PRINTFORMW 미처 참지 못한 달콤한 교성을 흘리며 %마스터의% 애무를 받아들이고 있다
 					CASE 2
 						PRINTFORM 「
 						CALL ST_CLIMAX(RAND:5 + 3)
 						PRINTFORMW 」
 				ENDSELECT
-			ELSEIF TALENT:연인
+			ELSEIF TALENT:연모||TALENT:사모||TALENT:연인
 				SELECTCASE RAND:3
 					CASE 0
-
+						PRINTFORMW 「아...♥ 그거♥ 그거 기분 좋아아...♥」
+						PRINTFORMW 사토리는 쾌락에 녹은 표정으로 %마스터를% 바라보고 있다
 					CASE 1
-
-					CASE 2
-						PRINTFORM 「
-						CALL ST_CLIMAX(RAND:5 + 3)
-						PRINTFORMW 」
-				ENDSELECT
-			ELSEIF TALENT:연모||TALENT:사모
-				SELECTCASE RAND:3
-					CASE 0
-
-					CASE 1
-
+						PRINTFORMW 「가, 가스음♥ 그렇게 주물주물하는거 안대에♥」
+						PRINTFORMW 「아앗♥ 안댄다니깐...♥」
+						PRINTFORMW 말랑한 가슴을 주무를때마다 사토리의 입에서 달콤한 한숨이 흘렀다
 					CASE 2
 						PRINTFORM 「
 						CALL ST_CLIMAX(RAND:5 + 3)
@@ -1382,9 +1376,11 @@ IF LOCAL
 			ELSEIF TALENT:섹프||TALENT:애욕
 				SELECTCASE RAND:3
 					CASE 0
-
+						PRINTFORMW 「아...♥ 가스음...♥ 조...좀 더 주물주물 해줘...♥」
+						PRINTFORMW 「아아아♥ 이거 좋아♥ 너무 기분 좋아아♥」
 					CASE 1
-
+						PRINTFORMW 「아흣...♥ 이거 좋아...♥ 가슴 만지는거 좋아아...♥」
+						PRINTFORMW 가슴을 부드럽게 쓰다듬자 사토리의 몸이 쾌락으로 살짝 떨리는게 느껴졌다
 					CASE 2
 						PRINTFORM 「
 						CALL ST_CLIMAX(RAND:5 + 3)
@@ -1393,7 +1389,8 @@ IF LOCAL
 			ELSE
 				SELECTCASE RAND:2
 					CASE 0
-
+						PRINTFORMW 「아으으...가슴 그렇게 쥐어짜면 안대에...♥」
+						PRINTFORMW 사토리는 달콤한 교성을 흘리며 %마스터의% 애무를 받아들이고 있다
 					CASE 1
 						PRINTFORM 「
 						CALL ST_CLIMAX(RAND:5 + 3)
