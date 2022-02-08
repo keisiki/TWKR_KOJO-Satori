@@ -1491,74 +1491,36 @@ IF LOCAL
 		RETURN 1
 	;그 이외
 	ELSE
-		IF ABL:B감각 > 2
+		IF ABL:B감각 > 5
+			SELECTCASE RAND:5
+				CASE 0
+					PRINTFORMW 「아♥ 아아♥ 쥐어짜면 안대에♥」
+				CASE 1
+					PRINTFORMW 「거, 거기 잡아당기며언♥」
+					PRINTFORMW 유두를 길게 잡아당겨 두 손가락으로 쥐어짜주니 사토리의 입에서 애타는 신음소리가 끊기질 않았다
+				CASE 2
+					PRINTFORMW 「아♥ 아아♥ 젖꼭지 괴롭히는거 안대에♥」
+					PRINTFORMW 「너무 기분 좋아♥ 그만♥ 그마안♥」
+				CASE 3
+					PRINTFORMW 「아아♥ 그, 그렇게 비비면♥」
+					PRINTFORMW 유두를 꼬집듯이 비비는 %마스터의% 손길에 사토리는 흠칫흠칫 떨고 있다
+				CASE 4
+					PRINTFORM 「
+					CALL ST_CLIMAX(RAND:5 + 3)
+					PRINTFORMW 」
+			ENDSELECT
+		ELSEIF ABL:B감각 > 1
 			IF MARK:반발각인 == 3 && !TALENT:연인
 				SELECTCASE RAND:3
 					CASE 0
-
+						PRINTFORMW 「그...그렇게 꼬집지 마아...」
+						PRINTFORMW 퉁명스레 말하고는 있지만 약간의 쾌감이 엿보이는 표정이었다
 					CASE 1
-
+						PRINTFORMW 「으으응...♥」
+						PRINTFORMW 사토리의 입에서 미처 참지 못한 신음소리가 흘러나왔다
 					CASE 2
-						PRINTFORM 「
-						CALL ST_CLIMAX(RAND:5 + 3)
-						PRINTFORMW 」
-				ENDSELECT
-			ELSEIF TALENT:연인
-				SELECTCASE RAND:3
-					CASE 0
-
-					CASE 1
-
-					CASE 2
-						PRINTFORM 「
-						CALL ST_CLIMAX(RAND:5 + 3)
-						PRINTFORMW 」
-				ENDSELECT
-			ELSEIF TALENT:연모||TALENT:사모
-				SELECTCASE RAND:3
-					CASE 0
-
-					CASE 1
-
-					CASE 2
-						PRINTFORM 「
-						CALL ST_CLIMAX(RAND:5 + 3)
-						PRINTFORMW 」
-				ENDSELECT
-			ELSEIF TALENT:섹프||TALENT:애욕
-				SELECTCASE RAND:3
-					CASE 0
-						PRINTFORMW 「아♥ 아아♥ 젖꼭지 괴롭히는거 안대에♥」
-						PRINTFORMW 「너무 기분 좋아♥ 그만♥ 그마안♥」
-					CASE 1
-						PRINTFORMW 「」
-					CASE 2
-						PRINTFORM 「
-						CALL ST_CLIMAX(RAND:5 + 3)
-						PRINTFORMW 」
-				ENDSELECT
-			ELSE
-				SELECTCASE RAND:3
-					CASE 0
-						PRINTFORMW 「아♥ 아아♥ 쥐어짜면 안대에♥」
-					CASE 1
-						PRINTFORMW 「거, 거기 잡아당기며언♥」
-						PRINTFORMW 유두를 길게 잡아당겨 두 손가락으로 쥐어짜주니 사토리의 입에서 애타는 신음소리가 끊기질 않았다
-					CASE 2
-						PRINTFORM 「
-						CALL ST_CLIMAX(RAND:5 + 3)
-						PRINTFORMW 」
-				ENDSELECT
-			ENDIF
-		ELSE
-			IF MARK:반발각인 == 3 && !TALENT:연인
-				SELECTCASE RAND:3
-					CASE 0
-
-					CASE 1
-
-					CASE 2
-
+						PRINTFORMW 「아, 안돼...♥ 그렇게 세게 문지르면...♥」
+						PRINTFORMW 사토리는 올라오는 쾌감을 견디느라 안간힘을 쓰고 있다
 				ENDSELECT
 			ELSEIF TALENT:연인
 				SELECTCASE RAND:3
@@ -1581,11 +1543,13 @@ IF LOCAL
 			ELSEIF TALENT:섹프
 				SELECTCASE RAND:3
 					CASE 0
-
+						PRINTFORMW 「으으응...♥ 그거 좋아...♥」
+						PRINTFORMW 사토리는 몸을 베베꼬며 쾌감을 즐기고 있다
 					CASE 1
-
+						PRINTFORMW 「하아...♥ 유두 비비는거 기분 좋아...♥」
 					CASE 2
-
+						PRINTFORMW 「아...♥ 가슴...♥ 그렇게 꼬집으면...♥」
+						PRINTFORMW 사토리는 열띤 한숨을 쉬며 %마스터의% 애무를 받아들이고 있다
 				ENDSELECT
 			ELSE
 				SELECTCASE RAND:2
@@ -1596,6 +1560,17 @@ IF LOCAL
 						PRINTFORMW 끝부분을 집중 자극해주니 흠칫흠칫 떨며 조용한 신음소리를 흘려주었다
 				ENDSELECT
 			ENDIF
+		ELSE
+			SELECTCASE RAND:3
+				CASE 0
+					PRINTFORMW 「아...아팟...그렇게 꼬집으면...」
+				CASE 1
+					PRINTFORMW 「그, 그렇게 꼬집지 마...!」
+					PRINTFORMW 사토리의 연약한 유두는 아직 쾌감을 느낄 정도로 개발되지 못한 느낌이다
+				CASE 2
+					PRINTFORMW 「으긋...아팟...」
+					PRINTFORMW 명백히 기분 좋아보이는 표정은 아니다
+			ENDSELECT
 		ENDIF
 		RETURN 1
 	ENDIF
