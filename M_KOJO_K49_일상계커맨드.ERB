@@ -8338,26 +8338,6 @@ IF LOCAL
 				;대사없음
 			ENDIF
 		ENDIF
-	ELSEIF ITEM:912
-		;조교전(텍붕이 대응)
-		IF MARK:반발각인 == 3
-			IF TALENT:연인
-				PRINTFORMW 「...윽, 저, 저기...화 많이 났어요...?」
-				PRINTFORMW 사토리는 당황한듯한 표정이다
-			ELSE
-				PRINTFORMW 「...어...그, 저기...」
-				PRINTFORMW 사토리는 당황한 눈치다
-			ENDIF
-		ELSEIF TALENT:연인
-			PRINTFORMW 「무...무슨 책인진 알고 있는거죠...?」
-			PRINTFORMW 「그...그런거 하지 마세요?」
-		ELSEIF TALENT:연모||TALENT:사모||TALENT:애욕||TALENT:섹프
-			PRINTFORMW 「어...화...난건가요?」
-			PRINTFORMW 「저기, 화나게 했다면 사과할테니깐...」
-		ELSE
-			PRINTFORMW 「...!」
-			PRINTFORMW 사토리는 무엇을 읽은것인지 깜짝 놀란 눈치다
-		ENDIF
 	ENDIF
 ENDIF
 RETURN 1
