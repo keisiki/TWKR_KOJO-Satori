@@ -1522,25 +1522,19 @@ IF LOCAL
 						PRINTFORMW 「아, 안돼...♥ 그렇게 세게 문지르면...♥」
 						PRINTFORMW 사토리는 올라오는 쾌감을 견디느라 안간힘을 쓰고 있다
 				ENDSELECT
-			ELSEIF TALENT:연인
+			ELSEIF TALENT:연인||TALENT:연모||TALENT:사모
 				SELECTCASE RAND:3
 					CASE 0
-
+						PRINTFORMW 「하으...♥」
+						PRINTFORMW 앙증맞은 유두를 살짝 쥐어줄때마다 갸날픈 한숨이 새어나왔다
 					CASE 1
-
+						PRINTFORMW 「그렇게 잡아당기면 안돼에...♥」
+						PRINTFORMW 가슴에서 올라오는 쾌감에 사토리의 몸이 파르르 떨렸다
 					CASE 2
-
+						PRINTFORMW 「으으응...♥ 그거 좋아...♥」
+						PRINTFORMW 사토리는 몸을 베베꼬며 쾌감을 즐기고 있다
 				ENDSELECT
-			ELSEIF TALENT:연모||TALENT:사모||TALENT:애욕
-				SELECTCASE RAND:3
-					CASE 0
-
-					CASE 1
-
-					CASE 2
-
-				ENDSELECT
-			ELSEIF TALENT:섹프
+			ELSEIF TALENT:섹프||TALENT:애욕
 				SELECTCASE RAND:3
 					CASE 0
 						PRINTFORMW 「으으응...♥ 그거 좋아...♥」
@@ -1578,7 +1572,7 @@ ENDIF
 RETURN 1
 
 ;==================================================
-;8,보지벌리기
+;8,보지벌리기 ; 미작성
 ;==================================================
 @M_KOJO_MESSAGE_COM_K49_8
 CALL TRAIN_MESSAGE
@@ -1634,7 +1628,7 @@ RETURN RESULT
 @M_KOJO_MESSAGE_COM_K49_9_1
 ;-------------------------------------------------
 ;기입체크 (=0, 비표시、1, 표시)
-LOCAL = 0
+LOCAL = 1
 ;-------------------------------------------------
 IF LOCAL
 	;-------------------------------------------------
@@ -1642,10 +1636,20 @@ IF LOCAL
 	;-------------------------------------------------
 	;처음
 	;기입체크
-	LOCAL:1 = 0
+	LOCAL:1 = 1
 	;-------------------------------------------------
 	IF LOCAL:1 && FIRSTTIME(SELECTCOM)
-		PRINTFORMW 
+		IF MARK:반발각인 == 3 && !TALENT:연인
+			
+		ELSEIF TALENT:연인
+			
+		ELSEIF TALENT:연모||TALENT:사모||TALENT:애욕
+			
+		ELSEIF TALENT:섹프
+			
+		ELSE
+			
+		ENDIF
 		RETURN 1
 	ENDIF
 	;기본세트
