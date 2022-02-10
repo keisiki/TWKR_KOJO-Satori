@@ -1640,31 +1640,77 @@ IF LOCAL
 	;-------------------------------------------------
 	IF LOCAL:1 && FIRSTTIME(SELECTCOM)
 		IF MARK:반발각인 == 3 && !TALENT:연인
-			
+			PRINTFORMW 「...자위? 갑자기?」
+			PRINTFORMW 「...아무리 보고 싶다고 해도 그런 부탁은...」
+			PRINTFORMW 사토리는 어이없다는듯이 %마스터를% 바라보다 마지못해 손을 움직였다
 		ELSEIF TALENT:연인
-			
+			PRINTFORMW 「...호, 혼자서 해보라니, 그런...」
+			PRINTFORMW 「아무리 그래도 조금 부끄러운데...」
+			PRINTFORMW 사토리는 얼굴을 붉히며 쭈뼛쭈뼛하더니 이내 천천히 손을 움직였다
 		ELSEIF TALENT:연모||TALENT:사모||TALENT:애욕
-			
+			PRINTFORMW 「자...자위라니...평소처럼 해보라고 해도...그게...」
+			PRINTFORMW 사토리는 얼굴을 새빨갛게 물들인채 머뭇거릴뿐이었다
+			PRINTFORMW 「아무리 그래도 부끄러운데...」
+			PRINTFORMW 「...그래도, 그렇게 원하신다면야...」
+			PRINTFORMW 사토리는 힐끔힐끔 %마스터를% 훔쳐보며 천천히 자신의 비소로 손을 옮겼다
 		ELSEIF TALENT:섹프
-			
+			PRINTFORMW 「혼자서 해보라니, 어째서...」
+			PRINTFORMW 「모처럼 둘이 있는데 제가 왜 그래야 하는건데요...」
+			PRINTFORMW 사토리는 투덜거리면서도 순순히 손가락을 움직이기 시작했다
 		ELSE
-			
+			PRINTFORMW 「...자위...? 여기서...?」
+			PRINTFORMW 「아무리 그래도 그건...하아...」
+			PRINTFORMW 사토리는 무어라 항의하려다 말고 체념한듯이 손가락을 움직이기 시작했다
 		ENDIF
 		RETURN 1
 	ENDIF
 	;기본세트
 	;연모
-	IF TALENT:연모
-		PRINTFORMW 
-		RETURN 1
-	;괘씸3
-	ELSEIF MARK:괘씸각인 == 3
-		PRINTFORMW 
-		RETURN 1
-	;그 이외
+	IF MARK:반발각인 == 3 && !TALENT:연인
+		SELECTCASE RAND:3
+			CASE 0
+
+			CASE 1
+
+			CASE 2
+
+		ENDSELECT
+	ELSEIF TALENT:연인
+		SELECTCASE RAND:3
+			CASE 0
+
+			CASE 1
+
+			CASE 2
+			
+		ENDSELECT
+	ELSEIF TALENT:연모||TALENT:사모
+		SELECTCASE RAND:3
+			CASE 0
+
+			CASE 1
+
+			CASE 2
+			
+		ENDSELECT
+	ELSEIF TALENT:섹프||TALENT:애욕
+		SELECTCASE RAND:3
+			CASE 0
+
+			CASE 1
+
+			CASE 2
+			
+		ENDSELECT
 	ELSE
-		PRINTFORMW 
-		RETURN 1
+		SELECTCASE RAND:3
+			CASE 0
+
+			CASE 1
+
+			CASE 2
+			
+		ENDSELECT
 	ENDIF
 ENDIF
 RETURN 1
