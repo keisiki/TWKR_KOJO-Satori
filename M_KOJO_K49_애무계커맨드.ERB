@@ -1618,7 +1618,7 @@ ENDIF
 RETURN 1
 
 ;==================================================
-;9,자위
+;9,자위 ;남체화 버젼은 따로 고려하지 않고 여자일거라고 설정한 대사
 ;==================================================
 @M_KOJO_MESSAGE_COM_K49_9
 CALL TRAIN_MESSAGE
@@ -1666,52 +1666,74 @@ IF LOCAL
 	ENDIF
 	;기본세트
 	;연모
-	IF MARK:반발각인 == 3 && !TALENT:연인
+	IF ABL:노출벽 > 0 || RAND:3 == 0 ; 노출벽 없어도 33% 확률 랜덤으로 뜬다
 		SELECTCASE RAND:3
 			CASE 0
-
+				IF MARK:반발각인 == 3 && !TALENT:연인
+					PRINTFORMW 「아...♥ 아아아...♥ 응긋...♥」
+					PRINTFORMW 사토리는 %마스터를% 전혀 신경쓰지 않은채 자위에만 열중하고 있다
+				ELSEIF TALENT:연인||TALENT:연모||TALENT:사모
+					PRINTFORMW 「아...♥ 거기♥ 거기 해줘...♥」
+					PRINTFORMW 「좀 더 안쪽까지...♥ 앗♥ 아아아♥」
+				ELSEIF TALENT:섹프||TALENT:애욕
+					PRINTFORMW 「으으응...♥ 앗♥ 으읏♥ 이거 좋아아♥」
+					PRINTFORMW 사토리는 손가락을 깊숙히 쑤셔넣으며 쾌락을 탐하고 있다
+				ELSE
+					PRINTFORMW 「앗...♥ 흐읏...♥」
+					PRINTFORMW 사토리는 조심조심 손가락을 비집어 넣으며 야릇한 신음소리를 내고 있다
+				ENDIF
 			CASE 1
-
+				IF MARK:반발각인 == 3 && !TALENT:연인
+					PRINTFORMW 「응긋...♥ 응...하아아...♥」
+					PRINTFORMW 사토리는 스스로의 가슴과 음핵을 손가락으로 빙글빙글 돌리며 쾌락을 탐하고 있다
+					PRINTFORMW %마스터는% 안중에도 없는듯 하다
+				ELSEIF TALENT:연인
+					PRINTFORMW 「흐으으...♥ 부, 부족해...♥」
+					PRINTFORMW 「역시 혼자서는...응, 부족해...♥」
+					PRINTFORMW 사토리는 %마스터를% 힐끔힐끔 바라보며 스스로의 음핵과 유두를 문지르고 있다
+				ELSEIF TALENT:연모||TALENT:사모
+					PRINTFORMW 「아...아아아...♥ 좀 더 만져줘...♥ 앗...♥」
+					PRINTFORMW 사토리는 눈을 감은채 누군가를 부르며 스스로의 몸을 희롱했다
+					PRINTFORMW 어쩐지 서드아이가 %마스터를% 지그시 바라보고 있는것 같은 느낌이다
+				ELSEIF TALENT:섹프||TALENT:애욕
+					PRINTFORMW 「가슴 주무르는것도...으응...♥ 기분 좋은걸♥」
+					PRINTFORMW 「그래도 혼자서 만지는건 역시 조금 모자란 느낌이네...」
+				ELSE
+					PRINTFORMW 「으으응...♥」
+					PRINTFORMW 사토리는 눈을 감은채로 스스로의 음핵과 가슴을 살살 문지르기 시작했다
+				ENDIF
 			CASE 2
-
-		ENDSELECT
-	ELSEIF TALENT:연인
-		SELECTCASE RAND:3
-			CASE 0
-
-			CASE 1
-
-			CASE 2
-			
-		ENDSELECT
-	ELSEIF TALENT:연모||TALENT:사모
-		SELECTCASE RAND:3
-			CASE 0
-
-			CASE 1
-
-			CASE 2
-			
-		ENDSELECT
-	ELSEIF TALENT:섹프||TALENT:애욕
-		SELECTCASE RAND:3
-			CASE 0
-
-			CASE 1
-
-			CASE 2
-			
+				IF MARK:반발각인 == 3 && !TALENT:연인
+					PRINTFORMW 「흐읏... 응... 응읏...♥」
+					PRINTFORMW 사토리는 아무런 말 없이 스스로의 균열에 손가락을 쑤셔넣을 뿐이었다
+				ELSEIF TALENT:연모||TALENT:사모||TALENT:연인
+					PRINTFORMW 「아...아아...♥ 좀 더...♥ 더어...♥」
+					PRINTFORMW 무언가 애타는듯한 눈빛으로 %마스터를% 바라보며 스스로를 위로하는 사토리였다
+				ELSEIF TALENT:섹프||TALENT:애욕
+					PRINTFORMW 「혼자서 즐기는건 다른때에도 잔뜩 할 수 있을텐데...」
+					PRINTFORMW 사토리는 투덜거리면서 스스로의 손가락을 깊숙히 찔러넣었다
+					PRINTFORMW 「봐요, 이렇게나 질척질척해졌는데...」
+					PRINTFORMW 그 손가락에는 질척이는 애액의 끈이 늘어지고 있었다
+					PALAM:윤활 += 500
+				ELSE
+					PRINTFORMW 「흐아아...♥ 여, 여기 기분 좋아...♥」
+					PRINTFORMW 사토리는 질내를 손가락으로 살살 쑤시며 열띤 한숨을 내쉬고 있다
+				ENDIF
 		ENDSELECT
 	ELSE
 		SELECTCASE RAND:3
 			CASE 0
-
+				PRINTFORMW 「응...으응...」
+				PRINTFORMW 어딘가 부자연스러운 손놀림으로 자위를 계속하는 사토리였다
 			CASE 1
-
+				PRINTFORMW 「...으응...여, 역시 부끄러운데...」
+				PRINTFORMW 사토리는 얼굴을 새빨갛게 물들인채로 미적미적 자위를 해나갔다
 			CASE 2
-			
+				PRINTFORMW 「평소대로 하라고 해도...눈 앞에서 그런걸...」
+				PRINTFORMW 「...하기는 하겠지만...」
 		ENDSELECT
 	ENDIF
+	
 ENDIF
 RETURN 1
 [SKIPSTART]
