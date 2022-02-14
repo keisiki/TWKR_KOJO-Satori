@@ -1906,49 +1906,40 @@ IF LOCAL
 			ENDIF
 		ELSE
 			IF MARK:반발각인 == 3 && !TALENT:연인
-				SELECTCASE RAND:3
+				SELECTCASE RAND:2
 					CASE 0
-
+						PRINTFORMW 「이런건 이제 졸업할 때가 지났지 않나?」
+						PRINTFORMW 사토리는 입술을 삐죽였다
 					CASE 1
-
-					CASE 2
-					
+						PRINTFORMW 「정말이지, 아기도 아니고 말이야...」
 				ENDSELECT
-			ELSEIF TALENT:연인
+			ELSEIF TALENT:연모||TALENT:사모||TALENT:연인
 				SELECTCASE RAND:3
 					CASE 0
-
+						PRINTFORMW 「애도 아니고 참...후후후...♥」
+						PRINTFORMW 사토리는 묘하게 행복해 보이는 표정이다
 					CASE 1
-
+						PRINTFORMW 「이런거로 흥분하는걸까나~」
+						PRINTFORMW 「덕분에, 나도 뭔가 달아오르게 되버리잖아」
 					CASE 2
-					
+						PRINTFORMW 「정말이지...그렇게 빨아도 아무것도 안 나온다구요?」
+						PRINTFORMW 「그래도 좋은거야? ...변태네요」
 				ENDSELECT
-			ELSEIF TALENT:연모||TALENT:사모||TALENT:애욕
-				SELECTCASE RAND:3
+			ELSEIF TALENT:섹프||TALENT:애욕
+				SELECTCASE RAND:2
 					CASE 0
-
+						PRINTFORMW 「음...뭔가 기분 좋다기 보단...어딘가 평온한 느낌...」
+						PRINTFORMW 「...엄청 큰 아이를 다루는 듯한 느낌인걸...」
 					CASE 1
-
-					CASE 2
-					
-				ENDSELECT
-			ELSEIF TALENT:섹프
-				SELECTCASE RAND:3
-					CASE 0
-
-					CASE 1
-
-					CASE 2
-					
+						PRINTFORMW 「간지럽긴 한데...기분 좋은진 잘 모르겠네」
+						PRINTFORMW 「...그래도 이거로 흥분해 주니깐, 덩달아 나도 달아오르는거 같은 느낌」
 				ENDSELECT
 			ELSE
-				SELECTCASE RAND:3
+				SELECTCASE RAND:2
 					CASE 0
-
+						PRINTFORMW 「그렇게 빨아도 아무것도 안 나와요...」
 					CASE 1
-
-					CASE 2
-					
+						PRINTFORMW 「...애도 아니고, 참...」
 				ENDSELECT
 			ENDIF
 		ENDIF
