@@ -1948,7 +1948,7 @@ IF LOCAL
 ENDIF
 RETURN 1
 ;==================================================
-;12,가슴주무르기
+;12,가슴주무르기 , 가슴 애무의 복사본! 너무함!
 ;==================================================
 @M_KOJO_MESSAGE_COM_K49_12
 CALL TRAIN_MESSAGE
@@ -1958,7 +1958,7 @@ RETURN RESULT
 @M_KOJO_MESSAGE_COM_K49_12_1
 ;-------------------------------------------------
 ;기입체크 (=0, 비표시、1, 표시)
-LOCAL = 0
+LOCAL = 1
 ;-------------------------------------------------
 IF LOCAL
 	;-------------------------------------------------
@@ -1975,25 +1975,124 @@ IF LOCAL
 	;기본세트
 	;시간(時姦)중
 	IF FLAG:70
-		PRINTFORMW 
 		RETURN 1
-	;연모
-	ELSEIF TALENT:연모
-		PRINTFORMW 
-		RETURN 1
-	;괘씸3
-	ELSEIF MARK:괘씸각인 == 3
-		PRINTFORMW 
-		RETURN 1
-	;그 이외
 	ELSE
-		PRINTFORMW 
-		RETURN 1
+		IF ABL:B감각 > 3
+			IF MARK:반발각인 == 3 && !TALENT:연인
+				SELECTCASE RAND:3
+					CASE 0
+						PRINTFORMW 「응흐읏...응...」
+						PRINTFORMW 사토리는 말없이 애무를 받아들이고 있을 뿐이었다
+					CASE 1
+						PRINTFORMW 「아으으...가슴 그렇게 쥐어짜면 안대에...♥」
+						PRINTFORMW 미처 참지 못한 달콤한 교성을 흘리며 %마스터의% 애무를 받아들이고 있다
+					CASE 2
+						PRINTFORM 「
+						CALL ST_CLIMAX(RAND:5 + 3)
+						PRINTFORMW 」
+				ENDSELECT
+			ELSEIF TALENT:연모||TALENT:사모||TALENT:연인
+				SELECTCASE RAND:3
+					CASE 0
+						PRINTFORMW 「아...♥ 그거♥ 그거 기분 좋아아...♥」
+						PRINTFORMW 사토리는 쾌락에 녹은 표정으로 %마스터를% 바라보고 있다
+					CASE 1
+						PRINTFORMW 「가, 가스음♥ 그렇게 주물주물하는거 안대에♥」
+						PRINTFORMW 「아앗♥ 안댄다니깐...♥」
+						PRINTFORMW 말랑한 가슴을 주무를때마다 사토리의 입에서 달콤한 한숨이 흘렀다
+					CASE 2
+						PRINTFORM 「
+						CALL ST_CLIMAX(RAND:5 + 3)
+						PRINTFORMW 」
+				ENDSELECT
+			ELSEIF TALENT:섹프||TALENT:애욕
+				SELECTCASE RAND:3
+					CASE 0
+						PRINTFORMW 「아...♥ 가스음...♥ 조...좀 더 주물주물 해줘...♥」
+						PRINTFORMW 「아아아♥ 이거 좋아♥ 너무 기분 좋아아♥」
+					CASE 1
+						PRINTFORMW 「아흣...♥ 이거 좋아...♥ 가슴 만지는거 좋아아...♥」
+						PRINTFORMW 가슴을 부드럽게 쓰다듬자 사토리의 몸이 쾌락으로 살짝 떨리는게 느껴졌다
+					CASE 2
+						PRINTFORM 「
+						CALL ST_CLIMAX(RAND:5 + 3)
+						PRINTFORMW 」
+				ENDSELECT
+			ELSE
+				SELECTCASE RAND:2
+					CASE 0
+						PRINTFORMW 「아으으...가슴 그렇게 쥐어짜면 안대에...♥」
+						PRINTFORMW 사토리는 달콤한 교성을 흘리며 %마스터의% 애무를 받아들이고 있다
+					CASE 1
+						PRINTFORM 「
+						CALL ST_CLIMAX(RAND:5 + 3)
+						PRINTFORMW 」
+				ENDSELECT
+			ENDIF
+		ELSE
+			IF MARK:반발각인 == 3 && !TALENT:연인
+				SELECTCASE RAND:2
+					CASE 0
+						PRINTFORMW 「가슴이 그렇게 좋은걸까나...」
+						PRINTFORMW 사토리는 무덤덤하게 %마스터의% 손길을 받아들이고 있다
+					CASE 1
+						PRINTFORMW 「으응...그렇게 만져도, 별로 기분 좋진 않으니깐...」
+						IF ABL:MASTER:기교 > 3
+							PRINTFORMW 말은 그리 해도 사토리의 유두는 빳빳히 발기해 있었다
+							PRINTFORMW 「아니...이건...단순한 생리작용...」
+						ENDIF
+				ENDSELECT
+			ELSEIF TALENT:연인
+				SELECTCASE RAND:3
+					CASE 0
+						PRINTFORMW 「...♥」
+						PRINTFORMW 사토리는 조금 기뻐보이는 표정으로 %마스터의% 손길을 받아들이고 있었다
+					CASE 1
+						PRINTFORMW 「아...♥ 이거, 조금씩 기분 좋은거 올라와...♥」
+					CASE 2
+						PRINTFORMW 「...이렇게 가슴 만져지는거, 어쩐지 조금 기쁜걸요」
+						PRINTFORMW 「뭐랄까...잔뜩 사랑받는 느낌이야」
+						PRINTFORMW 사토리는 얼굴을 살짝 붉혔다
+				ENDSELECT
+			ELSEIF TALENT:연모||TALENT:사모
+				SELECTCASE RAND:3
+					CASE 0
+						PRINTFORMW 「제 가슴, 만지면 기분 좋은가요?」
+						PRINTFORMW 「...뭐, 그렇다면야...원하는 대로 만져도...좋아요」
+						PRINTFORMW 「...이런건 %MASTERNAME:49%한테만 시켜주는 거니까요」
+					CASE 1
+						PRINTFORMW 「아...가슴...」
+						PRINTFORMW 사토리는 어쩐지 기뻐보이는 표정을 지으며 %마스터의% 애무를 받아들이고 있다
+					CASE 2
+						PRINTFORMW 「...가슴 만져지는거, 어쩐지 조금 기쁜걸요」
+						PRINTFORMW 「뭐랄까...잔뜩 요구받는 느낌이야」
+				ENDSELECT
+			ELSEIF TALENT:섹프||TALENT:애욕
+				SELECTCASE RAND:3
+					CASE 0
+						PRINTFORMW 「내 가슴 만지는게 그렇게 좋은걸까?」
+						PRINTFORMW 「...뭔가, 부끄러운게 더 심한걸」
+					CASE 1
+						PRINTFORMW 「응...끝부분 쥐어짜는건 조금 기분 좋을지도...」
+					CASE 2
+						PRINTFORMW 「아...♥ 이거, 조금씩 기분 좋은거 올라온다...」
+				ENDSELECT
+			ELSE
+				SELECTCASE RAND:2
+					CASE 0
+						PRINTFORMW 「으음...말랑한 느낌이 전해져 와...기분 좋긴 하네...」
+						PRINTFORMW 「...이걸로 느끼는지는 잘 모르겠지만」
+					CASE 1
+						PRINTFORMW 「응읏...」
+						PRINTFORMW 사토리는 별다른 반응 없이 애무를 받아들이고 있다
+				ENDSELECT
+			ENDIF
+		ENDIF
 	ENDIF
 ENDIF
 RETURN 1
 ;==================================================
-;13,애널벌리기
+;13,애널벌리기 ;미작성 중점
 ;==================================================
 @M_KOJO_MESSAGE_COM_K49_13
 CALL TRAIN_MESSAGE
