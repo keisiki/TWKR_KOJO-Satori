@@ -1190,3 +1190,54 @@ IF (CFLAG:생리주기 == 7||CFLAG:생리주기 == 8||TCVAR:강제배란)&&!TCVA
 ELSE
     RETURNF 0
 ENDIF
+
+@ST_KISS(RANGE)
+#DIM DYNAMIC RANGE
+#DIM POST_CURR
+#DIM NOW_CURR
+POST_CURR = -1
+REPEAT RANGE
+    $키스리롤
+    NOW_CURR = RAND:11
+    IF NOW_CURR == POST_CURR
+        GOTO 키스리롤
+    ELSE
+        POST_CURR = NOW_CURR
+    ENDIF
+    SELECTCASE NOW_CURR
+        CASE 0
+            PRINT 응
+        CASE 1
+            PRINT 츕
+        CASE 2
+            PRINT 츄웁
+        CASE 3
+            PRINT 쪽
+        CASE 4
+            PRINT 하읍
+        CASE 5
+            PRINT 응읏
+        CASE 6
+            PRINT 쪼옥
+        CASE 7
+            PRINT 쯉
+        CASE 8
+            PRINT 쮸웁
+        CASE 9
+            PRINT 으응
+        CASE 10
+            PRINT 하읍
+    ENDSELECT
+    SELECTCASE RAND:6
+        CASE 1
+            PRINT ,
+        CASE 2
+            PRINT ♥ 
+        CASE 3
+            PRINT ...
+        CASE 4
+            PRINT ...♥
+        CASEELSE
+            PRINT  
+    ENDSELECT
+REND
