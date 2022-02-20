@@ -1191,7 +1191,11 @@ ELSE
     RETURNF 0
 ENDIF
 
-@ST_KISS(RANGE)
+@ST_KISS(ARG)
+PRINTFORM %ST_KISS_MAIN(ARG)%
+
+@ST_KISS_MAIN(RANGE)
+#FUNCTIONS
 #DIM DYNAMIC RANGE
 #DIM POST_CURR
 #DIM NOW_CURR
@@ -1206,38 +1210,39 @@ REPEAT RANGE
     ENDIF
     SELECTCASE NOW_CURR
         CASE 0
-            PRINT 응
+            LOCALS += 응
         CASE 1
-            PRINT 츕
+            LOCALS += 츕
         CASE 2
-            PRINT 츄웁
+            LOCALS += 츄웁
         CASE 3
-            PRINT 쪽
+            LOCALS += 쪽
         CASE 4
-            PRINT 하읍
+            LOCALS += 하읍
         CASE 5
-            PRINT 응읏
+            LOCALS += 응읏
         CASE 6
-            PRINT 쪼옥
+            LOCALS += 쪼옥
         CASE 7
-            PRINT 쯉
+            LOCALS += 쯉
         CASE 8
-            PRINT 쮸웁
+            LOCALS += 쮸웁
         CASE 9
-            PRINT 으응
+            LOCALS += 으응
         CASE 10
-            PRINT 하읍
+            LOCALS += 하읍
     ENDSELECT
     SELECTCASE RAND:6
         CASE 1
-            PRINT ,
+            LOCALS += ,
         CASE 2
-            PRINT ♥ 
+            LOCALS += ♥ 
         CASE 3
-            PRINT ...
+            LOCALS += ...
         CASE 4
-            PRINT ...♥
+            LOCALS += ...♥
         CASEELSE
-            PRINT  
+            LOCALS +=  
     ENDSELECT
 REND
+RETURNF LOCALS

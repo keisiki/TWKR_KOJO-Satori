@@ -2389,8 +2389,57 @@ IF LOCAL
 	IF FLAG:70 
 		RETURN 1
 	ELSE
-		
-
+		IF MARK:반발각인 == 3 && !TALENT:연인
+			SELECTCASE RAND:3
+				CASE 0
+					PRINTFORMW 「%ST_KISS_MAIN(RAND:4 + 2)% 아으...♥」
+					PRINTFORMW 키스가 계속될수록 사토리의 숨결이 점점 더 거칠어져만 갔다
+				CASE 1
+					PRINTFORMW 「%ST_KISS_MAIN(RAND:5 + 3)%」
+					PRINTFORMW 사토리는 얌전히 %마스터의% 혀를 받아들이고 있다
+				CASE 2
+					IF TALENT:연모
+						PRINTFORMW 「하으...♥」
+						PRINTFORMW 사토리는 본인도 모르게 황홀한 표정으로 키스를 받아들이고 있었다
+					ELSE
+						PRINTFORMW 「응...」
+						PRINTFORMW 사토리는 조심조심 혀를 얽어왔다
+					ENDIF
+			ENDSELECT
+		ELSEIF TALENT:연모||TALENT:사모||TALENT:연인
+			SELECTCASE RAND:3
+				CASE 0
+					PRINTFORMW 「%ST_KISS_MAIN(RAND:4 + 4)%」
+					PRINTFORMW 사토리는 무척이나 행복해 보이는 표정으로 혀를 얽어왔다
+				CASE 1
+					PRINTFORMW 「%ST_KISS_MAIN(RAND:4 + 4)% 하으으...♥」
+					PRINTFORMW 사토리는 입 안에 들어온 %마스터의% 혀를 조심히 맛보고 있다
+				CASE 2
+					PRINTFORMW 「아...♥」
+					PRINTFORMW 사토리는 황홀해 보이는 표정으로 키스를 받아들이고 있었다
+			ENDSELECT
+		ELSEIF TALENT:섹프||TALENT:애욕
+			SELECTCASE RAND:3
+				CASE 0
+					PRINTFORMW 「%ST_KISS_MAIN(RAND:4 + 3)%」
+					PRINTFORMW 사토리는 황홀한듯한 표정으로 키스에 열중하고 있었다
+				CASE 1
+					PRINTFORMW 「%ST_KISS_MAIN(RAND:4 + 3)% 아으으...♥ %ST_KISS_MAIN(RAND:4 + 3)%」
+					PRINTFORMW 혀와 혀가 스칠때마다 사토리의 몸이 움찔움찔 떨렸다
+				CASE 2
+					PRINTFORMW 「%ST_KISS_MAIN(RAND:5 + 4)%」
+					PRINTFORMW 사토리는 적극적으로 혀를 얽어왔다
+			ENDSELECT
+		ELSE
+			SELECTCASE RAND:2
+				CASE 0
+					PRINTFORMW 「%ST_KISS_MAIN(RAND:3 + 3)%」
+					PRINTFORMW 사토리는 조심조심 혀를 얽어오고 있다
+				CASE 1
+					PRINTFORMW 「%ST_KISS_MAIN(RAND:3 + 2)% 아아...♥」
+					PRINTFORMW 사토리의 숨결이 조금씩 흐트러지고 있었다
+			ENDSELECT
+		ENDIF
 		RETURN 1
 	ENDIF
 ENDIF
