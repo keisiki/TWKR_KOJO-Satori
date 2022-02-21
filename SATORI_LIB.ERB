@@ -450,7 +450,7 @@ ELSEIF ARGS == "팬티어디에쓰려고"
             PRINTFORMW 「...그래서 뭘 빌건가요?」
             PRINTFORML [1] 사토리가 너무 격렬하므로 어떻게든 해 달라고
             PRINTFORML [2] 사토리가 좀 더 H하게 되도록
-            PRINTFORML [3] 사토리와의 자식기원
+            PRINTFORML [3] 사토리와의 자식보정
             PRINTFORML [4] 사토리의 감도를 올리고 싶어
             PRINTFORML [5] 사토리에게 미움받아 버린 것을 어떻게든 하고 싶다
             PRINTFORML [6] 사토리에게 약점잡혀 버린 것을 어떻게든 하고 싶다
@@ -508,12 +508,12 @@ ELSEIF ARGS == "팬티어디에쓰려고"
                         IF TALENT:임신||CFLAG:육아인원수
                             PRINTFORMW 「...그렇게 원한다면...으으응...」
                             PRINTFORMW 「이번 아이가 제대로 자라고 난 뒤에, 또 한번...♥」
-                            CFLAG:자식기원 += 6
+                            CFLAG:자식보정 += 6
                         ELSEIF CFLAG:생해금 == 2
                             PRINTFORMW 「...그...그렇게 원하신다면야...」
                             PRINTFORMW 「...열심히 해야겠네요...후후...」
                             PRINTFORMW 사토리는 정욕에 찬 얼굴을 하고 있다...
-                            CFLAG:자식기원 += 5
+                            CFLAG:자식보정 += 5
                         ELSE
                             PRINTFORMW 「아이라니...그건...아직...」
                             PRINTFORMW 「...으으...그렇게나 원하는거예요...?」
@@ -536,12 +536,12 @@ ELSEIF ARGS == "팬티어디에쓰려고"
                     IF TALENT:임신||CFLAG:육아인원수
                         PRINTFORMW 「...그렇게 원한다면...으으응...」
                         PRINTFORMW 「이번 아이가 제대로 자라고 난 뒤에, 또 한번...♥」
-                        CFLAG:자식기원 += 6
+                        CFLAG:자식보정 += 6
                     ELSEIF CFLAG:생해금 == 2
                         PRINTFORMW 「...그...그렇게 원하신다면야...」
                         PRINTFORMW 「...열심히 해야겠네요...후후...」
                         PRINTFORMW 사토리는 정욕에 찬 얼굴을 하고 있다...
-                        CFLAG:자식기원 += 5
+                        CFLAG:자식보정 += 5
                     ELSE
                         PRINTFORMW 「아이라니...그건...아직...」
                         PRINTFORMW 「...으으...그렇게나 원하는거예요...?」
@@ -554,7 +554,7 @@ ELSEIF ARGS == "팬티어디에쓰려고"
                     ELSEIF CFLAG:생해금 == 2
                         PRINTFORMW 「으음...그렇게나 원하실줄은...」
                         PRINTFORMW 사토리는 곤란해보이는 표정이다...
-                        CFLAG:자식기원 += 5
+                        CFLAG:자식보정 += 5
                     ELSE
                         PRINTFORMW 「아이라니...그런건 부부 사이에서나 만드는거예요」
                         PRINTFORMW 「...그렇게 봐도 안된다고요?」
