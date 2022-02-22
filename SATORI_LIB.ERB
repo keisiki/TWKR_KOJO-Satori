@@ -1210,39 +1210,39 @@ REPEAT RANGE
     ENDIF
     SELECTCASE NOW_CURR
         CASE 0
-            LOCALS += 응
+            LOCALS += "응"
         CASE 1
-            LOCALS += 츕
+            LOCALS += "츕"
         CASE 2
-            LOCALS += 츄웁
+            LOCALS += "츄웁"
         CASE 3
-            LOCALS += 쪽
+            LOCALS += "쪽"
         CASE 4
-            LOCALS += 하읍
+            LOCALS += "하읍"
         CASE 5
-            LOCALS += 응읏
+            LOCALS += "응읏"
         CASE 6
-            LOCALS += 쪼옥
+            LOCALS += "쪼옥"
         CASE 7
-            LOCALS += 쯉
+            LOCALS += "쯉"
         CASE 8
-            LOCALS += 쮸웁
+            LOCALS += "쮸웁"
         CASE 9
-            LOCALS += 으응
+            LOCALS += "으응"
         CASE 10
-            LOCALS += 하읍
+            LOCALS += "하읍"
     ENDSELECT
     SELECTCASE RAND:6
         CASE 1
-            LOCALS += ,
+            LOCALS += ","
         CASE 2
-            LOCALS += ♥ 
+            LOCALS += "♥ "
         CASE 3
-            LOCALS += ...
+            LOCALS += "..."
         CASE 4
-            LOCALS += ...♥
+            LOCALS += "...♥"
         CASEELSE
-            LOCALS +=  
+            LOCALS += " "
     ENDSELECT
 REND
 RETURNF LOCALS
