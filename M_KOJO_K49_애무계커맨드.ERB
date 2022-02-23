@@ -2457,7 +2457,7 @@ RETURN RESULT
 @M_KOJO_MESSAGE_COM_K49_21_1
 ;-------------------------------------------------
 ;기입체크 (=0, 비표시、1, 표시)
-LOCAL = 0
+LOCAL = 1
 ;-------------------------------------------------
 IF LOCAL
 	;-------------------------------------------------
@@ -2468,25 +2468,71 @@ IF LOCAL
 	LOCAL:1 = 0
 	;-------------------------------------------------
 	IF LOCAL:1 && FIRSTTIME(SELECTCOM)
-		PRINTFORMW 
+		
 		RETURN 1
 	ENDIF
 	;기본세트
 	;시간(時姦)중
 	IF FLAG:70
-		PRINTFORMW 
-		RETURN 1
-	;연모
-	ELSEIF TALENT:연모
-		PRINTFORMW 
-		RETURN 1
-	;괘씸3
-	ELSEIF MARK:괘씸각인 == 3
-		PRINTFORMW 
+		IF RAND:10 == 0
+			PRINTFORMW ...미동조차 않는 모습을 계속 지켜보는건 상당히 이상한 기분이다
+		ENDIF
 		RETURN 1
 	;그 이외
 	ELSE
-		PRINTFORMW 
+		IF TEQUIP:클리캡||TEQUIP:오나홀||TEQUIP:바이브||TEQUIP:애널바이브||TEQUIP:유두캡||TEQUIP:미약
+			;방치플
+			IF MARK:반발각인 == 3 && !TALENT:연인
+				SELECTCASE RAND:2
+					CASE 0
+						PRINTFORMW 「자, 잠깐...이러고 내버려두는거야...?」
+						PRINTFORMW 사토리는 당황한듯 %마스터의% 이름을 부르고 있지만 %마스터는% 가볍게 무시해 주었다
+					CASE 1
+						PRINTFORMW 「윽...아, 아무것도 안 할 거라니...그런...」
+						PRINTFORMW 사토리는 안절부절 못하고 있다
+				ENDSELECT
+			ELSEIF TALENT:연모||TALENT:사모||TALENT:연인
+				SELECTCASE RAND:2
+					CASE 0
+						PRINTFORMW 「자, 잠깐...이러고 내버려 둔다니...그런...」
+						PRINTFORMW 사토리는 안절부절 못하고 있다
+					CASE 1
+						PRINTFORMW 「아...아무것도 안한다니...」
+						PRINTFORMW 「이렇게 해놓고서 그런건 너무하잖아요...」
+				ENDSELECT
+			ELSEIF TALENT:섹프||TALENT:애욕
+				SELECTCASE RAND:2
+					CASE 0
+						PRINTFORMW 「바...방치라니...그런...」
+						PRINTFORMW 사토리는 살짝 울상이 되었다
+					CASE 1
+						PRINTFORMW 「이렇게 해놓고...내버려둔다니...으으...」
+				ENDSELECT
+			ELSE
+				;반발3의 복붙
+				SELECTCASE RAND:2
+					CASE 0
+						PRINTFORMW 「자, 잠깐...이러고 내버려두는거야...?」
+						PRINTFORMW 사토리는 당황한듯 %마스터의% 이름을 부르고 있지만 %마스터는% 가볍게 무시해 주었다
+					CASE 1
+						PRINTFORMW 「윽...아, 아무것도 안 할 거라니...그런...」
+						PRINTFORMW 사토리는 안절부절 못하고 있다
+				ENDSELECT
+			ENDIF
+		ELSE
+			;방치플 이외
+			IF MARK:반발각인 == 3 && !TALENT:연인
+				
+			ELSEIF TALENT:연인
+				
+			ELSEIF TALENT:연모||TALENT:사모||TALENT:애욕
+				
+			ELSEIF TALENT:섹프
+				
+			ELSE
+				
+			ENDIF
+		ENDIF
 		RETURN 1
 	ENDIF
 ENDIF
