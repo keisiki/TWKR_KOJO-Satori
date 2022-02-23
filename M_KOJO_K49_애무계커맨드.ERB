@@ -2521,16 +2521,61 @@ IF LOCAL
 			ENDIF
 		ELSE
 			;방치플 이외
+			;PRINTFORMW 「」
 			IF MARK:반발각인 == 3 && !TALENT:연인
-				
-			ELSEIF TALENT:연인
-				
-			ELSEIF TALENT:연모||TALENT:사모||TALENT:애욕
-				
+				SELECTCASE RAND:2
+					CASE 0
+						PRINTFORMW 「...아무것도 안 할 거라니, 그런...」
+						PRINTFORMW 사토리는 어딘가 불만스러워 보이는 표정이다
+					CASE 1
+						IF TEQUIP:구속 || TEQUIP:밧줄
+							PRINTFORMW 「이렇게 묶어놓고는, 아무것도 안 한다니...」
+							PRINTFORMW 「그럴거면 차라리 놔주던가...」
+							PRINTFORMW 사토리는 볼멘소리를 해왔다
+						ELSE
+							IF CFLAG:우후후 == 1
+								PRINTFORMW 「아무것도 안 할 거면 그냥 그만 하시던가요...」
+								PRINTFORMW 사토리는 투덜거렸다
+							ELSE
+								PRINTFORMW 「흐응- 무반응인가요」
+								PRINTFORMW 「그래도 별로 상관은 없지만」
+							ENDIF
+						ENDIF
+				ENDSELECT
+			ELSEIF TALENT:연모||TALENT:사모||TALENT:애욕||TALENT:연인
+				SELECTCASE RAND:2
+					CASE 0
+						PRINTFORMW 「...뭐어, 조금쯤 쉬어도 좋겠죠」
+						PRINTFORMW 말은 그렇게 해도 사토리는 약간 뾰루퉁해 보이는 표정을 짓고 있었다
+					CASE 1
+						PRINTFORMW 「아무것도 안 한다니...우으...」
+						PRINTFORMW 사토리는 약간 불만스러워 보인다
+				ENDSELECT
 			ELSEIF TALENT:섹프
-				
+				SELECTCASE RAND:3
+					CASE 0
+						PRINTFORMW 「안 해주시는건가요...?」
+						PRINTFORMW 사토리는 애달파 보이는 표정으로 물어왔다
+					CASE 1
+						PRINTFORMW 「...기다려, 인걸까나...」
+						PRINTFORMW 「그래도 오래는 못 참을거 같지만」
+					CASE 2
+						IF TEQUIP:구속 || TEQUIP:밧줄
+							PRINTFORMW 「이렇게 묶어놓고 냅두는게 어딨어요...」
+							PRINTFORMW 「풀어주시던가, 뭐라도 좀 해줘야지...」
+						ELSE
+							PRINTFORMW 「...아무것도 안해 주시면 조금 심심해 지는걸요」
+						ENDIF
+						PRINTFORMW 사토리는 볼멘소리를 해왔다
+				ENDSELECT
 			ELSE
-				
+				SELECTCASE RAND:2
+					CASE 0
+						PRINTFORMW 「아무것도 안한다니...」
+						PRINTFORMW 사토리는 의아하다는 눈빛이다
+					CASE 1
+						PRINTFORMW 「...정말로 아무것도 안 해요?」
+				ENDSELECT
 			ENDIF
 		ENDIF
 		RETURN 1
@@ -2539,7 +2584,7 @@ ENDIF
 RETURN 1
 
 ;==================================================
-;22,유혹한다
+;22,유혹한다, ; 생략
 ;==================================================
 @M_KOJO_MESSAGE_COM_K49_22
 ;CALL TRAIN_MESSAGE
@@ -2610,14 +2655,6 @@ IF LOCAL
 	ENDIF
 	;실패
 	IF TFLAG:193
-		PRINTFORMW 
-		RETURN 1
-	;연모
-	ELSEIF TALENT:연모
-		PRINTFORMW 
-		RETURN 1
-	;사모
-	ELSEIF TALENT:사모
 		PRINTFORMW 
 		RETURN 1
 	;그 이외
