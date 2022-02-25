@@ -2639,7 +2639,7 @@ RETURN RESULT
 @M_KOJO_MESSAGE_COM_K49_23_1
 ;-------------------------------------------------
 ;기입체크 (=0, 비표시、1, 표시)
-LOCAL = 0
+LOCAL = 1
 ;-------------------------------------------------
 IF LOCAL
 	;-------------------------------------------------
@@ -2655,11 +2655,58 @@ IF LOCAL
 	ENDIF
 	;실패
 	IF TFLAG:193
-		PRINTFORMW 
+		IF MARK:반발각인 == 3 && !TALENT:연인
+			SELECTCASE RAND:3
+				CASE 0
+					PRINTFORMW 「...분위기 깨게 뭐야 정말」
+					PRINTFORMW 사토리는 투덜거렸다
+				CASE 1
+					PRINTFORMW 「...굳이 말로 해주니까 두번씩이나 들어줘야 하는걸」
+					PRINTFORMW 「그냥 얌전히 야한짓이나 하면 될 것을...」
+				CASE 2
+					PRINTFORMW 「하암...」
+					PRINTFORMW 사토리는 노골적으로 지루하다는 내색을 해 왔다
+			ENDSELECT
+		ELSEIF TALENT:연인
+			SELECTCASE RAND:3
+				CASE 0
+					PRINTFORMW 「으으음...」
+					PRINTFORMW 그다지 마음에 들진 않았던 모양이다
+				CASE 1
+					PRINTFORMW 「...아, 네에...」
+					PRINTFORMW 사토리는 건성으로 대답해주었다
+				CASE 2
+					PRINTFORMW 「...음」
+					PRINTFORMW 사토리는 멍하니 %마스터의% 이야기를 들을 뿐이었다
+					PRINTFORMW ...아니, 듣는 척일지도 모른다
+			ENDSELECT
+		ELSE
+			SELECTCASE RAND:3
+				CASE 0
+					PRINTFORMW 「...?」
+					PRINTFORMW 사토리는 아리송한 표정이다
+				CASE 1
+					PRINTFORMW 「으으음...그런...가요...」
+					PRINTFORMW 사토리는 시큰둥하게 대답해 주었을 뿐이다
+				CASE 2
+					PRINTFORMW 「아, 네...」
+					PRINTFORMW 사토리는 영 마음에 안 드는 눈치다
+			ENDSELECT
+		ENDIF
 		RETURN 1
 	;그 이외
 	ELSE
-		PRINTFORMW 
+		IF MARK:반발각인 == 3 && !TALENT:연인
+			
+		ELSEIF TALENT:연인
+			
+		ELSEIF TALENT:연모||TALENT:사모||TALENT:애욕
+			
+		ELSEIF TALENT:섹프
+			
+		ELSE
+			
+		ENDIF 
 		RETURN 1
 	ENDIF
 ENDIF
