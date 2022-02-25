@@ -2696,16 +2696,59 @@ IF LOCAL
 		RETURN 1
 	;그 이외
 	ELSE
+		;PRINTFORMW 「」
 		IF MARK:반발각인 == 3 && !TALENT:연인
-			
-		ELSEIF TALENT:연인
-			
-		ELSEIF TALENT:연모||TALENT:사모||TALENT:애욕
-			
+			SELECTCASE RAND:3
+				CASE 0
+					PRINTFORMW 「뭐, 가끔은 이런 것도 나쁘지 않겠죠」
+					PRINTFORMW 「...기분 좋게 해주는 답례에요」
+				CASE 1
+					IF TALENT:[[코이시]]:연인
+						PRINTFORMW 「이거, 왠지 불륜 같은 느낌이라 조금 흥분되는걸...」
+						PRINTFORMW 「...후후, 나, 굉장히 못됀 언니네...」
+					ELSE
+						PRINTFORMW 「하아...조금 쉴까나...」
+						PRINTFORMW 사토리는 %마스터의% 몸에 살짝 기대왔다
+					ENDIF
+				CASE 2
+					PRINTFORMW 「...」
+					PRINTFORMW 사토리는 말없이 %마스터의% 옆에 기댄 채로 쉬고 있다
+			ENDSELECT
+		ELSEIF TALENT:연인||TALENT:연모||TALENT:사모||TALENT:애욕
+			SELECTCASE RAND:3
+				CASE 0
+					PRINTFORMW 「...후후...뭔가, 나른한게 기분 좋아」
+				CASE 1
+					PRINTFORMW 사토리는 %마스터를% 지그시 바라보고 있다
+					PRINTFORMW 무언가 묻은 걸까?
+					PRINTFORMW 「...응? 아, 아뇨, 그냥...보고 있는게 좋아서요...」
+					PRINTFORMW 사토리는 혼자서 대답하고는 얼굴을 붉혔다
+				CASE 2
+					IF TALENT:[[코이시]]:연인
+						PRINTFORMW 「이거, 왠지 불륜 같은 느낌이라 조금 흥분되는걸...」
+						PRINTFORMW 「...물론 코이시도 소중하지만...%사마스터는% 양보 할 수 없으니까요」
+					ELSE
+						PRINTFORMW 「하아...조금 쉴까나...」
+						PRINTFORMW 사토리는 %마스터의% 몸에 살짝 기대왔다
+					ENDIF
+			ENDSELECT
 		ELSEIF TALENT:섹프
-			
+			SELECTCASE RAND:2
+				CASE 0
+					PRINTFORMW 「으으응-...역시 조금 지치네...」
+					PRINTFORMW 「좀 더 %사마스터와% 놀고 싶어도, 몸이 못 받쳐주니 아쉬울 따름이네요...」
+					PRINTFORMW 사토리는 늘어지게 기지개를 피며 %마스터의% 몸에 기대왔다
+				CASE 1
+					PRINTFORMW 「후아...가끔은 이렇게 느긋한것도 좋네...」
+			ENDSELECT
 		ELSE
-			
+			SELECTCASE RAND:2
+				CASE 0
+					PRINTFORMW 「으으응...」
+					PRINTFORMW 사토리는 %마스터의% 몸에 기댄채 꾸벅꾸벅 졸고 있다
+				CASE 1
+					PRINTFORMW 「...뭔가 느긋하네」
+			ENDSELECT
 		ENDIF 
 		RETURN 1
 	ENDIF
