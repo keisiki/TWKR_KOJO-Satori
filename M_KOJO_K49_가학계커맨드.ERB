@@ -12,7 +12,7 @@ RETURN RESULT
 @M_KOJO_MESSAGE_COM_K49_100_1
 ;-------------------------------------------------
 ;기입체크 (=0, 비표시、1, 표시)
-LOCAL = 0
+LOCAL = 1
 ;-------------------------------------------------
 IF LOCAL
 	;-------------------------------------------------
@@ -29,26 +29,103 @@ IF LOCAL
 	;기본세트
 	;시간(時姦)중
 	IF FLAG:70
-		PRINTFORMW 
-		RETURN 1
-	;연모
-	ELSEIF TALENT:연모
-		PRINTFORMW 
-		RETURN 1
-	;괘씸3
-	ELSEIF MARK:괘씸각인 == 3
-		PRINTFORMW 
 		RETURN 1
 	;그 이외
+	;PRINTFORMW 「」
 	ELSE
-		PRINTFORMW 
+		IF TALENT:마조끼 >= 2
+			;즐긴다
+			IF MARK:반발각인 == 3 && !TALENT:연인
+				
+			ELSEIF TALENT:연인
+				
+			ELSEIF TALENT:연모||TALENT:사모
+				
+			ELSEIF TALENT:섹프||TALENT:애욕
+				
+			ELSE
+				
+			ENDIF
+		ELSE
+			;아프기만 할 뿐
+			IF MARK:반발각인 == 3 && !TALENT:연인
+				SELECTCASE RAND:3
+					CASE 0
+						PRINTFORMW 「히끗?! 아...아팟...!」
+						PRINTFORMW 사토리는 갑작스런 통증에 놀란 모양이다
+					CASE 1
+						IF PREVCOM == 100
+							;2연타
+							PRINTFORMW 「그...그만해...」
+							PRINTFORMW 사토리의 엉덩이가 새빨갛게 물들어 갔다
+						ELSE
+							PRINTFORMW 「읏...!」
+							PRINTFORMW 갑작스런 고통에 사토리의 몸이 움찔움찔 떨리고 있다
+						ENDIF
+					CASE 2
+						IF PREVCOM == 100
+							;2연타
+							PRINTFORMW 「그...그만 때려...으긋?!」
+							PRINTFORMW 빨간 손자국이 사토리의 엉덩이를 수놓고 있다
+						ELSE
+							PRINTFORMW 「이...이런게 뭐가 좋은...거야...」
+							PRINTFORMW 사토리는 눈물을 살짝 머금은채 항의해왔지만, %마스터는% 신경쓰지 않고 계속 사토리의 엉덩이를 때릴 뿐이었다
+						ENDIF
+				ENDSELECT
+			ELSEIF TALENT:연모||TALENT:사모||TALENT:애욕||TALENT:연인
+				SELECTCASE RAND:3
+					CASE 0
+						PRINTFORMW 「윽...아, 아프단 말야...왜 그러는거야...」
+						PRINTFORMW 「...이걸로 기분 좋아진다니, 그럴리가 없잖아...」
+						PRINTFORMW 사토리의 엉덩이의 몇개의 손자국이 수놓여져 갔다
+					CASE 1
+						IF PREVCOM == 100
+							;2연타
+							PRINTFORMW 「그...그만...으긋?!」
+							PRINTFORMW 사토리는 눈물을 글썽이며 애원했지만 %마스터는% 들은채도 안하고 엉덩이를 때릴 뿐이었다
+						ELSE
+							PRINTFORMW 「이...이런게 뭐가 좋은...거야...」
+							PRINTFORMW 사토리는 눈물을 살짝 머금은채 항의해왔지만, %마스터는% 신경쓰지 않고 계속 사토리의 엉덩이를 때릴 뿐이었다
+						ENDIF
+					CASE 2
+						PRINTFORMW 「으긋...아팟...!」
+						PRINTFORMW 사토리는 따끔한 고통에 온 몸을 움찔거리고 있다
+				ENDSELECT
+			ELSEIF TALENT:섹프
+				SELECTCASE RAND:2
+					CASE 0
+						PRINTFORMW 「힛?! 아...아파...!」
+						PRINTFORMW 사토리는 갑작스런 고통에 전신을 떨고 있다
+					CASE 1
+						PRINTFORMW 「이...이런건 기분 좋지 않아...」
+						PRINTFORMW 사토리의 엉덩이에 새빨간 손자국이 수놓여갔다
+				ENDSELECT
+			ELSE
+				SELECTCASE RAND:3
+					CASE 0
+						PRINTFORMW 「이런게...뭐가 좋다고 하는거야...」
+					CASE 1
+						PRINTFORMW 「아...아팟...!」
+						PRINTFORMW %마스터의% 손바닥 자국 몇개가 사토리의 엉덩이를 수놓고 있다
+					CASE 2
+						IF PREVCOM == 100
+							;2연타
+							PRINTFORMW 「그...그만해...」
+							PRINTFORMW 사토리의 엉덩이가 새빨갛게 물들어 갔다
+						ELSE
+							PRINTFORMW 「읏...!」
+							PRINTFORMW 갑작스런 고통에 사토리의 몸이 움찔움찔 떨리고 있다
+						ENDIF
+				ENDSELECT
+			ENDIF
+		ENDIF
 		RETURN 1
 	ENDIF
 ENDIF
 RETURN 1
 
 ;==================================================
-;101,채찍
+;101,채찍 ; 미실장 커맨드
 ;==================================================
 @M_KOJO_MESSAGE_COM_K49_101
 CALL TRAIN_MESSAGE
@@ -90,7 +167,7 @@ ENDIF
 RETURN 1
 
 ;==================================================
-;102,촛농
+;102,촛농 ; 미실장 커맨드
 ;==================================================
 @M_KOJO_MESSAGE_COM_K49_102
 CALL TRAIN_MESSAGE
@@ -132,7 +209,7 @@ ENDIF
 RETURN 1
 
 ;==================================================
-;103,바늘
+;103,바늘 ; 미실장 커맨드
 ;==================================================
 @M_KOJO_MESSAGE_COM_K49_103
 CALL TRAIN_MESSAGE
@@ -280,7 +357,7 @@ ENDIF
 RETURN 1
 
 ;==================================================
-;106,볼개그
+;106,볼개그 ; 미실장 커맨드
 ;==================================================
 @M_KOJO_MESSAGE_COM_K49_106
 CALL TRAIN_MESSAGE
