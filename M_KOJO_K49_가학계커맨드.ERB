@@ -36,15 +36,58 @@ IF LOCAL
 		IF TALENT:마조끼 >= 2
 			;즐긴다
 			IF MARK:반발각인 == 3 && !TALENT:연인
-				
-			ELSEIF TALENT:연인
-				
-			ELSEIF TALENT:연모||TALENT:사모
-				
+				SELECTCASE RAND:3
+					CASE 0
+						PRINTFORMW 「아...아아...♥」
+						PRINTFORMW 엉덩이를 얻어맞을수록 사토리의 얼굴이 묘한 흥분에 물들여지고 있었다
+					CASE 1
+						PRINTFORMW 「아파...♥ 아픈데... 어째서...♥」
+						PRINTFORMW 「이상해...그치만...기분 좋은걸...♥」
+					CASE 2
+						PRINTFORMW 「시, 싫어...♥ 그만...♥ 흐읏♥」
+						PRINTFORMW 저항하고는 있지만, 사토리의 목소리는 점점 더 달콤한 교성으로 바뀌고 있었다
+				ENDSELECT
+			ELSEIF TALENT:연인||TALENT:연모||TALENT:사모
+				SELECTCASE RAND:3
+					CASE 0
+						PRINTFORMW 「흣...♥ 으으응♥ 조, 좀 더...!」
+						PRINTFORMW 사토리는 침까지 흘리며 욱신거리는 쾌감을 즐기고 있다
+					CASE 1
+						PRINTFORMW 「흐읏♥ 읏♥ 아픈데...♥ 기분 좋아...♥ 앗♥」
+						PRINTFORMW 사토리의 다리 사이가 축축해져 갔다
+						PALAM:윤활 += 100
+					CASE 2
+						PRINTFORMW 「아...아파...♥ 그치만... 기분 좋아...♥」
+						PALAM:윤활 += 100
+						IF PALAM:윤활 >= 3000 && TALENT:성별 != 1
+							PRINTFORMW 엉덩이를 때리는 %마스터의% 손에 사토리의 질척한 애액이 묻어나왔다
+						ENDIF
+				ENDSELECT
 			ELSEIF TALENT:섹프||TALENT:애욕
-				
+				SELECTCASE RAND:3
+					CASE 0
+						PRINTFORMW 「히잇♥ 아...아팟...!」
+						PRINTFORMW 「아픈데...기분, 좋아...♥」
+					CASE 1
+						PRINTFORMW 「흣...♥ 으으응♥ 조, 좀 더...!」
+						PRINTFORMW 사토리는 침까지 흘리며 욱신거리는 쾌감을 즐기고 있다
+					CASE 2
+						PRINTFORMW 「힛♥ 으응♥ 읏♥」
+						PRINTFORMW 아픔보다 쾌감이 앞서는지 사토리의 신음소리가 점차 달콤한 교성이 되어갔다
+				ENDSELECT
 			ELSE
-				
+				;반발3의 복붙
+				SELECTCASE RAND:3
+					CASE 0
+						PRINTFORMW 「아...아아...♥」
+						PRINTFORMW 엉덩이를 얻어맞을수록 사토리의 얼굴이 묘한 흥분에 물들여지고 있었다
+					CASE 1
+						PRINTFORMW 「아파...♥ 아픈데... 어째서...♥」
+						PRINTFORMW 「이상해...그치만...기분 좋은걸...♥」
+					CASE 2
+						PRINTFORMW 「시, 싫어...♥ 그만...♥ 흐읏♥」
+						PRINTFORMW 저항하고는 있지만, 사토리의 목소리는 점점 더 달콤한 교성으로 바뀌고 있었다
+				ENDSELECT
 			ENDIF
 		ELSE
 			;아프기만 할 뿐

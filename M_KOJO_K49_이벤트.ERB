@@ -597,12 +597,16 @@ IF LOCAL
 					PRINTFORMW 사토리는 아쉬운듯한 표정을 지었다
 			ENDSELECT
 		ELSEIF TALENT:연모||TALENT:사모||TALENT:애욕
-			SELECTCASE RAND:2
+			SELECTCASE RAND:3
 				CASE 0
 					PRINTFORMW 「...즐거웠어요...」
 					PRINTFORMW 「다음번에 또 갈래요...?」
 				CASE 1
 					PRINTFORMW 「아, 벌써 끝인가요...」
+				CASE 2
+					PRINTFORMW 「돌아가는 것도 고생이네요...」
+					PRINTFORMW 사토리는 지쳤다며 %마스터의% 등에 업힌채로 돌아왔다
+					PRINTFORMW 「아하하...」
 			ENDSELECT
 			SELECTCASE RAND:2
 				CASE 0
