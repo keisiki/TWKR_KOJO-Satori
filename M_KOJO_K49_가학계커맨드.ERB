@@ -33,6 +33,8 @@ IF LOCAL
 	;그 이외
 	;PRINTFORMW 「」
 	ELSE
+		SIF !SHIRAHU()
+			RETURN 1
 		IF ABL:마조끼 >= 2
 			;즐긴다
 			IF MARK:반발각인 == 3 && !TALENT:연인
@@ -315,6 +317,8 @@ IF LOCAL
 	LOCAL:1 = 1
 	;-------------------------------------------------
 	IF LOCAL:1 && FIRSTTIME(SELECTCOM)
+		SIF !SHIRAHU()
+			RETURN 1
 		IF MARK:반발각인 == 3 && !TALENT:연인
 			PRINTFORMW 「...이렇게 가려놔도, 뭘 할지 다 알고 있는데 소용이 있는걸까나」
 			PRINTFORMW 「...아니, 그렇다고 서드아이에 까지 씌울 필요는 없는데...」
@@ -344,6 +348,8 @@ IF LOCAL
 			RETURN 1
 		;그 이외
 		ELSE
+			SIF !SHIRAHU()
+				RETURN 1
 			IF MARK:반발각인 == 3 && !TALENT:연인
 				SELECTCASE RAND:3
 					CASE 0
@@ -477,7 +483,7 @@ RETURN RESULT
 @M_KOJO_MESSAGE_COM_K49_105_1
 ;-------------------------------------------------
 ;기입체크 (=0, 비표시、1, 표시)
-LOCAL = 0
+LOCAL = 1
 ;-------------------------------------------------
 IF LOCAL
 	;-------------------------------------------------
@@ -485,35 +491,159 @@ IF LOCAL
 	;-------------------------------------------------
 	;처음
 	;기입체크
-	LOCAL:1 = 0
+	LOCAL:1 = 1
 	;-------------------------------------------------
 	IF LOCAL:1 && FIRSTTIME(SELECTCOM)
-		PRINTFORMW 
+		SIF !SHIRAHU()
+			RETURN 1
+		IF MARK:반발각인 == 3 && !TALENT:연인
+			PRINTFORMW 「...도대체 뭘 할거길래 밧줄까지 칭칭 감아두는걸까나」
+		ELSEIF TALENT:연인
+			PRINTFORMW 「가...갑자기 왜 묶는 건가요...」
+		ELSEIF TALENT:연모||TALENT:사모||TALENT:애욕
+			PRINTFORMW 「바...밧줄은 왜...?」
+		ELSEIF TALENT:섹프
+			PRINTFORMW 「묶어두고 하고 싶다니...」
+			PRINTFORMW 「변태적이네요」
+		ELSE
+			PRINTFORMW 「아파...그렇게 세게 묶을 필욘 없잖아...」
+		ENDIF
 		RETURN 1
 	ENDIF
 	;기본세트
 	;장착
+	;PRINTFORMW 「」
 	IF TEQUIP:밧줄
 		;시간(時姦)중
 		IF FLAG:70
-			PRINTFORMW 
-			RETURN 1
-		;연모
-		ELSEIF TALENT:연모
-			PRINTFORMW 
-			RETURN 1
-		;괘씸3
-		ELSEIF MARK:괘씸각인 == 3
-			PRINTFORMW 
 			RETURN 1
 		;그 이외
 		ELSE
-			PRINTFORMW 
+			SIF !SHIRAHU()
+				RETURN 1
+			IF ABL:마조끼 >= 2
+				;마조다
+				IF TALENT:연모||TALENT:사모||TALENT:연인
+					SELECTCASE RAND:2
+						CASE 0
+							PRINTFORMW 「아... 또, 묶는거네...」
+							PRINTFORMW 「...왠지 조금 흥분되는걸」
+						CASE 1
+							PRINTFORMW 「조, 조금 더 세게 묶어도 되는데...」
+					ENDSELECT
+				ELSEIF TALENT:섹프||TALENT:애욕
+					SELECTCASE RAND:3
+						CASE 0
+							PRINTFORMW 「억지로 당하는 느낌이네...싫지는 않지만」
+							PRINTFORMW 「오히려 조금 두근두근하기도 하고」
+						CASE 1
+							PRINTFORMW 「이거 왠지 두근두근 거리는걸요」
+							PRINTFORMW 「약간 억지로 당하는거 같아서...후후...♥」
+						CASE 2
+							PRINTFORMW 「...조금 더 세게, 안될까요?」
+					ENDSELECT
+				ELSE
+					SELECTCASE RAND:2
+						CASE 0
+							PRINTFORMW 「아...묶어놓고선...」
+							PRINTFORMW 「조금, 흔분될지도...」
+						CASE 1
+							PRINTFORMW 「조, 조금 더 세게 묶어도 괜찮은데...」
+					ENDSELECT
+				ENDIF
+			ELSE
+				;마조는 아니다
+				IF MARK:반발각인 == 3 && !TALENT:연인
+					SELECTCASE RAND:3
+						CASE 0
+							PRINTFORMW 「...뭘 할거길래 이렇게 칭칭 묶는걸까나?」
+						CASE 1
+							PRINTFORMW 「...아파...그렇게 세게 묶을것까진 없잖아」
+						CASE 2
+							PRINTFORMW 「...코드까지 묶어버리는 이유는 도대체 뭔데...」
+					ENDSELECT
+				ELSEIF TALENT:연모||TALENT:사모||TALENT:연인
+					SELECTCASE RAND:3
+						CASE 0
+							PRINTFORMW 「꼬, 꼭 묶어야 하는건가요...」
+							PRINTFORMW 「아파서 싫은데...」
+						CASE 1
+							PRINTFORMW 「이거 하고 나면 쓸려서 아픈데...」
+							PRINTFORMW 「...조금만 살살 묶으면 안될까요」
+						CASE 2
+							PRINTFORMW 「이런거 없이도 가만히 있으라면 가만히 있는데...」
+					ENDSELECT
+				ELSEIF TALENT:섹프||TALENT:애욕
+					SELECTCASE RAND:3
+						CASE 0
+							PRINTFORMW 「...이거, 하나도 기분 좋지 않던데요」
+							PRINTFORMW 「아프기만 하고...」
+						CASE 1
+							PRINTFORMW 「이게 뭐가 좋은건지 모르겠는데...」
+							PRINTFORMW 사토리는 불만 가득한 표정이다
+						CASE 2
+							PRINTFORMW 「...안 묶어도, 도망같은건 안 갈거예요」
+					ENDSELECT
+				ELSE
+					SELECTCASE RAND:2
+						CASE 0
+							PRINTFORMW 「꼬, 꼭 묶어야 하는건가요...」
+							PRINTFORMW 「아파서 싫은데...」
+						CASE 1
+							PRINTFORMW 「...안 묶으면 안되나요?」
+					ENDSELECT
+				ENDIF
+			ENDIF
 			RETURN 1
 		ENDIF
 	;해제
 	ELSE
-		PRINTFORMW 
+		SIF !SHIRAHU()
+			RETURN 1
+		IF ABL:마조끼 >= 2
+			SELECTCASE RAND:3
+				CASE 0
+					PRINTFORMW 「아...벌써 끝?」
+					PRINTFORMW 「아, 아니...아쉬운건 아닌데...」
+				CASE 1
+					PRINTFORMW 「...좀 더 묶여있었어도 괜찮을거 같았는데」
+				CASE 2
+					PRINTFORMW 「아...끝이구나...」
+			ENDSELECT
+		ELSE
+			IF MARK:반발각인 == 3 && !TALENT:연인
+				SELECTCASE RAND:2
+					CASE 0
+						PRINTFORMW 「이제야 놔주는거네...」
+						PRINTFORMW 「밧줄이 쓸려서, 상당히 아팠단 말야」
+					CASE 1
+						PRINTFORMW 「몸에 밧줄자국이 남아버렸잖아...」
+						PRINTFORMW 사토리는 불만 가득한 표정이다
+				ENDSELECT
+			ELSEIF TALENT:연모||TALENT:사모||TALENT:연인
+				SELECTCASE RAND:2
+					CASE 0
+						PRINTFORMW 「...아팠어」
+					CASE 1
+						PRINTFORMW 「묶이는건 그다지 마음에 들지 않는걸요」
+				ENDSELECT
+			ELSEIF TALENT:섹프||TALENT:애욕
+				SELECTCASE RAND:2
+					CASE 0
+						PRINTFORMW 「내 맘대로 못 움직이는건 역시 답답해서 싫어...」
+					CASE 1
+						PRINTFORMW 「아아...밧줄 자국이 남아버렸어, 어쩐담」
+				ENDSELECT
+			ELSE
+				SELECTCASE RAND:2
+					CASE 0
+						PRINTFORMW 「...밧줄 자국이 남았어」
+						PRINTFORMW 사토리는 볼멘소리를 해왔다
+					CASE 1
+						PRINTFORMW 「아아, 이제야 놔주는거네」
+				ENDSELECT
+			ENDIF
+		ENDIF
 		RETURN 1
 	ENDIF
 ENDIF
@@ -586,38 +716,166 @@ IF LOCAL
 	;-------------------------------------------------
 	;처음
 	;기입체크
-	LOCAL:1 = 0
+	LOCAL:1 = 1
 	;-------------------------------------------------
 	IF LOCAL:1 && FIRSTTIME(SELECTCOM)
-		PRINTFORMW 
+		SIF !SHIRAHU()
+			RETURN 1
+		IF MARK:반발각인 == 3 && !TALENT:연인
+			PRINTFORMW 「...도대체 뭘 할거길래 밧줄까지 칭칭 감아두는걸까나」
+		ELSEIF TALENT:연인
+			PRINTFORMW 「가...갑자기 왜 묶는 건가요...」
+		ELSEIF TALENT:연모||TALENT:사모||TALENT:애욕
+			PRINTFORMW 「바...밧줄은 왜...?」
+		ELSEIF TALENT:섹프
+			PRINTFORMW 「묶어두고 하고 싶다니...」
+			PRINTFORMW 「변태적이네요」
+		ELSE
+			PRINTFORMW 「아파...그렇게 세게 묶을 필욘 없잖아...」
+		ENDIF
 		RETURN 1
 	ENDIF
 	;기본세트
 	;장착
-	IF TEQUIP:볼개그
-		;연모
-		IF TALENT:연모
-			PRINTFORMW 
-			RETURN 1
-		;괘씸3
-		ELSEIF MARK:괘씸각인 == 3
-			PRINTFORMW 
+	;PRINTFORMW 「」
+	IF TEQUIP:밧줄
+		;시간(時姦)중
+		IF FLAG:70
 			RETURN 1
 		;그 이외
 		ELSE
-			PRINTFORMW 
+			SIF !SHIRAHU()
+				RETURN 1
+			IF ABL:마조끼 >= 2
+				;마조다
+				IF TALENT:연모||TALENT:사모||TALENT:연인
+					SELECTCASE RAND:2
+						CASE 0
+							PRINTFORMW 「아... 또, 묶는거네...」
+							PRINTFORMW 「...왠지 조금 흥분되는걸」
+						CASE 1
+							PRINTFORMW 「조, 조금 더 세게 묶어도 되는데...」
+					ENDSELECT
+				ELSEIF TALENT:섹프||TALENT:애욕
+					SELECTCASE RAND:3
+						CASE 0
+							PRINTFORMW 「억지로 당하는 느낌이네...싫지는 않지만」
+							PRINTFORMW 「오히려 조금 두근두근하기도 하고」
+						CASE 1
+							PRINTFORMW 「이거 왠지 두근두근 거리는걸요」
+							PRINTFORMW 「약간 억지로 당하는거 같아서...후후...♥」
+						CASE 2
+							PRINTFORMW 「...조금 더 세게, 안될까요?」
+					ENDSELECT
+				ELSE
+					SELECTCASE RAND:2
+						CASE 0
+							PRINTFORMW 「아...묶어놓고선...」
+							PRINTFORMW 「조금, 흔분될지도...」
+						CASE 1
+							PRINTFORMW 「조, 조금 더 세게 묶어도 괜찮은데...」
+					ENDSELECT
+				ENDIF
+			ELSE
+				;마조는 아니다
+				IF MARK:반발각인 == 3 && !TALENT:연인
+					SELECTCASE RAND:3
+						CASE 0
+							PRINTFORMW 「...뭘 할거길래 이렇게 칭칭 묶는걸까나?」
+						CASE 1
+							PRINTFORMW 「...아파...그렇게 세게 묶을것까진 없잖아」
+						CASE 2
+							PRINTFORMW 「...코드까지 묶어버리는 이유는 도대체 뭔데...」
+					ENDSELECT
+				ELSEIF TALENT:연모||TALENT:사모||TALENT:연인
+					SELECTCASE RAND:3
+						CASE 0
+							PRINTFORMW 「꼬, 꼭 묶어야 하는건가요...」
+							PRINTFORMW 「아파서 싫은데...」
+						CASE 1
+							PRINTFORMW 「이거 하고 나면 쓸려서 아픈데...」
+							PRINTFORMW 「...조금만 살살 묶으면 안될까요」
+						CASE 2
+							PRINTFORMW 「이런거 없이도 가만히 있으라면 가만히 있는데...」
+					ENDSELECT
+				ELSEIF TALENT:섹프||TALENT:애욕
+					SELECTCASE RAND:3
+						CASE 0
+							PRINTFORMW 「...이거, 하나도 기분 좋지 않던데요」
+							PRINTFORMW 「아프기만 하고...」
+						CASE 1
+							PRINTFORMW 「이게 뭐가 좋은건지 모르겠는데...」
+							PRINTFORMW 사토리는 불만 가득한 표정이다
+						CASE 2
+							PRINTFORMW 「...안 묶어도, 도망같은건 안 갈거예요」
+					ENDSELECT
+				ELSE
+					SELECTCASE RAND:2
+						CASE 0
+							PRINTFORMW 「꼬, 꼭 묶어야 하는건가요...」
+							PRINTFORMW 「아파서 싫은데...」
+						CASE 1
+							PRINTFORMW 「...안 묶으면 안되나요?」
+					ENDSELECT
+				ENDIF
+			ENDIF
 			RETURN 1
 		ENDIF
 	;해제
 	ELSE
-		PRINTFORMW 
+		SIF !SHIRAHU()
+			RETURN 1
+		IF ABL:마조끼 >= 2
+			SELECTCASE RAND:3
+				CASE 0
+					PRINTFORMW 「아...벌써 끝?」
+					PRINTFORMW 「아, 아니...아쉬운건 아닌데...」
+				CASE 1
+					PRINTFORMW 「...좀 더 묶여있었어도 괜찮을거 같았는데」
+				CASE 2
+					PRINTFORMW 「아...끝이구나...」
+			ENDSELECT
+		ELSE
+			IF MARK:반발각인 == 3 && !TALENT:연인
+				SELECTCASE RAND:2
+					CASE 0
+						PRINTFORMW 「이제야 놔주는거네...」
+						PRINTFORMW 「밧줄이 쓸려서, 상당히 아팠단 말야」
+					CASE 1
+						PRINTFORMW 「몸에 밧줄자국이 남아버렸잖아...」
+						PRINTFORMW 사토리는 불만 가득한 표정이다
+				ENDSELECT
+			ELSEIF TALENT:연모||TALENT:사모||TALENT:연인
+				SELECTCASE RAND:2
+					CASE 0
+						PRINTFORMW 「...아팠어」
+					CASE 1
+						PRINTFORMW 「묶이는건 그다지 마음에 들지 않는걸요」
+				ENDSELECT
+			ELSEIF TALENT:섹프||TALENT:애욕
+				SELECTCASE RAND:2
+					CASE 0
+						PRINTFORMW 「내 맘대로 못 움직이는건 역시 답답해서 싫어...」
+					CASE 1
+						PRINTFORMW 「아아...밧줄 자국이 남아버렸어, 어쩐담」
+				ENDSELECT
+			ELSE
+				SELECTCASE RAND:2
+					CASE 0
+						PRINTFORMW 「...밧줄 자국이 남았어」
+						PRINTFORMW 사토리는 볼멘소리를 해왔다
+					CASE 1
+						PRINTFORMW 「아아, 이제야 놔주는거네」
+				ENDSELECT
+			ENDIF
+		ENDIF
 		RETURN 1
 	ENDIF
 ENDIF
 RETURN 1
 
 ;==================================================
-;108,젖스팽킹
+;108,젖스팽킹 ; 생략
 ;==================================================
 @M_KOJO_MESSAGE_COM_K49_108
 CALL TRAIN_MESSAGE
