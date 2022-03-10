@@ -5,16 +5,23 @@
 ;60,정상위
 ;==================================================
 @M_KOJO_MESSAGE_COM_K49_60
-CALL TRAIN_MESSAGE
-CALL M_KOJO_MESSAGE_COM_K49_60_1
+IF TCVAR:파과
+	CALL M_KOJO_MESSAGE_COM_K49_60_1
+	CALL TRAIN_MESSAGE
+ELSE
+	CALL TRAIN_MESSAGE
+	CALL M_KOJO_MESSAGE_COM_K49_60_1
+ENDIF
+
+;파과시엔 순서를 바꾸는게 연출상 더 좋다
 RETURN RESULT
 
 @M_KOJO_MESSAGE_COM_K49_60_1
 
 ;-------------------------------------------------
-;입위(立位)
+;대면 입위(立位)
 ;기입체크 (=0, 비표시、1, 표시)
-LOCAL = 0
+LOCAL = 1
 ;-------------------------------------------------
 IF LOCAL && TFLAG:193
 	;-------------------------------------------------
@@ -22,15 +29,77 @@ IF LOCAL && TFLAG:193
 	;-------------------------------------------------
 	;처음
 	;기입체크
-	LOCAL:1 = 0
+	LOCAL:1 = 1
 	;-------------------------------------------------
 	IF LOCAL:1 && FIRSTTIME(SELECTCOM)
 		;처녀
+		;PRINTFORMW 「」
 		IF TCVAR:파과 == 1
-			PRINTFORMW 
+			IF MARK:반발각인 == 3
+				IF TALENT:연인
+					PRINTFORMW 「서, 선채로? 아무리 그래도...」
+					PRINTFORMW 「...아, 아녜요, %사마스터가% 하고 싶으시다면...」
+					PRINTFORM 어쩐지 탐탁치 않은듯한 표정을 짓는 
+					;이후 개행없이 대사 이어짐
+				ELSEIF TALENT:연모||TALENT:사모||TALENT:애욕||TALENT:섹프
+					PRINTFORMW 「처, 처음은 적어도 침대에 누워서 하는게...」
+					PRINTFORMW 「...역시 이건 좀 무서운걸요...」
+					PRINTFORMW 사토리는 살짝 긴장한듯한 표정으로 %마스터를% 바라보고 있다
+					PRINTFORMW 「그래도, %사마스터가% 하고 싶으시다면」
+					PRINTFORMW 「이대로 해도...좋아요」
+					PRINTFORM 얼굴을 붉힌 
+				ELSE
+					PRINTFORMW 「...처음정도는 평범하게 하고 싶었는데」
+					PRINTFORMW 「하기사 제가 말해봐야 안 들어주시겠죠...」
+					PRINTFORMW 사토리는 살짝 체념한듯한 목소리로 말해왔다
+					PRINTFORMW 「...할거면, 얼른 해버리던가 하세요」
+				ENDIF
+			ELSEIF TALENT:연인
+				PRINTFORMW 「처, 첫 경험이 이런거라니...너무 하드한게 아닐까요...」
+				PRINTFORMW 「역시 조금 무서울지도...」
+				PRINTFORMW 「...그래도, %사마스터가% 하고 싶으시다면야...」
+				PRINTFORMW 사토리는 살짝 긴장한듯한 표정으로 %마스터를% 바라보고 있다
+				PRINTFORM %마스터는% 천천히 
+			ELSEIF TALENT:연모||TALENT:사모
+				PRINTFORMW 「서, 선 채로? 처음부터 너무 하드한건 아닐까 싶은데...」
+				PRINTFORMW 「...그래도 하고 싶다면야...그, 상냥하게...」
+				PRINTFORM 살짝 긴장한듯한 
+			ELSEIF TALENT:섹프||TALENT:애욕
+				PRINTFORMW 「그러고보니, 여기로 하는건 처음이었나」
+				PRINTFORMW 「다른건 잔뜩 해놓고 이건 안한게 신기하긴 하네」
+				PRINTFORM 고개를 갸웃거리는 
+			ELSE
+				PRINTFORMW 「...처음정도는 평범하게 하고 싶었는데」
+				PRINTFORMW 「뭐어, 그래도 아프지만 않게 해준다면...처음같은거야 별 의미 없겠지」
+			ENDIF
+			;%CALLNAME:TARGET%의 한쪽 발을 들어 올려 %SLIT(TARGET)%에
+			;귀두를 주어 단숨에 관철했다…
+			;로 이어짐
 			RETURN 1
 		ELSE
-			PRINTFORMW 
+			IF MARK:반발각인 == 3
+				IF TALENT:연인
+					PRINTFORMW 「...묘한 자세네요」
+					PRINTFORMW 「이대로 안아주시는걸까나...나름 낭만적일지도」
+				ELSEIF TALENT:연인||TALENT:연모||TALENT:사모||TALENT:섹프||TALENT:애욕
+					PRINTFORMW 「아...이거, 왠지 안겨지는거 같은 기분...」
+					PRINTFORMW 「...뭐랄까, 되게 좋네, 이거...」
+					PRINTFORMW 사토리는 살며시 %마스터를% 끌어안았다
+				ELSE
+					PRINTFORMW 「...얼굴보고 하는건, 처음이었던가」
+					PRINTFORMW 「어쩐지 기분이 묘한걸」
+				ENDIF
+			ELSEIF TALENT:연인
+				PRINTFORMW 「아...이거, 왠지 안겨지는거 같네...」
+				PRINTFORMW 사토리는 약간 기쁜듯이 말해왔다
+			ELSEIF TALENT:연모||TALENT:사모
+				PRINTFORMW 「...이거, 왠지 안겨지는거 같네...」
+			ELSEIF TALENT:섹프||TALENT:애욕
+				PRINTFORMW 「어라라, 새로운 체위인가요?」
+				PRINTFORMW 「나쁘진...않을지도?」
+			ELSE
+				PRINTFORMW 「또 다른 자세? 뭐가 좋은건진 모르겠지만...」
+			ENDIF
 			RETURN 1
 		ENDIF
 	ENDIF
