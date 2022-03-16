@@ -252,7 +252,62 @@ IF LOCAL
 	IF FLAG:70
 		RETURN 1
 	ELSE
-		PRINTFORMW 
+		IF MARK:반발각인 == 3
+			IF TALENT:연인||TALENT:연모||TALENT:사모||TALENT:애욕||TALENT:섹프
+				SELECTCASE RAND:3
+					CASE 0
+						PRINTFORMW 「으응...」
+						PRINTFORMW 사토리는 짧게 신음할뿐 별다른 말은 하지 않았다
+					CASE 1
+						PRINTFORMW 「앗...♥」
+						PRINTFORMW 삽입의 쾌락에 사토리의 입에서 짧은 탄성이 나왔다
+					CASE 2
+						PRINTFORMW 「아...♥ 들어 왔다...♥」
+						PRINTFORMW 사토리는 녹아내린 표정을 지으며 %마스터를% 올려다 보았다
+				ENDSELECT
+			ELSE
+				SELECTCASE RAND:2
+					CASE 0
+						PRINTFORMW 「......」
+						PRINTFORMW 사토리는 고개를 돌렸다
+					CASE 1
+						PRINTFORMW 「숨소리 기분 나빠...」
+				ENDSELECT
+			ENDIF
+		ELSEIF TALENT:연인||TALENT:연모||TALENT:사모
+			SELECTCASE RAND:3
+				CASE 0
+					PRINTFORMW 「아아...♥」
+					PRINTFORMW 사토리는 황홀한듯한 표정을 지었다
+				CASE 1
+					PRINTFORMW 「앗...♥」
+					PRINTFORMW 삽입의 쾌락에 사토리의 입에서 짧은 탄성이 나왔다
+				CASE 2
+					PRINTFORMW 「아...♥ 들어 왔다...♥」
+					PRINTFORMW 사토리는 녹아내린 표정을 지으며 %마스터를% 올려다 보았다
+			ENDSELECT
+		ELSEIF TALENT:섹프||TALENT:애욕
+			SELECTCASE RAND:3
+				CASE 0
+					PRINTFORMW 「아핫...♥」
+					PRINTFORMW 삽입의 쾌락에 사토리의 몸이 잘게 떨렸다
+				CASE 1
+					PRINTFORMW 「아...♥ 좋아...♥」
+					PRINTFORMW 사토리의 입에서 달콤한 한숨이 흘러나왔다
+				CASE 2
+					PRINTFORMW 「아...♥ 들어 왔다...♥」
+					PRINTFORMW 사토리는 녹아내린 표정을 지으며 %마스터를% 올려다 보았다
+			ENDSELECT
+		ELSE
+			SELECTCASE RAND:2
+				CASE 0
+					PRINTFORMW 「읏...」
+					PRINTFORMW 사토리는 입술을 깨물며 신음을 참았다
+				CASE 1
+					PRINTFORMW 「으긋...」
+					PRINTFORMW 사토리는 표정을 감추려는듯이 고개를 돌렸다
+			ENDSELECT
+		ENDIF
 		RETURN 1
 	ENDIF
 ENDIF
