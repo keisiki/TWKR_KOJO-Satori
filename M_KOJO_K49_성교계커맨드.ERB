@@ -382,7 +382,7 @@ ENDIF
 ;-------------------------------------------------
 ;후배위
 ;기입체크 (=0, 비표시、1, 표시)
-LOCAL = 0
+LOCAL = 1
 ;-------------------------------------------------
 IF LOCAL
 	;-------------------------------------------------
@@ -390,15 +390,64 @@ IF LOCAL
 	;-------------------------------------------------
 	;처음
 	;기입체크
-	LOCAL:1 = 0
+	LOCAL:1 = 1
 	;-------------------------------------------------
 	IF LOCAL:1 && FIRSTTIME(SELECTCOM)
 		;처녀
+		;PRINTFORMW 「」
 		IF TCVAR:파과 == 1
-			PRINTFORMW 
+			IF MARK:반발각인 == 3
+				IF TALENT:연인||TALENT:연모||TALENT:사모||TALENT:애욕||TALENT:섹프
+					PRINTFORMW 「처음부터 이런거라니...」
+					PRINTFORMW 「최소한 마주보고라도 해줬음 했는데...역시 약간 무서운걸」
+					PRINTFORMW 「...이런 말 해봤자 들어주시진 않겠죠, 그렇담 안 아프게라도 해주세요」
+				ELSE
+					;가능?
+					PRINTFORMW 「...처음이 이런 자세라니, 뭔가 동물 같아서 기분이 이상한걸」
+					PRINTFORMW 사토리는 불만스러운듯이 중얼거렸다
+					PRINTFORMW 그러나 그 이상의 반응은 없었다
+				ENDIF
+			ELSEIF TALENT:연인||TALENT:연모||TALENT:사모
+				PRINTFORMW 「처음인데...이런 자세라니...」
+				PRINTFORMW 「적어도 처음은 마주보고 하고 싶었는데」
+				PRINTFORMW 사토리는 약간 섭섭한듯이 말해왔다
+				PRINTFORMW 「그래도...%사마스터랑% 하는거라면, 뭐가됐든 상관 없겠죠」
+				PRINTFORMW 「네, 좋아요...와주세요, 저한테 기분 좋은일을 알려주세요」
+			ELSEIF TALENT:섹프||TALENT:애욕
+				PRINTFORMW 「그러고보니 이건 처음이었던가...」
+				PRINTFORMW 「다른건 다 해놓고 이것만 안 했다는것도 이상하긴 하네요...」
+				PRINTFORMW 사토리는 쿡쿡 웃고는 자리에 엎드렸다
+				PRINTFORMW 「자, 뚫어주세요」
+				PRINTFORMW 「기분 좋은거...더 알고 싶으니깐♥」
+			ELSE
+				;가능?
+				PRINTFORMW 「처음정도는 평범하게 하고 싶었는데...」
+				PRINTFORMW 사토리는 불만스러운듯이 말해왔다
+				PRINTFORMW 그러나 그 이상의 저항은 없었다
+			ENDIF
 			RETURN 1
 		ELSE
-			PRINTFORMW 
+			IF MARK:반발각인 == 3
+				IF TALENT:연인||TALENT:연모||TALENT:사모||TALENT:애욕||TALENT:섹프
+					PRINTFORMW 「이번엔 뒤에서? 왠지 동물같은걸요」
+					PRINTFORMW 「...이 편이 더 깊숙히 넣을수 있다라...헤에...그런가요」
+				ELSE
+					PRINTFORMW 「이번엔 뒤로?」
+					PRINTFORMW 「...펫들이 자주 하던 자세네, 동물이 된 기분인걸」
+				ENDIF
+			ELSEIF TALENT:연인||TALENT:연모||TALENT:사모
+				PRINTFORMW 「이번엔 뒤에서?」
+				PRINTFORMW 「...이거, 펫들이 발정날때 서로 하던 자세네요...뭔가 부끄러워질려 하는걸」
+				PRINTFORMW 사토리는 얼굴을 붉히면서도 순순히 자리에 엎드렸다
+			ELSEIF TALENT:섹프||TALENT:애욕
+				PRINTFORMW 「뭔가...동물같은 자세네요」
+				PRINTFORMW 「그만큼 거칠게 해주시겠단 건가요? 후후...」
+				PRINTFORMW 사토리는 기대하는듯한 눈빛을 보내왔다
+			ELSE
+				PRINTFORMW 「엎드린채로? ...이거 펫들이 발정나면 하던 자세네」
+				PRINTFORMW 「...그만큼 기분 좋다, 라고 해도...하아, 이런 말 해봐야 안 듣겠지」
+				PRINTFORMW 사토리는 체념한듯이 자리에 엎드렸다
+			ENDIF
 			RETURN 1
 		ENDIF
 	ENDIF
