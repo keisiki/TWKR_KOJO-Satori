@@ -276,7 +276,7 @@ RETURN RESULT
 ;-------------------------------------------------
 ;입위(立位)
 ;기입체크 (=0, 비표시、1, 표시)
-LOCAL = 0
+LOCAL = 1
 ;-------------------------------------------------
 IF LOCAL && TFLAG:193
 	;-------------------------------------------------
@@ -284,15 +284,44 @@ IF LOCAL && TFLAG:193
 	;-------------------------------------------------
 	;처음
 	;기입체크
-	LOCAL:1 = 0
+	LOCAL:1 = 1
 	;-------------------------------------------------
 	IF LOCAL:1 && FIRSTTIME(SELECTCOM)
 		;처녀
 		IF TCVAR:파과 == 1
-			PRINTFORMW 
+			IF MARK:반발각인 == 3
+				IF TALENT:연인
+					
+				ELSEIF TALENT:연모||TALENT:사모||TALENT:애욕||TALENT:섹프
+					
+				ELSE
+					
+				ENDIF
+			ELSEIF TALENT:연인
+				
+			ELSEIF TALENT:연모||TALENT:사모
+				PRINTFORMW 「처음정도는 느긋하게 침대에서 하고 싶었는데」
+				PRINTFORMW 사토리는 약간 실망한듯한 목소리로 말했다
+				PRINTFORMW 「...뭐, 이런것도 나쁘지야 않겠죠」
+				PRINTFORMW 「대신에 다음번엔, 침대에서 해 주세요」
+				PRINTFORMW 사토리는 엉덩이를 쑤욱 들이밀어 왔다
+			ELSEIF TALENT:섹프||TALENT:애욕
+				PRINTFORMW 「그러고보니 이건 처음이었던가...」
+				PRINTFORMW 「다른건 다 해놓고 이것만 안 했다는것도 이상하긴 하네요...」
+				PRINTFORMW 사토리는 쿡쿡 웃고는 엉덩이를 들이밀어왔다
+				PRINTFORMW 「자, 뚫어주세요」
+				PRINTFORMW 「기분 좋은거...더 알고 싶으니깐♥」
+			ELSE
+				PRINTFORMW 「처음은 침대에서 느긋히 하고 싶었는데」
+				PRINTFORMW 「...이렇게 말해봐야 소용 없겠죠, 하아...」
+				PRINTFORMW 사토리는 체념한듯 엉덩이를 들이밀어왔다
+				PRINTFORMW 「...할거면, 얼른 해버리던가 하세요」
+			ENDIF
 			RETURN 1
 		ELSE
-			PRINTFORMW 
+			
+
+
 			RETURN 1
 		ENDIF
 	ENDIF
@@ -308,15 +337,6 @@ IF LOCAL && TFLAG:193
 	;기본세트
 	;시간(時姦)중
 	IF FLAG:70
-		PRINTFORMW 
-		RETURN 1
-	;연모
-	ELSEIF TALENT:연모
-		PRINTFORMW 
-		RETURN 1
-	;괘씸3
-	ELSEIF MARK:괘씸각인 == 3
-		PRINTFORMW 
 		RETURN 1
 	;그 이외
 	ELSE
