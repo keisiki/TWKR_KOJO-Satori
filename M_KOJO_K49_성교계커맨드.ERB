@@ -332,18 +332,23 @@ IF LOCAL && TFLAG:193
 		ELSE
 			IF MARK:반발각인 == 3
 				IF TALENT:연인||TALENT:연모||TALENT:사모||TALENT:애욕||TALENT:섹프
-					
+					PRINTFORMW 「기, 깊엇♥ 안까지 찔리고 있어♥」
+					PRINTFORMW 「안대...자극이 너무...♥」
+					PRINTFORMW 사토리의 다리가 후들후들 떨리고 있다
 				ELSE
-					
+					PRINTFORMW 「읏...기, 깊어...」
+					PRINTFORMW 사토리는 삽입의 충격에 거칠게 숨을 몰아쉬고 있다
 				ENDIF
-			ELSEIF TALENT:연인
-				
-			ELSEIF TALENT:연모||TALENT:사모||TALENT:애욕
-				
-			ELSEIF TALENT:섹프
-				
+			ELSEIF TALENT:연인||TALENT:연모||TALENT:사모
+				PRINTFORMW 「기, 깊엇♥ 안까지 찔리고 있어♥」
+				PRINTFORMW 「안대...자극이 너무...♥」
+				PRINTFORMW 사토리의 다리가 후들후들 떨리고 있다
+			ELSEIF TALENT:섹프||TALENT:애욕
+				PRINTFORMW 「앗...♥ 이 자세♥ 깊숙히 들어와서...기분 좋아...♥」
+				PRINTFORMW 사토리의 입에서 짧은 탄성이 터져나왔다
 			ELSE
-				
+				PRINTFORMW 「읏...기, 깊어...」
+				PRINTFORMW 사토리는 삽입의 충격에 거칠게 숨을 몰아쉬고 있다
 			ENDIF
 			RETURN 1
 		ENDIF
