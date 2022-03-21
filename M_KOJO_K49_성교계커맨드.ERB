@@ -368,7 +368,78 @@ IF LOCAL && TFLAG:193
 		RETURN 1
 	;그 이외
 	ELSE
-		PRINTFORMW 
+		IF ABL:V감각 > 3
+			IF MARK:반발각인 == 3 && !TALENT:연인&&!TALENT:연모&&!TALENT:사모&&!TALENT:애욕&&!TALENT:섹프
+				SELECTCASE RAND:2
+					CASE 0
+						PRINTFORMW 「흐아앗♥」
+						PRINTFORMW 삽입과 동시에 사토리는 칠칠치 못한 표정을 지으며 쾌락에 허덕이고 있었다
+						PRINTFORMW 평소의 경멸감 가득한 표정은 찾을수 조차 없었다
+					CASE 1
+						PRINTFORMW 「힛♥ 안댓♥ 자극이, 너무♥」
+						PRINTFORMW 사토리는 안쪽을 찔릴때마다 쾌락에 허덕이고 있었다
+				ENDSELECT
+			ELSEIF TALENT:연인||TALENT:연모||TALENT:사모
+				SELECTCASE RAND:3
+					CASE 0
+						PRINTFORMW 「히잇♥ 너♥ 너무 격렬햇♥ 잠깐...♥」
+						PRINTFORMW 자지에 찔릴때마다 달콤한 교성이 터져나오는 사토리였다
+					CASE 1
+						PRINTFORMW 「앗♥ 드, 들어왔다아...♥」
+						PRINTFORMW 사토리는 질내의 쾌감에 떨고 있었다 움찔움찔 떨고 있다
+					CASE 2
+						PRINTFORMW 「이♥ 이 자세♥ 깊숙히 찔려서♥」
+						PRINTFORMW 「아아아♥ 너무 기분 좋아 어떻해♥ 머리, 이상해져버려♥」
+						PRINTFORMW 안쪽을 찔러줄때 마다 사토리의 질내가 꿈틀꿈틀 조여들었다
+				ENDSELECT
+			ELSEIF TALENT:섹프||TALENT:애욕
+				SELECTCASE RAND:3
+					CASE 0
+						PRINTFORMW 「아핫♥ 기, 깊숙히 찔리는거, 너무 좋아아...!」
+						PRINTFORMW 사토리의 입에서 달콤한 교성이 터져나왔다
+					CASE 1
+						PRINTFORMW 「앗♥ 드, 들어왔다아...♥」
+						PRINTFORMW 「이 자세, 깊숙히 찔려서...♥ 머리, 이상해질거 같아...♥」
+						PRINTFORMW 사토리는 몰려오는 쾌락에 거칠게 숨을 몰아쉬고 있었다
+					CASE 2
+						PRINTFORMW 「힛♥ 그렇게 찌르면 안대에♥」
+						PRINTFORMW 「너무♥ 기분 좋아서 이상해져버려♥」
+						PRINTFORMW 자지에 찔릴때마다 쏟아지는 쾌락의 파도에 사토리는 연신 허덕이고 있었다
+				ENDSELECT
+			ELSE
+				SELECTCASE RAND:2
+					CASE 0
+						PRINTFORMW 「흐아앗♥」
+						PRINTFORMW 삽입과 동시에 사토리는 칠칠치 못한 표정을 지으며 쾌락에 허덕이고 있었다
+					CASE 1
+						PRINTFORMW 「힛♥ 안댓♥ 자극이, 너무♥」
+						PRINTFORMW 사토리는 안쪽을 찔릴때마다 쾌락에 허덕이고 있었다
+				ENDSELECT
+			ENDIF
+		ELSE
+			IF MARK:반발각인 == 3
+				IF TALENT:연인||TALENT:연모||TALENT:사모||TALENT:애욕||TALENT:섹프
+					SELECTCASE RAND:3
+						CASE 0
+
+						CASE 1
+
+						CASE 2
+						
+					ENDSELECT
+				ELSE
+					
+				ENDIF
+			ELSEIF TALENT:연인
+				
+			ELSEIF TALENT:연모||TALENT:사모
+				
+			ELSEIF TALENT:섹프||TALENT:애욕
+				
+			ELSE
+				
+			ENDIF
+		ENDIF
 		RETURN 1
 	ENDIF
 ENDIF

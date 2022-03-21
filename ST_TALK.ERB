@@ -2872,3 +2872,15 @@ ELSE
         ENDSELECT
     ENDIF
 ENDIF
+
+@ST_윤활부족()
+SELECTCASE RAND:4
+    CASE 0
+        PRINTFORMW 「아...아팟...아직 안돼...!」
+    CASE 1
+        PRINTFORMW 「아, 아직 젖지도 않았...응긋?!」
+    CASE 2
+        PRINTFORMW 「자, 잠시만...지금은 안돼엣?!」
+    CASE 3
+        PRINTFORMW 「저, 적어도 조금은 젖게 해주고...으긋...아팟...」
+ENDSELECT
