@@ -109,7 +109,9 @@ IF LOCAL && TFLAG:193
 	LOCAL:1 = 1
 	;-------------------------------------------------
 	IF LOCAL:1 && TCVAR:100 == PLAYER
+		PRINTFORM 「
 		CALL ST_CLIMAX_HARD(RAND:3 + RAND:3 + 1)
+		PRINTFORMW 」
 		RETURN 1
 	ENDIF
 	;-------------------------------------------------
@@ -244,7 +246,9 @@ IF LOCAL
 	LOCAL:1 = 1
 	;-------------------------------------------------
 	IF LOCAL:1 && TCVAR:100 == PLAYER
+		PRINTFORM 「
 		CALL ST_CLIMAX_HARD(RAND:3 + RAND:3 + 1)
+		PRINTFORMW 」
 		RETURN 1
 	ENDIF
 	;기본세트
@@ -359,7 +363,9 @@ IF LOCAL && TFLAG:193
 	LOCAL:1 = 1
 	;-------------------------------------------------
 	IF LOCAL:1 && TCVAR:100 == PLAYER
+		PRINTFORM 「
 		CALL ST_CLIMAX_HARD(RAND:3 + RAND:3 + 1)
+		PRINTFORMW 」
 		RETURN 1
 	ENDIF
 	;기본세트
@@ -421,23 +427,66 @@ IF LOCAL && TFLAG:193
 				IF TALENT:연인||TALENT:연모||TALENT:사모||TALENT:애욕||TALENT:섹프
 					SELECTCASE RAND:3
 						CASE 0
-
+							PRINTFORMW 「으읏...♥」
+							PRINTFORMW 사토리는 작게 신음할 뿐이었다
 						CASE 1
-
+							PRINTFORMW 「아앗...♥ 거기, 좋아...♥」
+							PRINTFORMW 안쪽을 찌를때마다 달콤한 교성을 흘렸다
 						CASE 2
-						
+							PRINTFORMW 「으응...♥ 조, 좀 더...♥」
+							PRINTFORMW 사토리의 입에서 연신 신음소리가 새어나왔다
 					ENDSELECT
 				ELSE
-					
+					SELECTCASE RAND:3
+						CASE 0
+							PRINTFORMW 「큿...으응...♥」
+							PRINTFORMW 사토리는 입을 앙다문채 신음을 참고 있었다
+						CASE 1
+							PRINTFORMW 「으읏...♥ 흣♥」
+							PRINTFORMW 부끄러운건지 애써 신음을 참고 있는 사토리였다
+						CASE 2
+							PRINTFORMW 「으긋...♥ 조금, 살살♥」
+							PRINTFORMW 질내 깊숙히 찔릴때마다 가는 신음소리가 새어나왔다
+					ENDSELECT
 				ENDIF
-			ELSEIF TALENT:연인
-				
-			ELSEIF TALENT:연모||TALENT:사모
-				
+			ELSEIF TALENT:연인||TALENT:연모||TALENT:사모
+				SELECTCASE RAND:4
+					CASE 0
+						PRINTFORMW 「하앗♥ 거, 거기 좋아♥」
+						PRINTFORMW 깊숙히 찌를때마다 사토리의 몸이 파르르 떨렸다
+					CASE 1
+						PRINTFORMW 「아아...♥ 들어왔다...♥」
+                		PRINTFORMW 사토리는 삽입의 쾌락에 몸을 떨었다
+					CASE 2
+						PRINTFORMW 「아앗...♥ 기, 깊어♥ 안쪽까지 닿아버려...♥」
+                		PRINTFORMW 사토리의 입에서 열띤 한숨이 새어나왔다
+					CASE 3
+						PRINTFORM 「
+						CALL ST_CLIMAX(RAND:3 + RAND:3 + 1)
+						PRINTFORMW 」
+						PRINTFORMW 사토리는 연신 교성을 흘리고 있다
+				ENDSELECT
 			ELSEIF TALENT:섹프||TALENT:애욕
-				
+				SELECTCASE RAND:3
+					CASE 0
+						PRINTFORMW 「흣♥ 아앙♥ 깊숙히 찔리는거 기분 좋아아♥」
+						PRINTFORMW 사토리는 교성을 흘리며 쾌락을 즐기고 있다
+					CASE 1
+						PRINTFORMW 「아핫...♥」
+                		PRINTFORMW 삽입의 쾌락에 사토리의 몸이 잘게 떨렸다
+					CASE 2
+						PRINTFORMW 「기, 깊어♥ 이거 좋아...♥」
+                		PRINTFORMW 사토리의 입에서 열띤 한숨이 새어나왔다
+				ENDSELECT
 			ELSE
-				
+				SELECTCASE RAND:2
+					CASE 0
+						PRINTFORMW 「...다리 아파...눕거나 앉아서 하고 싶은데」
+						PRINTFORMW 사토리는 불평만 할 뿐이었다
+					CASE 1
+						PRINTFORMW 「읏...으응...」
+						PRINTFORMW 사토리는 간간히 희미한 신음을 흘릴 뿐이었다
+				ENDSELECT
 			ENDIF
 		ENDIF
 		RETURN 1
@@ -521,7 +570,9 @@ IF LOCAL
 	LOCAL:1 = 1
 	;-------------------------------------------------
 	IF LOCAL:1 && TCVAR:100 == PLAYER
+		PRINTFORM 「
 		CALL ST_CLIMAX_HARD(RAND:3 + RAND:3 + 1)
+		PRINTFORMW 」
 		RETURN 1
 	ENDIF
 	;기본세트
