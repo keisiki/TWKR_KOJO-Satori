@@ -911,7 +911,7 @@ RETURN RESULT
 @M_KOJO_MESSAGE_COM_K49_65_1
 ;-------------------------------------------------
 ;기입체크 (=0, 비표시、1, 표시)
-LOCAL = 0
+LOCAL = 1
 ;-------------------------------------------------
 IF LOCAL
 	;-------------------------------------------------
@@ -919,45 +919,75 @@ IF LOCAL
 	;-------------------------------------------------
 	;처음
 	;기입체크
-	LOCAL:1 = 0
+	LOCAL:1 = 1
 	;-------------------------------------------------
 	IF LOCAL:1 && FIRSTTIME(SELECTCOM)
 		;처녀
+		;PRINTFORMW 「」
 		IF TCVAR:파과 == 1
-			PRINTFORMW 
+			IF MARK:반발각인 == 3
+				IF TALENT:연인||TALENT:연모||TALENT:사모||TALENT:애욕||TALENT:섹프
+					PRINTFORMW 「꽤나 매니악한 취향이시네요, 스스로 바치라니...」
+					PRINTFORMW 「적어도 처음쯤은 평범하게 해줬음 했는데, 역시 너무 큰 기대였겠죠」
+					PRINTFORMW 「...하아, 난 왜 이런 사람을...」
+					PRINTFORM 작게 한숨을 쉰 
+				ELSE
+					PRINTFORMW 「내가 스스로 바치라고...하아...」
+					PRINTFORMW 「적어도, 가져갈거면 자기 손으로 직접 하란 말야...」
+					PRINTFORM 온갖 불평을 쏟아낸 
+				ENDIF
+			ELSEIF TALENT:연인
+				PRINTFORMW 「제가 스스로...바치는거군요」
+				PRINTFORMW 「드디어 이어진다고 생각하니 조금 기쁠지도」
+				PRINTFORMW 사토리는 빙그레 웃어보였다
+				PRINTFORMW 「좋아해요 %MASTERNAME:49%, 그러니 제 처녀, 받아주세요」
+			ELSEIF TALENT:연모||TALENT:사모
+				PRINTFORMW 「제가 스스로...바치는거군요」
+				PRINTFORMW 「조금은 무섭지만...%사마스터가% 원하신다면야」
+				PRINTFORMW 사토리는 빙그레 웃어보였다
+			ELSEIF TALENT:섹프||TALENT:애욕
+				PRINTFORMW 「그러고보니 이쪽은 처음이었나」
+				PRINTFORMW 「할건 다 해놓고 이거만 안 한것도 조금 웃기긴 하네요」
+				PRINTFORMW 「이제는 여기로도 즐겨보자고요」
+			ELSE
+				PRINTFORMW 「스스로 넣어보라니, 처음부터 너무 과격한거 아닐까나...」
+				PRINTFORMW 「...라고 말해봐도 소용없겠지, 하아...」
+			ENDIF
 			RETURN 1
 		ELSE
-			PRINTFORMW 
+			IF MARK:반발각인 == 3
+				IF TALENT:연인||TALENT:연모||TALENT:사모||TALENT:애욕||TALENT:섹프
+					
+				ELSE
+					
+				ENDIF
+			ELSEIF TALENT:연인
+				
+			ELSEIF TALENT:연모||TALENT:사모
+				
+			ELSEIF TALENT:섹프||TALENT:애욕
+				
+			ELSE
+				
+			ENDIF
 			RETURN 1
 		ENDIF
 	ENDIF
 	;-------------------------------------------------
 	;삽입계속
 	;기입체크
-	LOCAL:1 = 0
+	LOCAL:1 = 1
 	;-------------------------------------------------
 	IF LOCAL:1 && TCVAR:100 == PLAYER
 		;전회 사정했다
-		IF TCVAR:102
-			PRINTFORMW 
-			RETURN 1
-		ELSE
-			PRINTFORMW 
-			RETURN 1
-		ENDIF
+		PRINTFORM 「
+		CALL ST_CLIMAX_HARD(RAND:3 + RAND:3 + 1)
+		PRINTFORMW 」
+		RETURN 1
 	ENDIF
 	;기본세트
 	;시간(時姦)중
 	IF FLAG:70
-		PRINTFORMW 
-		RETURN 1
-	;연모
-	ELSEIF TALENT:연모
-		PRINTFORMW 
-		RETURN 1
-	;괘씸3
-	ELSEIF MARK:괘씸각인 == 3
-		PRINTFORMW 
 		RETURN 1
 	;그 이외
 	ELSE
