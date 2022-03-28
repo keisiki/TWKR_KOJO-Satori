@@ -904,8 +904,13 @@ RETURN 1
 ;65,기승위
 ;==================================================
 @M_KOJO_MESSAGE_COM_K49_65
-CALL TRAIN_MESSAGE
-CALL M_KOJO_MESSAGE_COM_K49_65_1
+IF TCVAR:파과 == 1
+	CALL M_KOJO_MESSAGE_COM_K49_65_1
+	CALL TRAIN_MESSAGE
+ELSE
+	CALL TRAIN_MESSAGE
+	CALL M_KOJO_MESSAGE_COM_K49_65_1
+ENDIF
 RETURN RESULT
 
 @M_KOJO_MESSAGE_COM_K49_65_1
@@ -957,18 +962,37 @@ IF LOCAL
 		ELSE
 			IF MARK:반발각인 == 3
 				IF TALENT:연인||TALENT:연모||TALENT:사모||TALENT:애욕||TALENT:섹프
-					
+					PRINTFORMW 「아...이 자세도, 나쁘진 않은거 같기도...?」
+					PRINTFORMW 「...약간 피곤하지만」
 				ELSE
-					
+					PRINTFORMW 「이대로 조금만 힘 주면 뽀각, 해버리는걸까나」
+					PRINTFORMW 「...안 할거예요, 안에서 분질러지면 그것대로 기분 나쁠테니까」
+					PRINTFORMW 「뭐, 다리에 힘풀려서 깔아 뭉개버릴지도 모르겠지만」
 				ENDIF
 			ELSEIF TALENT:연인
-				
+				PRINTFORMW 「후후...어떤가요? 기분 좋죠?」
+				PRINTFORML [0] 기분 좋다
+				PRINTFORML [1] 기분좋지 않다
+				INPUT
+				IF RESULT == 0
+					PRINTFORMW 「당연하죠♥ %사마스터가% 좋아하는 곳은 전부 꿰뚫고 있으니까요」
+					PRINTFORMW 「허리가 빠질정도로 기분 좋게 만들어 드릴테니 각오하세요♥」
+					PRINTFORMW 히죽히죽 웃는 어린 얼굴과는 달리 음란한 허리놀림으로 %마스터를% 쥐어짜내고 있었다
+				ELSE
+					PRINTFORMW 「어, 어라...그럴리가...우으으...」
+					PRINTFORMW 사토리는 약간 토라진듯한 모양이다
+				ENDIF
 			ELSEIF TALENT:연모||TALENT:사모
-				
+				PRINTFORMW 「이렇게 움직이면 기분 좋은거구나...조금 재밌네」
+				PRINTFORMW 「...어라, 이건 또 아파? 으으음...」
+				PRINTFORMW 「재밌는거랑 별개로 힘들긴 하네요...」
 			ELSEIF TALENT:섹프||TALENT:애욕
-				
+				PRINTFORMW 「이것도 나름 좋은걸요...제 마음대로 움직일 수 있고...♥」
+				PRINTFORMW 「조금 더 격렬히 움직여 볼까나...♥」
+				PRINTFORMW 사토리는 열정적으로 허리를 흔들며 쾌락을 탐하고 있다
 			ELSE
-				
+				PRINTFORMW 「...마냥 앉아도 안되고, 너무 일어나도 안되고...바라는게 많네」
+				PRINTFORMW 「조금 피곤할거 같기도 한걸...」
 			ENDIF
 			RETURN 1
 		ENDIF
@@ -991,7 +1015,61 @@ IF LOCAL
 		RETURN 1
 	;그 이외
 	ELSE
-		PRINTFORMW 
+		IF MARK:반발각인 == 3
+			IF TALENT:연인||TALENT:연모||TALENT:사모||TALENT:애욕||TALENT:섹프
+				SELECTCASE RAND:3
+					CASE 0
+
+					CASE 1
+
+					CASE 2
+
+				ENDSELECT
+			ELSE
+				SELECTCASE RAND:3
+					CASE 0
+
+					CASE 1
+
+					CASE 2
+					
+				ENDSELECT
+			ENDIF
+		ELSEIF TALENT:연인
+			SELECTCASE RAND:3
+				CASE 0
+
+				CASE 1
+
+				CASE 2
+				
+			ENDSELECT
+		ELSEIF TALENT:연모||TALENT:사모
+			SELECTCASE RAND:3
+				CASE 0
+
+				CASE 1
+
+				CASE 2
+				
+			ENDSELECT
+		ELSEIF TALENT:섹프||TALENT:애욕
+			SELECTCASE RAND:3
+				CASE 0
+
+				CASE 1
+
+				CASE 2
+				
+			ENDSELECT
+		ELSE
+			SELECTCASE RAND:2
+				CASE 0
+
+				CASE 1
+
+			ENDSELECT
+		ENDIF
 		RETURN 1
 	ENDIF
 ENDIF
