@@ -1015,17 +1015,69 @@ IF LOCAL
 		RETURN 1
 	;그 이외
 	ELSE
-		IF MARK:반발각인 == 3
-			IF TALENT:연인||TALENT:연모||TALENT:사모||TALENT:애욕||TALENT:섹프
+		IF ABL:V감각 > 3
+			IF MARK:반발각인 == 3 && !TALENT:연인&&!TALENT:연모&&!TALENT:사모&&!TALENT:애욕&&!TALENT:섹프
+				SELECTCASE RAND:2
+					CASE 0
+						PRINTFORMW 「아...♥ 허리에, 힘이 안 들어가...♥」
+						PRINTFORMW 「움직이라니...무리야...♥ 지금도 간신히 버티는데...♥」
+						PRINTFORMW 사토리는 질내에서 올라오는 쾌감에 온 몸을 떨고 있었다
+					CASE 1
+						PRINTFORMW 「흐읏...♥ 이거, 자극이 너무 세...♥」
+						PRINTFORMW 사토리의 다리가 파르르 떨렸다
+				ENDSELECT
+			ELSEIF TALENT:연인||TALENT:연모||TALENT:사모
 				SELECTCASE RAND:3
+					CASE 0
+						PRINTFORMW 「아...♥ 허리에, 힘이 안 들어가...♥ 못 움직이겠어...♥」
+						PRINTFORMW 「...자, 잠깐♥ 아래에서 찌르면 안대에♥」
+						PRINTFORMW 갑작스런 공격에 사토리는 교성을 질렀다
+					CASE 1
+						PRINTFORMW 「흐읏...♥ 이거, 자극이 너무 세...♥」
+						PRINTFORMW 삽입만으로 가볍게 절정한듯이 질내가 살짝 조여왔다
+					CASE 2
+						PRINTFORMW 「아아♥ 깊숙히 찔리는 이 감각...♥ 너무 기분 좋아아...♥」
+						PRINTFORMW 사토리는 칠칠치 못한 표정으로 허리를 마구 흔들어댔다
+				ENDSELECT
+			ELSEIF TALENT:섹프||TALENT:애욕
+				SELECTCASE RAND:3
+					CASE 0
+						;PRINTFORMW 「」
+					CASE 1
+
+					CASE 2
+					
+				ENDSELECT
+			ELSE
+				SELECTCASE RAND:2
 					CASE 0
 
 					CASE 1
 
-					CASE 2
-
 				ENDSELECT
-			ELSE
+			ENDIF
+		ELSE
+			IF MARK:반발각인 == 3
+				IF TALENT:연인||TALENT:연모||TALENT:사모||TALENT:애욕||TALENT:섹프
+					SELECTCASE RAND:3
+						CASE 0
+
+						CASE 1
+
+						CASE 2
+
+					ENDSELECT
+				ELSE
+					SELECTCASE RAND:3
+						CASE 0
+
+						CASE 1
+
+						CASE 2
+						
+					ENDSELECT
+				ENDIF
+			ELSEIF TALENT:연인
 				SELECTCASE RAND:3
 					CASE 0
 
@@ -1034,41 +1086,32 @@ IF LOCAL
 					CASE 2
 					
 				ENDSELECT
+			ELSEIF TALENT:연모||TALENT:사모
+				SELECTCASE RAND:3
+					CASE 0
+
+					CASE 1
+
+					CASE 2
+					
+				ENDSELECT
+			ELSEIF TALENT:섹프||TALENT:애욕
+				SELECTCASE RAND:3
+					CASE 0
+
+					CASE 1
+
+					CASE 2
+					
+				ENDSELECT
+			ELSE
+				SELECTCASE RAND:2
+					CASE 0
+
+					CASE 1
+
+				ENDSELECT
 			ENDIF
-		ELSEIF TALENT:연인
-			SELECTCASE RAND:3
-				CASE 0
-
-				CASE 1
-
-				CASE 2
-				
-			ENDSELECT
-		ELSEIF TALENT:연모||TALENT:사모
-			SELECTCASE RAND:3
-				CASE 0
-
-				CASE 1
-
-				CASE 2
-				
-			ENDSELECT
-		ELSEIF TALENT:섹프||TALENT:애욕
-			SELECTCASE RAND:3
-				CASE 0
-
-				CASE 1
-
-				CASE 2
-				
-			ENDSELECT
-		ELSE
-			SELECTCASE RAND:2
-				CASE 0
-
-				CASE 1
-
-			ENDSELECT
 		ENDIF
 		RETURN 1
 	ENDIF
