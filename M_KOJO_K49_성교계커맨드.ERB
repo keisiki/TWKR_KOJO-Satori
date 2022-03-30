@@ -1042,74 +1042,83 @@ IF LOCAL
 			ELSEIF TALENT:섹프||TALENT:애욕
 				SELECTCASE RAND:3
 					CASE 0
-						;PRINTFORMW 「」
+						PRINTFORMW 「아아♥ 깊숙히 찔리는 이 감각...♥ 너무 기분 좋아아...♥」
+						PRINTFORMW 사토리는 쾌락에 녹아내린 표정으로 허리를 마구 흔들어댔다
 					CASE 1
-
+						PRINTFORMW 「후후후...♥ 마음껏 움직여도 된다, 라는거죠?」
+						PRINTFORMW 「그렇담 사양않고♥」
+						PRINTFORMW 약간 무서울 정도로 즐겁게 웃는 사토리였다
 					CASE 2
-					
+						PRINTFORMW 「제 쪽에서 한다면, 주체 못하고 마구 해버릴지도 모르는데...」
+						PRINTFORMW 「그럼에도 시키신다는건, 오케이라는 건가요?」
+						PRINTFORMW 「...후후후, 그런거로 알고 있을게요♥」
 				ENDSELECT
 			ELSE
 				SELECTCASE RAND:2
 					CASE 0
-
+						PRINTFORMW 「읏...♥ 이거, 자극이 너무 세...♥」
+						PRINTFORMW 사토리의 다리가 후들후들 떨렸다
 					CASE 1
-
+						PRINTFORMW 「허, 허리에 힘이...♥」
+						PRINTFORMW 사토리는 민감한 질에서 느껴지는 막대한 쾌감에 전신을 떨고 있다 
 				ENDSELECT
 			ENDIF
 		ELSE
 			IF MARK:반발각인 == 3
 				IF TALENT:연인||TALENT:연모||TALENT:사모||TALENT:애욕||TALENT:섹프
-					SELECTCASE RAND:3
+					SELECTCASE RAND:2
 						CASE 0
-
+							PRINTFORMW 「아...♥ 들어왔다...♥」
+							PRINTFORMW 사토리는 삽입의 쾌락에 몸을 떨었다
 						CASE 1
-
-						CASE 2
-
+							PRINTFORMW 「으응...」
+							PRINTFORMW 사토리는 묵묵히 허리를 흔들 뿐이었다
 					ENDSELECT
 				ELSE
 					SELECTCASE RAND:3
 						CASE 0
-
+							PRINTFORMW 「기분 좋은가요」
+							PRINTFORMW 「...안 좋아도 뭐 딱히 해 드릴건 없지만」
 						CASE 1
-
+							PRINTFORMW 「으음...따뜻한 자위도구라 생각하면 그리 나쁘지도 않겠지...」
+							PRINTFORMW 「...써본적은 없지만」
 						CASE 2
-						
+							PRINTFORMW 「으응...」
+							PRINTFORMW 사토리는 묵묵히 허리를 흔들 뿐이었다
 					ENDSELECT
 				ENDIF
-			ELSEIF TALENT:연인
+			ELSEIF TALENT:연모||TALENT:사모||TALENT:연인
 				SELECTCASE RAND:3
 					CASE 0
-
+						PRINTFORMW 「후후...어떤가요? 기분 좋은가요?」
+						PRINTFORMW 「기분 좋다고 인정하면, 좀 더 봉사해드릴테니까요」
 					CASE 1
-
+						PRINTFORMW 「힛♥ 잠깐, 아래에서 찌르는건 반칙♥」
+						PRINTFORMW 갑작스런 공격에 사토리는 교성을 흘렸다
 					CASE 2
-					
-				ENDSELECT
-			ELSEIF TALENT:연모||TALENT:사모
-				SELECTCASE RAND:3
-					CASE 0
-
-					CASE 1
-
-					CASE 2
-					
+						PRINTFORMW 「아...♥ 들어왔다...♥」
+						PRINTFORMW 사토리는 삽입의 쾌락에 몸을 떨었다
 				ENDSELECT
 			ELSEIF TALENT:섹프||TALENT:애욕
 				SELECTCASE RAND:3
 					CASE 0
-
+						PRINTFORMW 「후후...기분 좋게 해 드릴게요♥」
+						PRINTFORMW 사토리는 즐거운듯이 웃었다
 					CASE 1
-
+						PRINTFORMW 「후후후...♥ 마음껏 움직여도 된다, 라는거죠?」
+						PRINTFORMW 「그렇담 사양않고♥」
 					CASE 2
-					
+						PRINTFORMW 「제 쪽에서 한다면, 주체 못하고 마구 해버릴지도 모르는데...」
+						PRINTFORMW 「그럼에도 시키신다는건, 오케이라는 건가요?」
+						PRINTFORMW 「...후후후, 그런거로 알고 있을게요♥」
 				ENDSELECT
 			ELSE
+				;별로 볼 일 없을듯
 				SELECTCASE RAND:2
 					CASE 0
-
+						PRINTFORMW 「...내 페이스대로 하는거니 조금 편하긴 한데, 지치네」
 					CASE 1
-
+						PRINTFORMW 「아래에서 찔리는 감각도 색다르네...나쁘진 않아」
 				ENDSELECT
 			ENDIF
 		ENDIF
