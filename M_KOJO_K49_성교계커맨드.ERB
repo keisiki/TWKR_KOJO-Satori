@@ -1276,18 +1276,101 @@ IF LOCAL
 		RETURN 1
 	ENDIF
 	;기본세트
-	;연모
-	IF TALENT:연모
-		PRINTFORMW 
-		RETURN 1
-	;괘씸3
-	ELSEIF MARK:괘씸각인 == 3
-		PRINTFORMW 
-		RETURN 1
-	;그 이외
+	IF ABL:V감각 > 3
+		IF MARK:반발각인 == 3
+			IF TALENT:연인||TALENT:연모||TALENT:사모||TALENT:애욕||TALENT:섹프
+				SELECTCASE RAND:3
+					CASE 0, 1
+						CALL ST_삽입공용대사()
+					CASE 2
+						PRINTFORMW 「응읏♥ 지금 혀 넣으면 안대에♥」
+						PRINTFORMW 혀가 사토리의 입 안을 희롱할 때마다 질 내가 꾹꾹 조여왔다
+				ENDSELECT
+			ELSE
+				CALL ST_삽입공용대사()
+			ENDIF
+		ELSEIF TALENT:연인||TALENT:연모||TALENT:사모
+			SELECTCASE RAND:3
+				CASE 0
+					CALL ST_삽입공용대사()
+				CASE 1
+					;PRINTFORMW 「」
+				CASE 2
+
+			ENDSELECT
+		ELSEIF TALENT:섹프||TALENT:애욕
+			SELECTCASE RAND:3
+				CASE 0
+
+				CASE 1
+
+				CASE 2
+
+			ENDSELECT
+		ELSE
+			SELECTCASE RAND:2
+				CASE 0
+
+				CASE 1
+
+			ENDSELECT
+		ENDIF
 	ELSE
-		PRINTFORMW 
-		RETURN 1
+		IF MARK:반발각인 == 3
+			IF TALENT:연인||TALENT:연모||TALENT:사모||TALENT:애욕||TALENT:섹프
+				SELECTCASE RAND:3
+					CASE 0
+
+					CASE 1
+
+					CASE 2
+
+				ENDSELECT
+			ELSE
+				SELECTCASE RAND:2
+					CASE 0
+
+					CASE 1
+
+				ENDSELECT
+			ENDIF
+		ELSEIF TALENT:연인
+			SELECTCASE RAND:3
+				CASE 0
+
+				CASE 1
+
+				CASE 2
+
+			ENDSELECT
+		ELSEIF TALENT:연모||TALENT:사모
+			SELECTCASE RAND:3
+				CASE 0
+
+				CASE 1
+
+				CASE 2
+
+			ENDSELECT
+		ELSEIF TALENT:섹프||TALENT:애욕
+			SELECTCASE RAND:3
+				CASE 0
+
+				CASE 1
+
+				CASE 2
+
+			ENDSELECT
+		ELSE
+			SELECTCASE RAND:2
+				CASE 0
+
+				CASE 1
+
+			ENDSELECT
+		ENDIF
+	ENDIF
+	RETURN 1
 	ENDIF
 ENDIF
 RETURN 1
