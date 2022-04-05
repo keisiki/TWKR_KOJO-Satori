@@ -1283,8 +1283,8 @@ IF LOCAL
 					CASE 0, 1
 						CALL ST_삽입공용대사()
 					CASE 2
-						PRINTFORMW 「응읏♥ 지금 혀 넣으면 안대에♥」
-						PRINTFORMW 혀가 사토리의 입 안을 희롱할 때마다 질 내가 꾹꾹 조여왔다
+						PRINTFORMW 「아앗♥ 여기♥ 여기 좋아아...♥」
+						PRINTFORMW 사토리는 허리를 꿈틀꿈틀 움직여 귀두로 자궁구를 문지르고 있다
 				ENDSELECT
 			ELSE
 				CALL ST_삽입공용대사()
@@ -1294,8 +1294,8 @@ IF LOCAL
 				CASE 0,1
 					CALL ST_삽입공용대사()
 				CASE 2
-					PRINTFORMW 「아앗♥ 지, 지금 키스까지 하면...♥」
-					PRINTFORMW %마스터의% 혀가 사토리의 입 안을 희롱할 때마다 사토리의 눈빛이 열락에 녹아내려갔다
+					PRINTFORMW 「아앗♥ 여기♥ 여기 좋아아...♥」
+					PRINTFORMW 사토리는 허리를 꿈틀꿈틀 움직여 귀두로 자궁구를 문지르고 있다
 			ENDSELECT
 		ELSEIF TALENT:섹프||TALENT:애욕
 			SELECTCASE RAND:3
@@ -1313,7 +1313,7 @@ IF LOCAL
 			IF TALENT:연인||TALENT:연모||TALENT:사모||TALENT:애욕||TALENT:섹프
 				SELECTCASE RAND:3
 					CASE 0
-
+						CALL ST_삽입공용대사()
 					CASE 1
 
 					CASE 2
@@ -1322,7 +1322,7 @@ IF LOCAL
 			ELSE
 				SELECTCASE RAND:2
 					CASE 0
-
+						CALL ST_삽입공용대사()
 					CASE 1
 
 				ENDSELECT
@@ -1330,7 +1330,7 @@ IF LOCAL
 		ELSEIF TALENT:연인
 			SELECTCASE RAND:3
 				CASE 0
-
+					CALL ST_삽입공용대사()
 				CASE 1
 
 				CASE 2
@@ -1339,7 +1339,7 @@ IF LOCAL
 		ELSEIF TALENT:연모||TALENT:사모
 			SELECTCASE RAND:3
 				CASE 0
-
+					CALL ST_삽입공용대사()
 				CASE 1
 
 				CASE 2
@@ -1348,7 +1348,7 @@ IF LOCAL
 		ELSEIF TALENT:섹프||TALENT:애욕
 			SELECTCASE RAND:3
 				CASE 0
-
+					CALL ST_삽입공용대사()
 				CASE 1
 
 				CASE 2
@@ -1357,9 +1357,10 @@ IF LOCAL
 		ELSE
 			SELECTCASE RAND:2
 				CASE 0
-
+					CALL ST_삽입공용대사()
 				CASE 1
-
+					PRINTFORMW 「이렇게 움직이면 되는걸까...」
+					PRINTFORMW 사토리는 미적미적 허리를 움직이고 있다
 			ENDSELECT
 		ENDIF
 	ENDIF
