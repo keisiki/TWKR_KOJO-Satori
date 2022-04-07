@@ -1312,47 +1312,55 @@ IF LOCAL
 		IF MARK:반발각인 == 3
 			IF TALENT:연인||TALENT:연모||TALENT:사모||TALENT:애욕||TALENT:섹프
 				SELECTCASE RAND:3
-					CASE 0
+					CASE 0,2
 						CALL ST_삽입공용대사()
 					CASE 1
-
-					CASE 2
-
+						PRINTFORMW 「응...응읏...」
+						PRINTFORMW 사토리는 %마스터의% 몸에 기댄채 조용히 허리를 흔들 뿐이었다
 				ENDSELECT
 			ELSE
 				SELECTCASE RAND:2
 					CASE 0
 						CALL ST_삽입공용대사()
 					CASE 1
-
+						PRINTFORMW 「얼굴 들이밀지 마...」
+						PRINTFORMW 사토리는 냉담하게 쏘아붙였다
 				ENDSELECT
 			ENDIF
 		ELSEIF TALENT:연인
-			SELECTCASE RAND:3
-				CASE 0
+			SELECTCASE RAND:4
+				CASE 0,3
 					CALL ST_삽입공용대사()
 				CASE 1
-
+					PRINTFORMW 「이 자세, %사마스터의% 얼굴이 가까워서...조금 기뻐요」
+					PRINTFORMW 사토리는 얼굴을 붉혔다
 				CASE 2
-
+					PRINTFORMW 「이거, 묘하게 안기는 거 같아서, 기분 좋아...」
+					PRINTFORMW 사토리는 가만히 %마스터를% 끌어안았다
 			ENDSELECT
 		ELSEIF TALENT:연모||TALENT:사모
 			SELECTCASE RAND:3
 				CASE 0
 					CALL ST_삽입공용대사()
 				CASE 1
-
+					PRINTFORMW 「이 자세, %사마스터의% 얼굴이 가까워서...조금 부끄러워요」
+					PRINTFORMW 사토리는 얼굴을 붉혔다
 				CASE 2
-
+					PRINTFORMW 「이거, 묘하게 안기는 거 같아서, 기분 좋아...」
+					PRINTFORMW 사토리는 가만히 %마스터를% 끌어안았다
 			ENDSELECT
 		ELSEIF TALENT:섹프||TALENT:애욕
 			SELECTCASE RAND:3
 				CASE 0
 					CALL ST_삽입공용대사()
 				CASE 1
-
+					PRINTFORMW 「어떤가요? 제 안은, 기분 좋은가요?」
+					PRINTFORMW 「한동안 다리가 후들거릴 정도로 기분 좋게 만들어 드릴테니깐요」
+					PRINTFORMW 사토리는 %마스터의% 다리 위에서 음란한 허리놀림을 선보이고 있다
 				CASE 2
-
+					PRINTFORMW 「이런 자세도 나름대로 좋은걸요...」
+					PRINTFORMW 사토리는 %마스터의% 몸에 기댄채 거칠게 허리를 흔들어왔다
+					PRINTFORMW 부드러운 가슴의 촉감이 %마스터의% 가슴팍에서 느껴졌다
 			ENDSELECT
 		ELSE
 			SELECTCASE RAND:2
@@ -1365,7 +1373,6 @@ IF LOCAL
 		ENDIF
 	ENDIF
 	RETURN 1
-	ENDIF
 ENDIF
 RETURN 1
 
