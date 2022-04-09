@@ -1739,7 +1739,7 @@ RETURN RESULT
 @M_KOJO_MESSAGE_COM_K49_72_1
 ;-------------------------------------------------
 ;기입체크 (=0, 비표시、1, 표시)
-LOCAL = 0
+LOCAL = 1
 ;-------------------------------------------------
 IF LOCAL
 	;-------------------------------------------------
@@ -1756,30 +1756,96 @@ IF LOCAL
 	;기입체크
 	LOCAL:1 = 0
 	;-------------------------------------------------
-	IF LOCAL:1 && TCVAR:101 == PLAYER
+	IF LOCAL:1 && TCVAR:100 == PLAYER
 		;전회 사정했다
-		IF TCVAR:104
-			PRINTFORMW 
-			RETURN 1
-		ELSE
-			PRINTFORMW 
-			RETURN 1
-		ENDIF
+		RETURN 1
 	ENDIF
 	;기본세트
-	;연모
-	IF TALENT:연모
-		PRINTFORMW 
-		RETURN 1
-	;괘씸3
-	ELSEIF MARK:괘씸각인 == 3
-		PRINTFORMW 
-		RETURN 1
-	;그 이외
+	IF ABL:V감각 >= 3
+		IF MARK:반발각인 == 3 && !TALENT:연인
+			SELECTCASE RAND:2
+				CASE 0
+					PRINTFORMW 「힛♥ 사, 살살♥ 너무 쎄♥」
+					PRINTFORMW 사토리는 연신 몰려오는 쾌감에 허덕이고 있었다
+				CASE 1
+					PRINTFORMW 「아, 안쪽♥ 민감한데엣♥ 찌르지 맛♥」
+					PRINTFORMW G스팟을 집중 자극해주자 사토리의 몸이 움찔움찔 떨렸다
+			ENDSELECT
+		ELSEIF TALENT:연인||TALENT:연모||TALENT:사모
+			SELECTCASE RAND:3
+				CASE 0
+					PRINTFORMW 「앗♥ 거, 거깃♥ 민감한댓♥ 찌르면 안대엣♥」
+					PRINTFORMW G스팟을 자극당하자 사토리는 새된 교성을 흘려댔다
+				CASE 1
+					PRINTFORMW 「아♥ 안쪽♥ 그렇게 찌르면♥ 히이이잇♥」
+					PRINTFORMW 사토리는 몰려오는 쾌감에 움찔움찔 떨고 있다
+				CASE 2
+					PRINTFORMW 「히잇♥ 거, 거기 너무 쎄에♥ 그만♥」
+					PRINTFORMW 민감한 질내를 자극당하는 쾌락에 사토리의 허리가 통통 튀었다
+			ENDSELECT
+		ELSEIF TALENT:섹프||TALENT:애욕
+			SELECTCASE RAND:2
+				CASE 0
+					PRINTFORMW 「힛♥ 거, 거깃♥ 너무 좋아아♥」
+					PRINTFORMW 「좀 더♥ 좀 더 찔러줘엇♥」
+					PRINTFORMW 사토리는 지나친 쾌감에 몸을 움찔움찔 떨면서도 더더욱 쾌락을 탐하고 있었다
+				CASE 1
+					PRINTFORMW 「아♥ 안쪽♥ 그렇게 찌르면♥ 히이이잇♥」
+					PRINTFORMW 사토리는 몰려오는 쾌감에 움찔움찔 떨고 있다
+			ENDSELECT
+		ELSE
+			SELECTCASE RAND:2
+				CASE 0
+					PRINTFORMW 「거, 거기느은♥ 민감♥ 한댓♥」
+					PRINTFORMW 사토리는 지나친 쾌감에 말조차 제대로 할 수 없는 모양이었다
+				CASE 1
+					PRINTFORMW 「히잇♥ 거, 거기 너무 쎄에♥ 그만♥」
+					PRINTFORMW 민감한 질내를 자극당하는 쾌락에 사토리의 허리가 통통 튀었다
+			ENDSELECT
+		ENDIF
 	ELSE
-		PRINTFORMW 
-		RETURN 1
+		IF MARK:반발각인 == 3 && !TALENT:연인
+			SELECTCASE RAND:2
+				CASE 0
+					PRINTFORMW 「읏...♥ 응읏...♥」
+					PRINTFORMW 부끄러운지 입을 앙다물고 신음을 참고 있는 사토리였다
+				CASE 1
+					PRINTFORMW 「거, 거깃♥ 찌르지 마...흐읏...♥」
+					PRINTFORMW G스팟을 공략해주자 사토리의 입에서 야릇한 한숨이 새어나왔다
+			ENDSELECT
+		ELSEIF TALENT:연인||TALENT:연모||TALENT:사모
+			SELECTCASE RAND:3
+				CASE 0
+					PRINTFORMW 「읏♥ 거, 거기 찌르는거 이상해...♥」
+					PRINTFORMW G스팟을 건드리자 사토리의 몸이 움찔움찔 떨렸다
+				CASE 1
+					PRINTFORMW 「히잇♥ 자, 잠깐♥ 조금만 살살...읏♥」
+					PRINTFORMW 민감한 부분을 연신 자극해주니 질벽이 움찔움찔 조여들어왔다
+				CASE 2
+					PRINTFORMW 「이, 이거...♥ 뭔가, 기분 좋아...♥」
+					PRINTFORMW 사토리는 야릇한 한숨을 흘렸다
+			ENDSELECT
+		ELSEIF TALENT:섹프||TALENT:애욕
+			SELECTCASE RAND:2
+				CASE 0
+					PRINTFORMW 「이, 이거 좋아...♥ 안쪽 누르는거, 기분 좋아...♥」
+					PRINTFORMW 사토리는 칠칠치 못한 표정으로 쾌감을 즐기고 있었다
+				CASE 1
+					PRINTFORMW 「하읏...♥ 거, 거기...♥ 좀 더 찔러줘...♥」
+					PRINTFORMW 사토리는 야릇한 한숨을 흘리며 속삭여왔다
+			ENDSELECT
+		ELSE
+			SELECTCASE RAND:2
+				CASE 0
+					PRINTFORMW 「읏...♥」
+					PRINTFORMW 사토리는 부끄러운지 신음을 눌러 죽였다
+				CASE 1
+					PRINTFORMW 「거, 거깃♥ 찌르지 마...흐읏...♥」
+					PRINTFORMW G스팟을 공략해주자 사토리의 입에서 야릇한 한숨이 새어나왔다
+			ENDSELECT
+		ENDIF
 	ENDIF
+	RETURN 1
 ENDIF
 RETURN 1
 
@@ -1794,7 +1860,7 @@ RETURN RESULT
 @M_KOJO_MESSAGE_COM_K49_73_1
 ;-------------------------------------------------
 ;기입체크 (=0, 비표시、1, 표시)
-LOCAL = 0
+LOCAL = 1
 ;-------------------------------------------------
 IF LOCAL
 	;-------------------------------------------------
@@ -1811,30 +1877,100 @@ IF LOCAL
 	;기입체크
 	LOCAL:1 = 0
 	;-------------------------------------------------
-	IF LOCAL:1 && TCVAR:101 == PLAYER
+	IF LOCAL:1 && TCVAR:100 == PLAYER
 		;전회 사정했다
-		IF TCVAR:104
-			PRINTFORMW 
-			RETURN 1
-		ELSE
-			PRINTFORMW 
-			RETURN 1
-		ENDIF
+		RETURN 1
 	ENDIF
 	;기본세트
 	;연모
-	IF TALENT:연모
-		PRINTFORMW 
-		RETURN 1
-	;괘씸3
-	ELSEIF MARK:괘씸각인 == 3
-		PRINTFORMW 
-		RETURN 1
-	;그 이외
+	IF ABL:V감각 >= 3
+		IF MARK:반발각인 == 3 && !TALENT:연인
+			SELECTCASE RAND:2
+				CASE 0
+
+				CASE 1
+
+			ENDSELECT
+		ELSEIF TALENT:연인
+			SELECTCASE RAND:3
+				CASE 0
+
+				CASE 1
+
+				CASE 2
+				
+			ENDSELECT
+		ELSEIF TALENT:연모||TALENT:사모
+			SELECTCASE RAND:3
+				CASE 0
+
+				CASE 1
+
+				CASE 2
+				
+			ENDSELECT
+		ELSEIF TALENT:섹프||TALENT:애욕
+			SELECTCASE RAND:3
+				CASE 0
+
+				CASE 1
+
+				CASE 2
+				
+			ENDSELECT
+		ELSE
+			SELECTCASE RAND:2
+				CASE 0
+
+				CASE 1
+
+			ENDSELECT
+		ENDIF
 	ELSE
-		PRINTFORMW 
-		RETURN 1
+		IF MARK:반발각인 == 3 && !TALENT:연인
+			SELECTCASE RAND:2
+				CASE 0
+
+				CASE 1
+
+			ENDSELECT
+		ELSEIF TALENT:연인
+			SELECTCASE RAND:3
+				CASE 0
+
+				CASE 1
+
+				CASE 2
+				
+			ENDSELECT
+		ELSEIF TALENT:연모||TALENT:사모
+			SELECTCASE RAND:3
+				CASE 0
+
+				CASE 1
+
+				CASE 2
+				
+			ENDSELECT
+		ELSEIF TALENT:섹프||TALENT:애욕
+			SELECTCASE RAND:3
+				CASE 0
+
+				CASE 1
+
+				CASE 2
+				
+			ENDSELECT
+		ELSE
+			SELECTCASE RAND:2
+				CASE 0
+
+				CASE 1
+
+			ENDSELECT
+		ENDIF
 	ENDIF
+	RETURN 1
 ENDIF
 RETURN 1
 ;==================================================
