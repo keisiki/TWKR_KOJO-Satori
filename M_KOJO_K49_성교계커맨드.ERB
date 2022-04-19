@@ -1863,6 +1863,7 @@ RETURN RESULT
 LOCAL = 1
 ;-------------------------------------------------
 IF LOCAL
+	;PRINTFORMW 「」
 	;-------------------------------------------------
 	;소분기
 	;-------------------------------------------------
@@ -1875,55 +1876,64 @@ IF LOCAL
 	;-------------------------------------------------
 	;삽입계속
 	;기입체크
-	LOCAL:1 = 0
+	LOCAL:1 = 1
 	;-------------------------------------------------
 	IF LOCAL:1 && TCVAR:100 == PLAYER
 		;전회 사정했다
+		PRINTFORM 「
+		CALL ST_CLIMAX_HARD(RAND:4 + RAND:4 + 2)
+		PRINTFORMW 」
 		RETURN 1
 	ENDIF
 	;기본세트
-	;연모
 	IF ABL:V감각 >= 3
 		IF MARK:반발각인 == 3 && !TALENT:연인
 			SELECTCASE RAND:2
 				CASE 0
-
+					PRINTFORMW 「힛♥ 안댓♥ 자궁 찌르면 안대엣♥」
+					PRINTFORMW 자궁구를 두드려주자 사토리의 몸이 팔딱팔딱 튀어올랐다
 				CASE 1
-
+					PRINTFORMW 「읏♥ 그, 그만♥ 거긴 안♥ 대엣♥」
+					PRINTFORMW 지나친 쾌락에 숨이 넘어갈것만 같은 사토리였다
 			ENDSELECT
-		ELSEIF TALENT:연인
+		ELSEIF TALENT:연인||TALENT:연모||TALENT:사모
 			SELECTCASE RAND:3
 				CASE 0
-
+					PRINTFORMW 「히끅?! 거♥ 거거는♥」
+					PRINTFORMW 「안대에♥ 찔러올리지 마앗♥」
+					PRINTFORMW 자궁을 짓눌리는 쾌감에 사토리의 표정이 흐물흐물 풀어져 갔다
 				CASE 1
-
+					PRINTFORMW 「히잇...♥ 그, 그거...♥ 머리가 멍해져...♥」
+					PRINTFORMW 「이상해...♥ 그치만, 기분 좋아...♥」
+					PRINTFORMW 사토리는 완전한 암컷의 표정으로 %마스터를% 가만히 바라보고 있다
 				CASE 2
-				
-			ENDSELECT
-		ELSEIF TALENT:연모||TALENT:사모
-			SELECTCASE RAND:3
-				CASE 0
-
-				CASE 1
-
-				CASE 2
-				
+					PRINTFORM 「
+					CALL ST_CLIMAX_HARD(RAND:3 + RAND:3 + 1)
+					PRINTFORMW 」
 			ENDSELECT
 		ELSEIF TALENT:섹프||TALENT:애욕
 			SELECTCASE RAND:3
 				CASE 0
-
+					PRINTFORMW 「힛♥ 거, 거깃♥ 너무 좋아아♥」
+					PRINTFORMW 「좀 더♥ 좀 더 박아줘엇♥」
+					PRINTFORMW 사토리는 지나친 쾌감에 몸을 움찔움찔 떨면서도 더더욱 쾌락을 탐하고 있었다
 				CASE 1
-
+					PRINTFORMW 「아♥ 안쪽♥ 그렇게 찌르면♥ 히이이잇♥」
+					PRINTFORMW 사토리는 몰려오는 쾌감에 움찔움찔 떨고 있다
 				CASE 2
-				
+					PRINTFORM 「
+					CALL ST_CLIMAX_HARD(RAND:3 + RAND:3 + 1)
+					PRINTFORMW 」
 			ENDSELECT
 		ELSE
 			SELECTCASE RAND:2
 				CASE 0
-
+					PRINTFORMW 「으긋♥ 그, 그만♥ 거긴 안댓♥」
+					PRINTFORMW 사토리는 자궁이 짓눌리는 쾌감에 숨을 헐떡이고 있다
 				CASE 1
-
+					PRINTFORM 「
+					CALL ST_CLIMAX_HARD(RAND:3 + RAND:3 + 1)
+					PRINTFORMW 」
 			ENDSELECT
 		ENDIF
 	ELSE
