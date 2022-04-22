@@ -1940,43 +1940,42 @@ IF LOCAL
 		IF MARK:반발각인 == 3 && !TALENT:연인
 			SELECTCASE RAND:2
 				CASE 0
-
+					PRINTFORMW 「그, 그렇게 거칠게 찌른다고, 기분 좋을리가아...♥」
+					PRINTFORMW 사토리의 목소리에 약간씩 신음소리가 섞여들었다 
 				CASE 1
-
+					PRINTFORMW 「으긋...♥ 배가 찌부려져...♥」
+					PRINTFORMW 「아플뿐 일텐데...왜...좋은거야...♥」
 			ENDSELECT
-		ELSEIF TALENT:연인
+		ELSEIF TALENT:연인||TALENT:연모||TALENT:사모
 			SELECTCASE RAND:3
 				CASE 0
-
+					PRINTFORMW 「거, 거기♥ 그렇게 찌르며언...♥」
+					PRINTFORMW 자궁구를 찔리는 쾌감에 사토리의 표정이 흐트러져 갔다
 				CASE 1
-
+					PRINTFORMW 「읏♥ 배, 배가 찌부려져...♥」
+					PRINTFORMW 「조금만, 살살...으읏♥」
 				CASE 2
-				
-			ENDSELECT
-		ELSEIF TALENT:연모||TALENT:사모
-			SELECTCASE RAND:3
-				CASE 0
-
-				CASE 1
-
-				CASE 2
-				
+					PRINTFORMW 「히잇♥ 자, 잠깐♥ 조금만 살살...읏♥」
+					PRINTFORMW 자궁을 짓누르듯이 찔러주자 질내가 꾹꾹 조여들어왔다
 			ENDSELECT
 		ELSEIF TALENT:섹프||TALENT:애욕
-			SELECTCASE RAND:3
+			SELECTCASE RAND:2
 				CASE 0
-
+					PRINTFORMW 「이, 이거 좋아...♥ 자궁 두드리는거, 기분 좋아...♥」
+					PRINTFORMW 사토리는 칠칠치 못한 표정으로 쾌감을 즐기고 있었다
 				CASE 1
-
-				CASE 2
-				
+					PRINTFORMW 「하읏...♥ 거, 거기...♥ 좀 더 찔러줘...♥」
+					PRINTFORMW 사토리는 야릇한 한숨을 흘리며 속삭여왔다
 			ENDSELECT
 		ELSE
 			SELECTCASE RAND:2
 				CASE 0
-
+					PRINTFORMW 「읏...♥」
+					PRINTFORMW 사토리는 부끄러운지 신음을 눌러 죽였다
 				CASE 1
-
+					PRINTFORMW 「배...배가 찌부려져 버려...♥」
+					PRINTFORMW 「그런데도...뭔가...기분 좋은게...♥」
+					PRINTFORMW 사토리는 자궁구를 개발 당하는 쾌감에 움찔움찔 떨었다
 			ENDSELECT
 		ENDIF
 	ENDIF
