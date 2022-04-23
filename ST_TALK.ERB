@@ -2884,3 +2884,34 @@ SELECTCASE RAND:4
     CASE 3
         PRINTFORMW 「저, 적어도 조금은 젖게 해주고...으긋...아팟...」
 ENDSELECT
+
+
+@ST_애널파과()
+IF ABL:A감각 > 1
+    ;A익숙함
+    IF MARK:반발각인 == 3 && !TALENT:연인
+        
+    ELSEIF TALENT:연인||TALENT:연모||TALENT:사모
+        
+    ELSEIF TALENT:섹프||TALENT:애욕
+        
+    ELSE
+        
+    ENDIF
+ELSE
+    ;A 낯설음
+    IF MARK:반발각인 == 3 && !TALENT:연인
+        PRINTFORMW 「거...거긴 넣는데가 아냐...!」
+        PRINTFORMW 「아프니깐, 얼른 빼...으극...」
+    ELSEIF TALENT:연인||TALENT:연모||TALENT:사모
+        PRINTFORMW 「아...아팟...싫어...빼 줘, 빼주세요...」
+        PRINTFORMW 사토리는 삽입의 고통과 이물감에 눈물짓고 있다
+    ELSEIF TALENT:섹프||TALENT:애욕
+        PRINTFORMW 「으긋...이, 이런거로 기분 좋아진다니...이상해...」
+        PRINTFORMW 「이런거 익숙해질리 없잖아...아프기만 하곳...」
+        PRINTFORMW 아직 쾌감보단 고통이 앞서는 모양이다
+    ELSE
+        PRINTFORMW 「거, 거긴 안...으극...!」
+        PRINTFORMW 아직 애널은 익숙해지지 않는 모양이다
+    ENDIF
+ENDIF
