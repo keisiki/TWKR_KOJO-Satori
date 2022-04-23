@@ -256,6 +256,10 @@ IF LOCAL
 	IF FLAG:70
 		RETURN 1
 	ELSE
+		IF PALAM:윤활 < 2000
+			CALL ST_윤활부족()
+			RETURN 1
+		ENDIF
 		CALL ST_삽입공용대사()
 		RETURN 1
 	ENDIF
@@ -374,6 +378,10 @@ IF LOCAL && TFLAG:193
 		RETURN 1
 	;그 이외
 	ELSE
+		IF PALAM:윤활 < 2000
+			CALL ST_윤활부족()
+			RETURN 1
+		ENDIF
 		IF ABL:V감각 > 3
 			IF MARK:반발각인 == 3 && !TALENT:연인&&!TALENT:연모&&!TALENT:사모&&!TALENT:애욕&&!TALENT:섹프
 				SELECTCASE RAND:2
@@ -580,6 +588,10 @@ IF LOCAL
 	IF FLAG:70
 		RETURN 1
 	ELSE
+		IF PALAM:윤활 < 2000
+			CALL ST_윤활부족()
+			RETURN 1
+		ENDIF
 		CALL ST_삽입공용대사()
 		RETURN 1
 	ENDIF
@@ -598,7 +610,7 @@ RETURN RESULT
 ;-------------------------------------------------
 ;입위(立位)
 ;기입체크 (=0, 비표시、1, 표시)
-LOCAL = 0
+LOCAL = 1
 ;-------------------------------------------------
 IF LOCAL && TFLAG:193
 	;-------------------------------------------------
@@ -606,7 +618,7 @@ IF LOCAL && TFLAG:193
 	;-------------------------------------------------
 	;처음
 	;기입체크
-	LOCAL:1 = 0
+	LOCAL:1 = 1
 	;-------------------------------------------------
 	IF LOCAL:1 && FIRSTTIME(SELECTCOM)
 		;애널처녀
@@ -1015,6 +1027,10 @@ IF LOCAL
 		RETURN 1
 	;그 이외
 	ELSE
+		IF PALAM:윤활 < 2000
+			CALL ST_윤활부족()
+			RETURN 1
+		ENDIF
 		IF ABL:V감각 > 3
 			IF MARK:반발각인 == 3 && !TALENT:연인&&!TALENT:연모&&!TALENT:사모&&!TALENT:애욕&&!TALENT:섹프
 				SELECTCASE RAND:2
@@ -1281,6 +1297,10 @@ IF LOCAL
 		RETURN 1
 	ENDIF
 	;기본세트
+	IF PALAM:윤활 < 2000
+		CALL ST_윤활부족()
+		RETURN 1
+	ENDIF
 	IF ABL:V감각 > 3
 		IF MARK:반발각인 == 3
 			IF TALENT:연인||TALENT:연모||TALENT:사모||TALENT:애욕||TALENT:섹프
@@ -1468,6 +1488,10 @@ IF LOCAL
 		RETURN 1
 	ENDIF
 	;기본세트
+	IF PALAM:윤활 < 2000
+		CALL ST_윤활부족()
+		RETURN 1
+	ENDIF
 	IF ABL:V감각 > 3
 		IF MARK:반발각인 == 3
 			IF TALENT:연인||TALENT:연모||TALENT:사모||TALENT:애욕||TALENT:섹프
