@@ -626,48 +626,56 @@ IF LOCAL && TFLAG:193
 			CALL ST_애널파과()
 			RETURN 1
 		ELSE
-			PRINTFORMW 
+			IF ABL:A감각 > 1
+				PRINTFORMW 「이, 이번엔 이 자세?」
+				PRINTFORMW 사토리는 기대하는듯한 표정으로 %마스터를% 바라보고 있다
+			ELSE
+				IF MARK:반발각인 == 3 && !TALENT:연인
+					PRINTFORMW 「또 엉덩이...어째서야...」
+				ELSEIF TALENT:연인||TALENT:연모||TALENT:사모
+					PRINTFORMW 「어, 엉덩이? 이런 자세로...?」
+					PRINTFORMW 「...%사마스터가% 원하신다면, 하기야 하겠지만...」
+				ELSEIF TALENT:섹프||TALENT:애욕
+					PRINTFORMW 「어떤 자세로 해도, 아픈건 잊을수가 없는걸...」
+				ELSE
+					PRINTFORMW 「어, 엉덩이...다른 곳에 하면 안되려나...」
+				ENDIF
+			ENDIF
 			RETURN 1
 		ENDIF
 	ENDIF
 	;-------------------------------------------------
 	;삽입계속
 	;기입체크
-	LOCAL:1 = 0
+	LOCAL:1 = 1
 	;-------------------------------------------------
 	IF LOCAL:1 && TCVAR:101 == PLAYER
-		;전회 사정했다
-		IF TCVAR:104
-			PRINTFORMW 
-			RETURN 1
+		IF ABL:A감각 > 1
+			PRINTFORM 「
+			CALL ST_CLIMAX_HARD(RAND:3 + RAND:3 + 1)
+			PRINTFORMW 」
 		ELSE
-			PRINTFORMW 
-			RETURN 1
+			CALL ST_통상애널계속()
 		ENDIF
+		RETURN 1
 	ENDIF
 	;기본세트
 	;시간(時姦)중
 	IF FLAG:70
-		PRINTFORMW 
 		RETURN 1
-	;연모
-	ELSEIF TALENT:연모
-		PRINTFORMW 
-		RETURN 1
-	;괘씸3
-	ELSEIF MARK:괘씸각인 == 3
-		PRINTFORMW 
-		RETURN 1
-	;그 이외
 	ELSE
-		PRINTFORMW 
+		IF ABL:A감각 > 1
+
+		ELSE
+		
+		ENDIF
 		RETURN 1
 	ENDIF
 ENDIF
 ;-------------------------------------------------
 ;정상위
 ;기입체크 (=0, 비표시、1, 표시)
-LOCAL = 0
+LOCAL = 1
 ;-------------------------------------------------
 IF LOCAL
 	;-------------------------------------------------
@@ -675,7 +683,7 @@ IF LOCAL
 	;-------------------------------------------------
 	;처음
 	;기입체크
-	LOCAL:1 = 0
+	LOCAL:1 = 1
 	;-------------------------------------------------
 	IF LOCAL:1 && FIRSTTIME(SELECTCOM)
 		;애널처녀
@@ -683,41 +691,45 @@ IF LOCAL
 			CALL ST_애널파과()
 			RETURN 1
 		ELSE
-			PRINTFORMW 
+			IF ABL:A감각 > 1
+				PRINTFORMW 「이, 이번엔 이 자세?」
+				PRINTFORMW 사토리는 기대하는듯한 표정으로 %마스터를% 바라보고 있다
+			ELSE
+				IF MARK:반발각인 == 3 && !TALENT:연인
+					PRINTFORMW 「또 엉덩이...어째서야...」
+				ELSEIF TALENT:연인||TALENT:연모||TALENT:사모
+					PRINTFORMW 「어, 엉덩이? 이런 자세로...?」
+					PRINTFORMW 「...%사마스터가% 원하신다면, 하기야 하겠지만...」
+				ELSEIF TALENT:섹프||TALENT:애욕
+					PRINTFORMW 「어떤 자세로 해도, 아픈건 잊을수가 없는걸...」
+				ELSE
+					PRINTFORMW 「어, 엉덩이...다른 곳에 하면 안되려나...」
+				ENDIF
+			ENDIF
 			RETURN 1
 		ENDIF
 	ENDIF
 	;-------------------------------------------------
 	;삽입계속
 	;기입체크
-	LOCAL:1 = 0
+	LOCAL:1 = 1
 	;-------------------------------------------------
 	IF LOCAL:1 && TCVAR:101 == PLAYER
-		;전회 사정했다
-		IF TCVAR:104
-			PRINTFORMW 
-			RETURN 1
+		IF ABL:A감각 > 1
+			PRINTFORM 「
+			CALL ST_CLIMAX_HARD(RAND:3 + RAND:3 + 1)
+			PRINTFORMW 」
 		ELSE
-			PRINTFORMW 
-			RETURN 1
+			CALL ST_통상애널계속()
 		ENDIF
+		RETURN 1
 	ENDIF
 	;기본세트
 	;시간(時姦)중
 	IF FLAG:70
-		PRINTFORMW 
 		RETURN 1
-	;연모
-	ELSEIF TALENT:연모
-		PRINTFORMW 
-		RETURN 1
-	;괘씸3
-	ELSEIF MARK:괘씸각인 == 3
-		PRINTFORMW 
-		RETURN 1
-	;그 이외
 	ELSE
-		PRINTFORMW 
+		
 		RETURN 1
 	ENDIF
 ENDIF
@@ -735,7 +747,7 @@ RETURN RESULT
 ;-------------------------------------------------
 ;입위(立位)
 ;기입체크 (=0, 비표시、1, 표시)
-LOCAL = 0
+LOCAL = 1
 ;-------------------------------------------------
 IF LOCAL && TFLAG:193
 	;-------------------------------------------------
@@ -743,7 +755,7 @@ IF LOCAL && TFLAG:193
 	;-------------------------------------------------
 	;처음
 	;기입체크
-	LOCAL:1 = 0
+	LOCAL:1 = 1
 	;-------------------------------------------------
 	IF LOCAL:1 && FIRSTTIME(SELECTCOM)
 		;애널처녀
@@ -751,48 +763,52 @@ IF LOCAL && TFLAG:193
 			CALL ST_애널파과()
 			RETURN 1
 		ELSE
-			PRINTFORMW 
+			IF ABL:A감각 > 1
+				PRINTFORMW 「이, 이번엔 이 자세?」
+				PRINTFORMW 사토리는 기대하는듯한 표정으로 %마스터를% 바라보고 있다
+			ELSE
+				IF MARK:반발각인 == 3 && !TALENT:연인
+					PRINTFORMW 「또 엉덩이...어째서야...」
+				ELSEIF TALENT:연인||TALENT:연모||TALENT:사모
+					PRINTFORMW 「어, 엉덩이? 이런 자세로...?」
+					PRINTFORMW 「...%사마스터가% 원하신다면, 하기야 하겠지만...」
+				ELSEIF TALENT:섹프||TALENT:애욕
+					PRINTFORMW 「어떤 자세로 해도, 아픈건 잊을수가 없는걸...」
+				ELSE
+					PRINTFORMW 「어, 엉덩이...다른 곳에 하면 안되려나...」
+				ENDIF
+			ENDIF 
 			RETURN 1
 		ENDIF
 	ENDIF
 	;-------------------------------------------------
 	;삽입계속
 	;기입체크
-	LOCAL:1 = 0
+	LOCAL:1 = 1
 	;-------------------------------------------------
 	IF LOCAL:1 && TCVAR:101 == PLAYER
-		;전회 사정했다
-		IF TCVAR:104
-			PRINTFORMW 
-			RETURN 1
+		IF ABL:A감각 > 1
+			PRINTFORM 「
+			CALL ST_CLIMAX_HARD(RAND:3 + RAND:3 + 1)
+			PRINTFORMW 」
 		ELSE
-			PRINTFORMW 
-			RETURN 1
+			CALL ST_통상애널계속()
 		ENDIF
+		RETURN 1
 	ENDIF
 	;기본세트
 	;시간(時姦)중
 	IF FLAG:70
-		PRINTFORMW 
 		RETURN 1
-	;연모
-	ELSEIF TALENT:연모
-		PRINTFORMW 
-		RETURN 1
-	;괘씸3
-	ELSEIF MARK:괘씸각인 == 3
-		PRINTFORMW 
-		RETURN 1
-	;그 이외
 	ELSE
-		PRINTFORMW 
+		
 		RETURN 1
 	ENDIF
 ENDIF
 ;-------------------------------------------------
 ;후배위
 ;기입체크 (=0, 비표시、1, 표시)
-LOCAL = 0
+LOCAL = 1
 ;-------------------------------------------------
 IF LOCAL
 	;-------------------------------------------------
@@ -800,7 +816,7 @@ IF LOCAL
 	;-------------------------------------------------
 	;처음
 	;기입체크
-	LOCAL:1 = 0
+	LOCAL:1 = 1
 	;-------------------------------------------------
 	IF LOCAL:1 && FIRSTTIME(SELECTCOM)
 		;애널처녀
@@ -808,41 +824,45 @@ IF LOCAL
 			CALL ST_애널파과()
 			RETURN 1
 		ELSE
-			PRINTFORMW 
+			IF ABL:A감각 > 1
+				PRINTFORMW 「이, 이번엔 이 자세?」
+				PRINTFORMW 사토리는 기대하는듯한 표정으로 %마스터를% 바라보고 있다
+			ELSE
+				IF MARK:반발각인 == 3 && !TALENT:연인
+					PRINTFORMW 「또 엉덩이...어째서야...」
+				ELSEIF TALENT:연인||TALENT:연모||TALENT:사모
+					PRINTFORMW 「어, 엉덩이? 이런 자세로...?」
+					PRINTFORMW 「...%사마스터가% 원하신다면, 하기야 하겠지만...」
+				ELSEIF TALENT:섹프||TALENT:애욕
+					PRINTFORMW 「어떤 자세로 해도, 아픈건 잊을수가 없는걸...」
+				ELSE
+					PRINTFORMW 「어, 엉덩이...다른 곳에 하면 안되려나...」
+				ENDIF
+			ENDIF
 			RETURN 1
 		ENDIF
 	ENDIF
 	;-------------------------------------------------
 	;삽입계속
 	;기입체크
-	LOCAL:1 = 0
+	LOCAL:1 = 1
 	;-------------------------------------------------
 	IF LOCAL:1 && TCVAR:101 == PLAYER
-		;전회 사정했다
-		IF TCVAR:104
-			PRINTFORMW 
-			RETURN 1
+		IF ABL:A감각 > 1
+			PRINTFORM 「
+			CALL ST_CLIMAX_HARD(RAND:3 + RAND:3 + 1)
+			PRINTFORMW 」
 		ELSE
-			PRINTFORMW 
-			RETURN 1
+			CALL ST_통상애널계속()
 		ENDIF
+		RETURN 1
 	ENDIF
 	;기본세트
 	;시간(時姦)중
 	IF FLAG:70
-		PRINTFORMW 
 		RETURN 1
-	;연모
-	ELSEIF TALENT:연모
-		PRINTFORMW 
-		RETURN 1
-	;괘씸3
-	ELSEIF MARK:괘씸각인 == 3
-		PRINTFORMW 
-		RETURN 1
-	;그 이외
 	ELSE
-		PRINTFORMW 
+		
 		RETURN 1
 	ENDIF
 ENDIF
@@ -1192,19 +1212,9 @@ IF LOCAL
 	;기본세트
 	;시간(時姦)중
 	IF FLAG:70
-		PRINTFORMW 
 		RETURN 1
-	;연모
-	ELSEIF TALENT:연모
-		PRINTFORMW 
-		RETURN 1
-	;괘씸3
-	ELSEIF MARK:괘씸각인 == 3
-		PRINTFORMW 
-		RETURN 1
-	;그 이외
 	ELSE
-		PRINTFORMW 
+		
 		RETURN 1
 	ENDIF
 ENDIF
@@ -1598,7 +1608,7 @@ RETURN RESULT
 @M_KOJO_MESSAGE_COM_K49_69_1
 ;-------------------------------------------------
 ;기입체크 (=0, 비표시、1, 표시)
-LOCAL = 0
+LOCAL = 1
 ;-------------------------------------------------
 IF LOCAL
 	;-------------------------------------------------
@@ -1606,7 +1616,7 @@ IF LOCAL
 	;-------------------------------------------------
 	;처음
 	;기입체크
-	LOCAL:1 = 0
+	LOCAL:1 = 1
 	;-------------------------------------------------
 	IF LOCAL:1 && FIRSTTIME(SELECTCOM)
 		;애널처녀
@@ -1614,37 +1624,45 @@ IF LOCAL
 			CALL ST_애널파과()
 			RETURN 1
 		ELSE
-			PRINTFORMW 
+			IF ABL:A감각 > 1
+				PRINTFORMW 「이, 이번엔 이 자세?」
+				PRINTFORMW 사토리는 기대하는듯한 표정으로 %마스터를% 바라보고 있다
+			ELSE
+				IF MARK:반발각인 == 3 && !TALENT:연인
+					PRINTFORMW 「또 엉덩이...어째서야...」
+				ELSEIF TALENT:연인||TALENT:연모||TALENT:사모
+					PRINTFORMW 「어, 엉덩이? 이런 자세로...?」
+					PRINTFORMW 「...%사마스터가% 원하신다면, 하기야 하겠지만...」
+				ELSEIF TALENT:섹프||TALENT:애욕
+					PRINTFORMW 「어떤 자세로 해도, 아픈건 잊을수가 없는걸...」
+				ELSE
+					PRINTFORMW 「어, 엉덩이...다른 곳에 하면 안되려나...」
+				ENDIF
+			ENDIF
 			RETURN 1
 		ENDIF
 	ENDIF
 	;-------------------------------------------------
 	;삽입계속
 	;기입체크
-	LOCAL:1 = 0
+	LOCAL:1 = 1
 	;-------------------------------------------------
 	IF LOCAL:1 && TCVAR:101 == PLAYER
-		;전회 사정했다
-		IF TCVAR:104
-			PRINTFORMW 
-			RETURN 1
+		IF ABL:A감각 > 1
+			PRINTFORM 「
+			CALL ST_CLIMAX_HARD(RAND:3 + RAND:3 + 1)
+			PRINTFORMW 」
 		ELSE
-			PRINTFORMW 
-			RETURN 1
+			CALL ST_통상애널계속()
 		ENDIF
+		RETURN 1
 	ENDIF
 	;기본세트
-	;연모
-	IF TALENT:연모
-		PRINTFORMW 
+	;시간(時姦)중
+	IF FLAG:70
 		RETURN 1
-	;괘씸3
-	ELSEIF MARK:괘씸각인 == 3
-		PRINTFORMW 
-		RETURN 1
-	;그 이외
 	ELSE
-		PRINTFORMW 
+		
 		RETURN 1
 	ENDIF
 ENDIF
@@ -1661,7 +1679,7 @@ RETURN RESULT
 @M_KOJO_MESSAGE_COM_K49_70_1
 ;-------------------------------------------------
 ;기입체크 (=0, 비표시、1, 표시)
-LOCAL = 0
+LOCAL = 1
 ;-------------------------------------------------
 IF LOCAL
 	;-------------------------------------------------
@@ -1669,7 +1687,7 @@ IF LOCAL
 	;-------------------------------------------------
 	;처음
 	;기입체크
-	LOCAL:1 = 0
+	LOCAL:1 = 1
 	;-------------------------------------------------
 	IF LOCAL:1 && FIRSTTIME(SELECTCOM)
 		;애널처녀
@@ -1677,37 +1695,45 @@ IF LOCAL
 			CALL ST_애널파과()
 			RETURN 1
 		ELSE
-			PRINTFORMW 
+			IF ABL:A감각 > 1
+				PRINTFORMW 「이, 이번엔 이 자세?」
+				PRINTFORMW 사토리는 기대하는듯한 표정으로 %마스터를% 바라보고 있다
+			ELSE
+				IF MARK:반발각인 == 3 && !TALENT:연인
+					PRINTFORMW 「또 엉덩이...어째서야...」
+				ELSEIF TALENT:연인||TALENT:연모||TALENT:사모
+					PRINTFORMW 「어, 엉덩이? 이런 자세로...?」
+					PRINTFORMW 「...%사마스터가% 원하신다면, 하기야 하겠지만...」
+				ELSEIF TALENT:섹프||TALENT:애욕
+					PRINTFORMW 「어떤 자세로 해도, 아픈건 잊을수가 없는걸...」
+				ELSE
+					PRINTFORMW 「어, 엉덩이...다른 곳에 하면 안되려나...」
+				ENDIF
+			ENDIF
 			RETURN 1
 		ENDIF
 	ENDIF
 	;-------------------------------------------------
 	;삽입계속
 	;기입체크
-	LOCAL:1 = 0
+	LOCAL:1 = 1
 	;-------------------------------------------------
 	IF LOCAL:1 && TCVAR:101 == PLAYER
-		;전회 사정했다
-		IF TCVAR:104
-			PRINTFORMW 
-			RETURN 1
+		IF ABL:A감각 > 1
+			PRINTFORM 「
+			CALL ST_CLIMAX_HARD(RAND:3 + RAND:3 + 1)
+			PRINTFORMW 」
 		ELSE
-			PRINTFORMW 
-			RETURN 1
+			CALL ST_통상애널계속()
 		ENDIF
+		RETURN 1
 	ENDIF
 	;기본세트
-	;연모
-	IF TALENT:연모
-		PRINTFORMW 
+	;시간(時姦)중
+	IF FLAG:70
 		RETURN 1
-	;괘씸3
-	ELSEIF MARK:괘씸각인 == 3
-		PRINTFORMW 
-		RETURN 1
-	;그 이외
 	ELSE
-		PRINTFORMW 
+		
 		RETURN 1
 	ENDIF
 ENDIF

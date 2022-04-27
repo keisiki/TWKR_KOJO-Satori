@@ -2890,13 +2890,20 @@ ENDSELECT
 IF ABL:A감각 > 1
     ;A익숙함
     IF MARK:반발각인 == 3 && !TALENT:연인
-        
+        PRINTFORMW 「아...♥ 아아...♥ 이런거, 이상할 뿐인데...♥」
+        PRINTFORMW 「왜 이렇게 좋은거야...♥」
+        PRINTFORMW 애널에서 올라오는 쾌감에 복잡한 표정을 짓고 있다
     ELSEIF TALENT:연인||TALENT:연모||TALENT:사모
-        
+        PRINTFORMW 「아아...♥ 어, 엉덩이...♥ 들어왔다...♥」
+        PRINTFORMW 「온 몸이 오싹거려...♥ 이상한 기분...♥」
+        PRINTFORMW 애널에서 올라오는 쾌감에 사토리의 몸이 파르르 떨렸다
     ELSEIF TALENT:섹프||TALENT:애욕
-        
+        PRINTFORMW 「아아...♥ 드, 들어왔다...♥」
+        PRINTFORMW 「손가락 같은거보다 기분 좋아...♥ 온 몸이 오싹거려...♥」
+        PRINTFORMW 애널에서 올라오는 쾌감에 사토리의 몸이 파르르 떨렸다
     ELSE
-        
+        PRINTFORMW 「아...♥ 아아...♥ 이런거, 이상할 뿐인데...♥」
+        PRINTFORMW 「왜 이렇게 좋은거야...♥」
     ENDIF
 ELSE
     ;A 낯설음
@@ -2914,4 +2921,44 @@ ELSE
         PRINTFORMW 「거, 거긴 안...으극...!」
         PRINTFORMW 아직 애널은 익숙해지지 않는 모양이다
     ENDIF
+ENDIF
+
+@ST_통상애널계속()
+IF MARK:반발각인 == 3 && !TALENT:연인
+    SELECTCASE RAND:2
+        CASE 0
+            PRINTFORMW 「어, 엉덩이...이상한 느낌...」
+            PRINTFORMW 「이런게, 기분 좋은거야...?」
+        CASE 1
+            PRINTFORMW 「구, 굳이 엉덩이여야 할 필요가 있는거야...?」
+            PRINTFORMW 「아프기만 한걸...으...」
+    ENDSELECT
+ELSEIF TALENT:연인||TALENT:연모||TALENT:사모 
+    SELECTCASE RAND:2
+        CASE 0
+            PRINTFORMW 「이, 이상하기만 할 뿐이고...기분 좋은건 모르겠어...」
+            PRINTFORMW 「...그만 하고 싶어...이거 말고 다른거, 많잖아요...」
+            PRINTFORMW 사토리는 기어들어가는 목소리로 애원했다
+        CASE 1
+            PRINTFORMW 「아...아파...그만...」
+            PRINTFORMW 「이런거 이상해, 이상하단 말야...」
+    ENDSELECT
+ELSEIF TALENT:섹프||TALENT:애욕
+    SELECTCASE RAND:2
+        CASE 0
+            PRINTFORMW 「어, 어째서 엉덩이 인거야...」
+            PRINTFORMW 「다른데라면 좋을걸...」
+        CASE 1
+            PRINTFORMW 「이, 이런거로 기분 좋아진다니...」
+            PRINTFORMW 「아프기만 한걸...」
+    ENDSELECT
+ELSE
+    SELECTCASE RAND:2
+        CASE 0
+            PRINTFORMW 「아...아프기만 하단 말야...그만해...」
+            PRINTFORMW 「엉덩이, 찢어져 버려...」
+        CASE 1
+            PRINTFORMW 「이런거로 기분 좋아질리가 없어...」
+            PRINTFORMW 사토리는 이를 악물고 엉덩이의 고통을 참고 있다
+    ENDSELECT
 ENDIF
