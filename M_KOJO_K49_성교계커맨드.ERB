@@ -665,9 +665,73 @@ IF LOCAL && TFLAG:193
 		RETURN 1
 	ELSE
 		IF ABL:A감각 > 1
+			IF MARK:반발각인 == 3 && !TALENT:연인
+				SELECTCASE RAND:2
+					CASE 0
 
+					CASE 1
+						PRINTFORM 「
+						CALL ST_CLIMAX(RAND:3 + RAND:3 + 1)
+						PRINTFORMW 」
+				ENDSELECT
+			ELSEIF TALENT:연인||TALENT:연모||TALENT:사모
+				SELECTCASE RAND:2
+					CASE 0
+
+					CASE 1
+						PRINTFORM 「
+						CALL ST_CLIMAX(RAND:3 + RAND:3 + 1)
+						PRINTFORMW 」
+				ENDSELECT
+			ELSEIF TALENT:섹프||TALENT:애욕
+				SELECTCASE RAND:2
+					CASE 0
+
+					CASE 1
+						PRINTFORM 「
+						CALL ST_CLIMAX(RAND:3 + RAND:3 + 1)
+						PRINTFORMW 」
+				ENDSELECT
+			ELSE
+				SELECTCASE RAND:2
+					CASE 0
+						;PRINTFORMW 「」
+					CASE 1
+						PRINTFORM 「
+						CALL ST_CLIMAX(RAND:3 + RAND:3 + 1)
+						PRINTFORMW 」
+				ENDSELECT
+			ENDIF
 		ELSE
-		
+			IF MARK:반발각인 == 3 && !TALENT:연인
+				SELECTCASE RAND:2
+					CASE 0
+						PRINTFORMW 「어, 엉덩이는...」
+						PRINTFORMW 「...이런게 뭐가 좋다는 거야...」
+					CASE 1
+						PRINTFORMW 「이런거로 기분 좋아질리 없잖아...」
+				ENDSELECT
+			ELSEIF TALENT:연인||TALENT:연모||TALENT:사모
+				SELECTCASE RAND:2
+					CASE 0
+						PRINTFORMW 「이...이상한 느낌...이런데로 기분 좋아지다니, 그럴리가 없잖아요...」
+						PRINTFORMW 개발되지 않은 항문으론 이물감만 느껴지는 모양이다
+					CASE 1
+						PRINTFORMW 「으긋...」
+						PRINTFORMW 사토리는 입을 앙다물고 항문의 이물감을 견뎌내고 있다
+				ENDSELECT
+			ELSEIF TALENT:섹프||TALENT:애욕
+				SELECTCASE RAND:2
+					CASE 0
+						PRINTFORMW 「이...이건 아직도 적응이 안되는걸...」
+					CASE 1
+						PRINTFORMW 「으긋...」
+						PRINTFORMW 사토리는 입을 앙다물고 항문의 이물감을 견뎌내고 있다
+				ENDSELECT
+			ELSE
+				PRINTFORMW 「으긋...」
+				PRINTFORMW 사토리는 입을 앙다물고 항문의 이물감을 견뎌내고 있다
+			ENDIF
 		ENDIF
 		RETURN 1
 	ENDIF
