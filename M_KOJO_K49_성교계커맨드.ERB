@@ -664,11 +664,16 @@ IF LOCAL && TFLAG:193
 	IF FLAG:70
 		RETURN 1
 	ELSE
+		IF PALAM:윤활 < 2000
+			CALL ST_윤활부족()
+			RETURN 1
+		ENDIF
 		IF ABL:A감각 > 1
 			IF MARK:반발각인 == 3 && !TALENT:연인
 				SELECTCASE RAND:2
 					CASE 0
-
+						PRINTFORMW 「힛...♥ 드, 들어왔...다...♥」
+						PRINTFORMW 사토리는 쾌감에 조용히 몸을 떨었다
 					CASE 1
 						PRINTFORM 「
 						CALL ST_CLIMAX(RAND:3 + RAND:3 + 1)
@@ -677,7 +682,8 @@ IF LOCAL && TFLAG:193
 			ELSEIF TALENT:연인||TALENT:연모||TALENT:사모
 				SELECTCASE RAND:2
 					CASE 0
-
+						PRINTFORMW 「힛♥ 드, 들어왔다아...♥」
+						PRINTFORMW 엉덩이에 삽입되는 오싹한 쾌감에 사토리의 몸이 파르르 떨렸다
 					CASE 1
 						PRINTFORM 「
 						CALL ST_CLIMAX(RAND:3 + RAND:3 + 1)
@@ -686,16 +692,18 @@ IF LOCAL && TFLAG:193
 			ELSEIF TALENT:섹프||TALENT:애욕
 				SELECTCASE RAND:2
 					CASE 0
-
+						PRINTFORMW 「아핫...♥ 이, 이 오싹한 느낌...♥ 중독될거 같아...♥」
 					CASE 1
 						PRINTFORM 「
 						CALL ST_CLIMAX(RAND:3 + RAND:3 + 1)
 						PRINTFORMW 」
 				ENDSELECT
 			ELSE
+				;볼일 있을까
 				SELECTCASE RAND:2
 					CASE 0
-						;PRINTFORMW 「」
+						PRINTFORMW 「힛♥ 어, 엉덩이 기분 좋아아♥」
+						PRINTFORMW 「이상해♥ 이상한데도♥ 기분 좋아아♥」
 					CASE 1
 						PRINTFORM 「
 						CALL ST_CLIMAX(RAND:3 + RAND:3 + 1)
@@ -793,7 +801,83 @@ IF LOCAL
 	IF FLAG:70
 		RETURN 1
 	ELSE
-		
+		IF PALAM:윤활 < 2000
+			CALL ST_윤활부족()
+			RETURN 1
+		ENDIF
+		IF ABL:A감각 > 1
+			IF MARK:반발각인 == 3 && !TALENT:연인
+				SELECTCASE RAND:2
+					CASE 0
+						PRINTFORMW 「힛...♥ 드, 들어왔...다...♥」
+						PRINTFORMW 사토리는 쾌감에 조용히 몸을 떨었다
+					CASE 1
+						PRINTFORM 「
+						CALL ST_CLIMAX(RAND:3 + RAND:3 + 1)
+						PRINTFORMW 」
+				ENDSELECT
+			ELSEIF TALENT:연인||TALENT:연모||TALENT:사모
+				SELECTCASE RAND:2
+					CASE 0
+						PRINTFORMW 「힛♥ 드, 들어왔다아...♥」
+						PRINTFORMW 엉덩이에 삽입되는 오싹한 쾌감에 사토리의 몸이 파르르 떨렸다
+					CASE 1
+						PRINTFORM 「
+						CALL ST_CLIMAX(RAND:3 + RAND:3 + 1)
+						PRINTFORMW 」
+				ENDSELECT
+			ELSEIF TALENT:섹프||TALENT:애욕
+				SELECTCASE RAND:2
+					CASE 0
+						PRINTFORMW 「아핫...♥ 이, 이 오싹한 느낌...♥ 중독될거 같아...♥」
+					CASE 1
+						PRINTFORM 「
+						CALL ST_CLIMAX(RAND:3 + RAND:3 + 1)
+						PRINTFORMW 」
+				ENDSELECT
+			ELSE
+				;볼일 있을까
+				SELECTCASE RAND:2
+					CASE 0
+						PRINTFORMW 「힛♥ 어, 엉덩이 기분 좋아아♥」
+						PRINTFORMW 「이상해♥ 이상한데도♥ 기분 좋아아♥」
+					CASE 1
+						PRINTFORM 「
+						CALL ST_CLIMAX(RAND:3 + RAND:3 + 1)
+						PRINTFORMW 」
+				ENDSELECT
+			ENDIF
+		ELSE
+			IF MARK:반발각인 == 3 && !TALENT:연인
+				SELECTCASE RAND:2
+					CASE 0
+						PRINTFORMW 「어, 엉덩이는...」
+						PRINTFORMW 「...이런게 뭐가 좋다는 거야...」
+					CASE 1
+						PRINTFORMW 「이런거로 기분 좋아질리 없잖아...」
+				ENDSELECT
+			ELSEIF TALENT:연인||TALENT:연모||TALENT:사모
+				SELECTCASE RAND:2
+					CASE 0
+						PRINTFORMW 「이...이상한 느낌...이런데로 기분 좋아지다니, 그럴리가 없잖아요...」
+						PRINTFORMW 개발되지 않은 항문으론 이물감만 느껴지는 모양이다
+					CASE 1
+						PRINTFORMW 「으긋...」
+						PRINTFORMW 사토리는 입을 앙다물고 항문의 이물감을 견뎌내고 있다
+				ENDSELECT
+			ELSEIF TALENT:섹프||TALENT:애욕
+				SELECTCASE RAND:2
+					CASE 0
+						PRINTFORMW 「이...이건 아직도 적응이 안되는걸...」
+					CASE 1
+						PRINTFORMW 「으긋...」
+						PRINTFORMW 사토리는 입을 앙다물고 항문의 이물감을 견뎌내고 있다
+				ENDSELECT
+			ELSE
+				PRINTFORMW 「으긋...」
+				PRINTFORMW 사토리는 입을 앙다물고 항문의 이물감을 견뎌내고 있다
+			ENDIF
+		ENDIF
 		RETURN 1
 	ENDIF
 ENDIF
@@ -865,7 +949,83 @@ IF LOCAL && TFLAG:193
 	IF FLAG:70
 		RETURN 1
 	ELSE
-		
+		IF PALAM:윤활 < 2000
+			CALL ST_윤활부족()
+			RETURN 1
+		ENDIF
+		IF ABL:A감각 > 1
+			IF MARK:반발각인 == 3 && !TALENT:연인
+				SELECTCASE RAND:2
+					CASE 0
+						PRINTFORMW 「힛...♥ 드, 들어왔...다...♥」
+						PRINTFORMW 사토리는 쾌감에 조용히 몸을 떨었다
+					CASE 1
+						PRINTFORM 「
+						CALL ST_CLIMAX(RAND:3 + RAND:3 + 1)
+						PRINTFORMW 」
+				ENDSELECT
+			ELSEIF TALENT:연인||TALENT:연모||TALENT:사모
+				SELECTCASE RAND:2
+					CASE 0
+						PRINTFORMW 「힛♥ 드, 들어왔다아...♥」
+						PRINTFORMW 엉덩이에 삽입되는 오싹한 쾌감에 사토리의 몸이 파르르 떨렸다
+					CASE 1
+						PRINTFORM 「
+						CALL ST_CLIMAX(RAND:3 + RAND:3 + 1)
+						PRINTFORMW 」
+				ENDSELECT
+			ELSEIF TALENT:섹프||TALENT:애욕
+				SELECTCASE RAND:2
+					CASE 0
+						PRINTFORMW 「아핫...♥ 이, 이 오싹한 느낌...♥ 중독될거 같아...♥」
+					CASE 1
+						PRINTFORM 「
+						CALL ST_CLIMAX(RAND:3 + RAND:3 + 1)
+						PRINTFORMW 」
+				ENDSELECT
+			ELSE
+				;볼일 있을까
+				SELECTCASE RAND:2
+					CASE 0
+						PRINTFORMW 「힛♥ 어, 엉덩이 기분 좋아아♥」
+						PRINTFORMW 「이상해♥ 이상한데도♥ 기분 좋아아♥」
+					CASE 1
+						PRINTFORM 「
+						CALL ST_CLIMAX(RAND:3 + RAND:3 + 1)
+						PRINTFORMW 」
+				ENDSELECT
+			ENDIF
+		ELSE
+			IF MARK:반발각인 == 3 && !TALENT:연인
+				SELECTCASE RAND:2
+					CASE 0
+						PRINTFORMW 「어, 엉덩이는...」
+						PRINTFORMW 「...이런게 뭐가 좋다는 거야...」
+					CASE 1
+						PRINTFORMW 「이런거로 기분 좋아질리 없잖아...」
+				ENDSELECT
+			ELSEIF TALENT:연인||TALENT:연모||TALENT:사모
+				SELECTCASE RAND:2
+					CASE 0
+						PRINTFORMW 「이...이상한 느낌...이런데로 기분 좋아지다니, 그럴리가 없잖아요...」
+						PRINTFORMW 개발되지 않은 항문으론 이물감만 느껴지는 모양이다
+					CASE 1
+						PRINTFORMW 「으긋...」
+						PRINTFORMW 사토리는 입을 앙다물고 항문의 이물감을 견뎌내고 있다
+				ENDSELECT
+			ELSEIF TALENT:섹프||TALENT:애욕
+				SELECTCASE RAND:2
+					CASE 0
+						PRINTFORMW 「이...이건 아직도 적응이 안되는걸...」
+					CASE 1
+						PRINTFORMW 「으긋...」
+						PRINTFORMW 사토리는 입을 앙다물고 항문의 이물감을 견뎌내고 있다
+				ENDSELECT
+			ELSE
+				PRINTFORMW 「으긋...」
+				PRINTFORMW 사토리는 입을 앙다물고 항문의 이물감을 견뎌내고 있다
+			ENDIF
+		ENDIF
 		RETURN 1
 	ENDIF
 ENDIF
@@ -926,7 +1086,83 @@ IF LOCAL
 	IF FLAG:70
 		RETURN 1
 	ELSE
-		
+		IF PALAM:윤활 < 2000
+			CALL ST_윤활부족()
+			RETURN 1
+		ENDIF
+		IF ABL:A감각 > 1
+			IF MARK:반발각인 == 3 && !TALENT:연인
+				SELECTCASE RAND:2
+					CASE 0
+						PRINTFORMW 「힛...♥ 드, 들어왔...다...♥」
+						PRINTFORMW 사토리는 쾌감에 조용히 몸을 떨었다
+					CASE 1
+						PRINTFORM 「
+						CALL ST_CLIMAX(RAND:3 + RAND:3 + 1)
+						PRINTFORMW 」
+				ENDSELECT
+			ELSEIF TALENT:연인||TALENT:연모||TALENT:사모
+				SELECTCASE RAND:2
+					CASE 0
+						PRINTFORMW 「힛♥ 드, 들어왔다아...♥」
+						PRINTFORMW 엉덩이에 삽입되는 오싹한 쾌감에 사토리의 몸이 파르르 떨렸다
+					CASE 1
+						PRINTFORM 「
+						CALL ST_CLIMAX(RAND:3 + RAND:3 + 1)
+						PRINTFORMW 」
+				ENDSELECT
+			ELSEIF TALENT:섹프||TALENT:애욕
+				SELECTCASE RAND:2
+					CASE 0
+						PRINTFORMW 「아핫...♥ 이, 이 오싹한 느낌...♥ 중독될거 같아...♥」
+					CASE 1
+						PRINTFORM 「
+						CALL ST_CLIMAX(RAND:3 + RAND:3 + 1)
+						PRINTFORMW 」
+				ENDSELECT
+			ELSE
+				;볼일 있을까
+				SELECTCASE RAND:2
+					CASE 0
+						PRINTFORMW 「힛♥ 어, 엉덩이 기분 좋아아♥」
+						PRINTFORMW 「이상해♥ 이상한데도♥ 기분 좋아아♥」
+					CASE 1
+						PRINTFORM 「
+						CALL ST_CLIMAX(RAND:3 + RAND:3 + 1)
+						PRINTFORMW 」
+				ENDSELECT
+			ENDIF
+		ELSE
+			IF MARK:반발각인 == 3 && !TALENT:연인
+				SELECTCASE RAND:2
+					CASE 0
+						PRINTFORMW 「어, 엉덩이는...」
+						PRINTFORMW 「...이런게 뭐가 좋다는 거야...」
+					CASE 1
+						PRINTFORMW 「이런거로 기분 좋아질리 없잖아...」
+				ENDSELECT
+			ELSEIF TALENT:연인||TALENT:연모||TALENT:사모
+				SELECTCASE RAND:2
+					CASE 0
+						PRINTFORMW 「이...이상한 느낌...이런데로 기분 좋아지다니, 그럴리가 없잖아요...」
+						PRINTFORMW 개발되지 않은 항문으론 이물감만 느껴지는 모양이다
+					CASE 1
+						PRINTFORMW 「으긋...」
+						PRINTFORMW 사토리는 입을 앙다물고 항문의 이물감을 견뎌내고 있다
+				ENDSELECT
+			ELSEIF TALENT:섹프||TALENT:애욕
+				SELECTCASE RAND:2
+					CASE 0
+						PRINTFORMW 「이...이건 아직도 적응이 안되는걸...」
+					CASE 1
+						PRINTFORMW 「으긋...」
+						PRINTFORMW 사토리는 입을 앙다물고 항문의 이물감을 견뎌내고 있다
+				ENDSELECT
+			ELSE
+				PRINTFORMW 「으긋...」
+				PRINTFORMW 사토리는 입을 앙다물고 항문의 이물감을 견뎌내고 있다
+			ENDIF
+		ENDIF
 		RETURN 1
 	ENDIF
 ENDIF
@@ -1726,7 +1962,83 @@ IF LOCAL
 	IF FLAG:70
 		RETURN 1
 	ELSE
-		
+		IF PALAM:윤활 < 2000
+			CALL ST_윤활부족()
+			RETURN 1
+		ENDIF
+		IF ABL:A감각 > 1
+			IF MARK:반발각인 == 3 && !TALENT:연인
+				SELECTCASE RAND:2
+					CASE 0
+						PRINTFORMW 「힛...♥ 드, 들어왔...다...♥」
+						PRINTFORMW 사토리는 쾌감에 조용히 몸을 떨었다
+					CASE 1
+						PRINTFORM 「
+						CALL ST_CLIMAX(RAND:3 + RAND:3 + 1)
+						PRINTFORMW 」
+				ENDSELECT
+			ELSEIF TALENT:연인||TALENT:연모||TALENT:사모
+				SELECTCASE RAND:2
+					CASE 0
+						PRINTFORMW 「힛♥ 드, 들어왔다아...♥」
+						PRINTFORMW 엉덩이에 삽입되는 오싹한 쾌감에 사토리의 몸이 파르르 떨렸다
+					CASE 1
+						PRINTFORM 「
+						CALL ST_CLIMAX(RAND:3 + RAND:3 + 1)
+						PRINTFORMW 」
+				ENDSELECT
+			ELSEIF TALENT:섹프||TALENT:애욕
+				SELECTCASE RAND:2
+					CASE 0
+						PRINTFORMW 「아핫...♥ 이, 이 오싹한 느낌...♥ 중독될거 같아...♥」
+					CASE 1
+						PRINTFORM 「
+						CALL ST_CLIMAX(RAND:3 + RAND:3 + 1)
+						PRINTFORMW 」
+				ENDSELECT
+			ELSE
+				;볼일 있을까
+				SELECTCASE RAND:2
+					CASE 0
+						PRINTFORMW 「힛♥ 어, 엉덩이 기분 좋아아♥」
+						PRINTFORMW 「이상해♥ 이상한데도♥ 기분 좋아아♥」
+					CASE 1
+						PRINTFORM 「
+						CALL ST_CLIMAX(RAND:3 + RAND:3 + 1)
+						PRINTFORMW 」
+				ENDSELECT
+			ENDIF
+		ELSE
+			IF MARK:반발각인 == 3 && !TALENT:연인
+				SELECTCASE RAND:2
+					CASE 0
+						PRINTFORMW 「어, 엉덩이는...」
+						PRINTFORMW 「...이런게 뭐가 좋다는 거야...」
+					CASE 1
+						PRINTFORMW 「이런거로 기분 좋아질리 없잖아...」
+				ENDSELECT
+			ELSEIF TALENT:연인||TALENT:연모||TALENT:사모
+				SELECTCASE RAND:2
+					CASE 0
+						PRINTFORMW 「이...이상한 느낌...이런데로 기분 좋아지다니, 그럴리가 없잖아요...」
+						PRINTFORMW 개발되지 않은 항문으론 이물감만 느껴지는 모양이다
+					CASE 1
+						PRINTFORMW 「으긋...」
+						PRINTFORMW 사토리는 입을 앙다물고 항문의 이물감을 견뎌내고 있다
+				ENDSELECT
+			ELSEIF TALENT:섹프||TALENT:애욕
+				SELECTCASE RAND:2
+					CASE 0
+						PRINTFORMW 「이...이건 아직도 적응이 안되는걸...」
+					CASE 1
+						PRINTFORMW 「으긋...」
+						PRINTFORMW 사토리는 입을 앙다물고 항문의 이물감을 견뎌내고 있다
+				ENDSELECT
+			ELSE
+				PRINTFORMW 「으긋...」
+				PRINTFORMW 사토리는 입을 앙다물고 항문의 이물감을 견뎌내고 있다
+			ENDIF
+		ENDIF
 		RETURN 1
 	ENDIF
 ENDIF
@@ -1797,7 +2109,83 @@ IF LOCAL
 	IF FLAG:70
 		RETURN 1
 	ELSE
-		
+		IF PALAM:윤활 < 2000
+			CALL ST_윤활부족()
+			RETURN 1
+		ENDIF
+		IF ABL:A감각 > 1
+			IF MARK:반발각인 == 3 && !TALENT:연인
+				SELECTCASE RAND:2
+					CASE 0
+						PRINTFORMW 「힛...♥ 드, 들어왔...다...♥」
+						PRINTFORMW 사토리는 쾌감에 조용히 몸을 떨었다
+					CASE 1
+						PRINTFORM 「
+						CALL ST_CLIMAX(RAND:3 + RAND:3 + 1)
+						PRINTFORMW 」
+				ENDSELECT
+			ELSEIF TALENT:연인||TALENT:연모||TALENT:사모
+				SELECTCASE RAND:2
+					CASE 0
+						PRINTFORMW 「힛♥ 드, 들어왔다아...♥」
+						PRINTFORMW 엉덩이에 삽입되는 오싹한 쾌감에 사토리의 몸이 파르르 떨렸다
+					CASE 1
+						PRINTFORM 「
+						CALL ST_CLIMAX(RAND:3 + RAND:3 + 1)
+						PRINTFORMW 」
+				ENDSELECT
+			ELSEIF TALENT:섹프||TALENT:애욕
+				SELECTCASE RAND:2
+					CASE 0
+						PRINTFORMW 「아핫...♥ 이, 이 오싹한 느낌...♥ 중독될거 같아...♥」
+					CASE 1
+						PRINTFORM 「
+						CALL ST_CLIMAX(RAND:3 + RAND:3 + 1)
+						PRINTFORMW 」
+				ENDSELECT
+			ELSE
+				;볼일 있을까
+				SELECTCASE RAND:2
+					CASE 0
+						PRINTFORMW 「힛♥ 어, 엉덩이 기분 좋아아♥」
+						PRINTFORMW 「이상해♥ 이상한데도♥ 기분 좋아아♥」
+					CASE 1
+						PRINTFORM 「
+						CALL ST_CLIMAX(RAND:3 + RAND:3 + 1)
+						PRINTFORMW 」
+				ENDSELECT
+			ENDIF
+		ELSE
+			IF MARK:반발각인 == 3 && !TALENT:연인
+				SELECTCASE RAND:2
+					CASE 0
+						PRINTFORMW 「어, 엉덩이는...」
+						PRINTFORMW 「...이런게 뭐가 좋다는 거야...」
+					CASE 1
+						PRINTFORMW 「이런거로 기분 좋아질리 없잖아...」
+				ENDSELECT
+			ELSEIF TALENT:연인||TALENT:연모||TALENT:사모
+				SELECTCASE RAND:2
+					CASE 0
+						PRINTFORMW 「이...이상한 느낌...이런데로 기분 좋아지다니, 그럴리가 없잖아요...」
+						PRINTFORMW 개발되지 않은 항문으론 이물감만 느껴지는 모양이다
+					CASE 1
+						PRINTFORMW 「으긋...」
+						PRINTFORMW 사토리는 입을 앙다물고 항문의 이물감을 견뎌내고 있다
+				ENDSELECT
+			ELSEIF TALENT:섹프||TALENT:애욕
+				SELECTCASE RAND:2
+					CASE 0
+						PRINTFORMW 「이...이건 아직도 적응이 안되는걸...」
+					CASE 1
+						PRINTFORMW 「으긋...」
+						PRINTFORMW 사토리는 입을 앙다물고 항문의 이물감을 견뎌내고 있다
+				ENDSELECT
+			ELSE
+				PRINTFORMW 「으긋...」
+				PRINTFORMW 사토리는 입을 앙다물고 항문의 이물감을 견뎌내고 있다
+			ENDIF
+		ENDIF
 		RETURN 1
 	ENDIF
 ENDIF
@@ -2107,7 +2495,7 @@ RETURN RESULT
 @M_KOJO_MESSAGE_COM_K49_74_1
 ;-------------------------------------------------
 ;기입체크 (=0, 비표시、1, 표시)
-LOCAL = 0
+LOCAL = 1
 ;-------------------------------------------------
 IF LOCAL
 	;-------------------------------------------------
@@ -2136,18 +2524,10 @@ IF LOCAL
 	ENDIF
 	;기본세트
 	;연모
-	IF TALENT:연모
-		PRINTFORMW 
-		RETURN 1
-	;괘씸3
-	ELSEIF MARK:괘씸각인 == 3
-		PRINTFORMW 
-		RETURN 1
-	;그 이외
-	ELSE
-		PRINTFORMW 
-		RETURN 1
-	ENDIF
+	PRINTFORM 「
+	CALL ST_CLIMAX_HARD(RAND:4 + RAND:4 + 2)
+	PRINTFORMW 」
+	RETURN 1
 ENDIF
 RETURN 1
 ;==================================================
@@ -2161,7 +2541,7 @@ RETURN RESULT
 @M_KOJO_MESSAGE_COM_K49_75_1
 ;-------------------------------------------------
 ;기입체크 (=0, 비표시、1, 표시)
-LOCAL = 0
+LOCAL = 1
 ;-------------------------------------------------
 IF LOCAL
 	;-------------------------------------------------
@@ -2189,19 +2569,10 @@ IF LOCAL
 		ENDIF
 	ENDIF
 	;기본세트
-	;연모
-	IF TALENT:연모
-		PRINTFORMW 
-		RETURN 1
-	;괘씸3
-	ELSEIF MARK:괘씸각인 == 3
-		PRINTFORMW 
-		RETURN 1
-	;그 이외
-	ELSE
-		PRINTFORMW 
-		RETURN 1
-	ENDIF
+	PRINTFORM 「
+	CALL ST_CLIMAX_HARD(RAND:4 + RAND:4 + 2)
+	PRINTFORMW 」
+	RETURN 1
 ENDIF
 RETURN 1
 ;==================================================
