@@ -1474,7 +1474,7 @@ RETURN RESULT
 @M_KOJO_MESSAGE_COM_K49_66_1
 ;-------------------------------------------------
 ;기입체크 (=0, 비표시、1, 표시)
-LOCAL = 0
+LOCAL = 1
 ;-------------------------------------------------
 IF LOCAL
 	;-------------------------------------------------
@@ -1482,15 +1482,64 @@ IF LOCAL
 	;-------------------------------------------------
 	;처음
 	;기입체크
-	LOCAL:1 = 0
+	LOCAL:1 = 1
 	;-------------------------------------------------
 	IF LOCAL:1 && FIRSTTIME(SELECTCOM)
-		;애널처녀
 		IF TCVAR:A파과
-			PRINTFORMW 
+			IF ABL:A감각 > 1
+				;A익숙함
+				IF MARK:반발각인 == 3 && !TALENT:연인
+					PRINTFORMW 「아...♥ 아아...♥ 이런거, 이상할 뿐인데...♥」
+					PRINTFORMW 「왜 이렇게 좋은거야...♥」
+					PRINTFORMW 애널에서 올라오는 쾌감에 복잡한 표정을 짓고 있다
+				ELSEIF TALENT:연인||TALENT:연모||TALENT:사모
+					PRINTFORMW 「아아...♥ 어, 엉덩이...♥ 들어왔다...♥」
+					PRINTFORMW 「온 몸이 오싹거려...♥ 이상한 기분...♥」
+					PRINTFORMW 애널에서 올라오는 쾌감에 사토리의 몸이 파르르 떨렸다
+				ELSEIF TALENT:섹프||TALENT:애욕
+					PRINTFORMW 「아아...♥ 드, 들어왔다...♥」
+					PRINTFORMW 「손가락 같은거보다 기분 좋아...♥ 온 몸이 오싹거려...♥」
+					PRINTFORMW 애널에서 올라오는 쾌감에 사토리의 몸이 파르르 떨렸다
+				ELSE
+					PRINTFORMW 「아...♥ 아아...♥ 이런거, 이상할 뿐인데...♥」
+					PRINTFORMW 「왜 이렇게 좋은거야...♥」
+				ENDIF
+			ELSE
+				;A 낯설음
+				IF MARK:반발각인 == 3 && !TALENT:연인
+					PRINTFORMW 「스...스스로 넣으라니...여기에...?」
+					PRINTFORMW 「그런거 할 리가 없잖...윽...!」
+					PRINTFORMW 불평하는 사토리를 억지로 붙잡아 내려 삽입해주었다
+					PRINTFORMW 사토리는 눈을 까뒤집고 항문의 고통을 견디고 있다
+				ELSE
+					PRINTFORMW 「스...스스로 넣으라니...여기에...?」
+					PRINTFORMW 「그런게 될리가...으으...」
+					PRINTFORMW 「...알았어요, 하면, 하면 되는거죠...」
+					PRINTFORMW 사토리는 체념한듯 허리를 내렸다
+					PRINTFORMW 「으긋...아...아팟...」
+				ENDIF
+				CFLAG:3101++
+			ENDIF
 			RETURN 1
 		ELSE
-			PRINTFORMW 
+			IF ABL:A감각 > 1
+				PRINTFORMW 「이, 이번엔 내가?」
+				PRINTFORMW 사토리는 기대하는듯한 표정으로 %마스터를% 바라보고 있다
+			ELSE
+				IF MARK:반발각인 == 3 && !TALENT:연인
+					PRINTFORMW 「내, 내가 넣으라고? 그런...」
+				ELSEIF TALENT:연인||TALENT:연모||TALENT:사모
+					PRINTFORMW 「어, 엉덩이? 제가 직접...?」
+					PRINTFORMW 「...%사마스터가% 원하신다면, 하기야 하겠지만...」
+					PRINTFORMW 「역시 무서운걸요...」
+				ELSEIF TALENT:섹프||TALENT:애욕
+					PRINTFORMW 「어떤 자세로 해도, 아픈건 잊을수가 없는걸...」
+					PRINTFORMW 「심지어 나보고 직접 넣으라니, 너무한거 아냐...」
+				ELSE
+					PRINTFORMW 「어, 엉덩이...다른 곳에 하면 안되려나...」
+				ENDIF
+				CFLAG:3101++
+			ENDIF
 			RETURN 1
 		ENDIF
 	ENDIF
@@ -1514,7 +1563,83 @@ IF LOCAL
 	IF FLAG:70
 		RETURN 1
 	ELSE
-		
+		IF PALAM:윤활 < 2000
+			CALL ST_윤활부족()
+			RETURN 1
+		ENDIF
+		IF ABL:A감각 > 1
+			IF MARK:반발각인 == 3 && !TALENT:연인
+				SELECTCASE RAND:2
+					CASE 0
+						PRINTFORMW 「힛...♥ 드, 들어왔...다...♥」
+						PRINTFORMW 사토리는 쾌감에 조용히 몸을 떨었다
+					CASE 1
+						PRINTFORM 「
+						CALL ST_CLIMAX(RAND:3 + RAND:3 + 1)
+						PRINTFORMW 」
+				ENDSELECT
+			ELSEIF TALENT:연인||TALENT:연모||TALENT:사모
+				SELECTCASE RAND:2
+					CASE 0
+						PRINTFORMW 「힛♥ 드, 들어왔다아...♥」
+						PRINTFORMW 엉덩이에 삽입되는 오싹한 쾌감에 사토리의 몸이 파르르 떨렸다
+					CASE 1
+						PRINTFORM 「
+						CALL ST_CLIMAX(RAND:3 + RAND:3 + 1)
+						PRINTFORMW 」
+				ENDSELECT
+			ELSEIF TALENT:섹프||TALENT:애욕
+				SELECTCASE RAND:2
+					CASE 0
+						PRINTFORMW 「아핫...♥ 이, 이 오싹한 느낌...♥ 중독될거 같아...♥」
+					CASE 1
+						PRINTFORM 「
+						CALL ST_CLIMAX(RAND:3 + RAND:3 + 1)
+						PRINTFORMW 」
+				ENDSELECT
+			ELSE
+				;볼일 있을까
+				SELECTCASE RAND:2
+					CASE 0
+						PRINTFORMW 「힛♥ 어, 엉덩이 기분 좋아아♥」
+						PRINTFORMW 「이상해♥ 이상한데도♥ 기분 좋아아♥」
+					CASE 1
+						PRINTFORM 「
+						CALL ST_CLIMAX(RAND:3 + RAND:3 + 1)
+						PRINTFORMW 」
+				ENDSELECT
+			ENDIF
+		ELSE
+			IF MARK:반발각인 == 3 && !TALENT:연인
+				SELECTCASE RAND:2
+					CASE 0
+						PRINTFORMW 「어, 엉덩이는...」
+						PRINTFORMW 「...이런게 뭐가 좋다는 거야...」
+					CASE 1
+						PRINTFORMW 「이런거로 기분 좋아질리 없잖아...」
+				ENDSELECT
+			ELSEIF TALENT:연인||TALENT:연모||TALENT:사모
+				SELECTCASE RAND:2
+					CASE 0
+						PRINTFORMW 「이...이상한 느낌...이런데로 기분 좋아지다니, 그럴리가 없잖아요...」
+						PRINTFORMW 개발되지 않은 항문으론 이물감만 느껴지는 모양이다
+					CASE 1
+						PRINTFORMW 「으긋...」
+						PRINTFORMW 사토리는 입을 앙다물고 항문의 이물감을 견뎌내고 있다
+				ENDSELECT
+			ELSEIF TALENT:섹프||TALENT:애욕
+				SELECTCASE RAND:2
+					CASE 0
+						PRINTFORMW 「이...이건 아직도 적응이 안되는걸...」
+					CASE 1
+						PRINTFORMW 「으긋...」
+						PRINTFORMW 사토리는 입을 앙다물고 항문의 이물감을 견뎌내고 있다
+				ENDSELECT
+			ELSE
+				PRINTFORMW 「으긋...」
+				PRINTFORMW 사토리는 입을 앙다물고 항문의 이물감을 견뎌내고 있다
+			ENDIF
+		ENDIF
 		RETURN 1
 	ENDIF
 ENDIF
