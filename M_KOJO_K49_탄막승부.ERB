@@ -27,7 +27,13 @@ SIF FLAG:대사색깔
 	LOCAL:1 = 0
 	;-------------------------------------------------
 	IF LOCAL:1 && ARGS == "戦闘前"
-		PRINTFORML 
+		PRINTFORML 저는 코이시랑 달리 싸움에 익숙하지는 않지만...
+		    IF TALENT:연인
+				PRINTFORML %CALLNAME:MASTER%라고 해도, 봐줄 생각은 없어요.
+			ELSE
+			    PRINTFORML 제게는 보여요. 당신의 마음 속에 떠오르는 탄막이.
+			ENDIF
+		PRINTFORML 아무쪼록, 잘 부탁드립니다.
 		RETURN 0
 	ENDIF
 	;-------------------------------------------------
@@ -37,7 +43,14 @@ SIF FLAG:대사색깔
 	;-------------------------------------------------
 	IF LOCAL:1 && ARGS == "ハンデ"
 		;핸디캡을 추기하지 않으면 표시되지 않기 때문에 미기입으로 좋다
-		PRINTFORML 
+		PRINTFORML 봐주시는 건가요?
+		    IF ABL:MASTER:전투능력 > ABL:TARGET:전투능력
+			    PRINTFORML 그럼, 아무쪼록.
+				PRINTFORML 저는 당신보다 약하니까...
+			ELSE 
+				PRINTFORML ...무슨 자신감인지 모르겠네요.
+				PRINTFORML 너무 허세 부리는 거 아닌가요?
+			ENDIF
 		RETURN 0
 	ENDIF
 	;-------------------------------------------------
@@ -50,13 +63,13 @@ SIF FLAG:대사색깔
 		SELECTCASE 相手残機
 			;남은 잔기 3이 표시될 수 있는건【습람심식】소유만
 			CASE 3
-				PRINTFORML 
+				PRINTFORML 방심했어...
 			CASE 2
-				PRINTFORML 
+				PRINTFORML 윽...!
 			CASE 1
-				PRINTFORML 
+				PRINTFORML 아직, 잔기는 남아있어...
 			CASE 0
-				PRINTFORML 
+				PRINTFORML ...하아, 당했네요.
 		ENDSELECT
 	ENDIF
 	;-------------------------------------------------
@@ -101,15 +114,19 @@ SIF FLAG:대사색깔
 		;잔기가 1 이상이라면 당신이 패배, 0의 경우는 당신의 승리
 		SELECTCASE 相手残機
 			CASE 4
-				PRINTFORML 
+				PRINTFORML ...한 발 정도는 맞출 수 있도록 정진해주세요.
 			CASE 3
-				PRINTFORML 
+				PRINTFORML 아직 정진이 부족한 것 같네요.
 			CASE 2
-				PRINTFORML 
+				IF TALENT:연인
+					PRINTFORML 꽤 강하시네요. 역시 %사마스터%와 싸우는 건 흥미로워요.
+				ELSE
+					PRINTFORML 꽤 강하시네요. 역시 인간과 싸우는 건 흥미로워요.
+				ENDIF
 			CASE 1
-				PRINTFORML 
+				PRINTFORML 좋은 승부였네요. 아슬아슬했어요.
 			CASE 0
-				PRINTFORML 
+				PRINTFORML ...제가 졌어요. 패배를 인정합니다.
 		ENDSELECT
 	ENDIF
 RESETCOLOR
