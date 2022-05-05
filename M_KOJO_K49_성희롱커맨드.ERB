@@ -22,12 +22,156 @@ RETURN RESULT
 @M_KOJO_MESSAGE_COM_K49_310_1
 ;-------------------------------------------------
 ;기입체크 (=0, 비표시、1, 표시)
-LOCAL = 0
+LOCAL = 1
 ;-------------------------------------------------
 IF LOCAL
+	;PRINTFORMW 「」
 	IF FLAG:70
+		SELECTCASE RAND:3
+			CASE 0
+				PRINTFORMW 사토리의 부드러운 엉덩이 살을 마음껏 탐했다
+			CASE 1
+				PRINTFORMW 한 손에 잡히는 아담하고 귀여운 엉덩이를 마구 주물러 주었다
+			CASE 2
+				PRINTFORMW 반항 못하는 틈을 타 사토리의 엉덩이 감촉을 마음껏 즐겼다
+		ENDSELECT
 	ELSEIF CFLAG:수면
+		IF MARK:반발각인 == 3 && !TALENT:연인
+			SELECTCASE RAND:3
+				CASE 0
+					PRINTFORMW 「으응...하지마...」
+					PRINTFORMW 사토리는 귀찮다는듯이 몸을 뒤척였다
+				CASE 1
+					PRINTFORMW 「으으응...」
+				CASE 2
+					PRINTFORMW 「응...코이시니...?」
+					PRINTFORMW 사토리는 몇 마디 더 중얼거리더니 이내 도로 잠들었다
+			ENDSELECT
+		ELSEIF TALENT:연인||TALENT:연모||TALENT:사모||TALENT:애욕
+			SELECTCASE RAND:2
+				CASE 0
+					PRINTFORMW 「아으응...♥」
+					PRINTFORMW 잠든 채로도 달콤한 소리를 흘려주었다
+				CASE 1
+					PRINTFORMW 「응...코이시니...?」
+					PRINTFORMW 사토리는 몇 마디 더 중얼거리더니 이내 도로 잠들었다
+			ENDSELECT
+		ELSEIF TALENT:섹프
+			SELECTCASE RAND:2
+				CASE 0
+					PRINTFORMW 「으응...」
+				CASE 1
+					PRINTFORMW 「응...코이시니...?」
+					PRINTFORMW 사토리는 몇 마디 더 중얼거리더니 이내 도로 잠들었다
+			ENDSELECT
+		ELSE
+			SELECTCASE RAND:2
+				CASE 0
+					PRINTFORMW 「으으응...」
+				CASE 1
+					PRINTFORMW 「응...코이시니...?」
+					PRINTFORMW 사토리는 몇 마디 더 중얼거리더니 이내 도로 잠들었다
+			ENDSELECT
+		ENDIF
 	ELSE
+		SELECTCASE TFLAG:193
+			CASE 1
+				;실패
+				IF MARK:반발각인 == 3 && !TALENT:연인
+					SELECTCASE RAND:2
+						CASE 0
+							PRINTFORMW 「...뭘 멋대로 만지는거야」
+							PRINTFORMW 사토리는 짜증난다는 듯이 쏘아붙였다
+							TALENT:기분 = -1
+						CASE 1
+							PRINTFORMW 「변태」
+							PRINTFORMW 사토리는 짧게 쏘아붙이고는 경멸 가득한 표정으로 %마스터를% 바라볼 뿐이었다
+							TALENT:기분 = -1
+					ENDSELECT
+					SIF !RAND:2
+						CFLAG:3101 ++
+				ELSEIF TALENT:연인||TALENT:연모||TALENT:사모||TALENT:애욕||TALENT:섹프
+					SELECTCASE RAND:3
+						CASE 0
+							PRINTFORMW 「뭐하는 건가요...」
+							PRINTFORMW 「이런 변태같은 짓, 즐거운가요?」
+							PRINTFORMW 사토리는 기분이 별론지 매정하게 쏘아붙였다
+						CASE 1
+							PRINTFORMW 「...그만두세요」
+							PRINTFORMW 차갑게 쏘아붙이는 한 마디에 %마스터는% 손을 떼지 않을 수 없었다
+							PRINTFORMW 아무래도 만지게 해줄 기분이 아닌 모양이다
+						CASE 2
+							PRINTFORMW 「%사마스터라고% 해도 이런건 안되는거예요」
+							PRINTFORMW 「그런 변태같은 짓은 아무도 좋아하지 않아」
+					ENDSELECT
+				ELSE
+					SELECTCASE RAND:2
+						CASE 0
+							PRINTFORMW 「뭘 멋대로 남을 더듬는건가요...」
+							PRINTFORMW 사토리는 짜증섞인 목소리로 쏘아붙였다
+							TALENT:기분 = -1
+						CASE 1
+							PRINTFORMW 「...변태」
+							PRINTFORMW 사토리는 경멸하는 눈빛으로 %마스터를% 쏘아보았다
+					ENDSELECT
+					SIF !RAND:3
+						CFLAG:3101 ++
+				ENDIF
+			CASE 2,3
+				;PRINTFORMW 「」
+				IF CFLAG:우후후
+					;야스중
+
+				ELSEIF OTOKOGIRAI(TARGET)
+					;통상 이쪽일것
+					;연모 애욕으로 무효
+					IF MARK:반발각인 == 3
+						SELECTCASE RAND:2
+							CASE 0
+								PRINTFORMW 「읏...」
+								PRINTFORMW 사토리는 주춤거렸지만 별다른 말은 하지 않았다
+							CASE 1
+								PRINTFORMW 「...변태」
+								PRINTFORMW 「...이런게 뭐가 좋다는거야」
+								PRINTFORMW 사토리는 짧게 한숨지었다
+						ENDSELECT
+					ELSEIF TALENT:사모||TALENT:섹프
+						SELECTCASE RAND:2
+							CASE 0
+								PRINTFORMW 「힛...」
+								PRINTFORMW 「아, 아뇨, 싫은건 아닌데...조금 놀라서...」
+							CASE 1
+								PRINTFORMW 「윽...」
+								PRINTFORMW 사토리는 잠시 움츠러들었으나 이내 무덤덤한 표정으로 되돌아 왔다
+						ENDSELECT
+					ELSE
+						SELECTCASE RAND:2
+							CASE 0
+								PRINTFORMW 「힛...」
+								PRINTFORMW 「가, 갑자기 무슨...?」
+								PRINTFORMW 사토리는 당황한 눈치다
+							CASE 1
+								PRINTFORMW 「하, 하지 마세요...」
+								PRINTFORMW 사토리는 곤혹스러운듯한 표정이다
+						ENDSELECT
+					ENDIF
+				ELSE
+					;혐오 안 붙음, 연모, 애욕, 여아나타의 경우
+
+				ENDIF
+			CASE 4
+				IF MARK:반발각인 == 3 && !TALENT:연인
+					
+				ELSEIF TALENT:연인
+					
+				ELSEIF TALENT:연모||TALENT:사모||TALENT:애욕
+					
+				ELSEIF TALENT:섹프
+					
+				ELSE
+					
+				ENDIF
+		ENDSELECT
 	ENDIF
 ENDIF
 RETURN 1
