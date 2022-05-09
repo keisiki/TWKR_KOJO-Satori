@@ -229,40 +229,46 @@ IF LOCAL
 			CASE 4
 				IF CFLAG:우후후
 					IF MARK:반발각인 == 3 && !TALENT:연인
-						SELECTCASE RAND:3
+						SELECTCASE RAND:2
 							CASE 0
-
+								PRINTFORMW 「읏...어, 엉덩이...」
+								PRINTFORMW 「그런거 만지는게 뭐가 좋다는 건지...」
+								PRINTFORMW 투덜거리면서도 별다른 저항은 없었다
 							CASE 1
-
-							CASE 2
-
+								PRINTFORMW 「꼬, 꼭 만져야 하는거야...?」
+								PRINTFORMW 「...으으」
+								PRINTFORMW 사토리는 얼굴을 붉혔다
 						ENDSELECT
 					ELSEIF TALENT:연인||TALENT:연모||TALENT:사모
-						SELECTCASE RAND:3
+						SELECTCASE RAND:2
 							CASE 0
-
+								PRINTFORMW 「아아...안돼요...그렇게 만지면...♥」
+								PRINTFORMW 「정말, 응큼하다니깐...♥」
+								PRINTFORMW 말은 그렇게 해도 사토리의 표정은 마치 더 해달라는듯한 느낌이 들었다
 							CASE 1
-
-							CASE 2
-							
+								PRINTFORMW 「어, 엉덩이 만지는게 그렇게 좋은건가요...」
+								PRINTFORMW 「변태...그치만, 기분 좋으니까 상관 없으려나...」
 						ENDSELECT
 					ELSEIF TALENT:섹프||TALENT:애욕
-						SELECTCASE RAND:3
+						SELECTCASE RAND:2
 							CASE 0
-
+								PRINTFORMW 「아아...그렇게 주무르면, 달아오른단 말야...♥」
+								PRINTFORMW 사토리는 거칠게 숨을 몰아쉬고 있다
 							CASE 1
-
-							CASE 2
-							
+								PRINTFORMW 「아앙♥」
+								PRINTFORMW 엉덩이를 움켜쥐자 과장된 콧소리를 내며 아양을 떨었다
+								PRINTFORMW 「보통은 그러는 편이 더 흥분된다고 생각하는데요」
+								PRINTFORMW 그새 생각을 읽었는지 약간 뾰로통한 표정으로 핀잔주는 사토리였다
 						ENDSELECT
 					ELSE
-						SELECTCASE RAND:3
+						;볼일 있을까
+						SELECTCASE RAND:2
 							CASE 0
-
+								PRINTFORMW 「그, 그렇게 주무르면 부끄러워...」
+								PRINTFORMW 사토리는 얼굴을 붉혔지만 싫어하는 기색은 없었다
 							CASE 1
-
-							CASE 2
-							
+								PRINTFORMW 「엉덩이 만지는게 그렇게 기쁜건가요...」
+								PRINTFORMW 「으으...그래도 왠지 부끄러워...」
 						ENDSELECT
 					ENDIF
 				ELSE
