@@ -450,9 +450,52 @@ IF LOCAL
 			ENDSELECT
 		ENDIF
 	ELSEIF CFLAG:수면
-
+		IF MARK:반발각인 == 3 && !TALENT:연인 && !TALENT:연모 && !TALENT:사모 && !TALENT:애욕
+			SELECTCASE RAND:2
+				CASE 0
+					PRINTFORMW 「으...」
+					PRINTFORMW 자면서도 얼굴을 찌푸리고 있다
+				CASE 1
+					PRINTFORMW 「으응...하, 하지마...」
+					PRINTFORMW 사토리는 자면서도 바둥바둥 저항했지만 깰 기색은 없었다
+			ENDSELECT
+		ELSEIF TALENT:연모||TALENT:연인||TALENT:애욕
+			SELECTCASE RAND:3
+				CASE 0
+					PRINTFORMW 「...♥」
+					PRINTFORMW 자면서도 배시시 웃으며 %마스터의% 품에 파고 들었다
+				CASE 1
+					PRINTFORMW 「아...%MASTERNAME:49%...♥」
+					PRINTFORMW 자면서도 %마스터의% 이름을 불렀지만, 깰 기색은 없었다
+				CASE 2
+					PRINTFORMW 「...후후♥」
+					PRINTFORMW 뭐가 좋은지 자면서도 실실 웃고 있다
+			ENDSELECT
+		ELSEIF TALENT:사모
+			SELECTCASE RAND:2
+				CASE 0
+					PRINTFORMW 「응...코이시니...?」
+					PRINTFORMW 아무래도 깰 기색은 없었다
+				CASE 1
+					PRINTFORMW 「으으응...」
+					PRINTFORMW 사토리는 품에 안은 %마스터를% 부드럽게 쓰다듬고 있다
+			ENDSELECT
+		ELSE
+			SELECTCASE RAND:2
+				CASE 0
+					PRINTFORMW 「으으응...」
+					PRINTFORMW 사토리는 귀찮은듯이 몸을 비틀었다
+				CASE 1
+					PRINTFORMW 「으응...코이시...?」
+					PRINTFORMW 사토리는 몇마디 중얼거리고는 이내 다시 잠들어 버렸다
+			ENDSELECT
+		ENDIF
 	ELSE
+		IF CFLAG:우후후 == 2
 
+		ELSE
+
+		ENDIF
 	ENDIF
 
 ENDIF
