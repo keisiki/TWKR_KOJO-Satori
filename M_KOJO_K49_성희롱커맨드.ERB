@@ -492,9 +492,93 @@ IF LOCAL
 		ENDIF
 	ELSE
 		IF CFLAG:우후후 == 2
+			;TCVAR:20 (32=앞에서 안겨든다 60=딥키스 73=파후파후 74=젖맞대기 77=젖을 빨게 한다 VA성교(85=V삽입한다 87=A삽입한다 88=V허리흔들기 89=A허리흔들기) 86=정말좋아 hold)
+			SELECTCASE TCVAR:20
+				CASE 32 ;앞에서 안겨든다
 
+				CASE 60 ; 딥키스
+
+				CASE 73 ; 파후파후
+
+				CASE 74 ; 젖맞대기
+
+				CASE 77 ;젖빨리기
+
+				CASE 86 ; 다이스키 홀드
+
+				CASE 87,88,89,85 ;박는다
+
+				CASEELSE
+					IF MARK:반발각인 == 3 && !TALENT:연인
+						
+					ELSEIF TALENT:연인
+						
+					ELSEIF TALENT:연모||TALENT:사모
+						
+					ELSEIF TALENT:섹프||TALENT:애욕
+						
+					ELSE
+						
+					ENDIF
+			ENDSELECT
 		ELSE
-
+			IF TALENT:연모||TALENT:연인||||TALENT:애욕
+				SELECTCASE RAND:3
+					CASE 0
+						PRINTFORMW 「후후후...왠지 기쁜걸요」
+						PRINTFORMW 「좀 더 이러고 있을까요?」
+						PRINTFORMW 사토리는 헤실헤실 웃고 있다
+					CASE 1
+						PRINTFORMW 「...따스해, 기분 좋아요」
+						PRINTFORMW 사토리는 부드러운 미소를 지어보이고 있다
+					CASE 2
+						PRINTFORMW 「응...」
+						PRINTFORMW 사토리는 행복해 보이는 미소를 지으며 %마스터의% 품에 안겨 있다
+				ENDSELECT
+			ELSEIF TALENT:사모
+				SELECTCASE RAND:3
+					CASE 0
+						PRINTFORMW 「아...♥」
+						PRINTFORMW 사토리는 어쩐지 기쁜듯한 표정을 짓고 있다
+					CASE 1
+						PRINTFORMW 「왜, 왠지 부끄럽네...」
+						PRINTFORMW 「싫은건 아니지만...으으...」
+						PRINTFORMW 사토리는 얼굴을 붉혔다
+					CASE 2
+						PRINTFORMW 「...%사마스터의% 품은, 굉장히 기분 좋네요」
+						PRINTFORMW 사토리는 희미하게 웃어보였다
+				ENDSELECT
+			ELSEIF TALENT:섹프
+				SELECTCASE RAND:2
+					CASE 0
+						PRINTFORMW 「그냥 안을뿐? 으음...」
+						PRINTFORMW 「평소에 살을 맞대는것랑은 또 다른 느낌이네요」
+					CASE 1
+						PRINTFORMW 「음...포근한 느낌은 싫지 않지만...」
+						PRINTFORMW 「어째 이거, 부끄러운걸요」
+						PRINTFORMW 사토리는 멋쩍게 웃어보였다
+				ENDSELECT
+			ELSE
+				IF CFLAG:3000
+					SELECTCASE RAND:2
+						CASE 0
+							PRINTFORMW 「...이거 놔」
+							PRINTFORMW 사토리는 냉담히 쏘아붙이곤 몸을 떼어냈다
+						CASE 1
+							PRINTFORMW 「...뭐하는 건가요?」
+							PRINTFORMW 사토리는 %마스터를% 밀어냈다
+					ENDSELECT
+				ELSE
+					SELECTCASE RAND:2
+						CASE 0
+							PRINTFORMW 「하, 하지 마세요...」
+							PRINTFORMW 사토리는 떨떠름한 표정으로 %마스터를% 밀어냈다
+						CASE 1
+							PRINTFORMW 「그, 이런건 조금...곤란한데」
+							PRINTFORMW 사토리는 약간 불편한듯한 표정이다
+					ENDSELECT
+				ENDIF
+			ENDIF
 		ENDIF
 	ENDIF
 
