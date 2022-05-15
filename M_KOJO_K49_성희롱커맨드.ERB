@@ -502,12 +502,61 @@ IF LOCAL
 
 				CASE 74 ; 젖맞대기
 
-				CASE 77 ;젖빨리기
+				CASE 77 ; 젖빨리기
 
 				CASE 86 ; 다이스키 홀드
+					IF BASE:MASTER:2 >= 10000
+						IF MARK:반발각인 == 3 && !TALENT:연인
+							;별로 안 뜰것
+							PRINTFORMW 「아♥ 아아♥ 정액♥ 정액 올라오는게 느껴져♥」
+							PRINTFORMW 「싸줘, 안쪽에 가득♥ %사마스터의% 정액 싸줫♥」
+							PRINTFORMW 평소에 보이던 혐오감은 쾌락에 전부 녹아 단순히 정액을 원하는 암컷이 되어버렸다
+						ELSE
+							SELECTCASE RAND:3
+								CASE 0
 
+								CASE 1
+
+								CASE 2
+
+							ENDSELECT
+						ENDIF
+					ELSE
+						IF MARK:반발각인 == 3 && !TALENT:연인
+							
+						ELSEIF TALENT:연인
+							
+						ELSEIF TALENT:연모||TALENT:사모
+							
+						ELSEIF TALENT:섹프||TALENT:애욕
+							
+						ELSE
+							
+						ENDIF
+					ENDIF
 				CASE 87,88,89,85 ;박는다
-
+					IF MARK:반발각인 == 3 && !TALENT:연인 && !TALENT:애욕
+						SELECTCASE RAND:3
+							CASE 0
+								PRINTFORMW 「하, 하지맛... 가만히 있으란 말야...」
+								PRINTFORMW 사토리는 싫은 소리를 하면서도 천천히 허리를 움직이고 있다
+							CASE 1
+								PRINTFORMW 「잠, 그렇게 허리 쓰면...읏♥」
+								PRINTFORMW 갑작스런 반격에 사토리의 숨결이 거칠어졌다
+							CASE 2
+								PRINTFORMW 「가, 가만히...있으란 말야...♥」
+								PRINTFORMW 「지금은, 내가 움직일거니깐」
+						ENDSELECT
+					ELSE
+						SELECTCASE RAND:2
+							CASE 0
+								PRINTFORMW 「자, 잠깐♥ 지금 허리 튕기며언♥」
+								PRINTFORMW 갑작스런 반격에 사토리는 새된 교성을 흘렸다
+							CASE 1
+								PRINTFORMW 「히얏♥ 그, 그거 안댓♥ 찔러 올리지 마앗♥」
+								PRINTFORMW 사토리는 쾌감에 허덕이면서 간신히 허리를 움직이고 있다
+						ENDSELECT
+					ENDIF
 				CASEELSE
 					IF MARK:반발각인 == 3 && !TALENT:연인
 						
