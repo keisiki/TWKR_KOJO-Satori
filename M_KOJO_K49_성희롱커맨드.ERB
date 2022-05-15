@@ -653,12 +653,95 @@ RETURN RESULT
 @M_KOJO_MESSAGE_COM_K49_312_1
 ;-------------------------------------------------
 ;기입체크 (=0, 비표시、1, 표시)
-LOCAL = 0
+LOCAL = 1
 ;-------------------------------------------------
 IF LOCAL
 	IF FLAG:70
+
 	ELSEIF CFLAG:수면
+
 	ELSE
+		IF TCVAR:FK상실
+			;첫키스
+			IF MARK:반발각인 == 3
+				IF TALENT:연인
+					
+				ELSEIF TALENT:연모||TALENT:사모||TALENT:애욕
+
+				ELSE
+					
+				ENDIF
+			ELSEIF TALENT:연인
+				
+			ELSEIF TALENT:연모||TALENT:사모||TALENT:애욕
+				
+			ELSEIF TALENT:섹프
+				
+			ELSE
+				
+			ENDIF
+		ELSE
+			IF MARK:반발각인 == 3
+				IF TALENT:연인
+					SELECTCASE RAND:3
+						CASE 0
+							PRINTFORM 「
+							CALL ST_KISS(RAND:3 + 4)
+							PRINTFORMW 」
+							PRINTFORMW 사토리는 황홀한 듯한 표정으로 키스를 받아들이고 있다
+						CASE 1
+
+						CASE 2
+
+					ENDSELECT
+				ELSEIF TALENT:연모||TALENT:사모||TALENT:애욕
+					SELECTCASE RAND:3
+						CASE 0
+
+						CASE 1
+
+						CASE 2
+						
+					ENDSELECT
+				ELSE
+					SELECTCASE RAND:2
+						CASE 0
+
+						CASE 1
+						
+					ENDSELECT
+				ENDIF
+			ELSEIF TALENT:연인
+				SELECTCASE RAND:3
+					CASE 0
+
+					CASE 1
+
+					CASE 2
+					
+				ENDSELECT
+			ELSEIF TALENT:연모||TALENT:사모||TALENT:애욕
+				SELECTCASE RAND:3
+					CASE 0
+
+					CASE 1
+
+					CASE 2
+					
+				ENDSELECT
+			ELSEIF TALENT:섹프
+				SELECTCASE RAND:3
+					CASE 0
+
+					CASE 1
+
+					CASE 2
+					
+				ENDSELECT
+			ELSE
+				
+			ENDIF
+		ENDIF
 	ENDIF
 
 ENDIF
