@@ -494,16 +494,29 @@ IF LOCAL
 		IF CFLAG:우후후 == 2
 			;TCVAR:20 (32=앞에서 안겨든다 60=딥키스 73=파후파후 74=젖맞대기 77=젖을 빨게 한다 VA성교(85=V삽입한다 87=A삽입한다 88=V허리흔들기 89=A허리흔들기) 86=정말좋아 hold)
 			SELECTCASE TCVAR:20
-				CASE 32 ;앞에서 안겨든다
+				;CASE 32 ;앞에서 안겨든다
 
-				CASE 60 ; 딥키스
+				;CASE 60 ; 딥키스
 
-				CASE 73 ; 파후파후
+				;CASE 73 ; 파후파후
 
-				CASE 74 ; 젖맞대기
+				;CASE 74 ; 젖맞대기
 
 				CASE 77 ; 젖빨리기
-
+					IF TALENT:연인||TALENT:연모||TALENT:사모||TALENT:애욕
+						SELECTCASE RAND:2
+							CASE 0
+								PRINTFORMW 「이러고 있으니까, 마치 커다란 아기 같네요...」
+								PRINTFORMW 사토리는 느슨한 미소를 지어보이고 있다
+							CASE 1
+								PRINTFORMW 「그렇게 매달리지 않아도, 도망가지 않는답니다」
+								PRINTFORMW 「느긋하게 핥짝핥짝 해주세요♥」
+						ENDSELECT
+					ELSE
+						PRINTFORMW 「이거, 왠지 커다란 아이를 품는거 같네요」
+						PRINTFORMW 「기분이 묘하게...후후후...」
+						PRINTFORMW 사토리는 부드럽게 %마스터의% 머리를 쓰다듬었다
+					ENDIF
 				CASE 86 ; 다이스키 홀드
 					IF BASE:MASTER:2 >= 10000
 						IF MARK:반발각인 == 3 && !TALENT:연인
@@ -511,28 +524,24 @@ IF LOCAL
 							PRINTFORMW 「아♥ 아아♥ 정액♥ 정액 올라오는게 느껴져♥」
 							PRINTFORMW 「싸줘, 안쪽에 가득♥ %사마스터의% 정액 싸줫♥」
 							PRINTFORMW 평소에 보이던 혐오감은 쾌락에 전부 녹아 단순히 정액을 원하는 암컷이 되어버렸다
-						ELSE
-							SELECTCASE RAND:3
+						ELSEIF TALENT:연인||TALENT:연모||TALENT:사모||TALENT:섹프||TALENT:애욕
+							SELECTCASE RAND:2
 								CASE 0
-
+									PRINTFORMW 「아♥ 정액♥ 정액 올라오는거 느껴져♥」
+									PRINTFORMW 「싸줘♥ 안쪽에 한가득♥ %사마스터의% 정액 원햇♥」
+									PRINTFORMW 사토리와 서로 강하게 껴안으며 한계에 다다른 자지를 최대한 안쪽으로 밀어넣었다
 								CASE 1
-
-								CASE 2
-
+									PRINTFORMW 「슬슬 나올것 같아? 네♥ 그대로, 안에 해주세요♥」
+									PRINTFORMW 사토리는 황홀한 표정으로 %마스터를% 바라보고 있다
 							ENDSELECT
+						ELSE
+							PRINTFORMW 「끝까지 빼지 말아줘...좀 더, 좀 더 넣은채로...♥」
+							PRINTFORMW 사토리는 황홀한듯한 표정으로 %마스터를% 바라보고 있다
 						ENDIF
 					ELSE
-						IF MARK:반발각인 == 3 && !TALENT:연인
-							
-						ELSEIF TALENT:연인
-							
-						ELSEIF TALENT:연모||TALENT:사모
-							
-						ELSEIF TALENT:섹프||TALENT:애욕
-							
-						ELSE
-							
-						ENDIF
+						PRINTFORM 「
+						CALL ST_CLIMAX(RAND:3 + 3)
+						PRINTFORML 」
 					ENDIF
 				CASE 87,88,89,85 ;박는다
 					IF MARK:반발각인 == 3 && !TALENT:연인 && !TALENT:애욕
@@ -558,19 +567,10 @@ IF LOCAL
 						ENDSELECT
 					ENDIF
 				CASEELSE
-					IF MARK:반발각인 == 3 && !TALENT:연인
-						
-					ELSEIF TALENT:연인
-						
-					ELSEIF TALENT:연모||TALENT:사모
-						
-					ELSEIF TALENT:섹프||TALENT:애욕
-						
-					ELSE
-						
-					ENDIF
+					GOTO 통상안기
 			ENDSELECT
 		ELSE
+			$통상안기
 			IF TALENT:연모||TALENT:연인||||TALENT:애욕
 				SELECTCASE RAND:3
 					CASE 0
