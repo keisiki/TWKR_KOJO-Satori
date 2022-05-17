@@ -656,6 +656,7 @@ RETURN RESULT
 LOCAL = 1
 ;-------------------------------------------------
 IF LOCAL
+	;PRINTFORMW 「」
 	IF FLAG:70
 
 	ELSEIF CFLAG:수면
@@ -682,64 +683,105 @@ IF LOCAL
 			ENDIF
 		ELSE
 			IF MARK:반발각인 == 3
-				IF TALENT:연인
-					SELECTCASE RAND:3
+				IF TALENT:연인||TALENT:연모||TALENT:애욕||TALENT:사모
+					SELECTCASE RAND:4
 						CASE 0
 							PRINTFORM 「
 							CALL ST_KISS(RAND:3 + 4)
 							PRINTFORMW 」
 							PRINTFORMW 사토리는 황홀한 듯한 표정으로 키스를 받아들이고 있다
 						CASE 1
-
+							PRINTFORM 「
+							CALL ST_KISS(RAND:3 + 4) 아아...♥
+							PRINTFORMW 」
+							PRINTFORMW 사토리는 멍한 표정으로 %마스터를% 응시하고 있다
 						CASE 2
-
-					ENDSELECT
-				ELSEIF TALENT:연모||TALENT:사모||TALENT:애욕
-					SELECTCASE RAND:3
-						CASE 0
-
-						CASE 1
-
-						CASE 2
-						
+							PRINTFORM 「
+							CALL ST_KISS(RAND:3 + 4)
+							PRINTFORMW 」
+							PRINTFORMW 사토리는 말 없이 키스에 열중하고 있다
+						CASE 3
+							PRINTFORM 「
+							CALL ST_KISS(RAND:3 + 4) 아...? 벌써 끝...?
+							PRINTFORMW 」
+							PRINTFORMW 「저기, 조금만 더...」
+							PRINTFORMW 사토리는 어쩐지 아쉬운듯 매달려왔다
 					ENDSELECT
 				ELSE
-					SELECTCASE RAND:2
-						CASE 0
-
-						CASE 1
-						
-					ENDSELECT
+					;가능성 희박
+					PRINTFORM 「
+					CALL ST_KISS(RAND:3 + 4)
+					PRINTFORMW 」
+					PRINTFORMW 「...푸하, 이, 이걸로 끝인거지...」
+					PRINTFORMW 사토리는 기분 나쁘다는듯이 쏘아붙였다
 				ENDIF
-			ELSEIF TALENT:연인
-				SELECTCASE RAND:3
+			ELSEIF TALENT:연인||TALENT:연모||TALENT:사모||TALENT:애욕
+				SELECTCASE RAND:4
 					CASE 0
-
+						PRINTFORM 「
+						CALL ST_KISS(RAND:4 + 5)
+						PRINTFORMW 」
+						PRINTFORMW 「후아...♥ 뭔가 부끄러워...」
+						PRINTFORMW 사토리는 새빨게진 얼굴로 %마스터를% 바라보고 있다
 					CASE 1
-
+						PRINTFORM 「앗...갑자기...응읏♥ 
+						CALL ST_KISS(RAND:4 + 5)
+						PRINTFORMW 」
+						PRINTFORMW 「후아아...♥ 저기, 조금 더 할까요?」
+						PRINTFORMW 사토리는 %마스터를% 붙잡고 도로 혀를 얽어들어왔다
+						EXP:키스경험++
+						EXP:MASTER:키스경험++
 					CASE 2
-					
-				ENDSELECT
-			ELSEIF TALENT:연모||TALENT:사모||TALENT:애욕
-				SELECTCASE RAND:3
-					CASE 0
-
-					CASE 1
-
-					CASE 2
-					
+						IF TFLAG:400 && (DATE_HITOGOMI() || WITH_MOB() == 9)
+							PRINTFORM 「보, 보는 눈도 있는데...응♥ 
+							CALL ST_KISS(RAND:4 + 5)
+							PRINTFORMW 」
+							PRINTFORMW 「우으으...부끄럽게...」
+							IF RAND:2 == 0
+								PRINTFORMW 사토리의 얼굴이 새빨갛게 물들었다
+							ELSE
+								PRINTFORMW 사토리의 서드아이가 당황한듯이 주위를 살피고 있다
+							ENDIF
+						ELSE
+							PRINTFORM 「
+							CALL ST_KISS(RAND:4 + 6)
+							PRINTFORMW 」
+							PRINTFORMW 사토리는 홀린듯이 키스에 열중하고 있다
+						ENDIF
+					CASE 3
+						PRINTFORM 「
+						CALL ST_KISS(RAND:3 + 3)
+						PRINT 아아...♥ 
+						CALL ST_KISS(RAND:3 + 3)
+						PRINTFORMW 」
+						PRINTFORMW 사토리는 황홀한 듯한 표정으로 키스를 즐기고 있다
 				ENDSELECT
 			ELSEIF TALENT:섹프
 				SELECTCASE RAND:3
 					CASE 0
-
+						PRINTFORM 「키, 키스? 앗♥ 
+						CALL ST_KISS(RAND:4 + 6)
+						PRINTFORMW 」
+						PRINTFORMW 「후아...♥ 뭔가, 달아오르는걸」
+						BASE:무드 = MIN(1000,BASE:무드 + 100)
 					CASE 1
-
+						PRINTFORM 「
+						CALL ST_KISS(RAND:4 + 6)
+						PRINTFORMW 」
+						PRINTFORMW 「푸하...벌써 끝? 이게 전부인가요?」
+						PRINTFORMW 「이 다음것도 기대하고 있었는데...」
+						PRINTFORMW 사토리는 촉촉해진 눈가를 이쪽에 향해오고 있다
 					CASE 2
-					
+						PRINTFORM 「응읍? 응♥ 
+						CALL ST_KISS(RAND:3 + 3)
+						PRINTFORMW 」
+						PRINTFORMW 사토리는 요염하게 혀를 얽어왔다
 				ENDSELECT
 			ELSE
-				
+				PRINTFORM 「
+				CALL ST_KISS(RAND:3 + 3)
+				PRINTFORMW 」
+				PRINTFORMW 사토리는 얌전히 혀를 얽어왔다
 			ENDIF
 		ENDIF
 	ENDIF
