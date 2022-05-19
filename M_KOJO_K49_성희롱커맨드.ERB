@@ -667,6 +667,7 @@ IF LOCAL
 
 		RETURN 1
 	ENDIF
+
 	IF FLAG:70
 
 	ELSEIF CFLAG:수면
@@ -688,7 +689,26 @@ IF LOCAL
 			ELSEIF TALENT:연인
 				
 			ELSEIF TALENT:연모||TALENT:사모||TALENT:애욕
-				
+				;메인일 것
+				IF CFLAG:6000
+					PRINTFORMW 「키스라...」
+					PRINTFORMW 「왠지, 예전이랑 똑같아지는거 같네요」
+					PRINTFORMW 「...잊기로 한거 같지만」
+					PRINTFORMW 사토리는 자조적으로 웃어보였다
+					PRINTFORMW 그 얼굴엔 약간의 슬픔도 섞여 있는듯 했다
+					PRINTFORMW 「결말을 알고 있는데도 멈출수가 없다니...참 바보 같죠」
+					PRINTFORMW 「이번에는 다른 결말이 일어날거란 얕은 희망에 걸고」
+					PRINTFORMW 「...아아, 잠깐 감상이 길어졌네요, 그러니까...키스, 합시다」
+					PRINTFORMW 사토리는 %마스터를% 붙잡고 스스로 키스를 해왔다
+					PRINTFORMW 불안한 미래를 잊고 싶은건지 그 움직임은 무척이나 열렬한 것이었다
+				ELSE
+					PRINTFORMW 「키스, 인가요...」
+					PRINTFORMW 「시, 싫은거는 아닌데, 역시 조금 부끄러워서...그으...처음, 이니깐」
+					PRINTFORMW 사토리는 살짝 긴장한듯한 표정으로 %마스터를% 바라보고 있다
+					PRINTFORMW 「...네, 좋아요, 와주세요」
+					PRINTFORMW 「어짜피, 저도 원하고 있었으니깐」
+					PRINTFORMW 사토리는 긴장과 기대가 섞인 표정으로 %마스터의% 혀를 받아들였다
+				ENDIF
 			ELSEIF TALENT:섹프
 				PRINTFORMW 「키스...그러고보니 그건 아직이었었지」
 				PRINTFORMW 「솔직히 궁금하기도 했고, 남들 보면 부럽기도 했으니...」
@@ -706,6 +726,7 @@ IF LOCAL
 				PRINTFORMW 「키스...말인가요」
 				IF CFLAG:6000
 					PRINTFORMW 「결국, 또 해버리겠단 거군요」
+					PRINTFORMW 「...잊기로 했다곤 했지만, 그렇다고 이렇게 또 다시」
 					PRINTFORMW 「어짜피 또 헤어질게 뻔한데...」
 					PRINTFORMW 「그런 결말이라면 최소한 이런 두근거림은 주지 않았음 좋을것을...」
 					PRINTFORMW 사토리는 잠시 묵묵히 %마스터를% 바라보았다
