@@ -646,8 +646,13 @@ RETURN 1
 TFLAG:192 =0
 
 @M_KOJO_MESSAGE_COM_K49_312
-CALL TRAIN_MESSAGE
-CALL M_KOJO_MESSAGE_COM_K49_312_1
+IF !TCVAR:FK상실
+	CALL TRAIN_MESSAGE
+	CALL M_KOJO_MESSAGE_COM_K49_312_1
+ELSE
+	CALL M_KOJO_MESSAGE_COM_K49_312_1
+	;CALL TRAIN_MESSAGE
+ENDIF
 RETURN RESULT
 
 @M_KOJO_MESSAGE_COM_K49_312_1
@@ -657,9 +662,17 @@ LOCAL = 1
 ;-------------------------------------------------
 IF LOCAL
 	;PRINTFORMW 「」
+	IF TFLAG:193 == 99
+		;거절당함
+
+		RETURN 1
+	ENDIF
 	IF FLAG:70
 
 	ELSEIF CFLAG:수면
+
+	ELSEIF CFLAG:우후후 == 2
+		;상대 주도일때만 312번 키스가 가능하다, 이외엔 20번 커맨드이기에
 
 	ELSE
 		IF TCVAR:FK상실
@@ -677,9 +690,34 @@ IF LOCAL
 			ELSEIF TALENT:연모||TALENT:사모||TALENT:애욕
 				
 			ELSEIF TALENT:섹프
-				
+				PRINTFORMW 「키스...그러고보니 그건 아직이었었지」
+				PRINTFORMW 「솔직히 궁금하기도 했고, 남들 보면 부럽기도 했으니...」
+				PRINTFORMW 「게다가 더한것도 하면서 이것만은 안 한것도 이상하긴 하고...」
+				PRINTFORMW 「어쩐지 싸구려 관능 소설의 여주인공 같은 느낌인걸요, 마음만은 허락 안한다는...」
+				IF ABL:친밀 > 3
+					PRINTFORMW 「...저는 마음도, 허락하라면 할 수 있지만」
+				ELSE
+					PRINTFORMW 「저는 별 상관 없지만요」
+				ENDIF
+				PRINTFORMW 「그러면 해볼까요, 키스」
+				PRINTFORMW 사토리는 살짝 기대하는 듯한 표정으로 %마스터의% 입술을 받아들였다
 			ELSE
-				
+				;볼 일 있을까?
+				PRINTFORMW 「키스...말인가요」
+				IF CFLAG:6000
+					PRINTFORMW 「결국, 또 해버리겠단 거군요」
+					PRINTFORMW 「어짜피 또 헤어질게 뻔한데...」
+					PRINTFORMW 「그런 결말이라면 최소한 이런 두근거림은 주지 않았음 좋을것을...」
+					PRINTFORMW 사토리는 잠시 묵묵히 %마스터를% 바라보았다
+					PRINTFORMW 「...그래도, 바보같이 한 번만 더 믿어볼래요」
+					PRINTFORMW 「이번엔, 도망치지 않고, 끝까지 가 주세요」
+					CFLAG:호감도 += 250
+				ELSE
+					;이런경우 대체로 호감도 30000이상이던가 걸레 모드던가 할 것
+					PRINTFORMW 「해본적은 없는데...그렇다고 당신이랑...?」
+					PRINTFORMW 「...뭐, 별 상관 없겠죠, %사마스터라%면」
+				ENDIF
+				PRINTFORMW 사토리는 담담한 표정으로 %마스터의% 입술을 받아들였다
 			ENDIF
 		ELSE
 			IF MARK:반발각인 == 3
