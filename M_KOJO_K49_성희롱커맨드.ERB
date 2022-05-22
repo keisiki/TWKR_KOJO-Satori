@@ -678,16 +678,31 @@ IF LOCAL
 	ELSE
 		IF TCVAR:FK상실
 			;첫키스
-			IF MARK:반발각인 == 3
-				IF TALENT:연인
-					
-				ELSEIF TALENT:연모||TALENT:사모||TALENT:애욕
-
+			;반발 3 부분은 나중에 따로 쓰자
+			;IF MARK:반발각인 == 3
+			;	IF TALENT:연인
+			;		
+			;	ELSEIF TALENT:연모||TALENT:사모||TALENT:애욕
+			;
+			;	ELSE
+			;		
+			;	ENDIF
+			;ELSE
+			IF TALENT:연인
+				PRINTFORMW 「키스...인가요」
+				IF CFLAG:6000
+					PRINTFORMW 「최소한 이번의 전 아직 한번도 못 해봤었죠」
+					PRINTFORMW 「저번의 저는 얼마나 키스 했었던가요? 조금 질투나니 그거보다는 많이 하고 싶은걸요」
+					PRINTFORMW 「그러니까, 앞으로 잔뜩 키스해달라고 조를거예요, 각오해두세요」
+					PRINTFORMW 사토리는 빙그레 웃으며 %마스터의% 입술을 받아들였다
 				ELSE
-					
+					PRINTFORMW 「그러고보니, 아직 안해봤었죠...」
+					PRINTFORMW 「연인이 되면 해야지- 하는 생각은 줄곧 했었는데, 막상 하게 되니 뭔가 부끄럽네요...」
+					PRINTFORMW 사토리는 얼굴을 붉혔다
+					PRINTFORMW 「뭐어, 연인이니깐 부끄러운짓 해도 상관없겠죠...좋아요, 얼른 하죠, 키스」
+					PRINTFORMW 「대신에 앞으로는 잔뜩 해달라고 조를거니깐, 각오해 주세요?」
+					PRINTFORMW 사토리는 빙그레 웃으며 %마스터의% 입술을 받아들였다
 				ENDIF
-			ELSEIF TALENT:연인
-				
 			ELSEIF TALENT:연모||TALENT:사모||TALENT:애욕
 				;메인일 것
 				IF CFLAG:6000
