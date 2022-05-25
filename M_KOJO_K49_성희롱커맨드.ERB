@@ -664,7 +664,70 @@ IF LOCAL
 	;PRINTFORMW 「」
 	IF TFLAG:193 == 99
 		;거절당함
-
+		IF TALENT:키스미경험
+			IF TALENT:연인
+				;연인은 패스 아닌가?
+			ELSEIF TALENT:연모||TALENT:사모||TALENT:애욕
+				SELECTCASE RAND:2
+					CASE 0
+						PRINTFORMW 「아, 아직은 좀...」
+						PRINTFORMW 「다음에, 다음에 하죠」
+						PRINTFORMW 사토리는 황급히 말해왔다
+					CASE 1
+						PRINTFORMW 「그...지금은 안되는데...」
+						PRINTFORMW 「다음번에 하면...안될까요」
+				ENDSELECT
+			ELSEIF TALENT:섹프
+				SELECTCASE RAND:2
+					CASE 0
+						PRINTFORMW 「키스라...우리 사이가 아무리 그래도 그건 조금」
+						PRINTFORMW 「첫키스엔 누구나 약간의 로망이 있는 거니까요, 아직은 아끼고 싶어」
+					CASE 1
+						PRINTFORMW 「키스...으음, 아직은 하고 싶지 않은걸」
+						PRINTFORMW 「그래도 첫 키스에는 로망이 있으니깐, 나중으로 미루고 싶네요」
+				ENDSELECT
+			ELSE
+				SELECTCASE RAND:2
+					CASE 0
+						PRINTFORMW 「그런걸, 허락할 리가 없잖아요」
+						PRINTFORMW 사토리는 %마스터가% 뭘 하려고 하기도 전에 쌀쌀맞게 퇴짜놓고 말았다
+					CASE 1
+						PRINTFORMW %마스터가% 뭘 하려고 하기도 전에 사토리는 몸을 저만치 빼 두었다
+				ENDSELECT
+			ENDIF
+		ELSE
+			IF MARK:반발각인 == 3
+				SELECTCASE RAND:2
+					CASE 0
+						PRINTFORMW 사토리는 말없이 거리를 벌렸다
+					CASE 1
+						PRINTFORMW 「키스라니, 그런거 해 줄까봐요」
+						PRINTFORMW 사토리는 퉁명스레 쏘아붙였다
+				ENDSELECT
+			ELSEIF TALENT:연인
+				;패스 아닌가?
+			ELSEIF TALENT:연모||TALENT:사모||TALENT:애욕
+				SELECTCASE RAND:2
+					CASE 0
+						PRINTFORMW 「그...지금은 별로...」
+						PRINTFORMW 「나중에 하면...안될까요」
+					CASE 1
+						PRINTFORMW 「지금은 별로 할 기분이 아닌데...」
+				ENDSELECT
+			ELSEIF TALENT:섹프
+				SELECTCASE RAND:2
+					CASE 0
+						PRINTFORMW 「지금은 그럴 기분 아닌데」
+						PRINTFORMW 「나중에 하면 안될까요?」
+					CASE 1
+						PRINTFORMW 「지금은 하고 그다지 싶지 않은걸」
+						PRINTFORMW 「나중에 해 드릴테니까요」
+				ENDSELECT
+			ELSE
+				PRINTFORMW 「안 해드릴 거니까, 꿈 깨세요」
+				PRINTFORMW 「...전에 \@EXP:키스경험 == 1 ? 한 번# 몇 번\@ 했다고 매번 해 드린다 생각하지 마세요」
+			ENDIF
+		ENDIF
 		RETURN 1
 	ENDIF
 
