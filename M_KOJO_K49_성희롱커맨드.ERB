@@ -996,12 +996,108 @@ RETURN RESULT
 @M_KOJO_MESSAGE_COM_K49_313_1
 ;-------------------------------------------------
 ;기입체크 (=0, 비표시、1, 표시)
-LOCAL = 0
+LOCAL = 1
 ;-------------------------------------------------
 IF LOCAL
+	;PRINTFORMW 「」
 	IF FLAG:70
 	ELSEIF CFLAG:수면
 	ELSE
+		IF ABL:B감각 >= 4
+			IF TFLAG:400 && (DATE_HITOGOMI() || WITH_MOB() == 9)
+				
+			ELSE
+
+			ENDIF
+		ELSEIF ABL:B감각 >= 1
+			IF TFLAG:400 && (DATE_HITOGOMI() || WITH_MOB() == 9)
+
+			ELSE
+
+			ENDIF
+		ELSE
+			IF TFLAG:400 && (DATE_HITOGOMI() || WITH_MOB() == 9)
+				;지령전 안 아님
+				IF MARK:반발각인 == 3 && !TALENT:연인
+					SELECTCASE RAND:2
+						CASE 0
+							PRINTFORMW 「...일부러 이러는건가요?」
+							PRINTFORMW 「별로 부끄러운 일도 아닌걸요, 억지로 당하는게 뭐가 부끄러워」
+						CASE 1
+							PRINTFORMW 「굳이 남들 앞에서 그리 만져야 성이 차나요?」
+							PRINTFORMW 「...상관없어요, 별 감흥도 없고...나쁜건 %사마스터잖%아요, 제가 왜 부끄러워해야 하죠」
+					ENDSELECT
+				ELSEIF TALENT:연모||TALENT:사모||TALENT:연인
+					SELECTCASE RAND:2
+						CASE 0
+							PRINTFORMW 「꼬, 꼭 여기서 해야 하는건가요...」
+							PRINTFORMW 「보여져버려...으으...이상한 생각 하겠지...」
+						CASE 1
+							PRINTFORMW 「여...역시 부끄러운걸요...」
+							IF 지령전안()
+								PRINTFORMW 「펫이라 괜찮다고 생각하지 마요, 저 아이들도...이상한 생각하는건 똑같으니깐」
+							ELSE
+								PRINTFORMW 「분명히 변태라고 생각하겠지...」
+							ENDIF
+					ENDSELECT
+				ELSEIF TALENT:섹프||TALENT:애욕
+					SELECTCASE RAND:2
+						CASE 0
+							PRINTFORMW 「안돼요, 여기는...」
+							IF 지령전안()
+								PRINTFORMW 「그, 저 아이들 한테 보여진다구요...?」
+								PRINTFORMW 사토리는 펫들을 가리켰다
+							ELSE
+								PRINTFORMW 「남들 앞에서 그런거 해선 안된다구요」
+							ENDIF
+						CASE 1
+							IF 지령전안()
+								PRINTFORMW 「아, 아무리 펫들이라 해도...」
+								PRINTFORMW 「역시 보는 눈도 있는데 이런건...」
+							ELSE
+								PRINTFORMW 「여긴 보는 눈도 있다구요...?」
+								PRINTFORMW 「그렇게 하고 싶으면 어디 으슥한 곳에서 상대해 드릴테니깐...」
+							ENDIF
+					ENDSELECT
+				ELSE
+					;볼일 없다
+					PRINTFORMW 「잠깐...어딜 만지는 건가요...」
+				ENDIF
+			ELSE
+				IF MARK:반발각인 == 3 && !TALENT:연인
+					SELECTCASE RAND:2
+						CASE 0
+							PRINTFORMW 「간지럽기만 하고, 뭐가 좋은건지 모르겠네」
+							PRINTFORMW 사토리는 연신 투덜거렸다
+						CASE 1
+							PRINTFORMW 「...가슴 같은거 만져서 즐거운가요?」
+							PRINTFORMW 「그래, 그걸로 만족한다면야, 내키는대로 만지시던가요」
+							PRINTFORMW 사토리는 시큰둥하게 말했다
+					ENDSELECT
+				ELSEIF TALENT:연인||TALENT:연모||TALENT:사모
+					SELECTCASE RAND:2
+						CASE 0
+							PRINTFORMW 「간지러워요...」
+							PRINTFORMW 「...기분 좋냐니, 그저 그럴 뿐인걸요」
+						CASE 1
+							PRINTFORMW 「그렇게 만지셔도...」
+							PRINTFORMW 「...만지는게 기분 좋은거라면야 상관 없지만」
+					ENDSELECT
+				ELSEIF TALENT:섹프||TALENT:애욕
+					SELECTCASE RAND:2
+						CASE 0
+							PRINTFORMW 「갑자기 가슴을...」
+							PRINTFORMW 「그래도 가슴보다는 다른데 만져주는게 더 좋은데...」
+						CASE 1
+							PRINTFORMW 「아...가슴 말고, 다른 데는...」
+							PRINTFORMW 「가슴만 그리 간지럽혀도, 감질나기만 한다구요...」
+					ENDSELECT
+				ELSE
+					;볼일 없다
+					PRINTFORMW 「잠깐...어딜 만지는 건가요...」
+				ENDIF
+			ENDIF
+		ENDIF
 	ENDIF
 
 ENDIF
