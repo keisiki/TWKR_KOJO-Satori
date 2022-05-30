@@ -1011,34 +1011,54 @@ IF LOCAL
 			ENDIF
 		ELSEIF ABL:B감각 > 1
 			IF TFLAG:400 && (DATE_HITOGOMI() || WITH_MOB() == 9)
+				;누가 본다
 				IF MARK:반발각인 == 3 && !TALENT:연인
 					SELECTCASE RAND:2
 						CASE 0
-
+							PRINTFORMW 「자, 잠깐♥ 여기선 안댓♥」
+							PRINTFORMW 「흣♥ 적어도...남들 앞에서는 하지마...♥」
+							PRINTFORMW 사토리는 떨리는 목소리로 항의해왔다
 						CASE 1
-
+							PRINTFORMW 「흣...♥ 가, 가슴 주무르지 맛...」
+							PRINTFORMW 「그만, 그만햇...♥ 목소리 나와버려어...♥」
+							PRINTFORMW 사토리는 입을 앙다문채 신음소리를 참고 있다
 					ENDSELECT
 				ELSEIF TALENT:연모||TALENT:사모||TALENT:연인
 					SELECTCASE RAND:2
 						CASE 0
-
+							IF 지령전안()
+								PRINTFORMW 「아...정말...♥ 얘네들 앞에서 이런건...♥」
+								PRINTFORMW 「으으응...♥ 안된다니깐요...♥ 이상한 주인으로 생각되어 버려♥」
+								PRINTFORMW 사토리는 새빨게진 얼굴로 %마스터를% 바라보았다
+							ELSE
+								PRINTFORMW 「아...정말...♥ 남들 앞에서 이런건...♥」
+								PRINTFORMW 「으으응...♥ 안된다니깐요...♥ 목소리 나와버려...♥」
+								PRINTFORMW 사토리는 얼굴을 새빨갛게 물들인 채 %마스터를% 바라보았다
+							ENDIF
 						CASE 1
-						
+							PRINTFORMW 「그, 그만...♥ 목소리, 새어나와요...♥」
+							PRINTFORMW 「나중이라면 상관 없으니깐...」
+							PRINTFORMW 사토리는 얼굴을 붉혔다
 					ENDSELECT
 				ELSEIF TALENT:섹프||TALENT:애욕
 					SELECTCASE RAND:2
 						CASE 0
-
+							IF 지령전안()
+								PRINTFORMW 「아...정말...♥ 얘네들 앞에서 이런건...♥」
+								PRINTFORMW 「으으응...♥ 안된다니깐요...♥ 이상한 주인으로 생각되어 버려♥」
+								PRINTFORMW 사토리는 야릇한 미소를 띄며 %마스터를% 바라보았다
+							ELSE
+								PRINTFORMW 「아...정말...♥ 남들 앞에서 이런건...♥」
+								PRINTFORMW 「으으응...♥ 안된다니깐요...♥ 이러면, 스위치 올라가버려♥」
+								PRINTFORMW 사토리는 야릇한 미소를 띄며 %마스터를% 바라보았다
+							ENDIF
 						CASE 1
-						
+							PRINTFORMW 「그, 그만...♥ 목소리, 새어나와요...♥」
+							PRINTFORMW 「나중이라면 상관 없으니깐...」
+							PRINTFORMW 사토리는 얼굴을 붉혔다
 					ENDSELECT
 				ELSE
-					SELECTCASE RAND:2
-						CASE 0
-
-						CASE 1
-						
-					ENDSELECT
+					PRINTFORMW 「자, 잠깐♥ 그만햇♥」
 				ENDIF
 			ELSE
 				IF MARK:반발각인 == 3 && !TALENT:연인
