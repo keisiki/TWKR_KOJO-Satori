@@ -1003,17 +1003,76 @@ IF LOCAL
 	IF FLAG:70
 	ELSEIF CFLAG:수면
 	ELSE
-		IF ABL:B감각 >= 4
+		IF ABL:B감각 > 4
 			IF TFLAG:400 && (DATE_HITOGOMI() || WITH_MOB() == 9)
 				
 			ELSE
 
 			ENDIF
-		ELSEIF ABL:B감각 >= 1
+		ELSEIF ABL:B감각 > 1
 			IF TFLAG:400 && (DATE_HITOGOMI() || WITH_MOB() == 9)
+				IF MARK:반발각인 == 3 && !TALENT:연인
+					SELECTCASE RAND:2
+						CASE 0
 
+						CASE 1
+
+					ENDSELECT
+				ELSEIF TALENT:연모||TALENT:사모||TALENT:연인
+					SELECTCASE RAND:2
+						CASE 0
+
+						CASE 1
+						
+					ENDSELECT
+				ELSEIF TALENT:섹프||TALENT:애욕
+					SELECTCASE RAND:2
+						CASE 0
+
+						CASE 1
+						
+					ENDSELECT
+				ELSE
+					SELECTCASE RAND:2
+						CASE 0
+
+						CASE 1
+						
+					ENDSELECT
+				ENDIF
 			ELSE
-
+				IF MARK:반발각인 == 3 && !TALENT:연인
+					SELECTCASE RAND:2
+						CASE 0
+							PRINTFORMW 「흐읏...♥ 그, 그렇게 만지지 마아...」
+							PRINTFORMW 사토리의 유두가 살짝 단단해졌다
+						CASE 1
+							PRINTFORMW 「아♥ 거, 거긴♥」
+							PRINTFORMW 「잠깐♥ 그만♥」
+							PRINTFORMW 사토리는 열띤 한숨을 몰아쉬고 있다
+					ENDSELECT
+				ELSEIF TALENT:연모||TALENT:사모||TALENT:연인
+					SELECTCASE RAND:2
+						CASE 0
+							PRINTFORMW 「가, 가슴...♥ 그렇게 만지시면...으읏♥」
+							PRINTFORMW 사토리는 흠칫흠칫 떨었다
+						CASE 1
+							PRINTFORMW 「흐읏...♥」
+							PRINTFORMW 사토리의 유두가 살짝 단단해지고 있다
+					ENDSELECT
+				ELSEIF TALENT:섹프||TALENT:애욕
+					SELECTCASE RAND:2
+						CASE 0
+							PRINTFORMW 「하으...♥ 가슴만 그렇게...안달나게 하지 마세요...♥」
+							PRINTFORMW 「...이대로, 해버릴까나」
+							BASE:무드 = MIN(1000,BASE:무드 + 100)
+						CASE 1
+							PRINTFORMW 「아읏♥ 가, 가슴♥」
+							PRINTFORMW 「정말이지...그렇게 계속 만져대면, 덮쳐버릴지도 몰라요...?」
+					ENDSELECT
+				ELSE
+					PRINTFORMW 「자, 잠깐♥ 그만햇♥」
+				ENDIF
 			ENDIF
 		ELSE
 			IF TFLAG:400 && (DATE_HITOGOMI() || WITH_MOB() == 9)
