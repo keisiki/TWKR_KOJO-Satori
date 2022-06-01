@@ -1005,9 +1005,69 @@ IF LOCAL
 	ELSE
 		IF ABL:B감각 > 4
 			IF TFLAG:400 && (DATE_HITOGOMI() || WITH_MOB() == 9)
-				
+				SELECTCASE RAND:2
+					CASE 0
+						PRINTFORMW 「히이잇♥ 가, 가슴...♥ 그만, 그마안...♥」
+						PRINTFORMW 민감해진 유두로부터 몰려오는 쾌감의 파도에 사토리는 목소리를 참지 못하고 말았다
+					CASE 1
+						PRINTFORMW 「지, 지금 만지면...히잇♥ 안대엣♥」
+						PRINTFORMW 가슴으로부터의 쾌감에 사토리는 다리를 후들후들 떨었다
+					CASE 2
+						PRINTFORMW 「자, 잠깐♥ 안댓♥ 목소리 나와버렷...♥」
+						PRINTFORMW 가슴을 쓰다듬을 때마다 사토리의 입에서 가쁜 숨소리가 새어나왔다 
+				ENDSELECT
 			ELSE
-
+				IF MARK:반발각인 == 3 && !TALENT:연인
+					SELECTCASE RAND:2
+						CASE 0
+							PRINTFORMW 「하...지마...♥ 가슴 문지르지 마아...♥」
+							PRINTFORMW 사토리는 바둥바둥 저항했지만 쾌감때문인지 그 팔엔 힘이 실리지 않았다
+						CASE 1
+							PRINTFORMW 「아♥ 아아♥ 가슴♥ 가슴 안댓♥」
+							PRINTFORMW 유두로 느껴지는 강렬한 쾌감에 사토리의 다리가 후들후들 떨렸다
+					ENDSELECT
+				ELSEIF TALENT:연모||TALENT:사모||TALENT:연인
+					IF BASE:무드 >= 550 && BASE:이성 < 500
+						SELECTCASE RAND:3
+							CASE 0
+								PRINTFORMW 「아...♥ 그거♥ 그거 기분 좋아아...♥」
+								PRINTFORMW 사토리는 쾌락에 녹은 표정으로 %마스터를% 바라보고 있다
+							CASE 1
+								PRINTFORMW 「가, 가스음♥ 그렇게 주물주물하는거 안대에♥」
+								PRINTFORMW 「아앗♥ 안댄다니깐...♥」
+								PRINTFORMW 말랑한 가슴을 주무를때마다 사토리의 입에서 달콤한 한숨이 흘렀다
+							CASE 2
+								PRINTFORM 「
+								CALL ST_CLIMAX(RAND:5 + 3)
+								PRINTFORMW 」
+						ENDSELECT
+					ELSE
+						SELECTCASE RAND:2
+							CASE 0
+								PRINTFORMW 「읏...♥ 이, 이거, 너무 자극이 세요...♥」
+								PRINTFORMW 사토리는 다리를 후들후들 떨고 있다
+							CASE 1
+								PRINTFORMW 「아아...♥ 그만...♥ 젖꼭지 문질문질 너무 기분 좋아...♥」
+								PRINTFORMW 사토리의 입에서 달콤한 한숨이 새어나왔다
+						ENDSELECT
+					ENDIF
+				ELSEIF TALENT:섹프||TALENT:애욕
+					SELECTCASE RAND:3
+						CASE 0
+							PRINTFORMW 「아...♥ 가스음...♥ 조...좀 더 주물주물 해줘...♥」
+							PRINTFORMW 「아아아♥ 이거 좋아♥ 너무 기분 좋아아♥」
+						CASE 1
+							PRINTFORMW 「아흣...♥ 이거 좋아...♥ 가슴 만지는거 좋아아...♥」
+							PRINTFORMW 가슴을 부드럽게 쓰다듬자 사토리의 몸이 쾌락으로 살짝 떨리는게 느껴졌다
+						CASE 2
+							PRINTFORM 「
+							CALL ST_CLIMAX(RAND:5 + 3)
+							PRINTFORMW 」
+					ENDSELECT
+					BASE:무드 = MIN(1000,BASE:무드 + 100)
+				ELSE
+					PRINTFORMW 「힛♥ 그만♥ 가슴 하지마앗♥」
+				ENDIF
 			ENDIF
 		ELSEIF ABL:B감각 > 1
 			IF TFLAG:400 && (DATE_HITOGOMI() || WITH_MOB() == 9)
