@@ -1380,32 +1380,44 @@ IF LOCAL
 					
 				ENDSELECT
 			ELSE
-				
+				PRINTFORMW 「히잇...♥ 시럿♥ 엉덩이 괴롭히면 안대에♥」
 			ENDIF
 		ELSEIF ABL:A감각 > 2
 			IF MARK:반발각인 == 3 && !TALENT:연인
 				SELECTCASE RAND:2
 					CASE 0
-
+						PRINTFORMW 「잠깐, 하지맛♥ 손가락 넣지 마아...♥」
+						PRINTFORMW 「힛♥ 도, 돌리지 맛...! 그만♥ 그만해에♥」
+						PRINTFORMW 손가락으로 엉덩이를 휘적이자 사토리의 목소리가 쾌감에 흐트러져갔다
 					CASE 1
-					
+						PRINTFORMW 「잠깐, 어딜 만지는 거야...!」
+						PRINTFORMW 사토리는 화를 내 왔지만 그 표정에서는 약간의 쾌감이 엿보였다
 				ENDSELECT
-			ELSEIF TALENT:연인||TALENT:연모||TALENT:사모
+			ELSEIF TALENT:섹프||TALENT:애욕||TALENT:연인||TALENT:연모||TALENT:사모
 				SELECTCASE RAND:2
 					CASE 0
-
+						PRINTFORMW 「히잇♥」
+						PRINTFORMW 「자, 장난치지 마세요...」
+						PRINTFORMW 사토리는 얼굴을 붉혔다
 					CASE 1
-					
-				ENDSELECT
-			ELSEIF TALENT:섹프||TALENT:애욕
-				SELECTCASE RAND:2
-					CASE 0
-
-					CASE 1
-					
+						IF TFLAG:400 && (DATE_HITOGOMI() || WITH_MOB() == 9)
+							;모브 반응
+							IF 지령전안()
+								PRINTFORMW 「저, 정말...만지지 마세요...」
+								PRINTFORMW 「이 애들이 보는 앞에서는...부끄럽단 말야」
+								PRINTFORMW 「말 못하는 동물이라 해도, 이상한 생각은 한다고요」
+							ELSE
+								PRINTFORMW 「나, 남들 앞에서 그런거 하면 안되요...」
+								PRINTFORMW 「목소리 나와버린단 말야...」
+							ENDIF
+							PRINTFORMW 사토리는 얼굴을 붉혔다
+						ELSE
+							PRINTFORMW 「시, 싫어...만지지 맛...♥」
+							PRINTFORMW 사토리는 손을 쳐냈지만 그 목소리에서 약간의 쾌감이 느껴지고 있는걸 알 수 있었다
+						ENDIF
 				ENDSELECT
 			ELSE
-				
+				PRINTFORMW 「힛♥ 하, 하지맛...거긴...♥」
 			ENDIF
 		ELSE
 			IF MARK:반발각인 == 3 && !TALENT:연인
