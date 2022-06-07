@@ -1361,23 +1361,31 @@ IF LOCAL
 			IF MARK:반발각인 == 3 && !TALENT:연인
 				SELECTCASE RAND:2
 					CASE 0
-
+						PRINTFORMW 「그, 그마안...♥ 엉덩이 하지맛...♥ 엉덩이 괴롭히는거 안대...♥」
+						IF TFLAG:400 && (DATE_HITOGOMI() || WITH_MOB() == 9)
+							IF 지령전안()
+								PRINTFORMW 사토리는 다리를 후들후들 떨었다
+							ELSE
+								PRINTFORMW 「시럿...♥ 목소리, 새어나와...♥」
+								PRINTFORMW 사토리는 필사적으로 입을 막고 신음을 참았지만, 그것만으로도 주위의 시선을 받기 충분했다
+							ENDIF
+						ELSE
+							PRINTFORMW 사토리는 다리를 후들후들 떨었다
+						ENDIF
 					CASE 1
-					
+						PRINTFORMW 「아...엉덩이...♥ 녹아내릴거 같아...♥」
+						PRINTFORMW 약간 어루만진 것 만으로도 사토리는 달콤한 한숨을 흘려주고 있다
+						PALAM:욕정 += 100
 				ENDSELECT
-			ELSEIF TALENT:연인||TALENT:연모||TALENT:사모
+			ELSEIF TALENT:섹프||TALENT:애욕||TALENT:연인||TALENT:연모||TALENT:사모
 				SELECTCASE RAND:2
 					CASE 0
-
+						PRINTFORMW 「그, 그만...♥ 이 이상 엉덩이 괴롭히면...히잇♥」
+						PRINTFORMW 사토리는 열락에 녹아내린 3개의 눈으로 %마스터를% 응시하고 있다
 					CASE 1
-					
-				ENDSELECT
-			ELSEIF TALENT:섹프||TALENT:애욕
-				SELECTCASE RAND:2
-					CASE 0
-
-					CASE 1
-					
+						PRINTFORMW 「아...엉덩이...♥ 녹아내릴거 같아...♥」
+						PRINTFORMW 약간 어루만진 것 만으로도 사토리는 달콤한 한숨을 흘려주고 있다
+						PALAM:욕정 += 100
 				ENDSELECT
 			ELSE
 				PRINTFORMW 「히잇...♥ 시럿♥ 엉덩이 괴롭히면 안대에♥」
