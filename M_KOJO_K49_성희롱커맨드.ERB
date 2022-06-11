@@ -1592,7 +1592,143 @@ IF LOCAL
 			ENDIF
 		ENDIF
 	ELSE
+		;PRINTFORMW 「」
+		;우후후 아닐때
+		IF ABL:C감각 > 5
+			IF MARK:반발각인 == 3 && !TALENT:연인
+				SELECTCASE RAND:2
+					CASE 0
 
+					CASE 1
+					
+				ENDSELECT
+			ELSEIF TALENT:연인
+				SELECTCASE RAND:2
+					CASE 0
+
+					CASE 1
+					
+				ENDSELECT
+			ELSEIF TALENT:연모||TALENT:사모||TALENT:애욕
+				SELECTCASE RAND:2
+					CASE 0
+
+					CASE 1
+					
+				ENDSELECT
+			ELSEIF TALENT:섹프
+				SELECTCASE RAND:2
+					CASE 0
+
+					CASE 1
+					
+				ENDSELECT
+			ELSE
+				PRINTFORMW 「힛♥ 안대♥ 그마안♥」
+				PRINTFORMW 민감한 클리로부터 느껴지는 강렬한 쾌감에 사토리는 다리를 후들거리며 애원했다
+			ENDIF
+		ELSEIF ABL:C감각 > 3
+			IF MARK:반발각인 == 3 && !TALENT:연인
+				SELECTCASE RAND:2
+					CASE 0
+
+					CASE 1
+					
+				ENDSELECT
+			ELSEIF TALENT:연인
+				SELECTCASE RAND:2
+					CASE 0
+
+					CASE 1
+					
+				ENDSELECT
+			ELSEIF TALENT:연모||TALENT:사모||TALENT:애욕
+				SELECTCASE RAND:2
+					CASE 0
+
+					CASE 1
+					
+				ENDSELECT
+			ELSEIF TALENT:섹프
+				SELECTCASE RAND:2
+					CASE 0
+
+					CASE 1
+					
+				ENDSELECT
+			ELSE
+				PRINTFORMW 「하, 하지 마세요...」
+				PRINTFORMW 사토리는 몸을 움츠렸다
+			ENDIF
+		ELSE
+			IF MARK:반발각인 == 3 && !TALENT:연인
+				SELECTCASE RAND:2
+					CASE 0
+						PRINTFORMW 「이런곳 만져서 즐거운가요?」
+						PRINTFORMW 「...변태」
+						PRINTFORMW 사토리는 얼굴을 살짝 붉힌채 %마스터를% 째려봤다
+					CASE 1
+						IF TFLAG:400 && (DATE_HITOGOMI() || WITH_MOB() == 9)
+							;모브 반응
+							IF 지령전안()
+								PRINTFORMW 「...얘네가 보고 배우지나 않았으면 좋겠네」
+								PRINTFORMW 사토리는 주위의 펫들을 흘끔흘끔 바라보고 있다
+							ELSE
+								PRINTFORMW 「...치한짓 당하는걸 보인다고 부끄럽진 않아」
+								PRINTFORMW 「나는 아무 잘못 안 했는걸」
+							ENDIF
+						ELSE
+							PRINTFORMW 「...이런거로 기분 좋지도 않고, 재미도 없으니까」
+							PRINTFORMW 「그만 했으면 좋겠는걸요...」
+						ENDIF
+				ENDSELECT
+			ELSEIF TALENT:연모||TALENT:사모||TALENT:연인
+				SELECTCASE RAND:2
+					CASE 0
+						IF TFLAG:400 && (DATE_HITOGOMI() || WITH_MOB() == 9)
+							;모브 반응
+							IF 지령전안()
+								PRINTFORMW 「아...지금은 하지 말아 주세요...」
+								PRINTFORMW 「저 애들이 보고 있단 말야...」
+								PRINTFORMW 사토리는 펫들을 흘끔흘끔 바라보고 있다
+							ELSE
+								PRINTFORMW 「나, 남들 앞에서는 하지 마세요...」
+								PRINTFORMW 사토리는 곤란하다는 듯이 말했다
+							ENDIF
+						ELSE
+							PRINTFORMW 「정말...하지마요...」
+							PRINTFORMW 사토리는 간지럽다는듯이 %마스터의% 손을 밀어냈다
+						ENDIF
+					CASE 1
+						PRINTFORMW 「읏...벼, 변태...그런 곳 만지지 마요...」
+						PRINTFORMW 사토리는 얼굴을 붉혔다
+				ENDSELECT
+			ELSEIF TALENT:섹프||TALENT:애욕
+				SELECTCASE RAND:2
+					CASE 0
+						IF TFLAG:400 && (DATE_HITOGOMI() || WITH_MOB() == 9)
+							;모브 반응
+							IF 지령전안()
+								PRINTFORMW 「아...지금은 하지 말아 주세요...」
+								PRINTFORMW 「저 애들이 보고 있단 말야...」
+								PRINTFORMW 사토리는 펫들을 흘끔흘끔 바라보고 있다
+							ELSE
+								PRINTFORMW 「나, 남들 앞에서는 하지 마세요...」
+								PRINTFORMW 사토리는 곤란하다는 듯이 말했다
+							ENDIF
+						ELSE
+							PRINTFORMW 「정말...하지마요...」
+							PRINTFORMW 사토리는 간지럽다는듯이 %마스터의% 손을 밀어냈다
+						ENDIF
+					CASE 1
+						PRINTFORMW 「간지러워요...」
+						PRINTFORMW 「장난치지 마세요...」
+				ENDSELECT
+			ELSE
+				PRINTFORMW 「어, 어딜 만지는 거야...!」
+				PRINTFORMW 사토리는 화들짝 놀란 표정으로 %마스터를% 노려보고 있다
+			ENDIF
+		ENDIF
 	ENDIF
 
 ENDIF
