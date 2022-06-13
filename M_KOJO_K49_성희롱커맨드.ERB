@@ -1631,30 +1631,65 @@ IF LOCAL
 			IF MARK:반발각인 == 3 && !TALENT:연인
 				SELECTCASE RAND:2
 					CASE 0
-
+						PRINTFORMW 「하...지맛 거기 만지지 마앗」
+						PRINTFORMW 사토리는 쾌감에 허덕이며 말해왔다
 					CASE 1
-					
+						IF TFLAG:400 && (DATE_HITOGOMI() || WITH_MOB() == 9)
+							;모브 반응
+							IF 지령전안()
+								PRINTFORMW 「저...적어도 다른 곳에서...♥」
+								PRINTFORMW 「저 애들, 이상하게 보고 있단 말야...」
+								PRINTFORMW 사토리는 펫들을 흘끔흘끔 바라보고 있다
+							ELSE
+								PRINTFORMW 「나, 남들 앞에서엇...♥ 시럿♥ 목소리 새나와버려...♥」
+								PRINTFORMW 사토리는 숨을 헐떡였다
+							ENDIF
+						ELSE
+							PRINTFORMW 「그♥ 그만♥ 클리 불날거 같아아♥」
+							PRINTFORMW %사토리는% 계속된 자극에 다리를 후들후들 떨었다
+						ENDIF
 				ENDSELECT
-			ELSEIF TALENT:연인
+			ELSEIF TALENT:연모||TALENT:사모||TALENT:연인
 				SELECTCASE RAND:2
 					CASE 0
-
+						PRINTFORMW 「아♥ 안대에...♥ 멈춰어♥」
+						PRINTFORMW 사토리의 파르르 떨며 쾌감을 참고 있다
 					CASE 1
-					
+						IF TFLAG:400 && (DATE_HITOGOMI() || WITH_MOB() == 9)
+							;모브 반응
+							IF 지령전안()
+								PRINTFORMW 「으읏...♥ 지, 지금은 안돼...♥」
+								PRINTFORMW 「저 애들, 이상하게 보고 있잖아...」
+								PRINTFORMW 사토리는 펫들을 흘끔흘끔 바라보고 있다
+							ELSE
+								PRINTFORMW 「나, 남들 앞에서엇...♥ 이거 안댓♥」
+								PRINTFORMW 사토리는 숨을 헐떡였다
+							ENDIF
+						ELSE
+							PRINTFORMW 「아♥ 거기 좋앗♥ 좀 더어♥」
+							PRINTFORMW %마스터의% 손놀림에 맞춰 달콤한 신음이 흘러나오고 있다
+						ENDIF
 				ENDSELECT
-			ELSEIF TALENT:연모||TALENT:사모||TALENT:애욕
+			ELSEIF TALENT:섹프||TALENT:애욕
 				SELECTCASE RAND:2
 					CASE 0
-
+						PRINTFORMW 「자, 잠까안...그렇게 만져대지 마세요...」
+						PRINTFORMW 사토리는 곤란하다는듯이 말했다
 					CASE 1
-					
-				ENDSELECT
-			ELSEIF TALENT:섹프
-				SELECTCASE RAND:2
-					CASE 0
-
-					CASE 1
-					
+						IF TFLAG:400 && (DATE_HITOGOMI() || WITH_MOB() == 9)
+							;모브 반응
+							IF 지령전안()
+								PRINTFORMW 「으읏...♥ 지, 지금은 안돼...♥」
+								PRINTFORMW 「저 애들, 이상하게 보고 있잖아...」
+								PRINTFORMW 사토리는 펫들을 흘끔흘끔 바라보고 있다
+							ELSE
+								PRINTFORMW 「나, 남들 앞에서엇...♥ 이거 안댓♥」
+								PRINTFORMW 사토리는 숨을 헐떡였다
+							ENDIF
+						ELSE
+							PRINTFORMW 「아♥ 거기 좋앗♥ 좀 더어♥」
+							PRINTFORMW %마스터의% 손놀림에 맞춰 달콤한 신음이 흘러나오고 있다
+						ENDIF
 				ENDSELECT
 			ELSE
 				PRINTFORMW 「하, 하지 마세요...」
