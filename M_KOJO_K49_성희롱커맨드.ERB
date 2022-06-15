@@ -1595,38 +1595,23 @@ IF LOCAL
 		;PRINTFORMW 「」
 		;우후후 아닐때
 		IF ABL:C감각 > 5
-			IF MARK:반발각인 == 3 && !TALENT:연인
-				SELECTCASE RAND:2
-					CASE 0
-
-					CASE 1
-					
-				ENDSELECT
-			ELSEIF TALENT:연인
-				SELECTCASE RAND:2
-					CASE 0
-
-					CASE 1
-					
-				ENDSELECT
-			ELSEIF TALENT:연모||TALENT:사모||TALENT:애욕
-				SELECTCASE RAND:2
-					CASE 0
-
-					CASE 1
-					
-				ENDSELECT
-			ELSEIF TALENT:섹프
-				SELECTCASE RAND:2
-					CASE 0
-
-					CASE 1
-					
-				ENDSELECT
-			ELSE
-				PRINTFORMW 「힛♥ 안대♥ 그마안♥」
-				PRINTFORMW 민감한 클리로부터 느껴지는 강렬한 쾌감에 사토리는 다리를 후들거리며 애원했다
-			ENDIF
+			SELECTCASE RAND:3
+				CASE 0
+					PRINTFORMW 「힛♥ 안대♥ 그마안♥ 클리 안대에♥」
+					PRINTFORMW 민감한 클리로부터 느껴지는 강렬한 쾌감에 사토리는 온 몸을 경련했다
+				CASE 1
+					PRINTFORMW 「히잇♥ 거, 거기 그렇게 하지맛♥ 불날거 같아아♥」
+					IF TFLAG:400 && (DATE_HITOGOMI() || WITH_MOB() == 9)
+						;모브 반응
+						PRINTFORMW 사토리는 보여지고 있단것도 잊은채 쾌감에 신음했다
+					ELSE
+						PRINTFORMW 사토리는 계속된 자극에 다리를 후들후들 떨었다
+					ENDIF
+				CASE 2
+					PRINTFORM 「
+					CALL ST_CLIMAX(RAND:5 + 3)
+					PRINTFORMW 」
+			ENDSELECT
 		ELSEIF ABL:C감각 > 3
 			IF MARK:반발각인 == 3 && !TALENT:연인
 				SELECTCASE RAND:2
@@ -1646,7 +1631,7 @@ IF LOCAL
 							ENDIF
 						ELSE
 							PRINTFORMW 「그♥ 그만♥ 클리 불날거 같아아♥」
-							PRINTFORMW %사토리는% 계속된 자극에 다리를 후들후들 떨었다
+							PRINTFORMW 사토리는 계속된 자극에 다리를 후들후들 떨었다
 						ENDIF
 				ENDSELECT
 			ELSEIF TALENT:연모||TALENT:사모||TALENT:연인
