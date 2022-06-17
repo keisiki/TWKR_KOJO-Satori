@@ -1903,7 +1903,98 @@ IF LOCAL
 	ELSE
 		;야스중 아님
 		;PRINTFORMW 「」
+		IF ABL:V감각 >= 5
+			IF MARK:반발각인 == 3 && !TALENT:연인
+				
+			ELSEIF TALENT:연모||TALENT:사모||TALENT:연인
+				
+			ELSEIF TALENT:섹프||TALENT:애욕
+				
+			ELSE
+				;위에서 실패처리 하기에 가능성 없다
+			ENDIF
+		ELSEIF ABL:V감각 >= 2
+			IF MARK:반발각인 == 3 && !TALENT:연인
+				SELECTCASE RAND:2
+					CASE 0
 
+					CASE 1
+					
+				ENDSELECT
+			ELSEIF TALENT:연모||TALENT:사모||TALENT:연인
+				SELECTCASE RAND:2
+					CASE 0
+
+					CASE 1
+					
+				ENDSELECT
+			ELSEIF TALENT:섹프||TALENT:애욕
+				SELECTCASE RAND:2
+					CASE 0
+
+					CASE 1
+					
+				ENDSELECT
+			ELSE
+				;위에서 실패처리 하기에 가능성 없다
+			ENDIF
+		ELSE
+			IF MARK:반발각인 == 3 && !TALENT:연인
+				SELECTCASE RAND:2
+					CASE 0
+						PRINTFORMW 「...그만, 그만 해...」
+						PRINTFORMW 사토리는 얼굴을 붉힌채 %마스터를% 노려보고 있으나, 그 이상의 저항은 하지 않았다
+					CASE 1
+						PRINTFORMW 「기, 기분 좋을리 없잖아...아플 뿐이야...」
+						PRINTFORMW 사토리는 싫은듯한 표정을 짓고 있다
+				ENDSELECT
+			ELSEIF TALENT:연모||TALENT:사모||TALENT:연인
+				SELECTCASE RAND:2
+					CASE 0
+						PRINTFORMW 「기, 기분 좋냐니...그럴리가...」
+						PRINTFORMW 「아프기만 하다구요...」
+					CASE 1
+						IF TFLAG:400 && (DATE_HITOGOMI() || WITH_MOB() == 9)
+							;모브 반응
+							IF 지령전안()
+								PRINTFORMW 「...저 애들이 보고 있다구요, %사마스터는% 모르겠지만」
+								PRINTFORMW 「부끄러우니까, 그만둬...」
+								PRINTFORMW 사토리는 얼굴을 붉혔다
+							ELSE
+								PRINTFORMW 「나, 남들 앞에서 이런건...!」
+								PRINTFORMW 사토리는 화들짝 놀라며 %마스터의% 손을 쳐냈다
+								PRINTFORMW 「...때와 장소정도는, 가려주세요」
+							ENDIF
+						ELSE
+							PRINTFORMW 「정말...하지 마세요...」
+							PRINTFORMW 사토리는 간지럽다는듯이 %마스터의% 손을 밀어냈다
+						ENDIF
+				ENDSELECT
+			ELSEIF TALENT:섹프||TALENT:애욕
+				SELECTCASE RAND:2
+					CASE 0
+						PRINTFORMW 「자, 잠깐, 어디에 손을...!」
+						PRINTFORMW 사토리는 얼굴을 붉혔다
+					CASE 1
+						IF TFLAG:400 && (DATE_HITOGOMI() || WITH_MOB() == 9)
+							;모브 반응
+							IF 지령전안()
+								PRINTFORMW 「...이거, 별로 기분 좋지도 않지만...」
+								PRINTFORMW 「것보다도 저 애들이 보고 있으니까, 그만둬줬음 하는데...」
+								PRINTFORMW 사토리는 주위의 펫들을 살피고 있다
+							ELSE
+								PRINTFORMW 「힛?! 지금 뭐하는...」
+								PRINTFORMW 사토리는 남들의 시선을 의식했는지 얼굴을 새빨갛게 물들일 뿐이었다
+							ENDIF
+						ELSE
+							PRINTFORMW 「정말...하지마요...」
+							PRINTFORMW 사토리는 간지럽다는듯이 %마스터의% 손을 밀어냈다
+						ENDIF
+				ENDSELECT
+			ELSE
+				;위에서 실패처리 하기에 가능성 없다
+			ENDIF
+		ENDIF
 	ENDIF
 ENDIF
 RETURN 1
