@@ -1904,36 +1904,38 @@ IF LOCAL
 		;야스중 아님
 		;PRINTFORMW 「」
 		IF ABL:V감각 >= 5
-			IF MARK:반발각인 == 3 && !TALENT:연인
-				
-			ELSEIF TALENT:연모||TALENT:사모||TALENT:연인
-				
-			ELSEIF TALENT:섹프||TALENT:애욕
-				
-			ELSE
-				;위에서 실패처리 하기에 가능성 없다
-			ENDIF
+			PRINTFORM 「
+			CALL ST_CLIMAX(RAND:5 + 4)
+			PRINTFORMW 」
+			SELECTCASE RAND:3
+				CASE 0
+					PRINTFORMW 사토리는 지나친 쾌감에 어쩔줄 몰라 하고 있다
+				CASE 1
+					PRINTFORMW 민감한 질내는 몇번 건든것 만으로도 전신을 떨게 할 만큼의 강렬한 쾌감을 선사해 주었다
+				CASE 2
+					PRINTFORMW 사토리는 강렬한 쾌감에 목소리를 참지 못하고 말았다
+			ENDSELECT
 		ELSEIF ABL:V감각 >= 2
-			IF MARK:반발각인 == 3 && !TALENT:연인
+			IF TALENT:섹프||TALENT:애욕||TALENT:연모||TALENT:사모||TALENT:연인
 				SELECTCASE RAND:2
 					CASE 0
-
+						PRINTFORMW 「그, 그만...♥ 쑤시는거 안돼엣...♥」
+						PRINTFORMW 안된다고 말하는 목소리에 점차 달콤한 신음이 섞여들고 있다
 					CASE 1
-					
-				ENDSELECT
-			ELSEIF TALENT:연모||TALENT:사모||TALENT:연인
-				SELECTCASE RAND:2
-					CASE 0
-
-					CASE 1
-					
-				ENDSELECT
-			ELSEIF TALENT:섹프||TALENT:애욕
-				SELECTCASE RAND:2
-					CASE 0
-
-					CASE 1
-					
+						IF TFLAG:400 && (DATE_HITOGOMI() || WITH_MOB() == 9)
+							;모브 반응
+							IF 지령전안()
+								PRINTFORMW 「자, 잠깐♥ 이거 보여버려...저 애들, 보고 있단 말야...♥」
+								PRINTFORMW 「앗♥ 여기서 손가락 더 넣으면♥ 힛♥」
+								PRINTFORMW 사토리는 펫들에게 보여지는게 부끄러운지 얼굴을 새빨갛게 물들였다
+							ELSE
+								PRINTFORMW 「아, 안대엣♥ 남들 앞인데♥ 목소리♥ 참을수갓...♥」
+								PRINTFORMW 사토리는 입을 틀어막고 필사적으로 쾌감을 참고 있다
+							ENDIF
+						ELSE
+							PRINTFORMW 「아♥ 그거 너무 쎄♥ 조금만 살살♥」
+							PRINTFORMW 말과는 달리 굉장히 기뻐보이는 표정인 사토리였다
+						ENDIF
 				ENDSELECT
 			ELSE
 				;위에서 실패처리 하기에 가능성 없다
