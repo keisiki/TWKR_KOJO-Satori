@@ -2012,10 +2012,18 @@ RETURN RESULT
 @M_KOJO_MESSAGE_COM_K49_317_1
 ;-------------------------------------------------
 ;기입체크 (=0, 비표시、1, 표시)
-LOCAL = 0
+LOCAL = 1
 ;-------------------------------------------------
 IF LOCAL
-
+	IF ABL:V감각 >= 5 || (PREVCOM == 317 && RAND:2 == 0)
+		PRINTFORM 「
+		CALL ST_CLIMAX_HARD(RAND:(ABL:V감각 + 1) + 5)
+		PRINTFORMW 」
+	ELSE
+		PRINTFORM 「
+		CALL ST_CLIMAX(RAND:(ABL:V감각 + 1) + 5)
+		PRINTFORMW 」
+	ENDIF
 ENDIF
 RETURN 1
 ;==================================================
@@ -2029,10 +2037,18 @@ RETURN RESULT
 @M_KOJO_MESSAGE_COM_K49_318_1
 ;-------------------------------------------------
 ;기입체크 (=0, 비표시、1, 표시)
-LOCAL = 0
+LOCAL = 1
 ;-------------------------------------------------
 IF LOCAL
-
+	IF ABL:A감각 >= 5 || (PREVCOM == 318 && RAND:2 == 0)
+		PRINTFORM 「
+		CALL ST_CLIMAX_HARD(RAND:(ABL:A감각 + 1) + 5)
+		PRINTFORMW 」
+	ELSE
+		PRINTFORM 「
+		CALL ST_CLIMAX(RAND:(ABL:A감각 + 1) + 5)
+		PRINTFORMW 」
+	ENDIF
 ENDIF
 RETURN 1
 
@@ -2050,7 +2066,15 @@ RETURN RESULT
 LOCAL = 1
 ;-------------------------------------------------
 IF LOCAL
-	PRINTFORMW 
+	IF ABL:V감각 >= 5 || (PREVCOM == 320 && RAND:2 == 0)
+		PRINTFORM 「
+		CALL ST_CLIMAX_HARD(RAND:(ABL:V감각 + 1) + 5)
+		PRINTFORMW 」
+	ELSE
+		PRINTFORM 「
+		CALL ST_CLIMAX(RAND:(ABL:V감각 + 1) + 5)
+		PRINTFORMW 」
+	ENDIF
 ENDIF
 RETURN 1
 ;====================================================================================================
@@ -2067,7 +2091,15 @@ RETURN RESULT
 LOCAL = 1
 ;-------------------------------------------------
 IF LOCAL
-	PRINTFORMW 
+	IF ABL:A감각 >= 5 || (PREVCOM == 322 && RAND:2 == 0)
+		PRINTFORM 「
+		CALL ST_CLIMAX_HARD(RAND:(ABL:A감각 + 1) + 5)
+		PRINTFORMW 」
+	ELSE
+		PRINTFORM 「
+		CALL ST_CLIMAX(RAND:(ABL:A감각 + 1) + 5)
+		PRINTFORMW 」
+	ENDIF
 ENDIF
 RETURN 1
 ;==================================================
