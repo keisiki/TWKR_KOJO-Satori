@@ -2192,9 +2192,10 @@ IF LOCAL
 			IF MARK:반발각인 == 3
 				SELECTCASE RAND:3
 					CASE 0
-						
+						PRINTFORMW 「이런게 뭐가 재밌다는 건지...부끄러우니 그만해줬음 하는데」
+						PRINTFORMW 「...이렇게 말해도 그만 둘 생각도 없어보이고, 하아...」
 					CASE 1
-						
+						PRINTFORMW 「...남의 치마 들추는게 뭐 그리 좋다는 거야 정말...」
 				ENDSELECT
 			ELSEIF TALENT:연인||TALENT:연모||TALENT:사모||TALENT:애욕||TALENT:섹프
 				SELECTCASE RAND:2
@@ -2209,7 +2210,8 @@ IF LOCAL
 				ENDSELECT
 			ELSE
 				;설마 호감도 3천 초과 상태로 미함락일 리가
-
+				PRINTFORMW 「잠깐...장난이 심하다구요?」
+				PRINTFORMW 「얼른 내려주세요」
 			ENDIF
 		ELSE
 
