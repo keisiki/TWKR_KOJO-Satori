@@ -2214,7 +2214,43 @@ IF LOCAL
 				PRINTFORMW 「얼른 내려주세요」
 			ENDIF
 		ELSE
-
+			IF MARK:반발각인 == 3 && !TALENT:연인
+				SELECTCASE RAND:2
+					CASE 0
+						PRINTFORMW 「이런게 즐겁다니, 변태가 따로 없군요」
+						PRINTFORMW 「...그래서, 이러고 있으면 만족 하나요?」
+						PRINTFORMW 사토리는 볼멘소리를 해 왔다
+					CASE 1
+						PRINTFORMW 「하아...보여줄테니깐, 얼른 놔줬음 좋겠네」
+						PRINTFORMW 사토리는 한숨을 쉬면서도 순순히 치마 속을 보여주고 있다
+				ENDSELECT	
+			ELSEIF TALENT:연인||TALENT:연모||TALENT:사모
+				SELECTCASE RAND:3
+					CASE 0
+						PRINTFORMW 「...변태」
+						PRINTFORMW 「...그러고보면 이게 점점 좋아지고 있는 나도 변태려나」
+					CASE 1
+						PRINTFORMW 「왠지 이거, 조금씩 익숙해지고 있다는게 무서운걸...」
+						PRINTFORMW 사토리는 얼굴을 붉혔다
+					CASE 2
+						PRINTFORMW 「남들한테 이걸 보여주고 싶은 건가요?」
+						PRINTFORMW 「그치만, 이런건 %MASTERNAME:49%니까 보여주는 거라구요?」
+						PRINTFORMW 「다른 사람한텐 보이고 싶지 않아」
+				ENDSELECT	
+			ELSEIF TALENT:섹프||TALENT:애욕
+				SELECTCASE RAND:2
+					CASE 0
+						PRINTFORMW 「...보기만 하는거로 괜찮은거려나~」
+						PRINTFORMW 사토리는 능글맞게 웃어보였다
+					CASE 1
+						PRINTFORMW 「남들한테 이걸 보여주고 싶은 건가요?」
+						PRINTFORMW 「그치만, 이런건 %MASTERNAME:49%니까 보여주는 거라구요?」
+						PRINTFORMW 「다른 사람한텐 보이고 싶지 않아」
+				ENDSELECT	
+			ELSE
+				PRINTFORMW 「...하아, 정말이지...」
+				PRINTFORMW 사토리는 한숨을 쉬었지만 저항하는 모습은 보이지 않았다
+			ENDIF
 		ENDIF
 	ENDIF
 ENDIF
