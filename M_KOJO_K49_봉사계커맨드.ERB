@@ -39,32 +39,82 @@ IF LOCAL
 			PRINTFORMW 「손으로? 그거로 좋은걸까나...」
 			PRINTFORMW 「뭐어, %사마스터가% 기분 좋다면, 저도 좋지만...」
 			PRINTFORMW 「그래도 좀 더 재밌는거로 하고 싶은걸」
-			PRINTFORMW 「...게다가, 이건 해본적 없어서 잘 모르겠단 말야」
 			PRINTFORMW 사토리는 미적미적 손을 놀려 %마스터의% 자지를 주무르기 시작했다
 		ELSE
 			PRINTFORMW 「손으로 해줬음 한다, 라...」
 			PRINTFORMW 「이러면 되는걸까나...」
-			PRINTFORMW 분명 처음일 터인데도 사토리는 상당히 능숙하게 %마스터의% 자지를 훑어오고 있었다
+			PRINTFORMW 사토리는 몇번 자지를 훑더니 이내 상당히 능숙한 손놀림으로 %마스터를% 자극해오기 시작했다
 		ENDIF
-		SOURCE:PLAYER:쾌C += 20
+		SOURCE:PLAYER:쾌C += 30
 		RETURN 1
 	ENDIF
 	;기본세트
 	;시간(時姦)중
 	IF FLAG:70
-		PRINTFORMW 
 		RETURN 1
-	;연모
-	ELSEIF TALENT:연모
-		PRINTFORMW 
-		RETURN 1
-	;괘씸3
-	ELSEIF MARK:괘씸각인 == 3
-		PRINTFORMW 
-		RETURN 1
-	;그 이외
 	ELSE
-		PRINTFORMW 
+		IF NOWEX:MASTER:사정
+			;이번 행위로 사정함
+
+		ELSE
+			IF MARK:반발각인 == 3 && !TALENT:연인
+				SELECTCASE RAND:3
+					CASE 0
+						PRINTFORMW 「손으로 할 뿐이라면, 내 손일 필요는 없을텐데...」
+						PRINTFORMW 「...내가 하는 편이 더 기분 좋단걸까? 그야 당연한 거지, 느끼는 약점이 다 보이니까」
+						PRINTFORMW 「그렇지만 나는 기분 별로인걸...지루하기만 하고 말야」
+						PRINTFORMW 사토리는 불평하면서도 정성껏 %마스터의% 자지를 훑어주고 있다
+					CASE 1
+						PRINTFORMW 「내 손이 그렇게 좋은걸까나...아니면, 그냥 내가 자지를 훑어주는거 자체가 좋은걸까나?」
+						PRINTFORMW 「...굳이 읽어보고 싶진 않아, 어느쪽이든 불만이니까」
+					CASE 2
+						PRINTFORMW 「...지루해라」
+						PRINTFORMW 「계속 흔드는 것도 재미 없으니까 얼른 싸버리고 만족해줬음 좋겠는데...언제쯤이려나?」
+				ENDSELECT
+			ELSEIF TALENT:연인||TALENT:연모||TALENT:사모
+				SELECTCASE RAND:3
+					CASE 0
+						PRINTFORMW 「제 손으로 하는건, 기분 좋으신가요?」
+						IF ABL:기교 + ABL:손가락 >= 5
+							PRINTFORMW 「...대답하지 않아도, 자지가 움찔움찔 대답해주네요♥」
+						ELSE
+							PRINTFORMW 「...기분 좋지 않다고 해도, 기분 좋다고 말할때까지 괴롭힐거니까요♥」
+							SOURCE:PLAYER:쾌C += 20
+						ENDIF
+						PRINTFORMW 사토리는 생글생글 웃으며 %마스터의% 자지를 부드럽게 주무르고 있다
+					CASE 1
+						PRINTFORMW 「손에서 불끈불끈하는게 느껴져...조금 귀여운거 같기도...♥」
+						PRINTFORMW 「왠지 모르게 나도 두근두근해지고...♥」
+					CASE 2
+						PRINTFORMW 「후후...기분 좋게 해드릴게요...♥」
+						PRINTFORMW 사토리는 능숙한 손놀림으로 %마스터의% 자지를 훑어왔다
+						SOURCE:PLAYER:쾌C += 25
+				ENDSELECT
+			ELSEIF TALENT:섹프||TALENT:애욕
+				SELECTCASE RAND:3
+					CASE 0
+						PRINTFORMW 「내 손은 기분 좋으려나...후후, 분명히 기분 좋겠죠」
+						PRINTFORMW 「%사마스터의% 약점, 전부 괴롭혀 드릴테니깐...♥」
+						PRINTFORMW 사토리가 자신만만하게 웃어보이고 있다
+					CASE 1
+						PRINTFORMW 「손에서 팔딱팔딱 맥박치고 있어...후후...♥ 귀여워...♥」
+						
+					CASE 2
+					
+				ENDSELECT
+			ELSE
+				SELECTCASE RAND:2
+					CASE 0
+						
+					CASE 1
+
+				ENDSELECT
+			ENDIF
+			;쾌감 75% 증가, 쾌감 포인트 읽는데 그정도는 해야 하겠지...
+			SOURCE:PLAYER:쾌C += 10
+			TIMES SOURCE:PLAYER:쾌C, 1.75
+			SOURCE:성행동 += 50
+		ENDIF
 		RETURN 1
 	ENDIF
 ENDIF
