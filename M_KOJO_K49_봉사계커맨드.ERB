@@ -55,8 +55,52 @@ IF LOCAL
 	ELSE
 		IF NOWEX:MASTER:사정
 			;이번 행위로 사정함
-
+			;대부분 절정.erb에 많이 있으니 일부 케이스에 추가 대사만
+			IF MARK:반발각인 == 3 && !TALENT:연인
+				SELECTCASE RAND:3
+					CASE 0
+						PRINTFORMW 「'나올거 같아'? 참지말고 얼른 싸버리는게 좋을걸」
+						PRINTFORMW 「어짜피...참아봐도, 오래 못 갈테니? 후후...♥」
+						PRINTFORMW 능글맞게 웃는 사토리는 한층 더 손놀림을 빠르게 해 왔다
+					CASE 1
+						PRINTFORMW 「...뭔가, 신호가 오는거 같기도 한걸」
+					CASE 2
+						GOTO 노멀수음
+				ENDSELECT
+			ELSEIF TALENT:연인||TALENT:연모||TALENT:사모
+				SELECTCASE RAND:2
+					CASE 0
+						PRINTFORMW 「조금 더, 세게 해볼까나...♥」
+						PRINTFORMW 사토리는 한층 더 빠르게 자지를 훑어왔다
+					CASE 1
+						GOTO 노멀수음
+				ENDSELECT
+			ELSEIF TALENT:섹프||TALENT:애욕
+				SELECTCASE RAND:4
+					CASE 0
+						PRINTFORMW 「정액 울컥울컥 올라오려하고 있어...후후, 그렇게 좋았나요?」
+						PRINTFORMW 「좀 더 쥐어짜내 드릴게요...♥」
+						PRINTFORMW 사토리는 어딘가 기분 좋아 보인다
+					CASE 1
+						PRINTFORMW 「알쪽도 만져주면, 좀 더 좋으려나...♥」
+						PRINTFORMW 사토리는 남는 손으로 부드럽게 불알을 애무해 오기 시작했다
+					CASE 2
+						PRINTFORMW 「조금 세게 가볼까나...♥」
+					CASE 3
+						GOTO 노멀수음
+				ENDSELECT
+			ELSE
+				SELECTCASE RAND:3
+					CASE 0
+						PRINTFORMW 「아...뭔가, 올라오려 하는거 같아...」
+					CASE 1
+						PRINTFORMW 「왠지, 자지가 더 팔딱거리는거 같은걸...음...」
+					CASE 2
+						GOTO 노멀수음
+				ENDSELECT
+			ENDIF
 		ELSE
+			$노멀수음
 			IF MARK:반발각인 == 3 && !TALENT:연인
 				SELECTCASE RAND:3
 					CASE 0
