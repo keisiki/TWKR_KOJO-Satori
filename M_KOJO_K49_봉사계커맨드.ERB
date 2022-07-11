@@ -220,14 +220,71 @@ IF LOCAL
 	IF FLAG:70
 		RETURN 1
 	ELSE
-		IF MARK:반발각인 == 3 && !TALENT:연인
-			
+		;PRINTFORMW 「」
+		IF MARK:반발각인 == 3 && !TALENT:연모
+			SELECTCASE RAND:3
+				CASE 0
+					PRINTFORMW 「%ST_펠라치오사운드(4)% 얼른 만족하고 싸줘...%ST_펠라치오사운드(3)%♥」
+					PRINTFORMW 사토리는 거칠게 자지를 핥아주고 있다
+				CASE 1
+					PRINTFORMW 「%ST_펠라치오사운드(8)%」
+					PRINTFORMW 사토리는 조용히 봉사에만 집중하고 있다
+				CASE 2
+					PRINTFORMW 「%ST_펠라치오사운드(4)% 아직이야...? %ST_펠라치오사운드(2)%」
+					PRINTFORMW 「슬슬 턱이 아파온단 말야...」
+			ENDSELECT
 		ELSEIF TALENT:연인||TALENT:연모||TALENT:사모
-			
+			SELECTCASE RAND:3
+				CASE 0
+					PRINTFORMW 「%ST_펠라치오사운드(4)% 푸하아...♥」
+					PRINTFORMW 「후후...♥ 이거, 왠지 모르게 달아오르네요...♥」
+					PRINTFORMW 사토리는 열의를 담아 봉사해오고 있다
+				CASE 1
+					PRINTFORMW 「%ST_펠라치오사운드(5)% 어떤가요, 기분 좋아지고 있나요?」
+					IF 100 * BASE:MASTER:사정 / MAXBASE:MASTER:사정 >= 75
+						PRINTFORMW 「...조금만 더 하면 쌀거 같아, 인가요...후후후♥ 잔뜩 뽑아드리죠」
+						PRINTFORMW 사토리는 즐거운듯 하다
+					ELSE
+						PRINTFORMW 「...아직 견딜수 있어? 그렇담 좀 더 확실히 뽑아내야겠군요♥」
+						PRINTFORMW 사토리는 농염하게 자지를 핥아왔다
+					ENDIF
+				CASE 2
+					PRINTFORMW 「이렇게 핥는 편이 더 좋으려나...%ST_펠라치오사운드(5)% 츕♥」
+					PRINTFORMW 서드아이가 %마스터를% 사랑스럽다는듯이 바라보고 있다
+			ENDSELECT
 		ELSEIF TALENT:섹프||TALENT:애욕
-			
+			SELECTCASE RAND:3
+				CASE 0
+					PRINTFORMW 「%ST_펠라치오사운드(9)%」
+					PRINTFORMW 사토리는 어딘가 황홀한듯한 표정을 지으며 조용히 봉사에만 집중하고 있다
+				CASE 1
+					PRINTFORMW 「입 안 가득 냄새가 퍼져서...굉장히 달아올라...♥」
+					PRINTFORMW 사토리는 탐욕적으로 자지를 집어삼키고 있다
+				CASE 2
+					PRINTFORMW 「%ST_펠라치오사운드(5)% 어떤가요, 기분 좋아지고 있나요?」
+					IF 100 * BASE:MASTER:사정 / MAXBASE:MASTER:사정 >= 75
+						PRINTFORMW 「...조금만 더 하면 쌀거 같아, 인가요...후후후♥ 잔뜩 뽑아드리죠」
+						PRINTFORMW 사토리는 즐거운듯 하다
+					ELSE
+						PRINTFORMW 「...아직 견딜수 있어? 그렇담 좀 더 확실히 뽑아내야겠군요♥」
+						PRINTFORMW 사토리는 농염하게 자지를 핥아왔다
+					ENDIF
+			ENDSELECT
 		ELSE
-			
+			SELECTCASE RAND:2
+				CASE 0
+					PRINTFORMW 「핥짝...핥짝...으으...이상한 짠맛...」
+					IF 100 * BASE:MASTER:사정 / MAXBASE:MASTER:사정 >= 75
+						PRINTFORMW 「...조금만 더 핥으면 끝? 그렇다곤 해도...으...」
+						PRINTFORMW 사토리는 뾰루퉁한 표정이다
+					ELSE
+						PRINTFORMW 「...이거로, 기분 좋아지는게 맞기나 한걸까나」
+						PRINTFORMW 「아직도 싸려면 한참 남은거 같은데...」
+					ENDIF
+				CASE 1
+					PRINTFORMW 「%ST_펠라치오사운드(4)% 아직이야...? %ST_펠라치오사운드(2)%」
+					PRINTFORMW 「슬슬 턱이 아파오는데...」
+			ENDSELECT
 		ENDIF
 		RETURN 1
 	ENDIF

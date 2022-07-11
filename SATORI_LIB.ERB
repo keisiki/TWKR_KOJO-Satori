@@ -1016,7 +1016,51 @@ SELECTCASE RAND:5
         PRINT ! 
 ENDSELECT
 
-
+@ST_펠라치오사운드(ARG)
+;ARG = 길이
+#FUNCTIONS
+#DIM POST_CURR
+#DIM NOW_CURR
+POST_CURR = -1
+VARSET LOCALS
+REPEAT ARG
+    $절정리롤
+    NOW_CURR = RAND:7
+    IF NOW_CURR == POST_CURR
+        GOTO 절정리롤
+    ELSE
+        POST_CURR = NOW_CURR
+    ENDIF
+    SELECTCASE NOW_CURR
+        CASE 0
+            LOCALS += 츕
+        CASE 1
+            LOCALS += 츄릅
+        CASE 2
+            LOCALS += 낼름
+        CASE 3
+            LOCALS += 핥짝
+        CASE 4
+            LOCALS += 쪽
+        CASE 5
+            LOCALS += 쪼옥
+        CASE 6
+            LOCALS += 아음
+    ENDSELECT
+    SELECTCASE RAND:3
+        CASE 0
+            LOCALS += ...
+        CASE 1
+            LOCALS += ,
+        CASE 2
+            IF TALENT:연인 || TALENT:섹프 || TALENT:애욕
+                LOCALS += ♥ 
+            ELSE
+                LOCAL +=  
+            ENDIF
+    ENDSELECT
+REND
+RETURNF LOCALS
 
 @ST_펠라치오()
 #DIM DYNAMIC 정음여부
