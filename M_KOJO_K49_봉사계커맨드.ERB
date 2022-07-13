@@ -302,7 +302,7 @@ RETURN RESULT
 @M_KOJO_MESSAGE_COM_K49_82_1
 ;-------------------------------------------------
 ;기입체크 (=0, 비표시、1, 표시)
-LOCAL = 0
+LOCAL = 1
 ;-------------------------------------------------
 IF LOCAL
 	;-------------------------------------------------
@@ -310,16 +310,78 @@ IF LOCAL
 	;-------------------------------------------------
 	;처음
 	;기입체크
-	LOCAL:1 = 0
+	LOCAL:1 = 1
 	;-------------------------------------------------
 	IF LOCAL:1 && FIRSTTIME(SELECTCOM)
-		PRINTFORMW 
+		;기본은 0(평범)
+		SELECTCASE TALENT:가슴사이즈
+			CASE IS <= -1
+				;작게 만듬
+				IF MARK:반발각인 == 3 && !TALENT:연인
+					PRINTFORMW 「...지금 놀리는 것도 아니고, 이 사이에 끼우라고요?」
+					PRINTFORMW 사토리는 기가막히다는 듯이 쏘아붙였다
+					PRINTFORMW 「이게 누구때문에 이렇게 된건데...내 가슴...」
+					PRINTFORMW 사토리는 울상으로 평평한 가슴 사이에 자지를 얹었다
+					PRINTFORMW 최대한으로 모은 가슴도 자지를 덮기엔 무리가 있었지만
+					CFLAG:3101 ++
+				ELSEIF TALENT:연인||TALENT:연모||TALENT:사모
+					PRINTFORMW 「...아무리 그래도 그렇지, 이런 가슴으로 만들어 놓고선 그런걸 시키다니...」
+					PRINTFORMW 「저도 여자란 말이에요, 작아진거 계속 신경 쓰고 있었는데...그걸 이렇게...」
+					PRINTFORMW 사토리는 약간 울적해 보이는 표정이다
+					PRINTFORMW 「...됐어요, 이런 가슴으로 만들었단건 그런 취향이란거겠죠」
+					PRINTFORMW 「마음에 든다면야 얼마든지 해 드리죠, 기분 좋게 해드릴진 모르겠지만」
+					PRINTFORMW 사토리는 어딘가 악에받친듯이 평평한 가슴에 억지로 자지를 문지르고 있다...
+				ELSEIF TALENT:섹프||TALENT:애욕
+					PRINTFORMW 「이렇게나 작은 가슴으로 뭘 어떻게 해주라는 건지...」
+					PRINTFORMW 「...자기가 이렇게 만들어 놨단걸 까먹은 걸까나」
+					PRINTFORMW 사토리는 한숨을 쉬며 밋밋한 가슴에 자지를 문대고 있다
+				ELSE
+					PRINTFORMW 「...누구씨 덕분에 이렇게 평평한 가슴이 됐는데, 이젠 거기에 자지까지 문지르라네」
+					PRINTFORMW 「답도 없는 변태라니깐...하아...」
+				ENDIF
+			CASE 0
+				IF MARK:반발각인 == 3 && !TALENT:연인
+					PRINTFORMW 「가슴 속이 뜨듯미지근한게...이상한 느낌이야」
+					PRINTFORMW 「...확실히 가슴 감촉이 기분 좋다는건 알겠는데, 나는 하나도 기분 좋지 않은걸」
+					PRINTFORMW 「얼른 싸고 놔줬으면 좋겠네...」
+				ELSEIF TALENT:연인||TALENT:연모||TALENT:사모||TALENT:섹프||TALENT:애욕
+					PRINTFORMW 「제 가슴, 기분 좋은가요? 후후후...♥」
+					PRINTFORMW 뻔히 읽어보고 있으면서 굳이 묻는 그 표정은 굉장히 즐거운듯한 느낌이었다
+					PRINTFORML [0] 기분 좋다고 한다
+					PRINTFORML [1] 기분 좋지 않다고 한다
+					INPUT
+					IF RESULT == 0
+						PRINTFORMW 「후후♥ 정직한 아이한테는 상을 줘야겠죠...♥」
+					ELSE
+						PRINTFORMW 「어라라, 큰일인걸요, 그렇담 인정할 때까지 강하게 해서 잔뜩 뽑아드릴수밖에♥」
+					ENDIF
+					PRINTFORMW 사토리는 한 층 더 강하게 자지를 조여오며 격렬한 봉사를 계속하고 있다
+					TIMES SOURCE:PLAYER:쾌C, 1.25
+				ELSE
+					PRINTFORMW 「가슴이 그렇게 좋은걸까나...」
+					PRINTFORMW 「...확실히 가슴 감촉이 부드러우니 기분 좋기는 한데...음...」
+					PRINTFORMW 어쩐지 사토리는 %마스터의% 자지를 자기꺼처럼 이야기 하고 있다
+				ENDIF
+			CASE IS >= 1
+				;크게 만듬
+				IF MARK:반발각인 == 3 && !TALENT:연인
+					PRINTFORMW 「이거 하고 싶어서 가슴 키운걸까나- 머릿속에 야한 생각만 한가득 한거 같네」
+					PRINTFORMW 「쓸데없이 커지기만 해서 불편한데, 용도라곤 이런거 밖엔 없고 말야」
+					PRINTFORMW 투덜대면서도 사토리의 목소리 속엔 약간의 기쁨이 느껴지는 듯 했다
+				ELSEIF TALENT:연인||TALENT:연모||TALENT:사모||TALENT:섹프||TALENT:애욕
+					PRINTFORMW 「이런거 하고 싶어서 가슴을 이렇게 만든건가요, 정말이지 변태라니깐」
+					PRINTFORMW 「그렇담 이거로 잔뜩 뽑아내 드릴 수밖에 없겠죠♥」
+					PRINTFORMW 사토리는 어딘가 기쁜듯한 표정으로 봉사해오고 있다
+				ELSE
+					PRINTFORMW 「가슴 키운 이유가 이런거 하고 싶어서였네...」
+					PRINTFORMW 「뭐 좋아, 어짜피 이런데 외엔 쓸모도 없는데...이럴때 잔뜩 써줘야지 않겠어」
+				ENDIF
+		ENDSELECT
 		RETURN 1
 	ENDIF
 	;기본세트
 	;시간(時姦)중
 	IF FLAG:70
-		PRINTFORMW 
 		RETURN 1
 	;연모
 	ELSEIF TALENT:연모
