@@ -383,17 +383,56 @@ IF LOCAL
 	;시간(時姦)중
 	IF FLAG:70
 		RETURN 1
-	;연모
-	ELSEIF TALENT:연모
-		PRINTFORMW 
-		RETURN 1
-	;괘씸3
-	ELSEIF MARK:괘씸각인 == 3
-		PRINTFORMW 
-		RETURN 1
 	;그 이외
 	ELSE
-		PRINTFORMW 
+		IF MARK:반발각인 == 3 && !TALENT:연인
+			SELECTCASE RAND:3
+				CASE 0
+
+				CASE 1
+
+				CASE 2
+
+			ENDSELECT
+		ELSEIF TALENT:연인||TALENT:연모||TALENT:사모
+			SELECTCASE RAND:3
+				CASE 0
+
+				CASE 1
+
+				CASE 2
+				
+			ENDSELECT
+		ELSEIF TALENT:섹프||TALENT:애욕
+			SELECTCASE RAND:3
+				CASE 0
+					;PRINTFORMW 「」
+				CASE 1
+
+				CASE 2
+				
+			ENDSELECT
+		ELSE
+			;볼 일 있을까
+			SELECTCASE RAND:2
+				CASE 0
+					PRINTFORMW 「가슴으로 하는게 그렇게 좋은걸까나...」
+					IF TALENT:가슴사이즈 < 0
+						PRINTFORMW 「...나는 힘들기만 하지만」
+						PRINTFORMW 사토리는 뾰로통한 표정이다
+					ELSE
+						PRINTFORMW 「...뭐, 싫지만은 않은 기분이네」
+					ENDIF
+				CASE 1
+					IF ABL:B감각 < 3
+						PRINTFORMW 「어쩐지 스치는 감촉이 조금 기분 좋은거 같기도...」
+						PRINTFORMW 사토리는 얼굴을 붉히고 있다
+					ELSE
+						PRINTFORMW 「스, 스치는거...기분 좋아서 집중이 안돼...♥」
+						PRINTFORMW 민감한 가슴이 주는 쾌감에 사토리의 얼굴이 새빨갛게 물들고 있다
+					ENDIF
+			ENDSELECT
+		ENDIF
 		RETURN 1
 	ENDIF
 ENDIF
