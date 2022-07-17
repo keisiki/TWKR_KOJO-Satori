@@ -389,11 +389,23 @@ IF LOCAL
 		IF MARK:반발각인 == 3 && !TALENT:연인
 			SELECTCASE RAND:3
 				CASE 0
-
+					IF TALENT:가슴사이즈 < 0
+						PRINTFORMW 「...이런 가슴으로 해주는게 더 좋다, 라는 걸까나」
+						PRINTFORMW 「그런 사람은 보통 마음이 아픈 사람이에요」
+					ELSE
+						PRINTFORMW 「가슴으로 만족해 준다면야 나야 편하지만...」
+						PRINTFORMW 「...이거로 끝낼리가 없잖아?」
+					ENDIF
 				CASE 1
-
+					PRINTFORMW 「...가슴팍에서 불끈불끈, 마음을 읽을것도 없이 흥분하고 있는건 잘 알겠네」
 				CASE 2
-
+					IF ABL:B감각 < 3
+						PRINTFORMW 「이것도 조금 피곤하네...얼른 만족해주지 않으려나」
+						PRINTFORMW 사토리는 뾰로통하게 말해왔다
+					ELSE
+						PRINTFORMW 「스, 스치는거...기분 좋아서 집중이 안돼...♥」
+						PRINTFORMW 민감한 가슴이 주는 쾌감에 사토리의 얼굴이 새빨갛게 물들고 있다
+					ENDIF
 			ENDSELECT
 		ELSEIF TALENT:연인||TALENT:연모||TALENT:사모
 			SELECTCASE RAND:3
