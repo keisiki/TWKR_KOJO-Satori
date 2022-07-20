@@ -531,7 +531,7 @@ RETURN RESULT
 @M_KOJO_MESSAGE_COM_K49_83_1
 ;-------------------------------------------------
 ;기입체크 (=0, 비표시、1, 표시)
-LOCAL = 0
+LOCAL = 1
 ;-------------------------------------------------
 IF LOCAL
 	;-------------------------------------------------
@@ -539,10 +539,62 @@ IF LOCAL
 	;-------------------------------------------------
 	;처음
 	;기입체크
-	LOCAL:1 = 0
+	LOCAL:1 = 1
 	;-------------------------------------------------
 	IF LOCAL:1 && FIRSTTIME(SELECTCOM)
-		PRINTFORMW 
+		IF TALENT:처녀
+			IF MARK:반발각인 == 3&&!TALENT:연모
+				PRINTFORMW 「문지르는 것 정도야 해 줄수 있지만...」
+				PRINTFORMW 「...안 넣을거지? 넣으려고 하면...」
+				PRINTFORMW 「...화내는 거론 안 끝낼거니까」
+				PRINTFORMW 사토리는 세 개의 눈으로 %마스터를% 반쯤 노려보며 고간을 마찰시키고 있다
+			ELSEIF TALENT:연인
+				PRINTFORMW 「...문지르는 거로 끝?」
+				PRINTFORMW 「그래도 저희 연인인데...좀 더 대담한 짓도...」
+				PRINTFORMW 「...우으으」
+				PRINTFORMW 사토리는 어딘가 뾰로통해 보이는 표정으로 성기를 마찰시켜 왔다
+			ELSEIF TALENT:연모||TALENT:사모
+				PRINTFORMW 「문지르는 것 뿐이라...」
+				PRINTFORMW 「확실히 기분 좋기는 하지만...그래도 뭔가...」
+				PRINTFORMW 사토리는 순순히 자지를 문대주면서도 무언가 불만스러운 듯한 표정을 짓고 있다
+			ELSEIF TALENT:섹프||TALENT:애욕
+				PRINTFORMW 「솔직히, 넣어도 상관은 없는데...」
+				PRINTFORMW 「이것저것 할건 다 해서 이제사 처녀라고 할 수도 없으니깐...」
+				PRINTFORMW 사토리는 작게 투덜거렸다
+			ELSE
+				PRINTFORMW 「...넣지 않고 비빈다니, 그거로 되나요?」
+				PRINTFORMW 「이상할거 같은데...」
+				PRINTFORMW 사토리는 반신반의하면서도 순순히 가랑이로 자지를 비비기 시작했다 
+			ENDIF
+		ELSEIF ESTRUS_CYCLE([[사토리]]) >= 100 && CFLAG:생해금 != 2
+			;위험일
+			IF MARK:반발각인 == 3&&!TALENT:연모
+				PRINTFORMW 「실수로라도 넣으면 안돼, 넣으면...나라도 화낼거야」
+				PRINTFORMW 사토리는 3개의 눈으로 %마스터를% 노려보고 있다
+			ELSEIF TALENT:연인||TALENT:연모||TALENT:사모
+				PRINTFORMW 「...안에 넣으면 절대 안돼요?」
+				PRINTFORMW 「나중에 잔뜩 해줄테니까 오늘은 이거로만...」
+				PRINTFORMW 영 못미더운지 재차 강조하고 있다
+			ELSEIF TALENT:섹프||TALENT:애욕
+				PRINTFORMW 「이거, 감질나네...오늘이 그 날만 아니었어도...」
+				PRINTFORMW 「...아아 뭔가 아쉬워」
+			ELSE
+				PRINTFORMW 「...실수로라도, 넣지는 마세요」
+			ENDIF
+		ELSE
+			IF MARK:반발각인 == 3&&!TALENT:연모
+				PRINTFORMW 「...넣지 않는건 좋지만...」
+				PRINTFORMW 「이제 와서 그런건 무슨 소용인가 싶기도 하네...」
+			ELSEIF TALENT:연인||TALENT:연모||TALENT:사모
+				PRINTFORMW 「문지르기만 할 뿐인데...생각보단 기분 좋아」
+				PRINTFORMW 「가끔은 이것도 괜찮을지도...」
+			ELSEIF TALENT:섹프||TALENT:애욕
+				PRINTFORMW 「안 넣고? 문지르기만 하는건가요?」
+				PRINTFORMW 「넣는 편이 더 기분 좋지 않을까나...」
+			ELSE
+				PRINTFORMW 「문지르기만 하는 것도, 생각보단 기분 좋네...」
+			ENDIF
+		ENDIF
 		RETURN 1
 	ENDIF
 	;기본세트
