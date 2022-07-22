@@ -600,19 +600,93 @@ IF LOCAL
 	;기본세트
 	;시간(時姦)중
 	IF FLAG:70
-		PRINTFORMW 
-		RETURN 1
-	;연모
-	ELSEIF TALENT:연모
-		PRINTFORMW 
-		RETURN 1
-	;괘씸3
-	ELSEIF MARK:괘씸각인 == 3
-		PRINTFORMW 
 		RETURN 1
 	;그 이외
 	ELSE
-		PRINTFORMW 
+		;PRINTFORMW 「」
+		IF MARK:반발각인 == 3 && !TALENT:연모
+			SELECTCASE RAND:3
+				CASE 0
+					PRINTFORMW 「어디든지 비비기만 하면 만족인걸까나...」
+					PRINTFORMW 「나야 편하니 상관은 없지만」
+				CASE 1
+					IF TALENT:처녀 || (ESTRUS_CYCLE([[사토리]]) >= 100 && CFLAG:생해금 != 2)
+						PRINTFORMW 「혹시라도 넣으려 하진 마세요」
+						PRINTFORMW 「...생각이라도 했다간, 화내는 거론 안 끝낼거야」
+					ELSE
+						PRINTFORMW 「굳이 가랑이에 하겠다니, 취향이 독특하네」
+						PRINTFORMW 「...아니면, 내 허벅지가 그렇게나 마음에 든 걸까나?」
+					ENDIF
+				CASE 2
+					IF ABL:C감각 >= 5
+						PRINTFORMW 「이, 이거...자극이...♥」
+						PRINTFORMW 「아직도 멀었어...? 읏...♥」
+						PRINTFORMW 사토리는 전신을 파르르 떨고 있다
+					ELSE
+						PRINTFORMW 「은근히...기분 좋은게 올라오네...」
+						PRINTFORMW 「나름 중독적인걸...」
+					ENDIF
+			ENDSELECT
+		ELSEIF TALENT:연인||TALENT:연모||TALENT:사모
+			SELECTCASE RAND:3
+				CASE 0
+					PRINTFORMW 「자지 왔다갔다 하는게...뭔가 진짜 하고 있는거 같네요...♥」
+					IF TALENT:처녀
+						PRINTFORMW 사토리는 얼굴을 붉혔다
+					ELSE
+						PRINTFORMW 「...이대로 해버릴까나♥」
+					ENDIF
+				CASE 1
+					PRINTFORMW 「자지가 야한 물로 질척해지고 있어...굉장히 음란해 보이네요」
+					PRINTFORMW 「...%사마스터의% 자지도, 저만큼 기분 좋아지고 있나요? 후후...♥」
+					PRINTFORMW 사토리는 생글생글 웃어보이고 있다
+				CASE 2
+					IF ABL:C감각 >= 5
+						PRINTFORMW 「이, 이거...자극이...♥」
+						PRINTFORMW 「아직도 더 해야 해요...? 읏...♥」
+						PRINTFORMW 사토리는 전신을 파르르 떨고 있다
+					ELSE
+						PRINTFORMW 「은근히...기분 좋은게 올라오네...」
+						PRINTFORMW 「나름 중독적인걸...」
+					ENDIF
+			ENDSELECT
+		ELSEIF TALENT:섹프||TALENT:애욕
+			SELECTCASE RAND:2
+				CASE 0
+					PRINTFORMW 「허벅지에 비비는거로 끝?」
+					PRINTFORMW 「확실히 기분 좋기야 하지만...」
+					PRINTFORMW 사토리는 약간 뾰로통한 표정이다
+				CASE 1
+					IF ABL:C감각 >= 5
+						PRINTFORMW 「이, 이거...자극이...♥」
+						PRINTFORMW 「아직도 더 해야 해...? 읏...♥」
+						PRINTFORMW 사토리는 전신을 파르르 떨고 있다
+					ELSE
+						PRINTFORMW 「이것 나름대로 괜찮긴 한데...」
+						IF TALENT:처녀
+							PRINTFORMW 「...안에 넣으면, 얼마나 기분 좋은걸까」
+						ELSE
+							PRINTFORMW 「...그래도 본방보다는 역시 모자란걸요」
+							PRINTFORMW 사토리는 입술을 삐죽였다
+						ENDIF
+					ENDIF
+			ENDSELECT
+		ELSE
+			SELECTCASE RAND:2
+				CASE 0
+					PRINTFORMW 「허벅지로도 충분히 기분 좋아지는구나...」
+					PRINTFORMW 「...어디든지 비비기만 하면 되는걸까나」
+				CASE 1
+					IF ABL:C감각 >= 5
+						PRINTFORMW 「이, 이거...자극이...♥」
+						PRINTFORMW 「아직도 더 해야 해...? 읏...♥」
+						PRINTFORMW 사토리는 전신을 파르르 떨고 있다
+					ELSE
+						PRINTFORMW 「은근히...기분 좋은게 올라오네...」
+						PRINTFORMW 「나름 중독적인걸...」
+					ENDIF
+			ENDSELECT
+		ENDIF
 		RETURN 1
 	ENDIF
 ENDIF
