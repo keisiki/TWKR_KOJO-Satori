@@ -321,7 +321,8 @@ ELSEIF CFLAG:3000 == 1
 		IF EXP:MASTER:시간경험 > 5
 			PRINTFORMW 「시간을 멈추고, 여자를 범해서, 그렇게 좋았던가요?」
 			폭로개수++
-		ELSEIF EXP:MASTER:수면간경험 > 5
+		ENDIF
+		IF EXP:MASTER:수면간경험 > 5
 			PRINTFORMW 「...허...잠든 사람을 억지로 범하다니...」
 			폭로개수++
 		ENDIF
@@ -336,7 +337,8 @@ ELSEIF CFLAG:3000 == 2
 		IF EXP:MASTER:시간경험 > 5
 			PRINTFORMW 「시간을 멈추고, 여자를 범해서, 그렇게 좋았던가요?」
 			폭로개수++
-		ELSEIF EXP:MASTER:수면간경험 > 5
+		ENDIF
+		IF EXP:MASTER:수면간경험 > 5
 			PRINTFORMW 「...허...잠든 사람을 억지로 범하다니...」
 			폭로개수++
 		ENDIF
@@ -381,14 +383,12 @@ RETURN 1
 @M_KOJO_SPEVENT_K49_1(ARG,ARG:1)
 ;口上主はTARGET
 ;地の文表示
-CALL 아나타평가
 CALL SPEVENT_MESSAGE_1(ARG,ARG:1)
 ;--------------------------------------------------
 ;記入チェック（=0, 非表示、1, 表示）
 LOCAL = 1
 ;-------------
 ;地の文
-CALL SPEVENT_MESSAGE_1(ARG,ARG:1)
 IF LOCAL
 	PRINTFORML  
 	;キスをキャンセルしたい場合は以下を開放
@@ -442,7 +442,6 @@ RETURN 1
 ;口上主はTARGET
 ;地の文表示
 CALL SPEVENT_MESSAGE_2(ARG,ARG:1)
-CALL 아나타평가
 ;--------------------------------------------------
 ;記入チェック（=0, 非表示、1, 表示）
 LOCAL = 1
@@ -484,10 +483,10 @@ IF LOCAL
 		ELSEIF RESULT == 3
 			PRINTFORMW 「..네, 뭐...」
 			PRINTFORMW 「...후우우...저기, 잠시만 제 얘기...들어주실래요?」
-		ELSEIF RESULT == 4||TALENT:섹프||TALENT:애욕
+		ELSEIF RESULT == 4&&(TALENT:섹프||TALENT:애욕)
 			PRINTFORMW 「...그런가요, 단순한 섹프...하아아...」
 			PRINTFORMW 「단순한 섹프...여도, 투정 한 번 부리고 싶네요, 들어줄래요?」
-		ELSEIF RESULT == 5
+		ELSEIF RESULT == 5&&TALENT:38:7
 			PRINTFORMW 「...그런가요, 역시...그럴줄은 알고 있었는데...」
 			PRINTFORMW 「그렇지만 하고 싶은 말이 있어요, 잠깐만...들어주실래요?」
 		ELSE
@@ -1075,7 +1074,7 @@ IF LOCAL
 					CASE 2
 						PRINTFORMW 「아, %MASTERNAME:49%」
 						PRINTFORMW 사토리는 %마스터를% 발견하고 손을 흔들어보였다
-						PRINTFORMW 「오래간만이에요, 그러니까...{CFLAG:1600}일 만이었나요? {CFLAG:1600 + RAND:5 - 3}일?」
+						PRINTFORMW 「오래간만이에요, 그러니까...{CFLAG:5010}일 만이었나요? {CFLAG:5010 + RAND:5 - 3}일?」
 						PRINTFORMW 「하도 오래되서 기억도 안나네요...너무하셔라...」
 						PRINTFORMW 「매일매일 보고싶었는데, 전혀 찾으러 올 기미도 없고...」
 						PRINTFORMW 「정말이지, 가끔씩 얼굴이라도 비춰주세요, 네?」
@@ -1724,7 +1723,7 @@ IF LOCAL
 				ENDIF
 			ENDIF
 		ELSEIF TALENT:연인
-			SELECTCASE RAND:3
+			SELECTCASE RAND:4
 				CASE 0
 					PRINTFORMW 「아, %MASTERNAME:49%」
 					PRINTFORMW 사토리는 %마스터를% 보고 얼굴이 환해졌다
@@ -1735,7 +1734,7 @@ IF LOCAL
 				CASE 3
 					PRINTFORMW 「...♥」
 			ENDSELECT
-			SELECTCASE RAND:3
+			SELECTCASE RAND:4
 				CASE 0
 					PRINTFORMW 「이런데서 다 만나네요 후후...」
 					PRINTFORMW 「모처럼 만났는데 혹시 데이트라도 하실래요?」
@@ -1775,7 +1774,7 @@ IF LOCAL
 						PRINTFORMW 사토리는 어쩐지 기쁜듯한 표정을 지었다
 				ENDSELECT
 			ELSE
-				SELECTCASE RAND:3
+				SELECTCASE RAND:2
 					CASE 0
 						PRINTFORMW 「아, 반갑습니다...」
 						PRINTFORMW 사토리는 %마스터를% 눈치채고 인사를 건내왔다
@@ -2990,7 +2989,7 @@ IF LOCAL
 					ENDIF
 				ENDIF
 			ELSEIF TALENT:연인
-				SELECTCASE RAND:3
+				SELECTCASE RAND:4
 					CASE 0
 						PRINTFORMW 「으응...아...좋은 아침입니다...」
 						PRINTFORMW 비몽사몽한 채로 눈을 뜬 사토리는 대뜸 양 팔을 벌린채 가만히 누워있었다
@@ -11172,9 +11171,10 @@ IF LOCAL
 								IF RAND:2 == 0
 									;50% 확률로 자기가 사먹음
 									TCVAR:피임약 = 1
+								ELSE
+									TCVAR:씨받음자각 = 1
+									CFLAG:몸으로기억_어머니 = 1
 								ENDIF
-								TCVAR:씨받음자각 = 1
-								CFLAG:몸으로기억_어머니 = 1
 							ENDIF
 						ENDIF
 					ELSE
@@ -13906,7 +13906,7 @@ IF LOCAL
 			ELSEIF TALENT:연인
 				;PRINTFORMW 「」
 				;경산부+연인
-				SELECTCASE RAND:3
+				SELECTCASE RAND:2
 					CASE 0
 						PRINTFORMW 「...생겼네에...으응...어쩐지 요즘 나른하더라...」
 						IF CFLAG:생해금 == 2
@@ -16270,7 +16270,7 @@ IF LOCAL
 						PRINTFORMW 「후우...네, 일단은 저기 앉아 계실래요?」
 						PRINTFORMW 사토리의 입꼬리가 왜인지 올라간다...
 						BASE:무드 = MIN(10000,BASE:무드+3500)
-						BASE:이성 = MAX(0,BASE:무드-7000)
+						BASE:이성 = MAX(0,BASE:이성-7000)
 						PALAM:욕정 += 5000
 					ELSE
 						SELECTCASE RAND:2
@@ -16503,7 +16503,7 @@ IF !FLAG:70
 					PRINTFORMW 그러나 몰려드는 졸음은 사토리의 눈을 도로 닫아버렸다
 			ENDSELECT
 		ELSE
-			SELECTCASE RAND:3
+			SELECTCASE RAND:5
 				CASE 0
 					PRINTFORMW 「...누구...?」
 					PRINTFORMW 사토리는 옷이 벗겨지는 감촉에 잠에서 깬것 같다
@@ -17661,7 +17661,7 @@ IF LOCAL
 					PRINTFORMW 사토리는 행복해 보이는 표정으로 %마스터의% 품에 파고들어왔다..
 			ENDSELECT
 		ELSEIF TALENT:섹프
-			SELECTCASE RAND:3
+			SELECTCASE RAND:4
 				CASE 0
 					PRINTFORMW 「으으응...♥ 역시 혼자 하는거보단 이게 낫다니깐요」
 					PRINTFORMW 「뭐어, 그러니까 다음에도 쌓이면 부탁드릴게요?」

@@ -5293,7 +5293,7 @@ IF LOCAL
 						IF MARK:반발각인 == 3 && !TALENT:연인
 							SELECTCASE RAND:2
 								CASE 0
-									IF CFLAG:초기위치 == CFLAG:현재위치 && CFLAG:MASTER:현재위치 != CFLAG:현재위치
+									IF CFLAG:초기위치 == CFLAG:현재위치 && CFLAG:MASTER:초기위치 != CFLAG:현재위치
 										PRINTFORMW 「...방 더러운건 저도 알아요, 치울 겨를이 없었을 뿐이니깐」
 										PRINTFORMW 사토리는 얼굴을 붉힌채 둘러대고 있다
 									ELSE
@@ -5306,7 +5306,7 @@ IF LOCAL
 										ENDIF
 									ENDIF
 								CASE 1
-									IF CFLAG:초기위치 == CFLAG:현재위치 && CFLAG:MASTER:현재위치 != CFLAG:현재위치
+									IF CFLAG:초기위치 == CFLAG:현재위치 && CFLAG:MASTER:초기위치 != CFLAG:현재위치
 										PRINTFORMW 「...요근래 바빠서 치우지 못한거 뿐이에요」
 										PRINTFORMW 「평소에 이러고 살진 않아」
 										PRINTFORMW 열심히 변명하고 있지만 사토리가 바쁠 일이 있었나 싶은 생각이 든다
@@ -5316,7 +5316,7 @@ IF LOCAL
 									ENDIF
 							ENDSELECT
 						ELSE
-							IF CFLAG:초기위치 == CFLAG:현재위치 && CFLAG:MASTER:현재위치 != CFLAG:현재위치
+							IF CFLAG:초기위치 == CFLAG:현재위치 && CFLAG:MASTER:초기위치 != CFLAG:현재위치
 								SELECTCASE RAND:3
 									CASE 0
 										PRINTFORMW 「음...치워주신다니 감사하긴 한데...」
@@ -5357,7 +5357,7 @@ IF LOCAL
 					CASE 1,2
 						;조금 더럽
 						IF MARK:반발각인 == 3
-							IF CFLAG:초기위치 == CFLAG:현재위치 && CFLAG:MASTER:현재위치 != CFLAG:현재위치
+							IF CFLAG:초기위치 == CFLAG:현재위치 && CFLAG:MASTER:초기위치 != CFLAG:현재위치
 								SELECTCASE RAND:3
 									CASE 0
 										PRINTFORMW 사토리는 시큰둥하게 %마스터의% 청소를 관람하고 있다
@@ -5381,7 +5381,7 @@ IF LOCAL
 								ENDSELECT
 							ENDIF
 						ELSE
-							IF CFLAG:초기위치 == CFLAG:현재위치 && CFLAG:MASTER:현재위치 != CFLAG:현재위치
+							IF CFLAG:초기위치 == CFLAG:현재위치 && CFLAG:MASTER:초기위치 != CFLAG:현재위치
 								SELECTCASE RAND:3
 									CASE 0
 										PRINTFORMW 「아, 거기 종이뭉치는 쓸거니까 치우지 마세요」
@@ -5462,7 +5462,7 @@ IF LOCAL
 			ELSEIF MARK:반발각인 == 3 && !TALENT:연인
 				SELECTCASE TFLAG:194
 					CASE 3
-						IF CFLAG:초기위치 == CFLAG:현재위치 && CFLAG:MASTER:현재위치 != CFLAG:현재위치
+						IF CFLAG:초기위치 == CFLAG:현재위치 && CFLAG:MASTER:초기위치 != CFLAG:현재위치
 							SELECTCASE RAND:3
 								CASE 0
 									PRINTFORMW 「...이, 이렇게 더러운건 이번만 이니깐」
@@ -5502,7 +5502,7 @@ IF LOCAL
 							ENDSELECT
 						ENDIF
 					CASE 1,2
-						IF CFLAG:초기위치 == CFLAG:현재위치 && CFLAG:MASTER:현재위치 != CFLAG:현재위치
+						IF CFLAG:초기위치 == CFLAG:현재위치 && CFLAG:MASTER:초기위치 != CFLAG:현재위치
 							SELECTCASE RAND:3
 								CASE 0
 									PRINTFORMW 「굳이 안 도와줘도 되는데...」
@@ -5540,7 +5540,7 @@ IF LOCAL
 							ENDSELECT
 						ENDIF
 					CASE 0
-						IF CFLAG:초기위치 == CFLAG:현재위치 && CFLAG:MASTER:현재위치 != CFLAG:현재위치
+						IF CFLAG:초기위치 == CFLAG:현재위치 && CFLAG:MASTER:초기위치 != CFLAG:현재위치
 							SELECTCASE RAND:3
 								CASE 0
 									PRINTFORMW 「이정도면 깔끔한거 같은데 뭘 또...」
@@ -5582,7 +5582,7 @@ IF LOCAL
 				ENDSELECT
 			ELSE
 				;대부분의 케이스
-				IF CFLAG:초기위치 == CFLAG:현재위치 && CFLAG:MASTER:현재위치 != CFLAG:현재위치
+				IF CFLAG:초기위치 == CFLAG:현재위치 && CFLAG:MASTER:초기위치 != CFLAG:현재위치
 					CALL ST_통상방청소
 				ELSE
 					CALL ST_통상청소
@@ -8269,7 +8269,7 @@ IF LOCAL
 		IF RAND:5 == 0
 			;사토리의 책(중에서도 부끄러운것)
 			IF MARK:반발각인 == 3 && !TALENT:연인
-				SELECTCASE RAND:1
+				SELECTCASE RAND:2
 					CASE 0
 						PRINTFORMW 「켁...그, 그 책은...!」
 						PRINTFORMW 사토리는 순간 당황한 표정을 지었다
@@ -8280,7 +8280,7 @@ IF LOCAL
 						PRINTFORMW ...작가명에는 '지저의 K씨' 라고 적혀 있었다
 				ENDSELECT
 			ELSEIF TALENT:연인
-				SELECTCASE RAND:1
+				SELECTCASE RAND:2
 					CASE 0
 						PRINTFORMW 「아...그건...」
 						PRINTFORMW 사토리는 %마스터가% 집어든 책을 보곤 화들짝 놀란 표정을 지었다
@@ -8291,7 +8291,7 @@ IF LOCAL
 						PRINTFORMW 치정소설이란 분류에 놓여있던 그 책의 제목은 '%TEXTR("지저로 온 왕자님/이세게에서 온 그가 너무 신경쓰인다/지저 연애담")%'이라고 쓰여 있었다...
 				ENDSELECT
 			ELSEIF TALENT:연모||TALENT:사모||TALENT:애욕||TALENT:섹프
-				SELECTCASE RAND:1
+				SELECTCASE RAND:2
 					CASE 0
 						PRINTFORMW 「...앗, 그 책은...」
 						PRINTFORMW 「옛날에 썼던 책인데, 이게 여기에 있다니...」
@@ -8309,7 +8309,7 @@ IF LOCAL
 			ENDIF
 		ELSE
 			IF MARK:반발각인 == 3 && !TALENT:연인
-				SELECTCASE RAND:1
+				SELECTCASE RAND:2
 					CASE 0
 						PRINTFORMW 「흐음- 그런쪽이 취향인걸까나」
 						PRINTFORMW 사토리는 %마스터가% 집어든 책을 유심히 보고 있다
@@ -8317,7 +8317,7 @@ IF LOCAL
 						PRINTFORMW 「흐음흐음...그런 책이 좋은거구나...참고해 둬야겠네」
 				ENDSELECT
 			ELSEIF TALENT:연인
-				SELECTCASE RAND:1
+				SELECTCASE RAND:2
 					CASE 0
 						PRINTFORMW 「헤에...그런 책이 좋은거구나...」
 						PRINTFORMW 「다음부터 참고해야 겠네」
@@ -8326,7 +8326,7 @@ IF LOCAL
 						PRINTFORMW 사토리는 %마스터가% 집어든 책을 유심히 보고 있다
 				ENDSELECT
 			ELSEIF TALENT:연모||TALENT:사모||TALENT:애욕||TALENT:섹프
-				SELECTCASE RAND:1
+				SELECTCASE RAND:2
 					CASE 0
 						PRINTFORMW 「으음- 이 책은 잘 안 팔리네에...」
 						PRINTFORMW 사토리는 옆에서 몇몇개의 책을 보며 궁시렁거리고 있었다
@@ -9091,7 +9091,7 @@ IF LOCAL
 					PRINTFORMW 「따라가기 조금 힘드니깐」
 			ENDSELECT
 		ELSE
-			SELECTCASE RAND:3
+			SELECTCASE RAND:4
 				CASE 0
 					PRINTFORMW 「......」
 					PRINTFORMW 사토리는 말없이 %마스터의% 손에 이끌려지고 있다
