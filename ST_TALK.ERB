@@ -970,7 +970,7 @@ ENDSELECT
 @ST_통상스킨십
 #DIM 이전대화, 2
 #DIM DYNAMIC 대화선택
-#DIM CONST 대화개수 = 5
+#DIM CONST 대화개수 = 6
 대화선택 = ST_대사섞기(대화개수, 이전대화:0 , 이전대화:1)
 이전대화:1 = 이전대화:0
 이전대화:0 = 대화선택
@@ -1672,13 +1672,13 @@ SELECTCASE 대화선택
         PRINTFORML [0] 그렇다
         PRINTFORML [1] 아니다
         INPUT
-        IF !RESULT
+        IF RESULT
             PRINTFORMW 사토리는 내색은 않지만 기뻐보이는 눈치였다
             TALENT:기분 = 1
         ELSE
             PRINTFORMW 「...역시 그렇겠죠」
             PRINTFORMW 사토리는 약간 시무룩해졌다...
-            IF TALENT:기분
+            IF TALENT:기분 == 1
                 TALENT:기분 = 0
             ENDIF
         ENDIF
@@ -1704,7 +1704,7 @@ SELECTCASE 대화선택
             PRINTFORMW 「그런가요...」
             PRINTFORMW 「노력은 해봐야겠네요, 될지는 모르겠지만」
             PRINTFORMW 어쩐지 부루퉁해보이는 표정이 되었다...
-            IF TALENT:기분
+            IF TALENT:기분 == 1
                 TALENT:기분 = 0
             ENDIF
         ENDIF
@@ -2578,7 +2578,7 @@ ELSE
                 ENDSELECT
         ENDSELECT
     ELSEIF TALENT:연인||TALENT:연모||TALENT:사모||TALENT:애욕||TALENT:섹프
-        SELECTCASE RAND:3
+        SELECTCASE RAND:4
             CASE 0
                 PRINTFORMW 「...으에에...」
             CASE 1
