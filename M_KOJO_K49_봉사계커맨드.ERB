@@ -745,7 +745,7 @@ RETURN RESULT
 @M_KOJO_MESSAGE_COM_K49_85_1
 ;-------------------------------------------------
 ;기입체크 (=0, 비표시、1, 표시)
-LOCAL = 0
+LOCAL = 1
 ;-------------------------------------------------
 IF LOCAL
 	;-------------------------------------------------
@@ -753,28 +753,36 @@ IF LOCAL
 	;-------------------------------------------------
 	;처음
 	;기입체크
-	LOCAL:1 = 0
+	LOCAL:1 = 1
 	;-------------------------------------------------
 	IF LOCAL:1 && FIRSTTIME(SELECTCOM)
-		PRINTFORMW 
+		;사토리는 기본 사양으로 새드
+		IF MARK:반발각인 == 3 && !TALENT:연인
+			PRINTFORMW 「밟아줬으면 한다니, 그러다가 뭉개버릴지도 모르는데 괜찮나요?」
+			PRINTFORMW 「...이 무슨 대담함이람, 아니, 그저 바보같은 변태일 뿐인가」
+			PRINTFORMW 사토리는 어이없어 하는 표정을 지으며 살며시 자지를 밟아왔다
+		ELSEIF TALENT:연인||TALENT:연모||TALENT:사모
+			PRINTFORMW 「...발로 해달라니, 묘한 주문을 하시네요」
+			PRINTFORMW 「다른곳도 많은데 굳이 발이라니, 정말 변태라니깐」
+			PRINTFORMW 사토리는 가볍게 웃으며 그 부드러운 발바닥으로 %마스터의% 자지를 살며시 밟아왔다 
+		ELSEIF TALENT:섹프||TALENT:애욕
+			PRINTFORMW 「발로 해달라니, 특이한 주문이네요...」
+			PRINTFORMW 「...뭐, 해달라고 하시니깐 해드리긴 하겠지만」
+			PRINTFORMW 「힘조절, 잘 못해도 상관 없겠죠? 후후후...♥」
+			PRINTFORMW 사토리는 어쩐지 즐거운듯한 웃음을 띄고 있다
+		ELSE
+			PRINTFORMW 「밟아줬음 한다는 걸까나, 희한한 취향이네」
+			PRINTFORMW 「...뭐어, 해달라고 하니 해주긴 하겠지만...힘조절 실수해도 따지지 마세요?」
+			PRINTFORMW 사토리는 어쩐지 히죽히죽 웃고 있다
+		ENDIF
 		RETURN 1
 	ENDIF
 	;기본세트
 	;시간(時姦)중
 	IF FLAG:70
-		PRINTFORMW 
 		RETURN 1
-	;연모
-	ELSEIF TALENT:연모
-		PRINTFORMW 
-		RETURN 1
-	;괘씸3
-	ELSEIF MARK:괘씸각인 == 3
-		PRINTFORMW 
-		RETURN 1
-	;그 이외
 	ELSE
-		PRINTFORMW 
+		
 		RETURN 1
 	ENDIF
 ENDIF
