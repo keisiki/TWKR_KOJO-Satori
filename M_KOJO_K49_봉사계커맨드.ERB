@@ -782,7 +782,62 @@ IF LOCAL
 	IF FLAG:70
 		RETURN 1
 	ELSE
-		
+		IF MARK:반발각인 == 3 && !TALENT:연인
+			SELECTCASE RAND:3
+				CASE 0
+					PRINTFORMW 「힘 조금만 잘못 줬다간 곤죽이 될텐데도 하고 싶은 걸까나」
+					PRINTFORMW 「...그랬다간 내 발도 더러워지니 안 할 거긴 하지만」
+				CASE 1
+					PRINTFORMW 「발에 밟히는게 그렇게나 좋은걸까나...」
+					PRINTFORMW 「고약한 심성에 맞는 고약한 취향이네」
+				CASE 2
+					PRINTFORMW 「이런걸 좋아하는건 마조 변태밖에 없다구요?」
+					PRINTFORMW 「여기가 단단해진단건...자기가 그런 사람이란걸 인정하는 걸까?」
+					PRINTFORMW 사토리는 어딘가 즐거워 보이는 듯한 표정으로 %마스터의% 자지를 짓누르고 있다
+			ENDSELECT
+		ELSEIF TALENT:연인||TALENT:연모||TALENT:사모
+			SELECTCASE RAND:3
+				CASE 0
+					PRINTFORMW 「발 밑에서 불끈불끈거리고 있어...그렇게나 마음에 드는걸까나...♥」
+					PRINTFORMW 사토리는 웃음을 흘리며 %마스터의% 자지를 가볍게 짓누르고 있다
+				CASE 1
+					PRINTFORMW 「다리로 해드리면 기쁜가요? 정말이지 변태라니깐」
+					PRINTFORMW 「...뭐어 그런 변태같은 부탁도 %사마스터가% 원하신다면야, 얼마든지 해드릴거지만♥」
+					PRINTFORMW 사토리는 어딘가 즐거워 보이는 표정으로 %마스터의% 자지를 짓누르고 있다
+				CASE 2
+					PRINTFORMW 「안된다구요, 이런거로 느끼다니...보통 사람은 밟히는 거로 기분 좋아 하지 않는단 말예요」
+					PRINTFORMW 「밟히는거로 느끼면 변태잖아요? 그렇담 %사마스터는% 변태였군요♥」
+					PRINTFORMW 「그런 마조 변태기질로 돌아다니면 안되니깐, 교정될때까지 괴롭혀 드리도록 하죠♥」
+					PRINTFORMW 어쩐지 즐거워 보이는 표정이다
+			ENDSELECT
+		ELSEIF TALENT:섹프||TALENT:애욕
+			SELECTCASE RAND:3
+				CASE 0
+					PRINTFORMW 「다리로 해드리면 기쁜가요? 정말이지 변태라니깐」
+					PRINTFORMW 「...뭐어 그런 변태같은 부탁도 %사마스터가% 원하신다면야, 얼마든지 해드릴거지만♥」
+					PRINTFORMW 사토리는 어딘가 즐거워 보이는 표정으로 %마스터의% 자지를 짓누르고 있다
+				CASE 1
+					PRINTFORMW 「후후후...발 밑에서 움찔거리는거, 엄청 귀엽네...♥」
+					PRINTFORMW 「그거 아시나요? 조금 힘 주면 더 불끈거리는거? 아픈데도 기분 좋은건가요?」
+					PRINTFORMW 「정말이지 변태라니깐...후후후♥」
+				CASE 2
+					PRINTFORMW 「정말, 밟히는거로 느끼면 변태잖아요? %사마스터는% 변태인가요?」
+					PRINTFORMW 「이러는 와중에도 계속 빨딱빨딱 서있고, 변태가 확실하네요」
+					PRINTFORMW 「그런 마조 변태기질로 밖에 돌아다니면 안되니깐, 교정될때까지 괴롭혀 드리도록 하죠♥」
+					PRINTFORMW 어쩐지 즐거워 보이는 표정이다
+			ENDSELECT
+		ELSE
+			SELECTCASE RAND:2
+				CASE 0
+					PRINTFORMW 「이런게 좋다니, 그래서야 완전히 변태잖아요?」
+					PRINTFORMW 「어쩐지 꺼림칙해지는걸...아니, 이렇게 말해주면 오히려 기뻐하려나?」
+				CASE 1
+					PRINTFORMW 「밟히는거로 느끼다니, 보통 사람들은 이런거로 느끼지 않는다구요?」
+					PRINTFORMW 「점점 딱딱해지는걸 보니 %사마스터는% 마조 변태였나 보네요」
+					PRINTFORMW 「그런 마조 변태기질로 돌아다니면 안되니깐, 교정될때까지 괴롭혀 드리도록 하죠♥」
+					PRINTFORMW 어쩐지 즐거워 보이는 표정이다
+			ENDSELECT
+		ENDIF
 		RETURN 1
 	ENDIF
 ENDIF
