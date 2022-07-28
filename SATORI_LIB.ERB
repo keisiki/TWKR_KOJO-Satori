@@ -1033,30 +1033,30 @@ REPEAT ARG
     ENDIF
     SELECTCASE NOW_CURR
         CASE 0
-            LOCALS += 츕
+            LOCALS += "츕"
         CASE 1
-            LOCALS += 츄릅
+            LOCALS += "츄릅"
         CASE 2
-            LOCALS += 낼름
+            LOCALS += "낼름"
         CASE 3
-            LOCALS += 핥짝
+            LOCALS += "핥짝"
         CASE 4
-            LOCALS += 쪽
+            LOCALS += "쪽"
         CASE 5
-            LOCALS += 쪼옥
+            LOCALS += "쪼옥"
         CASE 6
-            LOCALS += 아음
+            LOCALS += "아음"
     ENDSELECT
     SELECTCASE RAND:3
         CASE 0
-            LOCALS += ...
+            LOCALS += "..."
         CASE 1
-            LOCALS += ,
+            LOCALS += ","
         CASE 2
             IF TALENT:연인 || TALENT:섹프 || TALENT:애욕
-                LOCALS += ♥ 
+                LOCALS += "♥ "
             ELSE
-                LOCAL +=  
+                LOCAL += " "
             ENDIF
     ENDSELECT
 REND
