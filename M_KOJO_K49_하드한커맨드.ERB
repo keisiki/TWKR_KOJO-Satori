@@ -13,7 +13,7 @@ RETURN RESULT
 @M_KOJO_MESSAGE_COM_K49_140_1
 ;-------------------------------------------------
 ;기입체크 (=0, 비표시、1, 표시)
-LOCAL = 0
+LOCAL = 1
 ;-------------------------------------------------
 IF LOCAL
 	;-------------------------------------------------
@@ -21,31 +21,75 @@ IF LOCAL
 	;-------------------------------------------------
 	;처음
 	;기입체크
-	LOCAL:1 = 0
+	LOCAL:1 = 1
 	;-------------------------------------------------
 	IF LOCAL:1 && FIRSTTIME(SELECTCOM)
-		PRINTFORMW 
+		PRINTFORMW 「...!? 읍! 으븝! 읍!」
+		PRINTFORMW 목구멍을 가득 메우는 육봉으로 숨이 막힌 사토리는 괴로운듯한 표정으로 버둥거렸다
+		PRINTFORMW 그러나 저항이 무색하게 고통과 공포가 가득한 얼굴로 목구멍을 무자비하게 희롱당할 뿐이었다
+		PRINTFORMW 서드아이 역시 당황했는지 %마스터를% 제대로 바라보지 못하고 있다...
 		RETURN 1
 	ENDIF
 	;기본세트
-	;연모
-	IF TALENT:연모
-		PRINTFORMW 
-		RETURN 1
-	;괘씸3
-	ELSEIF MARK:괘씸각인 == 3
-		PRINTFORMW 
-		RETURN 1
-	;그 이외
+	;코이시 꺼에서 파쿠리, 자가표절이라는 걸까
+	PRINTFORM 「
+	REPEAT 6
+		SELECTCASE RAND:6
+			CASE 0
+				PRINTFORM 읍
+			CASE 1
+				PRINTFORM 으읍
+			CASE 2
+				PRINTFORM 응읏
+			CASE 3
+				PRINTFORM 으읏
+			CASE 4
+				PRINTFORM 후웃
+			CASE 5
+				PRINTFORM 츄웁..
+		ENDSELECT
+		SELECTCASE RAND:2
+			CASE 0
+				PRINTFORM ..
+			CASE 1
+				PRINTFORM !
+		ENDSELECT
+	REND
+	PRINTFORML 」
+	IF MARK:반발각인 == 3 && !TALENT:연인
+		SELECTCASE RAND:2
+			CASE 0
+				PRINTFORMW 사토리는 끝나기만을 고대하며 필사적으로 %마스터의% 자지에 봉사하고 있다
+			CASE 1
+				PRINTFORMW 사토리는 고통스러워 하는 표정이다
+		ENDSELECT
+	ELSEIF TALENT:연인||TALENT:연모||TALENT:사모||TALENT:애욕
+		SELECTCASE RAND:2
+			CASE 0
+				PRINTFORMW 사토리는 불안한 듯한 시선을 보내며 조심조심 봉사를 계속하고 있다
+			CASE 1
+				PRINTFORMW 사토리는 고통에 괴로워하면서도 혀와 목구멍으로 조금씩 봉사해오고 있다
+		ENDSELECT
+	ELSEIF TALENT:섹프
+		SELECTCASE RAND:2
+			CASE 0
+				PRINTFORMW 사토리는 고통에 괴로워하면서도 혀와 목구멍으로 조금씩 봉사해오고 있다
+			CASE 1
+				PRINTFORMW 사토리는 괴로움에 눈물을 살짝 머금은채로 %마스터의% 자지에 봉사하고 있다
+		ENDSELECT
 	ELSE
-		PRINTFORMW 
-		RETURN 1
+		SELECTCASE RAND:2
+			CASE 0
+				PRINTFORMW 사토리는 고통스러워 하는 표정으로 간신히 %마스터의% 자지에 봉사하고 있다
+			CASE 1
+				PRINTFORMW 사토리는 끝나기만을 고대하며 필사적으로 %마스터의% 자지에 봉사하고 있다
+		ENDSELECT
 	ENDIF
 ENDIF
 RETURN 1
 
 ;==================================================
-;141,피스트퍽
+;141,피스트퍽 ; 존재하지 않는 커맨드 또는 거의 안 보이는 커맨드
 ;==================================================
 @M_KOJO_MESSAGE_COM_K49_141
 CALL TRAIN_MESSAGE
@@ -87,7 +131,7 @@ ENDIF
 RETURN 1
 
 ;==================================================
-;142,애널피스트
+;142,애널피스트 ; 존재하지 않는 커맨드 또는 거의 안 보이는 커맨드
 ;==================================================
 @M_KOJO_MESSAGE_COM_K49_142
 CALL TRAIN_MESSAGE
@@ -129,7 +173,7 @@ ENDIF
 RETURN 1
 
 ;==================================================
-;143,양구멍피스트
+;143,양구멍피스트 ; 존재하지 않는 커맨드 또는 거의 안 보이는 커맨드
 ;==================================================
 @M_KOJO_MESSAGE_COM_K49_143
 CALL TRAIN_MESSAGE
@@ -255,7 +299,7 @@ ENDIF
 RETURN 1
 
 ;==================================================
-;146,관장기+플러그
+;146,관장기+플러그 ; 존재하지 않는 커맨드 또는 거의 안 보이는 커맨드
 ;==================================================
 @M_KOJO_MESSAGE_COM_K49_146
 CALL TRAIN_MESSAGE
@@ -304,7 +348,7 @@ ENDIF
 RETURN 1
 
 ;==================================================
-;147,확장벌룬
+;147,확장벌룬 ; 존재하지 않는 커맨드 또는 거의 안 보이는 커맨드
 ;==================================================
 @M_KOJO_MESSAGE_COM_K49_147
 CALL TRAIN_MESSAGE
@@ -353,7 +397,7 @@ ENDIF
 RETURN 1
 
 ;==================================================
-;148,애널전극
+;148,애널전극 ; 존재하지 않는 커맨드 또는 거의 안 보이는 커맨드
 ;==================================================
 @M_KOJO_MESSAGE_COM_K49_148
 CALL TRAIN_MESSAGE
