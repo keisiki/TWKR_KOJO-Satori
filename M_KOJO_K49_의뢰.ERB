@@ -1,8 +1,16 @@
 ﻿@M_KOJO_IRAIEXIST_K49(IRAI_NO)
 #DIM  IRAI_NO   ;억제시킬 일반의뢰 번호
 ;움직임을 억제하고 싶다먼, "RETURN 0"으로 변경할 것
+IF MARK:49:반발각인 == 3
+	IF TALENT:49:연인
+	ELSEIF TALENT:49:애욕
+	ELSEIF TALENT:49:연모
+	ELSE
+		;조건 안 걸리면 전부 불허
+		RETURN 0
+	ENDIF
+ENDIF
 SELECTCASE IRAI_NO
-	[SKIPSTART]
 	;청소를 도와줘 (발동조건: TARGET이 메인맵 거주)
 	CASE 1
 		RETURN 1
@@ -11,19 +19,19 @@ SELECTCASE IRAI_NO
 		RETURN 1
 	;함께 놀자 (발동조건: TARGET이 TALENT:유치 소지)
 	CASE 3
-		RETURN 1
+		RETURN 0
 	;요리를 잘하고 싶다 (발동조건: TARGET의 요리기능이 MASTER미만, MASTER의 요리기능이 2이상, 친밀이 3이상)
 	CASE 4
 		RETURN 1
 	;특훈 같이해줘 (발동조건: TARGET의 전투능력이 MASTER이하, 친밀이 2이상이며 인간 이외)
 	CASE 5
-		RETURN 1
+		RETURN 0
 	;누군가 가르쳐 줘! (발동조건: TARGET의 교양이 MASTER 이하)
 	CASE 6
-		RETURN 1
+		RETURN 0
 	;대청소가 끝나지 않는다 (발동조건: TARGET이 메인맵에 거주, 겨울 15일부터 31일까지, 친밀도가 3이상)
 	CASE 7
-		RETURN 1
+		RETURN 0
 	;편지를 보내줘 (발동조건: TARGET의 신뢰도가 30이상, TARGET에게 펜팔상대가 설정되어 있음 (FUNC_IRAI.ERB의 965행 이후에 존재)
 	CASE 8
 		RETURN 1
@@ -36,18 +44,15 @@ SELECTCASE IRAI_NO
 	;아무리 해도 찾지 못했다(누군가가 줍고 있다) (발동조건: TARGET의 신뢰도가 30 이상)
 	CASE 11
 		RETURN 1
-	[SKIPEND]
 	;혼내줘！ (발동조건: TARGET의 CSV에 전투능력이 1이상 있을 경우)
 	CASE 12
 		RETURN 1
 	;맛있는물고기가 먹고 싶네 (발동조건: 와카사기히메 이외)
 	CASE 13
 		RETURN 1
-	[SKIPSTART]
 	;현재 없음
 	CASEELSE
 		RETURN 1
-	[SKIPEND]
 ENDSELECT
 
 

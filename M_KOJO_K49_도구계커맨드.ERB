@@ -123,7 +123,7 @@ RETURN RESULT
 @M_KOJO_MESSAGE_COM_K49_41_1
 ;-------------------------------------------------
 ;기입체크 (=0, 비표시、1, 표시)
-LOCAL = 0
+LOCAL = 1
 ;-------------------------------------------------
 IF LOCAL
 	;-------------------------------------------------
@@ -142,18 +142,86 @@ IF LOCAL
 	IF FLAG:70
 		PRINTFORMW 
 		RETURN 1
-	;연모
-	ELSEIF TALENT:연모
-		PRINTFORMW 
-		RETURN 1
-	;괘씸3
-	ELSEIF MARK:괘씸각인 == 3
-		PRINTFORMW 
-		RETURN 1
 	;그 이외
 	ELSE
-		PRINTFORMW 
-		RETURN 1
+		;로터 복붙
+		IF ABL:C감각 >= 3
+			;클리 애무 복붙 및 일부 변경
+			IF TALENT:연모||TALENT:사모||TALENT:연인
+				SELECTCASE RAND:3
+					CASE 0
+						PRINTFORMW 「부, 불날거 같아...♥ 거기가 뜨거워...♥」
+						PRINTFORMW 계속된 자극에 사토리의 숨소리가 점점 더 거칠어져 갔다
+					CASE 1
+						PRINTFORMW 「히잇...♥ 그렇게 세게 문지르면...♥」
+						PRINTFORMW 사토리는 거친숨을 몰아쉬며 쏟아지는 쾌감을 견디고 있다
+					CASE 2
+						PRINTFORM 「
+						CALL ST_CLIMAX(RAND:5 + 3)
+						PRINTFORMW 」
+				ENDSELECT
+			ELSEIF TALENT:섹프||TALENT:애욕
+				SELECTCASE RAND:3
+					CASE 0
+						PRINTFORMW 「흐아앗♥ 크, 클리 기분 좋아아...♥」
+						PRINTFORMW 「아앗♥ 누르지맛♥ 안대에♥ 너무 기분 좋아♥♥」
+					CASE 1
+						PRINTFORMW 「히잇♥ 그, 그거 좋아...♥」
+						PRINTFORMW 「누르는거 좋아...♥ 클리 웅웅거리는거 기분 조아아...♥ 좀 더 세게...♥」
+					CASE 2
+						PRINTFORM 「
+						CALL ST_CLIMAX(RAND:5 + 3)
+						PRINTFORMW 」
+				ENDSELECT
+			ELSE
+				SELECTCASE RAND:2
+					CASE 0
+						PRINTFORMW 「크, 클리♥ 떨어져버려♥ 그만♥」
+						PRINTFORMW 사토리는 밀려오는 쾌감에 파들파들 떨고 있다
+					CASE 1
+						PRINTFORM 「
+						CALL ST_CLIMAX(RAND:5 + 3)
+						PRINTFORMW 」
+				ENDSELECT
+			ENDIF
+		ELSE
+			IF MARK:반발각인 == 3
+				SELECTCASE RAND:2
+					CASE 0
+						PRINTFORMW 「그, 그만...♥ 클리 이상해져...♥」
+						PRINTFORMW 끊임없는 진동이 주는 쾌감에 사토리의 숨결이 거칠어져 갔다
+					CASE 1
+						PRINTFORMW 「진동이 너무 세...으읏♥」
+						PRINTFORMW 사토리는 마사지기가 주는 쾌감에 몸을 움찔거리고 있다
+				ENDSELECT
+			ELSEIF TALENT:연인||TALENT:연모||TALENT:사모
+				SELECTCASE RAND:2
+					CASE 0
+						PRINTFORMW 「크, 클리 이상해질거 같아...가랑이가 웅웅 울려...」
+						PRINTFORMW 사토리는 계속되는 진동에 전신을 움찔거리고 있다
+					CASE 1
+						PRINTFORMW 「그만...이거, 진동 너무 강햇...♥」
+						PRINTFORMW 끊임없는 진동이 주는 쾌감에 사토리의 숨결이 거칠어져 갔다
+				ENDSELECT
+			ELSEIF TALENT:섹프||TALENT:애욕
+				SELECTCASE RAND:2
+					CASE 0
+						PRINTFORMW 「클리 웅웅거리는 느낌, 뭔가 이상야릇하게 기분 좋아...♥」
+						PRINTFORMW 「조금만 더 세게...안될까나」
+					CASE 1
+						PRINTFORMW 「이것도 나쁘진 않지만...그래도...다른게 더 나아」
+						PRINTFORMW 「...%사마스터의% 손이라던가?」
+				ENDSELECT
+			ELSE
+				SELECTCASE RAND:2
+					CASE 0
+						PRINTFORMW 「진동이 너무 세...으읏♥」
+						PRINTFORMW 사토리는 마사지기가 주는 쾌감에 몸을 움찔거리고 있다
+					CASE 1
+						PRINTFORMW 「하, 하반신이 웅웅 울려...」
+				ENDSELECT
+			ENDIF
+		ENDIF
 	ENDIF
 ENDIF
 RETURN 1
