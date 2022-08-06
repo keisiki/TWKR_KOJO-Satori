@@ -237,7 +237,7 @@ RETURN RESULT
 @M_KOJO_MESSAGE_COM_K49_42_1
 ;-------------------------------------------------
 ;기입체크 (=0, 비표시、1, 표시)
-LOCAL = 0
+LOCAL = 1
 ;-------------------------------------------------
 IF LOCAL
 	;-------------------------------------------------
@@ -245,10 +245,25 @@ IF LOCAL
 	;-------------------------------------------------
 	;처음
 	;기입체크
-	LOCAL:1 = 0
+	LOCAL:1 = 1
 	;-------------------------------------------------
 	IF LOCAL:1 && FIRSTTIME(SELECTCOM)
-		PRINTFORMW 
+		;PRINTFORMW 「」
+		IF MARK:반발각인 == 3&&!TALENT:연인
+			PRINTFORMW 「...이건 또 처음보는 도구네」
+			PRINTFORMW 「이런 변태같은 도구들은 대체 어디서 구해오는 건지...」
+			PRINTFORMW 사토리는 기가 막히다는 듯한 얼굴이다
+		ELSEIF TALENT:연인||TALENT:연모||TALENT:사모
+			PRINTFORMW 「이...이거...클리 빨아들이고 있어...」
+			PRINTFORMW 「아픈데도 어쩐지 기분 좋아서...이상해...♥」
+		ELSEIF TALENT:섹프||TALENT:애욕
+			PRINTFORMW 「크, 클리 잡고 바들거리는거...이상한 느낌이지만, 기분 좋아...♥」
+			PRINTFORMW 「이거...조금 마음에 들지도...하나 주시면 안되나요...?」
+			PRINTFORMW 클리캡이 상당히 마음에 드는 모양이다
+		ELSE
+			PRINTFORMW 「크, 클리 빨아들이고 있어...아파...」
+			PRINTFORMW 「아픈데...어쩐지 기분 좋은게 섞여서...♥」
+		ENDIF
 		RETURN 1
 	ENDIF
 	;기본세트
