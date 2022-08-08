@@ -271,24 +271,128 @@ IF LOCAL
 	IF TEQUIP:클리캡
 		;시간(時姦)중
 		IF FLAG:70
-			PRINTFORMW 
 			RETURN 1
-		;연모
-		ELSEIF TALENT:연모
-			PRINTFORMW 
-			RETURN 1
-		;괘씸3
-		ELSEIF MARK:괘씸각인 == 3
-			PRINTFORMW 
-			RETURN 1
-		;그 이외
 		ELSE
-			PRINTFORMW 
+			IF ABL:C감각 > 3
+				IF MARK:반발각인 == 3 && !TALENT:연인
+					SELECTCASE RAND:2
+						CASE 0
+							PRINTFORMW 「또...또 이거야...」
+							PRINTFORMW 사토리는 치가 떨린다는 듯이 클리캡을 노려보고 있다
+						CASE 1
+							PRINTFORMW 「이건 싫어...클리 이상하게 되버려...」
+					ENDSELECT
+				ELSEIF TALENT:섹프||TALENT:애욕
+					SELECTCASE RAND:2
+						CASE 0
+							PRINTFORMW 「아핫♥ 그건...♥」
+							PRINTFORMW 클리캡이 주는 쾌감이 마음에 들었었는지 사토리는 기쁜듯한 표정이다
+						CASE 1
+							PRINTFORMW 「이거, 부들부들 하는 느낌 너무 맘에 들어요...♥」
+							PRINTFORMW 「하나쯤 가졌으면 혼자 놀때 좋겠는데...」
+					ENDSELECT
+				ELSE
+					PRINTFORMW 「그, 그건...♥」
+					PRINTFORMW 클리캡의 쾌감을 익힌 사토리의 몸은 보는것 만으로도 움찔움찔 떨고 있다 
+				ENDIF
+			ELSE
+				IF MARK:반발각인 == 3 && !TALENT:연인
+					SELECTCASE RAND:2
+						CASE 0
+							PRINTFORMW 「또...또 그거야...」
+							PRINTFORMW 사토리는 치가 떨린다는 듯이 클리캡을 노려보고 있다
+						CASE 1
+							PRINTFORMW 「...아파서 싫은데 이건」
+							PRINTFORMW 사토리는 영 불만스러운 듯한 표정이다
+					ENDSELECT
+				ELSEIF TALENT:연인||TALENT:연모||TALENT:사모
+					SELECTCASE RAND:2
+						CASE 0
+							PRINTFORMW 「꼭 이걸 달아야 하나요...?」
+						CASE 1
+							PRINTFORMW 「...아파서 싫은데 이건」
+							PRINTFORMW 사토리는 영 불만스러운 듯한 표정이다
+					ENDSELECT
+				ELSEIF TALENT:섹프||TALENT:애욕
+					SELECTCASE RAND:2
+						CASE 0
+							PRINTFORMW 「아핫♥ 그건...♥」
+							PRINTFORMW 클리캡이 주는 쾌감이 마음에 들었었는지 사토리는 기쁜듯한 표정이다
+						CASE 1
+							PRINTFORMW 「이거, 부들부들 하는 느낌 너무 맘에 들어요...♥」
+							PRINTFORMW 「하나쯤 가졌으면 혼자 놀때 좋겠는데...」
+					ENDSELECT
+				ELSE
+					PRINTFORMW 「또 이건가요...」
+					PRINTFORMW 「...손보다는 기분 좋으려나」
+				ENDIF
+			ENDIF
 			RETURN 1
 		ENDIF
 	;해제
 	ELSE
-		PRINTFORMW
+		IF ABL:C감각 > 3
+			IF MARK:반발각인 == 3 && !TALENT:연인
+				SELECTCASE RAND:2
+					CASE 0
+						PRINTFORMW 「드...드디어 떼주는거네...」
+						PRINTFORMW 「다신 안 붙였음 좋겠는데...」
+					CASE 1
+						PRINTFORMW 「아, 아직도 다리가 후들거려...♥」
+				ENDSELECT
+			ELSEIF TALENT:연인||TALENT:연모||TALENT:사모
+				SELECTCASE RAND:2
+					CASE 0
+						PRINTFORMW 「클리가 욱신거려...」
+					CASE 1
+						PRINTFORMW 「이...이제 떼는 거구나...」
+						PRINTFORMW 「아직도 다리가 후들거려...」
+				ENDSELECT
+			ELSEIF TALENT:섹프||TALENT:애욕
+				SELECTCASE RAND:3
+					CASE 0
+						PRINTFORMW 「...벌써 끝?」
+						PRINTFORMW 「뭔가 아쉽네」
+					CASE 1
+						PRINTFORMW 「아...이제 이건 끝?」
+						PRINTFORMW 「조금 더 해도 괜찮은데」
+					CASE 2
+						PRINTFORMW 「뗀다니까 뭔가 아쉬운걸...」
+				ENDSELECT
+			ELSE
+				SELECTCASE RAND:2
+					CASE 0
+						PRINTFORMW 「...이, 이제 떼주는거야...?」
+						PRINTFORMW 「클리가 욱신거려...」
+					CASE 1
+						PRINTFORMW 「다리가 징징거리는거 같아...」
+				ENDSELECT
+			ENDIF
+		ELSE
+			IF MARK:반발각인 == 3 && !TALENT:연인
+				SELECTCASE RAND:3
+					CASE 0
+						PRINTFORMW 「...다시 안 찼으면 좋겠네」
+					CASE 1
+						PRINTFORMW 「아파...얼른 떼고 치워버려...」
+				ENDSELECT
+			ELSEIF TALENT:섹프||TALENT:애욕
+				SELECTCASE RAND:2
+					CASE 0
+						PRINTFORMW 「이제 이건 그만...?」
+						PRINTFORMW 「그래도 나름 마음에 들었는데」
+					CASE 1
+						PRINTFORMW 「아...떼버리다니...」
+				ENDSELECT
+			ELSE
+				SELECTCASE RAND:2
+					CASE 0
+						PRINTFORMW 「드디어 끝이네...」
+					CASE 1
+						PRINTFORMW 「아파라...」
+				ENDSELECT
+			ENDIF
+		ENDIF
 	ENDIF
 ENDIF
 RETURN 1
