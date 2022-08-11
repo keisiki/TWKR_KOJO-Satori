@@ -449,14 +449,14 @@ RETURN 1
 ;44,바이브
 ;==================================================
 @M_KOJO_MESSAGE_COM_K49_44
-CALL TRAIN_MESSAGE
 CALL M_KOJO_MESSAGE_COM_K49_44_1
+CALL TRAIN_MESSAGE
 RETURN RESULT
 
 @M_KOJO_MESSAGE_COM_K49_44_1
 ;-------------------------------------------------
 ;기입체크 (=0, 비표시、1, 표시)
-LOCAL = 0
+LOCAL = 1
 ;-------------------------------------------------
 IF LOCAL
 	;-------------------------------------------------
@@ -464,14 +464,83 @@ IF LOCAL
 	;-------------------------------------------------
 	;처음
 	;기입체크
-	LOCAL:1 = 0
+	LOCAL:1 = 1
 	;-------------------------------------------------
 	IF LOCAL:1 && FIRSTTIME(SELECTCOM)
 		IF TCVAR:파과 == 1
-			PRINTFORMW 
+			IF TALENT:MASTER:성별 != 1
+				IF MARK:반발각인 == 3
+					IF TALENT:연인
+						PRINTFORMW 「...아무리 그래도, 이런거에 처녀를 내다버리다니...」
+						PRINTFORMW 「처음 정도는 직접 가져가 줄 수 있잖아요, 그런데 왜...」
+						PRINTFORMW 사토리는 무언가 말하려 했지만, %마스터의% 마음을 읽고는 끝내 체념한듯한 표정이 되었다
+						PRINTFORMW 「...알았어요, 그거로 만족한다면야 처음 정도는 상관없는 일이겠죠」
+						PRINTFORMW 「좋아하는 사람이 직접 처음을 꿰뚫어 준다는건, 생각보다 어려운 꿈이었나 보네요」
+						CFLAG:3101 += 3
+					ELSE
+						IF CFLAG:3000 == 0
+							PRINTFORMW 「...어짜피 할 거라면 직접 뚫지 그래?」
+							PRINTFORMW 「아니면, 나같은 여자의 처음 따위는 받고 싶지 않다는 걸까나?」
+						ELSE
+							PRINTFORMW 「...차라리 기계 쪽에 빼앗기니 다행이라 해야 하나」
+							PRINTFORMW 「처음을 이런 변태한테 내준다고 생각하면 이쪽이 훨씬 나을지도」
+						ENDIF
+					ENDIF
+				ELSEIF TALENT:연인
+					IF CFLAG:3000 == 0
+						PRINTFORMW 「처음인데 이런거로...」
+						PRINTFORMW 「...무언가 화나게라도 했나요?」
+						PRINTFORMW 「기껏 지금까지 한번도 안 하고 참아온게, 고작 이런거로 뚫리기 위해서였다, 라는건가요...?」
+						PRINTFORMW 사토리는 어딘가 울컥한듯한 표정이었다
+						PRINTFORMW 「하아...좋아요, 이딴거...받아줄 사람 없는 막 따위, 하나도 소중하지 않으니까」
+						PRINTFORMW 「뚫어버리던가 말던가...마음대로 하세요」
+						CFLAG:3101 += 2
+					ELSE
+						PRINTFORMW 「...악취미네요, 이런 순간에 마저도 그런 말을 하다니」
+						PRINTFORMW 「처음 정도는 직접 가져가 줬으면 했는데...」
+						PRINTFORMW 「뭐어, 이걸로 만족하신다면 저는 크게 신경쓰지 않지만...」
+						PRINTFORMW 「...사랑하는 사람에게 처음을 바친다는 꿈은, 생각보다 이루기 어려웠던 거군요」
+						PRINTFORMW 사토리는 어딘가 체념한듯한 표정이다
+					ENDIF
+				ELSEIF TALENT:연모||TALENT:사모
+					IF CFLAG:3000 == 0
+						PRINTFORMW 「처음인데 이런거로...」
+						PRINTFORMW 「적어도 처음 정도는 %사마스터의% 걸로 직접 가져갔으면 했는데 말이죠」
+						PRINTFORMW 「...이 편이 더 마음에 드신다면 어쩔수 없겠죠」
+						PRINTFORMW 사토리는 어쩐지 서운한 듯한 표정이다
+						PRINTFORMW 「...사랑하는 사람에게 처음을 바친다는 꿈은, 생각보다 이루기 어려웠던 거군요」
+						CFLAG:3101 += 1
+					ELSE
+						PRINTFORMW 「...악취미네요, 이런 순간에 마저도 그런 말을 하다니」
+						PRINTFORMW 「처음 정도는 직접 가져가 줬으면 했는데...」
+						PRINTFORMW 「뭐어, 이걸로 만족하신다면 저는 크게 신경쓰지 않지만...」
+						PRINTFORMW 「...사랑하는 사람에게 처음을 바친다는 꿈은, 생각보다 이루기 어려웠던 거군요」
+						PRINTFORMW 사토리는 어딘가 체념한듯한 표정이다
+					ENDIF
+				ELSEIF TALENT:애욕
+					PRINTFORMW 「그러고보니 여태까지 이쪽으로 한 번도 안 했었네요」
+					PRINTFORMW 「...그런데 이제와서 그런거로 처음을 해버린다니, 조금 서글플지도」
+					PRINTFORMW 「처음 정도는 %사마스터가% 직접 했으면 좋겠는데...」
+					PRINTFORMW 사토리는 어딘가 쓸쓸한듯한 표정이다
+				ELSEIF TALENT:섹프
+					PRINTFORMW 「...그러고보니, 여태까지 이쪽은 한 번도 안 써봤네」
+					PRINTFORMW 「첫 경험이 이런 기계라니...조금 이상하려나」
+					PRINTFORMW 사토리는 멋쩍게 웃었다
+					PRINTFORMW 「어쨌든...이제는 처녀도 아니니깐, 이쪽으로도 기분 좋은거 잔뜩 해주세요♥」
+				ELSE
+					;볼 일 있나
+					PRINTFORMW 「처, 첫 경험이 이런거라니...」
+					PRINTFORMW 「...싫긴 하지만, 줄 사람도 딱히 없나」
+				ENDIF
+			ELSE
+				;자지 없다
+				PRINTFORMW 「...그, 처음이니까...조금만 살살...」
+				PRINTFORMW 「%사마스터가% 해주는거라 해도...약간 무서운걸요」
+				PRINTFORMW 사토리는 %마스터의% 손에 들린 딱딱한 플라스틱 덩어리를 살짝 떨리는 눈으로 보고 있다
+			ENDIF
 			RETURN 1
 		ELSE
-			PRINTFORMW 
+			;처녀가 아님
 			RETURN 1
 		ENDIF
 	ENDIF
