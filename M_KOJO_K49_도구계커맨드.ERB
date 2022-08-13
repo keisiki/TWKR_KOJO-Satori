@@ -564,7 +564,54 @@ IF LOCAL
 			RETURN 1
 		;그 이외
 		ELSE
-			PRINTFORMW 
+			IF ABL:V감각 > 3
+				IF MARK:반발각인 == 3 && !TALENT:연인
+					SELECTCASE RAND:2
+						CASE 0
+							PRINTFORMW 「힛...그, 그건...♥」
+							PRINTFORMW 바이브를 보자마자 사토리의 몸이 파르르 떨렸다
+						CASE 1
+							PRINTFORMW 「그런...그거 넣으면 못 버텨...♥」
+					ENDSELECT
+				ELSEIF TALENT:연인||TALENT:연모||TALENT:사모
+					SELECTCASE RAND:2
+						CASE 0
+							PRINTFORMW 「그...그건...♥」
+							PRINTFORMW 바들바들 떨리는 바이브를 보여준 것 만으로도 사토리의 몸이 움찔움찔거린다
+						CASE 1
+							PRINTFORMW 「안대...그거 넣으면...♥」
+							PRINTFORMW 「그런거 못 버텨...날아가, 기분 좋아서 날아가버린단 말야...♥」
+					ENDSELECT
+				ELSEIF TALENT:섹프||TALENT:애욕
+					SELECTCASE RAND:2
+						CASE 0
+							PRINTFORMW 「아핫...♥ 굵직하고 커다란 바이브 왔다...♥」
+							PRINTFORMW 「얼른♥ 얼른 넣어줘♥」
+						CASE 1
+							PRINTFORMW 「후후...♥ 언제 봐도 큼직하군요...♥」
+							SELECTCASE TALENT:MASTER:형상
+								CASE 6,5
+									PRINTFORMW 「그래도...%마스터의% 흉악한 자지보다는 못하지만♥」
+								CASEELSE
+									PRINTFORMW 「이런거, 넣어지는 생각만으로도 몸이 반응해 버린다구요♥」
+							ENDSELECT
+					ENDSELECT
+				ELSE
+					SELECTCASE RAND:2
+						CASE 0
+							PRINTFORMW 「힛...♥ 그, 그렇게 큰 건...♥」
+							PRINTFORMW 사토리는 몸을 움찔움찔 떨고 있다
+						CASE 1
+							PRINTFORMW 「그, 그런거 넣었다간 찢어져버려...」
+					ENDSELECT
+				ENDIF
+			ELSEIF TALENT:MASTER:성별 != 1
+				;쥬지 있다
+
+			ELSE
+				;쥬지 없다
+				
+			ENDIF
 			RETURN 1
 		ENDIF
 	;해제
