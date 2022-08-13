@@ -541,6 +541,18 @@ IF LOCAL
 			RETURN 1
 		ELSE
 			;처녀가 아님
+			IF MARK:반발각인 == 3 && !TALENT:연인
+				PRINTFORMW 「바이브...? 뭐, 직접 박히는것 보단 낫겠지만...」
+			ELSEIF TALENT:연인||TALENT:연모||TALENT:사모
+				PRINTFORMW 「이번엔 그 장난감...? 크고 무시무시하게 생겼네...」
+				PRINTFORMW 「에...잠깐, 이거 진동까지 하는 건가요...? 이걸 집어넣어...조금 무서워지는걸요...」
+			ELSEIF TALENT:섹프||TALENT:애욕
+				PRINTFORMW 「와아...크고 흉악한 물건이네요...」
+				PRINTFORMW 「이런게 이 안에 들어가는걸까나...뭐랄까 두근거리는걸」
+			ELSE
+				PRINTFORMW 「이, 이번엔 그거...?」
+				PRINTFORMW 「전부 들어가기나 하려나...」
+			ENDIF
 			RETURN 1
 		ENDIF
 	ENDIF
@@ -549,15 +561,6 @@ IF LOCAL
 	IF TEQUIP:바이브
 		;시간(時姦)중
 		IF FLAG:70
-			PRINTFORMW 
-			RETURN 1
-		;연모
-		ELSEIF TALENT:연모
-			PRINTFORMW 
-			RETURN 1
-		;괘씸3
-		ELSEIF MARK:괘씸각인 == 3
-			PRINTFORMW 
 			RETURN 1
 		;그 이외
 		ELSE
