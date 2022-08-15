@@ -564,7 +564,8 @@ IF LOCAL
 			RETURN 1
 		;그 이외
 		ELSE
-			IF ABL:V감각 > 3
+			IF ABL:V감각 > 3 || TALENT:MASTER:성별 == 1
+				;고감도 혹은 여아나타
 				IF MARK:반발각인 == 3 && !TALENT:연인
 					SELECTCASE RAND:2
 						CASE 0
@@ -605,18 +606,43 @@ IF LOCAL
 							PRINTFORMW 「그, 그런거 넣었다간 찢어져버려...」
 					ENDSELECT
 				ENDIF
-			ELSEIF TALENT:MASTER:성별 != 1
-				;쥬지 있다
-
 			ELSE
-				;쥬지 없다
-				
+				;민감하지 않고 쥬지 있다
+				IF MARK:반발각인 == 3&&!TALENT:연인
+					SELECTCASE RAND:2
+						CASE 0
+							PRINTFORMW 「또 이거야...아무튼 직접 하는 것보단 낫지만...」
+							PRINTFORMW 「굳이 이런거까지 써야 하는 이유가 뭐야 정말...」
+						CASE 1
+							PRINTFORMW 「바이브로 끝낸다면, %사마스터는% 필요한걸까나...」
+							PRINTFORMW 「혼자 하는거나 별반 다름 없다는 생각이 드는걸」
+					ENDSELECT
+				ELSEIF TALENT:연인||TALENT:연모||TALENT:사모
+					SELECTCASE RAND:2
+						CASE 0
+							PRINTFORMW 「...이것도 나쁘진 않지만, 온기가 없는걸요」
+							PRINTFORMW 「어쩐지 쓸쓸한 느낌을 참을수 없달까...」
+						CASE 1
+							PRINTFORMW 「이래서얀 혼자 하는것만 같은데...」
+							PRINTFORMW 사토리는 작게 투덜거렸다						
+					ENDSELECT
+				ELSEIF TALENT:섹프||TALENT:애욕
+					SELECTCASE RAND:2
+						CASE 0
+							PRINTFORMW 「직접 넣지 않고? 그 편이 더 기분 좋을텐데...」
+							PRINTFORMW 사토리는 어딘가 아쉬운듯한 표정이다
+						CASE 1
+							PRINTFORMW 「이것도 싫진 않지만...이래서얀 혼자 하는것 같은 느낌인걸요」
+					ENDSELECT
+				ELSE
+					PRINTFORMW 「안에서 부들부들 떨리는거...기분 이상해...」
+				ENDIF
 			ENDIF
 			RETURN 1
 		ENDIF
 	;해제
 	ELSE
-		PRINTFORMW
+		
 	ENDIF
 ENDIF
 RETURN 1
