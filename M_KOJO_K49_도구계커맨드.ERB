@@ -700,7 +700,7 @@ ENDIF
 RETURN 1
 
 ;==================================================
-;46,애널비즈
+;46,애널비즈 ; 미작성
 ;==================================================
 @M_KOJO_MESSAGE_COM_K49_46
 CALL TRAIN_MESSAGE
@@ -758,7 +758,7 @@ RETURN RESULT
 @M_KOJO_MESSAGE_COM_K49_47_1
 ;-------------------------------------------------
 ;기입체크 (=0, 비표시、1, 표시)
-LOCAL = 0
+LOCAL = 1
 ;-------------------------------------------------
 IF LOCAL
 	;-------------------------------------------------
@@ -766,10 +766,11 @@ IF LOCAL
 	;-------------------------------------------------
 	;처음
 	;기입체크
-	LOCAL:1 = 0
+	LOCAL:1 = 1
 	;-------------------------------------------------
 	IF LOCAL:1 && FIRSTTIME(SELECTCOM)
-		PRINTFORMW 
+		PRINTFORMW 「...가슴에 붙여서 부들부들 떨리는 기구, 라는걸까나...」
+		PRINTFORMW 「왠지 아플것만 같은걸...」
 		RETURN 1
 	ENDIF
 	;기본세트
@@ -777,24 +778,61 @@ IF LOCAL
 	IF TEQUIP:유두캡
 		;시간(時姦)중
 		IF FLAG:70
-			PRINTFORMW 
-			RETURN 1
-		;연모
-		ELSEIF TALENT:연모
-			PRINTFORMW 
-			RETURN 1
-		;괘씸3
-		ELSEIF MARK:괘씸각인 == 3
-			PRINTFORMW 
 			RETURN 1
 		;그 이외
 		ELSE
-			PRINTFORMW 
+			IF MARK:반발각인 == 3&&!TALENT:연인
+				SELECTCASE RAND:2
+					CASE 0
+						IF ABL:B감각 > 2
+							PRINTFORMW 「또, 또 이거야...」
+							PRINTFORMW 「달고 있으면 가슴 이상해질거 같아서 싫은데...」
+						ELSE
+							PRINTFORMW 「굳이 달아놔서 얻는 이득이 뭔데 도대체...」
+						ENDIF
+					CASE 1
+						PRINTFORMW 「가슴 빨아당기는 기분...뭔가 이상해」
+				ENDSELECT
+			ELSEIF TALENT:연인||TALENT:연모||TALENT:사모
+				SELECTCASE RAND:2
+					CASE 0
+						IF ABL:B감각 > 2
+							PRINTFORMW 「이, 이거는...♥」
+							PRINTFORMW 유두캡으로 당할 일이라도 상상한건지 사토리의 유두가 살짝 서있다
+						ELSE
+							PRINTFORMW 「그, 그건...」
+							PRINTFORMW 「그거 달면 가슴 징징거려서 싫은데...」
+						ENDIF
+					CASE 1
+						PRINTFORMW 「...이런 기구보다, %사마스터가% 직접 만져주면 훨씬 기쁠거 같은데」
+				ENDSELECT
+			ELSEIF TALENT:섹프||TALENT:애욕
+				SELECTCASE RAND:2
+					CASE 0
+						IF ABL:B감각 > 2
+							PRINTFORMW 「아...♥ 기분좋은거 달아주는거구나...♥」
+							PRINTFORMW 유두캡을 본 것 만으로도 사토리의 유두가 살짝 빳빳해짐이 보였다
+						ELSE
+							PRINTFORMW 「이거 별론데...」
+							PRINTFORMW 「차라리 손으로 만지는게 기분 좋은걸」
+						ENDIF
+					CASE 1
+						PRINTFORMW 「가슴 징징 울리는게 느껴져...」
+				ENDSELECT
+			ELSE
+				IF ABL:B감각 > 2
+					PRINTFORMW 「앗...♥ 그건...♥」
+					PRINTFORMW 유두캡으로 당할 일이라도 상상한건지 사토리의 유두가 살짝 서있다
+				ELSE
+					PRINTFORMW 「그, 그건...」
+					PRINTFORMW 「가슴 징징거리는거 별론데...」
+				ENDIF
+			ENDIF
 			RETURN 1
 		ENDIF
 	;해제
 	ELSE
-		PRINTFORMW
+		
 	ENDIF
 ENDIF
 RETURN 1
