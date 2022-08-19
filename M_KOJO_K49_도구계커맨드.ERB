@@ -894,7 +894,7 @@ RETURN RESULT
 @M_KOJO_MESSAGE_COM_K49_49_1
 ;-------------------------------------------------
 ;기입체크 (=0, 비표시、1, 표시)
-LOCAL = 0
+LOCAL = 1
 ;-------------------------------------------------
 IF LOCAL
 	;-------------------------------------------------
@@ -905,25 +905,68 @@ IF LOCAL
 	LOCAL:1 = 0
 	;-------------------------------------------------
 	IF LOCAL:1 && FIRSTTIME(SELECTCOM)
-		PRINTFORMW 
 		RETURN 1
 	ENDIF
 	;기본세트
 	;시간(時姦)중
 	IF FLAG:70
-		PRINTFORMW 
-		RETURN 1
-	;연모
-	ELSEIF TALENT:연모
-		PRINTFORMW 
-		RETURN 1
-	;괘씸3
-	ELSEIF MARK:괘씸각인 == 3
-		PRINTFORMW 
 		RETURN 1
 	;그 이외
 	ELSE
-		PRINTFORMW 
+		IF ABL:B감각 >= 3
+			IF MARK:반발각인 == 3 &&!TALENT:연인
+				SELECTCASE RAND:2
+					CASE 0
+						PRINTFORMW 「하...하지마앗...♥ 가슴 안댓♥ 그만...♥」
+						PRINTFORMW 사토리는 입술을 앙다문채 올라오는 신음을 참고 있다
+					CASE 1
+						PRINTFORM 「
+						CALL ST_CLIMAX(RAND:5 + 3)
+						PRINTFORMW 」
+				ENDSELECT
+			ELSEIF TALENT:연인||TALENT:연모||TALENT:사모
+				SELECTCASE RAND:2
+					CASE 0
+						PRINTFORMW 「힛♥ 가슴 안댓♥ 부들거리는거 안대엣♥」
+						PRINTFORMW 「오싹오싹한거 올라왓♥ 가슴 이상해져엇♥」
+						PRINTFORMW 가슴에 로터를 댈 때마다 사토리의 몸이 팔딱팔딱 튀어올랐다
+					CASE 1
+						PRINTFORM 「
+						CALL ST_CLIMAX(RAND:5 + 3)
+						PRINTFORMW 」
+				ENDSELECT
+			ELSEIF TALENT:섹프||TALENT:애욕
+				SELECTCASE RAND:2
+					CASE 0
+						PRINTFORMW 「아앗♥ 가, 가슴♥ 부들부들 떨리는거 너무 좋아아♥」
+						PRINTFORMW 민감한 가슴을 자극당하는 쾌감에 사토리의 몸이 떨리고 있다
+					CASE 1
+						PRINTFORM 「
+						CALL ST_CLIMAX(RAND:5 + 3)
+						PRINTFORMW 」
+				ENDSELECT
+			ELSE
+				SELECTCASE RAND:2
+					CASE 0
+						PRINTFORMW 「아♥ 안댓♥ 가슴 이상해질거 같아...♥」
+						PRINTFORMW 로터의 진동이 주는 강렬한 쾌감에 사토리는 어쩔줄 몰라 하고 있다
+					CASE 1
+						PRINTFORM 「
+						CALL ST_CLIMAX(RAND:5 + 3)
+						PRINTFORMW 」
+				ENDSELECT
+			ENDIF
+		ELSE
+			IF MARK:반발각인 == 3 &&!TALENT:연인
+						
+			ELSEIF TALENT:연인||TALENT:연모||TALENT:사모
+				
+			ELSEIF TALENT:섹프||TALENT:애욕
+				
+			ELSE
+				
+			ENDIF
+		ENDIF
 		RETURN 1
 	ENDIF
 ENDIF
