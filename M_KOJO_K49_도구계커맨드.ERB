@@ -913,7 +913,7 @@ IF LOCAL
 		RETURN 1
 	;그 이외
 	ELSE
-		IF ABL:B감각 >= 3
+		IF ABL:B감각 >= 2
 			IF MARK:반발각인 == 3 &&!TALENT:연인
 				SELECTCASE RAND:2
 					CASE 0
@@ -958,13 +958,35 @@ IF LOCAL
 			ENDIF
 		ELSE
 			IF MARK:반발각인 == 3 &&!TALENT:연인
-						
+				SELECTCASE RAND:2
+					CASE 0
+						PRINTFORMW 「이, 이런거 붙여봤자 하나도 기분좋지 않아...」
+						PRINTFORMW 허세를 부리지만 어딘가 안절부절 하고 있는게 겉으로도 드러나고 있었다
+					CASE 1
+						PRINTFORMW 「가슴이 이상해지는 느낌인걸...」
+						PRINTFORMW 익숙하지 않은 느낌에 불쾌한 듯 하다
+				ENDSELECT
 			ELSEIF TALENT:연인||TALENT:연모||TALENT:사모
-				
+				SELECTCASE RAND:2
+					CASE 0
+						PRINTFORMW 「뭔가...오싹오싹한 느낌이 올라와...」
+						PRINTFORMW 미개발된 유두가 진동에 의해 착실히 개발되고 있는 모양이다
+					CASE 1
+						PRINTFORMW 「그렇게 눌러대도 별로 기분 좋진 않은걸요」
+						PRINTFORMW 사토리는 작게 투덜거렸다
+				ENDSELECT
 			ELSEIF TALENT:섹프||TALENT:애욕
-				
+				SELECTCASE RAND:2
+					CASE 0
+						PRINTFORMW 「기분 좋다기 보단...어딘가 애태우는 느낌...?」
+						PRINTFORMW 「어딘가 이상야릇한 기분인걸요...」
+					CASE 1
+						PRINTFORMW 「간지럽기만 한걸요...」
+						PRINTFORMW 미개발된 유두로는 아직 충분히 기분좋지 않은 모양이다
+				ENDSELECT
 			ELSE
-				
+				PRINTFORMW 「가슴이 욱신거려...」
+				PRINTFORMW 아직은 쾌감이 잘 느껴지지 않는 모양이다
 			ENDIF
 		ENDIF
 		RETURN 1
