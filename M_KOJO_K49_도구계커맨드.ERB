@@ -658,7 +658,7 @@ RETURN RESULT
 @M_KOJO_MESSAGE_COM_K49_45_1
 ;-------------------------------------------------
 ;기입체크 (=0, 비표시、1, 표시)
-LOCAL = 0
+LOCAL = 1
 ;-------------------------------------------------
 IF LOCAL
 	;-------------------------------------------------
@@ -666,10 +666,17 @@ IF LOCAL
 	;-------------------------------------------------
 	;처음
 	;기입체크
-	LOCAL:1 = 0
+	LOCAL:1 = 1
 	;-------------------------------------------------
 	IF LOCAL:1 && FIRSTTIME(SELECTCOM)
-		PRINTFORMW 
+		IF ABL:A감각 > 2
+			PRINTFORMW 「이, 이렇게 큰 거 넣어져 버리면...♥」
+			PRINTFORMW 사토리의 몸이 움찔움찔 떨리고 있다
+		ELSE
+			PRINTFORMW 「이, 이렇게 큰 걸...넣었다간 엉덩이 찢어져버려요...」
+			PRINTFORMW 「저기, 이건 안하는게...」
+			PRINTFORMW 굵직한 바이브를 보며 사토리는 바들바들 떨고 있다
+		ENDIF
 		RETURN 1
 	ENDIF
 	;기본세트
@@ -677,19 +684,81 @@ IF LOCAL
 	IF TEQUIP:애널바이브
 		;시간(時姦)중
 		IF FLAG:70
-			PRINTFORMW 
-			RETURN 1
-		;연모
-		ELSEIF TALENT:연모
-			PRINTFORMW 
-			RETURN 1
-		;괘씸3
-		ELSEIF MARK:괘씸각인 == 3
-			PRINTFORMW 
 			RETURN 1
 		;그 이외
 		ELSE
-			PRINTFORMW 
+			IF ABL:A감각 > 2
+				IF MARK:반발각인 == 3&&!TALENT:연인
+					SELECTCASE RAND:2
+						CASE 0
+							PRINTFORMW 「그런...엉덩이 이상해져 버려...그만...」
+							PRINTFORMW 민감해진 엉덩이는 바이브를 넣는것 만으로도 잘게 경련하고 있다
+						CASE 1
+							PRINTFORM 「
+							CALL ST_CLIMAX(RAND:5 + 3)
+							PRINTFORMW 」
+					ENDSELECT
+				ELSEIF TALENT:연인||TALENT:연모||TALENT:사모
+					SELECTCASE RAND:2
+						CASE 0
+							PRINTFORMW 「아앗♥ 안댓♥ 안에서 쑤시는거 안대엣♥」
+							PRINTFORMW 바이브의 진동과 함께 쏟아지는 쾌감에 사토리의 몸이 마구 날뒤고 있다
+						CASE 1
+							PRINTFORM 「
+							CALL ST_CLIMAX(RAND:5 + 3)
+							PRINTFORMW 」
+					ENDSELECT
+				ELSEIF TALENT:섹프||TALENT:애욕
+					SELECTCASE RAND:2
+						CASE 0
+							PRINTFORMW 「히잇♥ 너, 넣기만 했는데도 온 몸이 오싹하게...♥」
+							PRINTFORMW 사토리는 민감한 항문이 전해주는 폭력적인 쾌감에 숨을 헐떡이고 있다
+						CASE 1
+							PRINTFORM 「
+							CALL ST_CLIMAX(RAND:5 + 3)
+							PRINTFORMW 」
+					ENDSELECT
+				ELSE
+					SELECTCASE RAND:2
+						CASE 0
+							PRINTFORMW 「흐읏♥ 등골이 오싹해...♥ 이 느낌 좋아...♥」
+						CASE 1
+							PRINTFORM 「
+							CALL ST_CLIMAX(RAND:5 + 3)
+							PRINTFORMW 」
+					ENDSELECT
+				ENDIF
+			ELSE
+				;PRINTFORMW 「」
+				IF MARK:반발각인 == 3&&!TALENT:연인
+					SELECTCASE RAND:2
+						CASE 0
+							PRINTFORMW 「이...이런거 계속 당하면 엉덩이 이상해져버려...」
+							PRINTFORMW 개발되지 않은 항문은 아직은 그다지 쾌감을 주지 못하는 듯 하다
+						CASE 1
+							PRINTFORMW 「아프니깐 그만...억지로 넣지 마...」
+							PRINTFORMW 개발이 덜 되서인지 아직은 항문의 저항감이 심하다
+					ENDSELECT
+				ELSEIF TALENT:섹프||TALENT:애욕||TALENT:연인||TALENT:연모||TALENT:사모
+					SELECTCASE RAND:2
+						CASE 0
+							PRINTFORMW 「이, 이건 아직 아파...」
+							PRINTFORMW 사토리는 고통에 눈물을 살짝 흘렸다
+						CASE 1
+							PRINTFORMW 「정말 이걸로 기분 좋게 될 수 있는거야...?」
+							PRINTFORMW 「아프기만 한 거 같은데...」
+					ENDSELECT
+				ELSE
+					SELECTCASE RAND:2
+						CASE 0
+							PRINTFORMW 「이...이런거 계속 당하면 엉덩이 이상해져버려...」
+							PRINTFORMW 개발되지 않은 항문은 아직은 그다지 쾌감을 주지 못하는 듯 하다
+						CASE 1
+							PRINTFORMW 「아프니깐 그만...억지로 넣지 마...」
+							PRINTFORMW 개발이 덜 되서인지 아직은 항문의 저항감이 심하다
+					ENDSELECT
+				ENDIF
+			ENDIF
 			RETURN 1
 		ENDIF
 	;해제
