@@ -916,7 +916,7 @@ RETURN RESULT
 @M_KOJO_MESSAGE_COM_K49_48_1
 ;-------------------------------------------------
 ;기입체크 (=0, 비표시、1, 표시)
-LOCAL = 0
+LOCAL = 1
 ;-------------------------------------------------
 IF LOCAL
 	;-------------------------------------------------
@@ -924,28 +924,95 @@ IF LOCAL
 	;-------------------------------------------------
 	;처음
 	;기입체크
-	LOCAL:1 = 0
+	LOCAL:1 = 1
 	;-------------------------------------------------
 	IF LOCAL:1 && FIRSTTIME(SELECTCOM)
-		PRINTFORMW 
+		IF MARK:반발각인 == 3&&!TALENT:연인
+			PRINTFORMW 「나...나는 소가 아니야...」
+			PRINTFORMW 유두에서 젖이 방울방울 배어져 나오면서도 한사코 부정하며 항의하고 있다
+		ELSEIF TALENT:연인||TALENT:연모||TALENT:사모
+			PRINTFORMW 「이런건 젖소한테나 붙이는 건 줄 알았는데」
+			PRINTFORMW 「근데...이거 빨아들이는 것만으로 왜 이리 기분이...♥」
+		ELSEIF TALENT:섹프||TALENT:애욕
+			PRINTFORMW 「마치 아기 같아...엄청 힘 센 아기...」
+			PRINTFORMW 「...%사마스터가% 빠는 거랑 이거랑, 뭐가 더 세려나?」
+		ELSE
+			PRINTFORMW 「몸 속에서 젖이 모조리 빨려나가는것 같아...」
+			PRINTFORMW 「...그런데 이거, 도대체 어디에 쓰려는 건가요?」
+		ENDIF
 		RETURN 1
 	ENDIF
 	;기본세트
 	;장착
 	IF TEQUIP:착유기
-		;연모
-		IF TALENT:연모
-			PRINTFORMW 
-			RETURN 1
-		;괘씸3
-		ELSEIF MARK:괘씸각인 == 3
-			PRINTFORMW 
-			RETURN 1
-		;그 이외
+		IF ABL:B감각 > 2
+			IF MARK:반발각인 == 3&&!TALENT:연인
+				SELECTCASE RAND:2
+					CASE 0
+
+					CASE 1
+
+				ENDSELECT
+			ELSEIF TALENT:연인||TALENT:연모||TALENT:사모
+				SELECTCASE RAND:2
+					CASE 0
+
+					CASE 1
+					
+				ENDSELECT
+			ELSEIF TALENT:섹프||TALENT:애욕
+				SELECTCASE RAND:2
+					CASE 0
+
+					CASE 1
+					
+				ENDSELECT
+			ELSE
+				SELECTCASE RAND:2
+					CASE 0
+
+					CASE 1
+					
+				ENDSELECT
+			ENDIF
 		ELSE
-			PRINTFORMW 
-			RETURN 1
+			IF MARK:반발각인 == 3&&!TALENT:연인
+				SELECTCASE RAND:2
+					CASE 0
+						PRINTFORMW 「글쎄, 나는 젖소가 아니라니깐...」
+						PRINTFORMW 사토리는 작게 투덜거렸다
+					CASE 1
+						PRINTFORMW 「또 이거? 하고나면 가슴이 당겨서 싫은데...」
+				ENDSELECT
+			ELSEIF TALENT:연인||TALENT:연모||TALENT:사모
+				SELECTCASE RAND:2
+					CASE 0
+						PRINTFORMW 「...이렇게 짠 건 전부 어디에 쓰시나요?」
+						PRINTFORMW 「남한테는 주지 마세요...」
+					CASE 1
+						PRINTFORMW 「이런 기계로 짜내기보단, 직접 마시는 편이 더 좋을텐데...」
+						PRINTFORMW 사토리는 작게 중얼거렸다
+				ENDSELECT
+			ELSEIF TALENT:섹프||TALENT:애욕
+				SELECTCASE RAND:2
+					CASE 0
+						PRINTFORMW 「가슴이 살짝 답답하고...간지러워요」
+						PRINTFORMW 사토리는 작게 투덜거렸다
+					CASE 1
+						PRINTFORMW 「거칠게 빨아들일 뿐이라 그다지 기분좋지도 않은걸요」
+						PRINTFORMW 사토리는 입술을 삐죽였다
+				ENDSELECT
+			ELSE
+				SELECTCASE RAND:2
+					CASE 0
+						PRINTFORMW 「...이렇게 짜서 어디에 쓰려는지」
+						PRINTFORMW 「마실거라면 차라리 직접 빨아드시는게 어떤까요?」
+					CASE 1
+						PRINTFORMW 「너무 세게 빨아들여서 기분 나빠...」
+				ENDSELECT
+			ENDIF
 		ENDIF
+		RETURN 1
 	;해제
 	ELSE
 		PRINTFORMW
