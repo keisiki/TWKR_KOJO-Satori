@@ -946,35 +946,19 @@ IF LOCAL
 	;장착
 	IF TEQUIP:착유기
 		IF ABL:B감각 > 2
-			IF MARK:반발각인 == 3&&!TALENT:연인
-				SELECTCASE RAND:2
-					CASE 0
-
-					CASE 1
-
-				ENDSELECT
-			ELSEIF TALENT:연인||TALENT:연모||TALENT:사모
-				SELECTCASE RAND:2
-					CASE 0
-
-					CASE 1
-					
-				ENDSELECT
-			ELSEIF TALENT:섹프||TALENT:애욕
-				SELECTCASE RAND:2
-					CASE 0
-
-					CASE 1
-					
-				ENDSELECT
-			ELSE
-				SELECTCASE RAND:2
-					CASE 0
-
-					CASE 1
-					
-				ENDSELECT
-			ENDIF
+			SELECTCASE RAND:3
+				CASE 0
+					PRINTFORMW 「으긋♥ 가슴 쥐어짜이고 있어어♥ 안대에♥」
+					PRINTFORMW 민감한 가슴은 착유기의 자극만으로도 가볍게 절정하고 있었다
+				CASE 1
+					PRINTFORMW 「히극?! 가, 가슴 빨려나가고 이써어♥」
+					PRINTFORMW 민감한 유두는 착유기를 붙인것 만으로도 촉촉히 모유를 뿜어낼 준비를 하고 있었다
+				CASE 2
+					PRINTFORM 「
+					CALL ST_CLIMAX(RAND:5 + 3)
+					PRINTFORMW 」
+					PRINTFORMW 착유기를 붙인것 만으로도 가볍게 절정해 버린 모양이다
+			ENDSELECT
 		ELSE
 			IF MARK:반발각인 == 3&&!TALENT:연인
 				SELECTCASE RAND:2
