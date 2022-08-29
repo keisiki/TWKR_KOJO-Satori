@@ -477,7 +477,7 @@ RETURN RESULT
 @M_KOJO_MESSAGE_COM_K49_180_1
 ;-------------------------------------------------
 ;기입체크 (=0, 비표시、1, 표시)
-LOCAL = 0
+LOCAL = 1
 ;-------------------------------------------------
 IF LOCAL
 	;-------------------------------------------------
@@ -485,24 +485,38 @@ IF LOCAL
 	;-------------------------------------------------
 	;처음
 	;기입체크
-	LOCAL:1 = 0
+	LOCAL:1 = 1
 	;-------------------------------------------------
 	IF LOCAL:1 && FIRSTTIME(SELECTCOM)
-		PRINTFORMW 
+		;PRINTFORMW 「」
+		GETBIT STAIN:1, 7
+		IF RESULT
+			PRINTFORMW 「...먹는거로 장난치다간 작열 지옥에 굴러 떨어질지도 모르겠네요」
+			PRINTFORMW 「게다가 이거, 윤활유로써로는 전혀 쓸모 없어 보이는걸」
+			PRINTFORMW 「...보기 좋으니 됐다는 건가요? 그러시다면야 더 할 말은 없지만」
+		ELSE
+			IF MARK:반발각인 == 3&&!TALENT:연인
+				PRINTFORMW 「차가워...뭘 짜고 있는거야...?」
+				PRINTFORMW 「...야한 짓 할 때 쓰는 윤활유? 별 쓰잘데기 없는걸 잔뜩 구비해놓고 있네」
+				PRINTFORMW 사토리는 로션의 차가움이 불편한듯 몸을 베베 꼬고 있다
+			ELSEIF TALENT:연인||TALENT:연모||TALENT:사모
+				PRINTFORMW 「뭐어, 배려해 주시는건 기쁘지만서도」
+				PRINTFORMW 「좀 더 느긋히 즐긴다면 이런건 필요 없는게 아닐까나...싶기도 하네요」
+				PRINTFORMW 사토리는 어딘가 아쉽다는듯한 표정이다
+			ELSEIF TALENT:섹프||TALENT:애욕
+				PRINTFORMW 「미끌미끌...이거로 바로 준비 끝이란 걸까」
+				PRINTFORMW 「뭐어 나쁘진 않겠지, 그렇다면 시간도 아까우니 얼른 본방으로 가볼까요」
+				PRINTFORMW 사토리는 농염한 표정으로 %마스터를% 바라보고 있다
+			ELSE
+				PRINTFORMW 「안에 뭘 짜넣고 있는건가요...?」
+				PRINTFORMW 「...야한 짓에 쓰는 윤활유라, 세상엔 별 희한한 물건이 다 있군요」	
+			ENDIF
+		ENDIF
 		RETURN 1
 	ENDIF
 	;기본세트
 	;시간(時姦)중
 	IF FLAG:70
-		PRINTFORMW 
-		RETURN 1
-	;연모
-	ELSEIF TALENT:연모
-		PRINTFORMW 
-		RETURN 1
-	;괘씸3
-	ELSEIF MARK:괘씸각인 == 3
-		PRINTFORMW 
 		RETURN 1
 	;그 이외
 	ELSE
