@@ -571,8 +571,8 @@ RETURN 1
 ;181,미약,
 ;==================================================
 @M_KOJO_MESSAGE_COM_K49_181
-CALL TRAIN_MESSAGE
 CALL M_KOJO_MESSAGE_COM_K49_181_1
+CALL TRAIN_MESSAGE
 RETURN RESULT
 
 @M_KOJO_MESSAGE_COM_K49_181_1
@@ -637,7 +637,83 @@ IF LOCAL
 		RETURN 1
 	ENDIF
 	;기본세트
-	
+		IF ABL:순종 <= 2
+			IF MARK:반발각인 == 3&&!TALENT:연인
+				SELECTCASE RAND:2
+					CASE 0
+						PRINTFORMW 「또 그 약이라니...싫어...」
+						PRINTFORMW 사토리는 몸을 움츠린 채 저항하였지만 헛수고에 그치고 말았다
+					CASE 1
+						PRINTFORMW 「그, 그건...잠깐, 먹이지 맛...!」
+				ENDSELECT
+			ELSEIF TALENT:연인||TALENT:연모||TALENT:사모
+				SELECTCASE RAND:2
+					CASE 0
+						PRINTFORMW 「그, 그건...」
+						PRINTFORMW 사토리는 주춤주춤 도망가려 했지만 그리 멀리가진 못했다
+					CASE 1
+						PRINTFORMW 「싫어...이상한 약 들이대지 마세요...」
+						PRINTFORMW 사토리는 몸을 움츠린 채 저항하였지만 헛수고에 그치고 말았다
+				ENDSELECT
+			ELSEIF TALENT:섹프||TALENT:애욕
+				SELECTCASE RAND:2
+					CASE 0
+						PRINTFORMW 「기분 좋은 약이라니, 이상한 약이잖아...」
+						PRINTFORMW 「그런건 필요 없으니까...응읏」
+					CASE 1
+						PRINTFORMW 「그런 약 먹는다고 전혀 좋지 않으니깐...저리 치워...」
+				ENDSELECT
+			ELSE
+				SELECTCASE RAND:2
+					CASE 0
+						PRINTFORMW 「또 그 약...도대체 어디서 구해오는거야 대체」
+						PRINTFORMW 사토리는 기가막히다는 표정이다
+					CASE 1
+						PRINTFORMW 「그런 약 같은거 먹인다고 기쁘지 않아...」
+						PRINTFORMW 사토리는 작게 중얼거렸다
+				ENDSELECT
+			ENDIF
+			CFLAG:3101 += 1
+		ELSE
+			IF MARK:반발각인 == 3&&!TALENT:연인
+				SELECTCASE RAND:2
+					CASE 0
+						PRINTFORMW 「이런 약에 의존 안하면 만족조차 못 시키는 걸까나」
+						PRINTFORMW 「먹기야 하겠지만...이런거로 느끼게 해봤자 무슨 재미가 있는건지 모르겠네」
+					CASE 1
+						PRINTFORMW 「또 이거야?」
+						PRINTFORMW 「그런걸 먹이고 하면 도대체 무슨 이득이 있다고 그러는지 정말...」
+				ENDSELECT
+			ELSEIF TALENT:연인||TALENT:연모||TALENT:사모
+				SELECTCASE RAND:2
+					CASE 0
+						PRINTFORMW 「어라...또 미약?」
+						PRINTFORMW 「이런거 없이도 %사마스터가% 해주는거면 다 좋은데 말이죠」
+					CASE 1
+						PRINTFORMW 「이거 먹으면 헤롱헤롱해져서 싫은데...」
+						PRINTFORMW 「기왕 하는거면 좀 더 생생히 %사마스터를% 기억하고 싶다구요」
+						PRINTFORMW 「...먹으라면 먹기야 하겠지만」
+				ENDSELECT
+			ELSEIF TALENT:섹프||TALENT:애욕
+				SELECTCASE RAND:2
+					CASE 0
+						PRINTFORMW 「그, 그건...♥」
+						PRINTFORMW 사토리는 당황하면서도 어딘가 기대하는 듯한 표정으로 미약을 바라보고 있다
+					CASE 1
+						PRINTFORMW 「아...♥」
+						PRINTFORMW 미약을 본 사토리의 몸이 움찔움찔 반응하고 있다
+				ENDSELECT
+			ELSE
+				SELECTCASE RAND:2
+					CASE 0
+						PRINTFORMW 「또 그 약...도대체 어디서 구해오는거야 대체」
+						PRINTFORMW 사토리는 기가막히다는 표정이다
+					CASE 1
+						PRINTFORMW 「그런 약 같은거 먹는다고 기쁘지 않아...」
+						PRINTFORMW 사토리는 작게 중얼거렸다
+				ENDSELECT
+			ENDIF
+		ENDIF
 	RETURN 1
 ENDIF
 RETURN 1
