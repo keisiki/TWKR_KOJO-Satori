@@ -729,7 +729,7 @@ RETURN RESULT
 @M_KOJO_MESSAGE_COM_K49_182_1
 ;-------------------------------------------------
 ;기입체크 (=0, 비표시、1, 표시)
-LOCAL = 0
+LOCAL = 1
 ;-------------------------------------------------
 IF LOCAL
 	;-------------------------------------------------
@@ -744,18 +744,43 @@ IF LOCAL
 		RETURN 1
 	ENDIF
 	;기본세트
-	;연모
-	IF TALENT:연모
-		PRINTFORMW 
-		RETURN 1
-	;괘씸3
-	ELSEIF MARK:괘씸각인 == 3
-		PRINTFORMW 
-		RETURN 1
-	;그 이외
+
+	IF MARK:반발각인 == 3&&!TALENT:연인
+		SELECTCASE RAND:2
+			CASE 0
+				PRINTFORMW 「오줌 지리는걸 보는게 도대체 뭐가 기쁘다고 약까지 먹이는 거야」
+				PRINTFORMW 사토리는 어이없다는 표정이다
+			CASE 1
+				PRINTFORMW 「그렇게 원하신다면 얼굴에라도 싸갈겨 드릴까요? 그 편도 오히려 기뻐하시려나」
+				PRINTFORMW 「어찌됐던 나는 기분 나쁘기만 하지만」
+		ENDSELECT
+		CFLAG:3101++
+	ELSEIF TALENT:연인||TALENT:연모||TALENT:사모
+		SELECTCASE RAND:2
+			CASE 0
+				PRINTFORMW 「아...화장실, 참으라니...그런...」
+				PRINTFORMW 올라오는 요의에 얼굴이 새빨게지고 있다
+			CASE 1
+				PRINTFORMW 「이대로 참으라니...무리야, 새어나올것만 같은걸...」
+				PRINTFORMW 사토리는 안짱다리를 한 채 안절부절 못하고 있다
+		ENDSELECT
+	ELSEIF TALENT:섹프||TALENT:애욕
+		SELECTCASE RAND:2
+			CASE 0
+				PRINTFORMW 「이대로 참으라니...그런...금방이라도 새어나올것 같은데」
+				PRINTFORMW 사토리는 올라오는 요의에 안절부절 못하고 있다
+			CASE 1
+				PRINTFORMW 「참으면서 하면 기분 좋다니, 싫어...이대로 지려버릴것만 같단 말야...」
+				PRINTFORMW 「...설마, 만족해야 화장실에 보내준다...란 건가요?」
+		ENDSELECT
 	ELSE
-		PRINTFORMW 
-		RETURN 1
+		SELECTCASE RAND:2
+			CASE 0
+				PRINTFORMW 「화, 화장실...여기 흘려버리면 냄새난다고요? 그 편이 좋을...설마 좋다는건 아니겠죠?」
+			CASE 1
+				PRINTFORMW 「이런게 뭐가 즐겁다는거야 이 외도...」
+		ENDSELECT
+		CFLAG:3101++
 	ENDIF
 ENDIF
 RETURN 1
