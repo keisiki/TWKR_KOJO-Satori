@@ -835,7 +835,7 @@ ENDIF
 RETURN 1
 
 ;==================================================
-;187,목욕탕플레이
+;187,목욕탕플레이, 미실장
 ;==================================================
 @M_KOJO_MESSAGE_COM_K49_187
 CALL TRAIN_MESSAGE
@@ -862,18 +862,7 @@ IF LOCAL
 	;기본세트
 	;개시
 	IF TEQUIP:목욕탕플레이
-		;연모
-		IF TALENT:연모
-			PRINTFORMW 
-			RETURN 1
-		;괘씸3
-		ELSEIF MARK:괘씸각인 == 3
-			PRINTFORMW 
-			RETURN 1
-		;그 이외
-		ELSE
-			PRINTFORMW 
-			RETURN 1
+		
 		ENDIF
 	;종료
 	ELSE
@@ -943,7 +932,7 @@ RETURN RESULT
 @M_KOJO_MESSAGE_COM_K49_189_1
 ;-------------------------------------------------
 ;기입체크 (=0, 비표시、1, 표시)
-LOCAL = 0
+LOCAL = 1
 ;-------------------------------------------------
 IF LOCAL
 	;-------------------------------------------------
@@ -951,37 +940,79 @@ IF LOCAL
 	;-------------------------------------------------
 	;처음
 	;기입체크
-	LOCAL:1 = 0
+	LOCAL:1 = 1
 	;-------------------------------------------------
 	IF LOCAL:1 && FIRSTTIME(SELECTCOM)
-		PRINTFORMW 
+		IF MARK:반발각인 == 3
+			PRINTFORMW 「...아내가 입는 그거인가요, 그걸 알몸 위에?」
+			PRINTFORMW 「이런거에 흥분하시는 걸까나...장차 아내분은 아침마다 범해지겠네요」
+			PRINTFORMW 「...그것도 나쁘진 않으려나아」
+		ELSE
+			PRINTFORMW 「이건...요리할때 쓰는 그거 아닌가요, 이걸 알몸에?」
+			PRINTFORMW 「과연, 그런 류의 플레이란 건가요...」
+			IF IS_아내(49)
+				PRINTFORMW 「이런걸 좋아하실줄 알았다면 평소에도 해 드릴걸 그랬네요」
+				PRINTFORMW 사토리는 부끄러운듯이 웃었다
+			ELSE
+				PRINTFORMW 「...으으음, 그렇단 말은 지금은 제가 %사마스터의%...」
+				PRINTFORMW 무엇을 상상하는건지 사토리의 얼굴이 발갛게 물들어 갔다
+			ENDIF
+		ENDIF
 		RETURN 1
 	ENDIF
 	;기본세트
 	;개시
 	IF TEQUIP:새댁플레이
-		;연모
-		IF TALENT:연모
-			PRINTFORMW 
-			RETURN 1
-		;괘씸3
-		ELSEIF MARK:괘씸각인 == 3
-			PRINTFORMW 
-			RETURN 1
-		;그 이외
+		;기본적으로 연모 이상만 실행 가능 커맨드
+		IF MARK:반발각인 == 3
+			SELECTCASE RAND:2
+				CASE 0
+					IF IS_아내(49)
+						PRINTFORMW 「옷깃이 스쳐서 간지러워...」
+						PRINTFORMW 「부끄러우니 얼른 벗으면 안될까요...」
+					ELSE
+						PRINTFORMW 「...」
+						PRINTFORMW 사토리는 말없이 앞치마의 깃을 만지작거리고 있다
+					ENDIF
+				CASE 1
+					PRINTFORMW 「시원하고 좋긴 한데, 이러고 요리했다간 다른 애들 교육에 문제가 생길지도...」
+					PRINTFORMW 「특히 코이시가 이러고 돌아다닐까봐 무서운걸요」
+			ENDSELECT
 		ELSE
-			PRINTFORMW 
-			RETURN 1
+			SELECTCASE RAND:2
+				CASE 0
+					IF IS_아내(49)
+						PRINTFORMW 「이 모습이 좋아? 정말 변태라니깐...」
+						PRINTFORMW 「그래도 이러고 있으면 신혼 느낌 나서 너무 기뻐」
+						PRINTFORMW 사토리는 옷깃을 만지작거리고 있다
+					ELSE
+						PRINTFORMW 「...」
+						PRINTFORMW 사토리는 말없이 앞치마의 깃을 만지작거리고 있다
+					ENDIF
+				CASE 1
+					PRINTFORMW 「이렇게 입혀놓으셔 봤자 밥도, 목욕물도 준비해놓은게 없답니다?」
+					PRINTFORMW 「대신에 제 몸만큼은 얼마든지 사용해 주셔도 괜찮으니깐...후후후♥」
+			ENDSELECT
+			CFLAG:3100++
 		ENDIF
 	;종료
 	ELSE
-		PRINTFORMW 
+		IF RAND:3 == 0&&!IS_아내(49)
+			SELECTCASE RAND:2
+				CASE 0
+					PRINTFORMW 「이제 그만 됐어? 벌써 질리신 건가요...」
+					PRINTFORMW 사토리는 어딘가 시무룩한 표정이다
+				CASE 1
+					PRINTFORMW 「아...이제 그만?」
+					PRINTFORMW 사토리는 어쩐지 아쉬운 듯한 표정이다
+			ENDSELECT
+		ENDIF
 		RETURN 1
 	ENDIF
 ENDIF
 RETURN 1
 ;==================================================
-;190,에이프런을 두른다
+;190,에이프런을 두른다, 미실장
 ;==================================================
 @M_KOJO_MESSAGE_COM_K49_190
 CALL TRAIN_MESSAGE
