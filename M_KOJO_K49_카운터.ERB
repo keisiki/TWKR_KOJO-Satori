@@ -12,6 +12,81 @@ CALL EVENT_COUNTER_MESSAGE
 CALL M_KOJO_MESSAGE_COUNTER_K49_1_1
 RETURN RESULT
 @M_KOJO_MESSAGE_COUNTER_K49_1_1
+;PRINTFORML 「」
+IF MARK:반발각인 == 3
+	IF TALENT:연인
+		SELECTCASE RAND:3
+            CASE 0
+                PRINTFORML 「...뭔가요? 다가오는게 마음에 안 드나요?」
+            CASE 1
+                PRINTFORML 「...왜요? 연인끼리 가까이 있는데 특별히 이유가 필요 한가요?」
+            CASE 2
+                PRINTFORML 「왜요? 가까이 있으면 싫을 이유라도 있나요?」
+                PRINTFORML 「연인끼리 있는건 지극히 당연한거잖아요?」
+        ENDSELECT
+	ELSE
+		IF CFLAG:3000 == 0
+            SELECTCASE RAND:3
+                CASE 0
+                    PRINTFORML 「별 다른 의미는 없어요, 그저 여기 서 있고 싶을 뿐이니까」
+                CASE 1
+                    PRINTFORML 「...붙으면 기분 나쁘기라도 한가요?」
+                    PRINTFORML 「기분 나쁘다 말해도 가진 않을거지만」
+                CASE 2
+                    PRINTFORML 「그냥, 별 이유 없이 서 있는거니까...딱히 그렇게 깊은 뜻은 없다구요?」
+                    PRINTFORML 「...뭔가 오해하진 말아줬음 하네요」
+            ENDSELECT
+		ELSE
+            SELECTCASE RAND:3
+                CASE 0
+                    PRINTFORML 「그냥, 별 이유 없이 서 있는거니까...딱히 그렇게 깊은 뜻은 없어」
+                    PRINTFORML %마스터의% 생각에 사토리는 쌀쌀맞게 대답했다
+                CASE 1
+                    PRINTFORML 「거리가 가깝다니, 이 정도는 평범한거야」
+                    PRINTFORML 「...기분 나쁘니깐 이상한 생각은 하지 말아줬음 하는데」
+                    PRINTFORML 과연 정말로 기분 나쁜것일까 싶은 표정이었다
+                CASE 2
+                    PRINTFORML 「가까워서, 불쾌하기라도 하신지?」
+                    PRINTFORML 「그렇게 생각한대도 갈 생각은 없지만」
+            ENDSELECT
+		ENDIF
+	ENDIF
+ELSEIF TALENT:연인
+	SELECTCASE RAND:3
+        CASE 0
+
+        CASE 1
+        
+        CASE 2
+        
+    ENDSELECT
+ELSEIF TALENT:연모||TALENT:사모||TALENT:애욕
+	SELECTCASE RAND:3
+        CASE 0
+            
+        CASE 1
+
+        CASE 2
+        
+    ENDSELECT
+ELSEIF TALENT:섹프
+	SELECTCASE RAND:2
+        CASE 0
+            PRINTFORML 「오늘따라 뭔가 더 가까이 있고 싶어지는 그런 기분인걸요...」
+        CASE 1
+            PRINTFORML 「으응? 가깝다니요? 겨우 이 정도가?」
+            PRINTFORML 「우리 사이에 새삼스럽게 그러긴가요? 더 끈적하게 달라붙은 적도 있는데...♥」
+    ENDSELECT
+ELSE
+    SELECTCASE RAND:3
+        CASE 0
+            
+        CASE 1
+
+        CASE 2
+        
+    ENDSELECT
+ENDIF
 RETURN 1
 
 ;==================================================
