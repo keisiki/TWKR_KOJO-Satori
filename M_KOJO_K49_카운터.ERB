@@ -52,22 +52,25 @@ IF MARK:반발각인 == 3
 		ENDIF
 	ENDIF
 ELSEIF TALENT:연인
-	SELECTCASE RAND:3
+	SELECTCASE RAND:2
         CASE 0
-
+            PRINTFORML 「가깝다니, 저희 사이에 이 정도는 너무 먼게 아닌가요?」
+            PRINTFORML 「좀 더 붙어도 상관없지 않을까 생각하는데...」
         CASE 1
-        
-        CASE 2
-        
+            PRINTFORML 「가까워서 싫으신가요?」
+            PRINTFORML 「...내심 좋으시면서, 빤히 다 안다고요?」
+            PRINTFORML 마음을 읽은건지 안 읽은건지 억지를 부리며 점점 더 다가오고 있다
     ENDSELECT
 ELSEIF TALENT:연모||TALENT:사모||TALENT:애욕
 	SELECTCASE RAND:3
         CASE 0
-            
+            PRINTFORML 「아, 아뇨, 딱히 특별한 이유는...」
+            PRINTFORML %마스터의% 생각을 읽고는 깜짝 놀라 횡설수설 변명하고 있다
         CASE 1
-
+            PRINTFORML 「너, 너무 붙었나요...?」
+            PRINTFORML 「이정돈 괜찮을거라 생각했는데...」
         CASE 2
-        
+            PRINTFORML 사토리는 서드아이로 %마스터의% 눈치를 연신 살피고 있다
     ENDSELECT
 ELSEIF TALENT:섹프
 	SELECTCASE RAND:2
@@ -75,16 +78,15 @@ ELSEIF TALENT:섹프
             PRINTFORML 「오늘따라 뭔가 더 가까이 있고 싶어지는 그런 기분인걸요...」
         CASE 1
             PRINTFORML 「으응? 가깝다니요? 겨우 이 정도가?」
-            PRINTFORML 「우리 사이에 새삼스럽게 그러긴가요? 더 끈적하게 달라붙은 적도 있는데...♥」
+            PRINTFORML 「더 한짓도 했으면서 이걸로 예민하게 굴기예요? 후후♥」
     ENDSELECT
 ELSE
-    SELECTCASE RAND:3
+    SELECTCASE RAND:2
         CASE 0
-            
+            PRINTFORML 「가깝다니, 여기 서 있으면 안되나요?」
+            PRINTFORML 「...불편하시면 %사마스터가% 저쪽으로 가시는게?」
         CASE 1
-
-        CASE 2
-        
+            PRINTFORML 본인은 모른채 하고 있지만 서드아이가 %마스터의% 눈치를 연신 살피고 있다
     ENDSELECT
 ENDIF
 RETURN 1
