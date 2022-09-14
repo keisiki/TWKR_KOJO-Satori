@@ -99,6 +99,57 @@ CALL EVENT_COUNTER_MESSAGE
 CALL M_KOJO_MESSAGE_COUNTER_K49_2_1
 RETURN RESULT
 @M_KOJO_MESSAGE_COUNTER_K49_2_1
+IF MARK:반발각인 == 3 && !TALENT:연인
+	SELECTCASE RAND:3
+        CASE 0
+            PRINTFORML %마스터의% 생각을 읽자마자 보란듯이 고개를 돌려버리고 말았다
+        CASE 1
+            PRINTFORML 「...그냥 쳐다본거만으로 이상한 상상하진 말아주실래요」
+            PRINTFORML 사토리는 쌀쌀맞게 쏘아붙였지만, 그 목소리는 진심이라고 보기 어려웠다
+        CASE 2
+            PRINTFORML 「...쳐다보는것도 안돼?」
+            PRINTFORML 「닳는것도 아니면서 말야」
+    ENDSELECT
+ELSEIF TALENT:연인
+	SELECTCASE RAND:2
+        CASE 0
+            PRINTFORML 「...후후♥」
+            PRINTFORML 뭐가 그리 기쁜진 몰라도 살짝 미소짓고 있다
+        CASE 1
+            PRINTFORML 사토리는 얼굴을 살짝 붉히고 있다
+    ENDSELECT
+ELSEIF TALENT:연모||TALENT:사모||TALENT:애욕
+	SELECTCASE RAND:3
+        CASE 0
+            PRINTFORML 「...핫, 아, 아니...일부러 그런건...으으으...」
+            PRINTFORML 멍하니 %마스터를% 바라보던 사토리는 깜짝 놀라며 횡설수설 얼버무리고 있다
+        CASE 1
+            PRINTFORML 뭐가 그리 기쁜지 사토리는 옅은 미소를 띈 채 사랑스럽다는 듯한 시선으로 %마스터를% 바라보고 있다
+        CASE 2
+            PRINTFORML 사토리는 얼굴을 살짝 붉히고 있다
+    ENDSELECT
+ELSEIF TALENT:섹프
+	SELECTCASE RAND:3
+        CASE 0
+            ;낮은 확률로
+            PRINTFORML 「...후후, 뭔가 오늘따라 계속 쳐다보게 되네요...♥」
+            PRINTFORML 「요새 쌓여버린걸까나...후후후♥」
+        ;CASE 1
+
+        ;CASE 2
+        
+    ENDSELECT
+ELSE
+	SELECTCASE RAND:3
+        CASE 0
+            PRINTFORML 「아, 아무것도 아녜요...」
+            PRINTFORML %마스터가% 눈치챈걸 읽은 사토리는 이내 황급히 시선을 돌렸다
+        CASE 1
+            PRINTFORML 사토리는 연신 흘끔흘끔 %마스터를% 바라보고 있다
+        CASE 2
+            ;공란
+    ENDSELECT
+ENDIF
 RETURN 1
 
 ;==================================================
