@@ -235,6 +235,51 @@ CALL EVENT_COUNTER_MESSAGE
 CALL M_KOJO_MESSAGE_COUNTER_K49_11_1
 RETURN RESULT
 @M_KOJO_MESSAGE_COUNTER_K49_11_1
+;PRINTFORML 「」
+IF MARK:반발각인 == 3 && !TALENT:연인
+	SELECTCASE RAND:3
+        CASE 0
+            PRINTFORML 「...너무 가까운게 아니냐고요?」
+            PRINTFORML 「...%사마스터가% 예민한거예요, 전혀 가깝지 않은걸」
+        CASE 1
+
+        CASE 2
+
+    ENDSELECT
+ELSEIF TALENT:연모||TALENT:사모||TALENT:애욕||TALENT:연인
+	SELECTCASE RAND:3
+        CASE 0
+            PRINTFORML 「후후...후후후...♥」
+            PRINTFORML 사토리는 실실 웃으며 %마스터의% 옆으로 다가왔다
+        CASE 1
+            PRINTFORML 「아아, 옷에 먼지가 붙어있어요」
+            PRINTFORML 사토리는 먼지를 털어낸다는 핑계로 바로 옆까지 다가왔다
+        CASE 2
+        
+    ENDSELECT
+ELSEIF TALENT:섹프
+	SELECTCASE RAND:3
+        CASE 0
+            PRINTFORML 사토리는 어느새 코 앞까지 다가와 있었다
+            PRINTFORML 그 얼굴은 어딘가 요염함이 배어나오고 있었다
+        CASE 1
+            PRINTFORML 「너무 달라붙은거 아니냐고요?」
+            PRINTFORML 「후후, 정말로 달라붙는게 뭔지 보여드릴까요?」
+            PRINTFORML 사토리는 요염한 미소를 띄우며 도발해왔다
+        CASE 2
+        
+    ENDSELECT
+ELSE
+	SELECTCASE RAND:3
+        CASE 0
+            PRINTFORML 「너무 붙었다...? 그, 그런가요, 조금 허물없이」
+            PRINTFORML 넋놓고 다가오던 사토리는 %마스터의% 마음을 읽곤 흠칫 놀라며 몇 걸음 후진했다
+        CASE 1
+
+        CASE 2
+        
+    ENDSELECT
+ENDIF
 RETURN 1
 
 ;==================================================
@@ -245,6 +290,11 @@ CALL EVENT_COUNTER_MESSAGE
 CALL M_KOJO_MESSAGE_COUNTER_K49_12_1
 RETURN RESULT
 @M_KOJO_MESSAGE_COUNTER_K49_12_1
+IF MARK:반발각인 == 3&&!TALENT:연인
+	PRINTFORML 아직은 살짝 딱딱하지만, 분명히 사토리의 얼굴은 %마스터를% 바라본채 희미하게 웃고 있었다
+ELSE
+    PRINTFORML 사토리는 어딘가 포근해 보이는 미소를 지어보이고 있다
+ENDIF
 RETURN 1
 
 ;==================================================
