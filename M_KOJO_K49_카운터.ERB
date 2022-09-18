@@ -172,6 +172,56 @@ CALL EVENT_COUNTER_MESSAGE
 CALL M_KOJO_MESSAGE_COUNTER_K49_4_1
 RETURN RESULT
 @M_KOJO_MESSAGE_COUNTER_K49_4_1
+IF MARK:반발각인 == 3 && !TALENT:연인
+	SELECTCASE RAND:3
+        CASE 0
+            PRINTFORML 「뭘 그리 킁킁대는건지...변태같아」
+            PRINTFORML 말로는 빈정거려도 싫은 표정은 아니였다
+        CASE 1
+            PRINTFORML 「기분 나쁘게 킁킁거리기나 하고...저리 가 이 변태...」
+            PRINTFORML 사토리는 싫다는 듯이 거리를 손사래를 쳤지만 그 표정은 어쩐지 웃고 있었다
+        CASE 2
+            ;공란
+    ENDSELECT
+ELSEIF TALENT:연인
+	SELECTCASE RAND:3
+        CASE 0
+            PRINTFORML 「좋은 냄새? 후후, %MASTERNAME:49%도 이 향이 좋은가요?」
+            PRINTFORML 「다음 부턴 이걸로 뿌리고 다녀야겠네요」
+        CASE 1
+
+        CASE 2
+        
+    ENDSELECT
+ELSEIF TALENT:연모||TALENT:사모||TALENT:애욕
+	SELECTCASE RAND:3
+        CASE 0
+            PRINTFORML 「좋은 냄새라, 후후...그렇게 느껴지시나요?」
+            PRINTFORML 「마음에 드시는거 같아 다행이네요」
+        CASE 1
+
+        CASE 2
+        
+    ENDSELECT
+ELSEIF TALENT:섹프
+	SELECTCASE RAND:3
+        CASE 0
+            PRINTFORML 「좋은 냄새? 후후, 새로 산 향수를 용케 맞추셨네요」
+        CASE 1
+
+        CASE 2
+        
+    ENDSELECT
+ELSE
+	SELECTCASE RAND:3
+        CASE 0
+            PRINTFORML 「좋은 냄새다, 라니...칭찬으로 받아들여도 되나요?」
+        CASE 1
+
+        CASE 2
+        
+    ENDSELECT
+ENDIF
 RETURN 1
 
 ;-------------------------------------------------
