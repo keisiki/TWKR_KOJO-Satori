@@ -305,6 +305,17 @@ CALL EVENT_COUNTER_MESSAGE
 CALL M_KOJO_MESSAGE_COUNTER_K49_13_1
 RETURN RESULT
 @M_KOJO_MESSAGE_COUNTER_K49_13_1
+
+;별로 대사가 나올만한 파트는 아님
+SELECTCASE RAND:3
+    CASE 0
+        PRINTFORML 사토리는 살짝 얼굴을 붉히고 있다
+    CASE 1
+    
+    CASE 2
+
+ENDSELECT
+
 RETURN 1
 
 ;==================================================
@@ -315,6 +326,54 @@ CALL EVENT_COUNTER_MESSAGE
 CALL M_KOJO_MESSAGE_COUNTER_K49_14_1
 RETURN RESULT
 @M_KOJO_MESSAGE_COUNTER_K49_14_1
+;이것도 채워넣기 어려우니 전부 뜨진 않게
+IF MARK:반발각인 == 3&&!TALENT:연인
+	SELECTCASE RAND:3
+        CASE 0
+            PRINTFORML 「...」
+            PRINTFORML 사토리는 묵묵히 옆에 서 있을 뿐이었다
+    ENDSELECT
+ELSEIF TALENT:연인
+	SELECTCASE RAND:3
+        CASE 0
+            IF GET_MONTH() == "겨울의 달"
+                IF !CFLAG:4001 || CFLAG:4000
+                    PRINTFORML 「후후...이렇게 추운 겨울이라도, 더 이상 춥지 않네요」
+                ELSE
+                    PRINTFORML 「이렇게 추운 겨울에, 누구씨는 혼자 옆구리에 다른 사람을 끼고 다닌단 거죠」
+                    PRINTFORML 「조금 쓸쓸하네...나도 추운건 마찬가지인데」
+                ENDIF
+            ELSE
+                PRINTFORML 「...조금만 붙어있어도 괜찮을까요?」
+                PRINTFORML 「별다른 이유는 없지만...그냥 옆에 있고 싶은걸요」
+            ENDIF
+    ENDSELECT
+ELSEIF TALENT:연모||TALENT:사모||TALENT:애욕
+	SELECTCASE RAND:3
+        CASE 0
+            IF GET_MONTH() == "겨울의 달"
+                PRINTFORML 「이번 겨울은 어쩐지 옆구리가 시린걸...누군가 채워주지 않으려나」
+            ELSE
+                PRINTFORML 「...조금만 붙어있어도 괜찮을까요?」
+                PRINTFORML 「별다른 이유는 없지만...그냥 옆에 있고 싶은걸요」
+            ENDIF
+    ENDSELECT
+ELSEIF TALENT:섹프
+	SELECTCASE RAND:3
+        CASE 0
+            PRINTFORML 「어딘가 좋은 냄새가...후후후♥ 야릇한 기분인걸요」
+            PRINTFORML 사토리는 %마스터의% 몸에 달라붙었다
+    ENDSELECT
+ELSE
+	SELECTCASE RAND:3
+        CASE 0
+            IF GET_MONTH() == "겨울의 달"
+                PRINTFORML 「왠지 추운걸...조금만 따뜻하게 해주지 않으려나」
+            ELSE
+                PRINTFORML 「...조금만 붙어있어도 괜찮을까나」
+            ENDIF
+    ENDSELECT
+ENDIF
 RETURN 1
 
 ;==================================================
@@ -325,6 +384,7 @@ CALL EVENT_COUNTER_MESSAGE
 CALL M_KOJO_MESSAGE_COUNTER_K49_15_1
 RETURN RESULT
 @M_KOJO_MESSAGE_COUNTER_K49_15_1
+;대사 무, 21, 응시한다랑 너무 겹칠것
 RETURN 1
 
 ;==================================================
@@ -335,6 +395,42 @@ CALL EVENT_COUNTER_MESSAGE
 CALL M_KOJO_MESSAGE_COUNTER_K49_16_1
 RETURN RESULT
 @M_KOJO_MESSAGE_COUNTER_K49_16_1
+IF MARK:반발각인 == 3&&!TALENT:연인
+    SELECTCASE RAND:2
+        CASE 0
+            PRINTFORML 「...가만히 있어, 이러고 있는게 편하니까, 계속 이러고 있을꺼야」
+            PRINTFORML 되도않는 억지를 부리며 사토리는 %CALLNAME:MASTER%에 기대고 있다
+        CASE 1
+
+    ENDSELECT
+ELSEIF TALENT:연인||TALENT:연모||TALENT:사모||TALENT:애욕
+    SELECTCASE RAND:2
+        CASE 0
+            PRINTFORML 「후후...」
+            IF TALENT:연인
+                PRINTFORML 사토리는 %마스터의% 볼에 가볍게 키스해왔다
+            ELSE
+                PRINTFORML 사토리는 행복해 보이는 표정이다
+            ENDIF
+        CASE 1
+        
+    ENDSELECT
+ELSEIF TALENT:섹프
+    SELECTCASE RAND:2
+        CASE 0
+            PRINTFORML 「저기, 할 일 없으시면 뭐라도 같이 하지 않으실래요?」
+            PRINTFORML 「이를테면...기분 좋은 일이라던가...후후후...♥」
+        CASE 1
+        
+    ENDSELECT
+ELSE
+    SELECTCASE RAND:2
+        CASE 0
+            ;뭔가 어울리는 느낌을 모르겠다
+        CASE 1
+        
+    ENDSELECT
+ENDIF
 RETURN 1
 
 ;-------------------------------------------------
