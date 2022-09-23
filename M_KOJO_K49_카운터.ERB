@@ -483,6 +483,40 @@ CALL EVENT_COUNTER_MESSAGE
 CALL M_KOJO_MESSAGE_COUNTER_K49_21_1
 RETURN RESULT
 @M_KOJO_MESSAGE_COUNTER_K49_21_1
+IF MARK:반발각인 == 3&&!TALENT:연인
+	SELECTCASE RAND:2
+        CASE 0
+            PRINTFORML 「...왜 그리 뚫어져라 보고 있는가, 라니...그건...」
+            PRINTFORML 사토리는 쉽사리 대답하지 못하고 있다
+    ENDSELECT
+ELSEIF TALENT:연인
+	SELECTCASE RAND:2
+        CASE 0
+            PRINTFORML 「...왜 그리 뚫어져라 보고 있는가, 인가요?」
+            PRINTFORML 「후후...사랑하는 사람은, 얼마를 보고 있어도 행복한 법이라구요」
+        CASE 1
+            PRINTFORML 「오늘따라 왜 이리 더 사랑스러운지...♥」
+            PRINTFORML 세 개의 눈이 %마스터를% 뚫어져라 바라보고 있다
+    ENDSELECT
+ELSEIF TALENT:연모||TALENT:사모||TALENT:애욕
+	SELECTCASE RAND:2
+        CASE 0
+            PRINTFORML 「...왜 그리 뚫어져라 보고 있는가, 인가요?」
+            PRINTFORML 「뭐랄까...보고 있으면 마음의 안정이 오니까?」
+    ENDSELECT
+ELSEIF TALENT:섹프
+	SELECTCASE RAND:2
+        CASE 0
+            PRINTFORML 「흐으응-...」
+            PRINTFORML 3개의 눈이 이상야릇한 시선으로 %마스터를% 응시해오고 있다 
+    ENDSELECT
+ELSE
+	SELECTCASE RAND:2
+        CASE 0
+            PRINTFORML 「...아, 아아, 너무 쳐다보고 있었나...죄송해요」
+            PRINTFORML 넋놓고 %마스터를% 응시하고 있단걸 깨닫곤 얼굴을 붉히며 고개를 숙였다
+    ENDSELECT
+ENDIF
 RETURN 1
 
 ;==================================================
