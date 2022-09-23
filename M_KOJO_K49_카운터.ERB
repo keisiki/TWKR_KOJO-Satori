@@ -444,6 +444,35 @@ CALL EVENT_COUNTER_MESSAGE
 CALL M_KOJO_MESSAGE_COUNTER_K49_20_1
 RETURN RESULT
 @M_KOJO_MESSAGE_COUNTER_K49_20_1
+;PRINTFORML 「」
+IF MARK:반발각인 == 3&&!TALENT:연인
+	SELECTCASE RAND:3
+        CASE 0
+            PRINTFORML 「아-...어쩐지 더운데...」
+            PRINTFORML 사토리는 어색한 연기로 유혹해오고 있다
+    ENDSELECT
+ELSEIF TALENT:연인
+	SELECTCASE RAND:3
+        CASE 0
+            PRINTFORML 「요염하다라, 후후후...좋아하는 사람한테 듣는건 싫진 않네」
+            PRINTFORML 「그래서요? 감상만으로 끝?」
+    ENDSELECT
+ELSEIF TALENT:연모||TALENT:사모
+	SELECTCASE RAND:3
+        CASE 0
+            PRINTFORML 사토리는 수치심에 얼굴을 붉히면서도 조금씩 더 과감한 행동을 해 왔다
+    ENDSELECT
+ELSEIF TALENT:섹프||TALENT:애욕
+	SELECTCASE RAND:3
+        CASE 0
+            PRINTFORML 「후후후, 유혹하는거 맞아요, 잘 아시면서 왜 아직도 멀뚱히 계시나요?」
+    ENDSELECT
+ELSE
+	SELECTCASE RAND:3
+        CASE 0
+            ;모르겠다
+    ENDSELECT
+ENDIF
 RETURN 1
 
 ;==================================================
