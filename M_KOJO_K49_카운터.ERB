@@ -527,10 +527,39 @@ CALL EVENT_COUNTER_MESSAGE
 CALL M_KOJO_MESSAGE_COUNTER_K49_22_1
 RETURN RESULT
 @M_KOJO_MESSAGE_COUNTER_K49_22_1
+IF MARK:반발각인 == 3&&!TALENT:연인
+	SELECTCASE RAND:2
+        CASE 0
+            PRINTFORML 「...왜 달라붙냐, 인가요?」
+            PRINTFORML 「그래서 싫은가요? 저같은 미소녀와 맞닿는건 어디가서 쉽게 할 수 있는게 아니라고요」
+            PRINTFORML 사토리는 되려 화를 내며 더더욱 달라붙어 왔다
+    ENDSELECT
+ELSEIF TALENT:연인||TALENT:연모||TALENT:사모||TALENT:애욕
+	SELECTCASE RAND:2
+        CASE 0
+            PRINTFORML 「후후후...♥」
+        CASE 1
+            PRINTFORML 「너무 가까워...? 제가 붙는건 싫으신가요?」
+            PRINTFORML 「...역시 싫지는 않으시면서♥ 다 알고 있답니다?」
+    ENDSELECT
+ELSEIF TALENT:섹프
+	SELECTCASE RAND:2
+        CASE 0
+            PRINTFORML 「딱히 할 일 없으면, 같이 좋은거 해요, 네?」
+            PRINTFORML 사토리는 전신을 %마스터의% 몸에 문지르며 열띤 한숨을 쉬고 있다
+    ENDSELECT
+ELSE
+	SELECTCASE RAND:2
+        CASE 0
+            PRINTFORML 「...너무 달라붙은거 아닌가, 인가요?」
+            PRINTFORML 「저같은 미소녀와 살을 맞닿는건 어디가서 쉽게 할 수 있는게 아니라고요? 오히려 감사해야 하는게 아닐까나...」
+            PRINTFORML 사토리는 되도 않는 억지를 부리며 더더욱 엉겨붙었다
+    ENDSELECT
+ENDIF
 RETURN 1
 
 ;==================================================
-;치마를 넘긴다
+;치마를 넘긴다, 여아나타용?
 ;==================================================
 @M_KOJO_MESSAGE_COUNTER_K49_23
 CALL EVENT_COUNTER_MESSAGE
@@ -547,6 +576,7 @@ CALL EVENT_COUNTER_MESSAGE
 CALL M_KOJO_MESSAGE_COUNTER_K49_24_1
 RETURN RESULT
 @M_KOJO_MESSAGE_COUNTER_K49_24_1
+
 RETURN 1
 
 ;==================================================
