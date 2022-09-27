@@ -569,14 +569,57 @@ RETURN RESULT
 RETURN 1
 
 ;==================================================
-;숨결을 내뿜는다
+;귀에 숨결을 내뿜는다
 ;==================================================
 @M_KOJO_MESSAGE_COUNTER_K49_24
 CALL EVENT_COUNTER_MESSAGE
 CALL M_KOJO_MESSAGE_COUNTER_K49_24_1
 RETURN RESULT
 @M_KOJO_MESSAGE_COUNTER_K49_24_1
-
+IF MARK:반발각인 == 3 &&!TALENT:연인
+	SELECTCASE RAND:2
+        CASE 0
+            PRINTFORML 「...뭔가요? 제가 뭐라도 했나요?」
+            PRINTFORML 뻔히 들킨걸 알면서도 모른체 하고 있다
+    ENDSELECT
+ELSEIF TALENT:연인
+	SELECTCASE RAND:2
+        CASE 0
+            IF TALENT:키스미경험
+                PRINTFORML 「귀가 약하시네요- 다음번엔 귀를 괴롭혀 볼까나」
+                PRINTFORML 사토리는 히죽히죽 웃고 있다
+            ELSE
+                PRINTFORML 사토리는 되돌아보는 %마스터의% 머리를 끌어안고 기습 키스를 해왔다
+                EXP:MASTER:키스경험 ++
+                EXP:키스경험++
+                PRINTFORML 사토리는 얼굴을 살짝 붉히고 있다
+            ENDIF
+    ENDSELECT
+ELSEIF TALENT:연모||TALENT:사모||TALENT:애욕
+	SELECTCASE RAND:2
+        CASE 0
+            PRINTFORML 「아, 뒤돌아봤다...후후후♥」
+            PRINTFORML 뭐가 그리 기쁜지 사토리는 작게 웃음을 띄웠다
+    ENDSELECT
+ELSEIF TALENT:섹프
+	SELECTCASE RAND:2
+        CASE 0
+            IF TALENT:키스미경험
+                PRINTFORML 「귀가 약하시네요- 다음번엔 귀를 괴롭혀 볼까나」
+                PRINTFORML 사토리는 히죽히죽 웃고 있다
+            ELSE
+                PRINTFORML 사토리는 되돌아보는 %마스터의% 머리를 끌어안고 기습 키스를 해왔다
+                EXP:MASTER:키스경험 ++
+                EXP:키스경험++
+                PRINTFORML 「방심하면 안되죠...후후♥」
+            ENDIF
+    ENDSELECT
+ELSE
+	SELECTCASE RAND:2
+        CASE 0
+            ;가능한가?
+    ENDSELECT
+ENDIF
 RETURN 1
 
 ;==================================================
@@ -587,6 +630,37 @@ CALL EVENT_COUNTER_MESSAGE
 CALL M_KOJO_MESSAGE_COUNTER_K49_25_1
 RETURN RESULT
 @M_KOJO_MESSAGE_COUNTER_K49_25_1
+;연모계 함락시 할 대사가 딱히 떠오르지 않는다
+IF MARK:반발각인 == 3 && !TALENT:연인
+	SELECTCASE RAND:2
+        CASE 0
+            PRINTFORML 「...이리 무방비하게 들이댄다면, 조금정도 만져진다는건 감수했단 거죠」
+            PRINTFORML 「정말이지 이이상 최악의 변태가 따로 있을까...」
+    ENDSELECT
+ELSEIF TALENT:연인
+	SELECTCASE RAND:2
+        CASE 0
+            
+    ENDSELECT
+ELSEIF TALENT:연모||TALENT:사모||TALENT:애욕
+	SELECTCASE RAND:2
+        CASE 0
+            
+    ENDSELECT
+ELSEIF TALENT:섹프
+	SELECTCASE RAND:2
+        CASE 0
+            PRINTFORML 「후후♥ 좋은 엉덩이군요, 이래서야 만져지는건 당연한거겠죠?」
+            PRINTFORML 「전적으로 %사마스터가% 잘못한거라고요♥」
+    ENDSELECT
+ELSE
+	SELECTCASE RAND:2
+        CASE 0
+            PRINTFORML 「아아, 이건 무심코」
+            PRINTFORML 「만지는 느낌이 굉장히 마음에 드는 바람에 무심코 한것 뿐이니까...신경쓰진 마세요」
+            PRINTFORML 사토리는 되도않는 억지를 부리고 있다
+    ENDSELECT
+ENDIF
 RETURN 1
 
 ;==================================================
