@@ -671,6 +671,39 @@ CALL EVENT_COUNTER_MESSAGE
 CALL M_KOJO_MESSAGE_COUNTER_K49_26_1
 RETURN RESULT
 @M_KOJO_MESSAGE_COUNTER_K49_26_1
+;PRINTFORML 「」
+IF MARK:반발각인 == 3
+	SELECTCASE RAND:2
+        CASE 0
+            PRINTFORML 「...뭔가요, 갑자기 왜 이러는가 인가요?」
+            IF TALENT:연모
+                PRINTFORML 「가끔씩은 이정돈 할 수도 있는거예요...」
+            ELSE
+                PRINTFORML 「...%사마스터가% 먼저 시작했으니까, 조금 정도는 어울려 드릴까 했는데...싫으면 그만두고요」
+            ENDIF
+    ENDSELECT
+ELSEIF TALENT:연인
+	SELECTCASE RAND:2
+        CASE 0
+            PRINTFORML 사토리는 느슨한 미소를 지으며 달라붙고 있다
+    ENDSELECT
+ELSEIF TALENT:연모||TALENT:사모||TALENT:애욕
+	SELECTCASE RAND:2
+        CASE 0
+            PRINTFORML 사토리는 어딘가 사랑스럽다는 시선을 보내며 달라붙고 있다
+    ENDSELECT
+ELSEIF TALENT:섹프
+	SELECTCASE RAND:2
+        CASE 0
+            PRINTFORML 「갑자기 뭐 하는 거냐고요? 음...연인 놀이?」
+            PRINTFORML 「%사마스터가% 그럴 기분 들게 해버렸으니 한동안은 같이 어울려주세요」
+    ENDSELECT
+ELSE
+	SELECTCASE RAND:2
+        CASE 0
+            PRINTFORML 사토리는 말없이 %마스터의% 팔을 붙잡곤 느슨한 미소를 띄워보이고 있다
+    ENDSELECT
+ENDIF
 RETURN 1
 ;==================================================
 ;골짜기를 과시한다
