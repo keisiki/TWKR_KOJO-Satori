@@ -713,6 +713,78 @@ CALL EVENT_COUNTER_MESSAGE
 CALL M_KOJO_MESSAGE_COUNTER_K49_27_1
 RETURN RESULT
 @M_KOJO_MESSAGE_COUNTER_K49_27_1
+;PRINTFORML 「」
+IF MARK:반발각인 == 3&&!TALENT:연인
+	SELECTCASE RAND:2
+        CASE 0
+            IF GET_MONTH() == "여름의 달"
+                PRINTFORML 「아-...뭔가 덥네...」
+                IF !GET_TARGETNUM()
+                    PRINTFORML 대놓고 드러난 가슴을 한손으로 아슬아슬 가리며 덥다는 듯한 시늉을 내고 있다
+                ELSE
+                    PRINTFORML 사토리는 단추를 몇 개 풀고 가슴골을 살짝 드러냈다
+                ENDIF
+            ELSE
+                PRINTFORML 「뭔가 답답한 기분인걸...하아아-...」
+                PRINTFORML 사토리는 단추를 풀고 노골적으로 가슴을 드러내고 있다
+            ENDIF
+        CASE 1
+
+    ENDSELECT
+ELSEIF TALENT:연모||TALENT:사모||TALENT:애욕||TALENT:연인
+	SELECTCASE RAND:2
+        CASE 0
+            IF CFLAG:가슴사이즈 == 0
+                PRINTFORML 「그래도 이정도면 꽤 있는 편...까진 아닌가?」
+                PRINTFORML 「조금쯤 더 커졌으면 좋겠네」
+            ELSE
+                PRINTFORML 「아...가슴 커진거 생각보다 불편하네」
+                PRINTFORML 「무거워서 상당히 어깨가 부담이란 말이지...응, 좋은건 별로 없고 말야」
+                PRINTFORML 「...그래도 큰 가슴이 좋다고 하시니 어쩔수 없지만」
+            ENDIF
+        CASE 1
+            IF GET_MONTH() == "여름의 달"
+                PRINTFORML 「아-...뭔가 덥네...」
+                IF CFLAG:가슴사이즈 > 0
+                    PRINTFORML 「커져서 그런지 속에서 열이 안 빠져나가네...후우-...」
+                ENDIF
+                IF !GET_TARGETNUM()
+                    PRINTFORML 대놓고 드러난 가슴을 \@TALENT:연인 || TALENT:애욕 ? 가릴 생각조차 없이 # 한손으로 아슬아슬 가리며 \@ 덥다는 듯한 시늉을 내고 있다
+                ELSE
+                    PRINTFORML 사토리는 단추를 몇 개 풀고 가슴골을 살짝 드러냈다
+                ENDIF
+            ELSE
+                PRINTFORML 「뭔가 가슴이 답답한 기분인걸...후아-...」
+                PRINTFORML 사토리는 단추를 풀고 노골적으로 가슴을 드러내고 있다
+                PRINTFORML 「...가슴이 신경쓰이나요? 뭐 어떤가요, 다른 사람도 아니고 %MASTERNAME:49%한테 보이는 건데」
+            ENDIF
+    ENDSELECT
+ELSEIF TALENT:섹프
+	SELECTCASE RAND:2
+        CASE 0
+            PRINTFORML 「전에 쟀을땐 코이시보다 컸는데, 지금은 어떠려나...」
+        CASE 1
+            PRINTFORML 「그래도 모으면 조금은 있는 편...아닌가?」
+            PRINTFORML 사토리는 가슴을 최대한 모아보려 노력하고 있다
+    ENDSELECT
+ELSE
+	SELECTCASE RAND:2
+        CASE 0
+            IF GET_MONTH() == "여름의 달"
+                PRINTFORML 「아-...뭔가 덥네...」
+                IF !GET_TARGETNUM()
+                    PRINTFORML 대놓고 드러난 가슴을 한손으로 아슬아슬 가리며 덥다는 듯한 시늉을 내고 있다
+                ELSE
+                    PRINTFORML 사토리는 단추를 몇 개 풀고 가슴골을 살짝 드러냈다
+                ENDIF
+            ELSE
+                PRINTFORML 「뭔가 답답한 기분인걸...아-...」
+                PRINTFORML 사토리는 단추를 풀고 노골적으로 가슴을 드러내고 있다
+            ENDIF
+        CASE 1
+            PRINTFORML 「이정도면 그래도 조금은 있는 편 아닐까나...응, 그렇겠지」
+    ENDSELECT
+ENDIF
 RETURN 1
 
 ;-------------------------------------------------
