@@ -734,7 +734,7 @@ IF MARK:반발각인 == 3&&!TALENT:연인
 ELSEIF TALENT:연모||TALENT:사모||TALENT:애욕||TALENT:연인
 	SELECTCASE RAND:2
         CASE 0
-            IF CFLAG:가슴사이즈 == 0
+            IF TALENT:가슴사이즈 == 0
                 PRINTFORML 「그래도 이정도면 꽤 있는 편...까진 아닌가?」
                 PRINTFORML 「조금쯤 더 커졌으면 좋겠네」
             ELSE
@@ -745,7 +745,7 @@ ELSEIF TALENT:연모||TALENT:사모||TALENT:애욕||TALENT:연인
         CASE 1
             IF GET_MONTH() == "여름의 달"
                 PRINTFORML 「아-...뭔가 덥네...」
-                IF CFLAG:가슴사이즈 > 0
+                IF TALENT:가슴사이즈 > 0
                     PRINTFORML 「커져서 그런지 속에서 열이 안 빠져나가네...후우-...」
                 ENDIF
                 IF !GET_TARGETNUM()
