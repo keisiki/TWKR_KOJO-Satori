@@ -798,6 +798,52 @@ CALL EVENT_COUNTER_MESSAGE
 CALL M_KOJO_MESSAGE_COUNTER_K49_30_1
 RETURN RESULT
 @M_KOJO_MESSAGE_COUNTER_K49_30_1
+IF MARK:반발각인 == 3 && !TALENT:연인
+	SELECTCASE RAND:2
+        CASE 0
+            PRINTFORML 「후아...뭔가요? 갑자기 키스 당해서 기분 나쁘신지?」
+            PRINTFORML 「어짜피 기쁘면서 뭘 그리...얌전히 당하기나 하란 말야」
+        CASE 1
+            PRINTFORML 「...뭔가요 그 표정은, 모처럼 어울려 드렸는데」
+            PRINTFORML 「어짜피 %사마스터의% 입술같은거, \@ EXP:MASTER:키스경험 > EXP:키스경험 + 5 ? 닳고 닳은 중고품인데 한 번 대주는게 뭐가 대수라고 # 저 말고 누가 써 줄 일이라도 있나요? 되려 이쪽이 무료봉사 해주는 거라고요 \@」
+            PRINTFORML 사토리는 툴툴대며 다시 입술을 접해왔다
+    ENDSELECT
+ELSEIF TALENT:연인
+	SELECTCASE RAND:2
+        CASE 0
+            PRINTFORML 「...후후후♥」
+            PRINTFORML 사토리는 잠시 멋쩍은듯 %마스터를% 바라보더니 이내 배시시 웃기 시작했다
+        CASE 1
+            PRINTFORML 「...후후, 좋아합니다, %MASTERNAME:49%♥」
+    ENDSELECT
+ELSEIF TALENT:연모||TALENT:사모
+	SELECTCASE RAND:3
+        CASE 0
+            PRINTFORML 「아, 아하하...♥ 이건...」
+            PRINTFORML 막상 해놓고도 부끄러운지 얼굴을 새빨갛게 붉히고 있다
+        CASE 1
+            PRINTFORML 「...뭐, 뭔가요, 이건 인사에요 인사, 다른 곳에서 이정도 키스는 인사에 불과하니까...」
+            PRINTFORML 사토리는 얼굴을 새빨갛게 물들인 채 횡설수설 변명하고 있다
+        CASE 2
+            PRINTFORML 「...왜, 왜 그러시죠? 이건 그러니까...그래, 살과 살이 맞붙을뿐인, 단순한 스킨십에 불과한 일이니까...」
+            PRINTFORML 막상 해놓고도 부끄러운건지 얼굴을 새빨갛게 물들인 채 횡설수설 변명하고 있다
+    ENDSELECT
+ELSEIF TALENT:섹프||TALENT:애욕
+	SELECTCASE RAND:2
+        CASE 0
+            PRINTFORML 「응츄...후후후♥ 이거 기분 좋아...♥」
+            PRINTFORML 「야한짓 당할때랑은 뭔가 다른, 굉장히 충만해지는 기분인걸」
+        CASE 1
+            PRINTFORML 「가끔은 이런 것도 괜찮을지도 모르겠네♥」
+            PRINTFORML 「...저기, 조금만 더 할까요?」
+    ENDSELECT
+ELSE
+	SELECTCASE RAND:2
+        CASE 0
+            PRINTFORML 「...내, 내가 뭘 한거람...으으...」
+            PRINTFORML 사토리는 얼굴을 붉히고 있다
+    ENDSELECT
+ENDIF
 RETURN 1
 
 ;==================================================
