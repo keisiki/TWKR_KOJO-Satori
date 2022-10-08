@@ -896,6 +896,37 @@ CALL EVENT_COUNTER_MESSAGE
 CALL M_KOJO_MESSAGE_COUNTER_K49_32_1
 RETURN RESULT
 @M_KOJO_MESSAGE_COUNTER_K49_32_1
+IF MARK:반발각인 == 3&&!TALENT:연인
+	SELECTCASE RAND:2
+        CASE 0
+            PRINTFORML 「...조금만 어울려줘, 잠깐이면 되니까」
+            PRINTFORML 사토리는 %마스터를% 어거지를 껴안곤 말없이 있을 뿐이었다
+        CASE 1
+            PRINTFORML 「가만히 있어, 조금이면 되니까...」
+            PRINTFORML 사토리는 %마스터를% 껴안은채 한참을 말없이 있을 뿐이었다
+    ENDSELECT
+ELSEIF TALENT:연인||TALENT:연모||TALENT:사모
+	SELECTCASE RAND:2
+        CASE 0
+            PRINTFORML 「...♥」
+            PRINTFORML 사토리는 말없이 %마스터를% 끌어안을 뿐이었다
+        CASE 1
+            PRINTFORML 「...좋아해, 정말로...좋아해」
+            IF CFLAG:4001 && !CFLAG:4000
+                PRINTFORML 「...%MASTERNAME:40%도 좋아하는지는 잘 모르겠지만」
+            ENDIF
+    ENDSELECT
+ELSEIF TALENT:섹프||TALENT:애욕
+	SELECTCASE RAND:2
+        CASE 0
+            PRINTFORML 「후후...옳지옳지, 귀여워라」
+            PRINTFORML 「...랄까나, 뭔가 부끄러운걸」
+            PRINTFORML 사토리는 큭큭 웃었다
+    ENDSELECT
+ELSE
+    ;될까 싶지만
+    PRINTFORML 「뭐랄까, 조금 기분 좋은거 같기도」
+ENDIF
 RETURN 1
 
 ;==================================================
