@@ -937,6 +937,58 @@ CALL EVENT_COUNTER_MESSAGE
 CALL M_KOJO_MESSAGE_COUNTER_K49_33_1
 RETURN RESULT
 @M_KOJO_MESSAGE_COUNTER_K49_33_1
+IF MARK:반발각인 == 3&&!TALENT:연인
+	SELECTCASE RAND:2
+        CASE 0
+            PRINTFORML 「...뭐, 뭔가요, 기껏 만져주게 해줬더니 멀뚱멀뚱...」
+            PRINTFORML 「적어도 어떻다던가 말이라도 해보란 말야...」
+            PRINTFORML 사토리는 뾰로통하게 쏘아붙였다
+        CASE 1
+            PRINTFORML 「이, 이건...그러니까...」
+            PRINTFORML 「아무튼 %사마스터가% 잘못한거야...자꾸 야한 생각을...으으으...나도 덩달아 이상해지게 하고...」
+            PRINTFORML 사토리는 횡설수설 변명하고 있다
+            PRINTFORML 그녀의 서드아이는 이미 한계까지 흥분해서 %마스터를% 제대로 바라보지도 못하고 있었다
+    ENDSELECT
+ELSEIF TALENT:연인
+	SELECTCASE RAND:2
+        CASE 0
+            PRINTFORML 「...어떤가요? 제 가슴...기분 좋죠?」
+            PRINTFORML 「제 가슴은 %MASTERNAME:49%꺼니까, 내키는대로 마음껏 만져도 좋아요...후후후♥」
+            PRINTFORML 사토리는 요염한 미소를 지어보이고 있다
+            IF TALENT:모유체질
+                PRINTFORML %마스터의% 손바닥에 약간의 끈적함이 느껴진다...
+            ENDIF
+        CASE 1
+            PRINTFORML 「뭔가 심장이 콩닥콩닥 거리는데, 어째설까요...」
+            PRINTFORML 사토리는 %마스터의% 손을 가슴 사이에 끌어안고 있다
+    ENDSELECT
+ELSEIF TALENT:연모||TALENT:사모||TALENT:애욕
+	SELECTCASE RAND:2
+        CASE 0
+            PRINTFORML 「이, 이건 그러니까...」
+            PRINTFORML 「...우으으」
+            PRINTFORML 뒤늦게 무슨짓을 했는지 깨달은 사토리는 뭐라 변명도 못하고 얼굴을 붉힐 뿐이었다
+        CASE 1
+            PRINTFORML 「어떤가요...? 저, 지금 왠지 심장이 많이 콩닥거려서...」
+    ENDSELECT
+ELSEIF TALENT:섹프
+	SELECTCASE RAND:2
+        CASE 0
+            PRINTFORML 「어떤가요? 좀 더 만지고 싶다던가 그런가요?...후후후♥」
+            PRINTFORML 「기분좋게만 해준다면 내키는대로 만져도 되는데♥」
+            PRINTFORML 사토리는 귓가에 작게 속삭여왔다
+        CASE 1
+            PRINTFORML 「꺄아♥ 변태씨♥」
+            PRINTFORML 「이런일은 침대에서만 해주세요♥」
+            PRINTFORML 사토리는 헤실헤실 웃으며 자기 가슴을 주무르게 하고 있다
+    ENDSELECT
+ELSE
+	SELECTCASE RAND:2
+        CASE 0
+            PRINTFORML 「어...어라, 내가 무슨...」
+            PRINTFORML 사토리는 황급히 손을 떼어놓았다
+    ENDSELECT
+ENDIF
 RETURN 1
 
 ;==================================================
