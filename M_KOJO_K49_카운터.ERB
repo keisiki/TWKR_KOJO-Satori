@@ -998,7 +998,73 @@ RETURN 1
 CALL EVENT_COUNTER_MESSAGE
 CALL M_KOJO_MESSAGE_COUNTER_K49_34_1
 RETURN RESULT
+;PRINTFORML 「」
+;얘도 연모계에서 딱히 할 말이...
 @M_KOJO_MESSAGE_COUNTER_K49_34_1
+IF MARK:반발각인 == 3 && !TALENT:연인
+    IF CFLAG:우후후
+        SELECTCASE RAND:2
+            CASE 0
+                PRINTFORML 「......」
+                PRINTFORML 사토리는 부끄러운지 얼굴을 붉힌채 조심조심 %마스터의% 다리 사이를 더듬거리고 있을 뿐이었다
+            CASE 1
+                PRINTFORML 「아으으...」
+                PRINTFORML 사토리는 부끄러운지 미적미적 %마스터를% 더듬고 있다
+        ENDSELECT
+    ELSE
+        SELECTCASE RAND:2
+            CASE 0
+                PRINTFORML 「...소, 손이 멋대로...」
+                PRINTFORML 「이런거 안되는데...손을 못떼겠어...」
+            CASE 1
+                PRINTFORML 「뭐, 뭐야 그 표정은...」
+                PRINTFORML 「...기분 좋게 해주고 있잖아...좋은게 좋은거니까 얌전히 당해달란 말야...」
+                PRINTFORML 흥분한 사토리는 횡설수설 변명하며 %마스터의% 몸을 더듬고 있다
+        ENDSELECT
+    ENDIF
+ELSEIF TALENT:연인
+	SELECTCASE RAND:2
+        CASE 0
+            
+    ENDSELECT
+ELSEIF TALENT:연모||TALENT:사모
+	SELECTCASE RAND:2
+        CASE 0
+            
+    ENDSELECT
+ELSEIF TALENT:섹프||TALENT:애욕
+	SELECTCASE RAND:2
+        CASE 0
+            PRINTFORML 「말랑말랑...후후후, 만질수록 중독성 있는걸♥」
+            IF HAS_PENIS(MASTER)
+                PRINTFORML 「...어라라, 단단해지고 있어...혹시 만져져서 흥분한건가요?」
+                BASE:MASTER:발기 = MIN(MAXBASE:MASTER:발기,BASE:MASTER:발기 + 100)
+            ELSE
+                PRINTFORML 「...어라라, 축축해지고 있어...혹시 만져져서 흥분한건가요?」
+                PALAM:MASTER:윤활 = MIN(3000,PALAM:MASTER:윤활 + 100)
+            ENDIF
+        CASE 1
+            PRINTFORML 「후후후...기분 좋으신가요?」
+            IF CFLAG:우후후
+                PRINTFORML 「그러면 %MASTERNAME:49%도 기분좋은 일 해주세요♥」
+            ELSE
+                PRINTFORML 「저기, 그러면 지금 해버릴까요? 응?」
+                PRINTFORML 사토리는 요염한 시선을 던져오고 있다
+            ENDIF
+    ENDSELECT
+ELSE
+	SELECTCASE RAND:2
+        CASE 0
+            PRINTFORML 「뭔가 말랑말랑한게 귀여울지도...?」
+            IF HAS_PENIS(MASTER)
+                PRINTFORML 「...어째 만질수록 조금 단단해 지는 느낌인데...후후, 재밌네요」
+                BASE:MASTER:발기 = MIN(MAXBASE:MASTER:발기,BASE:MASTER:발기 + 100)
+            ELSE
+                PRINTFORML 「...어째 만질수록 조금 축축해 지는 느낌인데...후후, 재밌네요」
+                PALAM:MASTER:윤활 = MIN(3000,PALAM:MASTER:윤활 + 100)
+            ENDIF
+    ENDSELECT
+ENDIF
 RETURN 1
 
 ;==================================================
@@ -1008,11 +1074,352 @@ RETURN 1
 CALL EVENT_COUNTER_MESSAGE
 CALL M_KOJO_MESSAGE_COUNTER_K49_35_1
 RETURN RESULT
+
+;정액 있는채로 할때 대사가 애널 구분 안하고 있다, 고쳐야 하는데...
+
+;PRINTFORML 「」
 @M_KOJO_MESSAGE_COUNTER_K49_35_1
+IF MARK:반발각인 == 3 && !TALENT:연인
+	IF TEQUIP:TARGET:50 == MASTER ; 박고있다
+        SELECTCASE RAND:2
+            CASE 0
+                PRINTFORML 「......」
+                PRINTFORML 사토리는 얼굴을 붉히면서 결합부를 보이고 있다...
+            CASE 1
+                PRINTFORML 「이...이렇게 박히고 있구나...야해라...」
+                PRINTFORML 서드아이로 %마스터를% 통해 자신의 결합부를 보는 사토리는 얼굴을 새빨갛게 물들이고 있었다
+        ENDSELECT
+    ELSEIF 충전율(TARGET, 1) > 100 || 충전율(TARGET, 2) > 100 ;정액 잔뜩
+        SELECTCASE RAND:2
+            CASE 0
+                PRINTFORML 「이...이렇게나 많이...」
+                IF EXP:출산경험 || CFLAG:임신경과일수
+                    PRINTFORML 「이 정도면 또 생겨버릴지도...」
+                ELSE
+                    PRINTFORML 「이정도면 무조건 생겨버려...아아...」
+                ENDIF
+                PRINTFORML 사토리는 흠칫흠칫 떨고 있다
+            CASE 1
+                PRINTFORML 「배 안에서 넘쳐 흘러...보여?」
+                PRINTFORML 「이게 다 %사마스터가% 싼거라고...그렇게나 좋았던가야?」
+        ENDSELECT
+    ELSEIF 충전율(TARGET, 1) > 50 || 충전율(TARGET, 2) > 50 ; 정액 좀 들음
+        SELECTCASE RAND:2
+            CASE 0
+                PRINTFORML 「안에서 넘치고 있어...얼마나 싼거야 이 변태」
+                IF EXP:출산경험 || CFLAG:임신경과일수
+                    PRINTFORML 「또 생기면 어쩌려고 이러는지 참...」
+                ELSE
+                    PRINTFORML 「...생기면 어쩌려고」
+                ENDIF
+                PRINTFORML 사토리는 흠칫흠칫 떨고 있다
+            CASE 1
+                PRINTFORML 「정액이 계속 새나오고 있어...」
+                PRINTFORML 「어떡할거야 이거, 안 멈춘단 말야」
+        ENDSELECT
+    ELSEIF !EQUIP:하반신속옷2 && !CFLAG:우후후 ;노팬티 + 우후후 아님
+        SELECTCASE RAND:2
+            CASE 0
+                PRINTFORML 「우으...」
+                PRINTFORML 사토리는 얼굴을 새빨갛게 물들인 채 실오라기 하나 없는 자신의\@ HAS_PENIS(TARGET) ? 자지# 보지\@를 드러내고 있다
+            CASE 1
+                PRINTFORML 「이...이런 거 보면 기쁜거지...? 이 변태...」
+                PRINTFORML 사토리는 부끄러움에 얼굴을 붉히면서도 도발적인 표정으로 %마스터를% 향해 \@ HAS_PENIS(TARGET) ? 자지# 보지\@를 보이고 있다
+        ENDSELECT
+    ELSE
+        IF CFLAG:우후후
+            SELECTCASE RAND:2
+                CASE 0
+                    PRINTFORML 「자, 자아...이런거 좋아하지...? 얼른 해버리라고 이 변태...」
+                    PRINTFORML 사토리는 부끄러움에 얼굴을 붉히면서도 도발적인 표정을 지어보이고 있다
+                CASE 1
+                    PRINTFORML 「읏...보, 보고만 있을거야...?」
+                    PRINTFORML 「나도...부끄러운건 있다고...얼른 하란 말야...」
+            ENDSELECT
+        ELSE
+            SELECTCASE RAND:2
+                CASE 0
+                    PRINTFORML 「이...이런거 보면 기쁜거지...? 변태같으니라고...♥」
+                    PRINTFORML 사토리는 수치심에 얼굴을 붉히면서도 도발적인 표정으로 %마스터를% 바라보고 있다
+                CASE 1
+                    PRINTFORML 「...자, 잘 봐둬...다신 못 볼 장면이니까...이번만 특별히 보게 해주는거니까...」
+                    PRINTFORML 사토리는 얼굴을 새빨갛게 물들이고 있다
+            ENDSELECT
+        ENDIF
+    ENDIF
+ELSEIF TALENT:연인
+	IF TEQUIP:TARGET:50 == MASTER ; 박고있다
+        SELECTCASE RAND:2
+            CASE 0
+                PRINTFORML 「바, 박히고 있는 걸 보고 있으니까...왠지 부끄러워...」
+            CASE 1
+                PRINTFORML 「보, 보여...? %사마스터의% 자지, 내 보지에 제대로 푹푹 박히고 있어...♥」
+                PRINTFORML 「앗♥ 끄, 끝까지 들어왔어...기분...좋아♥」
+                PRINTFORML 사토리는 쾌락과 수치심이 뒤섞인 복잡한 표정으로 %마스터를% 응시하고 있다
+        ENDSELECT
+    ELSEIF 충전율(TARGET, 1) > 100 || 충전율(TARGET, 2) > 100 ;정액 잔뜩
+        IF CFLAG:우후후
+            SELECTCASE RAND:2
+                CASE 0
+                    PRINTFORML 「뱃속이 정액으로 가득...이건 무조건 생겨버려...」
+                    IF CFLAG:임신경과일수
+                        PRINTFORML 「두명이 들어갈 자리는 없단 말야...으으...」
+                    ELSE
+                        PRINTFORML 「...싫은건, 아니지만」
+                    ENDIF
+                    PRINTFORML 흠칫흠칫 떠는 사토리의 다리 사이에서 정액이 한도끝도 없이 넘쳐흐르고 있다
+                CASE 1
+                    PRINTFORML 「계, 계속 나오는걸...얼마나 싼거야...」
+                    PRINTFORML 「그렇게 제 안이 기분 좋으셨나요...? 그렇다면 뭔가 기쁘지만...」
+            ENDSELECT
+        ELSE
+            SELECTCASE RAND:2
+                CASE 0
+                    PRINTFORML 「아, 아직도 나와...정액 안 멈춰...」
+                    PRINTFORML 「이거 어쩔거예요, 가는곳마다 정액길이 생긴다구요」
+                CASE 1
+                    PRINTFORML 「얼마나 싼 거예요...아직도 안 멈춘다고요?」
+                    PRINTFORML 「옷이며 바닥이며 정액 범벅이 되버리잖아요...」
+                    PRINTFORML 사토리는 정액이 울컥울컥 쏟아지는 보지를 보이며 타박해왔다
+            ENDSELECT
+        ENDIF
+    ELSEIF 충전율(TARGET, 1) > 50 || 충전율(TARGET, 2) > 50 ; 정액 좀 들음
+        IF CFLAG:우후후
+            SELECTCASE RAND:2
+                CASE 0
+
+                CASE 1
+                
+            ENDSELECT
+        ELSE
+            SELECTCASE RAND:2
+                CASE 0
+
+                CASE 1
+                
+            ENDSELECT
+        ENDIF
+    ELSEIF !EQUIP:하반신속옷2 && !CFLAG:우후후 ;노팬티 + 우후후 아님
+        SELECTCASE RAND:2
+            CASE 0
+
+            CASE 1
+            
+        ENDSELECT
+    ELSE
+        IF CFLAG:우후후
+            SELECTCASE RAND:2
+                CASE 0
+
+                CASE 1
+                
+            ENDSELECT
+        ELSE
+            SELECTCASE RAND:2
+                CASE 0
+
+                CASE 1
+                
+            ENDSELECT
+        ENDIF
+    ENDIF
+ELSEIF TALENT:연모||TALENT:사모||TALENT:애욕
+	IF TEQUIP:TARGET:50 == MASTER ; 박고있다
+        SELECTCASE RAND:2
+            CASE 0
+
+            CASE 1
+
+        ENDSELECT
+    ELSEIF 충전율(TARGET, 1) > 100 || 충전율(TARGET, 2) > 100 ;정액 잔뜩
+        IF CFLAG:우후후
+            SELECTCASE RAND:2
+                CASE 0
+
+                CASE 1
+                
+            ENDSELECT
+        ELSE
+            SELECTCASE RAND:2
+                CASE 0
+
+                CASE 1
+                
+            ENDSELECT
+        ENDIF
+    ELSEIF 충전율(TARGET, 1) > 50 || 충전율(TARGET, 2) > 50 ; 정액 좀 들음
+        IF CFLAG:우후후
+            SELECTCASE RAND:2
+                CASE 0
+
+                CASE 1
+                
+            ENDSELECT
+        ELSE
+            SELECTCASE RAND:2
+                CASE 0
+
+                CASE 1
+                
+            ENDSELECT
+        ENDIF
+    ELSEIF !EQUIP:하반신속옷2 && !CFLAG:우후후 ;노팬티 + 우후후 아님
+        SELECTCASE RAND:2
+            CASE 0
+
+            CASE 1
+            
+        ENDSELECT
+    ELSE
+        IF CFLAG:우후후
+            SELECTCASE RAND:2
+                CASE 0
+
+                CASE 1
+                
+            ENDSELECT
+        ELSE
+            SELECTCASE RAND:2
+                CASE 0
+
+                CASE 1
+                
+            ENDSELECT
+        ENDIF
+    ENDIF
+ELSEIF TALENT:섹프
+	IF TEQUIP:TARGET:50 == MASTER ; 박고있다
+        SELECTCASE RAND:2
+            CASE 0
+
+            CASE 1
+
+        ENDSELECT
+    ELSEIF 충전율(TARGET, 1) > 100 || 충전율(TARGET, 2) > 100 ;정액 잔뜩
+        IF CFLAG:우후후
+            SELECTCASE RAND:2
+                CASE 0
+
+                CASE 1
+                
+            ENDSELECT
+        ELSE
+            SELECTCASE RAND:2
+                CASE 0
+
+                CASE 1
+                
+            ENDSELECT
+        ENDIF
+    ELSEIF 충전율(TARGET, 1) > 50 || 충전율(TARGET, 2) > 50 ; 정액 좀 들음
+        IF CFLAG:우후후
+            SELECTCASE RAND:2
+                CASE 0
+
+                CASE 1
+                
+            ENDSELECT
+        ELSE
+            SELECTCASE RAND:2
+                CASE 0
+
+                CASE 1
+                
+            ENDSELECT
+        ENDIF
+    ELSEIF !EQUIP:하반신속옷2 && !CFLAG:우후후 ;노팬티 + 우후후 아님
+        SELECTCASE RAND:2
+            CASE 0
+
+            CASE 1
+            
+        ENDSELECT
+    ELSE
+        IF CFLAG:우후후
+            SELECTCASE RAND:2
+                CASE 0
+
+                CASE 1
+                
+            ENDSELECT
+        ELSE
+            SELECTCASE RAND:2
+                CASE 0
+
+                CASE 1
+                
+            ENDSELECT
+        ENDIF
+    ENDIF
+ELSE
+	IF TEQUIP:TARGET:50 == MASTER ; 박고있다
+        SELECTCASE RAND:2
+            CASE 0
+
+            CASE 1
+
+        ENDSELECT
+    ELSEIF 충전율(TARGET, 1) > 100 || 충전율(TARGET, 2) > 100 ;정액 잔뜩
+        IF CFLAG:우후후
+            SELECTCASE RAND:2
+                CASE 0
+
+                CASE 1
+                
+            ENDSELECT
+        ELSE
+            SELECTCASE RAND:2
+                CASE 0
+
+                CASE 1
+                
+            ENDSELECT
+        ENDIF
+    ELSEIF 충전율(TARGET, 1) > 50 || 충전율(TARGET, 2) > 50 ; 정액 좀 들음
+        IF CFLAG:우후후
+            SELECTCASE RAND:2
+                CASE 0
+
+                CASE 1
+                
+            ENDSELECT
+        ELSE
+            SELECTCASE RAND:2
+                CASE 0
+
+                CASE 1
+                
+            ENDSELECT
+        ENDIF
+    ELSEIF !EQUIP:하반신속옷2 && !CFLAG:우후후 ;노팬티 + 우후후 아님
+        SELECTCASE RAND:2
+            CASE 0
+
+            CASE 1
+            
+        ENDSELECT
+    ELSE
+        IF CFLAG:우후후
+            SELECTCASE RAND:2
+                CASE 0
+
+                CASE 1
+                
+            ENDSELECT
+        ELSE
+            SELECTCASE RAND:2
+                CASE 0
+
+                CASE 1
+                
+            ENDSELECT
+        ENDIF
+    ENDIF
+ENDIF
 RETURN 1
 
 ;==================================================
-;뒤로부터 가슴을 만지작 만지작
+;뒤로부터 가슴을 만지작 만지작 여/후타 전용, 생략
 ;==================================================
 @M_KOJO_MESSAGE_COUNTER_K49_36
 CALL EVENT_COUNTER_MESSAGE
@@ -1029,6 +1436,30 @@ CALL EVENT_COUNTER_MESSAGE
 CALL M_KOJO_MESSAGE_COUNTER_K49_39_1
 RETURN RESULT
 @M_KOJO_MESSAGE_COUNTER_K49_39_1
+
+IF TALENT:섹프 || TALENT:애욕
+    SELECTCASE RAND:2
+        CASE 0
+            PRINTFORML 「후후, 그렇게 무방비하게 있으시면 안된다구요?」
+            PRINTFORML 「도로 가져가고 싶으시다면...가져가 보시던가요?」
+            PRINTFORML 사토리는 입에 사탕을 문 채 도발적인 시선을 보내오고 있다
+            PRINTFORML [0] 도로 빼앗는다
+            PRINTFORML [1] 그냥 준다
+            INPUT
+            IF RESULT == 0
+                PRINTFORML 「응읏♥ 응응응...♥ 쪽♥」
+                PRINTFORML 사토리의 입술을 탐하며 입 안의 사탕을 혀로 가로채왔다
+                PRINTFORML 엿을 빼앗기면서도 어쩐지 사토리는 기뻐보이는 표정이다
+                EXP:MASTER:키스경험 ++
+                EXP:키스경험 ++
+            ELSE
+                PRINTFORML 「어라라, 싱겁게」
+                PRINTFORML 「뭐어 그럼 감사히♥」
+            ENDIF
+        CASE 1
+
+    ENDSELECT
+ENDIF
 RETURN 1
 
 ;-------------------------------------------------
