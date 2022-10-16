@@ -1184,42 +1184,48 @@ ELSEIF TALENT:연인
             ENDSELECT
         ENDIF
     ELSEIF 충전율(TARGET, 1) > 50 || 충전율(TARGET, 2) > 50 ; 정액 좀 들음
-        IF CFLAG:우후후
-            SELECTCASE RAND:2
-                CASE 0
-
-                CASE 1
-                
-            ENDSELECT
-        ELSE
-            SELECTCASE RAND:2
-                CASE 0
-
-                CASE 1
-                
-            ENDSELECT
-        ENDIF
+        SELECTCASE RAND:2
+            CASE 0
+                PRINTFORML 「보이시나요? 배가 정액으로 가득하다구요」
+                PRINTFORML 사토리는 정액이 흘러나오는 다리 사이를 과시하고 있다
+            CASE 1
+                PRINTFORML 「굉장해...아직도 나와...♥」
+                PRINTFORML 「후후, 역시 저랑 하는게 제일 기분 좋죠?」
+                PRINTFORML 사토리는 흘러나오는 정액을 사랑스럽다는 듯이 바라보고 있다
+        ENDSELECT
     ELSEIF !EQUIP:하반신속옷2 && !CFLAG:우후후 ;노팬티 + 우후후 아님
         SELECTCASE RAND:2
             CASE 0
-
+                PRINTFORML 「후후후...♥ 몰래 보세요♥」
+                PRINTFORML 사토리는 얼굴을 붉힌채 자신의 실오라기 하나 없는\@ HAS_PENIS(TARGET) ? 자지# 보지\@를 과시하고 있다
             CASE 1
-            
+                IF EYEWITNESS()
+                    PRINTFORML 「이거...왠지 두근두근해서 조금 젖어버릴지도?」
+                    PRINTFORML 「...아직까지 안 들켰으니까, 조금 더 해도 괜찮겠지...♥」
+                    SOURCE:치정 += 50
+                ELSE
+                    PRINTFORML 「이러고 남들 앞에 가면...후후후, 어떻게 되려나」
+                    PRINTFORML 사토리는 허전한 아랫도리를 과시하며 얼굴을 붉혔다
+                ENDIF
         ENDSELECT
     ELSE
         IF CFLAG:우후후
             SELECTCASE RAND:2
                 CASE 0
-
+                    PRINTFORML 「와주세요♥」
                 CASE 1
-                
+                    PRINTFORML 「자, 여기에요, 얼른 기분 좋은일 해주세요...♥」
+                    PRINTFORML 사토리는 치마를 팔랑팔랑 흔들고 있다
             ENDSELECT
         ELSE
             SELECTCASE RAND:2
                 CASE 0
-
+                    PRINTFORML 「이러면 좋아하시려나...남자들은 대개 좋아한다는거 같은데」
+                    PRINTFORML 사토리는 쭈뼛쭈뼛 치마를 들쳐보이고 있다
                 CASE 1
-                
+                    PRINTFORML 「새 팬티, 어떤가요?」
+                    PRINTFORML 「좀 더 예쁜게 좋으려나...」
+                    PRINTFORML 사토리는 태연히 속옷을 과시해오고 있다
             ENDSELECT
         ENDIF
     ENDIF
@@ -1274,14 +1280,15 @@ ELSEIF TALENT:연모||TALENT:사모||TALENT:애욕
         IF CFLAG:우후후
             SELECTCASE RAND:2
                 CASE 0
-
+                    PRINTFORML 「더, 더는 못참겠어...만져줘...」
                 CASE 1
                 
             ENDSELECT
         ELSE
             SELECTCASE RAND:2
                 CASE 0
-
+                    PRINTFORML 「그...저기, 뭐라도 말 좀...」
+                    PRINTFORML 사토리는 얼굴을 붉히고 있다
                 CASE 1
                 
             ENDSELECT
