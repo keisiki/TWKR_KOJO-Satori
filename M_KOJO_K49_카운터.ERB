@@ -1233,48 +1233,40 @@ ELSEIF TALENT:연모||TALENT:사모||TALENT:애욕
 	IF TEQUIP:TARGET:50 == MASTER ; 박고있다
         SELECTCASE RAND:2
             CASE 0
-
+                PRINTFORML 「바, 박히고 있는 걸 보고 있으니까...왠지 부끄러워...」
             CASE 1
-
+                PRINTFORML 「보, 보이시나요...? %사마스터의% 자지, 내 보지에 제대로 푹푹 박히고 있어...♥」
+                PRINTFORML 「앗♥ 끄, 끝까지 들어왔어...기분...좋아♥」
+                PRINTFORML 사토리는 쾌락과 수치심이 뒤섞인 복잡한 표정으로 %마스터를% 응시하고 있다
         ENDSELECT
-    ELSEIF 충전율(TARGET, 1) > 100 || 충전율(TARGET, 2) > 100 ;정액 잔뜩
-        IF CFLAG:우후후
-            SELECTCASE RAND:2
-                CASE 0
-
-                CASE 1
-                
-            ENDSELECT
-        ELSE
-            SELECTCASE RAND:2
-                CASE 0
-
-                CASE 1
-                
-            ENDSELECT
-        ENDIF
     ELSEIF 충전율(TARGET, 1) > 50 || 충전율(TARGET, 2) > 50 ; 정액 좀 들음
-        IF CFLAG:우후후
+        IF CFLAG:생해금 || TCVAR:피임약
             SELECTCASE RAND:2
                 CASE 0
-
+                    PRINTFORML 「굉장해...안에서 계속 흘러나와...♥」
+                    IF CFLAG:임신경과일수
+                        PRINTFORML 「분명 뱃 속의 아이도 사랑받아서 기뻐할거예요...♥」
+                    ELSE
+                        PRINTFORML 「...이거, 임신해버리는건 아닐까나」
+                    ENDIF
                 CASE 1
-                
+                    PRINTFORML 「배 안이 따스해...후후♥」
+                    PRINTFORML 「굉장히 기뻐요...♥」
             ENDSELECT
         ELSE
-            SELECTCASE RAND:2
-                CASE 0
-
-                CASE 1
-                
-            ENDSELECT
+            PRINTFORML 「...계속 이렇게 정액이 콸콸 나오고 있어요」
+            PRINTFORML 「아직 아이는...마음의 준비가 안 됐는데」
         ENDIF
     ELSEIF !EQUIP:하반신속옷2 && !CFLAG:우후후 ;노팬티 + 우후후 아님
         SELECTCASE RAND:2
             CASE 0
-
+                PRINTFORML 「이, 이런거 보면 기뻐한다길래...」
+                PRINTFORML 「저기, 어떤가요...?」
+                PRINTFORML 사토리는 얼굴을 새빨갛게 물들이고 있다
             CASE 1
-            
+                PRINTFORML 「...저기, 부끄러우니까 뭐라도 말해주세요...」
+                PRINTFORML 「일부러 이러고 있는데...우으...」
+                PRINTFORML 사토리는 얼굴을 붉히고 있다
         ENDSELECT
     ELSE
         IF CFLAG:우후후
@@ -1282,7 +1274,7 @@ ELSEIF TALENT:연모||TALENT:사모||TALENT:애욕
                 CASE 0
                     PRINTFORML 「더, 더는 못참겠어...만져줘...」
                 CASE 1
-                
+                    PRINTFORML 「하아...하아...♥ 저기, 보고만 있을건가요...?」
             ENDSELECT
         ELSE
             SELECTCASE RAND:2
@@ -1290,7 +1282,8 @@ ELSEIF TALENT:연모||TALENT:사모||TALENT:애욕
                     PRINTFORML 「그...저기, 뭐라도 말 좀...」
                     PRINTFORML 사토리는 얼굴을 붉히고 있다
                 CASE 1
-                
+                    PRINTFORML 「...저, 저기, 보고만 있을건가요...?」
+                    PRINTFORML 「어디론가 가서...응?」
             ENDSELECT
         ENDIF
     ENDIF
