@@ -1356,66 +1356,46 @@ ELSEIF TALENT:섹프
         ENDIF
     ENDIF
 ELSE
+    ;별로 볼 일 있나?
 	IF TEQUIP:TARGET:50 == MASTER ; 박고있다
-        SELECTCASE RAND:2
-            CASE 0
-
-            CASE 1
-
-        ENDSELECT
-    ELSEIF 충전율(TARGET, 1) > 100 || 충전율(TARGET, 2) > 100 ;정액 잔뜩
-        IF CFLAG:우후후
-            SELECTCASE RAND:2
-                CASE 0
-
-                CASE 1
-                
-            ENDSELECT
-        ELSE
-            SELECTCASE RAND:2
-                CASE 0
-
-                CASE 1
-                
-            ENDSELECT
-        ENDIF
+        PRINTFORML 「우으...」
+        PRINTFORML 사토리는 얼굴을 붉혔다
     ELSEIF 충전율(TARGET, 1) > 50 || 충전율(TARGET, 2) > 50 ; 정액 좀 들음
         IF CFLAG:우후후
-            SELECTCASE RAND:2
-                CASE 0
-
-                CASE 1
-                
-            ENDSELECT
+            PRINTFORML 「아아...내 안에 이렇게나...」
+            PRINTFORML 「...묘한, 기분인걸」
         ELSE
             SELECTCASE RAND:2
                 CASE 0
-
+                    PRINTFORML 「아...정말이지, 아직도 나오잖아」
+                    PRINTFORML 「이렇게나 나온다면 조금 곤란한데...」
                 CASE 1
-                
+                    PRINTFORML 「아직도 나오고 있어...도대체 얼마나 싼건가요...」
+                    PRINTFORML 사토리는 쓴 웃음을 지으며 다리 사이로 울컥울컥 흘러나오는 정액을 가르켰다
             ENDSELECT
         ENDIF
     ELSEIF !EQUIP:하반신속옷2 && !CFLAG:우후후 ;노팬티 + 우후후 아님
         SELECTCASE RAND:2
             CASE 0
-
+                PRINTFORML 「...이런거 보면 금방 흥분해서 덮쳐든다던가, 그런줄 알았는데」
+                PRINTFORML 사토리는 입술을 삐죽였다
             CASE 1
-            
+                PRINTFORML 「...그, 뭐라도 말 좀 해보세요」
+                PRINTFORML 「이런거 까지 보여주는데...조금 정도는 상대해달라고」
         ENDSELECT
     ELSE
         IF CFLAG:우후후
-            SELECTCASE RAND:2
-                CASE 0
-
-                CASE 1
-                
-            ENDSELECT
+            PRINTFORML 「이, 이러면 좋아한다고 했는데...」
+            PRINTFORML 「...우으으」
+            PRINTFORML 사토리는 얼굴을 붉혔다
         ELSE
             SELECTCASE RAND:2
                 CASE 0
-
+                    PRINTFORML 「...이러면 기뻐 한다고 들었는데...아닌가?」
+                    PRINTFORML 「아니면 팬티 정도론 성에 차지 않는단 걸까나...」
                 CASE 1
-                
+                    PRINTFORML 「...그, 뭐라도 말 좀...」
+                    PRINTFORML 「부끄럽단 말야...」
             ENDSELECT
         ENDIF
     ENDIF
