@@ -12,9 +12,10 @@ RETURN 1
 @M_KOJO_MESSAGE_SCOM_K49_1_1
 ;-------------------------------------------------
 ;기입체크 (=0, 비표시、1, 표시)
-LOCAL = 0
+LOCAL = 1
 ;-------------------------------------------------
 IF LOCAL
+	;PRINTFORMW 「」
 	;-------------------------------------------------
 	;소분기
 	;-------------------------------------------------
@@ -23,25 +24,77 @@ IF LOCAL
 	LOCAL:1 = 0
 	;-------------------------------------------------
 	IF LOCAL:1 && FIRSTTIME(TFLAG:50 + 500)
-		PRINTFORMW 
 		RETURN 1
 	ENDIF
 	;기본세트
 	;시간(時姦)중
 	IF FLAG:70
-		PRINTFORMW 
-		RETURN 1
-	;연모
-	ELSEIF TALENT:연모
-		PRINTFORMW 
-		RETURN 1
-	;괘씸3
-	ELSEIF MARK:괘씸각인 == 3
-		PRINTFORMW 
 		RETURN 1
 	;그 이외
 	ELSE
-		PRINTFORMW 
+		IF MARK:반발각인 == 3 && !TALENT:연모
+			IF ABL:MASTER:기교 < 3 && !TALENT:MASTER:혀놀림
+				SELECTCASE RAND:2
+					CASE 0
+						CALL ST_CLIMAX(6)
+						PRINTFORMW 사토리는 미적미적 봉사해오고 있다
+					CASE 1
+						PRINTFORMW 「너, 너무 핥잖아...」
+						PRINTFORMW 사토리의 몸이 연신 움찔거리고 있다
+				ENDSELECT
+			ELSE
+				SELECTCASE RAND:3
+					CASE 0
+						PRINTFORMW 「자, 잠깐♥ 그렇게 핥으면 집중 안돼엣♥」
+						PRINTFORMW 사토리는 쾌감에 흠칫흠칫 떨고 있다
+					CASE 1
+						CALL ST_CLIMAX(6)
+						PRINTFORMW 사토리는 쾌감에 흠칫흠칫 떠느라 봉사에 집중하지 못하고 있다
+					CASE 2
+						PRINTFORMW 「응...♥ 하으으...♥ 그...그만♥ 이래서야 핥을수가 없잖앗♥」
+						PRINTFORMW 작게 가버린건지 사토리의 혀놀림이 잠시 멈췄다
+				ENDSELECT
+			ENDIF
+		ELSEIF TALENT:연모||TALENT:사모||TALENT:연인
+			SELECTCASE RAND:2
+				CASE 0
+					PRINTFORMW 「하읏♥ 이거 무리♥ 너무 기분좋아서 아무것도 못하겠어...♥」
+					PRINTFORMW 핥을때마다 두 명분의 쾌감이 사토리의 몸을 강타해 흠칫흠칫 떨게 만들고 있다
+				CASE 1
+					PRINTFORMW 「하으으...♥」
+					PRINTFORMW 사토리는 쾌감에 몸을 움찔거리면서도 열심히 봉사해 오고 있다
+			ENDSELECT
+		ELSEIF TALENT:섹프||TALENT:애욕
+			IF ABL:MASTER:기교 < 3 && !TALENT:MASTER:혀놀림
+				SELECTCASE RAND:2
+					CASE 0
+						PRINTFORMW 「이, 이거 좋아...♥ 두 개를 동시에 핥아지는거 같아서...♥ 하으으...♥」
+						PRINTFORMW 사토리는 작게 신음하며 봉사해오고 있다
+					CASE 1
+						PRINTFORMW 「아- 거기 좋아...♥」
+						PRINTFORMW 「후후...이쪽도 기분 좋게 해드릴게요♥」
+				ENDSELECT
+			ELSE
+				SELECTCASE RAND:2
+					CASE 0
+						PRINTFORMW 「무, 무리...♥ 이런거 당하면서 할 수 있을리가...♥」
+						PRINTFORMW 사토리는 강렬한 쾌감에 몸을 떠느라 제대로 봉사에 집중하지 못하고 있다
+					CASE 1
+						PRINTFORMW 「%사마스터가% 느끼는 것까지 넘어와서...아아아♥ 이거 무릿...♥」
+						PRINTFORMW 사토리의 혀와 엉덩이가 살짝 경련하는게 느껴졌다
+				ENDSELECT
+			ENDIF
+		ELSE
+			SELECTCASE RAND:2
+				CASE 0
+					PRINTFORMW 「지, 집중 안돼...그만 핥아...」
+					PRINTFORMW 사토리는 쾌감에 허덕이느라 제대로 봉사해오지 못하고 있다
+				CASE 1
+					PRINTFORMW 「두개를 동시에 핥아지는 거 같아...」
+					PRINTFORMW 서드아이로 '기분 좋음'을 읽은 사토리는 뒤섞이는 쾌감에 파르르 떨고 있다
+			ENDSELECT
+		ENDIF
+		SOURCE:쾌C += 50
 		RETURN 1
 	ENDIF
 ENDIF
