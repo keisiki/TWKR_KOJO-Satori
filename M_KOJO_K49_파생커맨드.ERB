@@ -112,7 +112,7 @@ RETURN 1
 @M_KOJO_MESSAGE_SCOM_K49_2_1
 ;-------------------------------------------------
 ;기입체크 (=0, 비표시、1, 표시)
-LOCAL = 0
+LOCAL = 1
 ;-------------------------------------------------
 IF LOCAL
 	;-------------------------------------------------
@@ -129,19 +129,10 @@ IF LOCAL
 	;기본세트
 	;시간(時姦)중
 	IF FLAG:70
-		PRINTFORMW 
-		RETURN 1
-	;연모
-	ELSEIF TALENT:연모
-		PRINTFORMW 
-		RETURN 1
-	;괘씸3
-	ELSEIF MARK:괘씸각인 == 3
-		PRINTFORMW 
 		RETURN 1
 	;그 이외
 	ELSE
-		PRINTFORMW 
+		
 		RETURN 1
 	ENDIF
 ENDIF
@@ -178,17 +169,8 @@ IF LOCAL
 	IF FLAG:70
 		PRINTFORMW 
 		RETURN 1
-	;연모
-	ELSEIF TALENT:연모
-		PRINTFORMW 
-		RETURN 1
-	;괘씸3
-	ELSEIF MARK:괘씸각인 == 3
-		PRINTFORMW 
-		RETURN 1
 	;그 이외
 	ELSE
-		PRINTFORMW 
 		RETURN 1
 	ENDIF
 ENDIF
@@ -300,7 +282,7 @@ RETURN 1
 @M_KOJO_MESSAGE_SCOM_K49_6_1
 ;-------------------------------------------------
 ;기입체크 (=0, 비표시、1, 표시)
-LOCAL = 0
+LOCAL = 1
 ;-------------------------------------------------
 IF LOCAL
 	;-------------------------------------------------
@@ -317,19 +299,14 @@ IF LOCAL
 	;기본세트
 	;시간(時姦)중
 	IF FLAG:70
-		PRINTFORMW 
-		RETURN 1
-	;연모
-	ELSEIF TALENT:연모
-		PRINTFORMW 
-		RETURN 1
-	;괘씸3
-	ELSEIF MARK:괘씸각인 == 3
-		PRINTFORMW 
 		RETURN 1
 	;그 이외
 	ELSE
-		PRINTFORMW 
+		IF ABL:V감각 < 5
+			CALL ST_CLIMAX((ABL:V감각 / 2) + 4)
+		ELSE
+			CALL ST_CLIMAX_HARD((ABL:V감각 / 2) + 4)
+		ENDIF
 		RETURN 1
 	ENDIF
 ENDIF
@@ -347,7 +324,7 @@ RETURN 1
 @M_KOJO_MESSAGE_SCOM_K49_7_1
 ;-------------------------------------------------
 ;기입체크 (=0, 비표시、1, 표시)
-LOCAL = 0
+LOCAL = 1
 ;-------------------------------------------------
 IF LOCAL
 	;-------------------------------------------------
@@ -364,19 +341,14 @@ IF LOCAL
 	;기본세트
 	;시간(時姦)중
 	IF FLAG:70
-		PRINTFORMW 
-		RETURN 1
-	;연모
-	ELSEIF TALENT:연모
-		PRINTFORMW 
-		RETURN 1
-	;괘씸3
-	ELSEIF MARK:괘씸각인 == 3
-		PRINTFORMW 
 		RETURN 1
 	;그 이외
 	ELSE
-		PRINTFORMW 
+		IF ABL:V감각 < 5
+			CALL ST_CLIMAX((ABL:V감각 / 2) + 4)
+		ELSE
+			CALL ST_CLIMAX_HARD((ABL:V감각 / 2) + 4)
+		ENDIF
 		RETURN 1
 	ENDIF
 ENDIF
@@ -872,7 +844,7 @@ RETURN 1
 @M_KOJO_MESSAGE_SCOM_K49_14_1
 ;-------------------------------------------------
 ;기입체크 (=0, 비표시、1, 표시)
-LOCAL = 0
+LOCAL = 1
 ;-------------------------------------------------
 IF LOCAL
 	;-------------------------------------------------
@@ -889,19 +861,14 @@ IF LOCAL
 	;기본세트
 	;시간(時姦)중
 	IF FLAG:70
-		PRINTFORMW 
-		RETURN 1
-	;연모
-	ELSEIF TALENT:연모
-		PRINTFORMW 
-		RETURN 1
-	;괘씸3
-	ELSEIF MARK:괘씸각인 == 3
-		PRINTFORMW 
 		RETURN 1
 	;그 이외
 	ELSE
-		PRINTFORMW 
+		IF ABL:A감각 < 5
+			CALL ST_CLIMAX((ABL:A감각 / 2) + 4)
+		ELSE
+			CALL ST_CLIMAX_HARD((ABL:A감각 / 2) + 4)
+		ENDIF
 		RETURN 1
 	ENDIF
 ENDIF
@@ -918,7 +885,7 @@ RETURN 1
 @M_KOJO_MESSAGE_SCOM_K49_15_1
 ;-------------------------------------------------
 ;기입체크 (=0, 비표시、1, 표시)
-LOCAL = 0
+LOCAL = 1
 ;-------------------------------------------------
 IF LOCAL
 	;-------------------------------------------------
@@ -935,19 +902,14 @@ IF LOCAL
 	;기본세트
 	;시간(時姦)중
 	IF FLAG:70
-		PRINTFORMW 
-		RETURN 1
-	;연모
-	ELSEIF TALENT:연모
-		PRINTFORMW 
-		RETURN 1
-	;괘씸3
-	ELSEIF MARK:괘씸각인 == 3
-		PRINTFORMW 
 		RETURN 1
 	;그 이외
 	ELSE
-		PRINTFORMW 
+		IF ABL:A감각 < 5
+			CALL ST_CLIMAX((ABL:A감각 / 2) + 4)
+		ELSE
+			CALL ST_CLIMAX_HARD((ABL:A감각 / 2) + 4)
+		ENDIF
 		RETURN 1
 	ENDIF
 ENDIF
