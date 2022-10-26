@@ -132,7 +132,53 @@ IF LOCAL
 		RETURN 1
 	;그 이외
 	ELSE
-		
+		;PRINTFORMW 「」
+		IF MARK:반발각인 == 3 && !TALENT:연인
+			SELECTCASE RAND:2
+				CASE 0
+					PRINTFORMW 「...물이 많다? 그래서?」
+					PRINTFORMW 「없어서 아픈것보다 훨씬 낫잖아, 전혀 이상한게 아니란 말야...」
+				CASE 1
+					PRINTFORMW 「일부러 물소리 낸다고 부끄러워 할 리가 없잖아...」
+					PRINTFORMW 「어짜피 침인게 뻔하니까 전혀 부끄럽지 않아」
+					PRINTFORMW 사토리는 새침하게 쏘아붙였다
+					SOURCE:노출 = MAX(SOURCE:노출 - 100,0)
+			ENDSELECT
+		ELSEIF TALENT:연인||TALENT:연모||TALENT:사모
+			SELECTCASE RAND:2
+				CASE 0
+					PRINTFORMW 「너, 너무 젖어있어? 야하다고...?」
+					PRINTFORMW 「...으으으...놀리지 마세요」
+				CASE 1
+					IF ABL:노출벽 > 3
+						PRINTFORMW 「물소리...이렇게나 크게 나다니...」
+						PRINTFORMW 「나, 생각보다 많이 음란했을지도...」
+					ELSE
+						PRINTFORMW 「일부러 큰 소리로 하지 말아주세요...부끄러워...」
+						PRINTFORMW 사토리는 얼굴을 붉혔다
+					ENDIF
+			ENDSELECT
+		ELSEIF TALENT:섹프||TALENT:애욕
+			SELECTCASE RAND:2
+				CASE 0
+					PRINTFORMW 「...부끄럽게 하고 싶어? 확실히 조금 부끄럽긴 하지만...」
+					PRINTFORMW 「뭐어 기분 좋으니까 딱히 상관은 없어요♥」
+				CASE 1
+					PRINTFORMW 「기분은 좋지만...뭔가 이거 부끄럽네요...」
+					PRINTFORMW 「뭐랄까, 이렇게나 많이 나왔던가 하는 생각이 드는걸」
+			ENDSELECT
+		ELSE
+			SELECTCASE RAND:2
+				CASE 0
+					PRINTFORMW 「이, 일부러 소리 낼 필욘 없잖아...!」
+					PRINTFORMW 「그런다고 부끄러워 할...부끄러울리 없다고...」
+					PRINTFORMW 그러나 얼굴은 이미 새빨갛다
+				CASE 1
+					PRINTFORMW 「...물이 많다? 아니, 그거 분명히 %사마스터의% 침이니까」
+					PRINTFORMW 「내가 야한게 아니란 말야...」
+					PRINTFORMW 사토리는 얼굴을 붉히고 있다
+			ENDSELECT
+		ENDIF
 		RETURN 1
 	ENDIF
 ENDIF
