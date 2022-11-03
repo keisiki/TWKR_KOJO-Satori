@@ -969,7 +969,7 @@ RETURN 1
 @M_KOJO_MESSAGE_SCOM_K49_12_1
 ;-------------------------------------------------
 ;기입체크 (=0, 비표시、1, 표시)
-LOCAL = 0
+LOCAL = 1
 ;-------------------------------------------------
 IF LOCAL
 	;-------------------------------------------------
@@ -986,20 +986,95 @@ IF LOCAL
 	;기본세트
 	;시간(時姦)중
 	IF FLAG:70
-		PRINTFORMW 
-		RETURN 1
-	;연모
-	ELSEIF TALENT:연모
-		PRINTFORMW 
-		RETURN 1
-	;괘씸3
-	ELSEIF MARK:괘씸각인 == 3
-		PRINTFORMW 
 		RETURN 1
 	;그 이외
 	ELSE
-		PRINTFORMW 
-		RETURN 1
+		;PRINTFORMW 「」
+		IF MARK:반발각인 == 3 && !TALENT:연모
+			SELECTCASE RAND:3
+				CASE 0
+					PRINTFORMW 「%ST_펠라치오사운드(4)% 얼른 만족하고 싸줘...%ST_펠라치오사운드(3)%♥」
+					PRINTFORMW 사토리는 투덜거리며 자지 끝을 핥아주고 있다
+				CASE 1
+					PRINTFORMW 「%ST_펠라치오사운드(8)%」
+					PRINTFORMW 사토리는 조용히 봉사에만 집중하고 있다
+				CASE 2
+					PRINTFORMW 「%ST_펠라치오사운드(4)% 언제 만족하는거야...? %ST_펠라치오사운드(2)%」
+					PRINTFORMW 「이렇게 특급으로 서비스해주고 있는데 얼른 싸버리란 말야」
+					PRINTFORMW 사토리는 투덜거리며 귀두를 빨아들이고 있다
+			ENDSELECT
+		ELSEIF TALENT:연인||TALENT:연모||TALENT:사모
+			SELECTCASE RAND:3
+				CASE 0
+					PRINTFORMW 「%ST_펠라치오사운드(4)% 푸하아...♥」
+					PRINTFORMW 「핥을때마다 가슴 속에서 움찔움찔 떨고 있어...귀여워...♥」
+					PRINTFORMW 사토리는 녹아내린 표정으로 봉사해오고 있다
+				CASE 1
+					PRINTFORMW 「%ST_펠라치오사운드(5)% 어떤가요, 기분 좋아지고 있나요?」
+					IF 100 * BASE:MASTER:사정 / MAXBASE:MASTER:사정 >= 75
+						PRINTFORMW 「...조금만 더 하면 쌀거 같아, 인가요...후후후♥ 잔뜩 뽑아드리죠」
+						PRINTFORMW 사토리는 즐거운듯 하다
+					ELSE
+						PRINTFORMW 「...아직 견딜수 있어? 그렇담 좀 더 확실히 뽑아내야겠군요♥」
+						PRINTFORMW 사토리의 양가슴이 한 층 더 강하게 자지를 조여들어왔다
+					ENDIF
+				CASE 2
+					IF TALENT:가슴사이즈 < 0
+						PRINTFORMW 「...이 가슴으로는 영 피곤하기만 한 거 같네」
+						PRINTFORMW 「그래도 좋아하시는거 같긴 하지만...」
+						PRINTFORMW 「...역시 되돌려 주시면 좋겠는걸요」
+					ELSE
+						PRINTFORMW 「제 가슴, 기분 좋죠? 후후후♥ 숨겨도 다 보인다구요?」
+						PRINTFORMW 「인정할때까지 마구 뽑아내 드릴테니까요...♥」
+						PRINTFORMW 사토리는 살짝 으스대는 표정을 지어보이며 입과 가슴으로 자지를 격렬히 쥐어짜내고 있다
+					ENDIF
+			ENDSELECT
+		ELSEIF TALENT:섹프||TALENT:애욕
+			SELECTCASE RAND:4
+				CASE 0
+					PRINTFORMW 「%ST_펠라치오사운드(9)%」
+					PRINTFORMW 사토리는 어딘가 황홀한듯한 표정을 지으며 조용히 봉사에만 집중하고 있다
+				CASE 1
+					PRINTFORMW 「입 안 가득 냄새가 퍼져서...굉장히 달아올라...♥」
+					PRINTFORMW 사토리는 탐욕적으로 자지를 집어삼키고 있다
+				CASE 2
+					PRINTFORMW 「%ST_펠라치오사운드(5)% 어떤가요, 기분 좋아지고 있나요?」
+					IF 100 * BASE:MASTER:사정 / MAXBASE:MASTER:사정 >= 75
+						PRINTFORMW 「...조금만 더 하면 쌀거 같아, 인가요...후후후♥ 잔뜩 뽑아드리죠」
+						PRINTFORMW 사토리는 즐거운듯 하다
+					ELSE
+						PRINTFORMW 「...아직 견딜수 있어? 그렇담 좀 더 확실히 뽑아내야겠군요♥」
+						PRINTFORMW 사토리는 농염하게 자지를 핥아왔다
+					ENDIF
+				CASE 3
+					IF TALENT:모유체질 && TALENT:가슴사이즈 >= 0
+						PRINTFORMW 「가슴을 조금 짜내서...여기 뿌리면...」
+						PRINTFORMW 「...후후, 미끌미끌해졌네요♥」
+						PRINTFORMW 갓 짜낸 따스한 모유가 %마스터의% 자지를 타고 흘러내리며 선정적인 모습을 보이고 있다 
+					ELSE
+						PRINTFORMW 「베에-...」
+						PRINTFORMW 사토리는 약간의 타액을 가슴골에 올려진 자지에 늘어뜨리고 있다
+						PRINTFORMW 「어떤가요? 미끌미끌하니 기분 좋죠?」
+						PRINTFORMW 침과 쿠퍼액이 뒤섞인 윤활액이 가슴과 자지에 고루 묻어 색다른 쾌감을 주고 있다
+						SOURCE:MASTER:쾌C += 25
+					ENDIF
+			ENDSELECT
+		ELSE
+			SELECTCASE RAND:2
+				CASE 0
+					PRINTFORMW 「핥짝...핥짝...으으...이상한 짠맛...」
+					IF 100 * BASE:MASTER:사정 / MAXBASE:MASTER:사정 >= 75
+						PRINTFORMW 「...조금만 더 핥으면 끝? 그렇다곤 해도...으...」
+						PRINTFORMW 사토리는 뾰루퉁한 표정이다
+					ELSE
+						PRINTFORMW 「...이거로, 기분 좋아지는게 맞기나 한걸까나」
+						PRINTFORMW 「아직도 싸려면 한참 남은거 같은데...」
+					ENDIF
+				CASE 1
+					PRINTFORMW 「%ST_펠라치오사운드(4)% 아직이야...? %ST_펠라치오사운드(2)%」
+					PRINTFORMW 「슬슬 턱이 아파오는데...」
+			ENDSELECT
+		ENDIF
 	ENDIF
 ENDIF
 ;미기입
