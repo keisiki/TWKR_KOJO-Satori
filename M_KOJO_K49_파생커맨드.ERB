@@ -1285,19 +1285,84 @@ IF LOCAL
 	;기본세트
 	;시간(時姦)중
 	IF FLAG:70
-		PRINTFORMW 
-		RETURN 1
-	;연모
-	ELSEIF TALENT:연모
-		PRINTFORMW 
-		RETURN 1
-	;괘씸3
-	ELSEIF MARK:괘씸각인 == 3
-		PRINTFORMW 
 		RETURN 1
 	;그 이외
 	ELSE
-		PRINTFORMW 
+		;PRINTFORMW 「」
+		IF ABL:B감각 > 2
+			SELECTCASE RAND:3
+				CASE 0
+					PRINTFORMW 「두, 두 개 동시에...으읏♥」
+				CASE 1
+					PRINTFORMW 「도, 동시에?! 아...아앗♥ 잠깐♥ 하지맛♥」
+				CASE 2
+					PRINTFORMW 「아앗♥ 그만♥ 이거 안댓♥ 가슴 이상해져버렷♥」
+			ENDSELECT
+		ELSEIF TALENT:모유체질
+			IF MARK:반발각인 == 3
+				SELECTCASE RAND:2
+					CASE 0
+						PRINTFORMW 「어, 얼마나 마셔대는거야...」
+						PRINTFORMW 사토리는 기가 막히다는 듯이 바라보고 있다
+					CASE 1
+						PRINTFORMW 「아팟...그렇게 세게 빨지 마...!」
+				ENDSELECT
+			ELSEIF TALENT:연인||TALENT:연모||TALENT:사모||TALENT:애욕
+				SELECTCASE RAND:2
+					CASE 0
+						PRINTFORMW 「그렇게 서두르지 않아도 도망가지 않는데...」
+						PRINTFORMW 「좀 더 느긋하게 마셔도 괜찮은걸」
+					CASE 1
+						PRINTFORMW 「정말...욕심쟁이라니까」
+						PRINTFORMW 「누가 훔쳐먹는것도 아닌데 천천히 하세요」
+				ENDSELECT
+			ELSE
+				SELECTCASE RAND:2
+					CASE 0
+						PRINTFORMW 「도, 동시에 빨다니...이게 그렇게 마음에 드는걸까...」
+					CASE 1
+						PRINTFORMW 「그렇게 허겁지겁 안 먹어도 아무도 안 훔쳐가는걸...」
+				ENDSELECT
+			ENDIF
+		ELSE
+			IF MARK:반발각인 == 3 && !TALENT:연인
+				SELECTCASE RAND:2
+					CASE 0
+						PRINTFORMW 「이런건 애도 안한다고...」
+						PRINTFORMW 사토리는 기가 막히다는 표정이다
+					CASE 1
+						PRINTFORMW 「아파...잡아당기지 마...」
+				ENDSELECT
+			ELSEIF TALENT:연모||TALENT:사모||TALENT:연인
+				SELECTCASE RAND:3
+					CASE 0
+						PRINTFORMW 「정말...욕심쟁이시네요」
+						PRINTFORMW 「천천히 빨아도 도망가지 않는걸」
+					CASE 1
+						PRINTFORMW 「이런거로 흥분하는걸까나~」
+						PRINTFORMW 「덕분에, 나도 뭔가 달아오르게 되버리잖아」
+					CASE 2
+						PRINTFORMW 「동시에 빨아도 아무것도 안 나온다구요?」
+						PRINTFORMW 「그래도 좋은거야? ...변태네요」
+				ENDSELECT
+			ELSEIF TALENT:섹프||TALENT:애욕
+				SELECTCASE RAND:2
+					CASE 0
+						PRINTFORMW 「조금...아픈걸」
+						PRINTFORMW 「살살 핥아주면 안될까나...」
+					CASE 1
+						PRINTFORMW 「도, 동시에...? 욕심쟁이네요...」
+						PRINTFORMW 「그런다고 뭐가 나오는 것도 아닌데」
+				ENDSELECT
+			ELSE
+				SELECTCASE RAND:2
+					CASE 0
+						PRINTFORMW 「동시에 빤다고 뭐가 나오지도 않는데...」
+					CASE 1
+						PRINTFORMW 「애도 아니고, 이런게 뭐가 좋다는거야...」
+				ENDSELECT
+			ENDIF
+		ENDIF
 		RETURN 1
 	ENDIF
 ENDIF
