@@ -1380,7 +1380,7 @@ RETURN 1
 @M_KOJO_MESSAGE_SCOM_K49_19_1
 ;-------------------------------------------------
 ;기입체크 (=0, 비표시、1, 표시)
-LOCAL = 0
+LOCAL = 1
 ;-------------------------------------------------
 IF LOCAL
 	;-------------------------------------------------
@@ -1395,19 +1395,112 @@ IF LOCAL
 		RETURN 1
 	ENDIF
 	;기본세트
-	;연모
-	IF TALENT:연모
-		PRINTFORMW 
-		RETURN 1
-	;괘씸3
-	ELSEIF MARK:괘씸각인 == 3
-		PRINTFORMW 
-		RETURN 1
-	;그 이외
+	;PRINTFORMW 「」
+	IF MARK:반발각인 == 3 && ABL:친밀 < 10
+		SELECTCASE RAND:3
+			CASE 0
+				PRINTFORMW 「아기도 아니면서...」
+				PRINTFORMW 「애초에 아기는 먹으면서 이런거 들이대지도 않는데」
+				PRINTFORMW 사토리는 한숨을 쉬면서도 순순히 %마스터를% 안아올리고 있다
+			CASE 1
+				PRINTFORMW 「이런게 뭐가 좋다는거야 이 변태...」
+				PRINTFORMW 사토리는 진절머리 난다는 듯한 표정이다
+			CASE 2
+				IF ABL:B감각 >= 5
+					PRINTFORMW 「읏...♥ 어, 얼마나 더 빨아야 만족하는거야...」
+					PRINTFORMW 「적당히 하고, 으읏...♥ 떨어져...」
+					PRINTFORMW 사토리는 얼굴을 붉히며 자지를 훑는 손을 빠르게 해왔다
+				ELSEIF TALENT:모유체질
+					PRINTFORMW 「...어리광? 부리지 마, 화낼거야」
+					PRINTFORMW 「머리 속 망상 읽는 것도 짜증나니까 조용히 빨기나 하라고」
+				ELSE
+					PRINTFORMW 「...팔 아파, 빨리 싸버리고 끝내줬음 좋겠는걸」
+				ENDIF
+		ENDSELECT
+	ELSEIF TALENT:연인
+		SELECTCASE RAND:3
+			CASE 0
+				IF ABL:B감각 >= 5
+					PRINTFORMW 「앗♥ 그, 그렇게 세게 빨면...하으읏♥」
+					PRINTFORMW 「너무♥ 기분 좋아섯♥ 손이잇♥」
+				ELSEIF TALENT:모유체질
+					PRINTFORMW 「...어리광, 인가요?」
+					PRINTFORMW 「뭐어 나쁘진...않을지도?」
+				ELSE
+					PRINTFORMW 「가슴 빨면 더 단단해 지는 기분...」
+					PRINTFORMW 「그렇게 좋나요? 후후...요구받는건 기쁘답니다」
+				ENDIF
+			CASE 1
+				IF TALENT:모유체질
+					PRINTFORMW 「이거, 기분 좋다기 보단 어쩐지...」
+					PRINTFORMW 「...행복하다, 라는 느낌만 드네요」
+					PRINTFORMW 사토리는 늘어진 미소를 짓고 있다
+				ELSE
+					PRINTFORMW 「후후♥ 열심히 빠는 모습, 왠지 귀여운걸요」
+					PRINTFORMW 「옳지옳지...이대로 기분좋게 퓻-퓻- 해버립시다...♥」
+					PRINTFORMW 사토리는 %마스터의% 머리를 쓰다듬으며 부드럽게 자지를 훑어왔다
+				ENDIF
+			CASE 2
+				PRINTFORMW 「가슴이 그렇게 좋은가요?」
+				PRINTFORMW 「후후♥ 그렇담 내키시는 대로 써주세요♥」
+				PRINTFORMW 사토리는 조금 기쁜듯이 웃었다
+		ENDSELECT
+	ELSEIF TALENT:연모||TALENT:사모||TALENT:애욕
+		SELECTCASE RAND:3
+			CASE 0
+				PRINTFORMW 「와...와아, 가슴 빨수록 단단해지고 있어...」
+				PRINTFORMW 「제 가슴, 그렇게 좋은가요...?」
+			CASE 1
+				IF TALENT:모유체질
+					PRINTFORMW 「이거, 기분 좋다기 보단 어쩐지...」
+					PRINTFORMW 「...행복하다, 라는 느낌만 드네요」
+					PRINTFORMW 사토리는 늘어진 미소를 짓고 있다
+				ELSE
+					PRINTFORMW 「후후♥ 열심히 빠는 모습, 왠지 귀여운걸요」
+					PRINTFORMW 「옳지옳지...이대로 기분좋게 퓻-퓻- 해버립시다...♥」
+					PRINTFORMW 사토리는 %마스터의% 머리를 쓰다듬으며 부드럽게 자지를 훑어왔다
+				ENDIF
+			CASE 2
+				PRINTFORMW 「제 가슴, 그렇게 좋은가요?」
+				PRINTFORMW 「후후♥ 그렇담 내키시는 대로 써주세요♥」
+				PRINTFORMW 사토리는 조금 기쁜듯이 웃었다
+		ENDSELECT
+	ELSEIF TALENT:섹프
+		SELECTCASE RAND:3
+			CASE 0
+				IF ABL:B감각 >= 6
+					PRINTFORMW 「아...♥ 가슴쪽쪽 당하면 기분 이상해져 버려...♥」
+					PRINTFORMW 「앗♥ 그, 그렇게 세게 빨며언♥」
+					PRINTFORMW 쾌감에 전신을 움찔움찔 떨고 있다
+				ELSE
+					PRINTFORMW 「후후♥ 뭔가 이렇게 보면 귀엽네에♥」
+					PRINTFORMW 「그치만 이쪽은 귀엽지 않아, 제대로 어른인걸♥」
+					PRINTFORMW 사토리는 %마스터의% 자지를 손가락 끝으로 쿡쿡 찌르고 있다
+				ENDIF
+			CASE 1
+				IF TALENT:모유체질
+					PRINTFORMW 「뭔가 기분이 묘해지는걸...」
+					PRINTFORMW 「기분 좋다기 보단, 어딘가 행복하단 느낌...? 후후, 이상하네」
+				ELSE
+					PRINTFORMW 「가슴 빨 때마다 자지가 단단해지고 있어...후후♥ 귀여워라♥」
+					PRINTFORMW 사토리는 히죽히죽 웃으며 자지를 훑어오고 있다
+				ENDIF
+			CASE 2
+				PRINTFORMW 「가슴 쪽쪽 할때마다 단단해지네...」
+				PRINTFORMW 「앞으론 가슴 빨면서 야한짓 하면 좋을지도 모르겠는걸」
+				PRINTFORMW 사토리는 키득키득 웃었다
+		ENDSELECT
 	ELSE
-		PRINTFORMW 
-		RETURN 1
+		SELECTCASE RAND:2
+			CASE 0
+				PRINTFORMW 「가슴 가슴, 그렇게 머릿속으로 되뇌이지 마」
+				PRINTFORMW 「나까지도 바보가 되는거 같다고...」
+			CASE 1
+				PRINTFORMW 「...어리광? 부릴대로 부리시던가요...」
+				PRINTFORMW 「내가 뭐라 하기도 전에 머릿속으로 잔뜩 할거라면 차라리 말로 하는게 덜 기분 나빠」
+		ENDSELECT
 	ENDIF
+	RETURN 1
 ENDIF
 ;미기입
 ;CALLFORM M_KOJO_MESSAGE_COM_K49_{SELECTCOM}_1
