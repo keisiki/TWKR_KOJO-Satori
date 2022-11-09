@@ -83,6 +83,7 @@ SIF RESULT
 ;【】로 감싸져 있는 것은 구상 전후의 지문이나 발생하는 처리입니다
 ;WAIT을 하는가 등의 기준으로 써 주십시오（L,W는 각각 PRINTFORML,PRINTFORMW의 약자）
 ;--------------------------------------------------
+;임시로 대충
 SELECTCASE SCENE
 CASE "의뢰 제시시"
 ;●의뢰를 받을 때
@@ -96,7 +97,35 @@ CASE "의뢰비수탁시"
 ;【L ［아나타］는 정중히 거절했다】
 ;【◆구상】
 ;【W ［그녀］는 유감스러운 얼굴을 하고 있다】
-	
+	;PRINTFORML 「」
+	IF MARK:반발각인 == 3
+		SELECTCASE RAND:3
+			CASE 0
+				PRINTFORML 「안된다면야 뭐...」
+			CASE 1
+				PRINTFORML 「그런가요, 아쉽네...」
+			CASE 2
+				PRINTFORML 「안된다면야 어쩔수 없지」
+		ENDSELECT
+	ELSEIF TALENT:연모||TALENT:사모||TALENT:애욕||TALENT:연인
+		SELECTCASE RAND:3
+			CASE 0
+				PRINTFORML 「아...역시 안되나요...」
+			CASE 1
+				PRINTFORML 「으음...그렇담 어쩔수 없죠」
+			CASE 2
+				PRINTFORML 「뭐어 안된다면 어쩔수 없죠...」
+		ENDSELECT
+	ELSE
+		SELECTCASE RAND:3
+			CASE 0
+				PRINTFORML 「역시 안되나요...」
+			CASE 1
+				PRINTFORML 「그런가요...」
+			CASE 2
+				PRINTFORML 「그런가요...아쉽네」
+		ENDSELECT
+	ENDIF
 CASE "의뢰 수탁시"
 ;의뢰를 수락했을 때
 ;【W ［아나타］는［그녀］의 의뢰를 받았다】
@@ -196,8 +225,63 @@ RETURN 1
 ;--------------------------------------------------
 SELECTCASE SCENE
 CASE "의뢰 제시시"
-	
-	RETURN 0
+	;PRINTFORML 「」
+	IF CFLAG:초기위치 == 919
+		;지령전 사토리방
+		IF MARK:반발각인 == 3
+			SELECTCASE RAND:3
+				CASE 0
+					PRINTFORML 「방이 온통 털로 가득해져서 나 혼자선 절대로 무리인걸」
+					PRINTFORML 「조금이라도 좋으니 도와줬음 좋겠는데...」
+				CASE 1
+					PRINTFORML 「방이 온통 털이랑 발자국으로 더러워져버렸어...」
+					PRINTFORML 「...조금 도와줬음 좋겠는걸」
+				CASE 2
+					PRINTFORML 「청소...하려고는 했지만 역시 너무 많았는걸」
+					PRINTFORML 「도저히 나 혼자서 치울 수 있는 양이 아니란 말이지...」
+			ENDSELECT
+		ELSEIF TALENT:연모||TALENT:사모||TALENT:애욕||TALENT:연인
+			SELECTCASE RAND:3
+				CASE 0
+					PRINTFORML 「아하하...잠깐 신경 안 썼더니 방 꼴이 끔찍해져 버렸네요...」
+					PRINTFORML 「조금, 도와주시겠어요? 저 혼자선 오늘안에 못 치울거 같은걸요...」
+				CASE 1
+					PRINTFORML 「평소엔 이정도로 더럽진 않은데...오늘은 좀 많이 심하네요...」
+					PRINTFORML 「혹시 손 좀 보태주실수 있나요...?」
+				CASE 2
+					PRINTFORML 「오늘은 뭔가 방이 너무 더러워서...혼자서는 도저히 감당할 양이 아냐」
+					PRINTFORML 「조금만 손 좀 보태주시면 안될까요...?」
+			ENDSELECT
+		ELSE
+			SELECTCASE RAND:3
+				CASE 0
+					PRINTFORML 「해도해도 청소가 끝나질 않는걸」
+					PRINTFORML 「치워도 금방 털로 가득차버리니, 혼자서는 절대로 못 할거야」
+					PRINTFORML 「...그러니 조금만 도와줬으면 좋겠는걸」
+				CASE 1
+					PRINTFORML 「잠깐 청소 안했다고 방이 너저분해졌네...」
+					PRINTFORML 「...누구씨가 조금 도와주지 않으려나」
+				CASE 2
+					PRINTFORML 「오늘은 맘먹고 청소라도 하려 하는데」
+					PRINTFORML 「도저히 나 혼자서 할 수 있는 양이 아니라...조금만 도와주시면 안될까요」
+			ENDSELECT
+		ENDIF
+	ELSE
+		;딴 데서 거주
+		SELECTCASE RAND:3
+			CASE 0
+				PRINTFORML 「잠깐 신경 안 썼더니 감당할수 없게 되버렸네...」
+				PRINTFORML 「조금만 도와주시면 안될까요?」
+			CASE 1
+				PRINTFORML 「펫들이 없다고 방심하고 있었더니 방이 엉망이 돼버려서...」
+				PRINTFORML 「부끄럽지만 청소에 어울려 주시면 안될까요...?」
+			CASE 2
+				PRINTFORML 「나름 청소를 안한것도 아니지만...」
+				PRINTFORML 「혼자서 치워도치워도 끝이 안 나고 있단 말이죠, 조금만 도와주시면 안될까요?」
+			CASE 3
+		ENDSELECT
+	ENDIF
+	RETURN 1
 CASE "의뢰비수탁시"
 	
 	RETURN 0
