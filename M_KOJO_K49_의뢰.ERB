@@ -315,8 +315,8 @@ CASE "의뢰실행 직후"
 ;【▲위쪽 구상부터 이어져】
 ;【◆구상】
 ;【▼그대로 아래쪽 구상으로】
-	
-	RETURN 0
+	PRINTFORML 「하아...어떻게든 끝났네」
+	RETURN 1
 CASE "성공 보고시"
 ;보수: 저급소재
 ;【▲위쪽 구상부터 이어져】
@@ -964,8 +964,21 @@ ENDSELECT
 ;--------------------------------------------------
 SELECTCASE SCENE
 CASE "의뢰 제시시"
-	
-	RETURN 0
+	SELECTCASE RAND:3
+		CASE 0
+			PRINTFORML 「후후후...저기, %사마스터는% 강하죠?」
+			PRINTFORML 「그러면 여기 이 사람 정도는 가볍게, 혼쭐낼 수 있겠네요」
+			PRINTFORML 「다녀오신다면 충분한 보수를 드릴텐데...어쩌실래요?」
+		CASE 1
+			PRINTFORML 「요근래 조금 눈에 밟히는 사람이 있단 말이죠...」
+			PRINTFORML 「살짝 코를 눌러줄 필요가 있을거 같네요」
+			PRINTFORML 「...다녀오신다면 섭섭치 않게는 해 드릴건데, 어떠신지?」
+		CASE 2
+			PRINTFORML 「저라도 싫은 사람은 생기기 마련이라구요」
+			PRINTFORML 「똑같이 싫은 기억을 심어주면 좋겠는데...」
+			PRINTFORML 「보수는 충분히 드릴테니, 다녀와주실래요?」
+	ENDSELECT
+	RETURN 1
 CASE "의뢰비수탁시"
 	
 	RETURN 0
