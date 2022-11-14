@@ -1027,8 +1027,30 @@ CASE "의뢰실행 직전"
 	;【◆구상】
 	;【W 승부 개시！！】
 	;【이후에는 그대로 탄막 구상이 호출됩니다】
-		
-		RETURN 0
+		IF ROLE == TARGET
+			SELECTCASE RAND:3
+				CASE 0
+					PRINTFORML 「어라라, 누구의 사주일까나...지독한 짓을 시키는걸」
+					PRINTFORML 「뭐 상관없지, 그런건 %사마스터가% 제일 잘 알고 있을테니!」
+				CASE 1
+					IF ABL:MASTER:전투능력 > ABL:전투능력
+						PRINTFORML 「누군진 모르겠지만 지독한 일을 시키는걸...」
+						PRINTFORML 「깨지는 취미는 없는데 말야」
+					ELSE
+						PRINTFORML 「결투 의뢰? 별난 걸 다 시키는군요」
+						PRINTFORML 「뭐 됐어, 슬슬 지루하던 참이었으니...후후, 봐주진 않을거야」
+					ENDIF
+				CASE 2
+					IF ABL:MASTER:전투능력 >= ABL:전투능력
+						PRINTFORML 「...지는 취미는 없는데, 피할 수도 없나」
+						PRINTFORML 「조금은 봐줬으면 좋겠는데 말이지...」
+					ELSE
+						PRINTFORML 「헤에-...그래서, 돈 때문에 저랑 승부를?」
+						PRINTFORML 「아무리 그래도 너무 얕보이는게 아닐까나...조금 상처받는걸」
+					ENDIF
+			ENDSELECT
+		ENDIF
+		RETURN 1
 	ENDIF
 	;【▼그대로 아래쪽 구상으로】
 CASE "의뢰실행 직후"
