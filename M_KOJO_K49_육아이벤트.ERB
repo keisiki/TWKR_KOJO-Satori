@@ -1,4 +1,44 @@
-﻿
+﻿[SKIPSTART]
+IF MARK:49:반발각인 == 3 && !TALENT:49:연인
+	SELECTCASE RAND:2
+		CASE 0
+
+		CASE 1
+
+	ENDSELECT
+ELSEIF TALENT:49:연인
+	SELECTCASE RAND:2
+		CASE 0
+
+		CASE 1
+		
+	ENDSELECT
+ELSEIF TALENT:49:연모||TALENT:49:사모||TALENT:49:애욕
+	SELECTCASE RAND:2
+		CASE 0
+
+		CASE 1
+		
+	ENDSELECT
+ELSEIF TALENT:49:섹프
+	SELECTCASE RAND:2
+		CASE 0
+
+		CASE 1
+		
+	ENDSELECT
+ELSE
+	SELECTCASE RAND:2
+		CASE 0
+
+		CASE 1
+		
+	ENDSELECT
+ENDIF
+PRINTFORML 「」
+[SKIPEND]
+
+
 [SKIPSTART]
 ;-------------------------------------------------
 ;육아 이벤트의 지문. 구상색은 여기서 입혀주세요.
@@ -11,7 +51,6 @@
 ;-------------------------------------------------
 [SKIPEND]
 
-[SKIPSTART]
 ;-------------------------------------------------
 ;육아 이벤트의 지문. 구상색은 여기서 입혀주세요.
 ;CFLAG등 캐릭터 변수를 사용할 경우, 캐릭터 번호를 지정해야 합니다.
@@ -20,9 +59,24 @@
 ;-------------------------------------------------
 @M_KOJO_EVENT_K49_CHILD_RAISING_젖떼기
 ;-------------------------------------------------
-
+SELECTCASE RAND:3
+	CASE 0
+		PRINTFORML 「벌써 이도 이렇게 나고...볼때마다 신기한걸」
+		IF TALENT:49:모유체질 == 1 && EXP:49:분유경험 > 500 && EXP:49:출산경험 > 1
+			PRINTFORML 「...근데 이건 안 멎는데 어쩌지...섞어서 먹일까나」
+		ELSEIF TALENT:49:모유체질 == 2
+			PRINTFORML 「...이제 이건 누가 해결해준담」
+		ELSE
+			PRINTFORML 「...이 가슴도 도로 작아져 버리는걸까- 조금 서운한걸」
+		ENDIF
+	CASE 1
+		PRINTFORML 「음-...씹기 힘들어? 다음번엔 더 묽게 해줄게, 응응...」
+		PRINTFORML 서드아이끼리 지그시 바라보며 이유식을 피드백하고 있다
+	CASE 2
+		PRINTFORML 「이건 이상한 맛이라 싫어? 그래도 먹어야 건강해지는데...」
+		PRINTFORML 서드아이끼리 지그시 바라보며 이유식을 피드백하고 있다
+ENDSELECT
 ;-------------------------------------------------
-[SKIPEND]
 
 [SKIPSTART]
 ;-------------------------------------------------
