@@ -93,12 +93,12 @@ SELECTCASE RAND:2
 		PRINTFORML 사토리는 천으로 푹신한 인형을 만들고 있다
 	CASE 1
 		PRINTFORML 「후후...잘 갖고 노는걸」
-		PRINTFORML 수제 서드아이 봉제인형에 엉켜 놀고 있는 %CHILDNAME:49:ARG%였다...
+		PRINTFORML 수제 서드아이 봉제인형에 엉켜 놀고 있는 모습을 보는 사토리의 얼굴이 느슨해졌다...
 ENDSELECT
 ;-------------------------------------------------
 
 
-[SKIPSTART]
+
 ;-------------------------------------------------
 ;육아 이벤트의 지문. 구상색은 여기서 입혀주세요.
 ;CFLAG등 캐릭터 변수를 사용할 경우, 캐릭터 번호를 지정해야 합니다.
@@ -107,9 +107,31 @@ ENDSELECT
 ;-------------------------------------------------
 @M_KOJO_EVENT_K49_CHILD_RAISING_붙잡고서기
 ;-------------------------------------------------
-
+IF MARK:49:반발각인 == 3 && !TALENT:49:연인
+	SELECTCASE RAND:2
+		CASE 0
+			PRINTFORML 「후후, 그래, 조금씩 일어나서...」
+			PRINTFORML 사토리는 희미한 웃음을 띄며 %조사처리(CHILDNAME:49:(TALENT:49:육아중),"의")% 손을 잡고 걷게 하고 있다 
+		CASE 1
+			PRINTFORML 「후후...그래그래, 조심해서...」
+			PRINTFORML 사토리는 %조사처리(CHILDNAME:49:(TALENT:49:육아중),"의")% 손을 잡고 아장아장 걸어보도록 시키고 있다
+	ENDSELECT
+ELSE
+	SELECTCASE RAND:2
+		CASE 0
+			PRINTFORML 「후후, 벌써 이렇게 일어난다고요? 참 대단한 아이라니깐♥」
+			PRINTFORML 사토리는 헤실헤실 웃으며 자랑해왔다
+		CASE 1
+			PRINTFORML 「갑자기 벌떡 일어나다니, 참 신기하네...」
+			PRINTFORML 「혹시 이 아이, 영재일지도...?」
+		CASE 2
+			PRINTFORML 「벌써 일어서기까지 하다니, 참 빠르네」
+			PRINTFORML 「...보고 있으면 묘한 기분인걸」
+			PRINTFORML 아슬아슬 몸을 일으킨 아이를 보며 사토리는 복잡한 표정을 지었다
+	ENDSELECT
+ENDIF
 ;-------------------------------------------------
-[SKIPEND]
+
 
 [SKIPSTART]
 ;-------------------------------------------------
