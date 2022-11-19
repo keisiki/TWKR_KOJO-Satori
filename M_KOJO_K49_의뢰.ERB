@@ -1027,7 +1027,7 @@ CASE "의뢰실행 직전"
 	;【◆구상】
 	;【W 승부 개시！！】
 	;【이후에는 그대로 탄막 구상이 호출됩니다】
-		IF ROLE == TARGET
+		IF ROLE == "TARGET"
 			SELECTCASE RAND:3
 				CASE 0
 					PRINTFORML 「어라라, 누구의 사주일까나...지독한 짓을 시키는걸」
