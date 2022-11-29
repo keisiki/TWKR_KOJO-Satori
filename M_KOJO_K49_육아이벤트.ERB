@@ -449,7 +449,27 @@ ENDIF
 ;-------------------------------------------------
 @M_KOJO_EVENT_K49_CHILD_DAILY_서당(ARGS,ARG,ARG:1)
 IF ARGS == "다치게 했다"
-	PRINTFORML 
+	SELECTCASE RAND:3
+		CASE 0
+			PRINTFORML 성격때문인지 %조사처리(CHILDNAME:49:ARG,"는")% 다른 아이들과 곧잘 다투는 모양이다
+			PRINTFORML 아무래도 필터링 없이 들어오는 남의 생각에 약하기 때문일까
+			PRINTFORML 사토리는 걱정스러운 모습으로 %조사처리(CHILDNAME:49:ARG,"를")% 보고 있다
+		CASE 1
+			PRINTFORML 「...다음부턴 장난으로도 그러지 마렴, 알겠니?」
+			PRINTFORML 사토리는 %조사처리(CHILDNAME:49:ARG,"를")% 앉혀놓고 한참을 혼냈다
+			PRINTFORML 그러나 슬픈듯한 표정은 가리지 못하고 있었다
+		CASE 2
+			PRINTFORML 「하아...어쩌려고 저러는 건지...」
+			PRINTFORML 「역시 남들과 어울리는건 무리인걸까...」
+			PRINTFORML 사토리는 고민 가득한 표정으로 연신 한숨을 내쉬고 있다...
+	ENDSELECT
 ELSEIF ARGS == "칭찬받았다"
-	PRINTFORML 
+	SELECTCASE RAND:2
+		CASE 0
+			PRINTFORML 「후후...칭찬받았다니, 역시 내 아이야♪」
+			PRINTFORML 사토리는 마치 자신이 칭찬받은 것마냥 실실 웃고 있다
+		CASE 1
+			PRINTFORML 「어머나...칭찬받았다니, 기특한걸」
+			PRINTFORML 「오늘은 기념으로 좋아하는거로 해줄까나...후후♥」
+	ENDSELECT
 ENDIF
