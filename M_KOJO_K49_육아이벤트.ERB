@@ -436,11 +436,12 @@ IF ARGS == "바람둥이"
 	IF CFLAG:49:4000
 		SELECTCASE RAND:2
 			CASE 0
-				PRINTFORML 「...어머나, 나를 좀 더 소중히 해주라니, 기특한걸」
+				PRINTFORML 「...어머나, 다른 사람 말고 나를 좀 더 소중히 해주라니, 기특한걸」
+				PRINTFORML 「계속 신경써 주고 있었던 걸까나...착한 아이인걸」
 				PRINTFORML 「나는 딱히 %사마스터가% 나한테 신경 안 쓴다고 슬프진 않지만 말야...」
 				PRINTFORML 사토리는 씁쓸한듯이 말했다
 			CASE 1
-				PRINTFORML 「%CHILDNAME:49:ARG%도 참...%사마스터가% 다른 사람한테 관심 쏟는게 신경쓰였던 걸까나」
+				PRINTFORML 「%CHILDNAME:49:ARG%도 참...%사마스터가% 다른 사람한테 관심 쏟는게 신경쓰였던 걸까나, 이런 편지를 다 보내고...」
 				PRINTFORML 「나한텐 이런건 이제 익숙한데 말이지」
 				PRINTFORML 사토리는 쓴 웃음을 지으며 편지를 읽어내려갔다
 		ENDSELECT
@@ -450,14 +451,45 @@ IF ARGS == "바람둥이"
 				PRINTFORML 「...나를 좀 더 신경 써 주라니, 얘도 참...」
 				PRINTFORML 「...그렇게 됐으니 조금만 이라도 더 어울려줬음 좋겠는걸, 얘한테도 사이 나쁜건 보이고 싶지 않고」
 			CASE 1
+				PRINTFORML 「...%사마스터가% 나한테 너무 무관심한게 아니냐, 며칠에 한번정도라도 관심을 쏟아줘야 맞는게 아니냐, 라...」
 				PRINTFORML 「애한테까지 걱정끼치다니, 나쁜 부모인걸」
 				PRINTFORML 「...조금 울적해졌어」
 		ENDSELECT
 	ENDIF
 ELSEIF ARGS == "염치없는돈"
-	
+	SELECTCASE RAND:3
+		CASE 0
+			PRINTFORML 「용돈이 필요하다라...생활비라도 떨어진 걸까나」
+			PRINTFORML 「이 애도 참...그런 일 있으면 직접 찾아와도 될 것을」
+			PRINTFORML 「...나도 얼마쯤 보태줘야겠는걸」
+		CASE 1
+			PRINTFORML 「급하게 돈이...? 안 좋은 일이라도 생긴걸까...?」
+			PRINTFORML 「...으응, 그 애라면 잘 해내겠지, 일단은 송금을...」
+			PRINTFORML 사토리는 %마스터가% 준 돈에 얼마를 보태 %CHILDNAME:49:ARG%에게 부쳤다
+		CASE 2
+			PRINTFORML 「용돈을 달라니...응, 그 아이도 아직까지는 용돈이 필요하겠지」
+			PRINTFORML 「나도 얼마쯤 넣어줘야겠네...」
+			PRINTFORML 사토리는 %마스터가% 준 돈에 얼마를 보태 %CHILDNAME:49:ARG%에게 부쳤다
+	ENDSELECT
 ELSEIF ARGS == "송금"
-	
+	;기본 10000원 주니까 그거에 +A해서
+	SELECTCASE RAND:3
+		CASE 0
+			PRINTFORML 「어머나...용돈? 우리한테?」
+			PRINTFORML 「벌써 그렇게 크다니...조금 감동적인걸...」
+			PRINTFORML 편지에는 사토리와 %마스터를% 신경쓰는 말과 50000원이 들어 있었다
+			MONEY += 40000
+		CASE 1
+			PRINTFORML 「용돈...후후, 이런거까지 챙기는걸 보면 잘 지내긴 하나보네」
+			PRINTFORML 「걱정할 필요도 없었겠는걸...앞으로도 이렇게 잘 되면 좋겠네」
+			PRINTFORML 편지에는 한탕 크게 번 이야기와 100000원이 들어 있었다
+			MONEY += 90000
+		CASE 2
+			;보너스 없음 유감!
+			PRINTFORML 「어라라...돈까지 부쳐왔네, 이런건 필요 없는데 말이지...」
+			PRINTFORML 「그래도 잘 지내고 있는거 같아 다행인걸...」
+			PRINTFORML 편지에는 그동안의 일상과 10000원이 들어 있었다
+	ENDSELECT
 ENDIF
 
 ;-------------------------------------------------
