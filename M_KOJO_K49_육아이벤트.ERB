@@ -343,11 +343,47 @@ ENDIF
 ;-------------------------------------------------
 ;육아 이벤트 식사시。
 ;-------------------------------------------------
+;PRINTFORML 「」
 @M_KOJO_EVENT_K49_CHILD_RAISING_식사(ARGS,ARG,ARG:1)
 IF ARGS == "수유"
-	PRINTFORML 
+	SELECTCASE RAND:4
+		CASE 0
+			IF MARK:49:반발각인 == 3
+				PRINTFORML 「...너무 쳐다보진 말았으면 좋겠는데」
+			ELSE
+				PRINTFORML 「옳지옳지 꿀꺽꿀꺽하자...후후, 잘 먹는걸」
+			ENDIF
+		CASE 1
+			IF ABL:49:B감각 >= 3
+				PRINTFORML 「아...아앗...♥ 안댓...♥ 빨릴때마다 가슴이...♥」
+				PRINTFORML %CHILDNAME:49:ARG%의 빠는 힘에도 민감한 사토리의 유두는 찌릿찌릿 쾌감을 주고 있다
+				PALAM:49:쾌B += 100 
+			ELSE
+				PRINTFORML 「'달아'? ...아기라고 해도 그런말 들으면 조금 부끄러운걸」
+			ENDIF
+		CASE 2
+			PRINTFORML 사토리는 애정이 가득한 시선으로 %조사처리(CHILDNAME:49:ARG,"를")% 바라보고 있다
+		CASE 3
+			PRINTFORML 「자아, 맘마 시간이에요-」
+	ENDSELECT
 ELSEIF ARGS == "이유식"
-	PRINTFORML 
+	SELECTCASE RAND:5
+		CASE 0
+			PRINTFORML 「요녀석, 그냥 삼키면 안돼, 꼭꼭 씹어먹어야지」
+		CASE 1
+			PRINTFORML 「자아 불어줄게, 후우-...」
+			PRINTFORML 사토리는 이유식을 식혀 한입한입 떠먹이고 있다
+		CASE 2
+			PRINTFORML 「'당근 싫어'라니, 이정도로 잘게 썰었는데도...?」
+			PRINTFORML 「...그러지 말고 조금만 먹어보면 안될까? 이 정도면 아무 맛도 안 날텐데...?」
+			PRINTFORML 사토리는 %CHILDNAME:49:ARG%에게 채소를 먹이느라 고생하고 있다
+		CASE 3
+			PRINTFORML 「'맛있어'? 후후, 기쁜걸」
+			PRINTFORML 「좀 더 자라게 된다면 더 맛있는걸 해주도록 할게」
+		CASE 4
+			PRINTFORML 「'이런거 말고 남들 먹는거 먹고 싶어'라니...아직 그런걸 먹을순 없단다」
+			PRINTFORML 「좀 더 자라게 된다면 얼마든지 먹게 해 줄테니까, 조금만 참자?」
+	ENDSELECT
 ELSEIF ARGS == "유소년기"
 	PRINTFORML 
 ELSE
