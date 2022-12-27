@@ -385,7 +385,21 @@ ELSEIF ARGS == "이유식"
 			PRINTFORML 「좀 더 자라게 된다면 얼마든지 먹게 해 줄테니까, 조금만 참자?」
 	ENDSELECT
 ELSEIF ARGS == "유소년기"
-	PRINTFORML 
+	SELECTCASE RAND:4
+		CASE 0
+			PRINTFORML 「이녀석, 채소만 빼놓고 먹으면 안되지」
+			PRINTFORML 「아무리 맛없어도 편식은 나쁜거야」
+		CASE 1
+			PRINTFORML 「'좀 더 고기를'...음- 고기인가...」
+			PRINTFORML 「내일은 고기로 해줄테니까 오늘은 채소로 참아주면 안될까?」
+		CASE 2
+			PRINTFORML 「후후...%조사처리(TEXTR("그라탕/함박 스테이크/햄버거/스파게티"),"은")% 마음에 드니?」
+			PRINTFORML 「후후후, 당연히 네 취향 정도는 환히 알고 있으니깐♥」
+			PRINTFORML 사토리는 도야가오를 짓고 있다
+		CASE 3
+			PRINTFORML 「'맛있어'? 후후...그래, 많이 먹어」
+			PRINTFORML 사토리는 흐뭇한 미소를 보이고 있다
+	ENDSELECT
 ELSE
 	PRINTFORML 
 ENDIF
