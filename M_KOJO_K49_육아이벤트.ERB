@@ -1,40 +1,4 @@
 ﻿[SKIPSTART]
-IF MARK:49:반발각인 == 3 && !TALENT:49:연인
-	SELECTCASE RAND:2
-		CASE 0
-
-		CASE 1
-
-	ENDSELECT
-ELSEIF TALENT:49:연인
-	SELECTCASE RAND:2
-		CASE 0
-
-		CASE 1
-		
-	ENDSELECT
-ELSEIF TALENT:49:연모||TALENT:49:사모||TALENT:49:애욕
-	SELECTCASE RAND:2
-		CASE 0
-
-		CASE 1
-		
-	ENDSELECT
-ELSEIF TALENT:49:섹프
-	SELECTCASE RAND:2
-		CASE 0
-
-		CASE 1
-		
-	ENDSELECT
-ELSE
-	SELECTCASE RAND:2
-		CASE 0
-
-		CASE 1
-		
-	ENDSELECT
-ENDIF
 PRINTFORML 「」
 [SKIPEND]
 
@@ -384,7 +348,7 @@ ELSEIF ARGS == "이유식"
 			PRINTFORML 「'이런거 말고 남들 먹는거 먹고 싶어'라니...아직 그런걸 먹을순 없단다」
 			PRINTFORML 「좀 더 자라게 된다면 얼마든지 먹게 해 줄테니까, 조금만 참자?」
 	ENDSELECT
-ELSEIF ARGS == "유소년기"
+ELSE
 	SELECTCASE RAND:4
 		CASE 0
 			PRINTFORML 「이녀석, 채소만 빼놓고 먹으면 안되지」
@@ -393,15 +357,16 @@ ELSEIF ARGS == "유소년기"
 			PRINTFORML 「'좀 더 고기를'...음- 고기인가...」
 			PRINTFORML 「내일은 고기로 해줄테니까 오늘은 채소로 참아주면 안될까?」
 		CASE 2
-			PRINTFORML 「후후...%조사처리(TEXTR("그라탕/함박 스테이크/햄버거/스파게티"),"은")% 마음에 드니?」
+			PRINTFORML 「후후...%조사처리(TEXTR("그라탕/함박 스테이크/햄버거/스파게티/튀김"),"은")% 마음에 드니?」
 			PRINTFORML 「후후후, 당연히 네 취향 정도는 환히 알고 있으니깐♥」
 			PRINTFORML 사토리는 도야가오를 짓고 있다
 		CASE 3
 			PRINTFORML 「'맛있어'? 후후...그래, 많이 먹어」
 			PRINTFORML 사토리는 흐뭇한 미소를 보이고 있다
+		CASE 4
+			PRINTFORML 「'오늘도 네코맘마인가'...그, 그런가? 습관적으로 또 만들어 버렸네...」
 	ENDSELECT
-ELSE
-	PRINTFORML 
+	;청소년기랑 유소년기는 대충 통합, 그다지 달라질거 같지 않는걸
 ENDIF
 
 ;-------------------------------------------------
