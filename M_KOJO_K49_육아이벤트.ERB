@@ -1,6 +1,5 @@
-﻿[SKIPSTART]
-PRINTFORML 「」
-[SKIPEND]
+﻿;PRINTFORML 「」
+
 
 
 [SKIPSTART]
@@ -370,7 +369,7 @@ ELSE
 ENDIF
 
 ;-------------------------------------------------
-;육아 이벤트 입욕
+;육아 이벤트 입욕 : 일단 생략
 ;-------------------------------------------------
 @M_KOJO_EVENT_K49_CHILD_RAISING_BATH(ARGS,ARG,ARG:1)
 IF ARGS == "유아기"
@@ -386,11 +385,32 @@ ENDIF
 ;-------------------------------------------------
 @M_KOJO_EVENT_K49_CHILD_RAISING_SLEEPING(ARGS,ARG,ARG:1)
 IF ARGS == "유아기"
-	PRINTFORML 
-ELSEIF ARGS == "유소년기"
-	PRINTFORML 
+	SELECTCASE RAND:3
+		CASE 0
+			PRINTFORML 「쉬잇-...방금 잠들었으니까 조금만 조용히」
+			IF MARK:49:반발각인 == 3
+				PRINTFORML 「...다른 때면 몰라도 지금만은 제발, 조용히 있어줘」
+			ELSE
+				PRINTFORML 「깨우면 불쌍하잖아요」
+			ENDIF
+		CASE 1
+			PRINTFORML 「겨우 잠들었네, 금방 또 깰 거 같긴 하지만」
+			PRINTFORML 「그래도 잘때는 귀엽단 말이지, 후후...」
+		CASE 2
+			PRINTFORML 「휴우...드디어 잠들었네」
+			PRINTFORML 「오늘은 얌전히 잘 자줬음 좋겠는걸...」
+	ENDSELECT
 ELSE
-	PRINTFORML 
+	SELECTCASE RAND:3
+		CASE 0
+			PRINTFORML 「어라, 벌써 졸린걸까나...응, 그럼 잘 자렴」
+		CASE 1
+			PRINTFORML 「그래, 잘 자렴」
+			PRINTFORML 「열심히 푹 자둬야 제대로 잘 자라지...」
+		CASE 2
+			PRINTFORML 「피곤했던 걸까나...금세 잠들어 버렸네」
+			PRINTFORML 「아기때는 재우는것도 애먹었는데 말이지, 시간 참 빠른걸」
+	ENDSELECT
 ENDIF
 
 ;-------------------------------------------------
