@@ -417,10 +417,11 @@ ENDIF
 ;육아 이벤트 내 천자로(川, 아이를 가운데 두고) 잘 자요
 ;-------------------------------------------------
 @M_KOJO_EVENT_K49_CHILD_RAISING_OYASUMI(ARGS,ARG,ARG:1)
-PRINTFORML 
-
+IF RAND:4 == 0
+	PRINTFORML ...잠든 사토리와 %CHILDNAME:49:ARG%의 서드아이가 어지럽게 엉커 %CALLNAME:MASTER%까지 묶여버렸다
+ENDIF
 ;-------------------------------------------------
-;육아 이벤트 완구
+;육아 이벤트 완구 ; 생략
 ;-------------------------------------------------
 @M_KOJO_EVENT_K49_CHILD_RAISING_TOY(ARGS,ARG,ARG:1)
 IF ARGS == "유아기"
@@ -435,10 +436,20 @@ ENDIF
 ;육아 이벤트 그외. 가장 잘 표시된다.
 ;-------------------------------------------------
 @M_KOJO_EVENT_K49_CHILD_RAISING_OTHER(ARGS,ARG,ARG:1)
+;PRINTFORML 「」
 IF ARGS == "유아기"
-	PRINTFORML 
+	IF RAND:10 == 0
+		PRINTFORML 사토리와 %조사처리(CHILDNAME:49:ARG,"가")% 서로 지그시 바라보고 있다
+		PRINTFORML 무언가 이해한다는 듯한 표정이 서로 오가고, 말없이 대화가 진행되는 모양이다...
+	ELSEIF RAND:9 == 0
+		PRINTFORML 「그래그래, 좀 더 집중해서...서드아이로 뚫어져라 쳐다보는거야」
+		PRINTFORML 사토리는 %CHILDNAME:49:ARG%에게 서드아이 사용법을 가르치고 있다
+	ENDIF
 ELSEIF ARGS == "유소년기"
-	PRINTFORML 
+	IF RAND:10 == 0
+		PRINTFORML 사토리와 %조사처리(CHILDNAME:49:ARG,"가")% 서로 지그시 바라보고 있다
+		PRINTFORML 시시각각 표정이 변하는걸 보면, 말없이 서드아이만으로 대화가 진행되는 모양이다...
+	ENDIF
 ELSE
 	PRINTFORML 
 ENDIF
