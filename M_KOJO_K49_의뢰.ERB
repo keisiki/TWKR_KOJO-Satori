@@ -50,6 +50,8 @@ SELECTCASE IRAI_NO
 	;맛있는물고기가 먹고 싶네 (발동조건: 와카사기히메 이외)
 	CASE 13
 		RETURN 1
+	CASE 16
+		RETURN 1
 	;현재 없음
 	CASEELSE
 		RETURN 1
@@ -758,6 +760,7 @@ ENDSELECT
 ;==================================================
 ;의뢰구상・일반의뢰08: 편지를 보내줘
 ;※この依頼はキャラによっては発生しません
+;사실 시스템상 사토리는 편지를 보내지는 않는다, 받는경운 있지만
 ;==================================================
 @M_KOJO_IRAI_8_K49(ROLE, SCENE, CLIENT_ID)
 #DIMS ROLE     ;캐릭터의 입장, 의뢰자인지 아닌지
@@ -769,7 +772,14 @@ ENDSELECT
 ;--------------------------------------------------
 SELECTCASE SCENE
 CASE "의뢰 제시시"
-	
+	SELECTCASE RAND:2
+		CASE 0
+			PRINTFORML 「혹시 시간 괜찮으시다면...이 편지 좀 대신 보내주실수 있나요?」
+			PRINTFORML 「제가 가기엔 조금 시간이 안 맞단 말이죠...」
+		CASE 1
+			PRINTFORML 「죄송한데, 이 편지 좀 대신 가져다줄 수 있을까요?」
+			PRINTFORML 「직접 가기엔 조금 곤란해서 말이죠...」
+	ENDSELECT
 	RETURN 0
 CASE "의뢰비수탁시"
 	
@@ -788,8 +798,26 @@ CASE "의뢰실행 직전"
 ;【◆구상】
 ;【W ［아나타］는［그녀］에게 맡고 있던 편지를 건네주었다】
 ;【▼그대로 아래쪽 구상으로】
-	
-	RETURN 0
+	IF MARK:49:반발각인 == 3 && !TALENT:49:연인
+		SELECTCASE RAND:2
+			CASE 0
+				PRINTFORML 「편지? 나한테?」
+				PRINTFORML 「...뭐, 가져다 준건 고마워요」
+			CASE 1
+				PRINTFORML 「편지인가요...네, 그럼 거기다 두세요」
+				PRINTFORML 「...더 이상 용건은 없는건가요?」
+		ENDSELECT
+	ELSE
+		SELECTCASE RAND:2
+			CASE 0
+				PRINTFORML 「편지...? 아아, 그 사람이 보낸거구나」
+				PRINTFORML 「가져다줘서 고마워요」
+			CASE 1
+				PRINTFORML 「편지인가요...가져다줘서 고마워요」
+				PRINTFORML 「무슨 내용이려나...」
+		ENDSELECT
+	ENDIF
+	RETURN 1
 CASE "의뢰실행 직후"
 ;○이 의뢰는 반드시 실행 후 달성합니다
 ;【▲위쪽 구상부터 이어져】
@@ -798,7 +826,13 @@ CASE "의뢰실행 직후"
 	RETURN 0
 CASE "성공 보고시"
 ;보수: 소재 4개
-	
+	SELECTCASE RAND:2
+		CASE 0
+			PRINTFORML 「수고했어요, 약소하지만 사례로...」
+		CASE 1
+			PRINTFORML 「고마워요, 여기 작지만 보수를...」
+	ENDSELECT
+	CALL GET_MONEY_YEN(500, 2)
 	RETURN 0
 CASE "실패 보고시"
 	
