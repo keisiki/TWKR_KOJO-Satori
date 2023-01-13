@@ -495,8 +495,15 @@ ENDSELECT
 ;--------------------------------------------------
 SELECTCASE SCENE
 CASE "의뢰 제시시"
-	
-	RETURN 0
+	SELECTCASE RAND:2
+		CASE 0
+			PRINTFORML 「저기, %MASTERNAME:49% 요리 잘하죠?」
+			PRINTFORML 「혹시...조금 배울수는 없을까요?」
+		CASE 1
+			PRINTFORML 「그, 꽤나 요리 잘하시던데...혹시 저한테도 가르쳐 주실수 있나요?」
+			PRINTFORML 「애들한테 조금 해주고 싶어져서...안될까요?」
+	ENDSELECT
+	RETURN 1
 CASE "의뢰비수탁시"
 	
 	RETURN 0
@@ -531,8 +538,16 @@ CASE "성공 보고시"
 ;【보수획득】
 ;【L 완성된 요리는 둘이서 함께 먹었다】
 ;【식사효과 (요리채점) 】
-	
-	RETURN 0
+	SELECTCASE RAND:2
+		CASE 0
+			PRINTFORML 「가르쳐주셔서 감사해요」
+			PRINTFORML 「그래도 좀 더 배우고 싶은데...다음에 또 부탁해도 될까요?」
+		CASE 1
+			PRINTFORML 「도와주셔서 고마워요」
+			PRINTFORML 「괜찮다면 다음에 또 가르쳐 주실래요?」
+			PRINTFORML 사토리는 싱긋 웃었다
+	ENDSELECT
+	RETURN 1
 CASE "실패 보고시"
 	
 	RETURN 0
