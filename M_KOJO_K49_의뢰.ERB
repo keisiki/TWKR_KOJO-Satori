@@ -11,16 +11,16 @@ IF MARK:49:반발각인 == 3
 	ENDIF
 ENDIF
 SELECTCASE IRAI_NO
-	;청소를 도와줘 (발동조건: TARGET이 메인맵 거주)
+	;청소를 도와줘 (발동조건: TARGET이 메인맵 거주) O
 	CASE 1
 		RETURN 1
-	;꽃에 물을 줘 (발동조건: TARGET이 MASTER가 침입 가능한 자택 거주, 메인 맵 거주, 친밀 2이상)
+	;꽃에 물을 줘 (발동조건: TARGET이 MASTER가 침입 가능한 자택 거주, 메인 맵 거주, 친밀 2이상)O
 	CASE 2
 		RETURN 1
 	;함께 놀자 (발동조건: TARGET이 TALENT:유치 소지)
 	CASE 3
 		RETURN 0
-	;요리를 잘하고 싶다 (발동조건: TARGET의 요리기능이 MASTER미만, MASTER의 요리기능이 2이상, 친밀이 3이상)
+	;요리를 잘하고 싶다 (발동조건: TARGET의 요리기능이 MASTER미만, MASTER의 요리기능이 2이상, 친밀이 3이상)O
 	CASE 4
 		RETURN 1
 	;특훈 같이해줘 (발동조건: TARGET의 전투능력이 MASTER이하, 친밀이 2이상이며 인간 이외)
@@ -32,24 +32,25 @@ SELECTCASE IRAI_NO
 	;대청소가 끝나지 않는다 (발동조건: TARGET이 메인맵에 거주, 겨울 15일부터 31일까지, 친밀도가 3이상)
 	CASE 7
 		RETURN 0
-	;편지를 보내줘 (발동조건: TARGET의 신뢰도가 30이상, TARGET에게 펜팔상대가 설정되어 있음 (FUNC_IRAI.ERB의 965행 이후에 존재)
+	;편지를 보내줘 (발동조건: TARGET의 신뢰도가 30이상, TARGET에게 펜팔상대가 설정되어 있음 (FUNC_IRAI.ERB의 965행 이후에 존재) O
 	CASE 8
 		RETURN 1
-	;누군가의 유실물 (발동조건: TARGET의 신뢰도가 30 이상)
+	;누군가의 유실물 (발동조건: TARGET의 신뢰도가 30 이상) O
 	CASE 9
 		RETURN 1
-	;아무리 해도 찾지 못했다(그대로 떨어져 있다) (발동조건: TARGET의 신뢰도가 30 이상)
+	;아무리 해도 찾지 못했다(그대로 떨어져 있다) (발동조건: TARGET의 신뢰도가 30 이상) O
 	CASE 10
 		RETURN 1
-	;아무리 해도 찾지 못했다(누군가가 줍고 있다) (발동조건: TARGET의 신뢰도가 30 이상)
+	;아무리 해도 찾지 못했다(누군가가 줍고 있다) (발동조건: TARGET의 신뢰도가 30 이상) O
 	CASE 11
 		RETURN 1
-	;혼내줘！ (발동조건: TARGET의 CSV에 전투능력이 1이상 있을 경우)
+	;혼내줘！ (발동조건: TARGET의 CSV에 전투능력이 1이상 있을 경우) O
 	CASE 12
 		RETURN 1
 	;맛있는물고기가 먹고 싶네 (발동조건: 와카사기히메 이외)
 	CASE 13
 		RETURN 1
+	;고민 상담
 	CASE 16
 		RETURN 1
 	;현재 없음
@@ -870,8 +871,15 @@ ENDSELECT
 ;--------------------------------------------------
 SELECTCASE SCENE
 CASE "의뢰 제시시"
-	
-	RETURN 0
+	SELECTCASE RAND:2
+		CASE 0
+			PRINTFORML 「그러고보니 펫들이 이런걸 주워왔던데」
+			PRINTFORML 「도저히 주인을 찾아줄 수가 없어서 말이죠, 대신 찾아봐 주실래요?」
+		CASE 1
+			PRINTFORML 「근처에서 이런 물건을 주웠는데...누구껀지 감이 안 오는 군요」
+			PRINTFORML 「혹시 나중에라도 주인을 찾으면 대신 좀 전해주실래요?」
+	ENDSELECT
+	RETURN 1
 CASE "의뢰비수탁시"
 	
 	RETURN 0
@@ -922,8 +930,22 @@ ENDSELECT
 ;--------------------------------------------------
 SELECTCASE SCENE
 CASE "의뢰 제시시"
-	
-	RETURN 0
+	;PRINTFORML 「」
+	SELECTCASE RAND:3
+		CASE 0
+			PRINTFORML 「코이시가 제 물건을 숨겨놓는 일은 종종 있었지만...」
+			PRINTFORML 「하아아...이번엔 도저히 못찾겠더군요, 어디 멀리다 숨겨놓은건지」
+			PRINTFORML 「그래서 말인데, 혹시 찾아와주실수 있을까요?」
+		CASE 1
+			PRINTFORML 「분명히 책상 위에 뒀던 아주아주 중요한 종이뭉치가 있었는데 말이죠...」
+			PRINTFORML 「어쩐일인지 없어져버렸답니다...발이라도 달린건지...」
+			PRINTFORML 「...혹시 찾아와주실수 있을까요?」
+		CASE 2
+			PRINTFORML 「오린이 지상에 나갔다가 뭔가 흘렸다고 하더군요」
+			PRINTFORML 「제가 찾으려고 해도 지상에서 오래 돌아다니는건 역시 지친단 말이죠...」
+			PRINTFORML 「보수는 드릴테니 대신 찾아와 주시면 안될까요?」
+	ENDSELECT
+	RETURN 1
 CASE "의뢰비수탁시"
 	
 	RETURN 0
@@ -987,8 +1009,21 @@ ENDSELECT
 ;--------------------------------------------------
 SELECTCASE SCENE
 CASE "의뢰 제시시"
-	
-	RETURN 0
+	SELECTCASE RAND:3
+		CASE 0
+			PRINTFORML 「코이시가 제 물건을 숨겨놓는 일은 종종 있었지만...」
+			PRINTFORML 「하아아...이번엔 도저히 못찾겠더군요, 어디 멀리다 숨겨놓은건지」
+			PRINTFORML 「그래서 말인데, 혹시 찾아와주실수 있을까요?」
+		CASE 1
+			PRINTFORML 「분명히 책상 위에 뒀던 아주아주 중요한 종이뭉치가 있었는데 말이죠...」
+			PRINTFORML 「어쩐일인지 없어져버렸답니다...코이시가 숨겨버린건지 뭔지...」
+			PRINTFORML 「...혹시 찾아와주실수 있을까요?」
+		CASE 2
+			PRINTFORML 「오린이 지상에 나갔다가 뭔가 흘렸다고 하더군요」
+			PRINTFORML 「제가 찾으려고 해도 지상에서 오래 돌아다니는건 역시 지친단 말이죠...」
+			PRINTFORML 「보수는 드릴테니 대신 찾아와 주시면 안될까요?」
+	ENDSELECT
+	RETURN 1
 CASE "의뢰비수탁시"
 	
 	RETURN 0
