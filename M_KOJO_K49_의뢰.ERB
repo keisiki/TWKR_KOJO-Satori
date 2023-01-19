@@ -1212,8 +1212,17 @@ ENDSELECT
 ;--------------------------------------------------
 SELECTCASE SCENE
 CASE "의뢰 제시시"
-	
-	RETURN 0
+	SELECTCASE RAND:3
+		CASE 0
+			PRINTFORML 「갑자기 생선이 먹고 싶어지는데...좋은 생선 한 마리만 구해다 주시면 안될까요?」
+		CASE 1
+			PRINTFORML 「맛있는 생선 한 마리만 구해다 주실수 있나요?」
+			PRINTFORML 「그게, 가끔씩 생선이 먹고 싶다는 펫들이 한두마리가 아니거든요...」
+		CASE 2
+			PRINTFORML 「그, 좋은 생선 한 마리만 구해다 주실수 있을까요?」
+			PRINTFORML 「펫들이 생선을 좋아하는데...마침 창고에 있던게 똑 떨어졌지 뭐예요」
+	ENDSELECT
+	RETURN 1
 CASE "의뢰비수탁시"
 	
 	RETURN 0
@@ -1239,11 +1248,12 @@ CASE "의뢰실행 직후"
 ;【▲위쪽 구상부터 이어져】
 ;【◆구상】
 ;【▼그대로 아래쪽 구상으로】
-	
-	RETURN 0
+	PRINTFORML 「고마워요」
+	PRINTFORML 「이건 생선값으로 생각하고 받아주세요」
+	CALL GET_MONEY_YEN(1000,2)
+	RETURN 1
 CASE "성공 보고시"
 ;보수: 상급식재 3개
-	
 	RETURN 0
 CASE "실패 보고시"
 	
