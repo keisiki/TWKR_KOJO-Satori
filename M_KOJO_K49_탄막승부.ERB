@@ -28,7 +28,26 @@ SIF FLAG:구상색
 	;-------------------------------------------------
 	IF LOCAL:1 && ARGS == "戦闘前"
 		IF ABL:MASTER:전투능력 > ABL:전투능력
-			
+			IF MARK:반발각인 == 3 && !TALENT:연인
+				SELECTCASE RAND:2
+					CASE 0
+						PRINTFORML 「승부라니, 승부가 될 리가 없잖아」
+						PRINTFORML 「일방적으로 당하기만 하는게 어디서 승부라는거야...」
+						PRINTFORML 사토리는 투덜거리며 끌려나왔다
+					CASE 1
+						PRINTFORML 「탄막놀이라고 해놓고 일방적으로 갖고 놀 생각이지 이거...」
+				ENDSELECT
+			ELSE
+				SELECTCASE RAND:3
+					CASE 0
+						PRINTFORML 「타, 탄막놀이라니...살살 해주시는거죠...?」
+					CASE 1
+						PRINTFORML 「탄막놀이라니...아무리 봐도 내쪽이 일방적으로 질거 같은데...」
+					CASE 2
+						PRINTFORML 「탄막놀이...? 살살 부탁드릴게요...」
+						PRINTFORML 사토리는 자신없는 표정이다
+				ENDSELECT
+			ENDIF
 		ELSE
 			IF MARK:반발각인 == 3 && !TALENT:연인
 				SELECTCASE RAND:3
@@ -44,20 +63,24 @@ SIF FLAG:구상색
 			ELSEIF TALENT:연인||TALENT:사모||TALENT:연모||TALENT:애욕
 				SELECTCASE RAND:3
 					CASE 0
-						
+						PRINTFORML 「탄막놀이...후후, 가끔은 이런것도 재밌지요」
 					CASE 1
-						
+						PRINTFORML 「%사마스터라%고 해도 봐드리진 않을거예요?」
 					CASE 2
-						
+						PRINTFORML 「자아- %사마스터가% 겪어온 가장 무서운 탄막, 다시 한 번 보여드릴게요」
+						PRINTFORML 「부디 무섭다고 하지 마시길」
 				ENDSELECT
 			ELSE
 				SELECTCASE RAND:3
 					CASE 0
-						
+						PRINTFORML 「이래뵈도 저도 요괴라구요?」
+						PRINTFORML 「아무렇게나 당해줄만큼 약하지는 않다구요」
 					CASE 1
-						
+						PRINTFORML 「자아- %사마스터가% 겪어온 가장 무서운 기억, 다시 한 번 떠올리게 해 드리죠」
+						PRINTFORML 「머릿속에 떠오르는, 벗어날 수 없는 공포에 떠시길!」
 					CASE 2
-						
+						PRINTFORML 「후후...스스로 습격당하러 온다면야 마다할 이유가 없죠」
+						PRINTFORML 「한동안 밤 잠을 못 잘 정도로 조금 헤집어놔 볼까나...♥」
 				ENDSELECT
 			ENDIF
 		ENDIF
