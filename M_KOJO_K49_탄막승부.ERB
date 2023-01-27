@@ -27,7 +27,7 @@ SIF FLAG:구상색
 	LOCAL:1 = 1
 	;-------------------------------------------------
 	IF LOCAL:1 && ARGS == "戦闘前"
-		IF ABL:MASTER:전투능력 > ABL:전투능력
+		IF ABL:MASTER:전투능력 > ABL:전투능력 + 1
 			IF MARK:반발각인 == 3 && !TALENT:연인
 				SELECTCASE RAND:2
 					CASE 0
@@ -184,7 +184,7 @@ SIF FLAG:구상색
 	;-------------------------------------------------
 	;전투후
 	;기입체크 (=0, 비표시、1, 표시)
-	LOCAL:1 = 0
+	LOCAL:1 = 1
 	;-------------------------------------------------
 	IF LOCAL:1 && ARGS == "戦闘後" 
 		PRINTFORML 
@@ -200,7 +200,60 @@ SIF FLAG:구상색
 			CASE 1
 				PRINTFORML 
 			CASE 0
-				PRINTFORML 
+				IF ABL:MASTER:전투능력 > ABL:전투능력 + 1
+					IF MARK:반발각인 == 3 && !TALENT:연인
+						SELECTCASE RAND:2
+							CASE 0
+								PRINTFORMW 「이, 이럴줄 알았어...」
+								PRINTFORMW 「처음부터 갖고 놀 생각이었던 거지...」
+							CASE 1
+								PRINTFORMW 「승부가 안되잖아」
+								PRINTFORMW 「이런게 어디가 재밌다는거야...악취미」
+								PRINTFORMW 사토리는 투덜대고 있다
+						ENDSELECT
+					ELSE
+						SELECTCASE RAND:3
+							CASE 0
+								PRINTFORMW 「너무 강하다니깐...」
+								PRINTFORMW 「재미는 커녕 아프기만 하단 말야」
+							CASE 1
+								PRINTFORMW 「아파라...져버렸네」
+								PRINTFORMW 「역시 상대도 안되는걸...」
+							CASE 2
+								PRINTFORMW 「으으...이런걸 어떻게 이겨...」
+								PRINTFORMW 「피하는데도 한계가 있단 말야...」
+						ENDSELECT
+					ENDIF
+				ELSE
+					IF MARK:반발각인 == 3 && !TALENT:연인
+						SELECTCASE RAND:3
+							CASE 0
+								
+							CASE 1
+								
+							CASE 2
+								
+						ENDSELECT
+					ELSEIF TALENT:연인||TALENT:사모||TALENT:연모||TALENT:애욕
+						SELECTCASE RAND:3
+							CASE 0
+								
+							CASE 1
+								
+							CASE 2
+								
+						ENDSELECT
+					ELSE
+						SELECTCASE RAND:3
+							CASE 0
+								
+							CASE 1
+								
+							CASE 2
+								
+						ENDSELECT
+					ENDIF
+				ENDIF
 		ENDSELECT
 	ENDIF
 RESETCOLOR
