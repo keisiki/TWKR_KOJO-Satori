@@ -228,29 +228,30 @@ SIF FLAG:구상색
 					IF MARK:반발각인 == 3 && !TALENT:연인
 						SELECTCASE RAND:3
 							CASE 0
-								
+								PRINTFORMW 「큿...이길수 있었는데...」
+								PRINTFORMW 사토리는 분하다는 듯한 표정이다
 							CASE 1
-								
+								PRINTFORMW 「으긋...생각보다 강한걸...」
 							CASE 2
-								
+								;능욕선택지
+								PRINTFORMW 사토리는 잠시 기절해버렸다...
 						ENDSELECT
 					ELSEIF TALENT:연인||TALENT:사모||TALENT:연모||TALENT:애욕
-						SELECTCASE RAND:3
+						SELECTCASE RAND:2
 							CASE 0
-								
+								PRINTFORMW 「흐으...이길수 있었는데...」
+								PRINTFORMW 사토리는 약간 분하다는듯 중얼거리고 있다
 							CASE 1
-								
-							CASE 2
-								
+								PRINTFORMW 「으으...져버렸네...」
+								PRINTFORMW 「그래도 다음번엔 반드시 이길거예요」
 						ENDSELECT
 					ELSE
-						SELECTCASE RAND:3
+						SELECTCASE RAND:2
 							CASE 0
-								
+								PRINTFORMW 「생각보다 강한걸...」
+								PRINTFORMW 사토리는 분하다는듯 중얼거렸다
 							CASE 1
-								
-							CASE 2
-								
+								PRINTFORMW 「과연 근거없는 자신감은 아니었군요...」
 						ENDSELECT
 					ENDIF
 				ENDIF
