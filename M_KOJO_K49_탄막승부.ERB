@@ -198,7 +198,41 @@ SIF FLAG:구상색
 			CASE 2
 				PRINTFORML 
 			CASE 1
-				PRINTFORML 
+				IF MARK:반발각인 == 3 && !TALENT:연인
+					SELECTCASE RAND:2
+						CASE 0
+							PRINTFORMW 「하아...하아...어떻게든, 이겼다...」
+							PRINTFORMW 사토리는 가쁜 숨을 몰아쉬며 바닥에 주저앉았다
+						CASE 1
+							IF ABL:MASTER:전투능력 > ABL:전투능력 + 1
+								PRINTFORMW 「이, 이겼다...!」
+								PRINTFORMW 「아슬아슬...했지만...윽」
+								PRINTFORMW 사토리는 기쁜듯이 소리쳤지만 이내 지칠대로 지쳐 바닥에 주저앉았다
+							ELSE
+								PRINTFORMW 「하아...하아...아시겠나요, 다, 당신 같은 사람한테 질 정도로, 약해빠진 요괴가 아니란걸...」
+								PRINTFORMW 「그러니까, 얕보지 말란 말이야...!」
+								PRINTFORMW 사토리는 지칠대로 지친듯한 목소리로 쏘아붙이고 있다
+							ENDIF
+					ENDSELECT
+				ELSEIF TALENT:연인||TALENT:사모||TALENT:연모||TALENT:애욕
+					SELECTCASE RAND:2
+						CASE 0
+							PRINTFORMW 「하아...하아...역시 강하시네요...」
+							PRINTFORMW 「저라도 조금 위험했을 정도라니깐요...」
+							PRINTFORMW 사토리는 가쁜 숨을 내쉬고 있다
+						CASE 1
+							PRINTFORMW 「아슬아슬...이겼다...」
+							PRINTFORMW 「후후, 역시 강하시군요...자랑스러워 하셔도 좋다구요?」
+					ENDSELECT
+				ELSE
+					SELECTCASE RAND:2
+						CASE 0
+							PRINTFORMW 「하아...하아...조금...힘드네요...」
+							PRINTFORMW 「생각보다 강했어...」
+						CASE 1
+							PRINTFORMW 「읏...조금 위험...했을지도」
+					ENDSELECT
+				ENDIF
 			CASE 0
 				IF ABL:MASTER:전투능력 > ABL:전투능력 + 1
 					IF MARK:반발각인 == 3 && !TALENT:연인
@@ -233,8 +267,28 @@ SIF FLAG:구상색
 							CASE 1
 								PRINTFORMW 「으긋...생각보다 강한걸...」
 							CASE 2
-								;능욕선택지
+								;능욕선택지...인데 텍붕이가 아니면 강제 레이프로 이었을때 바로 끝나버릴것의 예감이 든다, 스킵
 								PRINTFORMW 사토리는 잠시 기절해버렸다...
+								PRINTFORMW 아마도 잠시동안은 일어나지 않을 것 같다
+								PRINTFORML [0] 팬티를 훔친다
+								PRINTFORML [1] 주머니를 뒤진다
+								PRINTFORML [2] 내버려둔다
+								INPUT
+								SELECTCASE RESULT
+									CASE 0
+										IF EQUIP:하반신속옷2
+											PRINTFORMW 조심스레 치마를 들춰 팬티를 벗겨냈다
+											CALL PANTS_GET(49,"받는다")
+										ELSE
+											PRINTFORMW 치마를 들춰보았지만 이미 팬티가 없었다...
+										ENDIF
+									CASE 1
+										PRINTFORMW 기절한 사토리의 주머니 속에서 몇 푼 동전을 찾았다
+										CALL GET_MONEY_YEN(5000, 2)
+									CASEELSE
+										PRINTFORMW 「흐으...이길수 있었는데...」
+										PRINTFORMW 정신을 차린 사토리는 약간 분하다는듯 중얼거리고 있다
+								ENDSELECT
 						ENDSELECT
 					ELSEIF TALENT:연인||TALENT:사모||TALENT:연모||TALENT:애욕
 						SELECTCASE RAND:2
