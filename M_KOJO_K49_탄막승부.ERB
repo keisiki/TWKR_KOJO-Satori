@@ -196,7 +196,80 @@ SIF FLAG:구상색
 			CASE 3
 			;	PRINTFORML 
 			CASE 2
-				PRINTFORML 
+				IF ABL:MASTER:전투능력 > ABL:전투능력 + 1
+					IF MARK:반발각인 == 3 && !TALENT:연인
+						SELECTCASE RAND:2
+							CASE 0
+								PRINTFORMW 「무, 무슨 꿍꿍이야...」
+								PRINTFORMW 「이렇게 쉽게 져주다니, 분명히 뭔가 있는거지?」
+								PRINTFORMW 사토리는 경계하고 있다
+							CASE 1
+								PRINTFORMW 「일부러 져주다니, 뭔가 숨기고 있는거야?」
+								PRINTFORMW 「수상한데...머릿속 비운다고 내가 못 찾아낼 것 같아?」
+								PRINTFORMW 사토리는 경계하고 있다
+						ENDSELECT
+					ELSE
+						SELECTCASE RAND:2
+							CASE 0
+								PRINTFORMW 「무, 무슨 꿍꿍이인가요...」
+								PRINTFORMW 「이렇게 쉽게 져주다니, 척 봐도 수상한데...」
+								PRINTFORMW 사토리는 경계하고 있다
+							CASE 1
+								PRINTFORMW 「일부러 져주다니, 뭔가 숨기고 있는 거라도...?」
+								PRINTFORMW 「마음을 읽어도, 가끔은 %사마스터의% 생각은 전혀 모르겠어...」
+								PRINTFORMW 사토리는 경계하고 있다
+						ENDSELECT
+					ENDIF
+				ELSE
+					;PRINTFORMW 「」
+					IF MARK:반발각인 == 3 && !TALENT:연인
+						SELECTCASE RAND:2
+							CASE 0
+								PRINTFORMW 「후후후...꼴좋게 당해버렸네」
+								PRINTFORMW 「그치만 이거 가지곤 분이 안 풀리는데...조금 '장난'을 쳐줄까나~」
+								SELECTCASE RAND:2
+									CASE 0
+										PRINTFORMW 사토리의 서드아이로부터 불길한 빛이 나왔다!
+										IF HAS_PENIS(MASTER) && RAND:2
+											CALL BUFF_BASE(MASTER,5,-2000)
+											PRINTFORMW 「오늘 하루는 그 막대기 전혀 못 세우게 될거야...후후, 끔찍하지?」
+											PRINTFORMW 「뭐어, 열심히 문지르면 나오기야 하겠지만...안에 넣는 기쁨정돈 전혀 못 느끼겠지」
+											PRINTFORMW 사토리는 히죽히죽 웃고 있다
+										ELSE
+											CALL BUFF_BASE(MASTER,BASE_TSP,-2 * MAXBASE:MASTER:TSP)
+											BASE:MASTER:TSP = 0
+											PRINTFORMW 「오늘 하루동안은 시간 장난질 끝, 인거로 좋겠지」
+											PRINTFORMW 「그래도 내일이면 풀리게 해주니 얼마나 자비로워」
+											PRINTFORMW 사토리는 능글맞게 웃고 있다
+										ENDIF
+									CASE 1
+										CFLAG:MASTER:졸음쫒기강도 = -1000
+										PRINTFORMW 그와 동시에 전신에서 힘이 빠지고 잠이 쏟아지기 시작한다!
+										PRINTFORMW 「자아- 몸에 힘이 전혀 안 돌지?」
+										PRINTFORMW 「침대까지 갈 수나 있으려나...길바닥에서 잠들었다 요괴에 채일수도?」
+										PRINTFORMW 「후후후...알아서 잘 해봐」
+										PRINTFORMW 사토리는 능글맞게 웃으며 말했다
+								ENDSELECT
+							CASE 1
+								PRINTFORMW 「후후후...날 얕잡아 보면 곤란하다니까」
+								PRINTFORMW 사토리는 자신 만만한 표정이다
+						ENDSELECT
+					ELSEIF TALENT:연인||TALENT:사모||TALENT:연모||TALENT:애욕
+						SELECTCASE RAND:2
+							CASE 0
+								
+							CASE 1
+								
+						ENDSELECT
+					ELSE
+						SELECTCASE RAND:2
+							CASE 0
+								
+							CASE 1
+								
+						ENDSELECT
+					ENDIF
+				ENDIF
 			CASE 1
 				IF MARK:반발각인 == 3 && !TALENT:연인
 					SELECTCASE RAND:2
