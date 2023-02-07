@@ -5,14 +5,14 @@
 ;90,애널애무받는다
 ;==================================================
 @M_KOJO_MESSAGE_COM_K49_90
-CALL TRAIN_MESSAGE
+;CALL TRAIN_MESSAGE
 CALL M_KOJO_MESSAGE_COM_K49_90_1
 RETURN RESULT
 
 @M_KOJO_MESSAGE_COM_K49_90_1
 ;-------------------------------------------------
 ;기입체크 (=0, 비표시、1, 표시)
-LOCAL = 0
+LOCAL = 1
 ;-------------------------------------------------
 IF LOCAL
 	;-------------------------------------------------
@@ -26,20 +26,165 @@ IF LOCAL
 		PRINTFORMW 
 		RETURN 1
 	ENDIF
-	;기본세트
-	;연모
-	IF TALENT:연모
-		PRINTFORMW 
-		RETURN 1
-	;괘씸3
-	ELSEIF MARK:괘씸각인 == 3
-		PRINTFORMW 
-		RETURN 1
-	;그 이외
+	IF CFLAG:6199 ; 코드 역간 허가됨
+		IF !CFLAG:6200 ; 코드 역강간 발동해야 할 시
+		;	IF !CFLAG:6201 ; 경험 없다 <<< 밑에서 아예 애널강간 허가용 구상으로 별개
+			IF CFLAG:6201 < 100
+				IF MARK:반발각인 == 3 && !TALENT:연인
+
+				ELSEIF TALENT:연인 || TALENT:연모 || TALENT:사모 || TALENT:애욕
+
+				ELSEIF TALENT:섹프
+
+				ELSE
+
+				ENDIF
+			ELSEIF CFLAG:6201 < 500
+				IF MARK:반발각인 == 3 && !TALENT:연인
+
+				ELSEIF TALENT:연인 || TALENT:연모 || TALENT:사모 || TALENT:애욕
+
+				ELSEIF TALENT:섹프
+
+				ELSE
+
+				ENDIF
+			ENDIF
+			CFLAG:6201 ++
+		ELSE ; 해제시
+			IF MARK:반발각인 == 3 && !TALENT:연인
+				
+			ELSEIF TALENT:연인 || TALENT:연모 || TALENT:사모 || TALENT:애욕
+				
+			ELSEIF TALENT:섹프
+
+			ELSE
+
+			ENDIF
+			CFLAG:6200 = 0
+			GOTO JUSTHAND
+		ENDIF
 	ELSE
-		PRINTFORMW 
-		RETURN 1
+		;그냥 손으로
+		IF !CFLAG:6200 && !CFLAG:6201 && ABL:욕망 > 3 && RAND:5 == 0
+			PRINTFORMW 문득, 서드아이에 돋아난 6가닥 코드가 눈에 밟혔다
+			PRINTFORMW 저걸 활용한다면...어떤 플레이를 할 수 있을까?
+			PRINTFORML [0] 사용해본다
+			PRINTFORML [1] 안한다
+			INPUT
+			SIF RESULT == 1
+				GOTO JUSTHAND
+			PRINTFORMW %마스터의% 이야기를 들은 사토리는 당황했지만 이내 수긍하고는 서드아이의 코드를 부풀리기 시작했다
+			IF MARK:반발각인 == 3 && !TALENT:연인
+				PRINTFORMW 「이걸로 해달라니...조금 머리가 이상해진거 아닐까나」
+				PRINTFORMW 사토리는 약간 투덜거렸지만 어딘가 즐거워 보이는 표정으로 %마스터의% 애널에 코드를 쑤셔넣었다
+				PRINTFORMW 자지마냥 우락부락해진 하트모양 코드가 서서히 %마스터의% 애널 속으로 들어오자, 사토리는 가볍게 탄성을 흘렸다
+				PRINTFORML 「아아...♥ 엉덩이 안쪽으로 파고드는 이 느낌...왠지 오싹오싹 기분 좋은걸♥」
+				PRINTFORMW 「...아파? 그래도 참아, 지금 너무 기분 좋아서 멈출 생각 없으니깐...♥」
+				PRINTFORMW 사토리는 황홀한듯한 표정으로 코드를 놀려 %마스터의% 애널 안쪽을 쑤시기 시작했다
+			ELSEIF TALENT:연인 || TALENT:연모 || TALENT:사모 || TALENT:애욕
+				PRINTFORMW 「이런게 하고 싶다니...어지간한 변태도 그런 이야긴 안한다고요?」
+				PRINTFORMW 「...하아, 힘조절 잘 할 수 있을거라고 기대하진 마세요, 아파도 전 몰라요?」
+				PRINTFORMW 그러나 %마스터의% 애널에 코드를 쑤셔넣는 사토리의 얼굴은 묘한 정복감과 희열로 가득차 있는 것처럼 보였다
+				PRINTFORMW 자지마냥 우락부락해진 하트모양 코드가 서서히 %마스터의% 애널 속으로 들어오자, 사토리는 가볍게 탄성을 흘렸다
+				PRINTFORML 「이, 이거...♥ 왜 기분이 좋지...? 이상한데...♥」
+				PRINTFORMW 「...조금만 움직여볼까?」
+				PRINTFORMW 사토리는 이내 황홀한듯이 %마스터의% 애널을 쑤시기 시작했다
+			ELSEIF TALENT:섹프
+				PRINTFORMW 「정말, 이걸로 쑤셔지고 싶다니...그런 부끄러운 짓을 당당히도 요구하시네요」
+				PRINTFORMW 「...뭐, 말 안해도 어짜피 알게 됐겠지만」
+				PRINTFORMW 궁시렁대는 사토리였지만 그 목소리엔 어딘가 희열과 정복감이 섞인듯한 느낌이 들었다
+				PRINTFORMW 자지마냥 우락부락해진 하트모양 코드가 서서히 %마스터의% 애널 속으로 들어오자, 사토리는 가볍게 탄성을 흘렸다
+				PRINTFORML 「잠깐...이거...묘하게 기분 좋은데...♥」
+				PRINTFORMW 「손가락으로 하는거나 다름 없을텐데 왜 이리 기분 좋지...?」
+				PRINTFORMW 사토리는 어딘가 황홀한 듯한 표정으로 %마스터의% 애널을 쑤시기 시작했다
+			ELSE
+				PRINTFORMW 「이런게 하고 싶다니...어지간한 변태도 그런 이야긴 안한다고...」
+				PRINTFORMW 「...하아, 어짜피 들어주지도 않겠지, 알았어요, 해주면 될 거 아녜요」
+				PRINTFORMW 그러나 %마스터의% 애널에 코드를 쑤셔넣는 사토리의 얼굴은 묘한 정복감과 희열로 가득차 있는 것처럼 보였다
+				PRINTFORMW 자지마냥 우락부락해진 하트모양 코드가 서서히 %마스터의% 애널 속으로 들어오자, 사토리는 가볍게 탄성을 흘렸다
+				PRINTFORML 「새, 생각한거 보다 나쁘지만은...아니, 왜 기분이 좋은거야...♥」
+				PRINTFORMW 「조, 조금만 움직여도...되겠죠, 응♥ 못참겠어...♥」
+				PRINTFORMW 사토리는 이내 황홀한듯이 %마스터의% 애널을 쑤시기 시작했다
+			ENDIF
+			CFLAG:6199 = 1
+			CFLAG:6200 = 1
+			CFLAG:6201 ++
+		ELSE
+			$JUSTHAND
+			;기본 취급이 남아나타라서 태도가...
+			CALL TRAIN_MESSAGE
+			IF ABL:새드끼 < 2 && ABL:A감각 < 2
+				IF MARK:반발각인 == 3
+					IF TALENT:연인
+						SELECTCASE RAND:2
+							CASE 0
+								PRINTFORMW 「엉덩이 괴롭혀지는게 좋아?」
+								PRINTFORMW 「여긴 이렇게 쓰는데가 아닌데...하아...」
+							CASE 1
+								PRINTFORML 「......」
+								PRINTFORMW 사토리는 진절머리가 난다는 듯한 표정으로 %마스터의% 애널을 애무해가고 있다
+						ENDSELECT
+					ELSE
+						IF CFLAG:3000 == 0
+							PRINTFORMW 「이런게 좋아...?」
+							PRINTFORMW 「...못 봐주겠네」
+							PRINTFORMW 사토리는 연신 한숨을 내쉬며 %마스터의% 애널을 만지작거리고 있다
+						ELSE
+							PRINTFORMW 「하아...가지가지 하시네요」
+							PRINTFORMW 「그래서, 기분 좋으신지?」
+							PRINTFORMW 사토리는 투덜대며 애널을 애무하고 있다
+						ENDIF
+					ENDIF
+				ELSEIF TALENT:연인||TALENT:연모||TALENT:사모||TALENT:애욕
+					SELECTCASE RAND:2
+						CASE 0
+							PRINTFORMW 「기, 기분 좋으신가요...그러면 됐지만...」
+							PRINTFORMW 「...역시 이상하다는 생각밖엔 안 드는걸요」
+						CASE 1
+							PRINTFORMW 「뭐어...애널도 잘 느낄수 있다곤 하지만...」
+							PRINTFORMW 「그래도 역시 이상해...」
+					ENDSELECT
+				ELSEIF TALENT:섹프
+					SELECTCASE RAND:2
+						CASE 0
+							PRINTFORMW 「이런게 기분 좋다니...」
+							PRINTFORMW 「상관없긴 하지만 뭔가 이상하다는 생각밖엔 안 드는걸」
+						CASE 1
+							PRINTFORMW 「이게 그렇게 좋아...?」
+							PRINTFORMW 「뭐어, 그렇담 됐지만...」
+					ENDSELECT
+				ELSE
+					SELECTCASE RAND:2
+						CASE 0
+							PRINTFORMW 「여긴 이러라고 있는데가 아닌데...」
+							PRINTFORMW 「기분 좋다니...으, 싫어...그런 감각 읽고 싶지 않아...」
+							PRINTFORMW 사토리는 께름칙하다는 듯이 쳐다보고 있다
+						CASE 1
+							PRINTFORMW 「...그래, 애널도 성감대라곤 하지...그치만...」
+							PRINTFORMW 「별로 눈으로 보고 싶진 않아...」
+					ENDSELECT
+				ENDIF
+			ENDIF
+		ELSE
+			;새드다
+			SELECTCASE RAND:3
+				CASE 0
+					PRINTFORMW 「엉덩이 기분 좋아? 후후...대답을 들을 필요도 없어보이는걸♥」
+					PRINTFORMW 「엉덩이로 느껴버리는 변태씨~ 칠칠치 못한 표정이나 짓고는, 부끄럽지도 않은거야?」
+					PRINTFORMW 사토리는 즐거운듯이 %마스터의% 애널을 쑤시고 있다
+				CASE 1
+					PRINTFORMW 「허리 움찔움찔...그렇게 좋아?」
+					PRINTFORMW 「뭐야...기분 좋아밖에 생각 못하는거야? 변태같으니라고♥」
+					PRINTFORMW 「이렇게 된거 좀 더 아무 생각도 못하는 바보로 만들어 줘야겠는걸♥」
+					PRINTFORMW 사토리는 능숙한 손놀림으로 %마스터의% 애널을 희롱하고 있다	
+				CASE 2
+					PRINTFORMW 「후후...기분좋아서 온 몸이 벌벌 떨리고 있는거 봐...귀여워라...♥」
+					PRINTFORMW 사토리는 흥분한듯 야릇한 숨결을 %마스터의% 귓가에 내뱉고 있다
+			ENDSELECT
+		ENDIF
 	ENDIF
+	RETURN 1
 ENDIF
 RETURN 1
 ;==================================================
@@ -108,20 +253,12 @@ IF LOCAL
 		PRINTFORMW 
 		RETURN 1
 	ENDIF
-	;기본세트
-	;연모
-	IF TALENT:연모
-		PRINTFORMW 
-		RETURN 1
-	;괘씸3
-	ELSEIF MARK:괘씸각인 == 3
-		PRINTFORMW 
-		RETURN 1
-	;그 이외
+	IF CFLAG:6200 ; 코드 역강간
+
 	ELSE
-		PRINTFORMW 
-		RETURN 1
+
 	ENDIF
+	RETURN 1
 ENDIF
 RETURN 1
 ;==================================================
@@ -149,20 +286,12 @@ IF LOCAL
 		PRINTFORMW 
 		RETURN 1
 	ENDIF
-	;기본세트
-	;연모
-	IF TALENT:연모
-		PRINTFORMW 
-		RETURN 1
-	;괘씸3
-	ELSEIF MARK:괘씸각인 == 3
-		PRINTFORMW 
-		RETURN 1
-	;그 이외
+	IF CFLAG:6200 ; 코드 역강간
+
 	ELSE
-		PRINTFORMW 
-		RETURN 1
+
 	ENDIF
+	RETURN 1
 ENDIF
 RETURN 1
 ;==================================================
