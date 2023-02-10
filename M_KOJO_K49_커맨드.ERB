@@ -53,20 +53,22 @@ IF LOCAL
 			CFLAG:6201 ++
 		ELSE ; 해제시
 			IF MARK:반발각인 == 3 && !TALENT:연인
-				
-			ELSEIF TALENT:연인 || TALENT:연모 || TALENT:사모 || TALENT:애욕
-				
-			ELSEIF TALENT:섹프
-
+				PRINTFORMW 「응? 이제 코드는 그만? 손으로 해달라고?」
+				PRINTFORMW 「주문이 너무 많잖아 정말...」
+				PRINTFORMW 사토리는 투덜거렸다
+			ELSEIF TALENT:연인 || TALENT:연모 || TALENT:사모 || TALENT:애욕 || TALENT:섹프
+				PRINTFORMW 「어머나, 이제 이건 질렸나요?」
+				PRINTFORMW 「조금 아쉽네요, 재밌었는데」
 			ELSE
-
+				PRINTFORMW 「아...이제 촉수는 됐어?」
+				PRINTFORMW 「좀 더 하고 싶었는데...」
+				PRINTFORMW 사토리는 아쉬워하며 부풀린 코드들을 되돌렸다
 			ENDIF
 			CFLAG:6200 = 0
-			GOTO JUSTHAND
 		ENDIF
 	ELSE
 		;그냥 손으로
-		IF !CFLAG:6200 && !CFLAG:6201 && ABL:욕망 > 3 && RAND:5 == 0
+		IF !CFLAG:6200 && !CFLAG:6201 && ABL:욕망 > 3 && ABL:새드끼 >= 2 && RAND:5 == 0
 			PRINTFORMW 문득, 서드아이에 돋아난 6가닥 코드가 눈에 밟혔다
 			PRINTFORMW 저걸 활용한다면...어떤 플레이를 할 수 있을까?
 			PRINTFORML [0] 사용해본다
