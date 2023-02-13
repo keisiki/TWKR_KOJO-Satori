@@ -29,28 +29,89 @@ IF LOCAL
 	IF CFLAG:6199 ; 코드 역간 허가됨
 		IF !CFLAG:6200 ; 코드 역강간 발동해야 할 시
 		;	IF !CFLAG:6201 ; 경험 없다 <<< 밑에서 아예 애널강간 허가용 구상으로 별개
+			PRINTFORMW 사토리에게 또 한번 코드로 범해달라고 부탁했다
 			IF CFLAG:6201 < 100
 				IF MARK:반발각인 == 3 && !TALENT:연인
-
+					SELECTCASE RAND:2
+						CASE 0
+							PRINTFORMW 「또 애널을 괴롭혀 달라니, 변태가 따로 없네」
+							PRINTFORMW 「좋아...마구 휘저어 줄테니 애원해도 소용없어?」
+							PRINTFORMW 사토리는 즐거운듯이 코드들을 부풀렸다
+						CASE 1
+							PRINTFORMW 「'또 당하고 싶다'라고요...후후후...♥」
+							PRINTFORMW 「후회해도 늦어요?」
+							PRINTFORMW 사토리는 가학적인 미소를 지으며 코드들을 부풀렸다
+					ENDSELECT
 				ELSEIF TALENT:연인 || TALENT:연모 || TALENT:사모 || TALENT:애욕
-
-				ELSEIF TALENT:섹프
-
+					SELECTCASE RAND:2
+						CASE 0
+							PRINTFORMW 「그걸 또...?」
+							PRINTFORMW 「싫은건 아니지만...뭐랄까, 기분이 이상해지는걸」
+							PRINTFORMW 사토리는 궁시렁거리면서도 순순히 코드들을 부풀렸다
+						CASE 1
+							PRINTFORMW 「또 당하고 싶으시다니...변태라니깐 진짜」
+							PRINTFORMW 「힘조절 못할지도 몰라요? 이러라고 달린건 아니니까」
+					ENDSELECT
 				ELSE
-
+					SELECTCASE RAND:2
+						CASE 0
+							PRINTFORMW 「또 이거...? 싫은건 아니지만...」
+							PRINTFORMW 「...혹시나 해서 묻는데, 그 전에 깨끗이 씻은건 맞겠죠?」
+						CASE 1
+							PRINTFORMW 「또 해달라니...상당한 마조신가보네요」
+							PRINTFORMW 「저도 기분 좋으니깐 어울려는 드리겠지만...」
+					ENDSELECT
 				ENDIF
 			ELSEIF CFLAG:6201 < 500
 				IF MARK:반발각인 == 3 && !TALENT:연인
-
+					SELECTCASE RAND:2
+						CASE 0
+							PRINTFORMW 「이거 정말 좋아하네에...」
+							PRINTFORMW 「이걸로 암컷절정 하는게 그리 좋았던거야?」
+							PRINTFORMW 「이런거 모두한테 들킨다면 경멸받을지도」
+							PRINTFORMW 「나야 기분 좋으니 신경 안쓰지만♥」
+						CASE 1
+							PRINTFORMW 「완전히 마조 암컷이 따로 없네, 이러다가 구멍 못 쓰게 되버릴지도 모르는데?」
+							PRINTFORMW 「뭐어, 내 상관은 아니지만♥」
+					ENDSELECT
 				ELSEIF TALENT:연인 || TALENT:연모 || TALENT:사모 || TALENT:애욕
-
+					SELECTCASE RAND:3
+						CASE 0
+							PRINTFORMW 「너, 넣어도 되요?」
+							PRINTFORMW 「아아...몰라, 안된다고 해도 해버릴래, 기분 좋은거 해버릴거야♥」
+							PRINTFORMW 사토리는 곧바로 흉악한 크기로 부풀린 코드를 들이밀기 시작했다
+						CASE 1
+							PRINTFORMW 「%사마스터가% 부탁한거니까...힘조절 안 해도 되겠죠...?」
+							PRINTFORMW 「아프면 미안해요? 그래도 더 이상 못참겠으니까...♥」
+							PRINTFORMW 서드아이의 코드들이 흉악하게 부풀어 %사마스터의% 몸을 휘감기 시작했다
+						CASE 2
+							PRINTFORMW 「후후후...허리가 빠지도록 박아드리죠」
+							PRINTFORMW 「후회하셔도 이젠 늦었어요♥」
+					ENDSELECT
 				ELSEIF TALENT:섹프
-
+					SELECTCASE RAND:2
+						CASE 0
+							PRINTFORMW 「후후후...♥ 진짜로요? 진짜 해도 되죠?」
+							PRINTFORMW 「아아...이젠 못참겠어, 당장 넣을래♥ 얼른♥ 얼르은♥」
+							PRINTFORMW 사토리는 흉악하게 부풀린 코드들을 낼름거리고 있다
+						CASE 1
+							PRINTFORMW 「넣어도 되죠? 후후후...이때만을 기다렸어♥」
+							PRINTFORMW 사토리는 음흉한 미소를 짓고 있다
+					ENDSELECT
 				ELSE
-
+					SELECTCASE RAND:2
+						CASE 0
+							PRINTFORMW 「후후후...허리가 빠지도록 박아드리죠」
+							PRINTFORMW 「후회하셔도 이젠 늦었어요♥」
+						CASE 1
+							PRINTFORMW 「너, 넣어도 되나요?」
+							PRINTFORMW 「그럼 사양않고...♥」
+							PRINTFORMW 사토리는 곧바로 흉악한 크기로 부풀린 코드를 들이밀기 시작했다
+					ENDSELECT
 				ENDIF
 			ENDIF
 			CFLAG:6201 ++
+			CFLAG:6200 = 1
 		ELSE ; 해제시
 			IF MARK:반발각인 == 3 && !TALENT:연인
 				PRINTFORMW 「응? 이제 코드는 그만? 손으로 해달라고?」
