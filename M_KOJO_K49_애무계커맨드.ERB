@@ -2519,6 +2519,24 @@ IF LOCAL
 						PRINTFORMW 사토리는 안절부절 못하고 있다
 				ENDSELECT
 			ENDIF
+		ELSEIF CFLAG:6200 ;코드 역강간중
+			PRINTFORML 엉덩이에 넣은 코드를 빼달라 할까?
+			CALL ASK_YN
+			IF !RESULT
+				IF MARK:반발각인 == 3 && !TALENT:연인
+					PRINTFORMW 「응? 이제 코드는 그만?」
+					PRINTFORMW 「이래라 저래라, 원하는게 너무 많은걸」
+					PRINTFORMW 사토리는 투덜거렸다
+				ELSEIF TALENT:연인 || TALENT:연모 || TALENT:사모 || TALENT:애욕 || TALENT:섹프
+					PRINTFORMW 「어머나, 이제 이건 질렸나요?」
+					PRINTFORMW 「조금 아쉽네요, 재밌었는데」
+				ELSE
+					PRINTFORMW 「아...이제 촉수는 됐어?」
+					PRINTFORMW 「좀 더 하고 싶었는데...」
+					PRINTFORMW 사토리는 아쉬워하며 부풀린 코드들을 되돌렸다
+				ENDIF
+				CFLAG:6200 = 0
+			ENDIF
 		ELSE
 			;방치플 이외
 			;PRINTFORMW 「」

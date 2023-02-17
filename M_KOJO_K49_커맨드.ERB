@@ -112,20 +112,78 @@ IF LOCAL
 			ENDIF
 			CFLAG:6201 ++
 			CFLAG:6200 = 1
-		ELSE ; 해제시
-			IF MARK:반발각인 == 3 && !TALENT:연인
-				PRINTFORMW 「응? 이제 코드는 그만? 손으로 해달라고?」
-				PRINTFORMW 「주문이 너무 많잖아 정말...」
-				PRINTFORMW 사토리는 투덜거렸다
-			ELSEIF TALENT:연인 || TALENT:연모 || TALENT:사모 || TALENT:애욕 || TALENT:섹프
-				PRINTFORMW 「어머나, 이제 이건 질렸나요?」
-				PRINTFORMW 「조금 아쉽네요, 재밌었는데」
-			ELSE
-				PRINTFORMW 「아...이제 촉수는 됐어?」
-				PRINTFORMW 「좀 더 하고 싶었는데...」
-				PRINTFORMW 사토리는 아쉬워하며 부풀린 코드들을 되돌렸다
+		ELSE
+			;코드 역강간중
+			IF CFLAG:6201 < 100
+				PRINTFORML 사토리는 즐거운듯이 서드아이의 코드로 %마스터의% 애널을 쑤시고 있다
+				IF MARK:반발각인 == 3 && !TALENT:연인
+					SELECTCASE RAND:2
+						CASE 0
+							PRINTFORMW 「푹푹 찔릴때마다 뭔가 재밌는걸♥」
+							PRINTFORMW 「그렇게 기분 좋은거야? 허리가 파들파들 떨고 있다고♥」
+						CASE 1
+							PRINTFORMW 「아...♥ 이거, 계속하다간 중독될지도...♥」
+							PRINTFORMW 「뭐어 그때엔 %사마스터가% 힘내서 상대해주겠지♥」
+					ENDSELECT
+				ELSEIF TALENT:연인 || TALENT:연모 || TALENT:사모 || TALENT:애욕
+					SELECTCASE RAND:2
+						CASE 0
+							PRINTFORMW 「기분 좋아...♥ 코드의 감각도, %사마스터가% 느끼는 감각도, 모두 기분 좋아...♥」
+							PRINTFORMW 「이상해져 버릴것만 같아...그만해야 하는데...♥」
+						CASE 1
+							PRINTFORMW 「이, 이상한 기분이야...♥ 뭔가, 오싹오싹하고...흥분돼...♥」
+							PRINTFORMW 「...조금 더 세게 움직여도, 되겠죠?」
+					ENDSELECT
+				ELSE
+					SELECTCASE RAND:2
+						CASE 0
+							PRINTFORMW 「기분좋아...서드아이가 이렇게나 민감할 줄은 몰랐는데...♥」
+							PRINTFORMW 「이런 변태짓에 어울리는 것도 가끔은 나쁘진 않을지도...」
+						CASE 1
+							PRINTFORMW 「온 몸이 움찔움찔, 그렇게나 좋은거야?」
+							PRINTFORMW 「이런 구멍으로 당하면서도 기쁘다니...변태네 정말」
+					ENDSELECT
+				ENDIF
+			ELSEIF CFLAG:6201 < 500
+				PRINTFORML 사토리는 황홀한 표정으로 서드아이의 코드를 놀려 %마스터의% 애널을 거칠게 쑤시고 있다
+				IF MARK:반발각인 == 3 && !TALENT:연인
+					SELECTCASE RAND:2
+						CASE 0
+							PRINTFORMW 「기분좋아♥ 기분좋아 기분좋아아♥♥」
+							PRINTFORMW 「좀 더 쑤셔도 되지? 엉덩이 망가져버릴지도 모르겠지만♥」
+						CASE 1
+							PRINTFORMW 「여기 쑤셔주면...후후후♥ 온 몸이 부들부들 떨리고 있어, 귀여워♥」
+							PRINTFORMW 「좀 더 날뛰어봐, 엉덩이 마구 휘저어 줄테니까♥」
+					ENDSELECT
+				ELSEIF TALENT:연인 || TALENT:연모 || TALENT:사모 || TALENT:애욕
+					SELECTCASE RAND:3
+						CASE 0
+							
+						CASE 1
+							
+						CASE 2
+							
+					ENDSELECT
+				ELSEIF TALENT:섹프
+					SELECTCASE RAND:2
+						CASE 0
+							
+						CASE 1
+							
+					ENDSELECT
+				ELSE
+					SELECTCASE RAND:2
+						CASE 0
+							
+						CASE 1
+							
+					ENDSELECT
+				ENDIF
 			ENDIF
-			CFLAG:6200 = 0
+			CFLAG:6201 ++
+			SOURCE:PLAYER:쾌A += 300
+			SOURCE:정복 += 300
+			SOURCE:일탈 += 500
 		ENDIF
 	ELSE
 		;그냥 손으로
