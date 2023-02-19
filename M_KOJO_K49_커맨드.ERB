@@ -150,33 +150,38 @@ IF LOCAL
 					SELECTCASE RAND:2
 						CASE 0
 							PRINTFORMW 「기분좋아♥ 기분좋아 기분좋아아♥♥」
-							PRINTFORMW 「좀 더 쑤셔도 되지? 엉덩이 망가져버릴지도 모르겠지만♥」
+							PRINTFORMW 「좀 더 쑤셔도 되지? 엉덩이 망가져버릴지도 모르겠지만...알게 뭐람♥」
 						CASE 1
 							PRINTFORMW 「여기 쑤셔주면...후후후♥ 온 몸이 부들부들 떨리고 있어, 귀여워♥」
 							PRINTFORMW 「좀 더 날뛰어봐, 엉덩이 마구 휘저어 줄테니까♥」
 					ENDSELECT
-				ELSEIF TALENT:연인 || TALENT:연모 || TALENT:사모 || TALENT:애욕
+				ELSEIF TALENT:연인 || TALENT:연모 || TALENT:사모
 					SELECTCASE RAND:3
 						CASE 0
-							
+							PRINTFORMW 「기분 좋아♥ 코드의 감각이랑 %사마스터가% 느끼는 감각이랑 섞여서 날아가버릴것만 같아아♥」
+							PRINTFORMW 「멈출수가 없어, 기분좋은거 못 참겠어♥♥」
 						CASE 1
-							
+							PRINTFORMW 「이, 이거야앗...♥ 뭔가, 오싹오싹하고...흥분되는 기분...♥」
 						CASE 2
-							
+							PRINTFORMW 「엉덩이 움찔움찔...♥ 귀여워...♥」
+							PRINTFORMW 「그렇게 좋은거야? 엉덩이로 당하는게 좋은거야? 변태♥」
 					ENDSELECT
-				ELSEIF TALENT:섹프
+				ELSEIF TALENT:섹프 || TALENT:애욕
 					SELECTCASE RAND:2
 						CASE 0
-							
+							PRINTFORMW 「기분좋아♥ 기분좋아 기분좋아아♥♥」
+							PRINTFORMW 「좀 더 쑤셔도 되지? 엉덩이 망가져 버릴지도 모르겠지만...기분 좋은거 더 하고 싶어♥」
 						CASE 1
-							
+							PRINTFORMW 「여기 쑤셔주면...후후후♥ 온 몸이 부들부들 떨리고 있어, 귀여워♥」
+							PRINTFORMW 「좀 더 날뛰어봐, 엉덩이 마구 휘저어 줄테니까♥」
 					ENDSELECT
 				ELSE
 					SELECTCASE RAND:2
 						CASE 0
-							
+							PRINTFORMW 「기분 좋아♥ 코드의 감각이랑 %사마스터가% 느끼는 감각이랑 섞여서 날아가버릴것만 같아아♥」
+							PRINTFORMW 「멈출수가 없어, 기분좋은거 못 참겠어♥♥」
 						CASE 1
-							
+							PRINTFORMW 「이, 이거야앗...♥ 뭔가, 오싹오싹하고...흥분되는 기분...♥」
 					ENDSELECT
 				ENDIF
 			ENDIF
