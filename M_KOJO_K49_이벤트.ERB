@@ -16,6 +16,8 @@
 ;CFLAG:999 구상용이어받아 테두리(주회시에도 유지됨, 시스템 제공)
 ; 
 ;CFLAG:1500 용서 안 함 플래그
+;CFLAG:1501 첫 만남시 마스터의 생각
+;CFLAG:1502 첫 만남시 아나타 평가
 ;CFLAG:1600 안 만나줘서 만나러옴(연모, 연인, 애욕중 하나라도 없으면 켜지지 않는다)
 ;CFLAG:3000 아나타 평가 변수
 ;CFLAG:3001 전번 만남에서 아나타가 팬티를 얼마나 가지고 있었는가
@@ -165,6 +167,7 @@ IF CFLAG:999 >= 1
 		CFLAG:호감도 += 100
 		CFLAG:3100 += 3
 		CFLAG:6000 = 2
+		CFLAG:1501 = 103
 	ELSEIF GETBIT(CFLAG:999, 2)
 		PRINTFORMW 「...당신, 저 알고 계시죠」
 		PRINTFORMW 사토리의 떨리는 목소리가 들려왔다
@@ -180,6 +183,7 @@ IF CFLAG:999 >= 1
 		CFLAG:호감도 += 50
 		CFLAG:3100+=2
 		CFLAG:6000 = 1
+		CFLAG:1501 = 102
 		;기껏 사랑하는 사람을 만났는데, 애인이 무책임하게 과거로 도망가버린격이니까
 	ELSEIF GETBIT(CFLAG:999, 1)
 		PRINTFORMW 「...우리, 서로 아는 사이...였었나요?」
@@ -192,6 +196,7 @@ IF CFLAG:999 >= 1
 		PRINTFORMW 「...잘 부탁 드려요...?」
 		CFLAG:호감도 += 10
 		CFLAG:3100++
+		CFLAG:1501 = 101
 	ENDIF
 	RETURN 1
 ENDIF
@@ -304,11 +309,13 @@ SELECTCASE RESULT
 		PALAM:억울 += 999999999
 		PALAM:고통 += 999999999
 ENDSELECT
+CFLAG:1501 = RESULT
 PRINTFORMW 「...말 안한게 있는데, 저는 지금 %사마스터가% 무슨 생각을 하고 있는지, 보고 있답니다...?」
 PRINTFORMW 사토리의 가슴팍에 달린 서드아이가 %마스터를% 빤히 바라보기 시작했다
 PRINTFORMW 갑자기 무언가 오싹한 기분이 들었다
 PRINTFORMW 「...별 것 아녜요, 그저 한 번 '읽어' 봤을 뿐...」
 CALL 아나타평가
+CFLAG:1502 = CFLAG:3000
 IF CFLAG:3000 == 0
 	;깔끔한 머릿속
 	PRINTFORMW 「...뭐어, 잘 부탁 드려요?」

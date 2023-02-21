@@ -1,4 +1,4 @@
-﻿[SKIPSTART]
+﻿
 ;일기구상
 
 ;하루의 종료 시의 흐름
@@ -103,6 +103,10 @@ RETURN 1
 ;=============================
 ;MAXPAGE는 여기에 기입한다
 MAX_DIARY_PAGE:49:0 = 1
+IF DIARY:49:1 == 0 && CFLAG:49:안면
+	DIARY:49:1 = 3
+	CALL CHARA_DIARY_PAGESETTING(49, 1)
+ENDIF
 
 ;=============================
 @DIARY_TEXT_K49, PAGENUM, MODE, PAGECOUNT
@@ -117,7 +121,7 @@ MAX_DIARY_PAGE:49:0 = 1
 #DIM PAGECOUNT
 
 ;구상색 지정이 있으면 주석처리를 지운다
-;CALL M_KOJO_COLOR_K49
+CALL M_KOJO_COLOR_K49
 
 ;GROUPMATCH에 일기 ID를 넣어, 표시하고 싶은 얼굴 화상을 표시한다
 ;표정・복장・특수 화상을 옵션 지정으로 표시 (생략 가능)
@@ -136,14 +140,150 @@ IF MODE == "デイリー"
 	ENDIF
 ENDIF
 
-PRINTFORMDL - %CALLNAME:49%の日記　PAGE.{PAGECOUNT} --------------------------------------------------------------------------------------
+PRINTFORMDL - %CALLNAME:49%의 일기　PAGE.{PAGECOUNT} --------------------------------------------------------------------------------------
 PRINTL
 
 ;※PAGENUM:0은 사용할 수 없다
 SELECTCASE PAGENUM
 	CASE 1
-		PRINTFORML ○月×日
-		PRINTFORML 今日から、日記をつける事にした。
+		
+		IF GETBIT(CFLAG:999, 3)
+			PRINTFORML 오늘은 이상한 사람을 만났다
+			PRINTFORML 나를 알고 있다, 나는 저 사람을 모르는데
+			PRINTFORML 그 사람의 머리속에서 떠올려진 기억- 그 안의 나는 무척이나 행복하게, 그와 살아가고 있었다
+			PRINTFORML 물론 내가 겪은 기억은 아니었지만...너무도 생생한 그 기억을 거짓이라 말할 순 없었다
+			PRINTFORML 분명히 그건 나였고, 그를 진심으로 사랑했다
+			PRINTFORML ...그렇지만 어째서인지 그는 그 모든 생활을 자기 손으로 버렸다
+			PRINTFORML 그리고 뻔뻔하게도 다시 내 앞에 나타났다
+			PRINTFORML ...더 이상 생각하고 싶지 않았다, 그 기억에 대한 것은 잊기로 했다
+			PRINTFORML 그렇게 생각하는 편이 피차에게 도움이 되지 않을까...
+		ELSEIF GETBIT(CFLAG:999, 2)
+			PRINTFORML 오늘은 이상한 사람을 만났다
+			PRINTFORML 그는 나를 알고 있었다, 나는 저 사람을 전혀 모르는데
+			PRINTFORML 그의 머리속에서 나는 그에게 안겨 사랑받았고, 그와 몸을 겹쳤다
+			PRINTFORML 기분 나쁜 변태성욕자-그러나 그 망상을 읽는 동안 알 수 없는 행복감이 느껴졌다
+			PRINTFORML 망상의 끝에서 본 그는 시간을 되돌렸다, 정말로 정신나간 사람의 망상일까?
+			PRINTFORML 그는 망상이 아니라 사실이라 했다
+			PRINTFORML ...만약 사실이라면, 그는 왜 시간을 되돌린걸까?
+			PRINTFORML 분노할 이유도 없지만 원망스럽고 화가 났다, 마치 저 사람이 정말 나를 버리고 간 것마냥
+			PRINTFORML 그래서 무심코 화내버리고 말았다, 어째서 도망쳤느냐고
+			PRINTFORML 기억 속의 나와 지금의 나는 다른 사람인데도...
+			PRINTFORML ...그래도 그 기억 속에서 느낀 행복감, 다시 느껴보고는 싶은데
+		ELSEIF GETBIT(CFLAG:999, 1)
+			PRINTFORML 오늘은 이상한 사람을 만났다
+			PRINTFORML ...어째서인지 그는 나와 면식이 있던듯 했다
+			PRINTFORML 그는 부정했지만, 그가 떠올리는 기억은 그렇지 않았다
+			PRINTFORML ...일부러 상상으로 날 속인걸까? 솔직히 그의 머리속은 무언가 안개가 낀 것처럼 잘 보이지도 않았다
+			PRINTFORML 정말로, 이상한 사람이다...무슨 짓을 벌일지 모르니 조금 주의해둬야겠다
+		ELSEIF CFLAG:3200 > 0
+			PRINTFORML 드디어 찾았다, 정체모를 강간범
+			PRINTFORML 시간을 멈추고 몰래몰래 다니며 나를 희롱한 사람...용케 피해다녔지만 오늘 내 눈에 걸렸다
+			PRINTFORML ...그렇다고 바로 죽여버리면 무녀니 뭐니 귀찮아질테니깐 오늘은 놔줬지만
+			PRINTFORML 조금 겁주긴 했으니 얌전해지겠지
+			PRINTFORML 다음번에 잡아내는걸로 충분해, 그 사람은 내 능력 밑에 있으니까
+		ELSE
+			IF TALENT:38:연인 == 2
+				PRINTFORML 오늘은 우연히 코이시의 남편을 만났다
+				PRINTFORML ...결혼할때까지 내 눈에 한번도 안 보이다니 이상하긴 했지만
+			ELSEIF TALENT:38:연인 || TALENT:38:연모
+				PRINTFORML 오늘은 코이시가 늘 이야기 하던 사람을 만났다
+				PRINTFORML 보기보단 멀쩡하게 생겼다, 이상한 사람이면 어쩌나 하면서 갔지만
+			ELSE
+				IF MAIN_MAP == 9&&CFLAG:현재위치 == 919
+					;지저에 살고 있고, 만난 위치는 사토리의 방
+					IF CFLAG:MASTER:초기위치 == 916
+						PRINTFORML 오늘은 최근에 거둔 사람이 찾아왔다
+						IF DAY > 3
+							PRINTFORML ...집에 들이고 며칠간은 보이지도 않은거 같지만
+						ENDIF
+						PRINTFORML 남는 방이 애매해 헛간을 치우고 묵게 했지만 딱히 불편하진 않아보였다
+					ELSE
+						PRINTFORML 요근래 지저에 자리잡았다는 사람을 만났다
+						PRINTFORML 주위에서 이야기 들은건지 나에 대해선 그럭저럭 알고 있는 눈치였다
+					ENDIF
+				ELSEIF MAIN_MAP == 9&&CFLAG:MASTER:초기위치 == 916
+					;지저에 살고 있고, 헛간에 살고 있음, 현 위치는 사토리의 방이 아님
+					PRINTFORML 오늘은 최근에 거둔 사람과 만났다
+					IF DAY > 3
+						PRINTFORML ...집에 들이고 며칠간은 보이지도 않은거 같지만
+					ENDIF
+					PRINTFORML 남는 방이 애매해 헛간을 치우고 묵게 했지만 딱히 불편하진 않아보였다
+				ELSEIF CFLAG:현재위치 == 960
+					;외출처의 지령전임
+					PRINTFORML 처음보는 사람이 찾아왔다
+				ELSE
+					;지금 사토리방이 아님, 헛간에 살고 있지 않음
+					PRINTFORML 처음보는 사람과 만났다
+				ENDIF
+			ENDIF
+			;마스터의 생각 읽기
+			SELECTCASE CFLAG:1501
+				CASE 1
+					PRINTFORML 그는 날 보고 귀엽다고 생각하고 있었다
+					PRINTFORML 첫만남에 그런 낯부끄런 생각을, 뭐어 어쩔수 없었겠지만
+					SELECTCASE CFLAG:1502
+						CASE 0
+							PRINTFORML 잠깐 마음속 깊이 읽어봤지만 딱히 흠결있는 사람은 아닌거 같았다
+							PRINTFORML 조금은 마음에 들지도
+						CASE 1
+							PRINTFORML ...그치만 이 사람, 조금 위험한 사람 같다
+							PRINTFORML 조금 마음에 들었었는데, 조심해야 할지도
+						CASE 2
+							PRINTFORML ...그렇지만 마음 속 깊이 읽어본다면, 무척이나 위험한 사람인 것 같다는 느낌을 받았다
+							PRINTFORML 다른 아이들한테 손 뻗치는건 막아야 할텐데
+					ENDSELECT
+				CASE 2
+					PRINTFORML 날 보자마자 머리속이 예쁘다, 란 생각으로 가득차 있었다
+					PRINTFORML 아무리 그래도 낯부끄러워서 무심코 고개를 돌려버렸다
+					SELECTCASE CFLAG:1502
+						CASE 0
+							PRINTFORML 이 사람, 조금은 마음에 들지도
+						CASE 1
+							PRINTFORML ...그렇지만 약간 기억을 끄집어 읽어보니 의외로 조금 위험한 사람이었다
+							PRINTFORML 다른 아이들한테 주의를 줘야 할지도
+						CASE 2
+							PRINTFORML 뭐어, 그렇지만 그 다음에 살짝 기억을 끄집어내 주니, 무척이나 위험한 사람임이 들통나 버렸지만
+							PRINTFORML 짧은 시간동안 기뻤는데...
+					ENDSELECT
+				CASE 3
+					PRINTFORML 날 보더니 불쾌하다, 라고 생각하고 있었다
+					PRINTFORML 뭐어 대부분 날 처음 보면 그렇게 생각했지만, 이 능력의 대단함을 모르는 사람들이니
+					PRINTFORML 이젠 별 생각 들지도 않는다
+					SELECTCASE CFLAG:1502
+						CASE 0
+							PRINTFORML ...뭐, 그래도 사람은 나쁘지 않은거 같으니 다행이다
+						CASE 1
+							PRINTFORML ...그렇지만 저 사람한테 그런 생각 당할 이윤 없는데.
+							PRINTFORML 다른 사람을 함부로 다루는 사람한테 멸시받을 만큼의 짓은 안했는걸
+						CASE 2
+							PRINTFORML ...그렇지만 불쾌한건 나도 마찬가지다, 저런 위험분자와 가까이 있다니 생각만해도 무섭다
+							PRINTFORML 건수만 잡히면 적당히 처분해 버려야겠다
+					ENDSELECT
+				CASE 4
+					PRINTFORML 그 사람은 날 보더니 머리속으로 음흉한 생각을 떠올렸다
+					SELECTCASE CFLAG:1502
+						CASE 0
+							PRINTFORML ...그래도 사람은 착한거 같은데, 쌓이기라도 한걸까?
+							PRINTFORML 이상한 짓만 안한다면야 내 알 바는 아니지만...
+						CASE 1
+							PRINTFORML ...소름끼쳐서 그의 기억을 살짝 끄집어내 보니 꽤나 위험한 사람이었다
+							PRINTFORML 다른 아이들한테 손대면 어쩌지, 주의해야겠다
+						CASE 2
+							PRINTFORML 소름끼쳐서 그의 기억을 살짝 끄집어내 보니 상상 이상으로 위험한 사람이었다
+							PRINTFORML 다른 아이들을 위해서라도 처분해야 하나, 하지만 멋대로 그랬다간 무녀와 마찰이 있을수도
+							PRINTFORML 일단은, 지켜보기로 하자
+					ENDSELECT
+				CASE 69
+					PRINTFORML ...그 사람은 날 보자마자 입 안에 감자를 우겨넣는 상상을 하고 있었다
+					PRINTFORML 도대체 어째서 그런 생각을 떠올렸는지 이유조차 모르겠다, 그저 두려웠다
+					SELECTCASE CFLAG:1502
+						CASE 0
+							PRINTFORML 멀쩡한 사람 같긴 한데...무섭다, 별로 마주치고 싶진 않다
+						CASE 1,2
+							PRINTFORML 기억을 살짝 끄집어내니 끔찍했다, 잡혀서 끔찍한 일 당하기 전에 어떻게든 해버려야... 
+					ENDSELECT
+			ENDSELECT
+		ENDIF
 ENDSELECT
 
 RESETCOLOR
@@ -176,10 +316,19 @@ NEXT
 IF SHIRAHU(49) && TFLAG:194 == 49
 ;일기를 다 읽고 난 후의 반응
 	IF PAGE > 2
-		CALL SPTALK, 49,"通常",0,@"「日記を見せるって…なんだか恥ずかしいな…」//%CALLNAME:49%はまじまじとこちらを見つめている"
+		IF MARK:49:반발각인 == 3 && !TALENT:49:연인
+			CALL SPTALK, 49,"通常",0,@"「무, 뭘 멋대로 읽는거야...!」//%사토리는% 황급히 일기를 뺏었다"
+		ELSEIF TALENT:49:연인
+			CALL SPTALK, 49,"通常",0,@"「이, 읽지 말아주세요...」//%사토리는% 얼굴을 붉혔다"
+		ELSEIF TALENT:49:연모||TALENT:49:사모||TALENT:49:애욕
+			CALL SPTALK, 49,"通常",0,@"「머, 멋대로 읽지 마세요...」//%사토리는% 황급히 일기를 뺏었다"
+		ELSEIF TALENT:49:섹프
+			CALL SPTALK, 49,"通常",0,@"「떽, 안돼요」//%사토리는% 일기를 뺏었다"
+		ELSE
+			CALL SPTALK, 49,"通常",0,@"「남의 일기를...」//%사토리는% 황급히 일기를 뺏었다"
+		ENDIF
 		;화상포함 토크는 최대 6행까지.
 	ELSE
 		PRINTFORML 
 	ENDIF
 ENDIF
-[SKIPEND]
