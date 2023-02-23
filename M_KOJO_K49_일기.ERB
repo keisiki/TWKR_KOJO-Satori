@@ -107,6 +107,10 @@ IF DIARY:49:1 == 0 && CFLAG:49:안면
 	DIARY:49:1 = 3
 	CALL CHARA_DIARY_PAGESETTING(49, 1)
 ENDIF
+IF DIARY:49:2 == 0 && CFLAG:49:3201
+	DIARY:49:2 = 3
+	CALL CHARA_DIARY_PAGESETTING(49, 2)
+ENDIF
 
 ;=============================
 @DIARY_TEXT_K49, PAGENUM, MODE, PAGECOUNT
@@ -146,7 +150,6 @@ PRINTL
 ;※PAGENUM:0은 사용할 수 없다
 SELECTCASE PAGENUM
 	CASE 1
-		
 		IF GETBIT(CFLAG:999, 3)
 			PRINTFORML 오늘은 이상한 사람을 만났다
 			PRINTFORML 나를 알고 있다, 나는 저 사람을 모르는데
@@ -284,6 +287,16 @@ SELECTCASE PAGENUM
 					ENDSELECT
 			ENDSELECT
 		ENDIF
+	CASE 2
+		;약 탄 차
+		PRINTFORML %사마스터가% 차를 내 줬다
+		PRINTFORML ...약 탄 차를 말이다
+		PRINTFORML 내 앞에서 그런 짓을 하다니, 도대체 무슨 배짱일까
+		IF MARK:49:반발각인 == 3
+			PRINTFORML 앞으로 차도 마음 놓고 못 마시겠는걸
+		ENDIF
+	CASE 3
+		;사모 취득
 ENDSELECT
 
 RESETCOLOR
