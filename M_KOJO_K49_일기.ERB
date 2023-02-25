@@ -111,6 +111,11 @@ IF DIARY:49:2 == 0 && CFLAG:49:3201
 	DIARY:49:2 = 3
 	CALL CHARA_DIARY_PAGESETTING(49, 2)
 ENDIF
+IF DIARY:49:3 == 0 && TALENT:49:사모
+	DIARY:49:3 = 3
+	CALL CHARA_DIARY_PAGESETTING(49, 3)
+ENDIF
+
 
 ;=============================
 @DIARY_TEXT_K49, PAGENUM, MODE, PAGECOUNT
@@ -297,6 +302,16 @@ SELECTCASE PAGENUM
 		ENDIF
 	CASE 3
 		;사모 취득
+		PRINTFORML ...요근래 어쩐지 %사마스터가% 계속 신경쓰인다
+		PRINTFORML 조금은 마음에 드는것 같기도 하고...
+		IF GETBIT(CFLAG:999, 2) && GETBIT(CFLAG:999, 3)
+			PRINTFORML ...뭐어, 저번 세계의 나를 홀릴 정도인건 사실인것 같다
+		ELSEIF CFLAG:3000 == 0
+			PRINTFORML 뭐어, 나쁜 사람도 아니니깐 상관없겠지
+		ELSE
+			PRINTFORML 분명히 위험한 사람이라고 생각했었는데...
+			PRINTFORML ...나한테만 멀쩡하면 그만이지 뭐
+		ENDIF
 ENDSELECT
 
 RESETCOLOR
