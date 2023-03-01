@@ -119,6 +119,10 @@ IF DIARY:49:4 == 0 && TALENT:49:섹프
 	DIARY:49:4 = 3
 	CALL CHARA_DIARY_PAGESETTING(49, 4)
 ENDIF
+IF DIARY:49:5 == 0 && TALENT:49:연모
+	DIARY:49:5 = 3
+	CALL CHARA_DIARY_PAGESETTING(49, 5)
+ENDIF
 
 ;=============================
 @DIARY_TEXT_K49, PAGENUM, MODE, PAGECOUNT
@@ -322,6 +326,20 @@ SELECTCASE PAGENUM
 		PRINTFORML 그리고 나는 그와 행위를 즐기기만을 위한 관계가 되었다
 		PRINTFORML 어쩌다 이렇게 된걸까
 		PRINTFORML ...내일 또 하게 해줄까나
+	CASE 5
+		;연모 취득
+		PRINTFORML 매일매일 %사마스터의% 생각으로 머리속이 가득해서 곤란하다
+		PRINTFORML 일어나서 잘 때 까지 몇번을 생각하는지...생활에 지장이 올 정도다
+		IF GETBIT(CFLAG:999, 2) && GETBIT(CFLAG:999, 3)
+			PRINTFORML ...이래서얀 저번 세계의 나를 욕할게 없겠네
+			PRINTFORML 이번엔 도망가지 않으려나, 더 빠져버린다면 돌이킬 수 없겠는데
+			PRINTFORML 어차피 떠날거면 조금이라도 덜 슬프게 떠나줬으면 좋겠어
+		ELSEIF CFLAG:3000 == 0
+			PRINTFORML ...데이트라도 해보자 할까나
+		ELSE
+			PRINTFORML 저런 위험한 사람이 좋다니, 안되는데...
+			PRINTFORML 더 이상 빠져버린다면 안될거 같은데...
+		ENDIF
 ENDSELECT
 
 RESETCOLOR
