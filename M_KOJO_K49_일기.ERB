@@ -123,6 +123,10 @@ IF DIARY:49:5 == 0 && TALENT:49:연모
 	DIARY:49:5 = 3
 	CALL CHARA_DIARY_PAGESETTING(49, 5)
 ENDIF
+IF DIARY:49:6 == 0 && TALENT:49:애욕
+	DIARY:49:6 = 3
+	CALL CHARA_DIARY_PAGESETTING(49, 6)
+ENDIF
 
 ;=============================
 @DIARY_TEXT_K49, PAGENUM, MODE, PAGECOUNT
@@ -336,6 +340,21 @@ SELECTCASE PAGENUM
 			PRINTFORML 어차피 떠날거면 조금이라도 덜 슬프게 떠나줬으면 좋겠어
 		ELSEIF CFLAG:3000 == 0
 			PRINTFORML ...데이트라도 해보자 할까나
+		ELSE
+			PRINTFORML 저런 위험한 사람이 좋다니, 안되는데...
+			PRINTFORML 더 이상 빠져버린다면 안될거 같은데...
+		ENDIF
+	CASE 6
+		;애욕 취득
+		PRINTFORML 분명히 즐기기 위해서만 만나는 관계, 라고는 했었지만...
+		PRINTFORML 어째서인지 만나면 만날수록 조금씩 성욕 말고 다른 욕망도 생겨나는걸 부정할 수 없었다
+		PRINTFORML 계속해서 머리속에서 잊혀지지 않고...하루에 몇번이고 생각하게 되고...
+		IF GETBIT(CFLAG:999, 2) && GETBIT(CFLAG:999, 3)
+			PRINTFORML ...이래서얀 저번 세계의 나를 욕할게 없겠네
+			PRINTFORML 이번엔 도망가지 않으려나, 더 빠져버린다면 돌이킬 수 없겠는데
+			PRINTFORML 어차피 떠날거면 조금이라도 덜 슬프게 떠나줬으면 좋겠어
+		ELSEIF CFLAG:3000 == 0
+			PRINTFORML ...나중에 데이트라도 해보자 할까나
 		ELSE
 			PRINTFORML 저런 위험한 사람이 좋다니, 안되는데...
 			PRINTFORML 더 이상 빠져버린다면 안될거 같은데...
