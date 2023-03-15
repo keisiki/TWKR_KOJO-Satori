@@ -143,6 +143,18 @@ IF DIARY:49:10 == 0 && TALENT:49:연인 == 2
 	DIARY:49:10 = 3
 	CALL CHARA_DIARY_PAGESETTING(49, 10)
 ENDIF
+IF DIARY:49:11 == 0 && CFLAG:49:4001
+	DIARY:49:11 = 3
+	CALL CHARA_DIARY_PAGESETTING(49, 11)
+ENDIF
+IF DIARY:49:12 == 0 && CFLAG:49:4001 >= 5
+	DIARY:49:12 = 3
+	CALL CHARA_DIARY_PAGESETTING(49, 12)
+ENDIF
+IF DIARY:49:13 == 0 && CFLAG:49:4000
+	DIARY:49:13 = 3
+	CALL CHARA_DIARY_PAGESETTING(49, 13)
+ENDIF
 ;=============================
 @DIARY_TEXT_K49, PAGENUM, MODE, PAGECOUNT
 ;일기의 내용
@@ -409,6 +421,20 @@ IF ST_일기기입정보:PAGENUM == 0
 			ST_DIARY:(LINE++) '= @"그 은은한 빛이 아직도 내가 꿈을 꾸고 있는 것만 같은 기분을 내게 해줬다"
 			ST_DIARY:(LINE++) '= @"...%사마스터가% 줬다, 나한테"
 			ST_DIARY:(LINE++) '= @"평생을 함께하자며...너무 기뻐서 더 이상은 말로 쓸 수가 없을 것 같다"
+		CASE 11
+			;바람
+			ST_DIARY:(LINE++) '= @"%사마스터가% 다른 여자에게 안겨 있었다"
+			ST_DIARY:(LINE++) '= @"도대체 어째서? 그 마음을 읽어보아도 알 수 없었다."
+			ST_DIARY:(LINE++) '= @"내가 뭘 잘못했었던가? 어째서? 어째서야?"
+		CASE 12
+			;바람 다수
+			ST_DIARY:(LINE++) '= @"몇번이고 반복되는 %사마스터의% 바람, 어째서 나는 그걸 계속 보는걸까"
+			ST_DIARY:(LINE++) '= @"조금 우울해졌다"
+		CASE 13
+			;불륜인정
+			ST_DIARY:(LINE++) '= @"결국 내가 포기했다"
+			ST_DIARY:(LINE++) '= @"어짜피 내가 뭐라고 해도 들어주지 않는데...괜히 나만 기운 뺄 이유도 없지"
+			ST_DIARY:(LINE++) '= @"그래도 다른 사람 보단 날 더 많이 봐줬음 하는데"
 	ENDSELECT
 	ST_DIARY:(LINE++) = eofDIARY
 	ST_일기기입정보:PAGENUM = 1
