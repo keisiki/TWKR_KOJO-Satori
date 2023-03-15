@@ -155,6 +155,14 @@ IF DIARY:49:13 == 0 && CFLAG:49:4000
 	DIARY:49:13 = 3
 	CALL CHARA_DIARY_PAGESETTING(49, 13)
 ENDIF
+IF DIARY:49:14 == 0 && TALENT:[[코이시]]:사모
+	DIARY:49:14 = 3
+	CALL CHARA_DIARY_PAGESETTING(49, 13)
+ENDIF
+IF DIARY:49:15 == 0 && TALENT:[[코이시]]:연모
+	DIARY:49:15 = 3
+	CALL CHARA_DIARY_PAGESETTING(49, 15)
+ENDIF
 ;=============================
 @DIARY_TEXT_K49, PAGENUM, MODE, PAGECOUNT
 ;일기의 내용
@@ -435,6 +443,28 @@ IF ST_일기기입정보:PAGENUM == 0
 			ST_DIARY:(LINE++) '= @"결국 내가 포기했다"
 			ST_DIARY:(LINE++) '= @"어짜피 내가 뭐라고 해도 들어주지 않는데...괜히 나만 기운 뺄 이유도 없지"
 			ST_DIARY:(LINE++) '= @"그래도 다른 사람 보단 날 더 많이 봐줬음 하는데"
+		CASE 14
+			;코이시 사모
+			ST_DIARY:(LINE++) '= @"코이시가 조금 이상하다"
+			ST_DIARY:(LINE++) '= @"멍하니 있는 시간이 평소보다 더 긴 것만 같고 물어보면 얼굴을 붉힌다"
+			ST_DIARY:(LINE++) '= @"무슨 일이라도 있는걸까?"
+		CASE 15
+			;코이시 연모
+			ST_DIARY:(LINE++) '= @"코이시한테 좋아하는 사람이 생겼다고 한다"
+			ST_DIARY:(LINE++) '= @"상대는 %CALLNAME:MASTER%라고 한다"
+			IF MARK:49:반발각인 >= 3
+				ST_DIARY:(LINE++) '= @"...어째서 그런 사람을 좋아할 수 있는거야"
+				ST_DIARY:(LINE++) '= @"나도 할 말은 없지만...코이시한테도 손을 뻗치다니..."
+			ELSEIF TALENT:49:연인
+				ST_DIARY:(LINE++) '= @"...양다리라니, 못된 사람이라니깐"
+				ST_DIARY:(LINE++) '= @"뭐어, 상관없나...그만큼 %사마스터를% 강하게 묶어둘 수 있고"
+				ST_DIARY:(LINE++) '= @"다른 아이도 아니고 코이시라면 그나마..."
+			ELSEIF TALENT:49:연모 || TALENT:49:애욕
+				ST_DIARY:(LINE++) '= @"...경쟁이라니, 큰일인걸"
+				ST_DIARY:(LINE++) '= @"그래도 양보해줄수도 없고...어쩐담"
+			ELSE
+				ST_DIARY:(LINE++) '= @"뭐, 좋겠지...제대로 사랑받는다면 분명 코이시도 기뻐할테니"
+			ENDIF
 	ENDSELECT
 	ST_DIARY:(LINE++) = eofDIARY
 	ST_일기기입정보:PAGENUM = 1
