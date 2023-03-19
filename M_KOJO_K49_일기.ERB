@@ -103,7 +103,7 @@ RETURN 1
 ;날짜를 정확히 세려면 별도의 플래그가 필요. 예를 들면 처음 만난 날이라든지.
 ;=============================
 ;MAXPAGE는 여기에 기입한다
-MAX_DIARY_PAGE:49:0 = 1
+MAX_DIARY_PAGE:49:0 = 15
 IF DIARY:49:1 == 0 && CFLAG:49:안면
 	페이지 = 1
 ENDIF
@@ -194,7 +194,7 @@ LINE = -1
 IF ST_일기기입정보:PAGENUM == 0
 	CALL ST_DIARY_등록(PAGENUM)
 ELSE
-	FOR LOCAL,0,50
+	FOR LOCAL,0,ST_일기개수
 		IF ST_DIARY:LOCAL == "eofDIARY"
 			BREAK
 		ENDIF

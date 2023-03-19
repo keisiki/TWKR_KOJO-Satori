@@ -40,5 +40,6 @@
 ;위치
 #DIM ST_전회시간정지
 
+#DIM CONST ST_일기개수 = 50
 #DIM SAVEDATA ST_일기기입정보,50
 #DIM SAVEDATA ST_DIARY,50
