@@ -104,7 +104,7 @@ ENDSELECT
 @ST_통상회화
 #DIM 이전대화, 5
 #DIM DYNAMIC 대화선택
-#DIM CONST 대화개수 = 59
+#DIM CONST 대화개수 = 60
 ;이 패턴에서는 통상적인 대화를 합니다
 ;함락계마다 변화 없음, 넣으려면 넣을수도 있긴 하지만 뭐...
 
@@ -589,6 +589,9 @@ SELECTCASE 대화선택
     CASE 58
         PRINTFORMW 「원령 관리는 참 귀찮은 일이지요」
         PRINTFORMW 「이런 위험하고 어려운 일을 하청에 하청으로 해결하다니, 지옥이란 이름이 괜히 있는게 아니군요」
+    CASE 59
+        PRINTFORMW 「역시 나갈일이 별로 없어서인지, 체력이 영 부족한 느낌이군요」
+        PRINTFORMW 「그치만 역시 운동은 귀찮은걸...」
 ENDSELECT
 
 
