@@ -49,6 +49,7 @@ RETURN 1
 
 ;=============================
 @DIARY_BEFORE_CHECK_K49
+#DIM DYNAMIC 페이지
 ;상시 체크되는 일기의 상태 정보.
 ;여기서 DIARY:49:YY의 갱신을 실시한다.
 ;※DIARY:49:0번은 사용할 수 없다.
@@ -104,64 +105,54 @@ RETURN 1
 ;MAXPAGE는 여기에 기입한다
 MAX_DIARY_PAGE:49:0 = 1
 IF DIARY:49:1 == 0 && CFLAG:49:안면
-	DIARY:49:1 = 3
-	CALL CHARA_DIARY_PAGESETTING(49, 1)
+	페이지 = 1
 ENDIF
 IF DIARY:49:2 == 0 && CFLAG:49:3201
-	DIARY:49:2 = 3
-	CALL CHARA_DIARY_PAGESETTING(49, 2)
+	페이지 = 2
 ENDIF
 IF DIARY:49:3 == 0 && TALENT:49:사모
-	DIARY:49:3 = 3
-	CALL CHARA_DIARY_PAGESETTING(49, 3)
+	페이지 = 3
 ENDIF
 IF DIARY:49:4 == 0 && TALENT:49:섹프
-	DIARY:49:4 = 3
-	CALL CHARA_DIARY_PAGESETTING(49, 4)
+	페이지 = 4
 ENDIF
 IF DIARY:49:5 == 0 && TALENT:49:연모
-	DIARY:49:5 = 3
-	CALL CHARA_DIARY_PAGESETTING(49, 5)
+	페이지 = 5
 ENDIF
 IF DIARY:49:6 == 0 && TALENT:49:애욕
-	DIARY:49:6 = 3
-	CALL CHARA_DIARY_PAGESETTING(49, 6)
+	페이지 = 6
 ENDIF
 IF DIARY:49:7 == 0 && ST_대사플래그:5
-	DIARY:49:7 = 3
-	CALL CHARA_DIARY_PAGESETTING(49, 7)
+	페이지 = 7
 ENDIF
 IF DIARY:49:8 == 0 && TALENT:49:연인 && !CFLAG:49:1510
-	DIARY:49:8 = 3
-	CALL CHARA_DIARY_PAGESETTING(49, 8)
+	페이지 = 8
 ENDIF
 IF DIARY:49:9 == 0 && TALENT:49:연인 && CFLAG:49:1510
-	DIARY:49:9 = 3
-	CALL CHARA_DIARY_PAGESETTING(49, 9)
+	페이지 = 9
 ENDIF
 IF DIARY:49:10 == 0 && TALENT:49:연인 == 2
-	DIARY:49:10 = 3
-	CALL CHARA_DIARY_PAGESETTING(49, 10)
+	페이지 = 10
 ENDIF
 IF DIARY:49:11 == 0 && CFLAG:49:4001
-	DIARY:49:11 = 3
-	CALL CHARA_DIARY_PAGESETTING(49, 11)
+	페이지 = 11
 ENDIF
 IF DIARY:49:12 == 0 && CFLAG:49:4001 >= 5
-	DIARY:49:12 = 3
-	CALL CHARA_DIARY_PAGESETTING(49, 12)
+	페이지 = 12
 ENDIF
 IF DIARY:49:13 == 0 && CFLAG:49:4000
-	DIARY:49:13 = 3
-	CALL CHARA_DIARY_PAGESETTING(49, 13)
+	페이지 = 13
 ENDIF
 IF DIARY:49:14 == 0 && TALENT:[[코이시]]:사모
-	DIARY:49:14 = 3
-	CALL CHARA_DIARY_PAGESETTING(49, 13)
+	페이지 = 14
 ENDIF
 IF DIARY:49:15 == 0 && TALENT:[[코이시]]:연모
-	DIARY:49:15 = 3
-	CALL CHARA_DIARY_PAGESETTING(49, 15)
+	페이지 = 15
+ENDIF
+IF 페이지
+	DIARY:49:페이지 = 3
+	CALL CHARA_DIARY_PAGESETTING(49, 페이지)
+	CALL ST_DIARY_등록(페이지)
 ENDIF
 ;=============================
 @DIARY_TEXT_K49, PAGENUM, MODE, PAGECOUNT
@@ -174,7 +165,6 @@ ENDIF
 #DIM PAGENUM
 #DIMS MODE
 #DIM PAGECOUNT
-#DIMS DYNAMIC ST_DIARY,50
 #DIM DYNAMIC LINE
 
 ;구상색 지정이 있으면 주석처리를 지운다
@@ -201,6 +191,67 @@ PRINTFORMDL - %CALLNAME:49%의 일기　PAGE.{PAGECOUNT} -----------------------
 PRINTL
 LINE = -1
 ;※PAGENUM:0은 사용할 수 없다
+IF ST_일기기입정보:PAGENUM == 0
+	CALL ST_DIARY_등록(PAGENUM)
+ELSE
+	FOR LOCAL,0,50
+		IF ST_DIARY:LOCAL == "eofDIARY"
+			BREAK
+		ENDIF
+		PRINTFORML %ST_DIARY:LOCAL%
+	NEXT
+ENDIF
+
+RESETCOLOR
+
+;=============================
+@M_KOJO_MESSAGE_COM_K49_406
+;=============================
+CALL TRAIN_MESSAGE
+CALL M_KOJO_MESSAGE_COM_K49_406_1
+RETURN RESULT
+
+;=============================
+@M_KOJO_MESSAGE_COM_K49_406_1
+;커맨드 구상
+;TFLAG:194 (누구의 일기를 읽고있는지)
+;TFLAG:194가 49가 아닌 경우는 타인의 일기이므로 주의.
+;PAGE는 적혀있는 페이지 수.
+;SHIRAHU(49)는 캐릭터 49의 상태가 정상인지 아닌지.
+;=============================
+#DIM PAGE
+
+;이하는 샘플
+PAGE = 0
+FOR LOCAL, 0, MAX_DIARY_PAGE:(TFLAG:194):0
+	IF GROUPMATCH(DIARY:(TFLAG:194):LOCAL, 1, 3)
+		PAGE ++
+	ENDIF
+NEXT
+
+IF SHIRAHU(49) && TFLAG:194 == 49
+;일기를 다 읽고 난 후의 반응
+	IF PAGE > 2
+		IF MARK:49:반발각인 == 3 && !TALENT:49:연인
+			CALL SPTALK, 49,"通常",0,@"「무, 뭘 멋대로 읽는거야...!」//사토리는 황급히 일기를 뺏었다"
+		ELSEIF TALENT:49:연인
+			CALL SPTALK, 49,"通常",0,@"「이, 읽지 말아주세요...」//사토리는 얼굴을 붉혔다"
+		ELSEIF TALENT:49:연모||TALENT:49:사모||TALENT:49:애욕
+			CALL SPTALK, 49,"通常",0,@"「머, 멋대로 읽지 마세요...」//사토리는 황급히 일기를 뺏었다"
+		ELSEIF TALENT:49:섹프
+			CALL SPTALK, 49,"通常",0,@"「떽, 안돼요」//사토리는 일기를 뺏었다"
+		ELSE
+			CALL SPTALK, 49,"通常",0,@"「남의 일기를...」//사토리는 황급히 일기를 뺏었다"
+		ENDIF
+		;화상포함 토크는 최대 6행까지.
+	ELSE
+		PRINTFORML 
+	ENDIF
+ENDIF
+
+@ST_DIARY_등록(PAGENUM)
+#DIM PAGENUM
+#DIM DYNAMIC LINE
 IF ST_일기기입정보:PAGENUM == 0
 	SELECTCASE PAGENUM
 		CASE 1
@@ -469,57 +520,4 @@ IF ST_일기기입정보:PAGENUM == 0
 	ST_DIARY:(LINE++) = eofDIARY
 	ST_일기기입정보:PAGENUM = 1
 ELSE
-	FOR LOCAL,0,50
-		IF ST_DIARY:LOCAL == "eofDIARY"
-			BREAK
-		ENDIF
-		PRINTFORML %ST_DIARY:LOCAL%
-	NEXT
-ENDIF
-
-RESETCOLOR
-
-;=============================
-@M_KOJO_MESSAGE_COM_K49_406
-;=============================
-CALL TRAIN_MESSAGE
-CALL M_KOJO_MESSAGE_COM_K49_406_1
-RETURN RESULT
-
-;=============================
-@M_KOJO_MESSAGE_COM_K49_406_1
-;커맨드 구상
-;TFLAG:194 (누구의 일기를 읽고있는지)
-;TFLAG:194가 49가 아닌 경우는 타인의 일기이므로 주의.
-;PAGE는 적혀있는 페이지 수.
-;SHIRAHU(49)는 캐릭터 49의 상태가 정상인지 아닌지.
-;=============================
-#DIM PAGE
-
-;이하는 샘플
-PAGE = 0
-FOR LOCAL, 0, MAX_DIARY_PAGE:(TFLAG:194):0
-	IF GROUPMATCH(DIARY:(TFLAG:194):LOCAL, 1, 3)
-		PAGE ++
-	ENDIF
-NEXT
-
-IF SHIRAHU(49) && TFLAG:194 == 49
-;일기를 다 읽고 난 후의 반응
-	IF PAGE > 2
-		IF MARK:49:반발각인 == 3 && !TALENT:49:연인
-			CALL SPTALK, 49,"通常",0,@"「무, 뭘 멋대로 읽는거야...!」//사토리는 황급히 일기를 뺏었다"
-		ELSEIF TALENT:49:연인
-			CALL SPTALK, 49,"通常",0,@"「이, 읽지 말아주세요...」//사토리는 얼굴을 붉혔다"
-		ELSEIF TALENT:49:연모||TALENT:49:사모||TALENT:49:애욕
-			CALL SPTALK, 49,"通常",0,@"「머, 멋대로 읽지 마세요...」//사토리는 황급히 일기를 뺏었다"
-		ELSEIF TALENT:49:섹프
-			CALL SPTALK, 49,"通常",0,@"「떽, 안돼요」//사토리는 일기를 뺏었다"
-		ELSE
-			CALL SPTALK, 49,"通常",0,@"「남의 일기를...」//사토리는 황급히 일기를 뺏었다"
-		ENDIF
-		;화상포함 토크는 최대 6행까지.
-	ELSE
-		PRINTFORML 
-	ENDIF
 ENDIF
