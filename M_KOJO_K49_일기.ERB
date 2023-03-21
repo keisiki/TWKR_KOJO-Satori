@@ -104,6 +104,11 @@ RETURN 1
 ;=============================
 ;MAXPAGE는 여기에 기입한다
 MAX_DIARY_PAGE:49:0 = 15
+FOR LOCAL,0,MAX_DIARY_PAGE
+	IF ST_DIARY:LOCAL:0 == ""
+		DIARY49:LOCAL = 0
+	ENDIF
+NEXT
 IF DIARY:49:1 == 0 && CFLAG:49:안면
 	페이지 = 1
 ENDIF
@@ -148,6 +153,9 @@ IF DIARY:49:14 == 0 && TALENT:[[코이시]]:사모
 ENDIF
 IF DIARY:49:15 == 0 && TALENT:[[코이시]]:연모
 	페이지 = 15
+ENDIF
+IF DIARY:49:16 == 0 && TALENT:[[코이시]]:연모
+	페이지 = 16
 ENDIF
 IF 페이지
 	DIARY:49:페이지 = 3
@@ -515,6 +523,19 @@ IF ST_일기기입정보:PAGENUM == 0
 				ST_DIARY:PAGENUM:(LINE++) '= @"그래도 양보해줄수도 없고...어쩐담"
 			ELSE
 				ST_DIARY:PAGENUM:(LINE++) '= @"뭐, 좋겠지...제대로 사랑받는다면 분명 코이시도 기뻐할테니"
+			ENDIF
+		CASE 16
+			;코이시 연인
+			ST_DIARY:PAGENUM:(LINE++) '= @"%사마스터와% 코이시가 서로 사귀기 시작했다는 모양이다"
+			IF MARK:49:반발각인 >= 3 && !TALENT:49:연인
+				ST_DIARY:PAGENUM:(LINE++) '= @"정말 걱정되는 일이야, 만약 코이시한테도 상처준다면 가만두지 않겠어"
+			ELSEIF TALENT:49:연인
+				ST_DIARY:PAGENUM:(LINE++) '= @"...양손의 꽃, 이란 걸까나"
+				ST_DIARY:PAGENUM:(LINE++) '= @"남들이 부러워 하겠지, 우리 둘과 동시에 사귀는 사람이라니"
+			ELSEIF TALENT:49:연모 || TALENT:49:애욕
+				ST_DIARY:PAGENUM:(LINE++) '= @"...조금 부럽네"
+			ELSE
+				ST_DIARY:PAGENUM:(LINE++) '= @"잘 된 일이다, 코이시도 기뻐하고..."
 			ENDIF
 	ENDSELECT
 	ST_DIARY:PAGENUM:(LINE++) = eofDIARY
