@@ -160,6 +160,9 @@ ENDIF
 IF DIARY:49:17 == 0 && TALENT:[[코이시]]:연인 == 2
 	페이지 = 17
 ENDIF
+IF DIARY:49:18 == 0 && CFLAG:49:탄막승부승리
+	페이지 = 18
+ENDIF
 IF 페이지
 	DIARY:49:페이지 = 3
 	CALL CHARA_DIARY_PAGESETTING(49, 페이지)
@@ -559,6 +562,18 @@ IF ST_일기기입정보:PAGENUM == 0
 					ST_DIARY:PAGENUM:(LINE++) '= @"...상대가 조금 걱정되는 상대긴 하지만, 코이시가 좋다고 하니 뭐라 할 수도 없고"
 					ST_DIARY:PAGENUM:(LINE++) '= @"조금 고민이다"
 				ENDIF
+			ENDIF
+		CASE 18
+			ST_DIARY:PAGENUM:(LINE++) '= @"오늘은 %사마스터와% 탄막놀이를 했다"
+			IF MARK:49:반발각인 >= 3
+				ST_DIARY:PAGENUM:(LINE++) '= @"그리고 져버렸다"
+				ST_DIARY:PAGENUM:(LINE++) '= @"분해, 다음번엔 이길거야"
+			ELSEIF TALENT:49:연인||TALENT:49:연모||TALENT:49:사모||TALENT:49:애욕
+				ST_DIARY:PAGENUM:(LINE++) '= @"그리고 져버렸다"
+				ST_DIARY:PAGENUM:(LINE++) '= @"그래도 재미는 있었으니 상관은 없어"
+			ELSE
+				ST_DIARY:PAGENUM:(LINE++) '= @"결과적으로 내가 졌다"
+				ST_DIARY:PAGENUM:(LINE++) '= @"그래도 조금 몸을 움직이는 것도 가끔씩은 재밌단 말이지"
 			ENDIF
 		;ST_DIARY:PAGENUM:(LINE++) '= @""
 	ENDSELECT
