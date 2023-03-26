@@ -163,6 +163,9 @@ ENDIF
 IF DIARY:49:18 == 0 && CFLAG:49:탄막승부승리
 	페이지 = 18
 ENDIF
+IF DIARY:49:18 == 0 && CFLAG:49:5100
+	페이지 = 19
+ENDIF
 IF 페이지
 	DIARY:49:페이지 = 3
 	CALL CHARA_DIARY_PAGESETTING(49, 페이지)
@@ -575,6 +578,12 @@ IF ST_일기기입정보:PAGENUM == 0
 				ST_DIARY:PAGENUM:(LINE++) '= @"결과적으로 내가 졌다"
 				ST_DIARY:PAGENUM:(LINE++) '= @"그래도 조금 몸을 움직이는 것도 가끔씩은 재밌단 말이지"
 			ENDIF
+		CASE 19
+			;팬티훔침 대사 
+			ST_DIARY:PAGENUM:(LINE++) '= @"%사마스터가% 남의 팬티를 숨긴채가고 있길래 한 소리 했다"
+			ST_DIARY:PAGENUM:(LINE++) '= @"그랬더니 무언가 대단한 이유가 있다느니 하는 소리를 해왔다"
+			ST_DIARY:PAGENUM:(LINE++) '= @"이해하긴 어렵지만 거짓말을 하는 눈치는 아니었다"
+			ST_DIARY:PAGENUM:(LINE++) '= @"...왠지 알기 싫은 진실을 안 기분이다"
 		;ST_DIARY:PAGENUM:(LINE++) '= @""
 	ENDSELECT
 	ST_DIARY:PAGENUM:(LINE++) = eofDIARY
