@@ -103,7 +103,7 @@ RETURN 1
 ;날짜를 정확히 세려면 별도의 플래그가 필요. 예를 들면 처음 만난 날이라든지.
 ;=============================
 ;MAXPAGE는 여기에 기입한다
-MAX_DIARY_PAGE:49:0 = 15
+MAX_DIARY_PAGE:49:0 = 20
 FOR LOCAL,0,MAX_DIARY_PAGE
 	IF ST_DIARY:LOCAL:0 == ""
 		DIARY:49:LOCAL = 0
@@ -163,8 +163,12 @@ ENDIF
 IF DIARY:49:18 == 0 && CFLAG:49:탄막승부승리
 	페이지 = 18
 ENDIF
-IF DIARY:49:18 == 0 && CFLAG:49:5100
+IF DIARY:49:19 == 0 && CFLAG:49:5100
 	페이지 = 19
+ENDIF
+
+IF DIARY:49:21 == 0 && EXP:49:출산경험
+	페이지 = 21
 ENDIF
 IF 페이지
 	DIARY:49:페이지 = 3
@@ -584,6 +588,39 @@ IF ST_일기기입정보:PAGENUM == 0
 			ST_DIARY:PAGENUM:(LINE++) '= @"그랬더니 무언가 대단한 이유가 있다느니 하는 소리를 해왔다"
 			ST_DIARY:PAGENUM:(LINE++) '= @"이해하긴 어렵지만 거짓말을 하는 눈치는 아니었다"
 			ST_DIARY:PAGENUM:(LINE++) '= @"...왠지 알기 싫은 진실을 안 기분이다"
+		CASE 21
+			;첫 출산
+			ST_DIARY:PAGENUM:(LINE++) '= @"아이를 낳았다"
+			IF CFLAG:49:무자각임신
+				IF TALENT:49:연인
+					ST_DIARY:PAGENUM:(LINE++) '= @"누구의 아이인지도 모르는 아이...%사마스터의% 낯을 어떻게 볼까"
+					ST_DIARY:PAGENUM:(LINE++) '= @"조금 심란해졌다"
+				ELSEIF TALENT:49:연모||TALENT:49:사모||TALENT:49:애욕
+					ST_DIARY:PAGENUM:(LINE++) '= @"...그렇지만 사랑하는 사람의 아이도 아닌, 어째서 생긴건지도 모를 아이"
+					ST_DIARY:PAGENUM:(LINE++) '= @"조금 슬퍼졌다"
+				ELSE
+					ST_DIARY:PAGENUM:(LINE++) '= @"도대체 누구의 아이일까, 어떻게 길러야 할까..."
+					ST_DIARY:PAGENUM:(LINE++) '= @"기쁨보다도 피로와 걱정만이 가득하다"
+				ENDIF
+			ELSE
+				;자각임신
+				IF MARK:49:반발각인 >= 3 && !TALENT:49:연인
+					ST_DIARY:PAGENUM:(LINE++) '= @"아빠쪽은 %MASTERNAME:49%...조금 걱정이다"
+					ST_DIARY:PAGENUM:(LINE++) '= @"이 아이를 봐서라도 조금은 나아졌으면 하는데"
+				ELSEIF TALENT:49:연인
+					ST_DIARY:PAGENUM:(LINE++) '= @"아프고 힘들었지만 그 이상으로 기쁜 마음이다"
+					ST_DIARY:PAGENUM:(LINE++) '= @"내 옆에서 새근새근 자고 있는 모습을 보니 무언가 행복감이 느껴진다"
+					ST_DIARY:PAGENUM:(LINE++) '= @"그나저나 어떻게 길러야 하는걸까...이런 일 익숙하진 않은걸"
+				ELSEIF TALENT:49:연모||TALENT:49:애욕||TALENT:49:사모
+					ST_DIARY:PAGENUM:(LINE++) '= @"조금 많이 아팠다, 그래도 지금 내 옆에 누워 자고 있는 그 아이의 얼굴을 보고 있으면 왠지 모를 행복감이 든다"
+					ST_DIARY:PAGENUM:(LINE++) '= @"평온하고 티없는 마음이 읽혀져 머릿속에 들어오고 있다, 귀여워"
+					ST_DIARY:PAGENUM:(LINE++) '= @"이 아이의 마음이라면 하루종일 봐도 지치지 않겠는걸"
+				ELSE
+					ST_DIARY:PAGENUM:(LINE++) '= @"솔직히...뭐라 할 말이 떠오르진 않는다"
+					ST_DIARY:PAGENUM:(LINE++) '= @"그래도 옆에서 새근새근 자고 있는 모습을 보면 어딘가 기분이 좋아진다"
+					ST_DIARY:PAGENUM:(LINE++) '= @"...그래서 어떻게 길러야 하는걸까나, 나는 잘 모르는걸"
+				ENDIF
+			ENDIF
 		;ST_DIARY:PAGENUM:(LINE++) '= @""
 	ENDSELECT
 	ST_DIARY:PAGENUM:(LINE++) = eofDIARY
