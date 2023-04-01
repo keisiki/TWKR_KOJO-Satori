@@ -166,7 +166,9 @@ ENDIF
 IF DIARY:49:19 == 0 && CFLAG:49:5100
 	페이지 = 19
 ENDIF
-
+IF DIARY:49:20 == 0 && (EXP:49:출산경험 || TALENT:49:임신)
+	페이지 = 20
+ENDIF
 IF DIARY:49:21 == 0 && EXP:49:출산경험
 	페이지 = 21
 ENDIF
@@ -588,20 +590,40 @@ IF ST_일기기입정보:PAGENUM == 0
 			ST_DIARY:PAGENUM:(LINE++) '= @"그랬더니 무언가 대단한 이유가 있다느니 하는 소리를 해왔다"
 			ST_DIARY:PAGENUM:(LINE++) '= @"이해하긴 어렵지만 거짓말을 하는 눈치는 아니었다"
 			ST_DIARY:PAGENUM:(LINE++) '= @"...왠지 알기 싫은 진실을 안 기분이다"
+		CASE 20
+			;첫 임신
+			ST_DIARY:PAGENUM:(LINE++) '= @"아이가 생겼다"
+			IF CFLAG:49:무자각임신
+				IF !CFLAG:49:안면
+					ST_DIARY:PAGENUM:(LINE++) '= @"...누구의 아이인지는 모른다, 그저 어느샌가 생겨있을뿐"
+					ST_DIARY:PAGENUM:(LINE++) '= @"도대체 누구 짓이야, 찾으면 용서 안해"
+				ELSE
+					ST_DIARY:PAGENUM:(LINE++) '= @"...나 몰래 멋대로 범한 %사마스터의% 아이"
+					IF MARK:49:반발각인 >= 3 && !TALENT:49:연인
+						ST_DIARY:PAGENUM:(LINE++) '= @"...용서못해, 못하지만..."
+						ST_DIARY:PAGENUM:(LINE++) '= @"그래도 이 아이는 불쌍하니까..."
+					ELSEIF TALENT:49:연인 || TALENT:49:연모 || TALENT:49:사모
+						ST_DIARY:PAGENUM:(LINE++) '= @"뭐랄까...아무리 좋아하는 상대라 해도 이런 전개는 조금..."
+						ST_DIARY:PAGENUM:(LINE++) '= @"그렇지만 이런거 화내야 할지 말지 감도 안 오네, 그냥 어이가 없을 뿐이야"
+					ELSE
+						ST_DIARY:PAGENUM:(LINE++) '= @"한 소리 해야겠는걸"
+					ENDIF
+				ENDIF
+			ELSE
+				IF CFLAG:49:생해금 == 2
+					ST_DIARY:PAGENUM:(LINE++) '= @"...소중하게 생각하고 있다"
+					ST_DIARY:PAGENUM:(LINE++) '= @"만나게 될 날이 기다려지는걸"
+				ELSE
+					ST_DIARY:PAGENUM:(LINE++) '= @"...아이같은거 아직 준비 안 됐는데"
+					ST_DIARY:PAGENUM:(LINE++) '= @"어떻게 해야 할지 걱정이다"
+				ENDIF
+			ENDIF
 		CASE 21
 			;첫 출산
 			ST_DIARY:PAGENUM:(LINE++) '= @"아이를 낳았다"
-			IF CFLAG:49:무자각임신
-				IF TALENT:49:연인
-					ST_DIARY:PAGENUM:(LINE++) '= @"누구의 아이인지도 모르는 아이...%사마스터의% 낯을 어떻게 볼까"
-					ST_DIARY:PAGENUM:(LINE++) '= @"조금 심란해졌다"
-				ELSEIF TALENT:49:연모||TALENT:49:사모||TALENT:49:애욕
-					ST_DIARY:PAGENUM:(LINE++) '= @"...그렇지만 사랑하는 사람의 아이도 아닌, 어째서 생긴건지도 모를 아이"
-					ST_DIARY:PAGENUM:(LINE++) '= @"조금 슬퍼졌다"
-				ELSE
-					ST_DIARY:PAGENUM:(LINE++) '= @"도대체 누구의 아이일까, 어떻게 길러야 할까..."
-					ST_DIARY:PAGENUM:(LINE++) '= @"기쁨보다도 피로와 걱정만이 가득하다"
-				ENDIF
+			IF CFLAG:49:무자각임신 && !CFLAG:49:안면
+				ST_DIARY:PAGENUM:(LINE++) '= @"도대체 누구의 아이일까, 어떻게 길러야 할까..."
+				ST_DIARY:PAGENUM:(LINE++) '= @"기쁨보다도 피로와 걱정만이 가득하다"
 			ELSE
 				;자각임신
 				IF MARK:49:반발각인 >= 3 && !TALENT:49:연인
