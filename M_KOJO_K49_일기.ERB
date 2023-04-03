@@ -172,6 +172,9 @@ ENDIF
 IF DIARY:49:21 == 0 && EXP:49:출산경험
 	페이지 = 21
 ENDIF
+IF DIARY:49:22 == 0
+	페이지 = 22
+ENDIF
 IF 페이지
 	DIARY:49:페이지 = 3
 	CALL CHARA_DIARY_PAGESETTING(49, 페이지)
@@ -643,6 +646,10 @@ IF ST_일기기입정보:PAGENUM == 0
 					ST_DIARY:PAGENUM:(LINE++) '= @"...그래서 어떻게 길러야 하는걸까나, 나는 잘 모르는걸"
 				ENDIF
 			ENDIF
+		CASE 22
+			ST_DIARY:PAGENUM:(LINE++) '= @"코이시가 또 집을 나갔다"
+			ST_DIARY:PAGENUM:(LINE++) '= @"아마 코코로랑 노닥거리러 나간걸까..."
+			ST_DIARY:PAGENUM:(LINE++) '= @"한번 나가면 만족하기 전까진 곧잘 안 오니 걱정이다"	
 		;ST_DIARY:PAGENUM:(LINE++) '= @""
 	ENDSELECT
 	ST_DIARY:PAGENUM:(LINE++) = eofDIARY
